@@ -36,7 +36,7 @@ class DeviceDriver:
             self.serial.close()
             self.serial = None
 
-    @allure.step("Зчитуванян всіч рядків з serial-порту протягом заданого timeout: '{timeout}'")
+    @allure.step("Зчитування всіх рядків з serial-порту протягом заданого timeout: '{timeout}'")
     def read_lines(self, timeout: float) -> list[str]:
         if not self.serial or not self.serial.is_open:
             raise RuntimeError("Serial port is not open. Call open() first.")

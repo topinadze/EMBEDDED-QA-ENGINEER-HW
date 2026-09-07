@@ -1,4 +1,5 @@
 import time
+import allure
 import pytest
 import serial.tools.list_ports
 from drivers.device_driver import DeviceDriver
@@ -88,3 +89,20 @@ def hard_reset_after_test(device_driver: DeviceDriver):
 @pytest.fixture
 def user_credentials() -> tuple[str, str]:
     return DEFAULT_USER, DEFAULT_PASSWORD
+
+
+@pytest.fixture
+def authenticated_device(
+    device_driver: DeviceDriver, user_credentials: tuple[str, str]
+) -> DeviceDriver:
+    with allure.step("1. Авторизація"):
+        user, password = user_credentials
+        device_driver.send_command(f"register {user} {password}")
+
+        is_logged_in = device_driver.login(user, password)
+
+    assert (
+        is_logged_in
+    ), f"SETUP FAIL: Не вдалося авторизуватися під користувачем '{user}'."
+
+    return device_driver
