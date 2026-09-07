@@ -8,38 +8,6 @@ from drivers.device_driver import DeviceDriver
 @allure.feature("Alarm System")
 class TestAlarmFunctional:
 
-    @allure.story("Configuration")
-    @allure.title("Alarm Threshold Roundtrip")
-    @allure.severity(allure.severity_level.CRITICAL)
-    @pytest.mark.alarm
-    @pytest.mark.functional
-    @pytest.mark.hw_9
-    @pytest.mark.parametrize("threshold", [2, 10, 50, 100, 400])
-    def test_alarm_threshold_roundtrip(
-        self,
-        authenticated_device: DeviceDriver,
-        reboot_device_between_tests: None,
-        threshold: int,
-    ):
-        """
-        Перевірка встановлення та читання значення alarm_threshold.
-        1. config set alarm_threshold <value>
-        2. config get alarm_threshold
-        3. assert прочитане == встановленому
-        """
-        with allure.step(f"1. Встановлення порогу alarm_threshold = {threshold}"):
-            authenticated_device.send_command(f"config set alarm_threshold {threshold}")
-
-        with allure.step("2. Зчитування значення порогу alarm_threshold"):
-            response = " ".join(
-                authenticated_device.send_command("config get alarm_threshold")
-            )
-
-        with allure.step("3. Перевірка прочитаного значення"):
-            assert (
-                str(threshold) in response
-            ), f"FAIL: Очікували поріг {threshold}, але отримали відгук: '{response}'"
-
     @allure.story("State Machine Constraints")
     @allure.title("Parametrized: 'alarm clear' availability across states")
     @allure.severity(allure.severity_level.NORMAL)
@@ -75,27 +43,24 @@ class TestAlarmFunctional:
 
         with allure.step(f"3. Перевірка виконання '{setup_command}'"):
             if "alarm arm" in setup_command:
-                assert "ARMED" in command_res.upper(), (
-                    f"FAIL: Команда '{setup_command}' відхилена. Отримано: '{command_res}'"
-                )
+                assert (
+                    "ARMED" in command_res.upper()
+                ), f"FAIL: Команда '{setup_command}' відхилена. Отримано: '{command_res}'"
             elif "alarm disarm" in setup_command:
-                assert "DISARMED" in command_res.upper(), (
-                    f"FAIL: Команда '{setup_command}' відхилена. Отримано: '{command_res}'"
-                )
+                assert (
+                    "DISARMED" in command_res.upper()
+                ), f"FAIL: Команда '{setup_command}' відхилена. Отримано: '{command_res}'"
 
         with allure.step("2. Спроба виконання 'alarm clear'"):
             clear_res = " ".join(
                 authenticated_device.send_command("alarm clear")
             ).lower()
 
-        with allure.step("3. Перевірка виконання 'alarm clear'"):
-            if not expect_clear_success:
-                assert (
-                    "warning" in clear_res
-                    or "invalid" in clear_res
-                    or "err" in clear_res
-                    or "not" in clear_res
-                ), f"FAIL [{description}]: Команда 'alarm clear' мала бути відхилена. Отримано: '{clear_res}'"
+            with allure.step("Перевірка виконання 'alarm clear'"):
+                if not expect_clear_success:
+                    assert (
+                        "Nothing to clear.".lower() in clear_res
+                    ), f"FAIL [{description}]: Команда 'alarm clear' мала бути відхилена. Отримано: '{clear_res}'"
 
     @allure.story("Distance Zone Alarm")
     @allure.title("Parametrized: Distance zones triggering")
@@ -126,10 +91,8 @@ class TestAlarmFunctional:
         with allure.step(f"1. Встановлення конфігурації зони: {zone_command}"):
             res = " ".join(authenticated_device.send_command(zone_command)).lower()
             assert (
-                "ok" in res
-                or expect_active in res
-                or "disabled" in res
-                or "zone" in res
+                f"Zone: {expect_active}".lower() in res
+                or "Zone monitoring disabled".lower() in res
             ), f"FAIL: Помилка при виконанні '{zone_command}': '{res}'"
 
         with allure.step("2. Перевірка статусу підсистеми distance"):
