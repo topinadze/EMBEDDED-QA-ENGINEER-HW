@@ -13,7 +13,9 @@ class TestConfigPersistence:
     @allure.issue(
         "BUG-301", name="NVS Presistence issue. NVS doesnt load properly after reboot"
     )
-    @pytest.mark.xfail
+    @pytest.mark.xfail(
+        reason="NVS Presistence issue. NVS doesnt load properly after reboot"
+    )
     @pytest.mark.config
     @pytest.mark.functional
     @pytest.mark.hw_9

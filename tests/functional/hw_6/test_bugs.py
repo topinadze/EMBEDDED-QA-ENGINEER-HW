@@ -13,7 +13,7 @@ class TestSentryDeviceBugs:
     @allure.severity(allure.severity_level.CRITICAL)
     @allure.issue("BUG-101", name="Sensor history is truncated to <= 5 records")
     @pytest.mark.hw_6
-    @pytest.mark.xfail
+    @pytest.mark.xfail(reason="Sensor history is truncated to <= 5 records")
     def test_sensor_history_truncation(
         self,
         device_driver: DeviceDriver,
@@ -100,7 +100,7 @@ class TestSentryDeviceBugs:
     @allure.title("Test 02.1: LED blink duration truncation (> 10 blinks)")
     @allure.severity(allure.severity_level.NORMAL)
     @allure.issue("BUG-103", name="LED blink caps at 10 blinks")
-    @pytest.mark.xfail
+    @pytest.mark.xfail(reason="LED blink caps at 10 blinks")
     @pytest.mark.hw_6
     def test_led_blink(
         self,

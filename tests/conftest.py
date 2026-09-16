@@ -5,6 +5,16 @@ import serial.tools.list_ports
 from drivers.device_driver import DeviceDriver
 from config.test_config import DEFAULT_USER, DEFAULT_PASSWORD
 
+# Стандартні Vendor IDs для USB-to-UART конвертерів та ESP32
+ESP32_VIDS = [
+    0x10C4,  # Silicon Labs CP210x
+    0x1A86,  # QinHeng Electronics CH340/CH341
+    0x0403,  # FTDI FT232
+    0x303A,  # Espressif Systems (ESP32-S2/S3/C3 Native USB)
+]
+
+descriptors = ["CP210", "CH340", "FT232", "ESP32", "USB-to-UART", "Serial"]
+
 
 def find_esp32_port() -> str:
     """Динамічний пошук COM-порту підключеного ESP32/UART пристрою."""
@@ -12,15 +22,19 @@ def find_esp32_port() -> str:
     if not ports:
         pytest.fail("No available COM ports found on the system!")
 
-    descriptors = ["CP210", "CH340", "FT232", "ESP32", "USB-to-UART", "Serial"]
-
+    # 1. Пошук за Vendor ID
     for p in ports:
-        for desc in descriptors:
-            if desc.lower() in p.description.lower() or (
-                p.manufacturer and desc.lower() in p.manufacturer.lower()
-            ):
-                return p.device
+        if p.vid in ESP32_VIDS:
+            return p.device
 
+    # 2. Фолбек за текстовим описом, якщо VID не збігся
+    descriptors = ["cp210", "ch340", "ft232", "esp32", "usb-to-uart"]
+    for p in ports:
+        desc = (p.description or "") + (p.manufacturer or "")
+        if any(d in desc.lower() for d in descriptors):
+            return p.device
+
+    # 3. Якщо нічого не знайдено — повертаємо перший доступний
     return ports[0].device
 
 
@@ -53,7 +67,7 @@ def reboot_device_between_tests(device_driver: DeviceDriver):
         pass
 
     # Чекаємо перезавантаження
-    time.sleep(3.0)
+    device_driver.wait_for("App started", timeout=3)
 
     # Вичищаємо буфери
     if device_driver.serial and device_driver.serial.is_open:
@@ -79,7 +93,7 @@ def hard_reset_after_test(device_driver: DeviceDriver):
         except Exception as e:
             print(f"\n[Teardown Warning] Hard reset failed: {e}")
 
-    time.sleep(3.0)
+    device_driver.wait_for("App started", timeout=3)
     # Очищаємо буфери
     if device_driver.serial and device_driver.serial.is_open:
         device_driver.serial.reset_input_buffer()
