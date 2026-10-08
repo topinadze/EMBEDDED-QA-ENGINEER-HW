@@ -1,0 +1,4 @@
+pyserial>=3.5
+pytest>=8.0.0
+pytest-order>=1.2.0
+allure-pytest>=2.13.0
