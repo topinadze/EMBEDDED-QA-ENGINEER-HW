@@ -1,0 +1,60 @@
+---- Sent utf8 encoded message: "lamp timer 10\n" ----
+lamp timer 10
+
+E (1563776) wifi station: error: lamp is off
+---- Sent utf8 encoded message: "lamp on\n" ----
+lamp on
+
+I (1571896) wifi station: [LAMP] on
+---- Sent utf8 encoded message: "lamp status\n" ----
+lamp status
+
+{"lamp":"on","color":[0,0,255],"brightness":50,"mode":"breathe","timer_s":0}
+---- Sent utf8 encoded message: "lamp timer 10\n" ----
+lamp timer 10
+
+I (1583406) wifi station: [LAMP] auto-off in 10 s
+I (1593406) wifi station: [LAMP] timer expired, lamp off
+---- Sent utf8 encoded message: "lamp status\n" ----
+lamp status
+
+{"lamp":"off","color":[0,0,255],"brightness":50,"mode":"breathe","timer_s":0}
+---- Sent utf8 encoded message: "lamp timer 10\n" ----
+lamp timer 10
+
+E (1616196) wifi station: error: lamp is off
+---- Sent utf8 encoded message: "lamp timer 0\n" ----
+lamp timer 0
+
+I (1618466) wifi station: [LAMP] timer cancelled
+---- Sent utf8 encoded message: "lamp status\n" ----
+lamp status
+
+{"lamp":"off","color":[0,0,255],"brightness":50,"mode":"breathe","timer_s":0}
+---- Sent utf8 encoded message: "lamp on\n" ----
+lamp on
+
+I (1632806) wifi station: [LAMP] on
+---- Sent utf8 encoded message: "lamp timer 10\n" ----
+lamp timer 10
+
+I (1636206) wifi station: [LAMP] auto-off in 10 s
+---- Sent utf8 encoded message: "lamp status\n" ----
+lamp status
+
+{"lamp":"on","color":[0,0,255],"brightness":50,"mode":"breathe","timer_s":7}
+---- Sent utf8 encoded message: "lamp timer 0\n" ----
+lamp timer 0
+
+I (1641316) wifi station: [LAMP] timer cancelled
+---- Sent utf8 encoded message: "lamp status\n" ----
+lamp status
+
+{"lamp":"on","color":[0,0,255],"brightness":50,"mode":"breathe","timer_s":0}
+
+Timer behavior and physical auto-off test passed.
+
+---- Sent utf8 encoded message: "lamp timer 5000\n" ----
+lamp timer 5000
+
+E (1714486) wifi station: error: timer must be 1-3600 s (0 = cancel)

@@ -1,0 +1,45 @@
+---- Opened the serial port COM4 ----
+---- Sent utf8 encoded message: "help\n" ----
+help
+
+I (33464) wifi station: Available commands:
+I (33464) wifi station:   connect                    - connect to WiFi AP
+I (33464) wifi station:   disconnect                 - disconnect from WiFi AP
+I (33464) wifi station:   status                     - show WiFi connection status
+I (33464) wifi station:   scan                       - scan for WiFi networks
+I (33474) wifi station:   distance                   - measure continuously (Enter to stop)
+I (33484) wifi station:   distance 10                - measure for 10 seconds
+I (33484) wifi station:   distance <seconds>         - measure for N seconds
+I (33494) wifi station:   relay on                   - turn relay ON
+I (33504) wifi station:   relay off                  - turn relay OFF
+I (33504) wifi station:   led on                     - turn LED on (white)
+I (33514) wifi station:   led off                    - turn LED off
+I (33524) wifi station:   led auto                   - LED follows WiFi status
+I (33524) wifi station:   led rgb                    - smooth RGB cycle for 5 seconds
+I (33534) wifi station:   version                    - firmware version, partition, OTA state
+I (33544) wifi station:   ota check                  - compare current version with server
+I (33544) wifi station:   ota update                 - install latest stable firmware
+I (33554) wifi station:   ota update beta            - install latest beta firmware
+I (33564) wifi station:   ota install <ver> [force]  - install specific version (force = allow downgrade)
+I (33574) wifi station:   ota broken                 - install intentionally broken fw (rollback demo)
+I (33584) wifi station:   ota <url>                  - flash firmware from custom URL (http/https)
+I (33594) wifi station:   ota-test-server            - simulate OTA update (fake, no download)
+I (33594) wifi station: Smart Lamp:
+I (33604) wifi station:   lamp on | lamp off         - turn lamp on/off
+I (33614) wifi station:   lamp color <name>          - red green blue white yellow purple cyan
+I (33614) wifi station:   lamp color <r> <g> <b>     - custom color, 0-255 each
+I (33624) wifi station:   lamp brightness <0-100>    - brightness in %
+I (33634) wifi station:   lamp mode <mode>           - solid blink breathe rainbow
+I (33634) wifi station:   lamp timer <1-3600>        - auto-off after N seconds (0 = cancel)
+I (33644) wifi station:   lamp scene save|load <1-3> - save/load color+brightness+mode
+I (33654) wifi station:   lamp status                - lamp state as JSON
+I (33664) wifi station:   sysinfo                    - show system information
+I (33674) wifi station:   temp                       - show chip temperature
+I (33684) wifi station:   sensor status              - show all sensors status
+I (33684) wifi station:   reboot                     - reboot device
+I (33694) wifi station:   help                       - show this help
+I (33704) wifi station: Buttons:
+I (33704) wifi station:   K1 (GPIO41)                - distance 10s
+I (33714) wifi station:   K2 (GPIO40)                - relay toggle
+I (33714) wifi station:   K3 (GPIO39)                - wifi disconnect / reconnect (saved)
+I (33724) wifi station:   K4 (GPIO38)                - diode toggle

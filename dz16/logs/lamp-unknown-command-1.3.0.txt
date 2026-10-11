@@ -1,0 +1,4 @@
+---- Sent utf8 encoded message: "lamp loremipsun\n" ----
+lamp loremipsun
+
+E (113661) wifi station: error: unknown lamp command. See 'help'

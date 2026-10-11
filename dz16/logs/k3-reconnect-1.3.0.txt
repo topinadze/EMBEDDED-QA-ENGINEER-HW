@@ -1,0 +1,23 @@
+I (1661984) wifi station: button 3 pressed (GPIO39)
+I (1661984) wifi station: [K3] wifi disconnect
+I (1661984) wifi station: disconnected
+---- Sent utf8 encoded message: "status\n" ----
+status
+
+W (1673974) wifi:Haven't to connect to a suitable AP now!
+I (1673974) wifi station: WiFi: connected
+I (1673974) wifi station:   SSID:
+I (1673974) wifi station:   IP:   0.0.0.0
+I (1673974) wifi station:   RSSI: 0 dBm
+
+Observed: pressing K3 again did not start reconnect to saved credentials.
+I (1715334) wifi station: [K3] wifi disconnect
+I (1715334) wifi station: disconnected
+---- Sent utf8 encoded message: "status\n" ----
+status
+
+W (1726934) wifi:Haven't to connect to a suitable AP now!
+I (1726934) wifi station: WiFi: connected
+I (1726934) wifi station:   SSID:
+I (1726934) wifi station:   IP:   0.0.0.0
+I (1726934) wifi station:   RSSI: 0 dBm

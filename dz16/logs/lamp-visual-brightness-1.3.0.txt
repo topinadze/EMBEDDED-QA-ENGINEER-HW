@@ -1,0 +1,41 @@
+lamp on
+
+I (66966) wifi station: [LAMP] on
+---- Sent utf8 encoded message: "lamp brightness 50\n" ----
+lamp brightness 50
+
+I (77736) wifi station: [LAMP] brightness set: 50%
+---- Sent utf8 encoded message: "lamp color orange\n" ----
+lamp color orange
+
+E (87786) wifi station: error: unknown color 'orange'
+---- Sent utf8 encoded message: "lamp color yellow\n" ----
+lamp color yellow
+
+I (92416) wifi station: [LAMP] color set: yellow (255,180,0)
+---- Sent utf8 encoded message: "lamp brightness 0\n" ----
+lamp brightness 0
+
+I (100946) wifi station: [LAMP] brightness set: 0%
+---- Sent utf8 encoded message: "lamp brightness 30\n" ----
+lamp brightness 30
+
+I (105036) wifi station: [LAMP] brightness set: 30%
+---- Sent utf8 encoded message: "lamp brightness 50\n" ----
+lamp brightness 50
+
+I (109396) wifi station: [LAMP] brightness set: 50%
+---- Sent utf8 encoded message: "lamp brightness 70\n" ----
+lamp brightness 70
+
+I (114206) wifi station: [LAMP] brightness set: 70%
+---- Sent utf8 encoded message: "lamp brightness 100\n" ----
+lamp brightness 100
+
+I (117156) wifi station: [LAMP] brightness set: 100%
+---- Sent utf8 encoded message: "lamp brightness 50\n" ----
+lamp brightness 50
+
+I (120846) wifi station: [LAMP] brightness set: 50%
+
+Visual result for `lamp color orange`: the lamp color did not change.

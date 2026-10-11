@@ -1,0 +1,6 @@
+---- Sent utf8 encoded message: "lamp on\n" ----
+lamp on
+
+I (729054) wifi station: [LAMP] on
+---- Sent utf8 encoded message: "lamp off\n" ----
+lamp off

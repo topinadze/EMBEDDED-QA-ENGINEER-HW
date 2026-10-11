@@ -1,0 +1,84 @@
+lamp color green
+
+I (286046) wifi station: [LAMP] color set: green (0,255,0)
+---- Sent utf8 encoded message: "lamp brightness -5\n" ----
+lamp brightness -5
+
+I (435226) wifi station: [LAMP] brightness set: -5%
+---- Sent utf8 encoded message: "lamp brightness 50\n" ----
+lamp brightness 50
+
+I (445726) wifi station: [LAMP] brightness set: 50%
+---- Sent utf8 encoded message: "lamp color yellow\n" ----
+lamp color yellow
+
+I (456996) wifi station: [LAMP] color set: yellow (255,180,0)
+---- Sent utf8 encoded message: "lamp status\n" ----
+lamp status
+
+{"lamp":"on","color":[255,180,0],"brightness":50,"mode":"solid","timer_s":0}
+---- Sent utf8 encoded message: "lamp brightness -5\n" ----
+lamp brightness -5
+
+I (474836) wifi station: [LAMP] brightness set: -5%
+---- Sent utf8 encoded message: "lamp brightness 150\n" ----
+lamp brightness 150
+
+I (486496) wifi station: [LAMP] brightness set: 150%
+---- Sent utf8 encoded message: "lamps status\n" ----
+lamps status
+
+I (499806) wifi station: unknown command, type 'help' for available commands
+---- Sent utf8 encoded message: "lamp status\n" ----
+lamp status
+
+{"lamp":"on","color":[255,180,0],"brightness":150,"mode":"solid","timer_s":0}
+---- Sent utf8 encoded message: "lamp brightness -5\n" ----
+lamp brightness -5
+
+I (530336) wifi station: [LAMP] brightness set: -5%
+---- Sent utf8 encoded message: "lamp status\n" ----
+lamp status
+
+{"lamp":"on","color":[255,180,0],"brightness":-5,"mode":"solid","timer_s":0}
+---- Sent utf8 encoded message: "lamp brightness -50\n" ----
+lamp brightness -50
+I (545806) wifi station: [LAMP] brightness set: -50%
+---- Sent utf8 encoded message: "lamp status\n" ----
+lamp status
+
+{"lamp":"on","color":[255,180,0],"brightness":-50,"mode":"solid","timer_s":0}
+---- Sent utf8 encoded message: "lamp brightness -5\n" ----
+lamp brightness -5
+
+I (560256) wifi station: [LAMP] brightness set: -5%
+---- Sent utf8 encoded message: "lamp status\n" ----
+lamp status
+
+{"lamp":"on","color":[255,180,0],"brightness":-5,"mode":"solid","timer_s":0}
+---- Sent utf8 encoded message: "lamp brightness 200\n" ----
+lamp brightness 200
+
+I (576096) wifi station: [LAMP] brightness set: 200%
+---- Sent utf8 encoded message: "lamp status\n" ----
+lamp status
+
+{"lamp":"on","color":[255,180,0],"brightness":200,"mode":"solid","timer_s":0}
+---- Sent utf8 encoded message: "lamp brightness 120\n" ----
+lamp brightness 120
+
+I (588716) wifi station: [LAMP] brightness set: 120%
+---- Sent utf8 encoded message: "lamp brightness 110\n" ----
+lamp brightness 110
+
+I (597136) wifi station: [LAMP] brightness set: 110%
+---- Sent utf8 encoded message: "lamp brightness 130\n" ----
+lamp brightness 130
+
+I (604236) wifi station: [LAMP] brightness set: 130%
+---- Sent utf8 encoded message: "lamp status\n" ----
+lamp status
+
+{"lamp":"on","color":[255,180,0],"brightness":130,"mode":"solid","timer_s":0}
+
+Physical observation: out-of-range brightness settings changed the visible lamp color; the status JSON retained the commanded RGB value.
