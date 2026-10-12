@@ -37,7 +37,7 @@ Run the manual visual checks on a bench with the target board attached:
 
 ### Interactive Wi-Fi/K3 checks
 
-The K3 tests require saved Wi-Fi credentials and an active connection with a non-empty SSID and valid, non-zero IP. Run both together in their collected order: `test_k3_reconnects_saved_wifi` asks for two physical K3 presses (disconnect, then reconnect) and checks the reconnect event, IP, status, and dim-green indicator; `test_k3_disconnect_status_and_led` then checks a K3 disconnect, the reported disconnected status, and the dim-red indicator. Each test can also run individually, provided the board is connected before it starts. An autouse fixture in `TestWifiButtons` sends `reboot` if setup or the test call fails; the serial cleanup then skips lamp commands so it does not send input to the rebooting device.
+The K3 tests require saved Wi-Fi credentials and an active connection with a non-empty SSID and valid, non-zero IP. Run both together in their collected order: `test_k3_reconnects_saved_wifi` asks for two physical K3 presses (disconnect, then reconnect) and checks the reconnect event, IP, status, and dim-green indicator; `test_k3_disconnect_status_and_led` then checks a K3 disconnect, the reported disconnected status, and the dim-red indicator. Each test can also run individually, provided the board is connected before it starts. An autouse fixture in `TestWifiButtons` sends `reboot` if setup, the test call, or an expected failure (xfail) occurs; the serial cleanup then skips lamp commands so it does not send input to the rebooting device. Both tests are marked `xfail` with references to BUG-01/BUG-02 in `REPORT.md`: on an affected firmware they report XFAIL, and if a firmware fixes the bug they report XPASS (not a run failure), which is the signal to remove the marker and update the bug status. The disconnect test collects the status and the LED observation before asserting, so both are always reported.
 
 Run both K3 checks with UART debug capture:
 
@@ -50,7 +50,7 @@ Both tests are interactive and excluded from ordinary runs. Debug UART transcrip
 To select one check, append its pytest node ID, for example:
 
 ```powershell
-.\.venv\Scripts\python.exe -m pytest -c pytest.ini -s -m interactive --port COM4 --expected-fw-version 1.5.0 --alluredir=allure-results -o log_cli_level=DEBUG "tests\test_lamp.py::TestLamp::test_named_color_visual[red-expected_rgb0]"
+.\.venv\Scripts\python.exe -m pytest -c pytest.ini -s -m interactive --port COM4 --expected-fw-version 1.5.0 --alluredir=allure-results -o log_cli_level=DEBUG "tests\test_lamp.py::TestLamp::test_named_color_visual[red]"
 ```
 
 For CI or an unattended run, explicitly keep the exclusion:
@@ -75,7 +75,7 @@ Run commands from the `dz16` directory. Set pytest's live logging level to `DEBU
 .\.venv\Scripts\python.exe -m pytest -c pytest.ini -m "lamp and not persistent and not interactive" --port COM4 --expected-fw-version 1.3.0 --alluredir=allure-results -o log_cli=true -o log_cli_level=DEBUG
 ```
 
-When live logging is set to `DEBUG`, pytest also saves a separate UART transcript for each test under `logs\automated\lamp\<version>\`. Filenames include the test name and capture timestamp, so repeated runs do not overwrite earlier logs. Normal `INFO` runs do not create these files.
+When live logging is set to `DEBUG`, pytest also saves a separate UART transcript for each test under `logs\automated\lamp\<version>\`. Filenames are `YYYYMMDD-<test name>.txt`, the same date format as the `run-YYYYMMDD-*-summary.txt` files. For each test name and date the latest run is kept as `.txt` and the one before it as `.prev.txt`; older runs that day are overwritten. The full capture time is inside the file header. Normal `INFO` runs do not create these files.
 
 To debug one test, append its node ID to the command, for example:
 
@@ -95,6 +95,8 @@ Use `--expected-fw-version 1.3.0` for the currently flashed baseline, or change 
 
 ## Persistent scene check
 
+The `device_driver` fixture snapshots `lamp status` when a test starts and restores color, brightness, mode, timer, and on/off state during cleanup, so lamp tests do not leave their settings in the device's saved state (scene and `persistent` tests are the exceptions below).
+
 Tests marked `persistent` modify saved device data. `test_scenes_by_version` writes test values to each of scenes 1–3 on firmware 1.5.0 and overwrites any existing data in those slots. `test_settings_survive_reboot` writes its test color, brightness, and mode to NVS. Run these only when those changes are acceptable:
 
 ```powershell
@@ -102,6 +104,54 @@ Tests marked `persistent` modify saved device data. `test_scenes_by_version` wri
 ```
 
 The regular `lamp and not persistent` run excludes these tests. Invalid-scene checks are separately collected in the regular lamp group.
+
+## Full run against a firmware version (clean run for analysis)
+
+Use this sequence when a full pass on one firmware should be analyzed afterwards (for example by Copilot) to update `REPORT.md`. All commands are run from `dz16`.
+
+1. **Prepare the board.** Flash the target firmware, connect Wi-Fi with `connect` over UART (the K3 tests need an active connection with SSID and IP), and close any other program using the COM port.
+
+2. **Clean results of previous runs** so the analysis sees only the new run. This deletes the raw Allure results, the generated Allure report, and the per-test pytest UART logs of the version under test. The hand-written `run-*-summary.txt` files and the older root-level logs (`logs\*.txt`) are kept.
+
+   ```powershell
+   $version = "1.5.0"
+   Remove-Item .\allure-results, .\allure-report -Recurse -Force -ErrorAction SilentlyContinue
+   Remove-Item ".\logs\automated\lamp\$version\*" -Include "2*.txt" -ErrorAction SilentlyContinue
+   ```
+
+   Do not clean between the steps below; clean only once, before the first step.
+
+3. **Choose one run.**
+
+   **Option A: interactive checks only** (lamp and Wi-Fi/K3) against 1.5.0 with UART debug capture. Answer each prompt with `y`/`n` (or `c` to add a comment first); press the physical K3 button when asked.
+
+   ```powershell
+   .\.venv\Scripts\python.exe -m pytest -c pytest.ini -s -m interactive --port COM4 --expected-fw-version 1.5.0 --alluredir=allure-results -o log_cli=true -o log_cli_level=DEBUG
+   ```
+
+   **Option B: the whole pack** (automated, interactive and persistent tests) in one command. It overwrites scene slots 1–3 and writes test settings to NVS (see "Persistent scene check"), so use it only when that is acceptable:
+
+   ```powershell
+   .\.venv\Scripts\python.exe -m pytest -c pytest.ini -s -m "lamp or wifi" --port COM4 --expected-fw-version 1.5.0 --alluredir=allure-results -o log_cli=true -o log_cli_level=DEBUG
+   ```
+
+   For the pack without interactive and persistent tests, use `-m "(lamp or wifi) and not interactive and not persistent"` and drop `-s`. To complete a version after Option A, add only the rest with `-m "lamp and not interactive"`; do not clean `allure-results` in between.
+
+4. **Capture the run in files.** Add these options to the pytest command of step 3 (replace `YYYYMMDD` with the run date):
+
+   ```powershell
+   --log-file=.\logs\automated\lamp\1.5.0\run-YYYYMMDD-full.log --log-file-level=DEBUG --junitxml=.\logs\automated\lamp\1.5.0\run-YYYYMMDD-junit.xml -rA
+   ```
+
+   - `run-*-full.log` is the complete DEBUG log of the whole run in one file: every UART TX/RX line, test boundaries, and a `MANUAL CHECK | <question> | result=PASS/FAIL | comment=...` line for each of your answers. It is written by pytest itself, so it works with `-s` and interactive prompts (a `| Tee-Object` pipe does not record typed answers and can delay prompts).
+   - `run-*-junit.xml` holds one entry per test with status (passed/failed/xfail/skipped), duration, and the failure message.
+   - `-rA` makes the console end with one line per test; copy the final summary line into the report notes if you want it quoted.
+
+   The per-test UART logs and `allure-results` are still produced as before.
+
+5. **Hand over for analysis.** Tell Copilot only the version and the run date, for example: "Analyze the 1.5.0 run of 2026-10-12 and update `REPORT.md`." It reads `run-*-junit.xml` and `run-*-full.log` first, then only the per-test UART logs of failed or unexpected tests, and `allure-results` only when something is missing. Optionally generate the HTML report for yourself: `allure generate .\allure-results --clean -o .\allure-report`.
+
+After a failed or interrupted run, reboot the board and reconnect Wi-Fi before repeating a step.
 
 ## Allure report
 

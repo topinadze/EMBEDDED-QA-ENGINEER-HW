@@ -8,13 +8,20 @@ import pytest
 from drivers.device_driver import DeviceDriver
 
 NAMED_COLORS = (
-    ("red", [255, 0, 0]),
-    ("green", [0, 255, 0]),
-    ("blue", [0, 0, 255]),
-    ("white", [255, 255, 255]),
-    ("yellow", [255, 180, 0]),
-    ("purple", [160, 0, 255]),
-    ("cyan", [0, 255, 255]),
+    pytest.param("red", [255, 0, 0], id="red"),
+    pytest.param("green", [0, 255, 0], id="green"),
+    pytest.param("blue", [0, 0, 255], id="blue"),
+    pytest.param("white", [255, 255, 255], id="white"),
+    pytest.param("yellow", [255, 180, 0], id="yellow"),
+    pytest.param("purple", [160, 0, 255], id="purple"),
+    pytest.param("cyan", [0, 255, 255], id="cyan"),
+)
+
+INVALID_RGB_VALUES = (
+    pytest.param((300, 0, 0), id="r300_g0_b0"),
+    pytest.param((0, 0, 300), id="r0_g0_b300"),
+    pytest.param((-1, -1, -1), id="r-1_g-1_b-1"),
+    pytest.param((256, 0, 0), id="r256_g0_b0"),
 )
 
 
@@ -163,10 +170,7 @@ class TestLamp:
 
     @allure.story("FR-L3: RGB range validation")
     @allure.title("Out-of-range RGB {rgb} is rejected without changing the color")
-    @pytest.mark.parametrize(
-        "rgb",
-        ((300, 0, 0), (0, 0, 300), (-1, -1, -1), (256, 0, 0)),
-    )
+    @pytest.mark.parametrize("rgb", INVALID_RGB_VALUES)
     @pytest.mark.negative
     def test_invalid_rgb_is_rejected(
         self,
@@ -183,7 +187,7 @@ class TestLamp:
     @allure.story("FR-L3: Physical invalid-RGB rejection")
     @allure.title("Invalid RGB {rgb} leaves the physical color unchanged")
     @pytest.mark.interactive
-    @pytest.mark.parametrize("rgb", ((300, 0, 0), (0, 0, 300), (-1, -1, -1), (256, 0, 0)))
+    @pytest.mark.parametrize("rgb", INVALID_RGB_VALUES)
     def test_invalid_rgb_visual(
         self,
         device_driver: DeviceDriver,

@@ -1,7 +1,11 @@
 from __future__ import annotations
 
+import logging
+
 import allure
 import pytest
+
+LOGGER = logging.getLogger(__name__)
 
 
 def _attach_manual_feedback(
@@ -10,6 +14,7 @@ def _attach_manual_feedback(
     lines = [f"Check: {instruction}", f"Result: {result}"]
     if comment:
         lines.append(f"Comment: {comment}")
+    LOGGER.info("MANUAL CHECK | %s | result=%s | comment=%s", instruction, result, comment or "-")
     allure.attach(
         "\n".join(lines),
         name="Manual verification",

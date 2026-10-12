@@ -48,8 +48,12 @@ def _save_automated_uart_log(
 
     safe_test_name = re.sub(r"[^A-Za-z0-9._-]+", "_", item.name).strip("._")
     captured_at = datetime.now().astimezone()
-    timestamp = captured_at.strftime("%Y%m%dT%H%M%S.%f%z")
-    log_path = log_dir / f"{timestamp}-{safe_test_name or 'test'}.txt"
+    base_name = f"{captured_at:%Y%m%d}-{safe_test_name or 'test'}"
+    log_path = log_dir / f"{base_name}.txt"
+    previous_path = log_dir / f"{base_name}.prev.txt"
+    # Keep at most two logs per test and date: the latest and the one before it.
+    if log_path.exists():
+        log_path.replace(previous_path)
     header = (
         f"Test: {item.nodeid}\n"
         f"Firmware: {firmware_version}\n"
@@ -136,11 +140,36 @@ def manual_check(
     return verify_manually
 
 
+def _snapshot_lamp(driver: DeviceDriver) -> dict[str, Any] | None:
+    try:
+        return driver.lamp_status()
+    except Exception:
+        logging.getLogger(__name__).warning("Lamp state snapshot unavailable.")
+        return None
+
+
+def _restore_lamp(driver: DeviceDriver, snapshot: dict[str, Any] | None) -> None:
+    """Return the lamp to the state found at test start (settings are persisted by the firmware)."""
+    driver.lamp_set_timer(0, timeout=0.2)
+    if snapshot is not None:
+        try:
+            driver.lamp_set_color(tuple(snapshot["color"]), timeout=0.2)
+            driver.lamp_set_brightness(snapshot["brightness"], timeout=0.2)
+            driver.lamp_set_mode(snapshot["mode"], timeout=0.2)
+        except (KeyError, TypeError):
+            logging.getLogger(__name__).warning("Incomplete lamp snapshot: %r", snapshot)
+    if snapshot is not None and snapshot.get("lamp") == "on":
+        driver.lamp_on(timeout=0.2)
+    else:
+        driver.lamp_off(timeout=0.2)
+
+
 @pytest.fixture
 def device_driver(request: pytest.FixtureRequest):
     port = request.config.getoption("--port") or _find_esp32_port()
     driver = DeviceDriver(port=port, baudrate=request.config.getoption("--baudrate"))
     driver.open()
+    lamp_snapshot = _snapshot_lamp(driver)
     try:
         yield driver
     finally:
@@ -148,8 +177,7 @@ def device_driver(request: pytest.FixtureRequest):
             if driver.is_open and not getattr(
                 request.node, "wifi_failure_reboot_attempted", False
             ):
-                driver.lamp_set_timer(0, timeout=0.2)
-                driver.lamp_off(timeout=0.2)
+                _restore_lamp(driver, lamp_snapshot)
         finally:
             try:
                 driver.attach_uart_log()

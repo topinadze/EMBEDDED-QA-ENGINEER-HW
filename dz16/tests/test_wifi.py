@@ -36,6 +36,12 @@ def _wifi_status_is_connected(lines: list[str]) -> bool:
     return not address.is_unspecified
 
 
+def _needs_recovery(report: pytest.TestReport | None) -> bool:
+    if report is None:
+        return False
+    return report.failed or (report.skipped and hasattr(report, "wasxfail"))
+
+
 @allure.epic("HW-16: Smart Lamp and OTA verification")
 @allure.feature("Wi-Fi")
 @pytest.mark.wifi
@@ -52,7 +58,7 @@ class TestWifiButtons:
             getattr(request.node, "rep_setup", None),
             getattr(request.node, "rep_call", None),
         )
-        if any(report is not None and report.failed for report in reports):
+        if any(_needs_recovery(report) for report in reports):
             setattr(request.node, "wifi_failure_reboot_attempted", True)
             with allure.step("Reboot ESP32 after Wi-Fi test failure"):
                 device_driver.send_command("reboot", timeout=0.6)
@@ -152,17 +158,23 @@ class TestWifiButtons:
             )
             assert k3_disconnected, "UART did not report the K3 disconnect action."
 
-        with allure.step("Verify disconnected status and the dim-red LED indication"):
+        with allure.step("Observe the reported Wi-Fi status and the LED indication"):
             status_after_disconnect = device_driver.send_command("status")
-            assert any(
-                "wifi: disconnected" in line.casefold()
-                for line in status_after_disconnect
-            ), (
-                "Wi-Fi status did not report disconnected: "
-                f"{status_after_disconnect!r}"
-            )
             red_indicator_visible = manual_check(
                 "With the lamp off and Wi-Fi disconnected, does the LED show "
                 "the dim red Wi-Fi status indication?"
             )
-            assert red_indicator_visible
+
+        # Both observations are collected first so one failure cannot hide the other.
+        with allure.step("Verify status reports disconnected and the LED is dim red"):
+            failures = []
+            if not any(
+                "wifi: disconnected" in line.casefold()
+                for line in status_after_disconnect
+            ):
+                failures.append(
+                    f"Wi-Fi status did not report disconnected: {status_after_disconnect!r}"
+                )
+            if not red_indicator_visible:
+                failures.append("Operator did not see the dim red Wi-Fi LED.")
+            assert not failures, " | ".join(failures)
