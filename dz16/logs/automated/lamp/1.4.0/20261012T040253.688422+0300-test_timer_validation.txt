@@ -1,0 +1,26 @@
+Test: tests/test_lamp.py::TestLamp::test_timer_validation
+Firmware: 1.4.0
+Captured: 2026-10-12T04:02:53.688422+03:00
+
+TX > version
+RX < version
+RX < I (957431) wifi station: FW: v1.4.0 (build Sep 29 2026 14:16:47)
+RX < I (957431) wifi station:   partition: ota_0 @ 0x10000, state: valid
+TX > lamp off
+RX < lamp off
+RX < I (958051) wifi station: [LAMP] off
+TX > lamp timer 10
+RX < lamp timer 10
+RX < E (958661) wifi station: error: lamp is off
+TX > lamp on
+RX < lamp on
+RX < I (959261) wifi station: [LAMP] on
+TX > lamp timer 5000
+RX < lamp timer 5000
+RX < E (959871) wifi station: error: timer must be 1-3600 s (0 = cancel)
+TX > lamp timer 0
+RX < lamp timer 0
+RX < I (960471) wifi station: [LAMP] timer cancelled
+TX > lamp off
+RX < lamp off
+RX < I (960671) wifi station: [LAMP] off

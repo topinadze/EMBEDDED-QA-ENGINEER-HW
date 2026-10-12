@@ -1,8 +1,12 @@
 from __future__ import annotations
 
+import logging
+import re
 import sys
-from collections.abc import Callable
+from collections.abc import Callable, Generator
+from datetime import datetime
 from pathlib import Path
+from typing import Any
 
 import allure
 import pytest
@@ -18,6 +22,44 @@ from manual_checks import verify_manually
 ESP32_VIDS = {0x10C4, 0x1A86, 0x0403, 0x303A}
 ESP32_DESCRIPTORS = ("cp210", "ch340", "ft232", "esp32", "usb-to-uart", "usb serial")
 SUPPORTED_VERSIONS = {"1.3.0", "1.4.0", "1.5.0"}
+FIRMWARE_VERSION_KEY = pytest.StashKey[str]()
+
+
+def _debug_logging_enabled(config: pytest.Config) -> bool:
+    level = config.getoption("log_cli_level")
+    if level is None:
+        level = config.getini("log_cli_level")
+
+    if isinstance(level, str):
+        normalized_level = level.upper()
+        level = (
+            int(normalized_level)
+            if normalized_level.isdecimal()
+            else getattr(logging, normalized_level, None)
+        )
+    return isinstance(level, int) and level <= logging.DEBUG
+
+
+def _save_automated_uart_log(
+    driver: DeviceDriver, item: pytest.Item, firmware_version: str
+) -> Path:
+    log_dir = DZ16_DIR / "logs" / "automated" / "lamp" / firmware_version
+    log_dir.mkdir(parents=True, exist_ok=True)
+
+    safe_test_name = re.sub(r"[^A-Za-z0-9._-]+", "_", item.name).strip("._")
+    captured_at = datetime.now().astimezone()
+    timestamp = captured_at.strftime("%Y%m%dT%H%M%S.%f%z")
+    log_path = log_dir / f"{timestamp}-{safe_test_name or 'test'}.txt"
+    header = (
+        f"Test: {item.nodeid}\n"
+        f"Firmware: {firmware_version}\n"
+        f"Captured: {captured_at.isoformat()}\n\n"
+    )
+    log_path.write_text(
+        header + ("\n".join(driver.uart_log) or "No UART output was captured.") + "\n",
+        encoding="utf-8",
+    )
+    return log_path
 
 
 def pytest_addoption(parser: pytest.Parser) -> None:
@@ -74,6 +116,15 @@ def pytest_runtest_setup(item: pytest.Item) -> None:
         )
 
 
+@pytest.hookimpl(hookwrapper=True)
+def pytest_runtest_makereport(
+    item: pytest.Item, call: pytest.CallInfo[Any]
+) -> Generator[None, Any, None]:
+    outcome = yield
+    report = outcome.get_result()
+    setattr(item, f"rep_{report.when}", report)
+
+
 @pytest.fixture
 def manual_check(
     pytestconfig: pytest.Config,
@@ -94,14 +145,28 @@ def device_driver(request: pytest.FixtureRequest):
         yield driver
     finally:
         try:
-            if driver.is_open:
+            if driver.is_open and not getattr(
+                request.node, "wifi_failure_reboot_attempted", False
+            ):
                 driver.lamp_set_timer(0, timeout=0.2)
                 driver.lamp_off(timeout=0.2)
         finally:
             try:
                 driver.attach_uart_log()
             finally:
-                driver.close()
+                try:
+                    if _debug_logging_enabled(request.config):
+                        firmware_version = request.node.stash.get(
+                            FIRMWARE_VERSION_KEY, "unknown"
+                        )
+                        log_path = _save_automated_uart_log(
+                            driver, request.node, firmware_version
+                        )
+                        logging.getLogger(__name__).info(
+                            "Saved UART test log: %s", log_path
+                        )
+                finally:
+                    driver.close()
 
 
 @pytest.fixture
@@ -110,6 +175,7 @@ def firmware_version(
 ) -> str:
     lines = device_driver.send_command("version")
     version = device_driver.get_firmware_version(lines)
+    request.node.stash[FIRMWARE_VERSION_KEY] = version
     expected = request.config.getoption("--expected-fw-version")
     if expected is not None and version != expected:
         pytest.fail(f"Expected firmware {expected}, but device reports {version}.")

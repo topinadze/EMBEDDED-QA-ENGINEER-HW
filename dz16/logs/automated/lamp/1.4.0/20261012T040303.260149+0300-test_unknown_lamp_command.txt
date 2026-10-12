@@ -1,0 +1,17 @@
+Test: tests/test_lamp.py::TestLamp::test_unknown_lamp_command
+Firmware: 1.4.0
+Captured: 2026-10-12T04:03:03.260149+03:00
+
+TX > version
+RX < version
+RX < I (968831) wifi station: FW: v1.4.0 (build Sep 29 2026 14:16:47)
+RX < I (968831) wifi station:   partition: ota_0 @ 0x10000, state: valid
+TX > lamp loremipsun
+RX < lamp loremipsun
+RX < E (969441) wifi station: error: unknown lamp command. See 'help'
+TX > lamp timer 0
+RX < lamp timer 0
+RX < I (970051) wifi station: [LAMP] timer cancelled
+TX > lamp off
+RX < lamp off
+RX < I (970261) wifi station: [LAMP] off

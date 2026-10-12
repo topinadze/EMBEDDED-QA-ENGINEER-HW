@@ -1,0 +1,29 @@
+Test: tests/test_lamp.py::TestLamp::test_mode_visual[breathe]
+Firmware: 1.4.0
+Captured: 2026-10-12T03:45:48.734631+03:00
+
+TX > version
+RX < version
+RX < I (1453545) wifi station: FW: v1.4.0 (build Sep 29 2026 14:16:47)
+RX < I (1453545) wifi station:   partition: ota_0 @ 0x10000, state: valid
+TX > lamp on
+RX < lamp on
+RX < I (1454155) wifi station: [LAMP] on
+TX > lamp color blue
+RX < lamp color blue
+RX < I (1454755) wifi station: [LAMP] color set: blue (0,0,255)
+TX > lamp brightness 50
+RX < lamp brightness 50
+RX < I (1455365) wifi station: [LAMP] brightness set: 50%
+TX > lamp mode breathe
+RX < lamp mode breathe
+RX < I (1455985) wifi station: [LAMP] mode set: breathe
+TX > lamp status
+RX < lamp status
+RX < {"lamp":"on","color":[0,0,255],"brightness":50,"mode":"breathe","timer_s":0}
+TX > lamp timer 0
+RX < lamp timer 0
+RX < I (1473365) wifi station: [LAMP] timer cancelled
+TX > lamp off
+RX < lamp off
+RX < I (1473575) wifi station: [LAMP] off

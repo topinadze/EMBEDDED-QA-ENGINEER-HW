@@ -1,0 +1,17 @@
+Test: tests/test_lamp.py::TestLamp::test_unknown_mode_is_rejected
+Firmware: 1.4.0
+Captured: 2026-10-12T04:02:31.988603+03:00
+
+TX > version
+RX < version
+RX < I (937551) wifi station: FW: v1.4.0 (build Sep 29 2026 14:16:47)
+RX < I (937551) wifi station:   partition: ota_0 @ 0x10000, state: valid
+TX > lamp mode disco
+RX < lamp mode disco
+RX < E (938161) wifi station: error: unknown mode 'disco'
+TX > lamp timer 0
+RX < lamp timer 0
+RX < I (938771) wifi station: [LAMP] timer cancelled
+TX > lamp off
+RX < lamp off
+RX < I (938981) wifi station: [LAMP] off

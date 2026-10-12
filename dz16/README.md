@@ -15,7 +15,7 @@ py -m venv .venv
 .\.venv\Scripts\python.exe -m pip install -r requirements.txt
 ```
 
-Close any serial terminal using the ESP32 port before starting pytest. The suite only sends lamp commands; it does not connect to Wi-Fi or read Wi-Fi credentials.
+Close any serial terminal using the ESP32 port before starting pytest. Lamp tests do not connect to Wi-Fi or read Wi-Fi credentials. The interactive K3 checks use the device's already-saved Wi-Fi credentials and never ask for or log the password.
 
 ## Lamp test API
 
@@ -34,6 +34,18 @@ Run the manual visual checks on a bench with the target board attached:
 ```powershell
 .\.venv\Scripts\python.exe -m pytest -c pytest.ini -s -m interactive --port COM4 --expected-fw-version 1.5.0 --alluredir=allure-results -o log_cli_level=DEBUG
 ```
+
+### Interactive Wi-Fi/K3 checks
+
+The K3 tests require saved Wi-Fi credentials and an active connection with a non-empty SSID and valid, non-zero IP. Run both together in their collected order: `test_k3_reconnects_saved_wifi` asks for two physical K3 presses (disconnect, then reconnect) and checks the reconnect event, IP, status, and dim-green indicator; `test_k3_disconnect_status_and_led` then checks a K3 disconnect, the reported disconnected status, and the dim-red indicator. Each test can also run individually, provided the board is connected before it starts. An autouse fixture in `TestWifiButtons` sends `reboot` if setup or the test call fails; the serial cleanup then skips lamp commands so it does not send input to the rebooting device.
+
+Run both K3 checks with UART debug capture:
+
+```powershell
+.\.venv\Scripts\python.exe -m pytest -c pytest.ini -s -m "wifi and interactive" --port COM4 --expected-fw-version 1.4.0 --alluredir=allure-results -o log_cli=true -o log_cli_level=DEBUG tests\test_wifi.py::TestWifiButtons
+```
+
+Both tests are interactive and excluded from ordinary runs. Debug UART transcripts are saved with the other lamp-suite logs under `logs\automated\lamp\<version>\`.
 
 To select one check, append its pytest node ID, for example:
 
@@ -62,6 +74,8 @@ Run commands from the `dz16` directory. Set pytest's live logging level to `DEBU
 ```powershell
 .\.venv\Scripts\python.exe -m pytest -c pytest.ini -m "lamp and not persistent and not interactive" --port COM4 --expected-fw-version 1.3.0 --alluredir=allure-results -o log_cli=true -o log_cli_level=DEBUG
 ```
+
+When live logging is set to `DEBUG`, pytest also saves a separate UART transcript for each test under `logs\automated\lamp\<version>\`. Filenames include the test name and capture timestamp, so repeated runs do not overwrite earlier logs. Normal `INFO` runs do not create these files.
 
 To debug one test, append its node ID to the command, for example:
 

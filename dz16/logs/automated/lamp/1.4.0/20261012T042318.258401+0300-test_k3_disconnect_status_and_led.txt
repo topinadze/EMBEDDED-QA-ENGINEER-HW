@@ -1,0 +1,40 @@
+Test: tests/test_wifi.py::TestWifiButtons::test_k3_disconnect_status_and_led
+Firmware: 1.4.0
+Captured: 2026-10-12T04:23:18.258401+03:00
+
+TX > version
+RX < version
+RX < I (94121) wifi station: FW: v1.4.0 (build Sep 29 2026 14:16:47)
+RX < I (94121) wifi station:   partition: ota_0 @ 0x10000, state: valid
+TX > status
+RX < status
+RX < I (94731) wifi station: WiFi: connected
+RX < I (94731) wifi station:   SSID: TopA-node
+RX < I (94731) wifi station:   IP:   10.123.30.49
+RX < I (94731) wifi station:   RSSI: -24 dBm
+TX > lamp off
+RX < lamp off
+RX < I (95331) wifi station: [LAMP] off
+TX > lamp status
+RX < lamp status
+RX < {"lamp":"off","color":[255,255,255],"brightness":50,"mode":"breathe","timer_s":0}
+RX < I (134591) wifi station: button 3 pressed (GPIO39)
+RX < I (134591) wifi station: [K3] wifi disconnect
+RX < I (134591) wifi:state: run -> init (0x0)
+RX < I (134601) wifi:pm stop, total sleep time: 101544217 us / 112493641 us
+RX < I (134601) wifi:new:<11,0>, old:<11,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0
+RX < I (134601) wifi station: disconnected
+RX < I (134601) wifi station: connect to the AP fail
+TX > status
+RX < status
+RX < W (139571) wifi:Haven't to connect to a suitable AP now!
+RX < I (139571) wifi station: WiFi: connected
+RX < I (139571) wifi station:   SSID:
+RX < I (139571) wifi station:   IP:   0.0.0.0
+RX < I (139571) wifi station:   RSSI: 0 dBm
+TX > lamp timer 0
+RX < lamp timer 0
+RX < I (160051) wifi station: [LAMP] timer cancelled
+TX > lamp off
+RX < lamp off
+RX < I (160261) wifi station: [LAMP] off

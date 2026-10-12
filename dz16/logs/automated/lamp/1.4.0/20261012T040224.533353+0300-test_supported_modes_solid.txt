@@ -1,0 +1,23 @@
+Test: tests/test_lamp.py::TestLamp::test_supported_modes[solid]
+Firmware: 1.4.0
+Captured: 2026-10-12T04:02:24.533353+03:00
+
+TX > version
+RX < version
+RX < I (928881) wifi station: FW: v1.4.0 (build Sep 29 2026 14:16:47)
+RX < I (928881) wifi station:   partition: ota_0 @ 0x10000, state: valid
+TX > lamp on
+RX < lamp on
+RX < I (929491) wifi station: [LAMP] on
+TX > lamp mode solid
+RX < lamp mode solid
+RX < I (930101) wifi station: [LAMP] mode set: solid
+TX > lamp status
+RX < lamp status
+RX < {"lamp":"on","color":[255,255,255],"brightness":50,"mode":"solid","timer_s":0}
+TX > lamp timer 0
+RX < lamp timer 0
+RX < I (931311) wifi station: [LAMP] timer cancelled
+TX > lamp off
+RX < lamp off
+RX < I (931521) wifi station: [LAMP] off

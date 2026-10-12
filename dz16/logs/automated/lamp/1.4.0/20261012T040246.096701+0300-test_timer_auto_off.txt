@@ -1,0 +1,24 @@
+Test: tests/test_lamp.py::TestLamp::test_timer_auto_off
+Firmware: 1.4.0
+Captured: 2026-10-12T04:02:46.096701+03:00
+
+TX > version
+RX < version
+RX < I (940891) wifi station: FW: v1.4.0 (build Sep 29 2026 14:16:47)
+RX < I (940891) wifi station:   partition: ota_0 @ 0x10000, state: valid
+TX > lamp on
+RX < lamp on
+RX < I (941491) wifi station: [LAMP] on
+TX > lamp timer 10
+RX < lamp timer 10
+RX < I (942101) wifi station: [LAMP] auto-off in 10 s
+RX < I (952111) wifi station: [LAMP] timer expired, lamp off
+TX > lamp status
+RX < lamp status
+RX < {"lamp":"off","color":[255,255,255],"brightness":50,"mode":"breathe","timer_s":0}
+TX > lamp timer 0
+RX < lamp timer 0
+RX < I (952881) wifi station: [LAMP] timer cancelled
+TX > lamp off
+RX < lamp off
+RX < I (953091) wifi station: [LAMP] off

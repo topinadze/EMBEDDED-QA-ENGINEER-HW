@@ -1,0 +1,23 @@
+Test: tests/test_lamp.py::TestLamp::test_supported_modes[breathe]
+Firmware: 1.4.0
+Captured: 2026-10-12T04:02:30.319942+03:00
+
+TX > version
+RX < version
+RX < I (934661) wifi station: FW: v1.4.0 (build Sep 29 2026 14:16:47)
+RX < I (934661) wifi station:   partition: ota_0 @ 0x10000, state: valid
+TX > lamp on
+RX < lamp on
+RX < I (935271) wifi station: [LAMP] on
+TX > lamp mode breathe
+RX < lamp mode breathe
+RX < I (935891) wifi station: [LAMP] mode set: breathe
+TX > lamp status
+RX < lamp status
+RX < {"lamp":"on","color":[255,255,255],"brightness":50,"mode":"breathe","timer_s":0}
+TX > lamp timer 0
+RX < lamp timer 0
+RX < I (937111) wifi station: [LAMP] timer cancelled
+TX > lamp off
+RX < lamp off
+RX < I (937311) wifi station: [LAMP] off
