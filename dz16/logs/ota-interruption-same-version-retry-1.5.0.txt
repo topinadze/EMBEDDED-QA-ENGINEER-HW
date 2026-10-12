@@ -1,0 +1,48 @@
+Same-version OTA interruption and retry on firmware 1.5.0
+Date: 2026-10-12
+Source: operator-provided UART transcript
+
+Before OTA:
+I (34231) wifi station: got ip:10.123.30.49
+---- Sent utf8 encoded message: "version\n" ----
+I (37211) wifi station: FW: v1.5.0 (build Sep 29 2026 15:23:09)
+I (37211) wifi station:   partition: ota_1 @ 0x100000, state: valid
+---- Sent utf8 encoded message: "lamp status\n" ----
+{"lamp":"off","color":[0,0,225],"brightness":50,"mode":"solid","timer_s":0}
+
+Same-version forced install:
+---- Sent utf8 encoded message: "ota install 1.5.0 force\n" ----
+I (63441) wifi station: [OTA] current version: 1.5.0 (partition ota_1)
+I (63441) wifi station: [OTA] target partition: ota_0
+I (63441) wifi station: [OTA] downloading: https://raw.githubusercontent.com/BohdanHorbanych/esp32-ota-files/main/firmware/v1.5.0/station_WiFi.bin
+I (64901) esp_https_ota: Writing to <ota_0> partition at offset 0x10000
+I (64901) wifi station: [OTA] new version: 1.5.0
+W (64901) wifi station: [OTA] new version is the same as current - flashing anyway
+I (67451) wifi station: [OTA] progress: 10% (91136 / 908304 bytes)
+I (70521) wifi station: [OTA] progress: 20% (185344 / 908304 bytes)
+
+Wi-Fi interruption:
+I (77501) wifi:bcn_timeout,ap_probe_send_start
+I (80011) wifi:ap_probe_send over, reset wifi status to disassoc
+E (80071) esp_https_ota: data read -1, errno 113
+E (80081) wifi station: [OTA] failed: download interrupted (ESP_FAIL)
+I (82441) wifi station: retry to connect to the AP
+I (84851) wifi station: retry to connect to the AP
+I (87261) wifi station: retry to connect to the AP
+I (89681) wifi station: retry to connect to the AP
+I (92091) wifi station: connect to the AP fail
+
+After interruption, before retry:
+---- Sent utf8 encoded message: "version\n" ----
+I (99361) wifi station: FW: v1.5.0 (build Sep 29 2026 15:23:09)
+I (99361) wifi station:   partition: ota_1 @ 0x100000, state: valid
+
+Retry without reboot:
+---- Sent utf8 encoded message: "ota install 1.5.0 force\n" ----
+E (104151) wifi station: [OTA] error: update already in progress
+
+The same-version OTA was interrupted at 20%. Automatic Wi-Fi reconnect attempts
+ended with "connect to the AP fail". The running firmware remained 1.5.0 on
+ota_1 with state valid before the retry. Retrying the same command without
+reboot was rejected as already in progress. No post-retry version/status output
+was provided.

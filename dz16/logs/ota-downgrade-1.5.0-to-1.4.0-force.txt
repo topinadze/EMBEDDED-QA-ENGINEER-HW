@@ -1,0 +1,57 @@
+Forced downgrade: 1.5.0 -> 1.4.0
+Date: 2026-10-12
+Source: operator-provided UART transcript
+
+Before update:
+---- Sent utf8 encoded message: "version\n" ----
+I (99318) wifi station: FW: v1.5.0 (build Sep 29 2026 15:23:09)
+I (99318) wifi station:   partition: ota_1 @ 0x100000, state: valid
+---- Sent utf8 encoded message: "status\n" ----
+I (102378) wifi station: WiFi: connected
+I (102378) wifi station:   SSID: TopA-node
+I (102378) wifi station:   IP:   10.123.30.49
+---- Sent utf8 encoded message: "lamp status\n" ----
+{"lamp":"off","color":[255,255,255],"brightness":50,"mode":"solid","timer_s":0}
+
+Forced downgrade:
+---- Sent utf8 encoded message: "ota install 1.4.0 force\n" ----
+I (127708) wifi station: [OTA] current version: 1.5.0 (partition ota_1)
+I (127708) wifi station: [OTA] target partition: ota_0
+I (127708) wifi station: [OTA] downloading: https://raw.githubusercontent.com/BohdanHorbanych/esp32-ota-files/main/firmware/v1.4.0/station_WiFi.bin
+I (129388) esp_https_ota: Starting OTA...
+I (129388) esp_https_ota: Writing to <ota_0> partition at offset 0x10000
+I (129398) wifi station: [OTA] new version: 1.4.0
+I (130728) wifi station: [OTA] progress: 10% (91136 / 907872 bytes)
+I (132168) wifi station: [OTA] progress: 20% (185344 / 907872 bytes)
+I (134048) wifi station: [OTA] progress: 30% (275456 / 907872 bytes)
+I (136008) wifi station: [OTA] progress: 40% (365568 / 907872 bytes)
+I (137828) wifi station: [OTA] progress: 50% (455680 / 907872 bytes)
+I (139878) wifi station: [OTA] progress: 60% (545792 / 907872 bytes)
+I (142698) wifi station: [OTA] progress: 70% (635904 / 907872 bytes)
+I (144418) wifi station: [OTA] progress: 80% (730112 / 907872 bytes)
+I (145908) wifi station: [OTA] progress: 90% (820224 / 907872 bytes)
+I (147498) wifi station: [OTA] progress: 100% (907872 / 907872 bytes)
+I (147768) wifi station: [OTA] success: 1.5.0 -> 1.4.0 in 18 s. Rebooting...
+
+After reboot:
+I (287) boot: Loaded app from partition at offset 0x10000
+I (316) app_init: App version: 1.4.0
+I (584) wifi station: [OTA] running partition: ota_0, version 1.4.0
+W (594) wifi station: [OTA] new firmware, state PENDING_VERIFY - running self-check...
+I (614) wifi station: [OTA] self-check passed, firmware marked VALID
+---- Sent utf8 encoded message: "version\n" ----
+I (5664) wifi station: FW: v1.4.0 (build Sep 29 2026 14:16:47)
+I (5664) wifi station:   partition: ota_0 @ 0x10000, state: valid
+
+Wi-Fi and lamp after downgrade:
+I (7674) wifi station: WiFi: disconnected
+---- Sent utf8 encoded message: "connect\n" ----
+I (21364) wifi station: using saved SSID: TopA-node
+I (22764) wifi station: got ip:10.123.30.49
+I (22764) wifi station: successfully connected to SSID:TopA-node
+---- Sent utf8 encoded message: "status\n" ----
+I (28374) wifi station: WiFi: connected
+I (28374) wifi station:   SSID: TopA-node
+I (28374) wifi station:   IP:   10.123.30.49
+---- Sent utf8 encoded message: "lamp status\n" ----
+{"lamp":"off","color":[255,255,255],"brightness":50,"mode":"solid","timer_s":0}

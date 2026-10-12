@@ -1,0 +1,68 @@
+OTA-12: broken firmware self-check and automatic rollback
+Date: 2026-10-12
+Source: operator-provided UART console output (relevant lines; network identifiers omitted)
+
+Pre-test command was `ota status`; firmware treated `status` as a download URL and rejected it before beginning a download. This is not a corrupted-image validation test:
+---- Sent utf8 encoded message: "ota status\n" ----
+ota status
+I (83921) wifi station: [OTA] current version: 1.3.0 (partition ota_0)
+I (83921) wifi station: [OTA] target partition: ota_1
+I (83921) wifi station: [OTA] downloading: status
+E (83921) HTTP_CLIENT: Error parse url status
+E (83921) HTTP_CLIENT: Failed to set URL
+E (83931) esp_https_ota: Failed to initialise HTTP connection
+E (83931) wifi station: [OTA] failed: cannot start download (ESP_FAIL)
+
+Before OTA:
+I (80891) wifi station: FW: v1.3.0 (build Sep 29 2026 14:15:56)
+I (80891) wifi station:   partition: ota_0 @ 0x10000, state: valid
+
+---- Sent utf8 encoded message: "ota broken\n" ----
+ota broken
+I (104681) wifi station: [OTA] current version: 1.3.0 (partition ota_0)
+I (104681) wifi station: [OTA] target partition: ota_1
+I (104681) wifi station: [OTA] downloading: https://raw.githubusercontent.com/BohdanHorbanych/esp32-ota-files/main/firmware/broken/station_WiFi.bin
+I (106611) wifi station: [OTA] new version: 1.9.0-broken
+I (107981) wifi station: [OTA] progress: 10% (91136 / 907840 bytes)
+I (109591) wifi station: [OTA] progress: 20% (185344 / 907840 bytes)
+I (110851) wifi station: [OTA] progress: 30% (275456 / 907840 bytes)
+I (112441) wifi station: [OTA] progress: 40% (365568 / 907840 bytes)
+I (113761) wifi station: [OTA] progress: 50% (455680 / 907840 bytes)
+I (115481) wifi station: [OTA] progress: 60% (545792 / 907840 bytes)
+I (117831) wifi station: [OTA] progress: 70% (635904 / 907840 bytes)
+I (119701) wifi station: [OTA] progress: 80% (730112 / 907840 bytes)
+I (121581) wifi station: [OTA] progress: 90% (820224 / 907840 bytes)
+I (122971) wifi station: [OTA] progress: 100% (907840 / 907840 bytes)
+I (123251) wifi station: [OTA] success: 1.3.0 -> 1.9.0-broken in 16 s. Rebooting...
+
+Booted test image and self-check:
+I (290) boot: Loaded app from partition at offset 0x100000
+I (320) app_init: App version: 1.9.0-broken
+I (588) wifi station: [OTA] running partition: ota_1, version 1.9.0-broken
+W (598) wifi station: [OTA] new firmware, state PENDING_VERIFY - running self-check...
+E (608) wifi station: [OTA] self-check FAILED (this build is intentionally broken)
+E (618) wifi station: [OTA] rolling back to previous firmware...
+I (1268) esp_ota_ops: Rollback to previously worked partition.
+
+After automatic rollback:
+I (274) boot: Loaded app from partition at offset 0x10000
+I (303) app_init: App version: 1.3.0
+I (571) wifi station: [OTA] running partition: ota_0, version 1.3.0
+I (591) wifi station: station_WiFi fw v1.3.0 ready. Type 'help' for commands
+---- Sent utf8 encoded message: "version\n" ----
+version
+I (12391) wifi station: FW: v1.3.0 (build Sep 29 2026 14:15:56)
+I (12391) wifi station:   partition: ota_0 @ 0x10000, state: valid
+
+Wi-Fi was not connected after rollback and was manually reconnected. Lamp state after reconnect:
+---- Sent utf8 encoded message: "lamp status\n" ----
+lamp status
+{"lamp":"off","color":[0,0,255],"brightness":42,"mode":"breathe","timer_s":0}
+
+Additional operator-provided post-test snapshot:
+{"lamp":"off","color":[0,0,255],"brightness":42,"mode":"breathe","timer_s":0}
+---- Sent utf8 encoded message: "version\n" ----
+version
+
+I (210151) wifi station: FW: v1.3.0 (build Sep 29 2026 14:15:56)
+I (210151) wifi station:   partition: ota_0 @ 0x10000, state: valid

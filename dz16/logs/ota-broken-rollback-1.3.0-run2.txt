@@ -1,0 +1,46 @@
+Second operator-provided OTA rollback run on firmware 1.3.0
+
+Before update:
+---- Sent utf8 encoded message: "version\n" ----
+I (527241) wifi station: FW: v1.3.0 (build Sep 29 2026 14:15:56)
+I (527241) wifi station:   partition: ota_0 @ 0x10000, state: valid
+
+---- Sent utf8 encoded message: "ota broken\n" ----
+I (532481) wifi station: [OTA] current version: 1.3.0 (partition ota_0)
+I (532481) wifi station: [OTA] target partition: ota_1
+I (532481) wifi station: [OTA] downloading: https://raw.githubusercontent.com/BohdanHorbanych/esp32-ota-files/main/firmware/broken/station_WiFi.bin
+I (534501) esp_https_ota: Starting OTA...
+I (534501) esp_https_ota: Writing to <ota_1> partition at offset 0x100000
+I (534501) wifi station: [OTA] new version: 1.9.0-broken
+I (535871) wifi station: [OTA] progress: 10% (91136 / 907840 bytes)
+I (537841) wifi station: [OTA] progress: 20% (185344 / 907840 bytes)
+I (544301) wifi station: [OTA] progress: 30% (275456 / 907840 bytes)
+I (545771) wifi station: [OTA] progress: 40% (365568 / 907840 bytes)
+I (547151) wifi station: [OTA] progress: 50% (455680 / 907840 bytes)
+I (548541) wifi station: [OTA] progress: 60% (545792 / 907840 bytes)
+I (550001) wifi station: [OTA] progress: 70% (635904 / 907840 bytes)
+I (551651) wifi station: [OTA] progress: 80% (730112 / 907840 bytes)
+I (553291) wifi station: [OTA] progress: 90% (820224 / 907840 bytes)
+I (555141) wifi station: [OTA] progress: 100% (907840 / 907840 bytes)
+I (555421) wifi station: [OTA] success: 1.3.0 -> 1.9.0-broken in 20 s. Rebooting...
+
+Booted test image:
+I (290) boot: Loaded app from partition at offset 0x100000
+I (320) app_init: App version: 1.9.0-broken
+I (598) wifi station: [OTA] running partition: ota_1, version 1.9.0-broken
+W (598) wifi station: [OTA] new firmware, state PENDING_VERIFY - running self-check...
+E (608) wifi station: [OTA] self-check FAILED (this build is intentionally broken)
+E (618) wifi station: [OTA] rolling back to previous firmware...
+I (1268) esp_ota_ops: Rollback to previously worked partition.
+
+After rollback:
+I (274) boot: Loaded app from partition at offset 0x10000
+I (303) app_init: App version: 1.3.0
+I (581) wifi station: [OTA] running partition: ota_0, version 1.3.0
+---- Sent utf8 encoded message: "version\n" ----
+I (228561) wifi station: FW: v1.3.0 (build Sep 29 2026 14:15:56)
+I (228561) wifi station:   partition: ota_0 @ 0x10000, state: valid
+---- Sent utf8 encoded message: "lamp status\n" ----
+{"lamp":"off","color":[0,0,255],"brightness":42,"mode":"breathe","timer_s":0}
+
+This run confirms self-check rollback (O-12), not corrupted-image validation (O-13).

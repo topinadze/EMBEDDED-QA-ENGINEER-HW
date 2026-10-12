@@ -1,0 +1,67 @@
+OTA beta update: 1.4.0 -> 1.5.0
+Date: 2026-10-12
+Source: operator-provided UART transcript. Wi-Fi password is redacted and not retained.
+
+Before OTA:
+---- Sent utf8 encoded message: "version\n" ----
+I (114267) wifi station: FW: v1.4.0 (build Sep 29 2026 14:16:47)
+I (114267) wifi station:   partition: ota_1 @ 0x100000, state: valid
+---- Sent utf8 encoded message: "status\n" ----
+I (117137) wifi station: WiFi: connected
+I (117137) wifi station:   SSID: TopA-node
+I (117137) wifi station:   IP:   10.123.30.49
+I (117137) wifi station:   RSSI: -20 dBm
+---- Sent utf8 encoded message: "lamp status\n" ----
+{"lamp":"off","color":[0,0,255],"brightness":42,"mode":"breathe","timer_s":0}
+
+OTA update:
+---- Sent utf8 encoded message: "ota update beta\n" ----
+I (137897) wifi station: [OTA] beta channel: 1.5.0, current: 1.4.0
+I (137897) wifi station: [OTA] current version: 1.4.0 (partition ota_1)
+I (137897) wifi station: [OTA] target partition: ota_0
+I (137907) wifi station: [OTA] downloading: https://raw.githubusercontent.com/BohdanHorbanych/esp32-ota-files/main/firmware/v1.5.0/station_WiFi.bin
+I (139947) esp_https_ota: Starting OTA...
+I (139947) esp_https_ota: Writing to <ota_0> partition at offset 0x10000
+I (140097) wifi station: [OTA] new version: 1.5.0
+I (141887) wifi station: [OTA] progress: 10% (91136 / 908304 bytes)
+I (143507) wifi station: [OTA] progress: 20% (185344 / 908304 bytes)
+I (145347) wifi station: [OTA] progress: 30% (275456 / 908304 bytes)
+I (147027) wifi station: [OTA] progress: 40% (365568 / 908304 bytes)
+I (148317) wifi station: [OTA] progress: 50% (455680 / 908304 bytes)
+I (150247) wifi station: [OTA] progress: 60% (545792 / 908304 bytes)
+I (151887) wifi station: [OTA] progress: 70% (635904 / 908304 bytes)
+I (153417) wifi station: [OTA] progress: 80% (730112 / 908304 bytes)
+I (155027) wifi station: [OTA] progress: 90% (820224 / 908304 bytes)
+I (156317) wifi station: [OTA] progress: 100% (908304 / 908304 bytes)
+I (156577) wifi station: [OTA] success: 1.4.0 -> 1.5.0 in 16 s. Rebooting...
+
+After reboot:
+I (285) boot: Loaded app from partition at offset 0x10000
+I (314) app_init: App version: 1.5.0
+I (442) wifi station: [CFG] migrating settings to v2 format...
+I (532) wifi station: [CFG] migration done
+I (682) wifi station: [OTA] running partition: ota_0, version 1.5.0
+W (692) wifi station: [OTA] new firmware, state PENDING_VERIFY - running self-check...
+I (732) wifi station: [OTA] self-check passed, firmware marked VALID
+
+Wi-Fi and lamp settings after OTA:
+---- Sent utf8 encoded message: "connect\n" ----
+I (6782) wifi station: scanning...
+Enter SSID or number from list:
+---- Sent utf8 encoded message: "1\n" ----
+I (23632) wifi station: SSID: TopA-node
+Enter password:
+---- Sent utf8 encoded message: "[REDACTED]\n" ----
+I (30592) wifi station: password: OK
+I (61222) wifi station: got ip:10.123.30.49
+---- Sent utf8 encoded message: "version\n" ----
+I (92832) wifi station: FW: v1.5.0 (build Sep 29 2026 15:23:09)
+I (92832) wifi station:   partition: ota_0 @ 0x10000, state: valid
+---- Sent utf8 encoded message: "status\n" ----
+I (96282) wifi station: WiFi: connected
+I (96282) wifi station:   SSID: TopA-node
+I (96282) wifi station:   IP:   10.123.30.49
+---- Sent utf8 encoded message: "lamp status\n" ----
+{"lamp":"off","color":[255,255,255],"brightness":50,"mode":"solid","timer_s":0}
+
+Observed differences from before OTA: the operator had to re-enter the Wi-Fi password; lamp settings changed from blue / 42% / breathe to white / 50% / solid.

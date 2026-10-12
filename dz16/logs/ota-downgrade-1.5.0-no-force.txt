@@ -1,0 +1,46 @@
+Downgrade protection checks on firmware 1.5.0
+Date: 2026-10-12
+Source: operator-provided UART transcript
+
+Initial firmware:
+---- Sent utf8 encoded message: "version\n" ----
+I (299592) wifi station: FW: v1.5.0 (build Sep 29 2026 15:23:09)
+I (299592) wifi station:   partition: ota_0 @ 0x10000, state: valid
+
+Attempt to downgrade to 1.4.0 without force:
+---- Sent utf8 encoded message: "ota install 1.4.0\n" ----
+I (337302) wifi station: [OTA] current version: 1.5.0 (partition ota_0)
+I (337302) wifi station: [OTA] target partition: ota_1
+I (337302) wifi station: [OTA] downloading: https://raw.githubusercontent.com/BohdanHorbanych/esp32-ota-files/main/firmware/v1.4.0/station_WiFi.bin
+I (339972) esp_https_ota: Starting OTA...
+I (339972) esp_https_ota: Writing to <ota_1> partition at offset 0x100000
+I (339972) wifi station: [OTA] new version: 1.4.0
+E (339982) wifi station: [OTA] downgrade blocked: 1.5.0 -> 1.4.0. Use 'ota install <ver> force'
+
+Attempt to downgrade to 1.3.0 without force:
+---- Sent utf8 encoded message: "ota install 1.3.0\n" ----
+I (351192) wifi station: [OTA] current version: 1.5.0 (partition ota_0)
+I (351192) wifi station: [OTA] target partition: ota_1
+I (351192) wifi station: [OTA] downloading: https://raw.githubusercontent.com/BohdanHorbanych/esp32-ota-files/main/firmware/v1.3.0/station_WiFi.bin
+I (356562) esp_https_ota: Starting OTA...
+I (356562) esp_https_ota: Writing to <ota_1> partition at offset 0x100000
+I (356722) wifi station: [OTA] new version: 1.3.0
+E (356722) wifi station: [OTA] downgrade blocked: 1.5.0 -> 1.3.0. Use 'ota install <ver> force'
+
+Same-version reinstall check (not a downgrade):
+---- Sent utf8 encoded message: "ota install 1.5.0\n" ----
+I (368332) wifi station: [OTA] current version: 1.5.0 (partition ota_0)
+I (368332) wifi station: [OTA] target partition: ota_1
+I (368332) wifi station: [OTA] new version: 1.5.0
+W (371342) wifi station: [OTA] new version is the same as current - flashing anyway
+I (388482) wifi station: [OTA] success: 1.5.0 -> 1.5.0 in 17 s. Rebooting...
+
+After reboot:
+I (291) boot: Loaded app from partition at offset 0x100000
+I (320) app_init: App version: 1.5.0
+I (668) wifi station: [OTA] running partition: ota_1, version 1.5.0
+W (678) wifi station: [OTA] new firmware, state PENDING_VERIFY - running self-check...
+I (718) wifi station: [OTA] self-check passed, firmware marked VALID
+---- Sent utf8 encoded message: "version\n" ----
+I (8408) wifi station: FW: v1.5.0 (build Sep 29 2026 15:23:09)
+I (8408) wifi station:   partition: ota_1 @ 0x100000, state: valid

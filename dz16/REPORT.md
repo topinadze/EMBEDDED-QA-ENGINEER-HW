@@ -84,20 +84,20 @@
 
 | ID | Перевірка / очікуваний результат | PRD | Версія / перехід | Результат / доказ |
 |---|---|---|---|---|
-| O-01 | На старті `version` показує 1.3.0; boot log, `version` та `ota check` узгоджені. `ota check` показує stable 1.4.0 і beta 1.5.0 | OTA-1, OTA-2 | 1.3.0 | NOT RUN — запис і hash перевірено (esptool), але boot log, `version` та `ota check` не надані |
-| O-02 | `ota update`: 1.3.0 → 1.4.0; перевірити цільовий розділ, URL, прогрес, успіх, reboot, self-check і `state: valid` | OTA-3, OTA-5, OTA-9 | 1.3.0 → 1.4.0 | NOT RUN |
-| O-03 | `ota update beta`: 1.4.0 → 1.5.0; перевірити цільовий розділ, URL, прогрес, успіх, reboot, self-check і `state: valid` | OTA-3, OTA-5, OTA-9 | 1.4.0 → 1.5.0 | NOT RUN |
-| O-04 | Після успішного OTA у кожному переході Wi-Fi підключається зі збереженими обліковими даними; колір, яскравість, режим і (у 1.5.0) сцени збережено | FR-W3, FR-L9, FR-L10, OTA-8 | обидва переходи | NOT RUN |
-| O-05 | На 1.3.0 перервати Wi-Fi під час `ota update`; отримати помилку завантаження, залишитися на 1.3.0, відновити Wi-Fi і повторити OTA без reboot | OTA-6 | 1.3.0 | NOT RUN |
-| O-06 | На 1.4.0 перервати Wi-Fi під час `ota update beta`; отримати помилку завантаження, залишитися на 1.4.0, відновити Wi-Fi і повторити OTA без reboot | OTA-6 | 1.4.0 | NOT RUN |
-| O-07 | На 1.5.0 перевірити обрив і повторне підключення під час OTA, не змінюючи версію, наприклад `ota install 1.5.0 force`; після обриву повторна спроба працює без reboot | OTA-4, OTA-6 | 1.5.0 | NOT RUN |
-| O-08 | Без Wi-Fi OTA-команда повертає `WiFi not connected`; поточна прошивка не змінюється | OTA-7 | 1.3.0 | NOT RUN |
-| O-09 | На вже актуальному stable/beta-каналі OTA повідомляє `already up to date` і не завантажує образ | OTA-3 | актуальна версія каналу | NOT RUN |
-| O-10 | `ota install 1.3.0` без `force` блокує downgrade; версія/розділ не змінюються | OTA-4 | 1.4.0 або новіша | NOT RUN |
-| O-11 | `ota install 1.3.0 force` дозволяє downgrade; після reboot перевірити 1.3.0, `state: valid` і збереження даних. Зафіксувати повторний OTA шлях назад до 1.5.0, якщо його виконували | OTA-4, OTA-8, OTA-9 | 1.4.0 або новіша | NOT RUN |
-| O-12 | `ota broken`: self-check завершується помилкою, виконується rollback на попередню версію; версія, стан `valid` і налаштування підтверджені | OTA-10 | `<версія до rollback>` | NOT RUN |
-| O-13 | Перевірити помилку пошкодженого образу: завантаження/валідація відхиляється, поточна версія залишається робочою | OTA-11 | `<версія>` | NOT RUN |
-| O-14 | Перевірити `ota <url>` і `ota-test-server` відповідно до PRD; зафіксувати фактичний URL/результат без секретів | OTA-12 | `<версія>` | NOT RUN |
+| O-01 | На старті `version` показує 1.3.0; boot log, `version` та `ota check` узгоджені. `ota check` показує stable 1.4.0 і beta 1.5.0 | OTA-1, OTA-2 | 1.3.0 | PASS — `version` показала `FW: v1.3.0`, `ota_0`, `state: valid`; `ota check` після підключення показала current 1.3.0, stable 1.4.0 і beta 1.5.0. Boot log після початкового прошивання також показав App version 1.3.0. [`logs/ota-check-1.3.0.txt`](logs/ota-check-1.3.0.txt) |
+| O-02 | `ota update`: 1.3.0 → 1.4.0; перевірити цільовий розділ, URL, прогрес, успіх, reboot, self-check і `state: valid` | OTA-3, OTA-5, OTA-9 | 1.3.0 → 1.4.0 | PASS — повний UART-лог підтверджує успішне завантаження stable 1.4.0 у `ota_1` з прогресом 10–100%, reboot, self-check passed, стан VALID і `version` 1.4.0 на `ota_1`. Перед успішним запуском була окрема невдала спроба через DNS, зафіксована в [`logs/ota-update-attempt-1.3.0-dns-failure.txt`](logs/ota-update-attempt-1.3.0-dns-failure.txt); вона не змінила поточну прошивку. [`logs/ota-update-1.3.0-to-1.4.0.txt`](logs/ota-update-1.3.0-to-1.4.0.txt) |
+| O-03 | `ota update beta`: 1.4.0 → 1.5.0; перевірити цільовий розділ, URL, прогрес, успіх, reboot, self-check і `state: valid` | OTA-3, OTA-5, OTA-9 | 1.4.0 → 1.5.0 | PASS — beta 1.5.0 завантажено з прогресом 10–100% у `ota_0`; після reboot self-check пройшов, `version` підтвердила 1.5.0, `ota_0 @ 0x10000`, `state: valid`. [`logs/ota-update-beta-1.4.0-to-1.5.0.txt`](logs/ota-update-beta-1.4.0-to-1.5.0.txt) |
+| O-04 | Після успішного OTA у кожному переході Wi-Fi підключається зі збереженими обліковими даними; колір, яскравість, режим і (у 1.5.0) сцени збережено | FR-W3, FR-L9, FR-L10, OTA-8 | 1.4.0 → 1.5.0 | FAIL — до OTA Wi-Fi був connected до TopA-node, лампа: blue `[0,0,255]`, brightness 42, breathe. Після OTA для Wi-Fi довелося повторно вибрати SSID та ввести пароль; `lamp status` повернув default white `[255,255,255]`, brightness 50, solid. Це порушує OTA-8/FR-W3/FR-L9. Див. BUG-07 та [`logs/ota-update-beta-1.4.0-to-1.5.0.txt`](logs/ota-update-beta-1.4.0-to-1.5.0.txt). |
+| O-05 | На 1.3.0 перервати Wi-Fi під час `ota update`; отримати помилку завантаження, залишитися на 1.3.0, відновити Wi-Fi і повторити OTA без reboot | OTA-6 | 1.3.0 | FAIL — при обриві на 20% отримано очікуване `[OTA] failed: download interrupted (ESP_FAIL)`; автоматичне Wi-Fi reconnect відбулося, `version` підтвердила робочу 1.3.0 на `ota_0`. Але `ota status` і повторний `ota update` повернули `[OTA] error: update already in progress`, тобто повтор без reboot не стартував. Після ручного `reboot` система завантажилася на 1.3.0, `ota_0`, `state: valid`; повтор OTA після reboot у цьому логу не перевірявся. [`logs/ota-interruption-retry-1.3.0.txt`](logs/ota-interruption-retry-1.3.0.txt) |
+| O-06 | На 1.4.0 перервати Wi-Fi під час `ota update beta`; отримати помилку завантаження, залишитися на 1.4.0, відновити Wi-Fi і повторити OTA без reboot | OTA-6 | 1.4.0 → 1.5.0 | PASS — перша спроба обірвалася на 30% з `[OTA] failed: download interrupted (ESP_FAIL)`; Wi-Fi автоматично перепідключився, пристрій залишився на 1.4.0 `ota_0`, `valid`, а lamp status лишився blue `[0,0,225]` / 50% / breathe. Повторна `ota update beta` без проміжного ручного reboot успішно завантажила 1.5.0 у `ota_1`; після OTA reboot self-check пройшов, firmware позначено VALID. [`logs/ota-interruption-retry-1.4.0.txt`](logs/ota-interruption-retry-1.4.0.txt) |
+| O-07 | На 1.5.0 перевірити обрив і повторне підключення під час OTA, не змінюючи версію, наприклад `ota install 1.5.0 force`; після обриву повторна спроба працює без reboot | OTA-4, OTA-6 | 1.5.0 | FAIL — цільовий same-version сценарій виконано: `ota install 1.5.0 force` перервався на 20% з `[OTA] failed: download interrupted (ESP_FAIL)`. Автоматичні спроби Wi-Fi reconnect закінчилися `connect to the AP fail`; `version` перед retry підтвердила незмінну 1.5.0 у `ota_1`, `valid`. Retry без reboot повернув `[OTA] error: update already in progress`. Після retry окремого `version` не надано. Попередній force-downgrade прогін також показав той самий блокуючий стан. BUG-06. [`logs/ota-interruption-same-version-retry-1.5.0.txt`](logs/ota-interruption-same-version-retry-1.5.0.txt), [`logs/ota-interruption-force-downgrade-1.5.0.txt`](logs/ota-interruption-force-downgrade-1.5.0.txt) |
+| O-08 | Без Wi-Fi OTA-команда повертає `WiFi not connected`; поточна прошивка не змінюється | OTA-7 | 1.3.0 | PASS — `ota check` без Wi-Fi повернула `[OTA] failed: WiFi not connected`; після підключення повторний `ota check` підтвердив current version 1.3.0 без оновлення. [`logs/ota-check-1.3.0.txt`](logs/ota-check-1.3.0.txt) |
+| O-09 | На вже актуальному stable/beta-каналі OTA повідомляє `already up to date` і не завантажує образ | OTA-3 | актуальна версія каналу | PASS — на FW 1.4.0 `ota check` показала stable 1.4.0 і `[OTA] up to date (stable)`; див. [`logs/ota-downgrade-1.4.0-to-1.3.0.txt`](logs/ota-downgrade-1.4.0-to-1.3.0.txt) |
+| O-10 | `ota install 1.3.0` без `force` блокує downgrade; версія/розділ не змінюються | OTA-4 | 1.4.0, 1.5.0 | PASS — на 1.4.0 downgrade 1.3.0 відхилено; на 1.5.0 без `force` відхилено переходи і до 1.4.0, і до 1.3.0. Після цього перевстановлення тієї ж 1.5.0 завершилося успішно; `version` після reboot підтвердила 1.5.0 у `ota_1`, `state: valid`. Останній same-version install — не downgrade. [`logs/ota-downgrade-1.4.0-to-1.3.0.txt`](logs/ota-downgrade-1.4.0-to-1.3.0.txt), [`logs/ota-downgrade-1.5.0-no-force.txt`](logs/ota-downgrade-1.5.0-no-force.txt) |
+| O-11 | `ota install 1.3.0 force` дозволяє downgrade; після reboot перевірити 1.3.0, `state: valid` і збереження даних. Зафіксувати повторний OTA шлях назад до 1.5.0, якщо його виконували | OTA-4, OTA-8, OTA-9 | 1.4.0/1.5.0 → 1.3.0/1.4.0 | PASS — force-downgrade 1.4.0 → 1.3.0 і 1.5.0 → 1.4.0 виконані, у кожному випадку self-check пройшов і цільова версія стала `valid`. Для переходу 1.5.0 → 1.4.0 підтверджено Wi-Fi credentials збереженими (підключення зі збереженим SSID без повторного пароля) і lamp state white/50/solid незмінним. [`logs/ota-downgrade-1.4.0-to-1.3.0.txt`](logs/ota-downgrade-1.4.0-to-1.3.0.txt), [`logs/ota-downgrade-1.5.0-to-1.4.0-force.txt`](logs/ota-downgrade-1.5.0-to-1.4.0-force.txt) |
+| O-12 | `ota broken`: self-check завершується помилкою, виконується rollback на попередню версію; версія, стан `valid` і налаштування підтверджені | OTA-10 | 1.3.0 → 1.9.0-broken → 1.3.0 | PASS — rollback від `1.9.0-broken` у `ota_1` після self-check failure підтверджено двома прогонами. Після кожного підтверджено 1.3.0 у `ota_0`, `state: valid`; у повторному прогоні також підтверджено lamp state: color `[0,0,255]`, brightness `42`, mode `breathe` (off). [`logs/ota-broken-rollback-1.3.0.txt`](logs/ota-broken-rollback-1.3.0.txt), [`logs/ota-broken-rollback-1.3.0-run2.txt`](logs/ota-broken-rollback-1.3.0-run2.txt) |
+| O-13 | Перевірити помилку пошкодженого образу: завантаження/валідація відхиляється, поточна версія залишається робочою | OTA-11 | 1.3.0 | OUT OF SCOPE для HW-16 — явні кроки завдання вимагають перевірити OTA-переходи, обрив/reconnect, downgrade та `ota broken`; окремого тесту пошкодженого образу немає. Прогін `ota broken` зараховано до O-12, як вимагає HW-16. |
+| O-14 | Перевірити `ota <url>` і `ota-test-server` відповідно до PRD; зафіксувати фактичний URL/результат без секретів | OTA-12 | `<версія>` | OUT OF SCOPE для HW-16 — custom URL і симуляція `ota-test-server` не вказані серед конкретних кроків завдання. |
 | O-15 | `connect`: вибір мережі, введення пароля, успішне підключення й отримання IP | FR-W1 | 1.3.0 | PASS — [`logs/connect-1.3.0.txt`](logs/connect-1.3.0.txt) |
 | O-16 | Після `disconnect`, `status` має показати disconnected; при вимкненій лампі LED має показувати тьмяно-червоний Wi-Fi статус | FR-W4, FR-W6 | 1.3.0 | FAIL — `status` показав connected з порожнім SSID, IP `0.0.0.0`, RSSI `0 dBm`; LED лишився тьмяно-зеленим. Повтор BUG-01 з DZ14; доказ: [`logs/disconnect-status-led-1.3.0.txt`](logs/disconnect-status-led-1.3.0.txt) |
 | O-17 | K3 при підключеному Wi-Fi відключає пристрій; наступне натискання на відключеному пристрої запускає reconnect зі збереженими credentials | FR-W5 | 1.3.0 | FAIL — повторні натискання виводять `[K3] wifi disconnect` / `disconnected`; reconnect не запускається, `status` помилково показує connected без SSID та IP. BUG-02; [`logs/k3-reconnect-1.3.0.txt`](logs/k3-reconnect-1.3.0.txt) |
@@ -107,14 +107,21 @@
 
 | Перехід / спроба | Файл у `logs/` | Версія до → після | Примітка |
 |---|---|---|---|
-| 1.3.0 → 1.4.0, успішна | `<ім'я файлу>` | `<факт>` | NOT RUN |
-| 1.3.0 → 1.4.0, обрив Wi-Fi | `<ім'я файлу>` | `<факт>` | NOT RUN |
-| 1.3.0 → 1.4.0, повтор після обриву | `<ім'я файлу>` | `<факт>` | NOT RUN |
-| 1.4.0 → 1.5.0, успішна | `<ім'я файлу>` | `<факт>` | NOT RUN |
-| 1.4.0 → 1.5.0, обрив Wi-Fi | `<ім'я файлу>` | `<факт>` | NOT RUN |
-| 1.4.0 → 1.5.0, повтор після обриву | `<ім'я файлу>` | `<факт>` | NOT RUN |
-| OTA на 1.5.0, обрив / повтор | `<ім'я файлу>` | `<факт>` | NOT RUN |
-| Downgrade / rollback (за наявності) | `<ім'я файлу>` | `<факт>` | NOT RUN |
+| 1.3.0 → 1.4.0, успішна | [`ota-update-1.3.0-to-1.4.0.txt`](logs/ota-update-1.3.0-to-1.4.0.txt) | 1.3.0 → 1.4.0; `ota_0` → `ota_1`, `state: valid`, self-check passed | PASS |
+| 1.4.0 → 1.5.0 beta, успішна OTA; settings persistence failure | [`ota-update-beta-1.4.0-to-1.5.0.txt`](logs/ota-update-beta-1.4.0-to-1.5.0.txt) | 1.4.0 `ota_1` → 1.5.0 `ota_0`, self-check passed; після оновлення повторно введено Wi-Fi password, lamp налаштування повернулися до white/50/solid | OTA PASS; OTA-8 FAIL (BUG-07) |
+| 1.3.0 → 1.4.0, обрив Wi-Fi / reconnect | [`ota-interruption-retry-1.3.0.txt`](logs/ota-interruption-retry-1.3.0.txt) | OTA обірвалося на 20%; після Wi-Fi reconnect поточна прошивка лишилася 1.3.0 на `ota_0`, `valid` | Обробка переривання зберегла поточну прошивку; Wi-Fi автоматично перепідключився |
+| 1.3.0 → 1.4.0, повтор OTA без reboot | [`ota-interruption-retry-1.3.0.txt`](logs/ota-interruption-retry-1.3.0.txt) | Повтор заблокований із `[OTA] error: update already in progress`; після ручного reboot все ще 1.3.0, `ota_0`, `valid` | FAIL — не відповідає OTA-6, повторна спроба вимагає reboot |
+| 1.4.0 → 1.5.0 beta, обрив / reconnect / retry без reboot | [`ota-interruption-retry-1.4.0.txt`](logs/ota-interruption-retry-1.4.0.txt) | Перша спроба перервалася на 30%; після Wi-Fi reconnect без ручного reboot повтор успішний, `ota_1`, 1.5.0, self-check VALID | PASS — OTA-6 виконано |
+| 1.5.0 → 1.4.0 force, переривання завантаження | [`ota-interruption-force-downgrade-1.5.0.txt`](logs/ota-interruption-force-downgrade-1.5.0.txt) | Завантаження перервалося на 40%; після Wi-Fi reconnect `version` підтвердила 1.5.0, `ota_1`, `valid` | OTA перервалося; поточна прошивка збережена |
+| 1.5.0 → 1.4.0 force, retry після reconnect без reboot | [`ota-interruption-force-downgrade-1.5.0.txt`](logs/ota-interruption-force-downgrade-1.5.0.txt) | Повторна команда повернула `[OTA] error: update already in progress`; `version` підтвердила 1.5.0, `ota_1`, `valid` | FAIL — retry заблокований |
+| 1.5.0 → 1.5.0 force, переривання завантаження | [`ota-interruption-same-version-retry-1.5.0.txt`](logs/ota-interruption-same-version-retry-1.5.0.txt) | Same-version install перервався на 20% з `[OTA] failed: download interrupted (ESP_FAIL)`; reconnect спроби завершилися `connect to the AP fail`; `version` до retry: 1.5.0, `ota_1`, `valid` | OTA перервалося; активна прошивка не змінилася на момент перевірки |
+| 1.5.0 → 1.5.0 force, retry без reboot | [`ota-interruption-same-version-retry-1.5.0.txt`](logs/ota-interruption-same-version-retry-1.5.0.txt) | Retry повернув `[OTA] error: update already in progress`; post-retry `version` не надано | FAIL — retry без reboot заблокований; O-07 виконано |
+| 1.4.0 → 1.3.0, downgrade без force | [`ota-downgrade-1.4.0-to-1.3.0.txt`](logs/ota-downgrade-1.4.0-to-1.3.0.txt) | Downgrade відхилено; версія залишилася 1.4.0 (`ota_1`, valid) | PASS |
+| 1.4.0 → 1.3.0, downgrade з force | [`ota-downgrade-1.4.0-to-1.3.0.txt`](logs/ota-downgrade-1.4.0-to-1.3.0.txt) | Перехід успішний; після self-check 1.3.0 працює з `ota_0`, valid | PASS |
+| 1.5.0 → 1.4.0, downgrade з force | [`ota-downgrade-1.5.0-to-1.4.0-force.txt`](logs/ota-downgrade-1.5.0-to-1.4.0-force.txt) | Перехід успішний; після self-check 1.4.0 працює з `ota_0`, valid; Wi-Fi credentials і lamp state збережено | PASS |
+| Спроба downgrade 1.5.0 → 1.4.0 з некоректною командою | [`ota-downgrade-1.5.0-invalid-command.txt`](logs/ota-downgrade-1.5.0-invalid-command.txt) | `ota update 1.4.0 force` інтерпретовано як URL `update 1.4.0 force`; URL parse failed до завантаження образу. Правильний синтаксис: `ota install 1.4.0 force` | Не є валідною OTA/downgrade перевіркою або firmware дефектом |
+| 1.5.0 → 1.4.0 та 1.3.0, downgrade без force | [`ota-downgrade-1.5.0-no-force.txt`](logs/ota-downgrade-1.5.0-no-force.txt) | Обидва downgrade відхилено; same-version reinstall 1.5.0 після цього успішний, фінально `ota_1`, valid | PASS |
+| 1.3.0 → 1.9.0-broken → rollback на 1.3.0 | [`ota-broken-rollback-1.3.0.txt`](logs/ota-broken-rollback-1.3.0.txt), [`ota-broken-rollback-1.3.0-run2.txt`](logs/ota-broken-rollback-1.3.0-run2.txt) | Два прогони: self-check failed; автоматичний rollback з `ota_1` до 1.3.0 у `ota_0`, `state: valid`; lamp config збережена | PASS (2/2) |
 
 ## 4. Баг-репорти
 
@@ -255,6 +262,22 @@ E (3192444) wifi station: error: rgb values must be 0-255
   Повний доказ: [`logs/lamp-invalid-brightness-1.3.0.txt`](logs/lamp-invalid-brightness-1.3.0.txt).
 - **Відтворюваність:** в одному прогоні відтворено з сімома недопустимими значеннями (`-5`, `-50`, `110`, `120`, `130`, `150`, `200`); кількість окремих повторних прогонів не зафіксована.
 
+### BUG-07: OTA 1.4.0 → 1.5.0 скидає Wi-Fi та налаштування лампи
+
+- **Версія, в якій знайдено:** 1.5.0 після OTA з 1.4.0.
+- **Інші версії, у яких відтворюється:** не перевірено.
+- **Severity:** Major.
+- **Priority:** High.
+- **Передумови:** FW 1.4.0 підключена до Wi-Fi; збережений стан лампи — color `[0,0,255]`, brightness `42`, mode `breathe`.
+- **Кроки відтворення:**
+  1. Перед OTA виконати `version`, `status` та `lamp status`, зафіксувати стан.
+  2. Виконати `ota update beta` і дочекатися успішного переходу на 1.5.0 та self-check.
+  3. Після reboot перевірити підключення Wi-Fi та `lamp status`.
+- **Очікуваний результат:** Wi-Fi credentials і налаштування лампи зберігаються після OTA; не потрібно повторно налаштовувати пристрій (OTA-8, FR-W3, FR-L9).
+- **Фактичний результат:** OTA успішне, але після reboot для Wi-Fi повторно введено SSID та пароль; стан лампи замість синього / 42% / breathe став білим / 50% / solid. Пароль у збереженому логу замасковано.
+- **Доказ:** [`logs/ota-update-beta-1.4.0-to-1.5.0.txt`](logs/ota-update-beta-1.4.0-to-1.5.0.txt).
+- **Відтворюваність:** 1/1.
+
 ## 5. Матриця багів і регресій
 
 | ID бага | Короткий опис | 1.3.0 | 1.4.0 | 1.5.0 | Регресія / примітка |
@@ -264,11 +287,14 @@ E (3192444) wifi station: error: rgb values must be 0-255
 | BUG-03 | Фізично переплутані кольори red/green та purple/cyan | PRESENT | NOT RUN | NOT RUN | Відтворюваність 2/2 на 1.3.0 |
 | BUG-04 | Некоректний RGB іноді відхиляється з неправильним повідомленням | INTERMITTENT (1/3) | NOT RUN | NOT RUN | У двох повторах і для інших перевірених некоректних значень отримано очікувану помилку; колір не змінився |
 | BUG-05 | Недопустима яскравість приймається та спричиняє невідповідність фізичного кольору JSON-статусу | PRESENT | NOT RUN | NOT RUN | В одному прогоні перевірено сім значень поза діапазоном |
+| BUG-06 | OTA залишається у стані `update already in progress` після переривання завантаження; повтор без reboot не запускається | PRESENT | NOT REPRODUCED | PRESENT | На 1.3.0 повтор блокувався; на 1.4.0 retry після обриву успішний; на 1.5.0 блокування повторено і для force-downgrade, і для same-version OTA (обрив на 20%, retry без reboot заблокований). У same-version прогоні auto-reconnect закінчився `connect to the AP fail`; поточна 1.5.0 `ota_1`, `valid` перед retry. [`logs/ota-interruption-retry-1.3.0.txt`](logs/ota-interruption-retry-1.3.0.txt), [`logs/ota-interruption-retry-1.4.0.txt`](logs/ota-interruption-retry-1.4.0.txt), [`logs/ota-interruption-force-downgrade-1.5.0.txt`](logs/ota-interruption-force-downgrade-1.5.0.txt), [`logs/ota-interruption-same-version-retry-1.5.0.txt`](logs/ota-interruption-same-version-retry-1.5.0.txt) |
+| BUG-07 | Після OTA 1.4.0 → 1.5.0 втрачені Wi-Fi credentials і налаштування лампи | NOT RUN | NOT RUN | PRESENT | Після успішного OTA потрібне повторне введення Wi-Fi пароля; lamp status змінився з blue/42/breathe на white/50/solid. [`logs/ota-update-beta-1.4.0-to-1.5.0.txt`](logs/ota-update-beta-1.4.0-to-1.5.0.txt) |
 
 Позначити регресією баг, відсутній у попередній перевіреній версії, але наявний у наступній, або баг, який повернувся.
 
 ## 6. Висновок
 
-- **Результати:** `<кількість PASS / FAIL / BLOCKED / NOT RUN>`
-- **Чи можна переводити 1.5.0 з beta у stable:** `<так / ні / недостатньо даних>`
-- **Обґрунтування:** `<коротке резюме за результатами чек-листа, багів і регресій>`
+- **Статус OTA-перевірок HW-16:** завершені станом на 2026-10-12; усі пункти O-01–O-12 у визначеному обсязі виконані й мають фактичний результат. O-13 та O-14 залишаються OUT OF SCOPE відповідно до завдання HW-16.
+- **Результати OTA HW-16:** 9 PASS, 3 FAIL (O-04, O-05, O-07), 0 BLOCKED, 0 NOT RUN серед пунктів O-01–O-12.
+- **Чи можна переводити 1.5.0 з beta у stable:** ні, наявних результатів недостатньо для схвалення.
+- **Обґрунтування:** O-04 виявив втрату Wi-Fi credentials і налаштувань лампи після OTA; O-05 та O-07 підтвердили, що після перерваного OTA повтор без reboot блокується `update already in progress` на 1.3.0 та 1.5.0. На 1.4.0 повтор OTA після reconnect пройшов успішно (O-06). BUG-06 відтворено на 1.3.0 і 1.5.0, але не відтворено на 1.4.0; BUG-07 зафіксований на переході 1.4.0 → 1.5.0.

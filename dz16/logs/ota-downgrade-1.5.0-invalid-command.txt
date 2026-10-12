@@ -1,0 +1,26 @@
+Invalid OTA downgrade command attempt on firmware 1.5.0
+Date: 2026-10-12
+Source: operator-provided UART transcript
+
+Before command:
+---- Sent utf8 encoded message: "version\n" ----
+I (191231) wifi station: FW: v1.5.0 (build Sep 29 2026 15:23:09)
+I (191231) wifi station:   partition: ota_1 @ 0x100000, state: valid
+---- Sent utf8 encoded message: "lamp status\n" ----
+{"lamp":"off","color":[0,0,225],"brightness":50,"mode":"solid","timer_s":0}
+---- Sent utf8 encoded message: "status\n" ----
+I (204781) wifi station: WiFi: connected
+I (204781) wifi station:   SSID: TopA-node
+I (204781) wifi station:   IP:   10.123.30.49
+
+Invalid command entered:
+---- Sent utf8 encoded message: "ota update 1.4.0 force\n" ----
+I (220921) wifi station: [OTA] current version: 1.5.0 (partition ota_1)
+I (220921) wifi station: [OTA] target partition: ota_0
+I (220921) wifi station: [OTA] downloading: update 1.4.0 force
+E (220921) HTTP_CLIENT: Error parse url update 1.4.0 force
+E (220931) HTTP_CLIENT: Failed to set URL
+E (220931) esp_https_ota: Failed to initialise HTTP connection
+E (220941) wifi station: [OTA] failed: cannot start download (ESP_FAIL)
+
+This was not a valid downgrade attempt. The supported command is `ota install 1.4.0 force`; the entered `ota update 1.4.0 force` was interpreted as an OTA URL and rejected before downloading an image. No post-command `version` check was included in the supplied transcript.
