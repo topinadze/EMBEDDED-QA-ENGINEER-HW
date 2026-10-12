@@ -1,0 +1,56 @@
+Test: tests/test_lamp.py::TestLamp::test_scenes_by_version[2]
+Firmware: 1.5.0
+Captured: 2026-10-12T18:10:35.612558+03:00
+
+TX > lamp status
+RX < lamp status
+RX < {"lamp":"off","color":[255,255,255],"brightness":50,"mode":"solid","timer_s":0}
+TX > version
+RX < version
+RX < I (832289) wifi station: FW: v1.5.0 (build Sep 29 2026 15:23:09)
+RX < I (832289) wifi station:   partition: ota_1 @ 0x100000, state: valid
+TX > lamp on
+RX < lamp on
+RX < I (832909) wifi station: [LAMP] on
+TX > lamp color 17 34 51
+RX < lamp color 17 34 51
+RX < I (833529) wifi station: [LAMP] color set: (17,34,51)
+TX > lamp brightness 37
+RX < lamp brightness 37
+RX < I (834129) wifi station: [LAMP] brightness set: 37%
+TX > lamp mode solid
+RX < lamp mode solid
+RX < I (834729) wifi station: [LAMP] mode set: solid
+TX > lamp scene save 2
+RX < lamp scene save 2
+RX < I (835329) wifi station: [LAMP] scene 2 saved
+TX > lamp color 90 80 70
+RX < lamp color 90 80 70
+RX < I (835949) wifi station: [LAMP] color set: (90,80,70)
+TX > lamp brightness 24
+RX < lamp brightness 24
+RX < I (836559) wifi station: [LAMP] brightness set: 24%
+TX > lamp mode breathe
+RX < lamp mode breathe
+RX < I (837169) wifi station: [LAMP] mode set: breathe
+TX > lamp scene load 2
+RX < lamp scene load 2
+RX < I (837779) wifi station: [LAMP] scene 2 loaded
+TX > lamp status
+RX < lamp status
+RX < {"lamp":"on","color":[17,34,51],"brightness":37,"mode":"solid","timer_s":0}
+TX > lamp timer 0
+RX < lamp timer 0
+RX < I (838999) wifi station: [LAMP] timer cancelled
+TX > lamp color 255 255 255
+RX < lamp color 255 255 255
+RX < I (839219) wifi station: [LAMP] color set: (255,255,255)
+TX > lamp brightness 50
+RX < lamp brightness 50
+RX < I (839439) wifi station: [LAMP] brightness set: 50%
+TX > lamp mode solid
+RX < lamp mode solid
+RX < I (839629) wifi station: [LAMP] mode set: solid
+TX > lamp off
+RX < lamp off
+RX < I (839839) wifi station: [LAMP] off

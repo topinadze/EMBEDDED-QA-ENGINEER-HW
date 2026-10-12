@@ -17,7 +17,7 @@ if str(DZ16_DIR) not in sys.path:
     sys.path.insert(0, str(DZ16_DIR))
 
 from drivers.device_driver import DeviceDriver
-from manual_checks import verify_manually
+from manual_checks import SoftChecks, prepare_manually, verify_manually
 
 ESP32_VIDS = {0x10C4, 0x1A86, 0x0403, 0x303A}
 ESP32_DESCRIPTORS = ("cp210", "ch340", "ft232", "esp32", "usb-to-uart", "usb serial")
@@ -129,15 +129,32 @@ def pytest_runtest_makereport(
     setattr(item, f"rep_{report.when}", report)
 
 
-@pytest.fixture
-def manual_check(
-    pytestconfig: pytest.Config,
-) -> Callable[[str], bool]:
+def _require_console(pytestconfig: pytest.Config) -> None:
     if pytestconfig.getoption("capture") != "no":
         pytest.fail(
             "Interactive checks require console input; run with '-s -m interactive'."
         )
+
+
+@pytest.fixture
+def manual_check(
+    pytestconfig: pytest.Config,
+) -> Callable[[str], bool]:
+    _require_console(pytestconfig)
     return verify_manually
+
+
+@pytest.fixture
+def manual_prepare(
+    pytestconfig: pytest.Config,
+) -> Callable[[str], None]:
+    _require_console(pytestconfig)
+    return prepare_manually
+
+
+@pytest.fixture
+def soft() -> SoftChecks:
+    return SoftChecks()
 
 
 def _snapshot_lamp(driver: DeviceDriver) -> dict[str, Any] | None:

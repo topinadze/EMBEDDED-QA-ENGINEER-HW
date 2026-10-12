@@ -1,0 +1,17 @@
+Test: tests/test_wifi.py::TestWifiButtons::test_k3_reconnects_saved_wifi
+Firmware: 1.5.0
+Captured: 2026-10-12T18:11:21.221839+03:00
+
+TX > lamp status
+RX < lamp status
+RX < {"lamp":"off","color":[255,255,255],"brightness":50,"mode":"solid","timer_s":0}
+TX > version
+RX < version
+RX < I (25651) wifi station: FW: v1.5.0 (build Sep 29 2026 15:23:09)
+RX < I (25651) wifi station:   partition: ota_1 @ 0x100000, state: valid
+TX > status
+RX < status
+RX < I (26271) wifi station: WiFi: disconnected
+TX > reboot
+RX < reboot
+RX < I (26941) wifi station: rebooting in 3...

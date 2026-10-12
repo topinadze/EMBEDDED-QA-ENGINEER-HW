@@ -1,0 +1,10 @@
+---- Sent utf8 encoded message: "ota test server\n" ----
+ota test server
+
+I (221483) wifi station: [OTA] current version: 1.4.0 (partition ota_0)
+I (221483) wifi station: [OTA] target partition: ota_1
+I (221483) wifi station: [OTA] downloading: test server
+E (221483) HTTP_CLIENT: Error parse url test server
+E (221493) HTTP_CLIENT: Failed to set URL
+E (221493) esp_https_ota: Failed to initialise HTTP connection
+E (221493) wifi station: [OTA] failed: cannot start download (ESP_FAIL)

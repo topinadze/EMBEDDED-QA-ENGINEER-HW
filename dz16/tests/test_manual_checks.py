@@ -26,21 +26,31 @@ def test_manual_check_records_pass(monkeypatch: pytest.MonkeyPatch) -> None:
 def test_manual_check_records_failure(monkeypatch: pytest.MonkeyPatch) -> None:
     _provide_responses(monkeypatch, "n")
 
-    with pytest.raises(pytest.fail.Exception, match="Manual check failed: LED shows red"):
-        manual_checks.verify_manually("LED shows red.")
+    assert manual_checks.verify_manually("LED shows red.") is False
 
 
 def test_manual_check_records_comment_then_result(
     monkeypatch: pytest.MonkeyPatch,
 ) -> None:
-    comment = "LED looked purple."
-    _provide_responses(monkeypatch, "c", comment, "n")
+    _provide_responses(monkeypatch, "c", "LED looked purple.", "n")
 
-    with pytest.raises(
-        pytest.fail.Exception,
-        match=f"Operator comment: {comment}",
-    ):
-        manual_checks.verify_manually("LED shows red.")
+    assert manual_checks.verify_manually("LED shows red.") is False
+
+
+def test_prepare_waits_for_enter(monkeypatch: pytest.MonkeyPatch) -> None:
+    _provide_responses(monkeypatch, "")
+
+    manual_checks.prepare_manually("Watch the LED.")
+
+
+def test_soft_checks_collect_all_failures() -> None:
+    soft = manual_checks.SoftChecks()
+    soft.check(False, "first")
+    soft.check(True, "ok")
+    soft.check(False, "second")
+
+    with pytest.raises(pytest.fail.Exception, match=r"(?s)2 check.*first.*second"):
+        soft.assert_all()
 
 
 def test_manual_check_rejects_unavailable_input(

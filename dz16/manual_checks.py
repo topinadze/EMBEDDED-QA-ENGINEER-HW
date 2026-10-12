@@ -22,9 +22,46 @@ def _attach_manual_feedback(
     )
 
 
+class SoftChecks:
+    """Collect failed checks so one failure does not hide the others."""
+
+    def __init__(self) -> None:
+        self.failures: list[str] = []
+
+    def check(self, condition: object, message: str) -> bool:
+        ok = bool(condition)
+        if not ok:
+            LOGGER.error("SOFT CHECK FAILED | %s", message)
+            self.failures.append(message)
+        with allure.step(f"{'PASS' if ok else 'FAIL'}: {message}"):
+            pass
+        return ok
+
+    def assert_all(self) -> None:
+        if self.failures:
+            pytest.fail(
+                f"{len(self.failures)} check(s) failed:\n- " + "\n- ".join(self.failures),
+                pytrace=False,
+            )
+
+
+@allure.step("Manual preparation: {instruction}")
+def prepare_manually(instruction: str) -> None:
+    """Pause so the operator can watch the device before the next action."""
+    print(f"\n{'=' * 60}")
+    print("GET READY")
+    print(instruction)
+    print(f"{'=' * 60}")
+    LOGGER.info("MANUAL PREPARE | %s", instruction)
+    try:
+        input("Press Enter when ready: ")
+    except EOFError:
+        pytest.fail("Manual input is unavailable; run pytest with -s in a terminal.")
+
+
 @allure.step("Manual verification: {instruction}")
 def verify_manually(instruction: str) -> bool:
-    """Pause for an observed physical result and record it in Allure."""
+    """Ask for an observed physical result; return False (not raise) on 'n'."""
     print(f"\n{'=' * 60}")
     print("MANUAL CHECK REQUIRED")
     print(instruction)
@@ -44,12 +81,7 @@ def verify_manually(instruction: str) -> bool:
             result = "PASS" if passed else "FAIL"
             _attach_manual_feedback(instruction, result, comment)
             print(f"Manual check recorded: {result}")
-            if not passed:
-                failure_message = [f"Manual check failed: {instruction}"]
-                if comment:
-                    failure_message.append(f"Operator comment: {comment}")
-                pytest.fail("\n".join(failure_message), pytrace=False)
-            return True
+            return passed
         if response == "c":
             try:
                 comment = input("Add an observation or failure detail: ").strip()

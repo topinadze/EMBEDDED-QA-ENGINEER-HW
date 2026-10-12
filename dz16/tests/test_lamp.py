@@ -6,6 +6,7 @@ import allure
 import pytest
 
 from drivers.device_driver import DeviceDriver
+from manual_checks import SoftChecks
 
 NAMED_COLORS = (
     pytest.param("red", [255, 0, 0], id="red"),
@@ -34,6 +35,10 @@ def _assert_response(lines: list[str], expected: str) -> None:
     assert expected.casefold() in output.casefold(), (
         f"Expected {expected!r} in UART response:\n{output}"
     )
+
+
+def _has_response(lines: list[str], expected: str) -> bool:
+    return expected.casefold() in _response_text(lines).casefold()
 
 
 @allure.epic("HW-16: Smart Lamp and OTA verification")
@@ -79,13 +84,14 @@ class TestLamp:
         device_driver: DeviceDriver,
         firmware_version: str,
         manual_check: Callable[[str], bool],
+        soft: SoftChecks,
     ) -> None:
         on_response = device_driver.lamp_on()
         on_status = device_driver.lamp_status()
         on_visible = manual_check("Is the RGB LED visibly lit while the lamp is on?")
-        _assert_response(on_response, "[LAMP] on")
-        assert on_status["lamp"] == "on"
-        assert on_visible
+        soft.check(_has_response(on_response, "[LAMP] on"), "UART confirms lamp on")
+        soft.check(on_status["lamp"] == "on", "Status reports lamp on")
+        soft.check(on_visible, "LED is visibly lit while the lamp is on")
 
         off_response = device_driver.lamp_off()
         off_status = device_driver.lamp_status()
@@ -93,9 +99,10 @@ class TestLamp:
             "After lamp off, has the LED returned to Wi-Fi indication "
             "(dim green if connected, dim red if disconnected)?"
         )
-        _assert_response(off_response, "[LAMP] off")
-        assert off_status["lamp"] == "off"
-        assert wifi_indicator_visible
+        soft.check(_has_response(off_response, "[LAMP] off"), "UART confirms lamp off")
+        soft.check(off_status["lamp"] == "off", "Status reports lamp off")
+        soft.check(wifi_indicator_visible, "LED returns to Wi-Fi indication")
+        soft.assert_all()
 
     @allure.story("FR-L2/FR-L4: Named colors")
     @allure.title("Named color {color_name} sets its documented RGB value")
@@ -124,6 +131,7 @@ class TestLamp:
         device_driver: DeviceDriver,
         firmware_version: str,
         manual_check: Callable[[str], bool],
+        soft: SoftChecks,
         color_name: str,
         expected_rgb: list[int],
     ) -> None:
@@ -133,9 +141,10 @@ class TestLamp:
         color_visible = manual_check(
             f"Look at the LED: does it visibly show {color_name}?"
         )
-        _assert_response(response, f"[LAMP] color set: {color_name}")
-        assert status["color"] == expected_rgb
-        assert color_visible, f"Physical LED color did not match {color_name}."
+        soft.check(_has_response(response, f"[LAMP] color set: {color_name}"), "UART confirms color set")
+        soft.check(status["color"] == expected_rgb, f"Status color is {expected_rgb}")
+        soft.check(color_visible, f"Physical LED color matches {color_name}")
+        soft.assert_all()
 
     @allure.story("FR-L3: Custom RGB")
     @allure.title("Custom RGB values are accepted and reported")
@@ -156,6 +165,7 @@ class TestLamp:
         device_driver: DeviceDriver,
         firmware_version: str,
         manual_check: Callable[[str], bool],
+        soft: SoftChecks,
     ) -> None:
         device_driver.lamp_on()
         response = device_driver.lamp_set_color((255, 0, 128))
@@ -164,9 +174,10 @@ class TestLamp:
             "Does the LED visibly show the expected pink/magenta-like custom color "
             "for RGB (255, 0, 128)?"
         )
-        _assert_response(response, "[LAMP] color set: (255,0,128)")
-        assert status["color"] == [255, 0, 128]
-        assert color_visible
+        soft.check(_has_response(response, "[LAMP] color set: (255,0,128)"), "UART confirms color set")
+        soft.check(status["color"] == [255, 0, 128], "Status color is [255, 0, 128]")
+        soft.check(color_visible, "Physical LED shows pink/magenta")
+        soft.assert_all()
 
     @allure.story("FR-L3: RGB range validation")
     @allure.title("Out-of-range RGB {rgb} is rejected without changing the color")
@@ -193,6 +204,7 @@ class TestLamp:
         device_driver: DeviceDriver,
         firmware_version: str,
         manual_check: Callable[[str], bool],
+        soft: SoftChecks,
         rgb: tuple[int, int, int],
     ) -> None:
         device_driver.lamp_on()
@@ -202,17 +214,18 @@ class TestLamp:
         baseline_visible = manual_check(
             "Observe the steady green LED and confirm when ready to send an invalid RGB."
         )
-        assert baseline_status["color"] == [0, 255, 0]
-        assert baseline_visible
+        soft.check(baseline_status["color"] == [0, 255, 0], "Baseline status color is green")
+        soft.check(baseline_visible, "Baseline LED is steady green")
 
         response = device_driver.lamp_set_color(rgb)
         status = device_driver.lamp_status()
         unchanged = manual_check(
             "After the invalid RGB was rejected, does the LED remain green?"
         )
-        _assert_response(response, "error: rgb values must be 0-255")
-        assert status["color"] == [0, 255, 0]
-        assert unchanged
+        soft.check(_has_response(response, "error: rgb values must be 0-255"), "UART rejects invalid RGB")
+        soft.check(status["color"] == [0, 255, 0], "Status color stays green")
+        soft.check(unchanged, "LED remains green")
+        soft.assert_all()
 
     @allure.story("FR-L2: Unknown named color")
     @allure.title("Unknown color is rejected without changing the color")
@@ -235,6 +248,7 @@ class TestLamp:
         device_driver: DeviceDriver,
         firmware_version: str,
         manual_check: Callable[[str], bool],
+        soft: SoftChecks,
     ) -> None:
         device_driver.lamp_on()
         device_driver.lamp_set_mode("solid")
@@ -243,17 +257,18 @@ class TestLamp:
         baseline_visible = manual_check(
             "Observe the steady yellow LED and confirm when ready to send an unknown color."
         )
-        assert baseline_status["color"] == [255, 180, 0]
-        assert baseline_visible
+        soft.check(baseline_status["color"] == [255, 180, 0], "Baseline status color is yellow")
+        soft.check(baseline_visible, "Baseline LED is steady yellow")
 
         response = device_driver.lamp_set_color("orange")
         status = device_driver.lamp_status()
         unchanged = manual_check(
             "After 'orange' was rejected, does the LED remain yellow?"
         )
-        _assert_response(response, "error: unknown color 'orange'")
-        assert status["color"] == [255, 180, 0]
-        assert unchanged
+        soft.check(_has_response(response, "error: unknown color 'orange'"), "UART rejects unknown color")
+        soft.check(status["color"] == [255, 180, 0], "Status color stays yellow")
+        soft.check(unchanged, "LED remains yellow")
+        soft.assert_all()
 
     @allure.story("FR-L5: Brightness")
     @allure.title("Brightness {brightness} is accepted and reported")
@@ -281,6 +296,7 @@ class TestLamp:
         device_driver: DeviceDriver,
         firmware_version: str,
         manual_check: Callable[[str], bool],
+        soft: SoftChecks,
         brightness: int,
     ) -> None:
         device_driver.lamp_on()
@@ -294,11 +310,10 @@ class TestLamp:
             else f"Does the LED appear steadily lit at the requested {brightness}% brightness?"
         )
         physically_correct = manual_check(instruction)
-        _assert_response(response, f"[LAMP] brightness set: {brightness}%")
-        assert status["brightness"] == brightness
-        assert physically_correct, (
-            f"Physical LED brightness was not as expected at {brightness}%."
-        )
+        soft.check(_has_response(response, f"[LAMP] brightness set: {brightness}%"), "UART confirms brightness")
+        soft.check(status["brightness"] == brightness, f"Status brightness is {brightness}")
+        soft.check(physically_correct, f"Physical LED brightness is right at {brightness}%")
+        soft.assert_all()
 
     @allure.story("FR-L5: Brightness range validation")
     @allure.title("Out-of-range brightness {brightness} is rejected without changing state")
@@ -328,6 +343,7 @@ class TestLamp:
         device_driver: DeviceDriver,
         firmware_version: str,
         manual_check: Callable[[str], bool],
+        soft: SoftChecks,
         brightness: int,
     ) -> None:
         device_driver.lamp_on()
@@ -339,8 +355,8 @@ class TestLamp:
             "Observe the steady white LED at 50% brightness and remember its "
             "appearance; confirm when ready to test the invalid value."
         )
-        assert baseline_status["brightness"] == 50
-        assert baseline_visible
+        soft.check(baseline_status["brightness"] == 50, "Baseline status brightness is 50")
+        soft.check(baseline_visible, "Baseline LED is steady white at 50%")
 
         response = device_driver.lamp_set_brightness(brightness)
         status = device_driver.lamp_status()
@@ -348,10 +364,11 @@ class TestLamp:
             f"After brightness {brightness} was rejected, does the LED look "
             "unchanged from the 50% white baseline?"
         )
-        _assert_response(response, "error: brightness must be 0-100")
-        assert status["brightness"] == 50
-        assert status["color"] == [255, 255, 255]
-        assert unchanged, f"LED visibly changed after invalid brightness {brightness}."
+        soft.check(_has_response(response, "error: brightness must be 0-100"), "UART rejects invalid brightness")
+        soft.check(status["brightness"] == 50, "Status brightness stays 50")
+        soft.check(status["color"] == [255, 255, 255], "Status color stays white")
+        soft.check(unchanged, f"LED unchanged after invalid brightness {brightness}")
+        soft.assert_all()
 
     @allure.story("FR-L6: Lamp modes")
     @allure.title("Mode {mode} is accepted and reported")
@@ -379,6 +396,8 @@ class TestLamp:
         device_driver: DeviceDriver,
         firmware_version: str,
         manual_check: Callable[[str], bool],
+        manual_prepare: Callable[[str], None],
+        soft: SoftChecks,
         mode: str,
     ) -> None:
         if mode == "rainbow" and firmware_version != "1.5.0":
@@ -389,6 +408,11 @@ class TestLamp:
         device_driver.lamp_on()
         device_driver.lamp_set_color("blue")
         device_driver.lamp_set_brightness(50)
+        device_driver.lamp_set_mode("solid")
+        manual_prepare(
+            f"The LED is steady blue at 50%. Watch it: after you press Enter the "
+            f"mode will be switched to '{mode}'."
+        )
         response = device_driver.lamp_set_mode(mode)
         status = device_driver.lamp_status()
 
@@ -402,9 +426,10 @@ class TestLamp:
             f"Observe long enough to check the timing. Does the LED visibly show "
             f"{expected_behavior} at 50% brightness?"
         )
-        _assert_response(response, f"[LAMP] mode set: {mode}")
-        assert status["mode"] == mode
-        assert visually_correct, f"Physical LED behavior did not match mode '{mode}'."
+        soft.check(_has_response(response, f"[LAMP] mode set: {mode}"), "UART confirms mode set")
+        soft.check(status["mode"] == mode, f"Status mode is {mode}")
+        soft.check(visually_correct, f"Physical LED behavior matches mode '{mode}'")
+        soft.assert_all()
 
     @allure.story("FR-L6: Unknown lamp mode")
     @allure.title("Unknown mode is rejected")
@@ -458,14 +483,17 @@ class TestLamp:
         device_driver: DeviceDriver,
         firmware_version: str,
         manual_check: Callable[[str], bool],
+        manual_prepare: Callable[[str], None],
+        soft: SoftChecks,
     ) -> None:
         device_driver.lamp_on()
         device_driver.lamp_set_color("white")
         device_driver.lamp_set_mode("solid")
-        _assert_response(
-            device_driver.lamp_set_timer(5),
-            "[LAMP] auto-off in 5 s",
+        manual_prepare(
+            "The lamp is on (steady white). Watch it: after you press Enter a "
+            "5-second auto-off timer starts."
         )
+        timer_response = device_driver.lamp_set_timer(5)
         timer_expired = device_driver.wait_for("timer expired, lamp off", timeout=8.0)
         status = device_driver.lamp_status()
         visually_off = manual_check(
@@ -473,9 +501,11 @@ class TestLamp:
             "the LED return to Wi-Fi indication (dim green if connected, "
             "dim red if disconnected)?"
         )
-        assert timer_expired, "Timer expiration was not logged within eight seconds."
-        assert status["lamp"] == "off"
-        assert visually_off
+        soft.check(_has_response(timer_response, "[LAMP] auto-off in 5 s"), "UART confirms timer armed")
+        soft.check(timer_expired, "Timer expiration was logged within eight seconds")
+        soft.check(status["lamp"] == "off", "Status reports lamp off after expiry")
+        soft.check(visually_off, "Lamp physically off with Wi-Fi indication")
+        soft.assert_all()
 
     @allure.story("FR-L7: Timer cancellation and status")
     @allure.title("Timer cancellation clears the remaining time")
@@ -579,6 +609,7 @@ class TestLamp:
         device_driver: DeviceDriver,
         firmware_version: str,
         manual_check: Callable[[str], bool],
+        soft: SoftChecks,
     ) -> None:
         device_driver.lamp_on()
         device_driver.lamp_set_color((17, 34, 51))
@@ -594,11 +625,12 @@ class TestLamp:
             "After reboot, is the lamp light off and has the LED returned to "
             "Wi-Fi indication (dim green if connected, dim red if disconnected)?"
         )
-        assert status["lamp"] == "off"
-        assert status["color"] == [17, 34, 51]
-        assert status["brightness"] == 42
-        assert status["mode"] == "solid"
-        assert wifi_indicator_visible
+        soft.check(status["lamp"] == "off", "Lamp is off after reboot")
+        soft.check(status["color"] == [17, 34, 51], "Color persisted")
+        soft.check(status["brightness"] == 42, "Brightness persisted")
+        soft.check(status["mode"] == "solid", "Mode persisted")
+        soft.check(wifi_indicator_visible, "LED shows Wi-Fi indication after reboot")
+        soft.assert_all()
 
     @allure.story("FR-L11: Unknown lamp command")
     @allure.title("Unknown lamp subcommand is rejected")
