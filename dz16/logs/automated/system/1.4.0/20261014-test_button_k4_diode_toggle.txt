@@ -1,0 +1,34 @@
+Test: tests/test_system.py::TestSystemButtons::test_button_k4_diode_toggle
+Firmware: 1.4.0
+Captured: 2026-10-14T01:46:18.994752+03:00
+
+TX > lamp status
+RX < lamp status
+RX < {"lamp":"off","color":[255,255,255],"brightness":50,"mode":"solid","timer_s":0}
+RX < I (558376) wifi station: retry to connect to the AP
+TX > version
+RX < version
+RX < I (558936) wifi station: FW: v1.4.0 (build Sep 29 2026 14:16:47)
+RX < I (558936) wifi station:   partition: ota_0 @ 0x10000, state: valid
+RX < I (560786) wifi station: retry to connect to the AP
+RX < I (563206) wifi station: retry to connect to the AP
+RX < I (565516) wifi station: button 4 pressed (GPIO38)
+RX < I (565516) wifi station: [K4] diode ON
+RX < I (565616) wifi station: retry to connect to the AP
+TX > lamp timer 0
+RX < I (568026) wifi station: retry to connect to the AP
+RX < I (570436) wifi station: connect to the AP fail
+RX < lamp timer 0
+RX < I (598076) wifi station: [LAMP] timer cancelled
+TX > lamp color 255 255 255
+RX < lamp color 255 255 255
+RX < I (598296) wifi station: [LAMP] color set: (255,255,255)
+TX > lamp brightness 50
+RX < lamp brightness 50
+RX < I (598506) wifi station: [LAMP] brightness set: 50%
+TX > lamp mode solid
+RX < lamp mode solid
+RX < I (598726) wifi station: [LAMP] mode set: solid
+TX > lamp off
+RX < lamp off
+RX < I (598936) wifi station: [LAMP] off

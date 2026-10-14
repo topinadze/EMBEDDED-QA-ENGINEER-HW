@@ -51,8 +51,8 @@ Enter SSID or number from list:
 ---- Sent utf8 encoded message: "1\n" ----
 I (23632) wifi station: SSID: TopA-node
 Enter password:
----- Sent utf8 encoded message: "[REDACTED]\n" ----
-I (30592) wifi station: password: OK
+---- Sent utf8 encoded message: "[REDACTED]" ----
+I (30592) wifi station: password: [REDACTED]
 I (61222) wifi station: got ip:10.123.30.49
 ---- Sent utf8 encoded message: "version\n" ----
 I (92832) wifi station: FW: v1.5.0 (build Sep 29 2026 15:23:09)

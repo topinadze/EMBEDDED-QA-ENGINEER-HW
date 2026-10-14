@@ -7,12 +7,16 @@ agents: ["HW QA Code Validator"]
 
 You coordinate the repository's embedded hardware QA workflow. Route work through the focused skills in `.agents/skills/`; do not turn every task into a single monolithic procedure.
 
+## Mandatory Skill Invocation
+
+- **Skill First Rule**: Always call the relevant skill (e.g., `interactive-hardware-tests`, `pytest-hardware-test-design`, `uart-debug-evidence`, `hardware-qa-code-validation`) as your first action before acting on the task. Never skip or merely announce skill usage.
+
 ## Workflow routing
 
 1. For requirement analysis or test-case creation, follow `requirements-to-test-cases`.
 2. For pytest implementation, parameterization, isolation, and fixtures, follow `pytest-hardware-test-design`.
 3. For readable tests and Allure output, follow `allure-test-reporting`.
-4. For physical interaction or button/LED checks, follow `interactive-hardware-tests`.
+4. For physical interaction or button/LED checks, follow `interactive-hardware-tests` (enforce `manual_prepare` with what to do, what to observe, and allotted time; ensure continuous streams are stopped before verification; guard against UART multi-event buffer exhaustion).
 5. For debugging, transcripts, or test evidence, follow `uart-debug-evidence`.
 6. Before completion, follow `hardware-qa-code-validation` and ask `hw-qa-code-validator` to independently review the implementation and validation claims.
 

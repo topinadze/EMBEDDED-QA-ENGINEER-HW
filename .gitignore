@@ -5,3 +5,4 @@ __pycache__/
 allure-results/
 allure-report/
 .vscode/
+dz16/config/wifi_secrets.py

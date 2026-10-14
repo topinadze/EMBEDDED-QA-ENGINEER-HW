@@ -1,0 +1,32 @@
+Test: tests/test_ota.py::TestOta::test_ota_update_without_wifi_is_rejected
+Firmware: 1.3.0
+Captured: 2026-10-13T03:05:52.596850+03:00
+
+TX > lamp status
+RX < lamp status
+RX < {"lamp":"off","color":[255,255,255],"brightness":50,"mode":"solid","timer_s":0}
+TX > version
+RX < version
+RX < I (6165006) wifi station: FW: v1.3.0 (build Sep 29 2026 14:15:56)
+RX < I (6165006) wifi station:   partition: ota_1 @ 0x100000, state: valid
+TX > version
+RX < version
+RX < I (6165616) wifi station: FW: v1.3.0 (build Sep 29 2026 14:15:56)
+RX < I (6165616) wifi station:   partition: ota_1 @ 0x100000, state: valid
+TX > disconnect
+RX < disconnect
+RX < I (6166226) wifi station: disconnected
+TX > status
+RX < status
+RX < W (6168226) wifi:Haven't to connect to a suitable AP now!
+RX < I (6168226) wifi station: WiFi: connected
+RX < I (6168226) wifi station:   SSID:
+RX < I (6168226) wifi station:   IP:   0.0.0.0
+RX < I (6168226) wifi station:   RSSI: 0 dBm
+TX > ota check
+RX < ota check
+RX < E (6170236) esp-tls: [sock=54] connect() error: Host is unreachable
+RX < E (6170236) esp-tls: Failed to open new connection
+RX < E (6170236) transport_base: Failed to open a new connection
+RX < E (6170236) HTTP_CLIENT: Connection failed, sock < 0
+RX < E (6170246) wifi station: [OTA] check failed: cannot read stable.txt

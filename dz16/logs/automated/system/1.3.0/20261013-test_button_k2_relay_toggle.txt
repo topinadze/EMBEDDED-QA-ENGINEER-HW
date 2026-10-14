@@ -1,0 +1,31 @@
+Test: tests/test_system.py::TestSystemButtons::test_button_k2_relay_toggle
+Firmware: 1.3.0
+Captured: 2026-10-13T20:59:07.491550+03:00
+
+TX > lamp status
+RX < lamp status
+RX < {"lamp":"off","color":[255,255,255],"brightness":50,"mode":"solid","timer_s":0}
+TX > version
+RX < version
+RX < I (1679386) wifi station: FW: v1.3.0 (build Sep 29 2026 14:15:56)
+RX < I (1679386) wifi station:   partition: ota_1 @ 0x100000, state: valid
+RX < I (1689346) wifi station: button 2 pressed (GPIO40)
+RX < I (1689346) wifi station: [K2] relay ON
+TX > relay off
+RX < relay off
+RX < I (1702986) wifi station: relay OFF
+TX > lamp timer 0
+RX < lamp timer 0
+RX < I (1703606) wifi station: [LAMP] timer cancelled
+TX > lamp color 255 255 255
+RX < lamp color 255 255 255
+RX < I (1703816) wifi station: [LAMP] color set: (255,255,255)
+TX > lamp brightness 50
+RX < lamp brightness 50
+RX < I (1704026) wifi station: [LAMP] brightness set: 50%
+TX > lamp mode solid
+RX < lamp mode solid
+RX < I (1704236) wifi station: [LAMP] mode set: solid
+TX > lamp off
+RX < lamp off
+RX < I (1704446) wifi station: [LAMP] off

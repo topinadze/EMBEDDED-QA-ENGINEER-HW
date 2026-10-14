@@ -1,0 +1,145 @@
+Test: tests/test_ota.py::TestOta::test_interrupted_download_can_be_retried
+Firmware: 1.5.0
+Captured: 2026-10-14T04:39:39.065373+03:00
+
+TX > lamp status
+RX < lamp status
+RX < {"lamp":"off","color":[255,255,255],"brightness":50,"mode":"solid","timer_s":0}
+TX > version
+RX < version
+RX < I (1166801) wifi station: FW: v1.5.0 (build Sep 29 2026 15:23:09)
+RX < I (1166801) wifi station:   partition: ota_0 @ 0x10000, state: valid
+TX > status
+RX < status
+RX < I (1167411) wifi station: WiFi: disconnected
+TX > connect
+RX < connect
+RX < I (1169411) wifi station: scanning...
+RX < I (1171911) wifi station: found 29 networks:
+RX < I (1171911) wifi station:   [1] TopAs_2.4G                        -59 dBm
+RX < I (1171911) wifi station:   [2] bambuh                            -63 dBm
+RX < I (1171911) wifi station:   [3] AP_2987279135                     -65 dBm
+RX < I (1171921) wifi station:   [4] HiSmart-01-ca2c4fae5ef5           -77 dBm
+RX < I (1171931) wifi station:   [5] E_0184_2056_E                     -79 dBm
+RX < I (1171931) wifi station:   [6] 376                               -80 dBm
+RX < I (1171941) wifi station:   [7] bambuh                            -82 dBm
+RX < I (1171941) wifi station:   [8] GreenMint                         -85 dBm
+RX < I (1171951) wifi station:   [9] HiSmart-01-ca2c4fae593b           -85 dBm
+RX < I (1171961) wifi station:   [10] Kvartira212                       -85 dBm
+RX < I (1171961) wifi station:   [11] c672bc1a                          -87 dBm
+RX < I (1171971) wifi station:   [12] 130_ibNet                         -88 dBm
+RX < I (1171981) wifi station:   [13] bababa                            -88 dBm
+RX < I (1171981) wifi station:   [14] VR46
+RX < -88 dBm
+RX < I (1171991) wifi station:   [15] Keenetic-0122                     -89 dBm
+RX < I (1172001) wifi station:   [16] Tp-link1000                       -89 dBm
+RX < I (1172001) wifi station:   [17] Internet UTELS Wi-FI              -89 dBm
+RX < I (1172011) wifi station:   [18] oooaaa_Guest24                    -89 dBm
+RX < I (1172021) wifi station:   [19] D262100562C0                      -91 dBm
+RX < I (1172021) wifi station:   [20] Leonovy                           -92 dBm
+RX < I (1172031) wifi station:   [21] c60422f2                          -93 dBm
+RX < I (1172041) wifi station:   [22] c6861204                          -94 dBm
+RX < I (1172041) wifi station:   [23] c653387b                          -94 dBm
+RX < I (1172051) wifi station:   [24] Sashka                            -94 dBm
+RX < I (1172061) wifi station:   [25] SMART_3c68                        -94 dBm
+RX < I (1172061) wifi station:   [26] Home_sweet_home                   -94 dBm
+RX < I (1172071) wifi station:   [27] TP-Link_DD4A                      -95 dBm
+RX < I (1172081) wifi station:   [28] TP-Link_54B8                      -95 dBm
+RX < I (1172081) wifi station:   [29] SkyNet                            -96 dBm
+RX < Enter SSID, number from list, or Enter to use saved [TopA-node]:
+TX > TopA-node
+RX < TopA-node
+RX < I (1172331) wifi station: SSID: TopA-node
+RX < Enter password:
+TX > [REDACTED]
+RX < [REDACTED]
+RX < I (1172541) wifi station: password: OK
+RX < I (1172541) wifi station: connecting to SSID:TopA-node ...
+RX < I (1174951) wifi station: retry to connect to the AP
+RX < I (1177361) wifi station: retry to connect to the AP
+RX < I (1179771) wifi station: retry to connect to the AP
+RX < I (1182191) wifi station: retry to connect to the AP
+TX > status
+RX < I (1182541) wifi station: connection timeout
+RX < status
+RX < I (1182641) wifi station: WiFi: disconnected
+TX > status
+RX < I (1184601) wifi station: retry to connect to the AP
+RX < status
+RX < I (1185551) wifi station: WiFi: disconnected
+RX < I (1187011) wifi station: connect to the AP fail
+TX > status
+RX < status
+RX < I (1188561) wifi station: WiFi: disconnected
+TX > disconnect
+RX < disconnect
+RX < I (1190571) wifi station: disconnected
+RX < I (1190571) wifi station: connect to the AP fail
+TX > status
+RX < status
+RX < I (1193581) wifi station: WiFi: disconnected
+TX > connect
+RX < connect
+RX < I (1195581) wifi station: scanning...
+RX < I (1198081) wifi station: found 31 networks:
+RX < I (1198081) wifi station:   [1] TopAs_2.4G                        -60 dBm
+RX < I (1198081) wifi station:   [2] bambuh                            -63 dBm
+RX < I (1198081) wifi station:   [3] AP_2987279135                     -72 dBm
+RX < I (1198091) wifi station:   [4] HiSmart-01-ca2c4fae5ef5           -75 dBm
+RX < I (1198101) wifi station:   [5] 376                               -78 dBm
+RX < I (1198101) wifi station:   [6] E_0184_2056_E                     -81 dBm
+RX < I (1198111) wifi station:   [7] bambuh                            -82 dBm
+RX < I (1198111) wifi station:   [8] Keenetic-0122                     -85 dBm
+RX < I (1198121) wifi station:   [9] bababa                            -85 dBm
+RX < I (1198131) wifi station:   [10] Kvartira212                       -85 dBm
+RX < I (1198131) wifi station:   [11] bababa_Guest                      -86 dBm
+RX < I (1198141) wifi statio
+RX < n:   [12] oooaaa                            -86 dBm
+RX < I (1198151) wifi station:   [13] oooaaa_Guest24                    -87 dBm
+RX < I (1198151) wifi station:   [14] SmileV                            -88 dBm
+RX < I (1198161) wifi station:   [15] HiSmart-01-ca2c4fae593b           -89 dBm
+RX < I (1198171) wifi station:   [16] TP-Link_54B8                      -90 dBm
+RX < I (1198171) wifi station:   [17] Internet UTELS Wi-FI              -90 dBm
+RX < I (1198181) wifi station:   [18] c60422f2                          -91 dBm
+RX < I (1198191) wifi station:   [19] c63f5354                          -91 dBm
+RX < I (1198191) wifi station:   [20] Sashka                            -91 dBm
+RX < I (1198201) wifi station:   [21] VR46                              -91 dBm
+RX < I (1198211) wifi station:   [22] c67db18d                          -92 dBm
+RX < I (1198211) wifi station:   [23] Solia                             -92 dBm
+RX < I (1198221) wifi station:   [24] Tp-link1000                       -92 dBm
+RX < I (1198231) wifi station:   [25] TP-Link_DD4A                      -93 dBm
+RX < I (1198231) wifi station:   [26] bogomol_new                       -93 dBm
+RX < I (1198241) wifi station:   [27] Home_sweet_home                   -93 dBm
+RX < I (1198251) wifi station:   [28] D262100562C0                      -94 dBm
+RX < I (1198251) wifi station:   [29] SkyNet                            -94 dBm
+RX < I (1198261) wifi station:   [30] 1efa237a                          -95 dBm
+RX < I (1198271) wifi station:   [31] MERCUSYS_D2CA                     -95 dBm
+RX < Enter SSID, number from list, or Enter to use saved [TopA-node]:
+TX > TopA-node
+RX < TopA-node
+RX < I (1198481) wifi station: SSID: TopA-node
+RX < Enter password:
+TX > [REDACTED]
+RX < [REDACTED]
+RX < I (1198691) wifi station: password: OK
+RX < I (1198691) wifi station: connecting to SSID:TopA-node ...
+RX < I (1201101) wifi station: retry to connect to the AP
+RX < I (1203511) wifi station: retry to connect to the AP
+RX < I (1205921) wifi station: retry to connect to the AP
+RX < I (1208341) wifi station: retry to connect to the AP
+TX > status
+RX < I (1208691) wifi station: connection timeout
+RX < status
+RX < I (1208791) wifi station: WiFi: disconnected
+TX > status
+RX < I (1210751) wifi station: retry to connect to the AP
+RX < status
+RX < I (1211711) wifi station: WiFi: disconnected
+RX < I (1213161) wifi station: connect to the AP fail
+TX > status
+RX < status
+RX < I (1214711) wifi station: WiFi: disconnected
+TX > disconnect
+RX < disconnect
+RX < I (1216731) wifi station: disconnected
+RX < I (1216731) wifi station: connect to the AP fail

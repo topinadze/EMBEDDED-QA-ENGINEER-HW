@@ -43,6 +43,33 @@ def test_prepare_waits_for_enter(monkeypatch: pytest.MonkeyPatch) -> None:
     manual_checks.prepare_manually("Watch the LED.")
 
 
+def test_prepare_observation_formats_action_expectation_and_duration() -> None:
+    prompts: list[str] = []
+
+    manual_checks.prepare_observation(
+        prompts.append,
+        action="press K3 once",
+        expected="the LED shows dim red",
+        duration="5 seconds",
+    )
+
+    assert prompts == [
+        "What to do: press K3 once\n"
+        "What to observe: the LED shows dim red\n"
+        "Duration: 5 seconds."
+    ]
+
+
+@pytest.mark.parametrize(
+    ("is_connected", "expected"),
+    ((True, "dim green"), (False, "dim red")),
+)
+def test_wifi_indicator_color_matches_connection_state(
+    is_connected: bool, expected: str
+) -> None:
+    assert manual_checks.wifi_indicator_color(is_connected) == expected
+
+
 def test_soft_checks_collect_all_failures() -> None:
     soft = manual_checks.SoftChecks()
     soft.check(False, "first")

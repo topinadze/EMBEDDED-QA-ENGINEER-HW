@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="1" time="194.765" timestamp="2026-10-14T02:20:04.475098+03:00" hostname="Prosha"><testcase classname="tests.test_ota.TestOta" name="test_available_update_completes_self_check[stable-1.3-to-1.4]" time="194.650"><failure message="TimeoutError: OTA command 'ota update' did not report a terminal result within 180.0 seconds.&#10;ota update&#10;E (23721) esp-tls: couldn't get hostname for :raw.githubusercontent.com: getaddrinfo() returns 202, addrinfo=0&#10;E (23721) esp-tls: Failed to open new connection&#10;E (23721) transport_base: Failed to open a new connection&#10;E (23721) HTTP_CLIENT: Connection failed, sock &lt; 0&#10;E (23731) wifi station: [OTA] check failed: cannot read stable.txt">tests\test_ota.py:256: in test_available_update_completes_self_check
+    lines = device_driver.run_ota(command, timeout=180.0)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+drivers\device_driver.py:371: in run_ota
+    raise TimeoutError(
+E   TimeoutError: OTA command 'ota update' did not report a terminal result within 180.0 seconds.
+E   ota update
+E   E (23721) esp-tls: couldn't get hostname for :raw.githubusercontent.com: getaddrinfo() returns 202, addrinfo=0
+E   E (23721) esp-tls: Failed to open new connection
+E   E (23721) transport_base: Failed to open a new connection
+E   E (23721) HTTP_CLIENT: Connection failed, sock &lt; 0
+E   E (23731) wifi station: [OTA] check failed: cannot read stable.txt</failure></testcase></testsuite></testsuites>

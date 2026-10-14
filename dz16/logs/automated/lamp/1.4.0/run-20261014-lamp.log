@@ -1,0 +1,736 @@
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp status
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp status
+DEBUG    drivers.device_driver:device_driver.py:64 RX < {"lamp":"off","color":[255,255,255],"brightness":50,"mode":"solid","timer_s":0}
+DEBUG    drivers.device_driver:device_driver.py:64 TX > version
+DEBUG    drivers.device_driver:device_driver.py:64 RX < version
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (329069) wifi station: FW: v1.3.0 (build Sep 29 2026 14:15:56)
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (329069) wifi station:   partition: ota_1 @ 0x100000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (329769) wifi station: [LAMP] timer cancelled
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp color 255 255 255
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp color 255 255 255
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (329979) wifi station: [LAMP] color set: (255,255,255)
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp brightness 50
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp brightness 50
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (330199) wifi station: [LAMP] brightness set: 50%
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp mode solid
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp mode solid
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (330399) wifi station: [LAMP] mode set: solid
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp off
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp off
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (330599) wifi station: [LAMP] off
+INFO     conftest:conftest.py:280 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz16\logs\automated\lamp\1.3.0\20261014-test_lamp_on_off_and_status.txt
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp status
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp status
+DEBUG    drivers.device_driver:device_driver.py:64 RX < {"lamp":"off","color":[255,255,255],"brightness":50,"mode":"solid","timer_s":0}
+DEBUG    drivers.device_driver:device_driver.py:64 TX > version
+DEBUG    drivers.device_driver:device_driver.py:64 RX < version
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (331449) wifi station: FW: v1.3.0 (build Sep 29 2026 14:15:56)
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (331449) wifi station:   partition: ota_1 @ 0x100000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (332069) wifi station: [LAMP] timer cancelled
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp color 255 255 255
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp color 255 255 255
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (332289) wifi station: [LAMP] color set: (255,255,255)
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp brightness 50
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp brightness 50
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (332489) wifi station: [LAMP] brightness set: 50%
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp mode solid
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp mode solid
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (332699) wifi station: [LAMP] mode set: solid
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp off
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp off
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (332909) wifi station: [LAMP] off
+INFO     conftest:conftest.py:280 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz16\logs\automated\lamp\1.3.0\20261014-test_lamp_status_json_shape.txt
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp status
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp status
+DEBUG    drivers.device_driver:device_driver.py:64 RX < {"lamp":"off","color":[255,255,255],"brightness":50,"mode":"solid","timer_s":0}
+DEBUG    drivers.device_driver:device_driver.py:64 TX > version
+DEBUG    drivers.device_driver:device_driver.py:64 RX < version
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (333759) wifi station: FW: v1.3.0 (build Sep 29 2026 14:15:56)
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (333759) wifi station:   partition: ota_1 @ 0x100000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (334379) wifi station: [LAMP] timer cancelled
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp color 255 255 255
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp color 255 255 255
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (334589) wifi station: [LAMP] color set: (255,255,255)
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp brightness 50
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp brightness 50
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (334789) wifi station: [LAMP] brightness set: 50%
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp mode solid
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp mode solid
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (335009) wifi station: [LAMP] mode set: solid
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp off
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp off
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (335219) wifi station: [LAMP] off
+INFO     conftest:conftest.py:280 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz16\logs\automated\lamp\1.3.0\20261014-test_named_color_rgb_red.txt
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp status
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp status
+DEBUG    drivers.device_driver:device_driver.py:64 RX < {"lamp":"off","color":[255,255,255],"brightness":50,"mode":"solid","timer_s":0}
+DEBUG    drivers.device_driver:device_driver.py:64 TX > version
+DEBUG    drivers.device_driver:device_driver.py:64 RX < version
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (336089) wifi station: FW: v1.3.0 (build Sep 29 2026 14:15:56)
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (336089) wifi station:   partition: ota_1 @ 0x100000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (336709) wifi station: [LAMP] timer cancelled
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp color 255 255 255
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp color 255 255 255
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (336909) wifi station: [LAMP] color set: (255,255,255)
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp brightness 50
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp brightness 50
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (337119) wifi station: [LAMP] brightness set: 50%
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp mode solid
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp mode solid
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (337329) wifi station: [LAMP] mode set: solid
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp off
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp off
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (337549) wifi station: [LAMP] off
+INFO     conftest:conftest.py:280 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz16\logs\automated\lamp\1.3.0\20261014-test_named_color_rgb_green.txt
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp status
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp status
+DEBUG    drivers.device_driver:device_driver.py:64 RX < {"lamp":"off","color":[255,255,255],"brightness":50,"mode":"solid","timer_s":0}
+DEBUG    drivers.device_driver:device_driver.py:64 TX > version
+DEBUG    drivers.device_driver:device_driver.py:64 RX < version
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (338399) wifi station: FW: v1.3.0 (build Sep 29 2026 14:15:56)
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (338399) wifi station:   partition: ota_1 @ 0x100000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (339019) wifi station: [LAMP] timer cancelled
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp color 255 255 255
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp color 255 255 255
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (339219) wifi station: [LAMP] color set: (255,255,255)
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp brightness 50
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp brightness 50
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (339429) wifi station: [LAMP] brightness set: 50%
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp mode solid
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp mode solid
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (339649) wifi station: [LAMP] mode set: solid
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp off
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp off
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (339859) wifi station: [LAMP] off
+INFO     conftest:conftest.py:280 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz16\logs\automated\lamp\1.3.0\20261014-test_named_color_rgb_blue.txt
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp status
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp status
+DEBUG    drivers.device_driver:device_driver.py:64 RX < {"lamp":"off","color":[255,255,255],"brightness":50,"mode":"solid","timer_s":0}
+DEBUG    drivers.device_driver:device_driver.py:64 TX > version
+DEBUG    drivers.device_driver:device_driver.py:64 RX < version
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (340699) wifi station: FW: v1.3.0 (build Sep 29 2026 14:15:56)
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (340699) wifi station:   partition: ota_1 @ 0x100000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (341329) wifi station: [LAMP] timer cancelled
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp color 255 255 255
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp color 255 255 255
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (341539) wifi station: [LAMP] color set: (255,255,255)
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp brightness 50
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp brightness 50
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (341749) wifi station: [LAMP] brightness set: 50%
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp mode solid
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp mode solid
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (341959) wifi station: [LAMP] mode set: solid
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp off
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp off
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (342159) wifi station: [LAMP] off
+INFO     conftest:conftest.py:280 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz16\logs\automated\lamp\1.3.0\20261014-test_named_color_rgb_white.txt
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp status
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp status
+DEBUG    drivers.device_driver:device_driver.py:64 RX < {"lamp":"off","color":[255,255,255],"brightness":50,"mode":"solid","timer_s":0}
+DEBUG    drivers.device_driver:device_driver.py:64 TX > version
+DEBUG    drivers.device_driver:device_driver.py:64 RX < version
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (343009) wifi station: FW: v1.3.0 (build Sep 29 2026 14:15:56)
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (343009) wifi station:   partition: ota_1 @ 0x100000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (343639) wifi station: [LAMP] timer cancelled
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp color 255 255 255
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp color 255 255 255
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (343859) wifi station: [LAMP] color set: (255,255,255)
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp brightness 50
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp brightness 50
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (344059) wifi station: [LAMP] brightness set: 50%
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp mode solid
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp mode solid
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (344269) wifi station: [LAMP] mode set: solid
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp off
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp off
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (344489) wifi station: [LAMP] off
+INFO     conftest:conftest.py:280 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz16\logs\automated\lamp\1.3.0\20261014-test_named_color_rgb_yellow.txt
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp status
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp status
+DEBUG    drivers.device_driver:device_driver.py:64 RX < {"lamp":"off","color":[255,255,255],"brightness":50,"mode":"solid","timer_s":0}
+DEBUG    drivers.device_driver:device_driver.py:64 TX > version
+DEBUG    drivers.device_driver:device_driver.py:64 RX < version
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (345339) wifi station: FW: v1.3.0 (build Sep 29 2026 14:15:56)
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (345339) wifi station:   partition: ota_1 @ 0x100000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (345969) wifi station: [LAMP] timer cancelled
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp color 255 255 255
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp color 255 255 255
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (346169) wifi station: [LAMP] color set: (255,255,255)
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp brightness 50
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp brightness 50
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (346379) wifi station: [LAMP] brightness set: 50%
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp mode solid
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp mode solid
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (346579) wifi station: [LAMP] mode set: solid
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp off
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp off
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (346789) wifi station: [LAMP] off
+INFO     conftest:conftest.py:280 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz16\logs\automated\lamp\1.3.0\20261014-test_named_color_rgb_purple.txt
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp status
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp status
+DEBUG    drivers.device_driver:device_driver.py:64 RX < {"lamp":"off","color":[255,255,255],"brightness":50,"mode":"solid","timer_s":0}
+DEBUG    drivers.device_driver:device_driver.py:64 TX > version
+DEBUG    drivers.device_driver:device_driver.py:64 RX < version
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (347639) wifi station: FW: v1.3.0 (build Sep 29 2026 14:15:56)
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (347639) wifi station:   partition: ota_1 @ 0x100000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (348259) wifi station: [LAMP] timer cancelled
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp color 255 255 255
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp color 255 255 255
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (348459) wifi station: [LAMP] color set: (255,255,255)
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp brightness 50
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp brightness 50
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (348679) wifi station: [LAMP] brightness set: 50%
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp mode solid
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp mode solid
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (348889) wifi station: [LAMP] mode set: solid
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp off
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp off
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (349099) wifi station: [LAMP] off
+INFO     conftest:conftest.py:280 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz16\logs\automated\lamp\1.3.0\20261014-test_named_color_rgb_cyan.txt
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp status
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp status
+DEBUG    drivers.device_driver:device_driver.py:64 RX < {"lamp":"off","color":[255,255,255],"brightness":50,"mode":"solid","timer_s":0}
+DEBUG    drivers.device_driver:device_driver.py:64 TX > version
+DEBUG    drivers.device_driver:device_driver.py:64 RX < version
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (349949) wifi station: FW: v1.3.0 (build Sep 29 2026 14:15:56)
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (349949) wifi station:   partition: ota_1 @ 0x100000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (350569) wifi station: [LAMP] timer cancelled
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp color 255 255 255
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp color 255 255 255
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (350779) wifi station: [LAMP] color set: (255,255,255)
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp brightness 50
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp brightness 50
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (350989) wifi station: [LAMP] brightness set: 50%
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp mode solid
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp mode solid
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (351199) wifi station: [LAMP] mode set: solid
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp off
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp off
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (351409) wifi station: [LAMP] off
+INFO     conftest:conftest.py:280 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz16\logs\automated\lamp\1.3.0\20261014-test_custom_rgb.txt
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp status
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp status
+DEBUG    drivers.device_driver:device_driver.py:64 RX < {"lamp":"off","color":[255,255,255],"brightness":50,"mode":"solid","timer_s":0}
+DEBUG    drivers.device_driver:device_driver.py:64 TX > version
+DEBUG    drivers.device_driver:device_driver.py:64 RX < version
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (352249) wifi station: FW: v1.3.0 (build Sep 29 2026 14:15:56)
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (352249) wifi station:   partition: ota_1 @ 0x100000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (352869) wifi station: [LAMP] timer cancelled
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp color 255 255 255
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp color 255 255 255
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (353079) wifi station: [LAMP] color set: (255,255,255)
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp brightness 50
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp brightness 50
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (353289) wifi station: [LAMP] brightness set: 50%
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp mode solid
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp mode solid
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (353509) wifi station: [LAMP] mode set: solid
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp off
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp off
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (353709) wifi station: [LAMP] off
+INFO     conftest:conftest.py:280 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz16\logs\automated\lamp\1.3.0\20261014-test_invalid_rgb_is_rejected_r300_g0_b0.txt
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp status
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp status
+DEBUG    drivers.device_driver:device_driver.py:64 RX < {"lamp":"off","color":[255,255,255],"brightness":50,"mode":"solid","timer_s":0}
+DEBUG    drivers.device_driver:device_driver.py:64 TX > version
+DEBUG    drivers.device_driver:device_driver.py:64 RX < version
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (354559) wifi station: FW: v1.3.0 (build Sep 29 2026 14:15:56)
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (354559) wifi station:   partition: ota_1 @ 0x100000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (355179) wifi station: [LAMP] timer cancelled
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp color 255 255 255
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp color 255 255 255
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (355389) wifi station: [LAMP] color set: (255,255,255)
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp brightness 50
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp brightness 50
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (355599) wifi station: [LAMP] brightness set: 50%
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp mode solid
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp mode solid
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (355809) wifi station: [LAMP] mode set: solid
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp off
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp off
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (356019) wifi station: [LAMP] off
+INFO     conftest:conftest.py:280 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz16\logs\automated\lamp\1.3.0\20261014-test_invalid_rgb_is_rejected_r0_g0_b300.txt
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp status
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp status
+DEBUG    drivers.device_driver:device_driver.py:64 RX < {"lamp":"off","color":[255,255,255],"brightness":50,"mode":"solid","timer_s":0}
+DEBUG    drivers.device_driver:device_driver.py:64 TX > version
+DEBUG    drivers.device_driver:device_driver.py:64 RX < version
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (356879) wifi station: FW: v1.3.0 (build Sep 29 2026 14:15:56)
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (356879) wifi station:   partition: ota_1 @ 0x100000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (357499) wifi station: [LAMP] timer cancelled
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp color 255 255 255
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp color 255 255 255
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (357709) wifi station: [LAMP] color set: (255,255,255)
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp brightness 50
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp brightness 50
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (357929) wifi station: [LAMP] brightness set: 50%
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp mode solid
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp mode solid
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (358139) wifi station: [LAMP] mode set: solid
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp off
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp off
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (358359) wifi station: [LAMP] off
+INFO     conftest:conftest.py:280 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz16\logs\automated\lamp\1.3.0\20261014-test_invalid_rgb_is_rejected_r-1_g-1_b-1.txt
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp status
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp status
+DEBUG    drivers.device_driver:device_driver.py:64 RX < {"lamp":"off","color":[255,255,255],"brightness":50,"mode":"solid","timer_s":0}
+DEBUG    drivers.device_driver:device_driver.py:64 TX > version
+DEBUG    drivers.device_driver:device_driver.py:64 RX < version
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (359199) wifi station: FW: v1.3.0 (build Sep 29 2026 14:15:56)
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (359199) wifi station:   partition: ota_1 @ 0x100000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (359819) wifi station: [LAMP] timer cancelled
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp color 255 255 255
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp color 255 255 255
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (360029) wifi station: [LAMP] color set: (255,255,255)
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp brightness 50
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp brightness 50
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (360239) wifi station: [LAMP] brightness set: 50%
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp mode solid
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp mode solid
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (360449) wifi station: [LAMP] mode set: solid
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp off
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp off
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (360659) wifi station: [LAMP] off
+INFO     conftest:conftest.py:280 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz16\logs\automated\lamp\1.3.0\20261014-test_invalid_rgb_is_rejected_r256_g0_b0.txt
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp status
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp status
+DEBUG    drivers.device_driver:device_driver.py:64 RX < {"lamp":"off","color":[255,255,255],"brightness":50,"mode":"solid","timer_s":0}
+DEBUG    drivers.device_driver:device_driver.py:64 TX > version
+DEBUG    drivers.device_driver:device_driver.py:64 RX < version
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (361509) wifi station: FW: v1.3.0 (build Sep 29 2026 14:15:56)
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (361509) wifi station:   partition: ota_1 @ 0x100000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (362139) wifi station: [LAMP] timer cancelled
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp color 255 255 255
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp color 255 255 255
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (362349) wifi station: [LAMP] color set: (255,255,255)
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp brightness 50
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp brightness 50
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (362559) wifi station: [LAMP] brightness set: 50%
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp mode solid
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp mode solid
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (362769) wifi station: [LAMP] mode set: solid
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp off
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp off
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (362979) wifi station: [LAMP] off
+INFO     conftest:conftest.py:280 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz16\logs\automated\lamp\1.3.0\20261014-test_unknown_color_is_rejected.txt
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp status
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp status
+DEBUG    drivers.device_driver:device_driver.py:64 RX < {"lamp":"off","color":[255,255,255],"brightness":50,"mode":"solid","timer_s":0}
+DEBUG    drivers.device_driver:device_driver.py:64 TX > version
+DEBUG    drivers.device_driver:device_driver.py:64 RX < version
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (363829) wifi station: FW: v1.3.0 (build Sep 29 2026 14:15:56)
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (363829) wifi station:   partition: ota_1 @ 0x100000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (364449) wifi station: [LAMP] timer cancelled
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp color 255 255 255
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp color 255 255 255
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (364659) wifi station: [LAMP] color set: (255,255,255)
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp brightness 50
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp brightness 50
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (364869) wifi station: [LAMP] brightness set: 50%
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp mode solid
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp mode solid
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (365079) wifi station: [LAMP] mode set: solid
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp off
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp off
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (365299) wifi station: [LAMP] off
+INFO     conftest:conftest.py:280 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz16\logs\automated\lamp\1.3.0\20261014-test_valid_brightness_0.txt
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp status
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp status
+DEBUG    drivers.device_driver:device_driver.py:64 RX < {"lamp":"off","color":[255,255,255],"brightness":50,"mode":"solid","timer_s":0}
+DEBUG    drivers.device_driver:device_driver.py:64 TX > version
+DEBUG    drivers.device_driver:device_driver.py:64 RX < version
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (366149) wifi station: FW: v1.3.0 (build Sep 29 2026 14:15:56)
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (366149) wifi station:   partition: ota_1 @ 0x100000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (366779) wifi station: [LAMP] timer cancelled
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp color 255 255 255
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp color 255 255 255
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (366989) wifi station: [LAMP] color set: (255,255,255)
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp brightness 50
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp brightness 50
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (367209) wifi station: [LAMP] brightness set: 50%
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp mode solid
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp mode solid
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (367419) wifi station: [LAMP] mode set: solid
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp off
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp off
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (367629) wifi station: [LAMP] off
+INFO     conftest:conftest.py:280 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz16\logs\automated\lamp\1.3.0\20261014-test_valid_brightness_30.txt
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp status
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp status
+DEBUG    drivers.device_driver:device_driver.py:64 RX < {"lamp":"off","color":[255,255,255],"brightness":50,"mode":"solid","timer_s":0}
+DEBUG    drivers.device_driver:device_driver.py:64 TX > version
+DEBUG    drivers.device_driver:device_driver.py:64 RX < version
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (368469) wifi station: FW: v1.3.0 (build Sep 29 2026 14:15:56)
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (368469) wifi station:   partition: ota_1 @ 0x100000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (369099) wifi station: [LAMP] timer cancelled
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp color 255 255 255
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp color 255 255 255
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (369299) wifi station: [LAMP] color set: (255,255,255)
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp brightness 50
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp brightness 50
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (369519) wifi station: [LAMP] brightness set: 50%
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp mode solid
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp mode solid
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (369729) wifi station: [LAMP] mode set: solid
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp off
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp off
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (369929) wifi station: [LAMP] off
+INFO     conftest:conftest.py:280 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz16\logs\automated\lamp\1.3.0\20261014-test_valid_brightness_50.txt
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp status
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp status
+DEBUG    drivers.device_driver:device_driver.py:64 RX < {"lamp":"off","color":[255,255,255],"brightness":50,"mode":"solid","timer_s":0}
+DEBUG    drivers.device_driver:device_driver.py:64 TX > version
+DEBUG    drivers.device_driver:device_driver.py:64 RX < version
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (370779) wifi station: FW: v1.3.0 (build Sep 29 2026 14:15:56)
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (370779) wifi station:   partition: ota_1 @ 0x100000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (371399) wifi station: [LAMP] timer cancelled
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp color 255 255 255
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp color 255 255 255
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (371619) wifi station: [LAMP] color set: (255,255,255)
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp brightness 50
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp brightness 50
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (371829) wifi station: [LAMP] brightness set: 50%
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp mode solid
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp mode solid
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (372049) wifi station: [LAMP] mode set: solid
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp off
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp off
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (372249) wifi station: [LAMP] off
+INFO     conftest:conftest.py:280 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz16\logs\automated\lamp\1.3.0\20261014-test_valid_brightness_70.txt
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp status
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp status
+DEBUG    drivers.device_driver:device_driver.py:64 RX < {"lamp":"off","color":[255,255,255],"brightness":50,"mode":"solid","timer_s":0}
+DEBUG    drivers.device_driver:device_driver.py:64 TX > version
+DEBUG    drivers.device_driver:device_driver.py:64 RX < version
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (373099) wifi station: FW: v1.3.0 (build Sep 29 2026 14:15:56)
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (373099) wifi station:   partition: ota_1 @ 0x100000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (373719) wifi station: [LAMP] timer cancelled
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp color 255 255 255
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp color 255 255 255
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (373919) wifi station: [LAMP] color set: (255,255,255)
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp brightness 50
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp brightness 50
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (374139) wifi station: [LAMP] brightness set: 50%
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp mode solid
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp mode solid
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (374349) wifi station: [LAMP] mode set: solid
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp off
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp off
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (374559) wifi station: [LAMP] off
+INFO     conftest:conftest.py:280 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz16\logs\automated\lamp\1.3.0\20261014-test_valid_brightness_100.txt
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp status
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp status
+DEBUG    drivers.device_driver:device_driver.py:64 RX < {"lamp":"off","color":[255,255,255],"brightness":50,"mode":"solid","timer_s":0}
+DEBUG    drivers.device_driver:device_driver.py:64 TX > version
+DEBUG    drivers.device_driver:device_driver.py:64 RX < version
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (375409) wifi station: FW: v1.3.0 (build Sep 29 2026 14:15:56)
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (375409) wifi station:   partition: ota_1 @ 0x100000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (376029) wifi station: [LAMP] timer cancelled
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp color 255 255 255
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp color 255 255 255
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (376239) wifi station: [LAMP] color set: (255,255,255)
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp brightness 50
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp brightness 50
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (376459) wifi station: [LAMP] brightness set: 50%
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp mode solid
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp mode solid
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (376669) wifi station: [LAMP] mode set: solid
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp off
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp off
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (376869) wifi station: [LAMP] off
+INFO     conftest:conftest.py:280 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz16\logs\automated\lamp\1.3.0\20261014-test_invalid_brightness_is_rejected_-5.txt
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp status
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp status
+DEBUG    drivers.device_driver:device_driver.py:64 RX < {"lamp":"off","color":[255,255,255],"brightness":50,"mode":"solid","timer_s":0}
+DEBUG    drivers.device_driver:device_driver.py:64 TX > version
+DEBUG    drivers.device_driver:device_driver.py:64 RX < version
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (377729) wifi station: FW: v1.3.0 (build Sep 29 2026 14:15:56)
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (377729) wifi station:   partition: ota_1 @ 0x100000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (378349) wifi station: [LAMP] timer cancelled
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp color 255 255 255
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp color 255 255 255
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (378569) wifi station: [LAMP] color set: (255,255,255)
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp brightness 50
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp brightness 50
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (378769) wifi station: [LAMP] brightness set: 50%
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp mode solid
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp mode solid
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (378969) wifi station: [LAMP] mode set: solid
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp off
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp off
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (379179) wifi station: [LAMP] off
+INFO     conftest:conftest.py:280 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz16\logs\automated\lamp\1.3.0\20261014-test_invalid_brightness_is_rejected_101.txt
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp status
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp status
+DEBUG    drivers.device_driver:device_driver.py:64 RX < {"lamp":"off","color":[255,255,255],"brightness":50,"mode":"solid","timer_s":0}
+DEBUG    drivers.device_driver:device_driver.py:64 TX > version
+DEBUG    drivers.device_driver:device_driver.py:64 RX < version
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (380019) wifi station: FW: v1.3.0 (build Sep 29 2026 14:15:56)
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (380019) wifi station:   partition: ota_1 @ 0x100000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (380649) wifi station: [LAMP] timer cancelled
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp color 255 255 255
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp color 255 255 255
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (380869) wifi station: [LAMP] color set: (255,255,255)
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp brightness 50
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp brightness 50
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (381079) wifi station: [LAMP] brightness set: 50%
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp mode solid
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp mode solid
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (381289) wifi station: [LAMP] mode set: solid
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp off
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp off
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (381499) wifi station: [LAMP] off
+INFO     conftest:conftest.py:280 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz16\logs\automated\lamp\1.3.0\20261014-test_invalid_brightness_is_rejected_150.txt
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp status
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp status
+DEBUG    drivers.device_driver:device_driver.py:64 RX < {"lamp":"off","color":[255,255,255],"brightness":50,"mode":"solid","timer_s":0}
+DEBUG    drivers.device_driver:device_driver.py:64 TX > version
+DEBUG    drivers.device_driver:device_driver.py:64 RX < version
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (382349) wifi station: FW: v1.3.0 (build Sep 29 2026 14:15:56)
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (382349) wifi station:   partition: ota_1 @ 0x100000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (382969) wifi station: [LAMP] timer cancelled
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp color 255 255 255
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp color 255 255 255
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (383189) wifi station: [LAMP] color set: (255,255,255)
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp brightness 50
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp brightness 50
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (383399) wifi station: [LAMP] brightness set: 50%
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp mode solid
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp mode solid
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (383609) wifi station: [LAMP] mode set: solid
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp off
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp off
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (383819) wifi station: [LAMP] off
+INFO     conftest:conftest.py:280 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz16\logs\automated\lamp\1.3.0\20261014-test_supported_modes_solid.txt
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp status
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp status
+DEBUG    drivers.device_driver:device_driver.py:64 RX < {"lamp":"off","color":[255,255,255],"brightness":50,"mode":"solid","timer_s":0}
+DEBUG    drivers.device_driver:device_driver.py:64 TX > version
+DEBUG    drivers.device_driver:device_driver.py:64 RX < version
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (384679) wifi station: FW: v1.3.0 (build Sep 29 2026 14:15:56)
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (384679) wifi station:   partition: ota_1 @ 0x100000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (385289) wifi station: [LAMP] timer cancelled
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp color 255 255 255
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp color 255 255 255
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (385499) wifi station: [LAMP] color set: (255,255,255)
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp brightness 50
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp brightness 50
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (385709) wifi station: [LAMP] brightness set: 50%
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp mode solid
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp mode solid
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (385919) wifi station: [LAMP] mode set: solid
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp off
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp off
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (386129) wifi station: [LAMP] off
+INFO     conftest:conftest.py:280 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz16\logs\automated\lamp\1.3.0\20261014-test_supported_modes_blink.txt
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp status
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp status
+DEBUG    drivers.device_driver:device_driver.py:64 RX < {"lamp":"off","color":[255,255,255],"brightness":50,"mode":"solid","timer_s":0}
+DEBUG    drivers.device_driver:device_driver.py:64 TX > version
+DEBUG    drivers.device_driver:device_driver.py:64 RX < version
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (386979) wifi station: FW: v1.3.0 (build Sep 29 2026 14:15:56)
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (386979) wifi station:   partition: ota_1 @ 0x100000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (387609) wifi station: [LAMP] timer cancelled
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp color 255 255 255
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp color 255 255 255
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (387819) wifi station: [LAMP] color set: (255,255,255)
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp brightness 50
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp brightness 50
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (388029) wifi station: [LAMP] brightness set: 50%
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp mode solid
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp mode solid
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (388229) wifi station: [LAMP] mode set: solid
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp off
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp off
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (388439) wifi station: [LAMP] off
+INFO     conftest:conftest.py:280 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz16\logs\automated\lamp\1.3.0\20261014-test_supported_modes_breathe.txt
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp status
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp status
+DEBUG    drivers.device_driver:device_driver.py:64 RX < {"lamp":"off","color":[255,255,255],"brightness":50,"mode":"solid","timer_s":0}
+DEBUG    drivers.device_driver:device_driver.py:64 TX > version
+DEBUG    drivers.device_driver:device_driver.py:64 RX < version
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (389289) wifi station: FW: v1.3.0 (build Sep 29 2026 14:15:56)
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (389289) wifi station:   partition: ota_1 @ 0x100000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (389909) wifi station: [LAMP] timer cancelled
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp color 255 255 255
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp color 255 255 255
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (390129) wifi station: [LAMP] color set: (255,255,255)
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp brightness 50
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp brightness 50
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (390339) wifi station: [LAMP] brightness set: 50%
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp mode solid
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp mode solid
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (390549) wifi station: [LAMP] mode set: solid
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp off
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp off
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (390759) wifi station: [LAMP] off
+INFO     conftest:conftest.py:280 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz16\logs\automated\lamp\1.3.0\20261014-test_unknown_mode_is_rejected.txt
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp status
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp status
+DEBUG    drivers.device_driver:device_driver.py:64 RX < {"lamp":"off","color":[255,255,255],"brightness":50,"mode":"solid","timer_s":0}
+DEBUG    drivers.device_driver:device_driver.py:64 TX > version
+DEBUG    drivers.device_driver:device_driver.py:64 RX < version
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (391609) wifi station: FW: v1.3.0 (build Sep 29 2026 14:15:56)
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (391609) wifi station:   partition: ota_1 @ 0x100000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (392229) wifi station: [LAMP] timer cancelled
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp color 255 255 255
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp color 255 255 255
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (392439) wifi station: [LAMP] color set: (255,255,255)
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp brightness 50
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp brightness 50
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (392649) wifi station: [LAMP] brightness set: 50%
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp mode solid
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp mode solid
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (392869) wifi station: [LAMP] mode set: solid
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp off
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp off
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (393079) wifi station: [LAMP] off
+INFO     conftest:conftest.py:280 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz16\logs\automated\lamp\1.3.0\20261014-test_rainbow_mode_by_version.txt
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp status
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp status
+DEBUG    drivers.device_driver:device_driver.py:64 RX < {"lamp":"off","color":[255,255,255],"brightness":50,"mode":"solid","timer_s":0}
+DEBUG    drivers.device_driver:device_driver.py:64 TX > version
+DEBUG    drivers.device_driver:device_driver.py:64 RX < version
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (393919) wifi station: FW: v1.3.0 (build Sep 29 2026 14:15:56)
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (393919) wifi station:   partition: ota_1 @ 0x100000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (394529) wifi station: [LAMP] timer cancelled
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp color 255 255 255
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp color 255 255 255
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (394749) wifi station: [LAMP] color set: (255,255,255)
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp brightness 50
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp brightness 50
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (394959) wifi station: [LAMP] brightness set: 50%
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp mode solid
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp mode solid
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (395179) wifi station: [LAMP] mode set: solid
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp off
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp off
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (395389) wifi station: [LAMP] off
+INFO     conftest:conftest.py:280 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz16\logs\automated\lamp\1.3.0\20261014-test_timer_auto_off.txt
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp status
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp status
+DEBUG    drivers.device_driver:device_driver.py:64 RX < {"lamp":"off","color":[255,255,255],"brightness":50,"mode":"solid","timer_s":0}
+DEBUG    drivers.device_driver:device_driver.py:64 TX > version
+DEBUG    drivers.device_driver:device_driver.py:64 RX < version
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (396239) wifi station: FW: v1.3.0 (build Sep 29 2026 14:15:56)
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (396239) wifi station:   partition: ota_1 @ 0x100000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (396859) wifi station: [LAMP] timer cancelled
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp color 255 255 255
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp color 255 255 255
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (397079) wifi station: [LAMP] color set: (255,255,255)
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp brightness 50
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp brightness 50
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (397279) wifi station: [LAMP] brightness set: 50%
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp mode solid
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp mode solid
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (397489) wifi station: [LAMP] mode set: solid
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp off
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp off
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (397709) wifi station: [LAMP] off
+INFO     conftest:conftest.py:280 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz16\logs\automated\lamp\1.3.0\20261014-test_timer_cancel_and_remaining_time.txt
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp status
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp status
+DEBUG    drivers.device_driver:device_driver.py:64 RX < {"lamp":"off","color":[255,255,255],"brightness":50,"mode":"solid","timer_s":0}
+DEBUG    drivers.device_driver:device_driver.py:64 TX > version
+DEBUG    drivers.device_driver:device_driver.py:64 RX < version
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (398549) wifi station: FW: v1.3.0 (build Sep 29 2026 14:15:56)
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (398549) wifi station:   partition: ota_1 @ 0x100000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (399179) wifi station: [LAMP] timer cancelled
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp color 255 255 255
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp color 255 255 255
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (399389) wifi station: [LAMP] color set: (255,255,255)
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp brightness 50
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp brightness 50
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (399599) wifi station: [LAMP] brightness set: 50%
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp mode solid
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp mode solid
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (399809) wifi station: [LAMP] mode set: solid
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp off
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp off
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (400029) wifi station: [LAMP] off
+INFO     conftest:conftest.py:280 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz16\logs\automated\lamp\1.3.0\20261014-test_timer_validation.txt
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp status
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp status
+DEBUG    drivers.device_driver:device_driver.py:64 RX < {"lamp":"off","color":[255,255,255],"brightness":50,"mode":"solid","timer_s":0}
+DEBUG    drivers.device_driver:device_driver.py:64 TX > version
+DEBUG    drivers.device_driver:device_driver.py:64 RX < version
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (400879) wifi station: FW: v1.3.0 (build Sep 29 2026 14:15:56)
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (400879) wifi station:   partition: ota_1 @ 0x100000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (401499) wifi station: [LAMP] timer cancelled
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp color 255 255 255
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp color 255 255 255
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (401709) wifi station: [LAMP] color set: (255,255,255)
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp brightness 50
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp brightness 50
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (401919) wifi station: [LAMP] brightness set: 50%
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp mode solid
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp mode solid
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (402129) wifi station: [LAMP] mode set: solid
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp off
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp off
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (402339) wifi station: [LAMP] off
+INFO     conftest:conftest.py:280 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz16\logs\automated\lamp\1.3.0\20261014-test_invalid_scene_index_lamp_scene_save_7.txt

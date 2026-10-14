@@ -1,0 +1,29 @@
+Test: tests/test_system.py::TestSystem::test_chip_temperature
+Firmware: 1.4.0
+Captured: 2026-10-14T01:39:55.634908+03:00
+
+TX > lamp status
+RX < lamp status
+RX < {"lamp":"off","color":[255,255,255],"brightness":50,"mode":"solid","timer_s":0}
+TX > version
+RX < version
+RX < I (213116) wifi station: FW: v1.4.0 (build Sep 29 2026 14:16:47)
+RX < I (213116) wifi station:   partition: ota_0 @ 0x10000, state: valid
+TX > temp
+RX < temp
+RX < I (213716) wifi station: chip temperature: 31.4 C
+TX > lamp timer 0
+RX < lamp timer 0
+RX < I (214726) wifi station: [LAMP] timer cancelled
+TX > lamp color 255 255 255
+RX < lamp color 255 255 255
+RX < I (214936) wifi station: [LAMP] color set: (255,255,255)
+TX > lamp brightness 50
+RX < lamp brightness 50
+RX < I (215146) wifi station: [LAMP] brightness set: 50%
+TX > lamp mode solid
+RX < lamp mode solid
+RX < I (215356) wifi station: [LAMP] mode set: solid
+TX > lamp off
+RX < lamp off
+RX < I (215566) wifi station: [LAMP] off

@@ -1,0 +1,37 @@
+Test: tests/test_system.py::TestSystem::test_sysinfo_reporting
+Firmware: 1.3.0
+Captured: 2026-10-13T20:54:04.234158+03:00
+
+TX > lamp status
+RX < lamp status
+RX < {"lamp":"off","color":[255,255,255],"brightness":50,"mode":"solid","timer_s":0}
+TX > version
+RX < version
+RX < I (1398706) wifi station: FW: v1.3.0 (build Sep 29 2026 14:15:56)
+RX < I (1398706) wifi station:   partition: ota_1 @ 0x100000, state: valid
+TX > sysinfo
+RX < sysinfo
+RX < I (1399316) wifi station: === System Info ===
+RX < I (1399316) wifi station:   Chip:        ESP32-S3 rev 2
+RX < I (1399316) wifi station:   Cores:       2
+RX < I (1399316) wifi station:   CPU freq:    160 MHz
+RX < I (1399316) wifi station:   Flash:       2 MB
+RX < I (1399326) wifi station:   Free heap:   275 KB
+RX < I (1399326) wifi station:   Min heap:    271 KB
+RX < I (1399326) wifi station:   Uptime:      0h 23m 18s
+RX < I (1399336) wifi station:   Temperature: 30.4 C
+TX > lamp timer 0
+RX < lamp timer 0
+RX < I (1400336) wifi station: [LAMP] timer cancelled
+TX > lamp color 255 255 255
+RX < lamp color 255 255 255
+RX < I (1400546) wifi station: [LAMP] color set: (255,255,255)
+TX > lamp brightness 50
+RX < lamp brightness 50
+RX < I (1400756) wifi station: [LAMP] brightness set: 50%
+TX > lamp mode solid
+RX < lamp mode solid
+RX < I (1400966) wifi station: [LAMP] mode set: solid
+TX > lamp off
+RX < lamp off
+RX < I (1401176) wifi station: [LAMP] off

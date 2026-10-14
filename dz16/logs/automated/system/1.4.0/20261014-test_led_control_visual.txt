@@ -1,0 +1,38 @@
+Test: tests/test_system.py::TestSystemInteractive::test_led_control_visual
+Firmware: 1.4.0
+Captured: 2026-10-14T01:42:53.895843+03:00
+
+TX > lamp status
+RX < lamp status
+RX < {"lamp":"off","color":[255,255,255],"brightness":50,"mode":"solid","timer_s":0}
+TX > version
+RX < version
+RX < I (354786) wifi station: FW: v1.4.0 (build Sep 29 2026 14:16:47)
+RX < I (354786) wifi station:   partition: ota_0 @ 0x10000, state: valid
+TX > led on
+RX < led on
+RX < I (381066) wifi station: LED ON
+TX > led off
+RX < led off
+RX < I (385266) wifi station: LED OFF
+TX > led auto
+RX < led auto
+RX < I (387656) wifi station: LED auto mode
+TX > led auto
+RX < led auto
+RX < I (392366) wifi station: LED auto mode
+TX > lamp timer 0
+RX < lamp timer 0
+RX < I (392986) wifi station: [LAMP] timer cancelled
+TX > lamp color 255 255 255
+RX < lamp color 255 255 255
+RX < I (393196) wifi station: [LAMP] color set: (255,255,255)
+TX > lamp brightness 50
+RX < lamp brightness 50
+RX < I (393416) wifi station: [LAMP] brightness set: 50%
+TX > lamp mode solid
+RX < lamp mode solid
+RX < I (393626) wifi station: [LAMP] mode set: solid
+TX > lamp off
+RX < lamp off
+RX < I (393826) wifi station: [LAMP] off

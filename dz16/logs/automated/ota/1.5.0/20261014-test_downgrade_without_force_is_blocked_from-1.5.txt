@@ -1,0 +1,113 @@
+Test: tests/test_ota.py::TestOta::test_downgrade_without_force_is_blocked[from-1.5]
+Firmware: 1.5.0
+Captured: 2026-10-14T05:29:55.142851+03:00
+
+TX > lamp status
+RX < lamp status
+RX < {"lamp":"off","color":[255,255,255],"brightness":50,"mode":"solid","timer_s":0}
+TX > version
+RX < version
+RX < I (19001) wifi station: FW: v1.5.0 (build Sep 29 2026 15:23:09)
+RX < I (19001) wifi station:   partition: ota_1 @ 0x100000, state: valid
+TX > status
+RX < status
+RX < W (19611) wifi:Haven't to connect to a suitable AP now!
+RX < I (19611) wifi station: WiFi: connected
+RX < I (19611) wifi station:   SSID:
+RX < I (19611) wifi station:   IP:   0.0.0.0
+RX < I (19611) wifi station:   RSSI: 0 dBm
+TX > connect
+RX < connect
+RX < I (21631) wifi station: scanning...
+RX < I (24131) wifi station: found 33 networks:
+RX < I (24131) wifi station:   [1] TopAs_2.4G                        -58 dBm
+RX < I (24131) wifi station:   [2] bambuh                            -58 dBm
+RX < I (24131) wifi station:   [3] TopA-node                         -63 dBm
+RX < I (24141) wifi station:   [4] AP_2987279135                     -67 dBm
+RX < I (24141) wifi station:   [5] HiSmart-01-ca2c4fae5ef5           -68 dBm
+RX < I (24151) wifi station:   [6] 376                               -74 dBm
+RX < I (24161) wifi station:   [7] E_0184_2056_E                     -78 dBm
+RX < I (24161) wifi station:   [8] bababa                            -79 dBm
+RX < I (24171) wifi station:   [9] bambuh                            -82 dBm
+RX < I (24181) wifi station:   [10] HiSmart-01-ca2c4fae593b           -83 dBm
+RX < I (24181) wifi station:   [11] bababa_Guest                      -84 dBm
+RX < I (24191) wifi station:   [12] Kvartira212                       -84 dBm
+RX < I (24201) wifi station:   [13] Xiaomi_625B                       -85 dBm
+RX < I (24201) wifi station:   [14] c672bc1a                          -87 dBm
+RX < I (24211) wifi station:   [15] GreenMint                         -87 dBm
+RX < I (2421
+RX < 1) wifi station:   [16] Keenetic-0122                     -87 dBm
+RX < I (24221) wifi station:   [17] oooaaa                            -87 dBm
+RX < I (24231) wifi station:   [18] Internet UTELS Wi-FI              -90 dBm
+RX < I (24231) wifi station:   [19] c60422f2                          -91 dBm
+RX < I (24241) wifi station:   [20] Solia                             -91 dBm
+RX < I (24251) wifi station:   [21] Tp-link1000                       -91 dBm
+RX < I (24251) wifi station:   [22] SmileV                            -91 dBm
+RX < I (24261) wifi station:   [23] VR46                              -91 dBm
+RX < I (24271) wifi station:   [24] 222-2                             -92 dBm
+RX < I (24271) wifi station:   [25] c68766c0                          -93 dBm
+RX < I (24281) wifi station:   [26] c63f8787                          -93 dBm
+RX < I (24291) wifi station:   [27] 1efa237a                          -94 dBm
+RX < I (24291) wifi station:   [28] c687a67b                          -94 dBm
+RX < I (24301) wifi station:   [29] c63ba56d                          -94 dBm
+RX < I (24301) wifi station:   [30] rezik.a                           -95 dBm
+RX < I (24311) wifi station:   [31] FAN: 0047002357425710             -95 dBm
+RX < I (24321) wifi station:   [32] SkyNet                            -95 dBm
+RX < I (24321) wifi station:   [33] WiFi_Home                         -96 dBm
+RX < Enter SSID, number from list, or Enter to use saved [TopA-node]:
+TX > TopA-node
+RX < TopA-node
+RX < I (24551) wifi station: SSID: TopA-node
+RX < Enter password:
+TX > [REDACTED]
+RX < [REDACTED]
+RX < I (24761) wifi station: password: OK
+RX < I (24761) wifi station: connecting to SSID:TopA-node ...
+RX < I (24791) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0
+RX < I (24791) wifi:state: init -> auth (0xb0)
+RX < I (24801) wifi:state: auth -> assoc (0x0)
+RX < I (24831) wifi:state: assoc -> run (0x10)
+RX < I (24841) wifi:connected with TopA-node, aid = 1, channel 1, BW2
+RX < 0, bssid = c6:23:45:19:a3:f2
+RX < I (24841) wifi:security: WPA2-PSK, phy: bgn, rssi: -67, cipher(pairwise:0x3, group:0x3), pmf:1
+RX < I (24851) wifi:pm start, type: 1
+RX < I (24851) wifi:dp: 1, bi: 102400, li: 3, scale listen interval from 307200 us to 307200 us
+RX < I (24861) wifi:set rx beacon pti, rx_bcn_pti: 0, bcn_timeout: 25000, mt_pti: 0, mt_time: 10000
+RX < I (24961) wifi:dp: 2, bi: 102400, li: 4, scale listen interval from 307200 us to 409600 us
+RX < I (24961) wifi:AP's beacon interval = 102400 us, DTIM period = 2
+RX < I (25931) esp_netif_handlers: sta ip: 10.123.30.49, mask: 255.255.255.0, gw: 10.123.30.28
+RX < I (25931) wifi station: got ip:10.123.30.49
+RX < I (25931) wifi station: successfully connected to SSID:TopA-node
+TX > status
+RX < status
+RX < I (26221) wifi station: WiFi: connected
+RX < I (26221) wifi station:   SSID: TopA-node
+RX < I (26221) wifi station:   IP:   10.123.30.49
+RX < I (26221) wifi station:   RSSI: -66 dBm
+TX > version
+RX < version
+RX < I (28221) wifi station: FW: v1.5.0 (build Sep 29 2026 15:23:09)
+RX < I (28221) wifi station:   partition: ota_1 @ 0x100000, state: valid
+TX > ota install 1.3.0
+RX < ota install 1.3.0
+RX < I (28831) wifi station: [OTA] current version: 1.5.0 (partition ota_1)
+RX < I (28831) wifi station: [OTA] target partition: ota_0
+RX < I (28831) wifi station: [OTA] downloading: https://raw.githubusercontent.com/BohdanHorbanych/esp32-ota-files/main/firmware/v1.3.0/station_WiFi.bin
+RX < I (28911) wifi:<ba-add>idx:0 (ifx:0, c6:23:45:19:a3:f2), tid:0, ssn:2, winSize:64
+RX < I (29321) esp-x509-crt-bundle: Certificate validated
+RX < I (30001) esp_https_ota: Starting OTA...
+RX < I (30001) esp_https_ota: Writing to <ota_0> partition at offset 0x10000
+RX < I (30001) wifi station: [OTA] new version: 1.3.0
+RX < E (30001) wifi station: [OTA] downgrade blocked: 1.5.0 -> 1.3.0. Use 'ota install <ver> force'
+TX > version
+RX < version
+RX < I (30281) wifi station: FW: v1.5.0 (build Sep 29 2026 15:23:09)
+RX < I (30281) wifi station:   partition: ota_1 @ 0x100000, state: valid
+TX > disconnect
+RX < disconnect
+RX < I (30901) wifi:state: run -> init (0x0)
+RX < I (30911) wifi:pm stop, total sleep time: 3193792 us / 6054688 us
+RX < I (30911) wifi:<ba-del>idx:0, tid:0
+RX < I (30911) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0
+RX < I (30911) wifi station: disconnected
+RX < I (30911) wifi station: connect to the AP fail

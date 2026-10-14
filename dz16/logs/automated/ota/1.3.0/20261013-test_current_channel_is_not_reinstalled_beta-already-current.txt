@@ -1,0 +1,83 @@
+Test: tests/test_ota.py::TestOta::test_current_channel_is_not_reinstalled[beta-already-current]
+Firmware: 1.3.0
+Captured: 2026-10-13T03:14:03.295736+03:00
+
+TX > lamp status
+RX < lamp status
+RX < {"lamp":"off","color":[255,255,255],"brightness":50,"mode":"solid","timer_s":0}
+TX > version
+RX < version
+RX < I (290891) wifi station: FW: v1.3.0 (build Sep 29 2026 14:15:56)
+RX < I (290891) wifi station:   partition: ota_1 @ 0x100000, state: valid
+TX > status
+RX < status
+RX < W (291511) wifi:Haven't to connect to a suitable AP now!
+RX < I (291511) wifi station: WiFi: connected
+RX < I (291511) wifi station:   SSID:
+RX < I (291511) wifi station:   IP:   0.0.0.0
+RX < I (291511) wifi station:   RSSI: 0 dBm
+TX > status
+RX < status
+RX < W (293511) wifi:Haven't to connect to a suitable AP now!
+RX < I (293511) wifi station: WiFi: connected
+RX < I (293511) wifi station:   SSID:
+RX < I (293511) wifi station:   IP:   0.0.0.0
+RX < I (293511) wifi station:   RSSI: 0 dBm
+TX > connect
+RX < connect
+RX < I (295511) wifi station: scanning...
+RX < I (298011) wifi station: found 38 networks:
+RX < I (298011) wifi station:   [1] TopA-node                         -26 dBm
+RX < I (298011) wifi station:   [2] bambuh                            -57 dBm
+RX < I (298011) wifi station:   [3] TopAs_2.4G                        -62 dBm
+RX < I (298021) wifi station:   [4] AP_2987279135                     -71 dBm
+RX < I (298021) wifi station:   [5] 376                               -72 dBm
+RX < I (298031) wifi station:   [6] HiSmart-01-ca2c4fae5ef5           -78 dBm
+RX < I (298041) wifi station:   [7] HiSmart-01-ca2c4fae593b           -79 dBm
+RX < I (298041) wifi station:   [8] c67272ed                          -81 dBm
+RX < I (298051) wifi station:   [9] c63f5354                          -81 dBm
+RX < I (298061) wifi station:   [10] VR46                              -81 dBm
+RX < I (298061) wifi station:   [11] Keenetic-0122                     -84 dBm
+RX < I (298071) wifi station:   [12] bababa_Guest                      -84 dBm
+RX < I (298081) wifi station:
+RX < [13] bababa                            -85 dBm
+RX < I (298081) wifi station:   [14] oooaaa_Guest24                    -85 dBm
+RX < I (298091) wifi station:   [15] TP-Link_54B8                      -86 dBm
+RX < I (298101) wifi station:   [16] NeD                               -86 dBm
+RX < I (298101) wifi station:   [17] oooaaa                            -86 dBm
+RX < I (298111) wifi station:   [18] Sashka                            -87 dBm
+RX < I (298121) wifi station:   [19] SmileV                            -87 dBm
+RX < I (298121) wifi station:   [20] 13💡                            -87 dBm
+RX < I (298131) wifi station:   [21] c6861204                          -90 dBm
+RX < I (298141) wifi station:   [22] c68766c0                          -90 dBm
+RX < I (298141) wifi station:   [23] 1ed4a802                          -91 dBm
+RX < I (298151) wifi station:   [24] c687a67b                          -91 dBm
+RX < I (298151) wifi station:   [25] bambuh                            -91 dBm
+RX < I (298161) wifi station:   [26] Xiaomi_625B                       -91 dBm
+RX < I (298171) wifi station:   [27] 130_ibNet                         -91 dBm
+RX < I (298171) wifi station:   [28] Home_sweet_home                   -91 dBm
+RX < I (298181) wifi station:   [29] SkyNet                            -91 dBm
+RX < I (298191) wifi station:   [30] c672bc1a                          -92 dBm
+RX < I (298191) wifi station:   [31] Solia                             -92 dBm
+RX < I (298201) wifi station:   [32] 222-2                             -92 dBm
+RX < I (298211) wifi station:   [33] c63f8787                          -93 dBm
+RX < I (298211) wifi station:   [34] S+D=L                             -93 dBm
+RX < I (298221) wifi station:   [35] respublika40                      -93 dBm
+RX < I (298231) wifi station:   [36] BBG                               -93 dBm
+RX < I (298231) wifi station:   [37] SMART_3b78                        -93 dBm
+RX < I (298241) wifi station:   [38] Maze_06B1                         -94 dBm
+RX < Enter SSID, number from list, or Enter to use saved [TopA-node]:
+TX > 
+RX < I (298421) wifi station: using saved SSID: TopA-node
+RX < I (298421) wifi station: connecting to SSID:TopA-node ...
+RX < I (298421) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0
+RX < I (298421) wifi:state: init -> auth (0xb0)
+RX < I (298461) wifi:state: auth -> assoc (0x0)
+RX < I (298471) wifi:state: assoc -> run (0x10)
+RX < I (298491) wifi:connected with TopA-node, aid = 1, channel 1, BW20, bssid = 8a:d5:b8:a5:09:77
+RX < I (298491) wifi:security: WPA2-PSK, phy: bgn, rssi: -25, cipher(pairwise:0x3, group:0x3), pmf:1
+RX < I (298501) wifi:pm start, type: 1
+RX < I (298501) wifi:dp: 1, bi: 102400, li: 3, scale listen interval from 307200 us to 307200 us
+RX < I (298511) wifi:set rx beacon pti, rx_bcn_pti: 0, bcn_timeout: 25000, mt_pti: 0, mt_time: 10000
+RX < I (298511) wifi:dp: 2, bi: 102400, li: 4, scale listen interval from 307200 us to 409600 us
+RX < I (298521) wifi:AP's beacon interval = 102400 us, DTIM period = 2

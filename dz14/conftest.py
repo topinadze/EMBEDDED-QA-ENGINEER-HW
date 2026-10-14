@@ -6,30 +6,29 @@ import serial.tools.list_ports
 
 # Ensure both dz14 directory and parent directory are in sys.path
 CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
-PARENT_DIR = os.path.dirname(CURRENT_DIR)
-for p in [CURRENT_DIR, PARENT_DIR]:
-    if p not in sys.path:
-        sys.path.insert(0, p)
+if CURRENT_DIR in sys.path:
+    sys.path.remove(CURRENT_DIR)
+sys.path.insert(0, CURRENT_DIR)
 
 try:
     from drivers.device_driver import DeviceDriver
-    from config.wifi_config import (
-        WIFI_SSID,
-        WIFI_PASSWORD,
+    from settings import (
         INVALID_PASSWORD,
-        SHORT_PASSWORD,
         NON_EXISTENT_SSID,
+        SHORT_PASSWORD,
         SERIAL_TIMEOUT,
+        WIFI_PASSWORD,
+        WIFI_SSID,
     )
 except ModuleNotFoundError:
     from dz14.drivers.device_driver import DeviceDriver
-    from dz14.config.wifi_config import (
-        WIFI_SSID,
-        WIFI_PASSWORD,
+    from dz14.settings import (
         INVALID_PASSWORD,
-        SHORT_PASSWORD,
         NON_EXISTENT_SSID,
+        SHORT_PASSWORD,
         SERIAL_TIMEOUT,
+        WIFI_PASSWORD,
+        WIFI_SSID,
     )
 
 # Standard Vendor IDs for USB-to-UART converters and ESP32 chips
@@ -47,20 +46,27 @@ def find_esp32_port() -> str:
     if not ports:
         pytest.fail("Жодного COM-порту не знайдено на системі! Підключіть ESP32-S3 DevKit.")
 
-    # 1. Пошук за Vendor ID
-    for p in ports:
-        if p.vid in ESP32_VIDS:
-            return p.device
-
-    # 2. Фолбек за текстовим описом
     descriptors = ["cp210", "ch340", "ft232", "esp32", "usb-to-uart", "usb serial"]
-    for p in ports:
-        desc = (p.description or "") + (p.manufacturer or "")
-        if any(d in desc.lower() for d in descriptors):
-            return p.device
-
-    # 3. Фолбек на перший знайдений порт
-    return ports[0].device
+    candidates = [
+        p
+        for p in ports
+        if p.vid in ESP32_VIDS
+        or any(
+            d in f"{p.description or ''} {p.manufacturer or ''}".lower()
+            for d in descriptors
+        )
+    ]
+    if len(candidates) == 1:
+        return candidates[0].device
+    if not candidates:
+        pytest.fail(
+            "Не знайдено жодного порту ESP32 (перевірено VID та описи). Вкажіть порт явно через конфігурацію або CLI."
+        )
+    pytest.fail(
+        "Знайдено декілька потенційних портів ESP32: "
+        + ", ".join(p.device for p in candidates)
+        + ". Вкажіть потрібний порт явно."
+    )
 
 
 @pytest.fixture(scope="session")
@@ -99,12 +105,16 @@ def attach_test_uart_log(request: pytest.FixtureRequest):
 @pytest.fixture
 def wifi_credentials() -> tuple[str, str]:
     """Валідні креденшили Wi-Fi тестової мережі."""
+    if not WIFI_PASSWORD:
+        pytest.skip("Set TEST_WIFI_PASSWORD to run credential-based Wi-Fi tests.")
     return WIFI_SSID, WIFI_PASSWORD
 
 
 @pytest.fixture
 def invalid_wifi_credentials() -> dict:
     """Набір невалідних креденшилів для негативного тестування."""
+    if not WIFI_PASSWORD:
+        pytest.skip("Set TEST_WIFI_PASSWORD to run credential-based Wi-Fi tests.")
     return {
         "valid_ssid": WIFI_SSID,
         "wrong_password": INVALID_PASSWORD,

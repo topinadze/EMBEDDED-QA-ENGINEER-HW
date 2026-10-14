@@ -1,0 +1,170 @@
+DEBUG    drivers.device_driver:device_driver.py:64 TX > lamp status
+DEBUG    drivers.device_driver:device_driver.py:64 RX < lamp status
+DEBUG    drivers.device_driver:device_driver.py:64 RX < {"lamp":"off","color":[255,255,255],"brightness":50,"mode":"solid","timer_s":0}
+DEBUG    drivers.device_driver:device_driver.py:64 TX > version
+DEBUG    drivers.device_driver:device_driver.py:64 RX < version
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (160891) wifi station: FW: v1.5.0 (build Sep 29 2026 15:23:09)
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (160891) wifi station:   partition: ota_0 @ 0x10000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:64 TX > status
+DEBUG    drivers.device_driver:device_driver.py:64 RX < status
+DEBUG    drivers.device_driver:device_driver.py:64 RX < W (161501) wifi:Haven't to connect to a suitable AP now!
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (161501) wifi station: WiFi: connected
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (161501) wifi station:   SSID:
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (161501) wifi station:   IP:   0.0.0.0
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (161501) wifi station:   RSSI: 0 dBm
+DEBUG    drivers.device_driver:device_driver.py:64 TX > connect
+DEBUG    drivers.device_driver:device_driver.py:64 RX < connect
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (163511) wifi station: scanning...
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (166011) wifi station: found 31 networks:
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (166011) wifi station:   [1] TopA-node                         -19 dBm
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (166011) wifi station:   [2] TopAs_2.4G                        -65 dBm
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (166011) wifi station:   [3] AP_2987279135                     -67 dBm
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (166021) wifi station:   [4] bambuh                            -70 dBm
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (166021) wifi station:   [5] 376                               -76 dBm
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (166031) wifi station:   [6] HiSmart-01-ca2c4fae5ef5           -77 dBm
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (166041) wifi station:   [7] GreenMint                         -82 dBm
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (166041) wifi station:   [8] E_0184_2056_E                     -83 dBm
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (
+DEBUG    drivers.device_driver:device_driver.py:64 RX < 166051) wifi station:   [9] bambuh                            -85 dBm
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (166061) wifi station:   [10] NeD                               -88 dBm
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (166061) wifi station:   [11] Internet UTELS Wi-FI              -88 dBm
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (166071) wifi station:   [12] bababa                            -88 dBm
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (166081) wifi station:   [13] c60422f2                          -89 dBm
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (166081) wifi station:   [14] 130_ibNet                         -89 dBm
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (166091) wifi station:   [15] Keenetic-0122                     -89 dBm
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (166101) wifi station:   [16] bababa_Guest                      -89 dBm
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (166101) wifi station:   [17] VR46                              -89 dBm
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (166111) wifi station:   [18] oooaaa                            -89 dBm
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (166121) wifi station:   [19] oooaaa_Guest24                    -89 dBm
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (166121) wifi station:   [20] SmileV                            -90 dBm
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (166131) wifi station:   [21] HiSmart-01-ca2c4fae593b           -91 dBm
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (166131) wifi station:   [22] SkyNet                            -91 dBm
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (166141) wifi station:   [23] home_2.4                          -92 dBm
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (166151) wifi station:   [24] c67c1415                          -93 dBm
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (166151) wifi station:   [25] Maze_06B1                         -93 dBm
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (166161) wifi station:   [26] Daunton                           -94 dBm
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (166171) wifi station:   [27] 1ed4a802                          -95 dBm
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (166171) wifi station:   [28] c67db18d                          -95 dBm
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (166181) wifi station:   [29] 222-2                             -96 dBm
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (166191) wifi station:   [30] FAN: 0047002357425710             -96 dBm
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (166191) wifi station:   [31] Home_sweet_home                   -96 dBm
+DEBUG    drivers.device_driver:device_driver.py:64 RX < Enter SSID, number from list, or Enter to use saved [TopA-node]:
+DEBUG    drivers.device_driver:device_driver.py:64 TX > TopA-node
+DEBUG    drivers.device_driver:device_driver.py:64 RX < TopA-node
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (166391) wifi station: SSID: TopA-node
+DEBUG    drivers.device_driver:device_driver.py:64 RX < Enter password:
+DEBUG    drivers.device_driver:device_driver.py:64 TX > [REDACTED]
+DEBUG    drivers.device_driver:device_driver.py:64 RX < [REDACTED]
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (166601) wifi station: password: OK
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (166601) wifi station: connecting to SSID:TopA-node ...
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (166601) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (166601) wifi:state: init -> auth (0xb0)
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (166651) wifi:state: auth -> assoc (0x0)
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (166661) wifi:state: assoc -> run (0x10)
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (166671) wifi:connected with TopA-node, aid = 1, channel 1, BW20, bssid = 72:41:ef:1d:cf:5c
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (166671) wifi:security: WPA2-PSK, phy: bgn, rssi: -19, cipher(pairwise:0x3, group:0x3), pmf:1
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (166681) wifi:pm start, type: 1
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (166681) wifi:dp: 1, bi: 102400, li: 3, scale listen interval from 307200 us to 307200 us
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (166691) wifi:set rx beacon pti, rx_bcn_pti: 0, bcn_timeout: 25000, mt_pti: 0, mt_time: 10000
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (166731) wifi:dp: 2, bi: 102400, li: 4, scale listen interval from 307200 us to 409600 us
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (166741) wifi:AP's beacon interval = 102400 us, DTIM period = 2
+DEBUG    drivers.device_driver:device_driver.py:64 TX > status
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (176601) wifi station: connection timeout
+DEBUG    drivers.device_driver:device_driver.py:64 RX < status
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (176701) wifi station: WiFi: disconnected
+DEBUG    drivers.device_driver:device_driver.py:64 TX > status
+DEBUG    drivers.device_driver:device_driver.py:64 RX < status
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (179611) wifi station: WiFi: disconnected
+DEBUG    drivers.device_driver:device_driver.py:64 TX > status
+DEBUG    drivers.device_driver:device_driver.py:64 RX < status
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (182621) wifi station: WiFi: disconnected
+WARNING  conftest:conftest.py:404 Wi-Fi connection attempt 1/2 failed; retrying.
+DEBUG    drivers.device_driver:device_driver.py:64 TX > disconnect
+DEBUG    drivers.device_driver:device_driver.py:64 RX < disconnect
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (184621) wifi:state: run -> init (0x0)
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (184631) wifi:pm stop, total sleep time: 15564813 us / 17942966 us
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (184631) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (184631) wifi station: disconnected
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (184631) wifi station: connect to the AP fail
+DEBUG    drivers.device_driver:device_driver.py:64 TX > status
+DEBUG    drivers.device_driver:device_driver.py:64 RX < status
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (187631) wifi station: WiFi: disconnected
+DEBUG    drivers.device_driver:device_driver.py:64 TX > connect
+DEBUG    drivers.device_driver:device_driver.py:64 RX < connect
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (189641) wifi station: scanning...
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (192141) wifi station: found 30 networks:
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (192141) wifi station:   [1] TopA-node                         -20 dBm
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (192141) wifi station:   [2] TopAs_2.4G                        -65 dBm
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (192141) wifi station:   [3] AP_2987279135                     -65 dBm
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (192151) wifi station:   [4] bambuh                            -68 dBm
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (192151) wifi station:   [5] HiSmart-01-ca2c4fae5ef5           -77 dBm
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (192161) wifi station:   [6] E_0184_2056_E                     -79 dBm
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (192171) wifi station:   [7] 376                               -80 dBm
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (192171) wifi station:   [8] GreenMint                         -83 dBm
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (192181) wifi station:   [9] HiSmart-01-ca2c4fae593b           -83 dBm
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (192191) wifi station:   [10] c672bc1a                          -84 dBm
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (192191) wifi station:   [11] Kvartira212
+DEBUG    drivers.device_driver:device_driver.py:64 RX < -86 dBm
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (192201) wifi station:   [12] c67272ed                          -87 dBm
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (192211) wifi station:   [13] VR46                              -88 dBm
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (192211) wifi station:   [14] bambuh                            -88 dBm
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (192221) wifi station:   [15] Internet UTELS Wi-FI              -89 dBm
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (192231) wifi station:   [16] oooaaa                            -89 dBm
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (192231) wifi station:   [17] c60422f2                          -90 dBm
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (192241) wifi station:   [18] oooaaa_Guest24                    -90 dBm
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (192251) wifi station:   [19] c63f5354                          -91 dBm
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (192251) wifi station:   [20] 1ed4a802                          -91 dBm
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (192261) wifi station:   [21] WildDucksExtender                 -92 dBm
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (192261) wifi station:   [22] SmileV                            -92 dBm
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (192271) wifi station:   [23] 1efa237a                          -93 dBm
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (192281) wifi station:   [24] Home_sweet_home                   -93 dBm
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (192281) wifi station:   [25] SkyNet                            -93 dBm
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (192291) wifi station:   [26] router1                           -94 dBm
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (192301) wifi station:   [27] FAN: 0047002357425710             -94 dBm
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (192301) wifi station:   [28] SMART_3b78                        -94 dBm
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (192311) wifi station:   [29] c63f2d55                          -95 dBm
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (192321) wifi station:   [30] 222-2                             -95 dBm
+DEBUG    drivers.device_driver:device_driver.py:64 RX < Enter SSID, number from list, or Enter to use saved [TopA-node]:
+DEBUG    drivers.device_driver:device_driver.py:64 TX > TopA-node
+DEBUG    drivers.device_driver:device_driver.py:64 RX < TopA-node
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (192541) wifi station: SSID: TopA-node
+DEBUG    drivers.device_driver:device_driver.py:64 RX < Enter password:
+DEBUG    drivers.device_driver:device_driver.py:64 TX > [REDACTED]
+DEBUG    drivers.device_driver:device_driver.py:64 RX < [REDACTED]
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (192751) wifi station: password: OK
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (192751) wifi station: connecting to SSID:TopA-node ...
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (192751) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (192751) wifi:state: init -> auth (0xb0)
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (192761) wifi:state: auth -> assoc (0x0)
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (192771) wifi:state: assoc -> run (0x10)
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (192781) wifi:connected with TopA-node, aid = 1, channel 1, BW20, bssid = 72:41:ef:1d:cf:5c
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (192781) wifi:security: WPA2-PSK, phy: bgn, rssi: -23, cipher(pairwise:0x3, group:0x3), pmf:1
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (192791) wifi:pm start, type: 1
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (192791) wifi:dp: 1, bi: 102400, li: 3, scale listen interval from 307200 us to 307200 us
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (192801) wifi:set rx beacon pti, rx_bcn_pti: 0, bcn_timeout: 25000, mt_pti: 0, mt_time: 10000
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (192851) wifi:dp: 2, bi: 102400, li: 4, scale listen interval from 307200 us to 409600 us
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (192851) wifi:AP's beacon interval = 102400 us, DTIM period = 2
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (195361) esp_netif_handlers: sta ip: 10.123.30.49, mask: 255.255.255.0, gw: 10.123.30.28
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (195361) wifi station: got ip:10.123.30.49
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (195361) wifi station: successfully connected to SSID:TopA-node
+DEBUG    drivers.device_driver:device_driver.py:64 TX > status
+DEBUG    drivers.device_driver:device_driver.py:64 RX < status
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (195661) wifi station: WiFi: connected
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (195661) wifi station:   SSID: TopA-node
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (195661) wifi station:   IP:   10.123.30.49
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (195661) wifi station:   RSSI: -21 dBm
+DEBUG    drivers.device_driver:device_driver.py:64 TX > version
+DEBUG    drivers.device_driver:device_driver.py:64 RX < version
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (197671) wifi station: FW: v1.5.0 (build Sep 29 2026 15:23:09)
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (197671) wifi station:   partition: ota_0 @ 0x10000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:64 TX > ota install 1.4.0 force
+DEBUG    drivers.device_driver:device_driver.py:64 RX < ota install 1.4.0 force
+DEBUG    drivers.device_driver:device_driver.py:64 RX < E (198291) wifi station: [OTA] error: update already in progress
+DEBUG    drivers.device_driver:device_driver.py:64 TX > disconnect
+DEBUG    drivers.device_driver:device_driver.py:64 RX < disconnect
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (198551) wifi:state: run -> init (0x0)
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (198561) wifi:pm stop, total sleep time: 4493316 us / 5764768 us
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (198561) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (198561) wifi station: disconnected
+DEBUG    drivers.device_driver:device_driver.py:64 RX < I (198561) wifi station: connect to the AP fail
+INFO     conftest:conftest.py:280 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz16\logs\automated\ota\1.5.0\20261014-test_forced_downgrade_completes_self_check_from-1.5-to-1.4.txt

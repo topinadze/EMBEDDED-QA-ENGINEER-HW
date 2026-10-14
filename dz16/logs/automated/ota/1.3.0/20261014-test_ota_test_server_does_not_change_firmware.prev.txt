@@ -1,0 +1,235 @@
+Test: tests/test_ota.py::TestOta::test_ota_test_server_does_not_change_firmware
+Firmware: 1.3.0
+Captured: 2026-10-14T02:44:00.156595+03:00
+
+TX > lamp status
+RX < lamp status
+RX < {"lamp":"off","color":[255,255,255],"brightness":50,"mode":"solid","timer_s":0}
+TX > version
+RX < version
+RX < I (4491) wifi station: FW: v1.3.0 (build Sep 29 2026 14:15:56)
+RX < I (4491) wifi station:   partition: ota_0 @ 0x10000, state: valid
+TX > status
+RX < status
+RX < I (5101) wifi station: WiFi: disconnected
+TX > status
+RX < status
+RX < I (7111) wifi station: WiFi: disconnected
+TX > connect
+RX < connect
+RX < I (9121) wifi station: scanning...
+RX < I (11621) wifi station: found 29 networks:
+RX < I (11621) wifi station:   [1] TopA-node                         -20 dBm
+RX < I (11621) wifi station:   [2] bambuh                            -59 dBm
+RX < I (11621) wifi station:   [3] TopAs_2.4G                        -62 dBm
+RX < I (11631) wifi station:   [4] AP_2987279135                     -72 dBm
+RX < I (11631) wifi station:   [5] 376                               -72 dBm
+RX < I (11641) wifi station:   [6] HiSmart-01-ca2c4fae5ef5           -76 dBm
+RX < I (11651) wifi station:   [7] bambuh                            -80 dBm
+RX < I (11651) wifi station:   [8] Kvartira212                       -84 dBm
+RX < I (11661) wifi station:   [9] GreenMint                         -86 dBm
+RX < I (11671) wifi station:   [10] Internet UTELS Wi-FI              -8
+RX < 6 dBm
+RX < I (11671) wifi station:   [11] bababa                            -86 dBm
+RX < I (11681) wifi station:   [12] c672bc1a                          -87 dBm
+RX < I (11691) wifi station:   [13] HiSmart-01-ca2c4fae593b           -88 dBm
+RX < I (11691) wifi station:   [14] NeD                               -88 dBm
+RX < I (11701) wifi station:   [15] Keenetic-0122                     -88 dBm
+RX < I (11701) wifi station:   [16] bababa_Guest                      -88 dBm
+RX < I (11711) wifi station:   [17] c60422f2                          -89 dBm
+RX < I (11721) wifi station:   [18] c67272ed                          -89 dBm
+RX < I (11721) wifi station:   [19] c6861204                          -91 dBm
+RX < I (11731) wifi station:   [20] D262100562C0                      -92 dBm
+RX < I (11741) wifi station:   [21] SmileV                            -92 dBm
+RX < I (11741) wifi station:   [22] Daunton                           -93 dBm
+RX < I (11751) wifi station:   [23] c63f8787                          -94 dBm
+RX < I (11761) wifi station:   [24] 13💡                            -94 dBm
+RX < I (11761) wifi station:   [25] Home_sweet_home                   -94 dBm
+RX < I (11771) wifi station:   [26] SkyNet                            -94 dBm
+RX < I (11781) wifi station:   [27] c67c1415                          -95 dBm
+RX < I (11781) wifi station:   [28] TP-Link_94B4                      -96 dBm
+RX < I (11791) wifi station:   [29] rabbits                           -98 dBm
+RX < Enter SSID, number from list, or Enter to use saved [TopA-node]:
+TX > 
+RX < I (12021) wifi station: using saved SSID: TopA-node
+RX < I (12021) wifi station: connecting to SSID:TopA-node ...
+RX < I (12021) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0
+RX < I (12031) wifi:state: init -> auth (0xb0)
+RX < I (12041) wifi:state: auth -> assoc (0x0)
+RX < I (12051) wifi:state: assoc -> run (0x10)
+RX < I (12071) wifi:connected with TopA-node, aid = 1, channel 1, BW20, bssid = 12:4c:d5:f3:59:a6
+RX < I (12071) wifi:security: WPA2-PSK, phy: bgn, rssi: -21, cipher(pairwise:0x3, group:0x3), pmf:1
+RX < I (12071) wifi:pm start, type: 1
+RX < I (12071) wifi:dp: 1, bi: 102400, li: 3, scale listen interval from 307200 us to 307200 us
+RX < I (12081) wifi:set rx beacon pti, rx_bcn_pti: 0, bcn_timeout: 2500
+RX < 0, mt_pti: 0, mt_time: 10000
+RX < I (12141) wifi:dp: 2, bi: 102400, li: 4, scale listen interval from 307200 us to 409600 us
+RX < I (12141) wifi:AP's beacon interval = 102400 us, DTIM period = 2
+RX < I (13121) esp_netif_handlers: sta ip: 10.123.30.49, mask: 255.255.255.0, gw: 10.123.30.28
+RX < I (13121) wifi station: got ip:10.123.30.49
+RX < I (13121) wifi station: successfully connected to SSID:TopA-node
+TX > status
+RX < status
+RX < I (13251) wifi station: WiFi: connected
+RX < I (13251) wifi station:   SSID: TopA-node
+RX < I (13251) wifi station:   IP:   10.123.30.49
+RX < I (13251) wifi station:   RSSI: -20 dBm
+TX > version
+RX < version
+RX < I (15261) wifi station: FW: v1.3.0 (build Sep 29 2026 14:15:56)
+RX < I (15261) wifi station:   partition: ota_0 @ 0x10000, state: valid
+TX > ota-test-server
+RX < ota-test-server
+RX < I (15871) wifi station: === OTA Update Started ===
+RX < I (15871) wifi station: Checking for updates...
+RX < I (17371) wifi station: Found firmware v2.0.1
+RX < I (17371) wifi station: Downloading component: distance_sensor v1.3.0
+RX < I (17371) wifi station:   [distance_sensor] downloading... 10%
+RX < I (17671) wifi station:   [distance_sensor] downloading... 20%
+RX < I (17971) wifi station:   [distance_sensor] downloading... 30%
+RX < I (18271) wifi station:   [distance_sensor] downloading... 40%
+RX < I (18571) wifi station:   [distance_sensor] downloading... 50%
+RX < I (18871) wifi station:   [distance_sensor] downloading... 60%
+RX < I (19171) wifi station:   [distance_sensor] downloading... 70%
+RX < I (19471) wifi station:   [distance_sensor] downloading... 80%
+RX < I (19771) wifi station:   [distance_sensor] downloading... 90%
+RX < I (20071) wifi station:   [distance_sensor] downloading... 100%
+RX < I (20371) wifi station:   [distance_sensor] installing...
+RX < I (21171) wifi station:   [distance_sensor] OK
+RX < I (21171) wifi station: Downloading component: relay_controller v2.1.0
+RX < I (21171) wifi station:   [relay_controller] downloading... 10%
+RX < I (21471) wifi station:   [relay_controller] downloading... 20%
+RX < I (21771) wifi station:   [relay_controller] downloading... 30%
+RX < I (22071) wifi station:   [relay_controller] downloading... 40%
+RX < I (22371) wifi station:   [relay_controller] downloading... 50%
+RX < I (22671) wifi station:   [relay_controller] downloading... 60%
+RX < I (22971) wifi station:   [relay_controller] downloading... 70%
+RX < I (23271) wifi station:   [relay_controller] downloading... 80%
+RX < I (23571) wifi station:   [relay_controller] downloading... 90%
+RX < I (23871) wifi station:   [relay_controller] downloading... 100%
+RX < I (24171) wifi station:   [relay_controller] installing...
+RX < I (24971) wifi station:   [relay_controller] OK
+RX < I (24971) wifi station: Downloading component: wifi_manager v3.0.2
+RX < I (24971) wifi station:   [wifi_manager] downloading... 10%
+RX < I (25171) wifi station:   [wifi_manager] downloading... 20%
+RX < I (25371) wifi station:   [wifi_manager] downloading... 30%
+RX < I (25571) wifi station:   [wifi_manager] downloading... 40%
+RX < I (25771) wifi station:   [wifi_manager] downloading... 50%
+RX < I (25971) wifi station:   [wifi_manager] downloading... 60%
+RX < I (26171) wifi station:   [wifi_manager] downloading... 70%
+RX < I (26371) wifi station:   [wifi_manager] downloading... 80%
+RX < I (26571) wifi station:   [wifi_manager] downloading... 90%
+RX < I (26771) wifi station:   [wifi_manager] downloading... 100%
+RX < I (26971) wifi station:   [wifi_manager] installing...
+RX < I (27571) wifi station:   [wifi_manager] OK
+RX < I (27571) wifi station: Verifying firmware integrity...
+RX < I (28571) wifi station: === OTA Update Complete. Restarting... ===
+RX < I (29571) wifi:state: run -> init (0x0)
+RX < I (29581) wifi:pm stop, total sleep time: 14865717 us / 17502053 us
+RX < I (29581) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0
+RX < I (29581) wifi station: retry to connect to the AP
+RX < I (29681) wifi:flush txq
+RX < I (29681) wifi:stop sw txq
+RX < I (29681) wifi:lmac stop hw txq
+RX < x��ESP-ROM:esp32s3-20210327
+RX < Build:Mar 27 2021
+RX < rst:0xc (RTC_SW_CPU_RST),boot:0x2a (SPI_FAST_FLASH_BOOT)
+RX < Saved PC:0x4037d308
+RX < SPIWP:0xee
+RX < mode:DIO, clock div:1
+RX < load:0x3fce2820,len:0x14f0
+RX < load:0x403c8700,len:0xda0
+RX < load:0x403cb700,len:0x2fa0
+RX < entry 0x403c8908
+RX < I (29) boot: ESP-IDF v6.0.1 2nd stage bootloader
+RX < I (29) boot: compile time Sep 29 2026 14:16:01
+RX < I (29) boot: Multicore bootloader
+RX < I (29) boot: chip revision: v0.2
+RX < I (32) boot: efuse block revision: v1.3
+RX < I (36) boot.esp32s3: Boot SPI Speed : 80MHz
+RX < I (40) boot.esp32s3: SPI Mode       : DIO
+RX < I (43) boot.esp32s3: SPI Flash Size : 2MB
+RX < I (47) boot: Enabling RNG early entropy source...
+RX < I (52) boot: Partition Table:
+RX < I (54) boot: ## Label            Usage          Type ST Offset   Length
+RX < I (61) boot:  0 nvs              WiFi data        01 02 00009000 00004000
+RX < I (67) boot:  1 otadata          OTA data         01 00 0000d000 00002000
+RX < I (74) boot:  2 ota_0            OTA app          00 10 00010000 000f0000
+RX < I (80) boot:  3 ota_1            OTA app          00 11 00100000 000f0000
+RX < I (87) boot: End of partition table
+RX < I (90) esp_image: segment 0: paddr=00010020 vaddr=3c0a0020 size=3341ch (209948) map
+RX < I (135) esp_image: segment 1: paddr=00043444 vaddr=3fc97100 size=0506ch ( 20588) load
+RX < I (139) esp_image: segment 2: paddr=000484b8 vaddr=40374000 size=07b60h ( 31584) load
+RX < I (147) esp_image:
+RX < segment 3: paddr=00050020 vaddr=42000020 size=92368h (598888) map
+RX < I (255) esp_image: segment 4: paddr=000e2390 vaddr=4037bb60 size=0b574h ( 46452) load
+RX < I (265) esp_image: segment 5: paddr=000ed90c vaddr=50000000 size=00024h (    36) load
+RX < I (274) boot: Loaded app from partition at offset 0x10000
+RX < I (274) boot: Disabling RNG early entropy source...
+RX < I (284) cpu_start: Multicore app
+RX < I (292) cpu_start: GPIO 44 and 43 are used as console UART I/O pins
+RX < I (293) cpu_start: Pro cpu start user code
+RX < I (293) cpu_start: cpu freq: 160000000 Hz
+RX < I (295) app_init: Application information:
+RX < I (299) app_init: Project name:     station_WiFi
+RX < I (303) app_init: App version:      1.3.0
+RX < I (307) app_init: Compile time:     Sep 29 2026 14:15:53
+RX < I (312) app_init: ELF file SHA256:  7fc2e6354...
+RX < I (316) app_init: ESP-IDF:          v6.0.1
+RX < I (320) efuse_init: Min chip rev:     v0.0
+RX < I (324) efuse_init: Max chip rev:     v0.99
+RX < I (328) efuse_init: Chip rev:         v0.2
+RX < I (331) heap_init: Initializing. RAM available for dynamic allocation:
+RX < I (338) heap_init: At 3FCA0460 len 000492B0 (292 KiB)
+RX < : RAM
+RX < I (343) heap_init: At 3FCE9710 len 00005724 (21 KiB): RAM
+RX < I (348) heap_init: At 3FCF0000 len 00008000 (32 KiB): DRAM
+RX < I (353) heap_init: At 600FE000 len 00001FE8 (7 KiB): RTCRAM
+RX < I (359) spi_flash: detected chip: boya
+RX < I (362) spi_flash: flash io: dio
+RX < W (365) spi_flash: Detected size(16384k) larger than the size in the binary image header(2048k). Using the size in the binary image header.
+RX < I (378) sleep_gpio: Configure to isolate all GPIO pins in sleep state
+RX < I (384) sleep_gpio: Enable automatic switching of GPIO sleep configuration
+RX < I (391) main_task: Started on CPU0
+RX < I (411) main_task: Calling app_main()
+RX < I (431) temperature_sensor: Range [-10°C ~ 80°C], error < 1°C
+RX < I (431) pp: pp rom version: e7ae62f
+RX < I (441) net80211: net80211 rom version: e7ae62f
+RX < I (451) wifi:wifi driver task: 3fced4cc, prio:23, stack:6656, core=0
+RX < I (451) wifi:wifi firmware version: b37c951
+RX < I (451) wifi:wifi certification version: v7.0
+RX < I (461) wifi:config NVS flash: enabled
+RX < I (461) wifi:config nano formatting: disabled
+RX < I (461) wifi:Init data frame dynamic rx buffer num: 32
+RX < I (461) wifi:Init static rx mgmt buffer num: 5
+RX < I (471) wifi:Init management short buffer num: 32
+RX < I (471) wifi:Init dynamic tx buffer num: 32
+RX < I (481) wifi:Init static tx FG buffer num: 2
+RX < I (481) wifi:Init static rx buffer size: 1600
+RX < I (481) wifi:Init static rx buffer num: 10
+RX < I (491) wifi:Init dynamic rx buffer num: 32
+RX < I (491) wifi_init: rx ba win: 6
+RX < I (501) wifi_init: accept mbox: 6
+RX < I (501) wifi_init: tcpip mbox: 32
+RX < I (501) wifi_init: udp mbox: 6
+RX < I (501) wifi_init: tcp mbox: 6
+RX < I (511) wifi_init: tcp tx win: 5760
+RX < I (511) wifi_init: tcp rx win: 5760
+RX < I (511) wifi_init: tcp mss: 1440
+RX < I (521) wifi_init: WiFi IRAM OP enabled
+RX < I (521) wifi_init: WiFi RX IRAM OP enabled
+RX < I (521) phy_init: phy_version 711,97bcf0a2,Aug 25 2025,19:04:10
+RX < I (571) wifi:mode : sta (c0:4e:30:04:83:6c)
+RX < I (571) wifi:enable tsf
+RX < I (571) wifi station: wifi initialized. Type 'connect' to join a network (interactive)
+RX < I (581) wifi station: [OTA] running partition: ota_0, version 1.3.0
+RX < I (581) wifi station: saved credentials found but auto-connect disabled. Type 'connect' to connect.
+RX < I (591) wifi station: station_WiFi fw v1.3.0 ready. Type 'help' for commands
+RX < I (601) main_task: Returned from app_main()
+TX > version
+RX < version
+RX < I (891) wifi station: FW: v1.3.0 (build Sep 29 2026 14:15:56)
+RX < I (891) wifi station:   partition: ota_0 @ 0x10000, state: valid
+TX > disconnect
+RX < disconnect
+RX < I (1501) wifi station: disconnected

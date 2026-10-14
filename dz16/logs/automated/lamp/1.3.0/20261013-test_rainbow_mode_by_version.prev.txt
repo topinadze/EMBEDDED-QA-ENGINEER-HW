@@ -1,0 +1,29 @@
+Test: tests/test_lamp.py::TestLamp::test_rainbow_mode_by_version
+Firmware: 1.3.0
+Captured: 2026-10-13T02:51:14.468244+03:00
+
+TX > lamp status
+RX < lamp status
+RX < {"lamp":"off","color":[255,255,255],"brightness":50,"mode":"solid","timer_s":0}
+TX > version
+RX < version
+RX < I (5298086) wifi station: FW: v1.3.0 (build Sep 29 2026 14:15:56)
+RX < I (5298086) wifi station:   partition: ota_1 @ 0x100000, state: valid
+TX > lamp mode rainbow
+RX < lamp mode rainbow
+RX < E (5298696) wifi station: error: mode 'rainbow' not implemented yet
+TX > lamp timer 0
+RX < lamp timer 0
+RX < I (5299306) wifi station: [LAMP] timer cancelled
+TX > lamp color 255 255 255
+RX < lamp color 255 255 255
+RX < I (5299516) wifi station: [LAMP] color set: (255,255,255)
+TX > lamp brightness 50
+RX < lamp brightness 50
+RX < I (5299736) wifi station: [LAMP] brightness set: 50%
+TX > lamp mode solid
+RX < lamp mode solid
+RX < I (5299946) wifi station: [LAMP] mode set: solid
+TX > lamp off
+RX < lamp off
+RX < I (5300156) wifi station: [LAMP] off

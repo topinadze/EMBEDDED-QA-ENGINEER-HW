@@ -1,0 +1,64 @@
+Test: tests/test_wifi.py::TestWifiStation::test_scan_reports_ssid_rssi_and_channel
+Firmware: 1.4.0
+Captured: 2026-10-14T01:49:31.161773+03:00
+
+TX > lamp status
+RX < lamp status
+RX < {"lamp":"off","color":[255,255,255],"brightness":50,"mode":"solid","timer_s":0}
+TX > version
+RX < version
+RX < I (1431) wifi station: FW: v1.4.0 (build Sep 29 2026 14:16:47)
+RX < I (1431) wifi station:   partition: ota_0 @ 0x10000, state: valid
+TX > scan
+RX < scan
+RX < I (2041) wifi station: scanning WiFi networks...
+RX < I (4541) wifi station: found 34 networks:
+RX < I (4541) wifi station:   [ 1] SSID: TopAs_2.4G                        RSSI: -61 dBm  CH: 1
+RX < I (4541) wifi station:   [ 2] SSID: AP_2987279135                     RSSI: -63 dBm  CH: 1
+RX < I (4541) wifi station:   [ 3] SSID: bambuh                            RSSI: -69 dBm  CH: 9
+RX < I (4551) wifi station:   [ 4] SSID: E_0184_2056_E                     RSSI: -71 dBm  CH: 9
+RX < I (4561) wifi station:   [ 5] SSID: 376                               RSSI: -72 dBm  CH: 3
+RX < I (4571) wifi station:   [ 6] SSID: bambuh                            RSSI: -77 dBm  CH: 9
+RX < I (4581) wifi station:   [ 7] SSID: Xiaomi_625B                       RSSI: -81 dBm  CH: 2
+RX < I (4581) wifi station:   [ 8] SSID: bababa_Guest                      RSSI: -82 dBm  CH: 7
+RX < I (4591) wifi station:   [ 9] SSID: bababa                            RSSI: -83 dBm  CH: 7
+RX < I (4601) wifi station:   [10] SSID: NeD                               RSSI: -83 dBm  CH: 9
+RX < I (4611) wifi station:   [11] SSID: Kvartira212                       RSSI: -84 dBm  CH: 11
+RX < I (4621) wifi station:   [12] SSID: oooaaa                            RSSI: -84 dBm  CH: 11
+RX < I (4621) wifi station:   [13] SSID: GreenMint                         RSSI: -85 dBm  CH: 2
+RX < I (4631) wifi station:   [14] SSID: Internet UTELS Wi-FI              RSSI: -85 dBm  CH: 6
+RX < I (4641) wifi station:   [15] SSID: oooaaa_Guest24                    RSSI: -85 dBm  CH: 11
+RX < I (4651) wifi station:   [16] SSID: c63f5354                          RSSI: -86 dBm  CH: 1
+RX < I (4661) wifi station:   [17] SSID: Keenetic-0122                     RSSI: -86 dBm  CH: 5
+RX < I (4661) wifi station:   [18] SSID: VR46                              RSSI: -88 dBm  CH: 9
+RX < I (4671) wifi station:   [19] SSID: c687a67b                          RSSI: -89 dBm  CH: 1
+RX < I (4681) wifi station:   [20] SSID: c6861204                          RSSI: -90 dBm  CH: 1
+RX < I (4691) wifi station:   [21] SSID: Sashka                            RSSI: -90 dBm  CH: 7
+RX < I (4701) wifi station:   [22] SSID: c67272ed                          RSSI: -91 dBm  CH: 1
+RX < I (4701) wifi station:   [23] SSID: TP-Link_2F1A                      RSSI: -91 dBm  CH: 2
+RX < I (4711) wifi station:   [24] SSID: Solia                             RSSI: -91 dBm  CH: 3
+RX < I (4721) wifi station:   [25] SSID: 130_ibNet                         RSSI: -91 dBm  CH: 4
+RX < I (4731) wifi station:   [26] SSID: TP-Link_54B8                      RSSI: -91 dBm  CH: 6
+RX < I (4741) wifi station:   [27] SSID: 1ed4a802                          RSSI: -92 dBm  CH: 1
+RX < I (4741) wifi station:   [28] SSID: c67c1415                          RSSI: -93 dBm  CH: 1
+RX < I (4751) wifi station:   [29] SSID: WildDucksExtender                 RSSI: -93 dBm  CH: 1
+RX < I (4761) wifi station:   [30] SSID: 222-2                             RSSI: -93 dBm  CH: 10
+RX < I (4771) wifi station:   [31] SSID: D262100562C0                      RSSI: -94 dBm  CH: 4
+RX < I (4781) wifi station:   [32] SSID: Tp-link1000                       RSSI: -94 dBm  CH: 6
+RX < I (4781) wifi station:   [33] SSID: SkyNet                            RSSI: -94 dBm  CH: 13
+RX < I (4791) wifi station:   [34] SSID: Home_sweet_home                   RSSI: -94 dBm  CH: 13
+TX > lamp timer 0
+RX < lamp timer 0
+RX < I (14051) wifi station: [LAMP] timer cancelled
+TX > lamp color 255 255 255
+RX < lamp color 255 255 255
+RX < I (14261) wifi station: [LAMP] color set: (255,255,255)
+TX > lamp brightness 50
+RX < lamp brightness 50
+RX < I (14471) wifi station: [LAMP] brightness set: 50%
+TX > lamp mode solid
+RX < lamp mode solid
+RX < I (14681) wifi station: [LAMP] mode set: solid
+TX > lamp off
+RX < lamp off
+RX < I (14891) wifi station: [LAMP] off

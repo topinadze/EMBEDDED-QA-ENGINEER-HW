@@ -1,0 +1,91 @@
+Test: tests/test_ota.py::TestOta::test_current_channel_is_not_reinstalled[beta-already-current]
+Firmware: 1.4.0
+Captured: 2026-10-14T01:54:28.647062+03:00
+
+TX > lamp status
+RX < lamp status
+RX < {"lamp":"off","color":[255,255,255],"brightness":50,"mode":"solid","timer_s":0}
+TX > version
+RX < version
+RX < I (115711) wifi station: FW: v1.4.0 (build Sep 29 2026 14:16:47)
+RX < I (115711) wifi station:   partition: ota_0 @ 0x10000, state: valid
+TX > status
+RX < status
+RX < W (116321) wifi:Haven't to connect to a suitable AP now!
+RX < I (116321) wifi station: WiFi: connected
+RX < I (116321) wifi station:   SSID:
+RX < I (116321) wifi station:   IP:   0.0.0.0
+RX < I (116321) wifi station:   RSSI: 0 dBm
+TX > status
+RX < status
+RX < W (118331) wifi:Haven't to connect to a suitable AP now!
+RX < I (118331) wifi station: WiFi: connected
+RX < I (118331) wifi station:   SSID:
+RX < I (118331) wifi station:   IP:   0.0.0.0
+RX < I (118331) wifi station:   RSSI: 0 dBm
+TX > connect
+RX < connect
+RX < I (120341) wifi station: scanning...
+RX < I (122841) wifi station: found 29 networks:
+RX < I (122841) wifi station:   [1] TopA-node                         -23 dBm
+RX < I (122841) wifi station:   [2] TopAs_2.4G                        -63 dBm
+RX < I (122841) wifi station:   [3] AP_2987279135                     -65 dBm
+RX < I (122851) wifi station:   [4] bambuh                            -68 dBm
+RX < I (122851) wifi station:   [5] E_0184_2056_E                     -70 dBm
+RX < I (122861) wifi station:   [6] 376                               -71 dBm
+RX < I (122871) wifi station:   [7] HiSmart-01-ca2c4fae5ef5           -74 dBm
+RX < I (122871) wi
+RX < fi station:   [8] Xiaomi_625B                       -81 dBm
+RX < I (122881) wifi station:   [9] bambuh                            -81 dBm
+RX < I (122891) wifi station:   [10] bababa_Guest                      -83 dBm
+RX < I (122891) wifi station:   [11] oooaaa_Guest24                    -84 dBm
+RX < I (122901) wifi station:   [12] nest wifi                         -85 dBm
+RX < I (122911) wifi station:   [13] GreenMint                         -85 dBm
+RX < I (122911) wifi station:   [14] Keenetic-0122                     -85 dBm
+RX < I (122921) wifi station:   [15] Kvartira212                       -85 dBm
+RX < I (122931) wifi station:   [16] c63f5354                          -86 dBm
+RX < I (122931) wifi station:   [17] c6861204                          -86 dBm
+RX < I (122941) wifi station:   [18] NeD                               -86 dBm
+RX < I (122951) wifi station:   [19] oooaaa                            -86 dBm
+RX < I (122951) wifi station:   [20] c672bc1a                          -87 dBm
+RX < I (122961) wifi station:   [21] VR46                              -89 dBm
+RX < I (122961) wifi station:   [22] c687a67b                          -90 dBm
+RX < I (122971) wifi station:   [23] Tp-link1000                       -91 dBm
+RX < I (122981) wifi station:   [24] c60422f2                          -92 dBm
+RX < I (122981) wifi station:   [25] Maze_06B1                         -92 dBm
+RX < I (122991) wifi station:   [26] Home_sweet_home                   -92 dBm
+RX < I (123001) wifi station:   [27] 13💡                            -94 dBm
+RX < I (123001) wifi station:   [28] SkyNet                            -94 dBm
+RX < I (123011) wifi station:   [29] Lesh                              -95 dBm
+RX < Enter SSID, number from list, or Enter to use saved [TopA-node]:
+TX > 
+RX < I (123211) wifi station: using saved SSID: TopA-node
+RX < I (123211) wifi station: connecting to SSID:TopA-node ...
+RX < I (123221) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0
+RX < I (123221) wifi:state: init -> auth (0xb0)
+RX < I (123231) wifi:state: auth -> assoc (0x0)
+RX < I (123241) wifi:state: assoc -> run (0x10)
+RX < I (123251) wifi:connected with TopA-node, aid = 1, channel 1, BW20, bssid = 6a:6b:bb:44:55:78
+RX < I (123251) wifi:security: WPA2-PSK, phy: bgn, rssi: -22, cipher(pairwise:0x3, group:0x3), pmf:1
+RX < I (123261) wifi:pm start, type: 1
+RX < I (123261) wifi:dp: 1, bi: 102400, li: 3, scale listen interval from 307200 us to 307200 us
+RX < I (123271) wifi:set rx beacon pti, rx_bcn_pti: 0, bcn_timeout: 25000, mt_pti: 0, mt_time: 10000
+RX < I (123321) wifi:dp: 2, bi: 102400, li: 4, scale listen interval from 307200 us to 409600 us
+RX < I (123321) wifi:AP's beacon interval = 102400 us, DTIM period = 2
+RX < I (124311) esp_netif_handlers: sta ip: 10.123.30.49, mask: 255.255.255.0, gw: 10.123.30.28
+RX < I (124311) wifi station: got ip:10.1
+RX < 23.30.49
+RX < I (124311) wifi station: successfully connected to SSID:TopA-node
+TX > status
+RX < status
+RX < I (124651) wifi station: WiFi: connected
+RX < I (124651) wifi station:   SSID: TopA-node
+RX < I (124651) wifi station:   IP:   10.123.30.49
+RX < I (124651) wifi station:   RSSI: -22 dBm
+TX > disconnect
+RX < disconnect
+RX < I (126661) wifi:state: run -> init (0x0)
+RX < I (126671) wifi:pm stop, total sleep time: 2673200 us / 3403190 us
+RX < I (126671) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0
+RX < I (126671) wifi station: disconnected
+RX < I (126671) wifi station: connect to the AP fail

@@ -1,0 +1,36 @@
+Test: tests/test_lamp.py::TestLamp::test_timer_auto_off
+Firmware: 1.3.0
+Captured: 2026-10-14T05:58:43.875427+03:00
+
+TX > lamp status
+RX < lamp status
+RX < {"lamp":"off","color":[255,255,255],"brightness":50,"mode":"solid","timer_s":0}
+TX > version
+RX < version
+RX < I (976229) wifi station: FW: v1.3.0 (build Sep 29 2026 14:15:56)
+RX < I (976229) wifi station:   partition: ota_1 @ 0x100000, state: valid
+TX > lamp on
+RX < lamp on
+RX < I (976829) wifi station: [LAMP] on
+TX > lamp timer 10
+RX < lamp timer 10
+RX < I (977439) wifi station: [LAMP] auto-off in 10 s
+RX < I (987449) wifi station: [LAMP] timer expired, lamp off
+TX > lamp status
+RX < lamp status
+RX < {"lamp":"off","color":[255,255,255],"brightness":50,"mode":"solid","timer_s":0}
+TX > lamp timer 0
+RX < lamp timer 0
+RX < I (988309) wifi station: [LAMP] timer cancelled
+TX > lamp color 255 255 255
+RX < lamp color 255 255 255
+RX < I (988519) wifi station: [LAMP] color set: (255,255,255)
+TX > lamp brightness 50
+RX < lamp brightness 50
+RX < I (988729) wifi station: [LAMP] brightness set: 50%
+TX > lamp mode solid
+RX < lamp mode solid
+RX < I (988929) wifi station: [LAMP] mode set: solid
+TX > lamp off
+RX < lamp off
+RX < I (989139) wifi station: [LAMP] off

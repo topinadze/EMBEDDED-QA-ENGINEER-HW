@@ -1,0 +1,86 @@
+Test: tests/test_system.py::TestSystemInteractive::test_distance_continuous_interactive
+Firmware: 1.3.0
+Captured: 2026-10-13T20:55:32.686399+03:00
+
+TX > lamp status
+RX < lamp status
+RX < {"lamp":"off","color":[255,255,255],"brightness":50,"mode":"solid","timer_s":0}
+TX > version
+RX < version
+RX < I (1431966) wifi station: FW: v1.3.0 (build Sep 29 2026 14:15:56)
+RX < I (1431966) wifi station:   partition: ota_1 @ 0x100000, state: valid
+TX > distance
+RX < distance
+RX < I (1459426) wifi station: measuring continuously, press Enter to stop...
+RX < I (1459426) wifi station: distance: 22.5 cm
+RX < I (1459926) wifi station: distance: 22.5 cm
+RX < I (1460426) wifi station: distance: 9.4 cm
+RX < I (1460926) wifi station: distance: 22.5 cm
+TX > 
+RX < I (1461426) wifi station: distance: 9.4 cm
+RX < I (1461926) wifi station: distance: 9.4 cm
+RX < I (1462426) wifi station: distance: 9.4 cm
+RX < I (1462926) wifi station: distance: 22.5 cm
+RX < I (1463426) wifi station: distance: 22.5 cm
+RX < I (1463926) wifi station: distance: 22.5 cm
+RX < I (1464426) wifi station: distance: 9.4 cm
+RX < I (1464926) wifi station: distance: 9.4 cm
+RX < I (1465426) wifi station: distance: 9.4 cm
+RX < I (1465926) wifi station: distance: 22.6 cm
+RX < I (1466426) wifi station: distance: 9.4 cm
+RX < I (1466926) wifi station: distance: 9.4 cm
+RX < I (1467426) wifi station: distance: 9.4 cm
+RX < I (1467926) wifi station: distance: 9.4 cm
+RX < I (1468426) wifi station: distance: 9.4 cm
+RX < I (1468926) wifi station: distance: 9.4 cm
+RX < I (1469426) wifi station: distance: 9.4 cm
+RX < I (1469926) wifi station: distance: 9.4 cm
+RX < I (1470426) wifi station: distance: 9.4 cm
+RX < I (1470926) wifi station: distance: 9.4 cm
+RX < I (1471426) wifi station: distance: 22.2 cm
+RX < I (1471926) wifi station: distance: 22.3 cm
+RX < I (1472426) wifi station: distance: 22.2 cm
+RX < I (1472926) wifi station: distance: 9.4 cm
+RX < I (1473426) wifi station: distance: 22.2 cm
+RX < I (1473926) wifi station: distance: 22.2 cm
+RX < I (1474426) wifi station: distance: 22.2 cm
+RX < I (1474926) wifi station: distance: 22.2 cm
+RX < I (1475426) wifi station: distance: 10.5 cm
+RX < I (1475926) wifi station: distance: 10.5 cm
+RX < I (1476426) wifi station: distance: 10.5 cm
+RX < I (1476926) wifi station: distance: 10.5 cm
+RX < I (1477426) wifi station: distance: 22.5 cm
+RX < I (1477926) wifi station: distance: 9.4 cm
+RX < I (1478426) wifi station: distance: 9.4 cm
+RX < I (1478926) wifi station: distance: 23.4 cm
+RX < I (1479426) wifi station: distance: 22.2 cm
+RX < I (1479926) wifi station: distance: 22.3 cm
+RX < I (1480426) wifi station: distance: 10.5 cm
+RX < I (1480926) wifi station: distance: 22.2 cm
+RX < I (1481426) wifi station: distance: 22.2 cm
+RX < I (1481926) wifi station: distance: 22.2 cm
+RX < I (1482426) wifi station: distance: 22.5 cm
+RX < I (1482926) wifi station: distance: 37.7 cm
+RX < I (1483426) wifi station: distance: 22.8 cm
+RX < I (1483926) wifi station: distance: 23.7 cm
+RX < I (1484426) wifi station: distance: 22.2 cm
+RX < I (1484926) wifi station: distance: 8.4 cm
+RX < I (1485426) wifi station: distance: 10.5 cm
+RX < I (1485926) wifi station: distance: 10.5 cm
+RX < I (1486426) wifi station: distance: 10.5 cm
+RX < I (1486926) wifi station: distance: 23.7 cm
+TX > lamp timer 0
+RX < lamp timer 0
+RX < I (1488796) wifi station: [LAMP] timer cancelled
+TX > lamp color 255 255 255
+RX < lamp color 255 255 255
+RX < I (1489006) wifi station: [LAMP] color set: (255,255,255)
+TX > lamp brightness 50
+RX < lamp brightness 50
+RX < I (1489206) wifi station: [LAMP] brightness set: 50%
+TX > lamp mode solid
+RX < lamp mode solid
+RX < I (1489416) wifi station: [LAMP] mode set: solid
+TX > lamp off
+RX < lamp off
+RX < I (1489626) wifi station: [LAMP] off

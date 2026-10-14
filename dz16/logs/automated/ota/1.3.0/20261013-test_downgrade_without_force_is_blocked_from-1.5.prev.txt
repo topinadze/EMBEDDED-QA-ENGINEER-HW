@@ -1,0 +1,64 @@
+Test: tests/test_ota.py::TestOta::test_downgrade_without_force_is_blocked[from-1.5]
+Firmware: 1.3.0
+Captured: 2026-10-13T02:53:19.707548+03:00
+
+TX > lamp status
+RX < I (5407426) wifi station: connection timeout
+RX < lamp status
+RX < {"lamp":"off","color":[255,255,255],"brightness":50,"mode":"solid","timer_s":0}
+TX > version
+RX < version
+RX < I (5408066) wifi station: FW: v1.3.0 (build Sep 29 2026 14:15:56)
+RX < I (5408066) wifi station:   partition: ota_1 @ 0x100000, state: valid
+TX > status
+RX < status
+RX < I (5408676) wifi station: WiFi: disconnected
+RX < I (5409486) wifi station: retry to connect to the AP
+TX > status
+RX < status
+RX < I (5410676) wifi station: WiFi: disconnected
+RX < I (5411896) wifi station: connect to the AP fail
+TX > connect
+RX < connect
+RX < I (5412686) wifi station: scanning...
+RX < I (5415186) wifi station: found 32 networks:
+RX < I (5415186) wifi station:   [1] bambuh                            -54 dBm
+RX < I (5415186) wifi station:   [2] TopAs_2.4G                        -72 dBm
+RX < I (5415186) wifi station:   [3] AP_2987279135                     -73 dBm
+RX < I (5415196) wifi station:   [4] 376                               -74 dBm
+RX < I (5415206) wifi station:   [5] HiSmart-01-ca2c4fae593b           -76 dBm
+RX < I (5415206) wifi station:   [6] c63f5354                          -83 dBm
+RX < I (5415216) wifi station:   [7] E_0184_2056_E                     -84 dBm
+RX < I (5415216) wifi station:   [8] bambuh                            -85 dBm
+RX < I (5415226) wifi station:   [9] respublika40                      -85 dBm
+RX < I (5415236) wifi station:   [10] c67272ed                          -86 dBm
+RX < I (5415236) wifi station:   [11] oooaaa                            -86 dBm
+RX < I (5415246) wifi station:   [12] oooaaa_Guest24                    -86 dBm
+RX < I (5415256) wifi station:   [13] 1ee215ae                          -87 dBm
+RX < I (5415256) wifi station:   [14] c6861204                          -87 dBm
+RX < I (5415266) wifi station:   [15] Internet UTELS Wi-FI              -87 dBm
+RX < I (5415276) wifi station:   [16] GreenMint                         -88 dBm
+RX < I (5415276) wifi station:   [17] NeD                               -88 dBm
+RX < I (5415286) wifi station:   [18] Solia                             -90 dBm
+RX < I (5415296) wifi station:   [19] Xiaomi_625B                       -90 dBm
+RX < I (5415296) wifi station:   [20] 1ed4a802                          -92 dBm
+RX < I (5415306) wifi station:   [21] Maze_06B1                         -92 dBm
+RX < I (5415316) wifi station:   [22] BBG                               -92 dBm
+RX < I (5415316) wifi station:   [23] Home_sweet_home                   -92 dBm
+RX < I (5415326) wifi station:   [24] c60160bb                          -93 dBm
+RX < I (5415336) wifi station:   [25] S+D=L                             -93 dBm
+RX < I (5415336) wifi station:   [26] MERCUSYS_D2CA                     -93 dBm
+RX < I (5415346) wifi station:   [27] TP-Link_54B8                      -93 dBm
+RX < I (5415356) wifi station:   [28] SMART_3c68                        -93 dBm
+RX < I (5415356) wifi station:   [29] c60422f2                          -94 dBm
+RX < I (5415366) wifi station:   [30] Leonovy                           -94 dBm
+RX < I (5415376) wifi station:   [31] 222-2                             -94 dBm
+RX < I (5415376) wifi station:   [32] SkyNet                            -96 dBm
+RX < Enter SSID, number from list, or Enter to use saved [TopA-node]:
+TX > 
+RX < I (5415596) wifi station: using saved SSID: TopA-node
+RX < I (5415596) wifi station: connecting to SSID:TopA-node ...
+RX < I (5418006) wifi station: retry to connect to the AP
+RX < I (5420416) wifi station: retry to connect to the AP
+RX < I (5422836) wifi station: retry to connect to the AP
+RX < I (5425246) wifi station: retry to connect to the AP

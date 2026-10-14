@@ -1,0 +1,123 @@
+Test: tests/test_wifi.py::TestWifiStation::test_missing_ssid_is_rejected
+Firmware: 1.4.0
+Captured: 2026-10-14T01:50:18.101295+03:00
+
+TX > lamp status
+RX < lamp status
+RX < {"lamp":"off","color":[255,255,255],"brightness":50,"mode":"solid","timer_s":0}
+TX > version
+RX < version
+RX < I (43041) wifi station: FW: v1.4.0 (build Sep 29 2026 14:16:47)
+RX < I (43041) wifi station:   partition: ota_0 @ 0x10000, state: valid
+TX > disconnect
+RX < disconnect
+RX < I (43581) wifi station: connect to the AP fail
+RX < I (43661) wifi station: disconnected
+RX < I (43661) wifi station: connect to the AP fail
+TX > connect
+RX < connect
+RX < I (45661) wifi station: scanning...
+RX < I (48161) wifi station: found 29 networks:
+RX < I (48161) wifi station:   [1] TopAs_2.4G                        -64 dBm
+RX < I (48161) wifi station:   [2] bambuh                            -64 dBm
+RX < I (48161) wifi station:   [3] AP_2987279135                     -66 dBm
+RX < I (48171) wifi station:   [4] 376                               -71 dBm
+RX < I (48171) wifi station:   [5] HiSmart-01-ca2c4fae5ef5           -74 dBm
+RX < I (48181) wifi station:   [6] Xiaomi_625B                       -78 dBm
+RX < I (48191) wifi station:   [7] HiSmart-01-ca2c4fae593b           -83 dBm
+RX < I (48191) wifi station:   [8] bababa                            -83 dBm
+RX < I (48201) wifi station:   [9] bababa_Guest                      -83 dBm
+RX < I (48211) wifi station:   [10] nest wifi                         -8
+RX < 4 dBm
+RX < I (48211) wifi station:   [11] Kvartira212                       -84 dBm
+RX < I (48221) wifi station:   [12] oooaaa                            -86 dBm
+RX < I (48231) wifi station:   [13] NeD                               -87 dBm
+RX < I (48231) wifi station:   [14] c67272ed                          -88 dBm
+RX < I (48241) wifi station:   [15] TP-Link_54B8                      -88 dBm
+RX < I (48241) wifi station:   [16] c60422f2                          -89 dBm
+RX < I (48251) wifi station:   [17] c67c1415                          -89 dBm
+RX < I (48261) wifi station:   [18] home_2.4                          -89 dBm
+RX < I (48261) wifi station:   [19] c6861204                          -90 dBm
+RX < I (48271) wifi station:   [20] c687a67b                          -92 dBm
+RX < I (48281) wifi station:   [21] Daunton                           -92 dBm
+RX < I (48281) wifi station:   [22] 1ed4a802                          -92 dBm
+RX < I (48291) wifi station:   [23] WildDucksExtender                 -93 dBm
+RX < I (48301) wifi station:   [24] TP-Link_94B4                      -93 dBm
+RX < I (48301) wifi station:   [25] SkyNet                            -93 dBm
+RX < I (48311) wifi station:   [26] D262100562C0                      -94 dBm
+RX < I (48321) wifi station:   [27] c63f2d55                          -95 dBm
+RX < I (48321) wifi station:   [28] Home_sweet_home                   -96 dBm
+RX < I (48331) wifi station:   [29] 1ee215ae                          -97 dBm
+RX < Enter SSID, number from list, or Enter to use saved [TopA-node]:
+TX > HW16-NONEXISTENT-NETWORK
+RX < HW16-NONEXISTENT-NETWORK
+RX < I (48561) wifi station: SSID: HW16-NONEXISTENT-NETWORK
+RX < Enter password:
+TX > [REDACTED]
+RX < [REDACTED]
+RX < I (48761) wifi station: password: OK
+RX < I (48781) wifi station: connecting to SSID:HW16-NONEXISTENT-NETWORK ...
+RX < I (51191) wifi station: retry to connect to the AP
+RX < I (53601) wifi station: retry to connect to the AP
+RX < I (56011) wifi station: retry to connect to the AP
+RX < I (58431) wifi station: retry to connect to the AP
+RX < I (58781) wifi station: connection timeout
+TX > help
+RX < help
+RX < I (58991) wifi station: Available commands:
+RX < I (58991) wifi station:   connect                    - connect to WiFi AP
+RX < I (58991) wifi station:   disconnect                 - disconnect from WiFi AP
+RX < I (58991) wifi station:   status                     - show WiFi connection status
+RX < I (59001) wifi station:   scan                       - scan for WiFi networks
+RX < I (59011) wifi station:   distance                   - measure continuously (Enter to stop)
+RX < I (59011) wifi station:   distance 10                - measure for 10 seconds
+RX < I (59021) wifi station:   distance <seconds>         - measure for N seconds
+RX < I (59031) wifi station:   relay on                   - turn relay ON
+RX < I (59031) wifi station:   relay off                  - turn relay OFF
+RX < I (59041) wifi station:   led on                     - turn LED on (white)
+RX < I (59051) wifi station:   led off                    - turn LED off
+RX < I (59051) wifi station:   led auto                   - LED follows WiFi status
+RX < I (59061) wifi station:   led rgb                    - smooth RGB cycle for 5 seconds
+RX < I (59071) wifi station:   version                    - firmware version, partition, OTA state
+RX < I (59071) wifi station:   ota check                  - compare current version with server
+RX < I (59081) wifi station:   ota update                 - install latest stable firmware
+RX < I (59091) wifi station:   ota update beta            - install latest beta firmware
+RX < I (59101) wifi station:   ota install <ver> [force]  - install specific version (force = allow downgrade)
+RX < I (59111) wifi station:   ota broken                 - install intentionally broken fw (rollback demo)
+RX < I (59121) wifi station:   ota <url>                  - flash firmware from custom URL (http/https)
+RX < I (59121) wifi station:   ota-test-server            - simulate OTA update (fake, no download)
+RX < I (59131) wifi station: Smart Lamp:
+RX < I (59141) wifi station:   lamp on | lamp off         - turn lamp on/off
+RX < I (59141) wifi station:   lamp color <name>          - red green blue white yellow purple cyan
+RX < I (59151) wifi station:   lamp color <r> <g> <b>     - custom color, 0-255 each
+RX < I (59161) wifi station:   lamp brightness <0-100>    - brightness in %
+RX < I (59161) wifi station:   lamp mode <mode>           - solid blink breathe rainbow
+RX < I (59171) wifi station:   lamp timer <1-3600>        - auto-off after N seconds (0 = cancel)
+RX < I (59181) wifi station:   lamp scene save|load <1-3> - save/load color+brightness+mode
+RX < I (59191) wifi station:   lamp status                - lamp state as JSON
+RX < I (59191) wifi station:   sysinfo                    - show system information
+RX < I (59201) wifi station:   temp                       - show chip temperature
+RX < I (59211) wifi station:   sensor status              - show all sensors status
+RX < I (59211) wifi station:   reboot                     - reboot device
+RX < I (59221) wifi station:   help                       - show this help
+RX < I (59231) wifi station: Buttons:
+RX < I (59231) wifi station:   K1 (GPIO41)                - distance 10s
+RX < I (59241) wifi station:   K2 (GPIO40)                - relay toggle
+RX < I (59241) wifi station:   K3 (GPIO39)                - wifi disconnect / reconnect (saved)
+RX < I (59251) wifi station:   K4 (GPIO38)                - diode toggle
+RX < I (60841) wifi station: retry to connect to the AP
+TX > lamp timer 0
+RX < lamp timer 0
+RX < I (61001) wifi station: [LAMP] timer cancelled
+TX > lamp color 255 255 255
+RX < lamp color 255 255 255
+RX < I (61211) wifi station: [LAMP] color set: (255,255,255)
+TX > lamp brightness 50
+RX < lamp brightness 50
+RX < I (61421) wifi station: [LAMP] brightness set: 50%
+TX > lamp mode solid
+RX < lamp mode solid
+RX < I (61631) wifi station: [LAMP] mode set: solid
+TX > lamp off
+RX < lamp off
+RX < I (61831) wifi station: [LAMP] off

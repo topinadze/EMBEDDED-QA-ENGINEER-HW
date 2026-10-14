@@ -12,7 +12,7 @@ Validate the implementation and its evidence independently; do not equate plausi
 1. Identify the changed test files, fixtures, pytest configuration, driver code, requirement source, and report/evidence affected by the change.
 2. Check that each new test traces to a requirement or known bug and asserts the exact expected output/state/observation.
 3. Check data-driven coverage, input boundaries, isolation, fixture scope, cleanup behavior, persistent-state markers, and failure recovery.
-4. Check interactive safeguards: explicit markers, console input protection, physical-action prompts, independent setup, and no credential disclosure.
+4. Check interactive safeguards: explicit markers, console input protection, physical-action prompts, operator preparation prompt (`manual_prepare` with action, observation, duration, and confirmation), clean termination of streams before verification, no UART multi-event buffer exhaustion races, independent setup, and no credential disclosure.
 5. Check Allure metadata, readable titles, meaningful steps, attachments, and consistency between test/bug IDs and report.
 6. Run safe validations proportionate to the change: syntax/type or lint checks, focused unit tests, pytest collection, and `git diff --check`.
 7. Do not execute hardware, interactive, OTA, flash, destructive, or persistent-state tests unless the user explicitly requested that execution.

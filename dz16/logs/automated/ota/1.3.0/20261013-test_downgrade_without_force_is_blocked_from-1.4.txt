@@ -1,0 +1,71 @@
+Test: tests/test_ota.py::TestOta::test_downgrade_without_force_is_blocked[from-1.4]
+Firmware: 1.3.0
+Captured: 2026-10-13T03:14:22.072725+03:00
+
+TX > lamp status
+RX < I (308421) wifi station: connection timeout
+RX < lamp status
+RX < {"lamp":"off","color":[255,255,255],"brightness":50,"mode":"solid","timer_s":0}
+TX > version
+RX < version
+RX < I (309091) wifi station: FW: v1.3.0 (build Sep 29 2026 14:15:56)
+RX < I (309091) wifi station:   partition: ota_1 @ 0x100000, state: valid
+TX > status
+RX < status
+RX < I (309691) wifi station: WiFi: disconnected
+TX > status
+RX < status
+RX < I (311711) wifi station: WiFi: disconnected
+TX > connect
+RX < connect
+RX < I (313721) wifi station: scanning...
+RX < I (316621) wifi station: found 42 networks:
+RX < I (316621) wifi station:   [1] TopA-node                         -25 dBm
+RX < I (316621) wifi station:   [2] bambuh                            -58 dBm
+RX < I (316621) wifi station:   [3] TopAs_2.4G                        -64 dBm
+RX < I (316631) wifi station:   [4] AP_2987279135                     -69 dBm
+RX < I (316631) wifi station:   [5] 376                               -73 dBm
+RX < I (316641) wifi station:   [6] HiSmart-01-ca2c4fae5ef5           -79 dBm
+RX < I (316651) wifi station:   [7] HiSmart-01-ca2c4fae593b           -80 dBm
+RX < I (316651) wi
+RX < fi station:   [8] bababa_Guest                      -80 dBm
+RX < I (316661) wifi station:   [9] VR46                              -81 dBm
+RX < I (316671) wifi station:   [10] E_0184_2056_E                     -81 dBm
+RX < I (316671) wifi station:   [11] c63f5354                          -83 dBm
+RX < I (316681) wifi station:   [12] c67272ed                          -84 dBm
+RX < I (316691) wifi station:   [13] bababa                            -85 dBm
+RX < I (316691) wifi station:   [14] Sashka                            -86 dBm
+RX < I (316701) wifi station:   [15] nest wifi                         -86 dBm
+RX < I (316711) wifi station:   [16] bambuh                            -86 dBm
+RX < I (316711) wifi station:   [17] oooaaa                            -86 dBm
+RX < I (316721) wifi station:   [18] oooaaa_Guest24                    -86 dBm
+RX < I (316731) wifi station:   [19] c68766c0                          -87 dBm
+RX < I (316731) wifi station:   [20] GreenMint                         -87 dBm
+RX < I (316741) wifi station:   [21] SmileV                            -88 dBm
+RX < I (316741) wifi station:   [22] c672bc1a                          -90 dBm
+RX < I (316751) wifi station:   [23] TP-Link_54B8                      -90 dBm
+RX < I (316761) wifi station:   [24] Kvartira212                       -90 dBm
+RX < I (316761) wifi station:   [25] c6861204                          -91 dBm
+RX < I (316771) wifi station:   [26] c687a67b                          -91 dBm
+RX < I (316781) wifi station:   [27] SkyNet                            -91 dBm
+RX < I (316781) wifi station:   [28] 1ed4a802                          -92 dBm
+RX < I (316791) wifi station:   [29] bogomol_new                       -92 dBm
+RX < I (316801) wifi station:   [30] Maze_06B1                         -92 dBm
+RX < I (316801) wifi station:   [31] c604f0b7                          -92 dBm
+RX < I (316811) wifi station:   [32] MERCUSYS_D2CA                     -92 dBm
+RX < I (316821) wifi station:   [33] Home_sweet_home                   -92 dBm
+RX < I (316821) wifi station:   [34] rezik.a                           -93 dBm
+RX < I (316831) wifi station:   [35] NeD                               -93 dBm
+RX < I (316841) wifi station:   [36] c64114c6                          -94 dBm
+RX < I (316841) wifi station:   [37] c63f8787                          -94 dBm
+RX < I (316851) wifi station:   [38] 1ee215ae                          -94 dBm
+RX < I (316861) wifi station:   [39] primis2.4
+RX < -94 dBm
+RX < I (316861) wifi station:   [40] Solia                             -94 dBm
+RX < I (316871) wifi station:   [41] BlackBox-2                        -95 dBm
+RX < I (316881) wifi station:   [42] c67db18d                          -95 dBm
+RX < Enter SSID, number from list, or Enter to use saved [TopA-node]:
+TX > 
+RX < I (317211) wifi station: using saved SSID: TopA-node
+RX < W (317211) wifi:sta is connected, disconnect before connecting to new ap
+RX < I (317211) wifi station: connecting to SSID:TopA-node ...

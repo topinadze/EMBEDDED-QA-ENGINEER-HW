@@ -1,0 +1,15 @@
+Test: tests/test_ota.py::TestOta::test_version_reports_active_partition
+Firmware: 1.3.0
+Captured: 2026-10-14T05:22:40.714440+03:00
+
+TX > lamp status
+RX < lamp status
+RX < {"lamp":"off","color":[255,255,255],"brightness":50,"mode":"solid","timer_s":0}
+TX > version
+RX < version
+RX < I (312620) wifi station: FW: v1.3.0 (build Sep 29 2026 14:15:56)
+RX < I (312620) wifi station:   partition: ota_1 @ 0x100000, state: valid
+TX > version
+RX < version
+RX < I (313220) wifi station: FW: v1.3.0 (build Sep 29 2026 14:15:56)
+RX < I (313220) wifi station:   partition: ota_1 @ 0x100000, state: valid

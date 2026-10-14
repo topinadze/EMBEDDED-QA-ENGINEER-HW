@@ -9,7 +9,20 @@ description: "Implement and execute pytest scenarios requiring physical buttons,
 
 - Mark operator-dependent cases `@pytest.mark.interactive`; preserve the repository's default exclusion of interactive cases from unattended test runs.
 - Use the established manual-check fixture and require uncaptured console input (`-s`). Do not emulate a physical button by sending a console command unless the requirement explicitly calls for that.
-- Before asking the operator to act, establish machine-verifiable preconditions and state the exact physical action and observation in the prompt.
+- **Operator Preparation Protocol (`manual_prepare`)**:
+  - Before asking the operator to act or triggering a physical observation, present a clear preparation prompt (`manual_prepare`):
+    1. **What to do**: which exact button to press (e.g. K1/K2/K3/K4), where to place an obstacle, or what physical state to configure.
+    2. **What to observe**: audible relay clicks, LED colors/blinks, reboot countdowns, or streaming values.
+    3. **Duration / Time limit**: state how long the observation will last or how much time the operator has (e.g. "Duration: ~5-10 seconds", "Wait for streaming ~8 seconds").
+    4. **Readiness confirmation**: pause until the operator explicitly confirms readiness (e.g. `Press Enter when ready:`).
+- **Streaming & Timed Operations Discipline**:
+  - For streaming or continuous commands (e.g. `distance`, animations):
+    * Allow adequate observation time (e.g. 6-10 seconds) so the operator can comfortably observe the physical phenomenon and console stream.
+    * Explicitly terminate the stream (e.g. send `\n` to stop `distance`, confirm stopped state) **before** calling `manual_check`.
+    * Never prompt for verification while the device is actively flooding the serial console with measurement logs.
+- **Multi-Message UART Event Capture**:
+  - When physical events trigger multiple immediate UART log messages (e.g. button press log `button 2 pressed (GPIO40)` plus action log `[K2] relay ON`), record the UART buffer index before prompting or acting (`mark = len(device_driver.uart_log)`).
+  - Use atomic multi-message matchers (such as `device_driver.wait_for_all(texts, since_index=mark)`) or inspect existing logs from the recorded mark (`wait_for(text, since_index=mark)`) to avoid race conditions where reading the first log drains serial buffers and starves subsequent checks.
 - Capture machine-verifiable UART evidence separately from physical observations. Record pass/fail and optional operator comments through the established helper.
 - Keep test steps and prompts self-explanatory; use Allure steps around phases, action prompts, UART waits, and visual checks.
 - Design each case to run independently, including opening/closing its own UART fixture. Never assume a prior test has left the device in a suitable state.

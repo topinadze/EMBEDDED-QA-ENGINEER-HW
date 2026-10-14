@@ -1,0 +1,140 @@
+Test: tests/test_ota.py::TestOta::test_ota_update_without_wifi_is_rejected
+Firmware: 1.4.0
+Captured: 2026-10-14T05:26:26.653199+03:00
+
+TX > lamp status
+RX < lamp status
+RX < {"lamp":"off","color":[255,255,255],"brightness":50,"mode":"solid","timer_s":0}
+TX > version
+RX < version
+RX < I (43433) wifi station: FW: v1.4.0 (build Sep 29 2026 14:16:47)
+RX < I (43433) wifi station:   partition: ota_0 @ 0x10000, state: valid
+TX > version
+RX < version
+RX < I (44043) wifi station: FW: v1.4.0 (build Sep 29 2026 14:16:47)
+RX < I (44043) wifi station:   partition: ota_0 @ 0x10000, state: valid
+TX > disconnect
+RX < disconnect
+RX < I (44653) wifi station: disconnected
+TX > status
+RX < status
+RX < W (46653) wifi:Haven't to connect to a suitable AP now!
+RX < I (46653) wifi station: WiFi: connected
+RX < I (46653) wifi station:   SSID:
+RX < I (46653) wifi station:   IP:   0.0.0.0
+RX < I (46653) wifi station:   RSSI: 0 dBm
+TX > reboot
+RX < I (49663) wifi station: 2...
+RX < I (50663) wifi station: 1...
+RX < I (51663) wifi:flush txq
+RX < I (51663) wifi:stop sw txq
+RX < I (51663) wifi:lmac stop hw txq
+RX < x��ESP-ROM:esp32s3-20210327
+RX < Build:Mar 27 2021
+RX < rst:0xc (RTC_SW_CPU_RST),boot:0x28 (SPI_FAST_FLASH_BOOT)
+RX < Saved PC:0x4037b94e
+RX < SPIWP:0xee
+RX < mode:DIO, clock div:1
+RX < load:0x3fce2820,len:0x14f0
+RX < load:0x403c8700,len:0xda0
+RX < load:0x403cb700,len:0x2fa0
+RX < entry 0x403c8908
+RX < I (29) boot: ESP-IDF v6.0.1 2nd stage bootloader
+RX < I (29) boot: compile time Sep 29 2026 14:16:01
+RX < I (29) boot: Multicore bootloader
+RX < I (29) boot: chip revision: v0.2
+RX < I (32) boot: efuse block revision: v1.3
+RX < I (36) boot.esp32s3: Boot SPI Speed : 80MHz
+RX < I (40) boot.esp32s3: SPI Mode       : DIO
+RX < I (43) boot.esp32s3: SPI Flash Size : 2MB
+RX < I (47) boot: Enabling RNG early entropy source...
+RX < I (52) boot: Partition Table:
+RX < I (54) boot: ## Label            Usage          Type ST Offset   Length
+RX < I (61) boot:  0 nvs              WiFi data        01 02 00009000 00004000
+RX < I (67) boot:  1 otadata          OTA data         01 00 0000d000 00002000
+RX < I (74) boot:  2 ota_0            OTA app          00 10 00010000 000f0000
+RX < I (80) boot:  3 ota_1            OTA app
+RX < 00 11 00100000 000f0000
+RX < I (87) boot: End of partition table
+RX < I (90) esp_image: segment 0: paddr=00010020 vaddr=3c0a0020 size=3349ch (210076) map
+RX < I (135) esp_image: segment 1: paddr=000434c4 vaddr=3fc97100 size=0506ch ( 20588) load
+RX < I (140) esp_image: segment 2: paddr=00048538 vaddr=40374000 size=07ae0h ( 31456) load
+RX < I (147) esp_image: segment 3: paddr=00050020 vaddr=42000020 size=923ech (599020) map
+RX < I (255) esp_image: segment 4: paddr=000e2414 vaddr=4037bae0 size=0b5f4h ( 46580) load
+RX < I (266) esp_image: segment 5: paddr=000eda10 vaddr=50000000 size=00024h (    36) load
+RX < I (275) boot: Loaded app from partition at offset 0x10000
+RX < I (275) boot: Disabling RNG early entropy source...
+RX < I (285) cpu_start: Multicore app
+RX < I (293) cpu_start: GPIO 44 and 43 are used as console UART I/O p
+RX < ins
+RX < I (294) cpu_start: Pro cpu start user code
+RX < I (294) cpu_start: cpu freq: 160000000 Hz
+RX < I (296) app_init: Application information:
+RX < I (299) app_init: Project name:     station_WiFi
+RX < I (304) app_init: App version:      1.4.0
+RX < I (307) app_init: Compile time:     Sep 29 2026 14:16:45
+RX < I (312) app_init: ELF file SHA256:  f7a307237...
+RX < I (317) app_init: ESP-IDF:          v6.0.1
+RX < I (321) efuse_init: Min chip rev:     v0.0
+RX < I (324) efuse_init: Max chip rev:     v0.99
+RX < I (328) efuse_init: Chip rev:         v0.2
+RX < I (332) heap_init: Initializing. RAM available for dynamic allocation:
+RX < I (339) heap_init: At 3FCA0460 len 000492B0 (292 KiB): RAM
+RX < I (344) heap_init: At 3FCE9710 len 00005724 (21 KiB): RAM
+RX < I (349) heap_init: At 3FCF0000 len 00008000 (32 KiB): DRAM
+RX < I (354) heap_init: At 600FE000 len 00001FE8 (7 KiB): RTCRAM
+RX < I (360) spi_flash: detected chip: boya
+RX < I (363) spi_flash: flash io: dio
+RX < W (366) spi_flash: Detected size(16384k) larger than the size in the binary image header(2048k). Using the size in the binary image header.
+RX < I (379) sleep_gpio: Configure to isolate all GPIO pins in sleep state
+RX < I (384) sleep_gpio: Enable automatic switching of GPIO sleep configuration
+RX < I (391) main_task: Started on CPU0
+RX < I (411) main_task: Calling app_main()
+RX < I (431) temperature_sensor: Range [-10°C ~ 80°C], error < 1°C
+RX < I (431) pp: pp rom version: e7ae62f
+RX < I (431) net80211: net80211 rom version: e7ae62f
+RX < I (451) wifi:wifi driver task: 3fced4cc, prio:23, stack:6656, core=0
+RX < I (451) wifi:wifi firmware version: b37c951
+RX < I (461) wifi:wifi certification version: v7.0
+RX < I (461) wifi:config NVS flash: enabled
+RX < I (461) wifi:config nano formatting: disabled
+RX < I (461) wifi:Init data frame dynamic rx buffer num: 32
+RX < I (461) wifi:Init static rx mgmt buffer num: 5
+RX < I (471) wifi:Init management short buffer num: 32
+RX < I (471) wifi:Init dynamic tx buffer num: 32
+RX < I (481) wifi:Init static tx FG buffer num: 2
+RX < I (481) wifi:Init static rx buffer size: 1600
+RX < I (491) wifi:Init static rx buffer num:
+RX < 10
+RX < I (491) wifi:Init dynamic rx buffer num: 32
+RX < I (491) wifi_init: rx ba win: 6
+RX < I (501) wifi_init: accept mbox: 6
+RX < I (501) wifi_init: tcpip mbox: 32
+RX < I (501) wifi_init: udp mbox: 6
+RX < I (501) wifi_init: tcp mbox: 6
+RX < I (511) wifi_init: tcp tx win: 5760
+RX < I (511) wifi_init: tcp rx win: 5760
+RX < I (511) wifi_init: tcp mss: 1440
+RX < I (521) wifi_init: WiFi IRAM OP enabled
+RX < I (521) wifi_init: WiFi RX IRAM OP enabled
+RX < I (521) phy_init: phy_version 711,97bcf0a2,Aug 25 2025,19:04:10
+RX < I (571) wifi:mode : sta (c0:4e:30:04:83:6c)
+RX < I (571) wifi:enable tsf
+RX < I (571) wifi station: wifi initialized. Type 'connect' to join a network (interactive)
+RX < I (571) wifi station: [OTA] running partition: ota_0, version 1.4.0
+RX < I (581) wifi station: saved credentials found but auto-connect disabled. Type 'connect' to connect.
+RX < I (591) wifi station: station_WiFi fw v1.4.0 ready. Type 'help' for commands
+RX < I (591) main_task: Returned from app_main()
+TX > status
+RX < status
+RX < I (831) wifi station: WiFi: disconnected
+TX > ota check
+RX < ota check
+RX < E (2841) wifi station: [OTA] failed: WiFi not connected. Use 'connect' first.
+TX > ota update beta
+RX < ota update beta
+RX < E (3051) wifi station: [OTA] failed: WiFi not connected. Use 'connect' first.
+TX > version
+RX < version
+RX < I (3261) wifi station: FW: v1.4.0 (build Sep 29 2026 14:16:47)
+RX < I (3261) wifi station:   partition: ota_0 @ 0x10000, state: valid

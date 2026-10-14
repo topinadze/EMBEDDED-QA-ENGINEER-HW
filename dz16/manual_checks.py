@@ -1,11 +1,32 @@
 from __future__ import annotations
 
 import logging
+from collections.abc import Callable
 
 import allure
 import pytest
 
 LOGGER = logging.getLogger(__name__)
+
+
+def prepare_observation(
+    prepare: Callable[[str], None],
+    *,
+    action: str,
+    expected: str,
+    duration: str,
+) -> None:
+    """Present a consistent operator-ready prompt before a physical observation."""
+    prepare(
+        f"What to do: {action}\n"
+        f"What to observe: {expected}\n"
+        f"Duration: {duration}."
+    )
+
+
+def wifi_indicator_color(is_connected: bool) -> str:
+    """Return the expected status LED color for the observed Wi-Fi state."""
+    return "dim green" if is_connected else "dim red"
 
 
 def _attach_manual_feedback(

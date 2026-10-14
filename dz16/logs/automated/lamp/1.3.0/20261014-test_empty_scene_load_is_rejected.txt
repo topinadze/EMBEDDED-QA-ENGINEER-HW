@@ -1,0 +1,29 @@
+Test: tests/test_lamp.py::TestLamp::test_empty_scene_load_is_rejected
+Firmware: 1.3.0
+Captured: 2026-10-14T06:06:36.917659+03:00
+
+TX > lamp status
+RX < lamp status
+RX < {"lamp":"off","color":[255,255,255],"brightness":50,"mode":"solid","timer_s":0}
+TX > version
+RX < version
+RX < I (1460149) wifi station: FW: v1.3.0 (build Sep 29 2026 14:15:56)
+RX < I (1460149) wifi station:   partition: ota_1 @ 0x100000, state: valid
+TX > lamp scene load 2
+RX < lamp scene load 2
+RX < E (1460749) wifi station: error: scenes not implemented yet
+TX > lamp timer 0
+RX < lamp timer 0
+RX < I (1461359) wifi station: [LAMP] timer cancelled
+TX > lamp color 255 255 255
+RX < lamp color 255 255 255
+RX < I (1461569) wifi station: [LAMP] color set: (255,255,255)
+TX > lamp brightness 50
+RX < lamp brightness 50
+RX < I (1461779) wifi station: [LAMP] brightness set: 50%
+TX > lamp mode solid
+RX < lamp mode solid
+RX < I (1461989) wifi station: [LAMP] mode set: solid
+TX > lamp off
+RX < lamp off
+RX < I (1462199) wifi station: [LAMP] off
