@@ -2,7 +2,7 @@ import re
 import time
 import serial
 import allure
-from config.test_config import SERIAL_BAUDRATE, SERIAL_TIMEOUT, BOOT_DELAY
+from dz6.config.test_config import SERIAL_BAUDRATE, SERIAL_TIMEOUT, BOOT_DELAY
 
 
 class DeviceDriver:

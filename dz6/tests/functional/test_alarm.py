@@ -1,7 +1,7 @@
 import time
 import allure
 import pytest
-from drivers.device_driver import DeviceDriver
+from dz6.drivers.device_driver import DeviceDriver
 
 
 @allure.epic("Embedded Testing")

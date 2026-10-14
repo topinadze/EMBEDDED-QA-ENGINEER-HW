@@ -2,8 +2,8 @@ import time
 import allure
 import pytest
 import serial.tools.list_ports
-from drivers.device_driver import DeviceDriver
-from config.test_config import DEFAULT_USER, DEFAULT_PASSWORD
+from dz6.drivers.device_driver import DeviceDriver
+from dz6.config.test_config import DEFAULT_USER, DEFAULT_PASSWORD
 
 # Стандартні Vendor IDs для USB-to-UART конвертерів та ESP32
 ESP32_VIDS = [
@@ -86,10 +86,10 @@ def hard_reset_after_test(device_driver: DeviceDriver):
     # Teardown підгледів звісно :)
     if device_driver.serial and device_driver.serial.is_open:
         try:
-            device_driver.serial.setDTR(False)
-            device_driver.serial.setRTS(True)
+            device_driver.serial.dtr = False
+            device_driver.serial.rts = True
             time.sleep(0.15)
-            device_driver.serial.setRTS(False)
+            device_driver.serial.rts = False
         except Exception as e:
             print(f"\n[Teardown Warning] Hard reset failed: {e}")
 
