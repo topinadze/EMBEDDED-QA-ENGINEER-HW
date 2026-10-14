@@ -1,0 +1,20 @@
+Test: tests/test_lamp.py::TestLamp::test_scenes_by_version[1]
+Firmware: 1.4.0
+Captured: 2026-10-12T04:02:55.969876+03:00
+
+TX > version
+RX < version
+RX < I (960921) wifi station: FW: v1.4.0 (build Sep 29 2026 14:16:47)
+RX < I (960921) wifi station:   partition: ota_0 @ 0x10000, state: valid
+TX > lamp scene save 1
+RX < lamp scene save 1
+RX < E (961531) wifi station: error: scenes not implemented yet
+TX > lamp scene load 1
+RX < lamp scene load 1
+RX < E (962141) wifi station: error: scenes not implemented yet
+TX > lamp timer 0
+RX < lamp timer 0
+RX < I (962751) wifi station: [LAMP] timer cancelled
+TX > lamp off
+RX < lamp off
+RX < I (962971) wifi station: [LAMP] off

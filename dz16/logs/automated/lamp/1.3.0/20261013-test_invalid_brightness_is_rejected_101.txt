@@ -1,0 +1,41 @@
+Test: tests/test_lamp.py::TestLamp::test_invalid_brightness_is_rejected[101]
+Firmware: 1.3.0
+Captured: 2026-10-13T03:12:09.719414+03:00
+
+TX > lamp status
+RX < lamp status
+RX < {"lamp":"off","color":[255,255,255],"brightness":50,"mode":"solid","timer_s":0}
+TX > version
+RX < version
+RX < I (190151) wifi station: FW: v1.3.0 (build Sep 29 2026 14:15:56)
+RX < I (190151) wifi station:   partition: ota_1 @ 0x100000, state: valid
+TX > lamp on
+RX < lamp on
+RX < I (190761) wifi station: [LAMP] on
+TX > lamp color white
+RX < lamp color white
+RX < I (191361) wifi station: [LAMP] color set: white (255,255,255)
+TX > lamp brightness 50
+RX < lamp brightness 50
+RX < I (191971) wifi station: [LAMP] brightness set: 50%
+TX > lamp brightness 101
+RX < lamp brightness 101
+RX < I (192591) wifi station: [LAMP] brightness set: 101%
+TX > lamp status
+RX < lamp status
+RX < {"lamp":"on","color":[255,255,255],"brightness":101,"mode":"solid","timer_s":0}
+TX > lamp timer 0
+RX < lamp timer 0
+RX < I (193811) wifi station: [LAMP] timer cancelled
+TX > lamp color 255 255 255
+RX < lamp color 255 255 255
+RX < I (194021) wifi station: [LAMP] color set: (255,255,255)
+TX > lamp brightness 50
+RX < lamp brightness 50
+RX < I (194241) wifi station: [LAMP] brightness set: 50%
+TX > lamp mode solid
+RX < lamp mode solid
+RX < I (194441) wifi station: [LAMP] mode set: solid
+TX > lamp off
+RX < lamp off
+RX < I (194651) wifi station: [LAMP] off

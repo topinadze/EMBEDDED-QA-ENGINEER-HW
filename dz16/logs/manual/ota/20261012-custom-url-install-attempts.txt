@@ -1,0 +1,512 @@
+---- Sent utf8 encoded message: "version\n" ----
+version
+
+I (1533506) wifi station: FW: v1.5.0 (build Sep 29 2026 15:23:09)
+I (1533506) wifi station:   partition: ota_0 @ 0x10000, state: valid
+---- Sent utf8 encoded message: "connect\n" ----
+connect
+
+I (1536826) wifi station: scanning...
+I (1539326) wifi station: found 37 networks:
+I (1539326) wifi station:   [1] TopA-node                         -23 dBm
+I (1539326) wifi station:   [2] bambuh                            -55 dBm
+I (1539326) wifi station:   [3] TopAs_2.4G                        -57 dBm
+I (1539336) wifi station:   [4] AP_2987279135                     -68 dBm
+I (1539346) wifi station:   [5] E_0184_2056_E                     -78 dBm
+I (1539346) wifi station:   [6] 376                               -79 dBm
+I (1539356) wifi station:   [7] HiSmart-01-ca2c4fae5ef5           -81 dBm
+I (1539356) wifi station:   [8] VR46                              -81 dBm
+I (1539366) wifi station:   [9] Sashka                            -85 dBm
+I (1539376) wifi station:   [10] bababa_Guest                      -85 dBm
+I (1539376) wifi station:   [11] TP-Link_54B8                      -85 dBm
+I (1539386) wifi station:   [12] NeD                               -86 dBm
+I (1539396) wifi station:   [13] bababa                            -86 dBm
+I (1539396) wifi station:   [14] c63f5354                          -87 dBm
+I (1539406) wifi station:   [15] MERCUSYS_D2CA                     -87 dBm
+I (1539416) wifi station:   [16] oooaaa                            -87 dBm
+I (1539416) wifi station:   [17] HiSmart-01-ca2c4fae593b           -88 dBm
+I (1539426) wifi station:   [18] oooaaa_Guest24                    -88 dBm
+I (1539436) wifi station:   [19] c6861204                          -89 dBm
+I (1539436) wifi station:   [20] WiFi_Home                         -89 dBm
+I (1539446) wifi station:   [21] nest wifi                         -90 dBm
+I (1539456) wifi station:   [22] Villa                             -90 dBm
+I (1539456) wifi station:   [23] Daunton                           -90 dBm
+I (1539466) wifi station:   [24] Solia                             -90 dBm
+I (1539476) wifi station:   [25] c687a67b                          -91 dBm
+I (1539476) wifi station:   [26] c68766c0                          -91 dBm
+I (1539486) wifi station:   [27] deco                              -91 dBm
+I (1539496) wifi station:   [28] Kvartira212                       -91 dBm
+I (1539496) wifi station:   [29] 222-2                             -92 dBm
+I (1539506) wifi station:   [30] rabbits                           -92 dBm
+I (1539516) wifi station:   [31] SkyNet                            -92 dBm
+I (1539516) wifi station:   [32] Q0045139631614                    -93 dBm
+I (1539526) wifi station:   [33] c604f0b7                          -94 dBm
+I (1539536) wifi station:   [34] Home_sweet_home                   -95 dBm
+I (1539536) wifi station:   [35] SVIN                              -96 dBm
+I (1539546) wifi station:   [36] SMART_3c68                        -96 dBm
+I (1539556) wifi station:   [37] c653387b                          -97 dBm
+Enter SSID or number from list: 
+---- Sent utf8 encoded message: "1\n" ----
+1
+
+I (1545966) wifi station: SSID: TopA-node
+Enter password: 
+---- Sent utf8 encoded message: "***" ----
+***
+
+I (1548636) wifi station: password: OK
+I (1548646) wifi station: connecting to SSID:TopA-node ...
+I (1548756) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0
+I (1548756) wifi:state: init -> auth (0xb0)
+I (1548756) wifi:state: auth -> assoc (0x0)
+I (1548766) wifi:state: assoc -> run (0x10)
+I (1548786) wifi:connected with TopA-node, aid = 1, channel 1, BW20, bssid = ea:7b:58:13:5e:ac
+I (1548786) wifi:security: WPA2-PSK, phy: bgn, rssi: -21, cipher(pairwise:0x3, group:0x3), pmf:1
+I (1548796) wifi:pm start, type: 1
+
+I (1548796) wifi:dp: 1, bi: 102400, li: 3, scale listen interval from 307200 us to 307200 us
+I (1548796) wifi:set rx beacon pti, rx_bcn_pti: 0, bcn_timeout: 25000, mt_pti: 0, mt_time: 10000
+I (1548806) wifi:dp: 2, bi: 102400, li: 4, scale listen interval from 307200 us to 409600 us
+I (1548816) wifi:AP's beacon interval = 102400 us, DTIM period = 2
+I (1549846) esp_netif_handlers: sta ip: 10.123.30.49, mask: 255.255.255.0, gw: 10.123.30.28
+I (1549846) wifi station: got ip:10.123.30.49
+I (1549846) wifi station: successfully connected to SSID:TopA-node
+---- Sent utf8 encoded message: "ota install 1.4.0 force\n" ----
+ota install 1.4.0 force
+
+I (1694436) wifi station: [OTA] current version: 1.5.0 (partition ota_0)
+I (1694436) wifi station: [OTA] target partition: ota_1
+I (1694436) wifi station: [OTA] downloading: https://raw.githubusercontent.com/BohdanHorbanych/esp32-ota-files/main/firmware/v1.4.0/station_WiFi.bin
+I (1696726) wifi:<ba-add>idx:0 (ifx:0, ea:7b:58:13:5e:ac), tid:0, ssn:4, winSize:64
+I (1697036) esp-x509-crt-bundle: Certificate validated
+I (1698536) esp_https_ota: Starting OTA...
+I (1698536) esp_https_ota: Writing to <ota_1> partition at offset 0x100000
+I (1698686) wifi station: [OTA] new version: 1.4.0
+I (1700406) wifi station: [OTA] progress: 10% (91136 / 907872 bytes)
+I (1702056) wifi station: [OTA] progress: 20% (185344 / 907872 bytes)
+I (1703406) wifi station: [OTA] progress: 30% (275456 / 907872 bytes)
+I (1705216) wifi station: [OTA] progress: 40% (365568 / 907872 bytes)
+I (1707616) wifi station: [OTA] progress: 50% (455680 / 907872 bytes)
+I (1710796) wifi station: [OTA] progress: 60% (545792 / 907872 bytes)
+I (1712876) wifi station: [OTA] progress: 70% (635904 / 907872 bytes)
+I (1715676) wifi station: [OTA] progress: 80% (730112 / 907872 bytes)
+I (1719156) wifi station: [OTA] progress: 90% (820224 / 907872 bytes)
+I (1720876) wifi station: [OTA] progress: 100% (907872 / 907872 bytes)
+I (1720876) esp_image: segment 0: paddr=00100020 vaddr=3c0a0020 size=3349ch (210076) map
+I (1720906) esp_image: segment 1: paddr=001334c4 vaddr=3fc97100 size=0506ch ( 20588) 
+I (1720906) esp_image: segment 2: paddr=00138538 vaddr=40374000 size=07ae0h ( 31456) 
+I (1720916) esp_image: segment 3: paddr=00140020 vaddr=42000020 size=923ech (599020) map
+I (1720996) esp_image: segment 4: paddr=001d2414 vaddr=4037bae0 size=0b5f4h ( 46580) 
+I (1720996) esp_image: segment 5: paddr=001dda10 vaddr=50000000 size=00024h (    36) 
+I (1721006) esp_image: segment 0: paddr=00100020 vaddr=3c0a0020 size=3349ch (210076) map
+I (1721036) esp_image: segment 1: paddr=001334c4 vaddr=3fc97100 size=0506ch ( 20588) 
+I (1721036) esp_image: segment 2: paddr=00138538 vaddr=40374000 size=07ae0h ( 31456) 
+I (1721036) esp_image: segment 3: paddr=00140020 vaddr=42000020 size=923ech (599020) map
+I (1721126) esp_image: segment 4: paddr=001d2414 vaddr=4037bae0 size=0b5f4h ( 46580) 
+I (1721136) esp_image: segment 5: paddr=001dda10 vaddr=50000000 size=00024h (    36) 
+I (1721146) wifi station: [OTA] success: 1.5.0 -> 1.4.0 in 22 s. Rebooting...
+I (1721646) wifi:state: run -> init (0x0)
+I (1721656) wifi:pm stop, total sleep time: 141320967 us / 172856613 us
+
+I (1721656) wifi:<ba-del>idx:0, tid:0
+I (1721656) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0
+I (1721666) wifi station: retry to connect to the AP
+I (1721766) wifi:flush txq
+I (1721766) wifi:stop sw txq
+I (1721766) wifi:lmac stop hw txq
+ESP-ROM:esp32s3-20210327
+Build:Mar 27 2021
+rst:0xc (RTC_SW_CPU_RST),boot:0x8 (SPI_FAST_FLASH_BOOT)
+Saved PC:0x4037d308
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fce2820,len:0x14f0
+load:0x403c8700,len:0xda0
+load:0x403cb700,len:0x2fa0
+entry 0x403c8908
+I (29) boot: ESP-IDF v6.0.1 2nd stage bootloader
+I (29) boot: compile time Sep 29 2026 14:16:01
+I (29) boot: Multicore bootloader
+I (29) boot: chip revision: v0.2
+I (32) boot: efuse block revision: v1.3
+I (36) boot.esp32s3: Boot SPI Speed : 80MHz
+I (40) boot.esp32s3: SPI Mode       : DIO
+I (43) boot.esp32s3: SPI Flash Size : 2MB
+I (47) boot: Enabling RNG early entropy source...
+I (52) boot: Partition Table:
+I (54) boot: ## Label            Usage          Type ST Offset   Length
+I (60) boot:  0 nvs              WiFi data        01 02 00009000 00004000
+I (67) boot:  1 otadata          OTA data         01 00 0000d000 00002000
+I (73) boot:  2 ota_0            OTA app          00 10 00010000 000f0000
+I (80) boot:  3 ota_1            OTA app          00 11 00100000 000f0000
+I (87) boot: End of partition table
+I (116) esp_image: segment 0: paddr=00100020 vaddr=3c0a0020 size=3349ch (210076) map
+I (154) esp_image: segment 1: paddr=001334c4 vaddr=3fc97100 size=0506ch ( 20588) load
+I (158) esp_image: segment 2: paddr=00138538 vaddr=40374000 size=07ae0h ( 31456) load
+I (166) esp_image: segment 3: paddr=00140020 vaddr=42000020 size=923ech (599020) map
+I (273) esp_image: segment 4: paddr=001d2414 vaddr=4037bae0 size=0b5f4h ( 46580) load
+I (284) esp_image: segment 5: paddr=001dda10 vaddr=50000000 size=00024h (    36) load
+I (293) boot: Loaded app from partition at offset 0x100000
+I (293) boot: Disabling RNG early entropy source...
+I (303) cpu_start: Multicore app
+I (311) cpu_start: GPIO 44 and 43 are used as console UART I/O pins
+I (312) cpu_start: Pro cpu start user code
+I (312) cpu_start: cpu freq: 160000000 Hz
+I (314) app_init: Application information:
+I (318) app_init: Project name:     station_WiFi
+I (322) app_init: App version:      1.4.0
+I (326) app_init: Compile time:     Sep 29 2026 14:16:45
+I (331) app_init: ELF file SHA256:  f7a307237...
+I (335) app_init: ESP-IDF:          v6.0.1
+I (339) efuse_init: Min chip rev:     v0.0
+I (343) efuse_init: Max chip rev:     v0.99 
+I (347) efuse_init: Chip rev:         v0.2
+I (351) heap_init: Initializing. RAM available for dynamic allocation:
+I (357) heap_init: At 3FCA0460 len 000492B0 (292 KiB): RAM
+I (362) heap_init: At 3FCE9710 len 00005724 (21 KiB): RAM
+I (367) heap_init: At 3FCF0000 len 00008000 (32 KiB): DRAM
+I (372) heap_init: At 600FE000 len 00001FE8 (7 KiB): RTCRAM
+I (378) spi_flash: detected chip: boya
+I (381) spi_flash: flash io: dio
+W (384) spi_flash: Detected size(16384k) larger than the size in the binary image header(2048k). Using the size in the binary image header.
+I (397) sleep_gpio: Configure to isolate all GPIO pins in sleep state
+I (403) sleep_gpio: Enable automatic switching of GPIO sleep configuration
+I (410) main_task: Started on CPU0
+I (430) main_task: Calling app_main()
+I (450) temperature_sensor: Range [-10°C ~ 80°C], error < 1°C
+I (450) pp: pp rom version: e7ae62f
+I (460) net80211: net80211 rom version: e7ae62f
+I (470) wifi:wifi driver task: 3fced4cc, prio:23, stack:6656, core=0
+I (470) wifi:wifi firmware version: b37c951
+I (470) wifi:wifi certification version: v7.0
+I (480) wifi:config NVS flash: enabled
+I (480) wifi:config nano formatting: disabled
+I (480) wifi:Init data frame dynamic rx buffer num: 32
+I (480) wifi:Init static rx mgmt buffer num: 5
+I (490) wifi:Init management short buffer num: 32
+I (490) wifi:Init dynamic tx buffer num: 32
+I (500) wifi:Init static tx FG buffer num: 2
+I (500) wifi:Init static rx buffer size: 1600
+I (500) wifi:Init static rx buffer num: 10
+I (510) wifi:Init dynamic rx buffer num: 32
+I (510) wifi_init: rx ba win: 6
+I (520) wifi_init: accept mbox: 6
+I (520) wifi_init: tcpip mbox: 32
+I (520) wifi_init: udp mbox: 6
+I (520) wifi_init: tcp mbox: 6
+I (530) wifi_init: tcp tx win: 5760
+I (530) wifi_init: tcp rx win: 5760
+I (530) wifi_init: tcp mss: 1440
+I (540) wifi_init: WiFi IRAM OP enabled
+I (540) wifi_init: WiFi RX IRAM OP enabled
+I (540) phy_init: phy_version 711,97bcf0a2,Aug 25 2025,19:04:10
+I (590) wifi:mode : sta (c0:4e:30:04:83:6c)
+I (590) wifi:enable tsf
+I (590) wifi station: wifi initialized. Type 'connect' to join a network (interactive)
+I (590) wifi station: [OTA] running partition: ota_1, version 1.4.0
+W (600) wifi station: [OTA] new firmware, state PENDING_VERIFY - running self-check...
+I (640) wifi station: [OTA] self-check passed, firmware marked VALID
+I (640) wifi station: saved credentials found but auto-connect disabled. Type 'connect' to connect.
+I (640) wifi station: station_WiFi fw v1.4.0 ready. Type 'help' for commands
+I (650) main_task: Returned from app_main()
+---- Sent utf8 encoded message: "version\n" ----
+version
+
+I (112760) wifi station: FW: v1.4.0 (build Sep 29 2026 14:16:47)
+I (112760) wifi station:   partition: ota_1 @ 0x100000, state: valid
+---- Sent utf8 encoded message: "connect\n" ----
+connect
+
+I (124550) wifi station: scanning...
+I (127050) wifi station: found 33 networks:
+I (127050) wifi station:   [1] TopA-node                         -24 dBm
+I (127050) wifi station:   [2] bambuh                            -52 dBm
+I (127050) wifi station:   [3] TopAs_2.4G                        -58 dBm
+I (127060) wifi station:   [4] AP_2987279135                     -70 dBm
+I (127060) wifi station:   [5] E_0184_2056_E                     -76 dBm
+I (127070) wifi station:   [6] 376                               -78 dBm
+I (127080) wifi station:   [7] c63f5354                          -81 dBm
+I (127080) wifi station:   [8] VR46                              -81 dBm
+I (127090) wifi station:   [9] bambuh                            -82 dBm
+I (127100) wifi station:   [10] Sashka                            -84 dBm
+I (127100) wifi station:   [11] bababa                            -85 dBm
+I (127110) wifi station:   [12] bababa_Guest                      -85 dBm
+I (127120) wifi station:   [13] HiSmart-01-ca2c4fae5ef5           -87 dBm
+I (127120) wifi station:   [14] 1ed4a802                          -88 dBm
+I (127130) wifi station:   [15] HiSmart-01-ca2c4fae593b           -88 dBm
+I (127140) wifi station:   [16] oooaaa_Guest24                    -88 dBm
+I (127140) wifi station:   [17] rezik.a                           -89 dBm
+I (127150) wifi station:   [18] MERCUSYS_D2CA                     -90 dBm
+I (127160) wifi station:   [19] SmileV                            -90 dBm
+I (127160) wifi station:   [20] oooaaa                            -90 dBm
+I (127170) wifi station:   [21] c6861204                          -92 dBm
+I (127170) wifi station:   [22] TP-Link_2F1A                      -92 dBm
+I (127180) wifi station:   [23] deco                              -92 dBm
+I (127190) wifi station:   [24] S+D=L                             -92 dBm
+I (127190) wifi station:   [25] 13💡                            -92 dBm
+I (127200) wifi station:   [26] TP-Link_54B8                      -92 dBm
+I (127210) wifi station:   [27] Xiaomi_625B                       -92 dBm
+I (127210) wifi station:   [28] c68766c0                          -93 dBm
+I (127220) wifi station:   [29] Internet UTELS Wi-FI              -93 dBm
+I (127230) wifi station:   [30] WiFi_Home                         -93 dBm
+I (127230) wifi station:   [31] SkyNet                            -93 dBm
+I (127240) wifi station:   [32] Home_sweet_home                   -94 dBm
+I (127250) wifi station:   [33] Respublika                        -95 dBm
+Enter SSID, number from list, or Enter to use saved [TopA-node]: 
+---- Sent utf8 encoded message: "\n" ----
+
+
+I (128550) wifi station: using saved SSID: TopA-node
+I (128550) wifi station: connecting to SSID:TopA-node ...
+I (128560) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0
+I (128560) wifi:state: init -> auth (0xb0)
+I (128570) wifi:state: auth -> assoc (0x0)
+I (128580) wifi:state: assoc -> run (0x10)
+I (128600) wifi:connected with TopA-node, aid = 1, channel 1, BW20, bssid = ea:7b:58:13:5e:ac
+I (128600) wifi:security: WPA2-PSK, phy: bgn, rssi: -24, cipher(pairwise:0x3, group:0x3), pmf:1
+I (128610) wifi:pm start, type: 1
+
+I (128610) wifi:dp: 1, bi: 102400, li: 3, scale listen interval from 307200 us to 307200 us
+I (128620) wifi:set rx beacon pti, rx_bcn_pti: 0, bcn_timeout: 25000, mt_pti: 0, mt_time: 10000
+I (128630) wifi:dp: 2, bi: 102400, li: 4, scale listen interval from 307200 us to 409600 us
+I (128630) wifi:AP's beacon interval = 102400 us, DTIM period = 2
+I (133840) esp_netif_handlers: sta ip: 10.123.30.49, mask: 255.255.255.0, gw: 10.123.30.28
+I (133840) wifi station: got ip:10.123.30.49
+I (133840) wifi station: successfully connected to SSID:TopA-node
+ota install ht
+---- Sent utf8 encoded message: "ota install https://raw.githubusercontent.com/BohdanHorbanych/esp32-ota-files/main/firmware/v1.5.0/station_WiFi.bin\n" ----
+tps://raw.githubusercontent.com/BohdanHorbanych/esp32-ota-files/main/firmware/v1.5.0/station_WiFi.bin
+
+I (188170) wifi station: [OTA] current version: 1.4.0 (partition ota_1)
+I (188170) wifi station: [OTA] target partition: ota_0
+I (188170) wifi station: [OTA] downloading: https://raw.githubusercontent.com/BohdanHorbanych/esp32-ota-files/main/firmware/vhttps://raw.githubusercontent.c/station_WiFi.bin
+E (195180) esp-tls: couldn't get hostname for :raw.githubusercontent.com: getaddrinfo() returns 202, addrinfo=0
+E (195180) esp-tls: Failed to open new connection
+E (195180) transport_base: Failed to open a new connection
+E (195180) HTTP_CLIENT: Connection failed, sock < 0
+E (195190) esp_https_ota: Failed to open HTTP connection: ESP_ERR_HTTP_CONNECT
+E (195200) esp_https_ota: Failed to establish HTTP connection
+E (195200) wifi station: [OTA] failed: cannot start download (ESP_ERR_HTTP_CONNECT)
+---- Sent utf8 encoded message: "ota update beta\n" ----
+ota update beta
+
+I (234710) wifi:<ba-add>idx:0 (ifx:0, ea:7b:58:13:5e:ac), tid:0, ssn:6, winSize:64
+I (235030) esp-x509-crt-bundle: Certificate validated
+I (236160) wifi station: [OTA] beta channel: 1.5.0, current: 1.4.0
+I (236160) wifi station: [OTA] current version: 1.4.0 (partition ota_1)
+I (236160) wifi station: [OTA] target partition: ota_0
+I (236160) wifi station: [OTA] downloading: https://raw.githubusercontent.com/BohdanHorbanych/esp32-ota-files/main/firmware/v1.5.0/station_WiFi.bin
+I (236520) esp-x509-crt-bundle: Certificate validated
+I (237600) esp_https_ota: Starting OTA...
+I (237600) esp_https_ota: Writing to <ota_0> partition at offset 0x10000
+I (237600) wifi station: [OTA] new version: 1.5.0
+I (239540) wifi station: [OTA] progress: 10% (91136 / 908304 bytes)
+I (241350) wifi station: [OTA] progress: 20% (185344 / 908304 bytes)
+I (242930) wifi station: [OTA] progress: 30% (275456 / 908304 bytes)
+I (246140) wifi station: [OTA] progress: 40% (365568 / 908304 bytes)
+I (247610) wifi station: [OTA] progress: 50% (455680 / 908304 bytes)
+I (249390) wifi station: [OTA] progress: 60% (545792 / 908304 bytes)
+I (250990) wifi station: [OTA] progress: 70% (635904 / 908304 bytes)
+I (252750) wifi station: [OTA] progress: 80% (730112 / 908304 bytes)
+I (254420) wifi station: [OTA] progress: 90% (820224 / 908304 bytes)
+I (255790) wifi station: [OTA] progress: 100% (908304 / 908304 bytes)
+I (255790) esp_image: segment 0: paddr=00010020 vaddr=3c0a0020 size=3352ch (210220) map
+I (255820) esp_image: segment 1: paddr=00043554 vaddr=3fc97100 size=0506ch ( 20588) 
+I (255820) esp_image: segment 2: paddr=000485c8 vaddr=40374000 size=07a50h ( 31312) 
+I (255830) esp_image: segment 3: paddr=00050020 vaddr=42000020 size=92508h (599304) map
+I (255910) esp_image: segment 4: paddr=000e2530 vaddr=4037ba50 size=0b684h ( 46724) 
+I (255910) esp_image: segment 5: paddr=000edbbc vaddr=50000000 size=00024h (    36) 
+I (255920) esp_image: segment 0: paddr=00010020 vaddr=3c0a0020 size=3352ch (210220) map
+I (255950) esp_image: segment 1: paddr=00043554 vaddr=3fc97100 size=0506ch ( 20588) 
+I (255950) esp_image: segment 2: paddr=000485c8 vaddr=40374000 size=07a50h ( 31312) 
+I (255950) esp_image: segment 3: paddr=00050020 vaddr=42000020 size=92508h (599304) map
+I (256040) esp_image: segment 4: paddr=000e2530 vaddr=4037ba50 size=0b684h ( 46724) 
+I (256040) esp_image: segment 5: paddr=000edbbc vaddr=50000000 size=00024h (    36) 
+I (256050) wifi station: [OTA] success: 1.4.0 -> 1.5.0 in 18 s. Rebooting...
+I (256550) wifi:state: run -> init (0x0)
+I (256560) wifi:pm stop, total sleep time: 99243987 us / 127947947 us
+
+I (256560) wifi:<ba-del>idx:0, tid:0
+I (256560) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0
+I (256570) wifi station: retry to connect to the AP
+I (256610) wifi:flush txq
+I (256610) wifi:stop sw txq
+I (256610) wifi:lmac stop hw txq
+ESP-ROM:esp32s3-20210327
+Build:Mar 27 2021
+rst:0xc (RTC_SW_CPU_RST),boot:0x8 (SPI_FAST_FLASH_BOOT)
+Saved PC:0x4037d308
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fce2820,len:0x14f0
+load:0x403c8700,len:0xda0
+load:0x403cb700,len:0x2fa0
+entry 0x403c8908
+I (29) boot: ESP-IDF v6.0.1 2nd stage bootloader
+I (29) boot: compile time Sep 29 2026 14:16:01
+I (29) boot: Multicore bootloader
+I (29) boot: chip revision: v0.2
+I (32) boot: efuse block revision: v1.3
+I (36) boot.esp32s3: Boot SPI Speed : 80MHz
+I (40) boot.esp32s3: SPI Mode       : DIO
+I (43) boot.esp32s3: SPI Flash Size : 2MB
+I (47) boot: Enabling RNG early entropy source...
+I (52) boot: Partition Table:
+I (54) boot: ## Label            Usage          Type ST Offset   Length
+I (60) boot:  0 nvs              WiFi data        01 02 00009000 00004000
+I (67) boot:  1 otadata          OTA data         01 00 0000d000 00002000
+I (73) boot:  2 ota_0            OTA app          00 10 00010000 000f0000
+I (80) boot:  3 ota_1            OTA app          00 11 00100000 000f0000
+I (87) boot: End of partition table
+I (114) esp_image: segment 0: paddr=00010020 vaddr=3c0a0020 size=3352ch (210220) map
+I (152) esp_image: segment 1: paddr=00043554 vaddr=3fc97100 size=0506ch ( 20588) load
+I (156) esp_image: segment 2: paddr=000485c8 vaddr=40374000 size=07a50h ( 31312) load
+I (163) esp_image: segment 3: paddr=00050020 vaddr=42000020 size=92508h (599304) map
+I (271) esp_image: segment 4: paddr=000e2530 vaddr=4037ba50 size=0b684h ( 46724) load
+I (282) esp_image: segment 5: paddr=000edbbc vaddr=50000000 size=00024h (    36) load
+I (290) boot: Loaded app from partition at offset 0x10000
+I (291) boot: Disabling RNG early entropy source...
+I (301) cpu_start: Multicore app
+I (309) cpu_start: GPIO 44 and 43 are used as console UART I/O pins
+I (310) cpu_start: Pro cpu start user code
+I (310) cpu_start: cpu freq: 160000000 Hz
+I (311) app_init: Application information:
+I (315) app_init: Project name:     station_WiFi
+I (320) app_init: App version:      1.5.0
+I (323) app_init: Compile time:     Sep 29 2026 14:17:34
+I (328) app_init: ELF file SHA256:  486cd296d...
+I (333) app_init: ESP-IDF:          v6.0.1
+I (337) efuse_init: Min chip rev:     v0.0
+I (340) efuse_init: Max chip rev:     v0.99 
+I (344) efuse_init: Chip rev:         v0.2
+I (348) heap_init: Initializing. RAM available for dynamic allocation:
+I (355) heap_init: At 3FCA0460 len 000492B0 (292 KiB): RAM
+I (360) heap_init: At 3FCE9710 len 00005724 (21 KiB): RAM
+I (365) heap_init: At 3FCF0000 len 00008000 (32 KiB): DRAM
+I (370) heap_init: At 600FE000 len 00001FE8 (7 KiB): RTCRAM
+I (376) spi_flash: detected chip: boya
+I (379) spi_flash: flash io: dio
+W (382) spi_flash: Detected size(16384k) larger than the size in the binary image header(2048k). Using the size in the binary image header.
+I (394) sleep_gpio: Configure to isolate all GPIO pins in sleep state
+I (400) sleep_gpio: Enable automatic switching of GPIO sleep configuration
+I (407) main_task: Started on CPU0
+I (427) main_task: Calling app_main()
+I (447) temperature_sensor: Range [-10°C ~ 80°C], error < 1°C
+I (447) wifi station: [CFG] migrating settings to v2 format...
+I (517) wifi station: [CFG] migration done
+I (517) pp: pp rom version: e7ae62f
+I (517) net80211: net80211 rom version: e7ae62f
+I (527) wifi:wifi driver task: 3fceed90, prio:23, stack:6656, core=0
+I (527) wifi:wifi firmware version: b37c951
+I (527) wifi:wifi certification version: v7.0
+I (527) wifi:config NVS flash: enabled
+I (537) wifi:config nano formatting: disabled
+I (537) wifi:Init data frame dynamic rx buffer num: 32
+I (547) wifi:Init static rx mgmt buffer num: 5
+I (547) wifi:Init management short buffer num: 32
+I (557) wifi:Init dynamic tx buffer num: 32
+I (557) wifi:Init static tx FG buffer num: 2
+I (557) wifi:Init static rx buffer size: 1600
+I (567) wifi:Init static rx buffer num: 10
+I (567) wifi:Init dynamic rx buffer num: 32
+I (577) wifi_init: rx ba win: 6
+I (577) wifi_init: accept mbox: 6
+I (577) wifi_init: tcpip mbox: 32
+I (577) wifi_init: udp mbox: 6
+I (587) wifi_init: tcp mbox: 6
+I (587) wifi_init: tcp tx win: 5760
+I (587) wifi_init: tcp rx win: 5760
+I (597) wifi_init: tcp mss: 1440
+I (597) wifi_init: WiFi IRAM OP enabled
+I (597) wifi_init: WiFi RX IRAM OP enabled
+I (607) phy_init: phy_version 711,97bcf0a2,Aug 25 2025,19:04:10
+W (607) phy_init: failed to load RF calibration data (0x1102), falling back to full calibration
+I (647) phy_init: Saving new calibration data due to checksum failure or outdated calibration data, mode(2)
+I (657) wifi:mode : sta (c0:4e:30:04:83:6c)
+I (657) wifi:enable tsf
+I (667) wifi station: wifi initialized. Type 'connect' to join a network (interactive)
+I (667) wifi station: [OTA] running partition: ota_0, version 1.5.0
+W (667) wifi station: [OTA] new firmware, state PENDING_VERIFY - running self-check...
+I (697) wifi station: [OTA] self-check passed, firmware marked VALID
+I (697) wifi station: station_WiFi fw v1.5.0 ready. Type 'help' for commands
+I (697) main_task: Returned from app_main()
+---- Sent utf8 encoded message: "version\n" ----
+version
+
+I (69867) wifi station: FW: v1.5.0 (build Sep 29 2026 15:23:09)
+I (69867) wifi station:   partition: ota_0 @ 0x10000, state: valid
+---- Sent utf8 encoded message: "connect\n" ----
+connect
+
+I (72587) wifi station: scanning...
+I (75087) wifi station: found 32 networks:
+I (75087) wifi station:   [1] TopA-node                         -22 dBm
+I (75087) wifi station:   [2] bambuh                            -54 dBm
+I (75087) wifi station:   [3] TopAs_2.4G                        -56 dBm
+I (75097) wifi station:   [4] AP_2987279135                     -71 dBm
+I (75097) wifi station:   [5] E_0184_2056_E                     -77 dBm
+I (75107) wifi station:   [6] bambuh                            -79 dBm
+I (75117) wifi station:   [7] VR46                              -81 dBm
+I (75117) wifi station:   [8] Sashka                            -83 dBm
+I (75127) wifi station:   [9] c63f5354                          -84 dBm
+I (75137) wifi station:   [10] bababa_Guest                      -84 dBm
+I (75137) wifi station:   [11] 376                               -85 dBm
+I (75147) wifi station:   [12] c687a67b                          -87 dBm
+I (75157) wifi station:   [13] bababa                            -87 dBm
+I (75157) wifi station:   [14] c6861204                          -88 dBm
+I (75167) wifi station:   [15] rezik.a                           -88 dBm
+I (75167) wifi station:   [16] Villa                             -89 dBm
+I (75177) wifi station:   [17] SmileV                            -89 dBm
+I (75187) wifi station:   [18] Internet UTELS Wi-FI              -89 dBm
+I (75187) wifi station:   [19] oooaaa                            -89 dBm
+I (75197) wifi station:   [20] TP-Link_54B8                      -90 dBm
+I (75207) wifi station:   [21] MERCUSYS_D2CA                     -91 dBm
+I (75207) wifi station:   [22] Daunton                           -91 dBm
+I (75217) wifi station:   [23] Kvartira212                       -91 dBm
+I (75227) wifi station:   [24] c63f8787                          -92 dBm
+I (75227) wifi station:   [25] TP-Link_2F1A                      -92 dBm
+I (75237) wifi station:   [26] 222-2                             -92 dBm
+I (75247) wifi station:   [27] Solia                             -92 dBm
+I (75247) wifi station:   [28] SkyNet                            -93 dBm
+I (75257) wifi station:   [29] SMART_3c68                        -94 dBm
+I (75257) wifi station:   [30] Home_sweet_home                   -94 dBm
+I (75267) wifi station:   [31] Xiaomi_625B                       -95 dBm
+I (75277) wifi station:   [32] BBG                               -96 dBm
+Enter SSID or number from list: 
+---- Sent utf8 encoded message: "1\n" ----
+1
+
+I (81667) wifi station: SSID: TopA-node
+Enter password: 
+---- Sent utf8 encoded message: "***" ----
+***
+
+I (85247) wifi station: password: OK
+I (85257) wifi station: connecting to SSID:TopA-node ...
+I (85367) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0
+I (85367) wifi:state: init -> auth (0xb0)
+I (85377) wifi:state: auth -> assoc (0x0)
+I (85377) wifi:state: assoc -> run (0x10)
+I (85397) wifi:connected with TopA-node, aid = 1, channel 1, BW20, bssid = ea:7b:58:13:5e:ac
+I (85397) wifi:security: WPA2-PSK, phy: bgn, rssi: -21, cipher(pairwise:0x3, group:0x3), pmf:1
+I (85407) wifi:pm start, type: 1
+
+I (85407) wifi:dp: 1, bi: 102400, li: 3, scale listen interval from 307200 us to 307200 us
+I (85417) wifi:set rx beacon pti, rx_bcn_pti: 0, bcn_timeout: 25000, mt_pti: 0, mt_time: 10000
+I (85417) wifi:dp: 2, bi: 102400, li: 4, scale listen interval from 307200 us to 409600 us
+I (85427) wifi:AP's beacon interval = 102400 us, DTIM period = 2
+I (95257) wifi station: connection timeout
+I (105987) esp_netif_handlers: sta ip: 10.123.30.49, mask: 255.255.255.0, gw: 10.123.30.28
+I (105987) wifi station: got ip:10.123.30.49
+---- Sent utf8 encoded message: "ota install https://raw.githubusercontent.com/BohdanHorbanych/esp32-ota-files/main/firmware/v1.4.0/station_WiFi.bin force\n" ----
+ota install https://raw.githubusercontent.com/BohdanHorbanych/esp32-ota-files/main/firmware/v1.4.0/station_WiFi.bin force
+
+I (118517) wifi station: [OTA] current version: 1.5.0 (partition ota_0)
+I (118517) wifi station: [OTA] target partition: ota_1
+I (118517) wifi station: [OTA] downloading: https://raw.githubusercontent.com/BohdanHorbanych/esp32-ota-files/main/firmware/vhttps://raw.githubusercontent.c/station_WiFi.bin
+I (118847) wifi:<ba-add>idx:0 (ifx:0, ea:7b:58:13:5e:ac), tid:0, ssn:12, winSize:64
+I (119157) esp-x509-crt-bundle: Certificate validated
+I (120457) esp-x509-crt-bundle: Certificate validated
+E (121367) esp_https_ota: File not found(404)
+E (121367) esp_https_ota: Failed to establish HTTP connection
+E (121367) wifi station: [OTA] failed: cannot start download (ESP_FAIL)

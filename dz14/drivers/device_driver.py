@@ -4,14 +4,14 @@ import serial
 import allure
 
 try:
-    from config.wifi_config import (
+    from settings import (
         SERIAL_BAUDRATE,
         SERIAL_TIMEOUT,
         REBOOT_TIMEOUT,
         WIFI_CONNECT_TIMEOUT,
     )
 except ModuleNotFoundError:
-    from dz14.config.wifi_config import (
+    from dz14.settings import (
         SERIAL_BAUDRATE,
         SERIAL_TIMEOUT,
         REBOOT_TIMEOUT,
@@ -144,7 +144,6 @@ class DeviceDriver:
         self.serial.write(formatted_command.encode("utf-8"))
         self.serial.flush()
 
-        time.sleep(0.15)
         lines = self.read_lines(timeout)
 
         if lines:

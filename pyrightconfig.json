@@ -1,0 +1,19 @@
+{
+  "executionEnvironments": [
+    {
+      "root": "dz16",
+      "extraPaths": [
+        "dz16"
+      ]
+    },
+    {
+      "root": "dz14",
+      "extraPaths": [
+        "dz14"
+      ]
+    },
+    {
+      "root": "."
+    }
+  ]
+}

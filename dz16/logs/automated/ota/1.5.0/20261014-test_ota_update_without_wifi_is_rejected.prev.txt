@@ -1,0 +1,31 @@
+Test: tests/test_ota.py::TestOta::test_ota_update_without_wifi_is_rejected
+Firmware: 1.5.0
+Captured: 2026-10-14T04:36:08.660765+03:00
+
+TX > lamp status
+RX < lamp status
+RX < {"lamp":"off","color":[255,255,255],"brightness":50,"mode":"solid","timer_s":0}
+TX > version
+RX < version
+RX < I (1002081) wifi station: FW: v1.5.0 (build Sep 29 2026 15:23:09)
+RX < I (1002081) wifi station:   partition: ota_0 @ 0x10000, state: valid
+TX > version
+RX < version
+RX < I (1002691) wifi station: FW: v1.5.0 (build Sep 29 2026 15:23:09)
+RX < I (1002691) wifi station:   partition: ota_0 @ 0x10000, state: valid
+TX > disconnect
+RX < disconnect
+RX < I (1003291) wifi station: disconnected
+TX > status
+RX < status
+RX < I (1005301) wifi station: WiFi: disconnected
+TX > ota check
+RX < ota check
+RX < E (1007311) wifi station: [OTA] failed: WiFi not connected. Use 'connect' first.
+TX > ota update beta
+RX < ota update beta
+RX < E (1007511) wifi station: [OTA] failed: WiFi not connected. Use 'connect' first.
+TX > version
+RX < version
+RX < I (1007731) wifi station: FW: v1.5.0 (build Sep 29 2026 15:23:09)
+RX < I (1007731) wifi station:   partition: ota_0 @ 0x10000, state: valid

@@ -1,0 +1,35 @@
+Test: tests/test_system.py::TestSystem::test_distance_timed_measurement
+Firmware: 1.3.0
+Captured: 2026-10-13T20:54:34.180594+03:00
+
+TX > lamp status
+RX < lamp status
+RX < {"lamp":"off","color":[255,255,255],"brightness":50,"mode":"solid","timer_s":0}
+TX > version
+RX < version
+RX < I (1426886) wifi station: FW: v1.3.0 (build Sep 29 2026 14:15:56)
+RX < I (1426886) wifi station:   partition: ota_1 @ 0x100000, state: valid
+TX > distance 2
+RX < distance 2
+RX < I (1427486) wifi station: measuring for 2 seconds...
+RX < I (1427486) wifi station: distance: 23.4 cm
+RX < I (1427986) wifi station: distance: 23.4 cm
+RX < I (1428486) wifi station: distance: 23.4 cm
+RX < I (1428986) wifi station: distance: 23.4 cm
+RX < I (1429486) wifi station: distance: 23.4 cm
+RX < I (1429986) wifi station: done
+TX > lamp timer 0
+RX < lamp timer 0
+RX < I (1430276) wifi station: [LAMP] timer cancelled
+TX > lamp color 255 255 255
+RX < lamp color 255 255 255
+RX < I (1430486) wifi station: [LAMP] color set: (255,255,255)
+TX > lamp brightness 50
+RX < lamp brightness 50
+RX < I (1430696) wifi station: [LAMP] brightness set: 50%
+TX > lamp mode solid
+RX < lamp mode solid
+RX < I (1430906) wifi station: [LAMP] mode set: solid
+TX > lamp off
+RX < lamp off
+RX < I (1431126) wifi station: [LAMP] off

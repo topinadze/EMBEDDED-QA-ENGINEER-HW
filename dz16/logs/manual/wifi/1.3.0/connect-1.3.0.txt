@@ -1,0 +1,53 @@
+connect
+
+I (544514) wifi station: scanning...
+I (547014) wifi station: found 23 networks:
+I (547014) wifi station:   [1] TopA-node                         -19 dBm
+I (547014) wifi station:   [2] TopAs_2.4G                        -58 dBm
+I (547024) wifi station:   [3] 376                               -72 dBm
+I (547024) wifi station:   [4] bambuh                            -72 dBm
+I (547024) wifi station:   [5] bambuh                            -75 dBm
+I (547034) wifi station:   [6] AP_2987279135                     -77 dBm
+I (547044) wifi station:   [7] HiSmart-01-ca2c4fae5ef5           -78 dBm
+I (547044) wifi station:   [8] Keenetic-0122                     -81 dBm
+I (547054) wifi station:   [9] c6861204                          -83 dBm
+I (547064) wifi station:   [10] c63f5354                         -83 dBm
+I (547064) wifi station:   [11] NeD                              -83 dBm
+I (547074) wifi station:   [12] c687a67b                         -84 dBm
+I (547084) wifi station:   [13] VR46                             -84 dBm
+I (547084) wifi station:   [14] nest wifi                        -87 dBm
+I (547094) wifi station:   [15] Home_sweet_home                  -90 dBm
+I (547104) wifi station:   [16] Q0045139631614                   -92 dBm
+I (547104) wifi station:   [17] SmileV                           -92 dBm
+I (547114) wifi station:   [18] oooaaa                           -92 dBm
+I (547124) wifi station:   [19] Maze_06B1                        -94 dBm
+I (547124) wifi station:   [20] TP-Link_Guest_F96C               -94 dBm
+I (547134) wifi station:   [21] SkyNet                           -94 dBm
+I (547134) wifi station:   [22] c67c1415                         -95 dBm
+I (547144) wifi station:   [23] FAN: 0047002357425710            -95 dBm
+Enter SSID or number from list:
+---- Sent utf8 encoded message: "1\n" ----
+1
+
+I (553704) wifi station: SSID: TopA-node
+Enter password:
+---- Sent utf8 encoded message: "***\n" ----
+***
+
+I (559944) wifi station: password: OK
+I (559954) wifi station: connecting to SSID:TopA-node ...
+I (560064) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0
+I (560064) wifi:state: init -> auth (0xb0)
+I (560114) wifi:state: auth -> assoc (0x0)
+I (560124) wifi:state: assoc -> run (0x10)
+I (560144) wifi:connected with TopA-node, aid = 1, channel 1, BW20, bssid = 8a:a5:ff:82:4d:5b
+I (560144) wifi:security: WPA2-PSK, phy: bgn, rssi: -19, cipher(pairwise:0x3, group:0x3), pmf:1
+I (560154) wifi:pm start, type: 1
+
+I (560154) wifi:dp: 1, bi: 102400, li: 3, scale listen interval from 307200 us to 307200 us
+I (560164) wifi:set rx beacon pti, rx_bcn_pti: 0, bcn_timeout: 25000, mt_pti: 0, mt_time: 10000
+I (560194) wifi:dp: 2, bi: 102400, li: 4, scale listen interval from 307200 us to 409600 us
+I (560194) wifi:AP's beacon interval = 102400 us, DTIM period = 2
+I (561204) esp_netif_handlers: sta ip: 10.123.30.49, mask: 255.255.255.0, gw: 10.123.30.28
+I (561204) wifi station: got ip:10.123.30.49
+I (561204) wifi station: successfully connected to SSID:TopA-node

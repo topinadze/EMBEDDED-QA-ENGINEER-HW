@@ -1,0 +1,49 @@
+Test: tests/test_system.py::TestSystemButtons::test_button_k1_distance
+Firmware: 1.4.0
+Captured: 2026-10-14T01:44:27.246618+03:00
+
+TX > lamp status
+RX < lamp status
+RX < {"lamp":"off","color":[255,255,255],"brightness":50,"mode":"solid","timer_s":0}
+TX > version
+RX < version
+RX < I (435586) wifi station: FW: v1.4.0 (build Sep 29 2026 14:16:47)
+RX < I (435586) wifi station:   partition: ota_0 @ 0x10000, state: valid
+RX < I (475976) wifi station: button 1 pressed (GPIO41)
+RX < I (475976) wifi station: [K1] distance 10s...
+RX < I (475976) wifi station: distance: 9.8 cm
+RX < I (476476) wifi station: distance: 9.8 cm
+RX < I (476976) wifi station: distance: 9.8 cm
+RX < I (477476) wifi station: distance: 9.8 cm
+RX < I (477976) wifi station: distance: 9.8 cm
+RX < I (478476) wifi station: distance: 9.8 cm
+RX < I (478976) wifi station: distance: 9.8 cm
+RX < I (479476) wifi station: distance: 9.8 cm
+RX < I (479976) wifi station: distance: 9.8 cm
+RX < I (480476) wifi station: distance: 9.8 cm
+RX < I (480976) wifi station: distance: 9.8 cm
+RX < I (481476) wifi station: distance: 9.8 cm
+RX < I (481976) wifi station: distance: 9.8 cm
+RX < I (482476) wifi station: distance: 9.8 cm
+RX < I (482976) wifi station: distance: 9.8 cm
+RX < I (483476) wifi station: distance: 9.8 cm
+RX < I (483976) wifi station: distance: 18.6 cm
+RX < I (484506) wifi station: distance: timeout
+RX < I (485016) wifi station: distance: 83.4 cm
+RX < I (485516) wifi station: distance: 22.5 cm
+RX < I (486016) wifi station: [K1] done
+TX > lamp timer 0
+RX < lamp timer 0
+RX < I (486336) wifi station: [LAMP] timer cancelled
+TX > lamp color 255 255 255
+RX < lamp color 255 255 255
+RX < I (486546) wifi station: [LAMP] color set: (255,255,255)
+TX > lamp brightness 50
+RX < lamp brightness 50
+RX < I (486766) wifi station: [LAMP] brightness set: 50%
+TX > lamp mode solid
+RX < lamp mode solid
+RX < I (486976) wifi station: [LAMP] mode set: solid
+TX > lamp off
+RX < lamp off
+RX < I (487196) wifi station: [LAMP] off

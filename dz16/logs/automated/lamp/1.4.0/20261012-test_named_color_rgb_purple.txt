@@ -1,0 +1,23 @@
+Test: tests/test_lamp.py::TestLamp::test_named_color_rgb[purple-expected_rgb5]
+Firmware: 1.4.0
+Captured: 2026-10-12T04:01:33.811178+03:00
+
+TX > version
+RX < version
+RX < I (878131) wifi station: FW: v1.4.0 (build Sep 29 2026 14:16:47)
+RX < I (878131) wifi station:   partition: ota_0 @ 0x10000, state: valid
+TX > lamp on
+RX < lamp on
+RX < I (878751) wifi station: [LAMP] on
+TX > lamp color purple
+RX < lamp color purple
+RX < I (879371) wifi station: [LAMP] color set: purple (160,0,255)
+TX > lamp status
+RX < lamp status
+RX < {"lamp":"on","color":[160,0,255],"brightness":42,"mode":"solid","timer_s":0}
+TX > lamp timer 0
+RX < lamp timer 0
+RX < I (880581) wifi station: [LAMP] timer cancelled
+TX > lamp off
+RX < lamp off
+RX < I (880791) wifi station: [LAMP] off

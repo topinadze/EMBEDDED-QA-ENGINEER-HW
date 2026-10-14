@@ -1,0 +1,32 @@
+Test: tests/test_lamp.py::TestLamp::test_unknown_color_visual
+Firmware: 1.4.0
+Captured: 2026-10-12T03:40:28.262759+03:00
+
+TX > version
+RX < version
+RX < I (1109645) wifi station: FW: v1.4.0 (build Sep 29 2026 14:16:47)
+RX < I (1109645) wifi station:   partition: ota_0 @ 0x10000, state: valid
+TX > lamp on
+RX < lamp on
+RX < I (1110245) wifi station: [LAMP] on
+TX > lamp mode solid
+RX < lamp mode solid
+RX < I (1110855) wifi station: [LAMP] mode set: solid
+TX > lamp color yellow
+RX < lamp color yellow
+RX < I (1111475) wifi station: [LAMP] color set: yellow (255,180,0)
+TX > lamp status
+RX < lamp status
+RX < {"lamp":"on","color":[255,180,0],"brightness":50,"mode":"solid","timer_s":0}
+TX > lamp color orange
+RX < lamp color orange
+RX < E (1133985) wifi station: error: unknown color 'orange'
+TX > lamp status
+RX < lamp status
+RX < {"lamp":"on","color":[255,180,0],"brightness":50,"mode":"solid","timer_s":0}
+TX > lamp timer 0
+RX < lamp timer 0
+RX < I (1152885) wifi station: [LAMP] timer cancelled
+TX > lamp off
+RX < lamp off
+RX < I (1153095) wifi station: [LAMP] off

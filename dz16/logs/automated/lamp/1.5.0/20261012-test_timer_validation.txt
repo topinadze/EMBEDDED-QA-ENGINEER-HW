@@ -1,0 +1,38 @@
+Test: tests/test_lamp.py::TestLamp::test_timer_validation
+Firmware: 1.5.0
+Captured: 2026-10-12T18:10:18.869871+03:00
+
+TX > lamp status
+RX < lamp status
+RX < {"lamp":"off","color":[255,255,255],"brightness":50,"mode":"solid","timer_s":0}
+TX > version
+RX < version
+RX < I (819219) wifi station: FW: v1.5.0 (build Sep 29 2026 15:23:09)
+RX < I (819219) wifi station:   partition: ota_1 @ 0x100000, state: valid
+TX > lamp off
+RX < lamp off
+RX < I (819829) wifi station: [LAMP] off
+TX > lamp timer 10
+RX < lamp timer 10
+RX < E (820439) wifi station: error: lamp is off
+TX > lamp on
+RX < lamp on
+RX < I (821049) wifi station: [LAMP] on
+TX > lamp timer 5000
+RX < lamp timer 5000
+RX < E (821649) wifi station: error: timer must be 1-3600 s (0 = cancel)
+TX > lamp timer 0
+RX < lamp timer 0
+RX < I (822269) wifi station: [LAMP] timer cancelled
+TX > lamp color 255 255 255
+RX < lamp color 255 255 255
+RX < I (822479) wifi station: [LAMP] color set: (255,255,255)
+TX > lamp brightness 50
+RX < lamp brightness 50
+RX < I (822689) wifi station: [LAMP] brightness set: 50%
+TX > lamp mode solid
+RX < lamp mode solid
+RX < I (822899) wifi station: [LAMP] mode set: solid
+TX > lamp off
+RX < lamp off
+RX < I (823109) wifi station: [LAMP] off

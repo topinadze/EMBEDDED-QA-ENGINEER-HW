@@ -1,0 +1,29 @@
+Pre-reboot lamp state:
+---- Sent utf8 encoded message: "lamp on\n" ----
+I (2341116) wifi station: [LAMP] on
+---- Sent utf8 encoded message: "lamp status\n" ----
+{"lamp":"on","color":[0,0,255],"brightness":50,"mode":"breathe","timer_s":0}
+---- Sent utf8 encoded message: "reboot\n" ----
+I (2349486) wifi station: rebooting in 3...
+I (2350486) wifi station: 2...
+I (2351486) wifi station: 1...
+I (2352496) wifi station: retry to connect to the AP
+ESP-ROM:esp32s3-20210327
+I (29) boot: ESP-IDF v6.0.1 2nd stage bootloader
+I (73) boot:  2 ota_0            OTA app          00 10 00010000 000f0000
+I (80) boot:  3 ota_1            OTA app          00 11 00100000 000f0000
+I (274) boot: Loaded app from partition at offset 0x10000
+I (303) app_init: App version:      1.3.0
+I (631) wifi station: [OTA] running partition: ota_0, version 1.3.0
+I (631) wifi station: saved credentials found but auto-connect disabled. Type 'connect' to connect.
+I (641) wifi station: station_WiFi fw v1.3.0 ready. Type 'help' for commands
+
+Post-reboot lamp state:
+---- Sent utf8 encoded message: "lamp status\n" ----
+{"lamp":"off","color":[0,0,255],"brightness":50,"mode":"breathe","timer_s":0}
+---- Sent utf8 encoded message: "lamp on\n" ----
+I (29741) wifi station: [LAMP] on
+---- Sent utf8 encoded message: "lamp status\n" ----
+{"lamp":"on","color":[0,0,255],"brightness":50,"mode":"breathe","timer_s":0}
+
+Lamp state persistence across reboot passed.

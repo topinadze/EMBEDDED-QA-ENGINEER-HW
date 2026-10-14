@@ -1,0 +1,34 @@
+Test: tests/test_system.py::TestSystemButtons::test_button_k3_wifi_toggle
+Firmware: 1.3.0
+Captured: 2026-10-13T20:59:28.718563+03:00
+
+TX > lamp status
+RX < lamp status
+RX < {"lamp":"off","color":[255,255,255],"brightness":50,"mode":"solid","timer_s":0}
+TX > version
+RX < version
+RX < I (1705286) wifi station: FW: v1.3.0 (build Sep 29 2026 14:15:56)
+RX < I (1705286) wifi station:   partition: ota_1 @ 0x100000, state: valid
+RX < I (1712596) wifi station: button 3 pressed (GPIO39)
+RX < I (1712596) wifi station: [K3] wifi reconnect (saved credentials)
+RX < I (1712596) wifi station: connecting to saved SSID:TopA-node ...
+RX < I (1715006) wifi station: retry to connect to the AP
+RX < I (1717416) wifi station: retry to connect to the AP
+RX < I (1719836) wifi station: retry to connect to the AP
+RX < I (1722246) wifi station: retry to connect to the AP
+RX < I (1724656) wifi station: retry to connect to the AP
+TX > lamp timer 0
+RX < lamp timer 0
+RX < I (1724826) wifi station: [LAMP] timer cancelled
+TX > lamp color 255 255 255
+RX < lamp color 255 255 255
+RX < I (1725036) wifi station: [LAMP] color set: (255,255,255)
+TX > lamp brightness 50
+RX < lamp brightness 50
+RX < I (1725246) wifi station: [LAMP] brightness set: 50%
+TX > lamp mode solid
+RX < lamp mode solid
+RX < I (1725456) wifi station: [LAMP] mode set: solid
+TX > lamp off
+RX < lamp off
+RX < I (1725666) wifi station: [LAMP] off

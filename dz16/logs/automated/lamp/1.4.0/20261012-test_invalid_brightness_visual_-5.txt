@@ -1,0 +1,35 @@
+Test: tests/test_lamp.py::TestLamp::test_invalid_brightness_visual[-5]
+Firmware: 1.4.0
+Captured: 2026-10-12T03:43:04.846026+03:00
+
+TX > version
+RX < version
+RX < I (1245435) wifi station: FW: v1.4.0 (build Sep 29 2026 14:16:47)
+RX < I (1245435) wifi station:   partition: ota_0 @ 0x10000, state: valid
+TX > lamp on
+RX < lamp on
+RX < I (1246045) wifi station: [LAMP] on
+TX > lamp color white
+RX < lamp color white
+RX < I (1246645) wifi station: [LAMP] color set: white (255,255,255)
+TX > lamp mode solid
+RX < lamp mode solid
+RX < I (1247255) wifi station: [LAMP] mode set: solid
+TX > lamp brightness 50
+RX < lamp brightness 50
+RX < I (1247865) wifi station: [LAMP] brightness set: 50%
+TX > lamp status
+RX < lamp status
+RX < {"lamp":"on","color":[255,255,255],"brightness":50,"mode":"solid","timer_s":0}
+TX > lamp brightness -5
+RX < lamp brightness -5
+RX < E (1290175) wifi station: error: brightness must be 0-100
+TX > lamp status
+RX < lamp status
+RX < {"lamp":"on","color":[255,255,255],"brightness":50,"mode":"solid","timer_s":0}
+TX > lamp timer 0
+RX < lamp timer 0
+RX < I (1309475) wifi station: [LAMP] timer cancelled
+TX > lamp off
+RX < lamp off
+RX < I (1309685) wifi station: [LAMP] off

@@ -1,0 +1,34 @@
+---- Sent utf8 encoded message: "lamp off\n" ----
+lamp off
+
+I (795184) wifi station: [LAMP] off
+Observed: bright white changed to dim green Wi-Fi status LED.
+
+disconnect
+
+I (1067144) wifi:state: run -> init (0x0)
+I (1067154) wifi:pm stop, total sleep time: 432558124 us / 506996583 us
+
+I (1067154) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0
+I (1067154) wifi station: disconnected
+I (1067154) wifi station: connect to the AP fail
+---- Sent utf8 encoded message: "stauts\n" ----
+stauts
+
+I (1074804) wifi station: unknown command, type 'help' for available commands
+---- Sent utf8 encoded message: "status\n" ----
+status
+
+W (1083614) wifi:Haven't to connect to a suitable AP now!
+I (1083614) wifi station: WiFi: connected
+I (1083614) wifi station:   SSID:
+I (1083614) wifi station:   IP:   0.0.0.0
+I (1083614) wifi station:   RSSI: 0 dBm
+---- Sent utf8 encoded message: "lamp on\n" ----
+lamp on
+
+I (1105094) wifi station: [LAMP] on
+---- Sent utf8 encoded message: "lamp off\n" ----
+lamp off
+
+Observed: after disconnect and lamp on/off cycle, LED remained dim green instead of dim red.

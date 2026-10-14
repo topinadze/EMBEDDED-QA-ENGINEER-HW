@@ -1,0 +1,34 @@
+Test: tests/test_system.py::TestSystem::test_sensor_status_reporting
+Firmware: 1.4.0
+Captured: 2026-10-14T01:39:58.954458+03:00
+
+TX > lamp status
+RX < lamp status
+RX < {"lamp":"off","color":[255,255,255],"brightness":50,"mode":"solid","timer_s":0}
+TX > version
+RX < version
+RX < I (216436) wifi station: FW: v1.4.0 (build Sep 29 2026 14:16:47)
+RX < I (216436) wifi station:   partition: ota_0 @ 0x10000, state: valid
+TX > sensor status
+RX < sensor status
+RX < I (217036) wifi station: === Sensor Status ===
+RX < I (217036) wifi station:   Distance:  9.8 cm
+RX < I (217036) wifi station:   Relay:     OFF
+RX < I (217036) wifi station:   LED:       auto (WiFi status)
+RX < I (217036) wifi station:   WiFi:      disconnected
+RX < I (217046) wifi station:   Temp:      31.4 C
+TX > lamp timer 0
+RX < lamp timer 0
+RX < I (218046) wifi station: [LAMP] timer cancelled
+TX > lamp color 255 255 255
+RX < lamp color 255 255 255
+RX < I (218256) wifi station: [LAMP] color set: (255,255,255)
+TX > lamp brightness 50
+RX < lamp brightness 50
+RX < I (218466) wifi station: [LAMP] brightness set: 50%
+TX > lamp mode solid
+RX < lamp mode solid
+RX < I (218676) wifi station: [LAMP] mode set: solid
+TX > lamp off
+RX < lamp off
+RX < I (218886) wifi station: [LAMP] off

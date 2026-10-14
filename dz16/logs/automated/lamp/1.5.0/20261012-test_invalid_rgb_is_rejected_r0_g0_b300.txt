@@ -1,0 +1,35 @@
+Test: tests/test_lamp.py::TestLamp::test_invalid_rgb_is_rejected[r0_g0_b300]
+Firmware: 1.5.0
+Captured: 2026-10-12T18:03:10.931656+03:00
+
+TX > lamp status
+RX < lamp status
+RX < {"lamp":"off","color":[255,255,255],"brightness":50,"mode":"solid","timer_s":0}
+TX > version
+RX < version
+RX < I (391869) wifi station: FW: v1.5.0 (build Sep 29 2026 15:23:09)
+RX < I (391869) wifi station:   partition: ota_1 @ 0x100000, state: valid
+TX > lamp color green
+RX < lamp color green
+RX < I (392489) wifi station: [LAMP] color set: green (0,255,0)
+TX > lamp color 0 0 300
+RX < lamp color 0 0 300
+RX < E (393089) wifi station: error: rgb values must be 0-255
+TX > lamp status
+RX < lamp status
+RX < {"lamp":"off","color":[0,255,0],"brightness":50,"mode":"solid","timer_s":0}
+TX > lamp timer 0
+RX < lamp timer 0
+RX < I (394309) wifi station: [LAMP] timer cancelled
+TX > lamp color 255 255 255
+RX < lamp color 255 255 255
+RX < I (394529) wifi station: [LAMP] color set: (255,255,255)
+TX > lamp brightness 50
+RX < lamp brightness 50
+RX < I (394729) wifi station: [LAMP] brightness set: 50%
+TX > lamp mode solid
+RX < lamp mode solid
+RX < I (394949) wifi station: [LAMP] mode set: solid
+TX > lamp off
+RX < lamp off
+RX < I (395159) wifi station: [LAMP] off

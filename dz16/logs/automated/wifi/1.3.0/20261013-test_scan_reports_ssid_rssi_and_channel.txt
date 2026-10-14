@@ -1,0 +1,61 @@
+Test: tests/test_wifi.py::TestWifiStation::test_scan_reports_ssid_rssi_and_channel
+Firmware: 1.3.0
+Captured: 2026-10-13T03:15:31.427052+03:00
+
+TX > lamp status
+RX < lamp status
+RX < {"lamp":"off","color":[255,255,255],"brightness":50,"mode":"solid","timer_s":0}
+TX > version
+RX < version
+RX < I (3991) wifi station: FW: v1.3.0 (build Sep 29 2026 14:15:56)
+RX < I (3991) wifi station:   partition: ota_1 @ 0x100000, state: valid
+TX > scan
+RX < scan
+RX < I (4591) wifi station: scanning WiFi networks...
+RX < I (7091) wifi station: found 31 networks:
+RX < I (7091) wifi station:   [ 1] SSID: TopA-node                         RSSI: -29 dBm  CH: 1
+RX < I (7091) wifi station:   [ 2] SSID: bambuh                            RSSI: -57 dBm  CH: 4
+RX < I (7091) wifi station:   [ 3] SSID: TopAs_2.4G                        RSSI: -61 dBm  CH: 1
+RX < I (7101) wifi station:   [ 4] SSID: AP_2987279135                     RSSI: -63 dBm  CH: 1
+RX < I (7111) wifi station:   [ 5] SSID: 376                               RSSI: -77 dBm  CH: 3
+RX < I (7121) wifi station:   [ 6] SSID: VR46                              RSSI: -79 dBm  CH: 8
+RX < I (7131) wifi station:   [ 7] SSID: c63f5354                          RSSI: -81 dBm  CH: 1
+RX < I (7131) wifi station:   [ 8] SSID: HiSmart-01-ca2c4fae593b           RSSI: -81 dBm  CH: 3
+RX < I (7141) wifi station:   [ 9] SSID: bababa_Guest                      RSSI: -82 dBm  CH: 7
+RX < I (7151) wifi station:   [10] SSID: bambuh                            RSSI: -83 dBm  CH: 4
+RX < I (7161) wifi station:   [11] SSID: SmileV                            RSSI: -83 dBm  CH: 6
+RX < I (7171) wifi station:   [12] SSID: bababa                            RSSI: -84 dBm  CH: 7
+RX < I (7171) wifi station:   [13] SSID: c687a67b                          RSSI: -85 dBm  CH: 1
+RX < I (7181) wifi station:   [14] SSID: Keenetic-0122                     RSSI: -86 dBm  CH: 4
+RX < I (7191) wifi station:   [15] SSID: oooaaa                            RSSI: -86 dBm  CH: 11
+RX < I (7201) wifi station:   [16] SSID: oooaaa_Guest24                    RSSI: -87 dBm  CH: 11
+RX < I (7211) wifi station:   [17] SSID: TP-Link_54B8                      RSSI: -88 dBm  CH: 8
+RX < I (7211) wifi station:   [18] SSID: c6861204                          RSSI: -89 dBm  CH: 1
+RX < I (7221) wifi station:   [19] SSID: Xiaomi_625B                       RSSI: -90 dBm  CH: 10
+RX < I (7231) wifi station:   [20] SSID: Internet UTELS Wi-FI              RSSI: -92 dBm  CH: 6
+RX < I (7241) wifi station:   [21] SSID: 222-2                             RSSI: -92 dBm  CH: 10
+RX < I (7251) wifi station:   [22] SSID: c67db18d                          RSSI: -93 dBm  CH: 1
+RX < I (7251) wifi station:   [23] SSID: MERCUSYS_D2CA                     RSSI: -93 dBm  CH: 5
+RX < I (7261) wifi station:   [24] SSID: Solia                             RSSI: -93 dBm  CH: 10
+RX < I (7271) wifi station:   [25] SSID: Kvartira212                       RSSI: -93 dBm  CH: 11
+RX < I (7281) wifi station:   [26] SSID: SkyNet                            RSSI: -93 dBm  CH: 13
+RX < I (7291) wifi station:   [27] SSID: S+D=L                             RSSI: -94 dBm  CH: 4
+RX < I (7301) wifi station:   [28] SSID: 130_ibNet                         RSSI: -94 dBm  CH: 10
+RX < I (7301) wifi station:   [29] SSID: respublika40                      RSSI: -96 dBm  CH: 6
+RX < I (7311) wifi station:   [30] SSID: BlackBox-2                        RSSI: -96 dBm  CH: 10
+RX < I (7321) wifi station:   [31] SSID: c653387b                          RSSI: -97 dBm  CH: 1
+TX > lamp timer 0
+RX < lamp timer 0
+RX < I (16611) wifi station: [LAMP] timer cancelled
+TX > lamp color 255 255 255
+RX < lamp color 255 255 255
+RX < I (16821) wifi station: [LAMP] color set: (255,255,255)
+TX > lamp brightness 50
+RX < lamp brightness 50
+RX < I (17031) wifi station: [LAMP] brightness set: 50%
+TX > lamp mode solid
+RX < lamp mode solid
+RX < I (17241) wifi station: [LAMP] mode set: solid
+TX > lamp off
+RX < lamp off
+RX < I (17451) wifi station: [LAMP] off

@@ -1,14 +1,18 @@
 import asyncio
 import allure
 import pytest
-from bleak import BleakScanner, BleakClient
+try:
+    from bleak import BleakScanner, BleakClient
+except ImportError:
+    BleakScanner = None
+    BleakClient = None
 
 try:
     from drivers.device_driver import DeviceDriver
-    from config.wifi_config import BLE_DEVICE_NAME, BLE_LED_CHAR_UUID
+    from settings import BLE_DEVICE_NAME, BLE_LED_CHAR_UUID
 except ModuleNotFoundError:
     from dz14.drivers.device_driver import DeviceDriver
-    from dz14.config.wifi_config import BLE_DEVICE_NAME, BLE_LED_CHAR_UUID
+    from dz14.settings import BLE_DEVICE_NAME, BLE_LED_CHAR_UUID
 
 
 @allure.epic("ДЗ-14: Тестування бездротових інтерфейсів")
@@ -25,6 +29,8 @@ class TestBLESmoke:
         self,
         device_driver: DeviceDriver,
     ):
+        if BleakScanner is None or BleakClient is None:
+            pytest.skip("bleak is not installed; install requirements to run BLE tests.")
         """
         Перевірка наскрізної взаємодії BLE та UART:
         1. Сканування радіоефіру та знаходження пристрою 'SENTRY-BLE'.
@@ -61,11 +67,25 @@ class TestBLESmoke:
                     found_off = device_driver.wait_for("LED OFF!", timeout=3.0)
                     assert found_off, "FAIL: UART не зафіксував подію 'LED OFF!' після BLE write 0x00!"
 
-        with allure.step("5. BLE-клієнт відключено"):
-            # Підтвердження відключення по UART логу (FR-A3)
-            disconnected_log = device_driver.wait_for("Disconnected", timeout=3.0)
+        with allure.step("5. Перевірка закриття BLE-клієнта та UART disconnect event"):
+            assert not client.is_connected, (
+                "FAIL: Bleak client remained connected after leaving its context."
+            )
+
+            disconnected_log = device_driver.wait_for("Disconnected", timeout=10.0)
+            disconnect_lines = [
+                line
+                for line in device_driver.uart_log
+                if "disconnected" in line.casefold()
+            ]
             allure.attach(
-                f"UART Disconnect detected: {disconnected_log}",
+                "\n".join(disconnect_lines)
+                if disconnect_lines
+                else "No UART 'Disconnected' event was captured.",
                 name="BLE Disconnect Status",
                 attachment_type=allure.attachment_type.TEXT,
+            )
+            assert disconnected_log, (
+                "FAIL: UART did not report the BLE disconnect event "
+                "('Disconnected ...') within 10 seconds after the Bleak client closed."
             )

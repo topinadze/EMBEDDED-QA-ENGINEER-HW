@@ -1,0 +1,35 @@
+Test: tests/test_system.py::TestSystemInteractive::test_relay_control_physical
+Firmware: 1.4.0
+Captured: 2026-10-14T01:42:13.997683+03:00
+
+TX > lamp status
+RX < lamp status
+RX < {"lamp":"off","color":[255,255,255],"brightness":50,"mode":"solid","timer_s":0}
+TX > version
+RX < version
+RX < I (312076) wifi station: FW: v1.4.0 (build Sep 29 2026 14:16:47)
+RX < I (312076) wifi station:   partition: ota_0 @ 0x10000, state: valid
+TX > relay on
+RX < relay on
+RX < I (337046) wifi station: relay ON
+TX > relay off
+RX < relay off
+RX < I (339876) wifi station: relay OFF
+TX > relay off
+RX < relay off
+RX < I (352466) wifi station: relay OFF
+TX > lamp timer 0
+RX < lamp timer 0
+RX < I (353076) wifi station: [LAMP] timer cancelled
+TX > lamp color 255 255 255
+RX < lamp color 255 255 255
+RX < I (353296) wifi station: [LAMP] color set: (255,255,255)
+TX > lamp brightness 50
+RX < lamp brightness 50
+RX < I (353506) wifi station: [LAMP] brightness set: 50%
+TX > lamp mode solid
+RX < lamp mode solid
+RX < I (353716) wifi station: [LAMP] mode set: solid
+TX > lamp off
+RX < lamp off
+RX < I (353926) wifi station: [LAMP] off

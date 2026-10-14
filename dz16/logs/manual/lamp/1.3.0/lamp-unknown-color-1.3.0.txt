@@ -1,0 +1,12 @@
+lamp color orange
+
+E (3447764) wifi station: error: unknown color 'orange'
+
+The lamp color did not change.
+
+Repeat:
+lamp color orange
+
+E (3447764) wifi station: error: unknown color 'orange'
+
+The lamp color did not change.

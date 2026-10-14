@@ -1,0 +1,23 @@
+Test: tests/test_lamp.py::TestLamp::test_valid_brightness[70]
+Firmware: 1.4.0
+Captured: 2026-10-12T04:02:06.373767+03:00
+
+TX > version
+RX < version
+RX < I (910701) wifi station: FW: v1.4.0 (build Sep 29 2026 14:16:47)
+RX < I (910701) wifi station:   partition: ota_0 @ 0x10000, state: valid
+TX > lamp on
+RX < lamp on
+RX < I (911311) wifi station: [LAMP] on
+TX > lamp brightness 70
+RX < lamp brightness 70
+RX < I (911931) wifi station: [LAMP] brightness set: 70%
+TX > lamp status
+RX < lamp status
+RX < {"lamp":"on","color":[255,180,0],"brightness":70,"mode":"solid","timer_s":0}
+TX > lamp timer 0
+RX < lamp timer 0
+RX < I (913141) wifi station: [LAMP] timer cancelled
+TX > lamp off
+RX < lamp off
+RX < I (913361) wifi station: [LAMP] off

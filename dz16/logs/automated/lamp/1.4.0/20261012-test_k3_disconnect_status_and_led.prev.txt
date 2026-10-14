@@ -1,0 +1,21 @@
+Test: tests/test_wifi.py::TestWifiButtons::test_k3_disconnect_status_and_led
+Firmware: 1.4.0
+Captured: 2026-10-12T04:19:16.920763+03:00
+
+TX > version
+RX < version
+RX < I (1942511) wifi station: FW: v1.4.0 (build Sep 29 2026 14:16:47)
+RX < I (1942511) wifi station:   partition: ota_0 @ 0x10000, state: valid
+TX > status
+RX < status
+RX < W (1943121) wifi:Haven't to connect to a suitable AP now!
+RX < I (1943121) wifi station: WiFi: connected
+RX < I (1943121) wifi station:   SSID:
+RX < I (1943121) wifi station:   IP:   0.0.0.0
+RX < I (1943121) wifi station:   RSSI: 0 dBm
+TX > lamp timer 0
+RX < lamp timer 0
+RX < I (1943731) wifi station: [LAMP] timer cancelled
+TX > lamp off
+RX < lamp off
+RX < I (1943941) wifi station: [LAMP] off

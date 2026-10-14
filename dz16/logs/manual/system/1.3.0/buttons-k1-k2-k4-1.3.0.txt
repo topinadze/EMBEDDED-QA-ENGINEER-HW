@@ -1,0 +1,32 @@
+I (1894484) wifi station: button 4 pressed (GPIO38)
+I (1894484) wifi station: [K4] diode OFF
+I (1895084) wifi station: button 4 pressed (GPIO38)
+I (1895084) wifi station: [K4] diode ON
+I (1911234) wifi station: button 2 pressed (GPIO40)
+I (1911234) wifi station: [K2] relay ON
+I (1911934) wifi station: button 2 pressed (GPIO40)
+I (1911934) wifi station: [K2] relay OFF
+I (1915834) wifi station: button 1 pressed (GPIO41)
+I (1915834) wifi station: [K1] distance 10s...
+I (1915834) wifi station: distance: 10.2 cm
+I (1916334) wifi station: distance: 10.2 cm
+I (1916834) wifi station: distance: 10.2 cm
+I (1917334) wifi station: distance: 10.2 cm
+I (1917834) wifi station: distance: 10.2 cm
+I (1918334) wifi station: distance: 10.2 cm
+I (1918834) wifi station: distance: 10.2 cm
+I (1919334) wifi station: distance: 10.2 cm
+I (1919834) wifi station: distance: 10.2 cm
+I (1920334) wifi station: distance: 10.2 cm
+I (1920834) wifi station: distance: 10.2 cm
+I (1921334) wifi station: distance: 10.2 cm
+I (1921834) wifi station: distance: 10.2 cm
+I (1922334) wifi station: distance: 10.2 cm
+I (1922834) wifi station: distance: 10.2 cm
+I (1923334) wifi station: distance: 10.2 cm
+I (1923834) wifi station: distance: 10.2 cm
+I (1924334) wifi station: distance: 10.2 cm
+I (1924834) wifi station: distance: 10.2 cm
+I (1925334) wifi station: distance: 10.2 cm
+I (1925834) wifi station: distance: 10.2 cm
+I (1926334) wifi station: [K1] done

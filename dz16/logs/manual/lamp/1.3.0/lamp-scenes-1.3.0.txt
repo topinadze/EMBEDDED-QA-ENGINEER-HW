@@ -1,0 +1,8 @@
+---- Sent utf8 encoded message: "lamp status\n" ----
+lamp status
+
+{"lamp":"on","color":[0,0,255],"brightness":50,"mode":"breathe","timer_s":0}
+---- Sent utf8 encoded message: "lamp scene save 1\n" ----
+lamp scene save 1
+
+E (2293216) wifi station: error: scenes not implemented yet

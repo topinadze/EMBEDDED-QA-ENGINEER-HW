@@ -1,0 +1,11 @@
+I (696) wifi:enable tsf
+I (696) wifi station: wifi initialized. Type 'connect' to join a network (interactive)
+I (706) wifi station: [OTA] running partition: ota_0, version 1.5.0
+W (706) wifi station: [OTA] new firmware, state PENDING_VERIFY - running self-check...
+I (746) wifi station: [OTA] self-check passed, firmware marked VALID
+I (746) wifi station: station_WiFi fw v1.5.0 ready. Type 'help' for commands
+I (746) main_task: Returned from app_main()
+---- Sent utf8 encoded message: "lamp scene load 1\n" ----
+lamp scene load 1
+
+E (19816) wifi station: error: scene 1 is empty

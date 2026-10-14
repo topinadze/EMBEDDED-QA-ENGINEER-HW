@@ -1,0 +1,26 @@
+DZ16 Smart Lamp non-interactive test run
+Date: 2026-10-12
+Firmware before run: 1.4.0, ota_0 @ 0x10000, state valid
+UART: COM4, 115200 baud
+Selection: tests/test_lamp.py, marker "lamp and not interactive"
+Logging: DEBUG
+
+Pytest result: 36 passed, 1 skipped, 28 deselected
+Failed: 0
+Skipped: test_invalid_scene_index; scenes are not implemented in firmware
+  1.4.0, so the test's firmware-version guard skipped this unsupported case.
+
+Previously missing test test_lamp_status_json_shape passed. Its UART response
+contained the required fields:
+{"lamp":"off","color":[17,34,51],"brightness":42,"mode":"solid","timer_s":0}
+
+Additional checks confirmed:
+- Unknown lamp mode "disco" returns the expected error.
+- Timer validation rejects setting a timer while the lamp is off and rejects
+  5000 seconds.
+- On 1.4.0, scene save and load for indices 1, 2, and 3 return the expected
+  "scenes not implemented yet" errors.
+- Rainbow mode returns the expected "not implemented yet" error on 1.4.0.
+- Unknown lamp subcommand and help command checks passed.
+
+Per-test UART debug transcripts for this run are saved beside this file.

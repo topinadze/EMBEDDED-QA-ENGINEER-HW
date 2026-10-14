@@ -1,0 +1,57 @@
+Test: tests/test_wifi.py::TestWifiStation::test_scan_reports_ssid_rssi_and_channel
+Firmware: 1.3.0
+Captured: 2026-10-13T03:02:56.924052+03:00
+
+TX > lamp status
+RX < lamp status
+RX < {"lamp":"off","color":[255,255,255],"brightness":50,"mode":"solid","timer_s":0}
+TX > version
+RX < version
+RX < I (5989136) wifi station: FW: v1.3.0 (build Sep 29 2026 14:15:56)
+RX < I (5989136) wifi station:   partition: ota_1 @ 0x100000, state: valid
+TX > scan
+RX < scan
+RX < I (5989736) wifi station: scanning WiFi networks...
+RX < I (5992636) wifi station: found 27 networks:
+RX < I (5992636) wifi station:   [ 1] SSID: TopA-node                         RSSI: -27 dBm  CH: 1
+RX < I (5992636) wifi station:   [ 2] SSID: bambuh                            RSSI: -53 dBm  CH: 4
+RX < I (5992646) wifi station:   [ 3] SSID: TopAs_2.4G                        RSSI: -58 dBm  CH: 1
+RX < I (5992646) wifi station:   [ 4] SSID: AP_2987279135                     RSSI: -69 dBm  CH: 1
+RX < I (5992656) wifi station:   [ 5] SSID: 376                               RSSI: -75 dBm  CH: 3
+RX < I (5992666) wifi station:   [ 6] SSID: VR46                              RSSI: -81 dBm  CH: 8
+RX < I (5992676) wifi station:   [ 7] SSID: bababa                            RSSI: -82 dBm  CH: 7
+RX < I (5992686) wifi station:   [ 8] SSID: HiSmart-01-ca2c4fae5ef5           RSSI: -84 dBm  CH: 3
+RX < I (5992686) wifi station:   [ 9] SSID: Keenetic-0122                     RSSI: -85 dBm  CH: 4
+RX < I (5992696) wifi station:   [10] SSID: nest wifi                         RSSI: -85 dBm  CH: 1
+RX < I (5992706) wifi station:   [11] SSID: Sashka                            RSSI: -85 dBm  CH: 1
+RX < I (5992716) wifi station:   [12] SSID: bababa_Guest                      RSSI: -85 dBm  CH: 7
+RX < I (5992726) wifi station:   [13] SSID: HiSmart-01-ca2c4fae593b           RSSI: -86 dBm  CH: 3
+RX < I (5992736) wifi station:   [14] SSID: NeD                               RSSI: -86 dBm  CH: 9
+RX < I (5992736) wifi station:   [15] SSID: GreenMint                         RSSI: -87 dBm  CH: 2
+RX < I (5992746) wifi station:   [16] SSID: TP-Link_54B8                      RSSI: -88 dBm  CH: 8
+RX < I (5992756) wifi station:   [17] SSID: c672bc1a                          RSSI: -88 dBm  CH: 1
+RX < I (5992766) wifi station:   [18] SSID: Xiaomi_625B                       RSSI: -90 dBm  CH: 10
+RX < I (5992776) wifi station:   [19] SSID: S+D=L                             RSSI: -91 dBm  CH: 4
+RX < I (5992786) wifi station:   [20] SSID: MERCUSYS_D2CA                     RSSI: -91 dBm  CH: 5
+RX < I (5992786) wifi station:   [21] SSID: c687a67b                          RSSI: -91 dBm  CH: 1
+RX < I (5992796) wifi station:   [22] SSID: 222-2                             RSSI: -92 dBm  CH: 10
+RX < I (5992806) wifi station:   [23] SSID: 1ee215ae                          RSSI: -92 dBm  CH: 1
+RX < I (5992816) wifi station:   [24] SSID: Kvartira212                       RSSI: -92 dBm  CH: 11
+RX < I (5992826) wifi station:   [25] SSID: c6861204                          RSSI: -93 dBm  CH: 1
+RX < I (5992836) wifi station:   [26] SSID: Home_sweet_home                   RSSI: -95 dBm  CH: 13
+RX < I (5992836) wifi station:   [27] SSID: respublika40                      RSSI: -97 dBm  CH: 6
+TX > lamp timer 0
+RX < lamp timer 0
+RX < I (6001786) wifi station: [LAMP] timer cancelled
+TX > lamp color 255 255 255
+RX < lamp color 255 255 255
+RX < I (6001996) wifi station: [LAMP] color set: (255,255,255)
+TX > lamp brightness 50
+RX < lamp brightness 50
+RX < I (6002206) wifi station: [LAMP] brightness set: 50%
+TX > lamp mode solid
+RX < lamp mode solid
+RX < I (6002416) wifi station: [LAMP] mode set: solid
+TX > lamp off
+RX < lamp off
+RX < I (6002626) wifi station: [LAMP] off

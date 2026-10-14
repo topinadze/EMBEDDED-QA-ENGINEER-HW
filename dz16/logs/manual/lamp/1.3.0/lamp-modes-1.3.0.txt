@@ -1,0 +1,78 @@
+---- Sent utf8 encoded message: "lamp mode blick\n" ----
+lamp mode blick
+
+E (980196) wifi station: error: unknown mode 'blick'
+---- Sent utf8 encoded message: "lamp mode blink\n" ----
+lamp mode blink
+
+I (985096) wifi station: [LAMP] mode set: blink
+---- Sent utf8 encoded message: "lamp status\n" ----
+lamp status
+
+{"lamp":"on","color":[255,180,0],"brightness":130,"mode":"blink","timer_s":0}
+---- Sent utf8 encoded message: "lamp color 255 180 180\n" ----
+lamp color 255 180 180
+
+I (1014406) wifi station: [LAMP] color set: (255,180,180)
+---- Sent utf8 encoded message: "lamp status\n" ----
+lamp status
+
+{"lamp":"on","color":[255,180,180],"brightness":130,"mode":"blink","timer_s":0}
+---- Sent utf8 encoded message: "lamp mode solid\n" ----
+lamp mode solid
+
+I (1034986) wifi station: [LAMP] mode set: solid
+---- Sent utf8 encoded message: "lamp status\n" ----
+lamp status
+
+{"lamp":"on","color":[255,180,180],"brightness":130,"mode":"solid","timer_s":0}
+---- Sent utf8 encoded message: "lamp mode blink\n" ----
+lamp mode blink
+
+I (1046246) wifi station: [LAMP] mode set: blink
+---- Sent utf8 encoded message: "lamp color red\n" ----
+lamp color red
+
+I (1056296) wifi station: [LAMP] color set: red (255,0,0)
+---- Sent utf8 encoded message: "lamp color blue\n" ----
+lamp color blue
+
+I (1065066) wifi station: [LAMP] color set: blue (0,0,255)
+---- Sent utf8 encoded message: "lamp brightness 30\n" ----
+lamp brightness 30
+
+I (1075686) wifi station: [LAMP] brightness set: 30%
+---- Sent utf8 encoded message: "lamp brightness 10\n" ----
+lamp brightness 10
+
+I (1081296) wifi station: [LAMP] brightness set: 10%
+---- Sent utf8 encoded message: "lamp status\n" ----
+lamp status
+
+{"lamp":"on","color":[0,0,255],"brightness":10,"mode":"blink","timer_s":0}
+---- Sent utf8 encoded message: "lamp mode solid\n" ----
+lamp mode solid
+
+I (1100006) wifi station: [LAMP] mode set: solid
+---- Sent utf8 encoded message: "lamp mode breathe\n" ----
+lamp mode breathe
+
+I (1111946) wifi station: [LAMP] mode set: breathe
+---- Sent utf8 encoded message: "lamp status\n" ----
+lamp status
+
+{"lamp":"on","color":[0,0,255],"brightness":10,"mode":"breathe","timer_s":0}
+---- Sent utf8 encoded message: "lamp brightness 100\n" ----
+lamp brightness 100
+
+I (1131596) wifi station: [LAMP] brightness set: 100%
+---- Sent utf8 encoded message: "lamp brightness 0\n" ----
+lamp brightness 0
+
+I (1157986) wifi station: [LAMP] brightness set: 0%
+---- Sent utf8 encoded message: "lamp status\n" ----
+lamp status
+
+{"lamp":"on","color":[0,0,255],"brightness":0,"mode":"breathe","timer_s":0}
+
+The `solid`, `blink`, and `breathe` modes and their physical behavior/brightness were verified.

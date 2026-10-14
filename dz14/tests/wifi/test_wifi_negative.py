@@ -38,9 +38,13 @@ class TestWiFiNegative:
 
         with allure.step("3. Перевірка UART-повідомлення про невдале підключення"):
             uart_output = "\n".join(device_driver.uart_log)
-            assert re.search(r"\b(fail|failed|timeout)\b", uart_output, re.IGNORECASE), (
-                "FAIL: Після неправильного пароля у UART немає повідомлення "
-                "про помилку або timeout."
+            assert re.search(
+                r"failed to connect to ssid|connection timeout|connect to the ap fail",
+                uart_output,
+                re.IGNORECASE,
+            ), (
+                "FAIL: Після неправильного пароля у UART немає очікуваного повідомлення "
+                "('connect to the AP fail', 'failed to connect to SSID' або 'connection timeout')."
             )
 
         with allure.step("4. Перевірка статусу пристрою"):
@@ -111,9 +115,13 @@ class TestWiFiNegative:
 
         with allure.step("3. Перевірка UART-повідомлення про невдале підключення"):
             uart_output = "\n".join(device_driver.uart_log)
-            assert re.search(r"\b(fail|failed|timeout)\b", uart_output, re.IGNORECASE), (
+            assert re.search(
+                r"failed to connect to ssid|connection timeout|connect to the ap fail",
+                uart_output,
+                re.IGNORECASE,
+            ), (
                 "FAIL: Після підключення до відсутньої мережі у UART немає "
-                "повідомлення про помилку або timeout."
+                "очікуваного повідомлення ('connect to the AP fail', 'failed to connect to SSID' або 'connection timeout')."
             )
 
         with allure.step("4. Перевірка живучості пристрою через команду help"):

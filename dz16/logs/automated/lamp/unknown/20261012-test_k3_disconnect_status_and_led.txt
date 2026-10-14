@@ -1,0 +1,9 @@
+Test: tests/test_wifi.py::TestWifiButtons::test_k3_disconnect_status_and_led
+Firmware: unknown
+Captured: 2026-10-12T18:11:23.118003+03:00
+
+TX > lamp status
+RX < I (27941) wifi station: 2...
+TX > version
+TX > reboot
+RX < I (28941) wifi station: 1...

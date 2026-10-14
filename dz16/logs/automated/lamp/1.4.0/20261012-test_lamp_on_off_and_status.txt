@@ -1,0 +1,26 @@
+Test: tests/test_lamp.py::TestLamp::test_lamp_on_off_and_status
+Firmware: 1.4.0
+Captured: 2026-10-12T04:01:14.716715+03:00
+
+TX > version
+RX < version
+RX < I (858461) wifi station: FW: v1.4.0 (build Sep 29 2026 14:16:47)
+RX < I (858461) wifi station:   partition: ota_0 @ 0x10000, state: valid
+TX > lamp on
+RX < lamp on
+RX < I (859071) wifi station: [LAMP] on
+TX > lamp status
+RX < lamp status
+RX < {"lamp":"on","color":[17,34,51],"brightness":42,"mode":"solid","timer_s":0}
+TX > lamp off
+RX < lamp off
+RX < I (860271) wifi station: [LAMP] off
+TX > lamp status
+RX < lamp status
+RX < {"lamp":"off","color":[17,34,51],"brightness":42,"mode":"solid","timer_s":0}
+TX > lamp timer 0
+RX < lamp timer 0
+RX < I (861501) wifi station: [LAMP] timer cancelled
+TX > lamp off
+RX < lamp off
+RX < I (861711) wifi station: [LAMP] off

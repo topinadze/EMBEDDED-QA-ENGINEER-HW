@@ -1,0 +1,69 @@
+Test: tests/test_lamp.py::TestLamp::test_help_lists_lamp_commands
+Firmware: 1.3.0
+Captured: 2026-10-14T06:06:48.302901+03:00
+
+TX > lamp status
+RX < lamp status
+RX < {"lamp":"off","color":[255,255,255],"brightness":50,"mode":"solid","timer_s":0}
+TX > version
+RX < version
+RX < I (1471139) wifi station: FW: v1.3.0 (build Sep 29 2026 14:15:56)
+RX < I (1471139) wifi station:   partition: ota_1 @ 0x100000, state: valid
+TX > help
+RX < help
+RX < I (1471739) wifi station: Available commands:
+RX < I (1471739) wifi station:   connect                    - connect to WiFi AP
+RX < I (1471739) wifi station:   disconnect                 - disconnect from WiFi AP
+RX < I (1471739) wifi station:   status                     - show WiFi connection status
+RX < I (1471749) wifi station:   scan                       - scan for WiFi networks
+RX < I (1471759) wifi station:   distance                   - measure continuously (Enter to stop)
+RX < I (1471759) wifi station:   distance 10                - measure for 10 seconds
+RX < I (1471769) wifi station:   distance <seconds>         - measure for N seconds
+RX < I (1471779) wifi station:   relay on                   - turn relay ON
+RX < I (1471779) wifi station:   relay off                  - turn relay OFF
+RX < I (1471789) wifi station:   led on                     - turn LED on (white)
+RX < I (1471799) wifi station:   led off                    - turn LED off
+RX < I (1471799) wifi station:   led auto                   - LED follows WiFi status
+RX < I (1471809) wifi station:   led rgb                    - smooth RGB cycle for 5 seconds
+RX < I (1471819) wifi station:   version                    - firmware version, partition, OTA state
+RX < I (1471829) wifi station:   ota check                  - compare current version with server
+RX < I (1471839) wifi station:   ota update                 - install latest stable firmware
+RX < I (1471839) wifi station:   ota update beta            - install latest beta firmware
+RX < I (1471849) wifi station:   ota install <ver> [force]  - install specific version (force = allow downgrade)
+RX < I (1471859) wifi station:   ota broken                 - install intentionally broken fw (rollback demo)
+RX < I (1471869) wifi station:   ota <url>                  - flash firmware from custom URL (http/https)
+RX < I (1471879) wifi station:   ota-test-server            - simulate OTA update (fake, no download)
+RX < I (1471889) wifi station: Smart Lamp:
+RX < I (1471889) wifi station:   lamp on | lamp off         - turn lamp on/off
+RX < I (1471899) wifi station:   lamp color <name>          - red green blue white yellow purple cyan
+RX < I (1471909) wifi station:   lamp color <r> <g> <b>     - custom color, 0-255 each
+RX < I (1471909) wifi station:   lamp brightness <0-100>    - brightness in %
+RX < I (1471919) wifi station:   lamp mode <mode>           - solid blink breathe rainbow
+RX < I (1471929) wifi station:   lamp timer <1-3600>        - auto-off after N seconds (0 = cancel)
+RX < I (1471929) wifi station:   lamp scene save|load <1-3> - save/load color+brightness+mode
+RX < I (1471939) wifi station:   lamp status                - lamp state as JSON
+RX < I (1471949) wifi station:   sysinfo                    - show system information
+RX < I (1471959) wifi station:   temp                       - show chip temperature
+RX < I (1471959) wifi station:   sensor status              - show all sensors status
+RX < I (1471969) wifi station:   reboot                     - reboot device
+RX < I (1471979) wifi station:   help                       - show this help
+RX < I (1471979) wifi station: Buttons:
+RX < I (1471989) wifi station:   K1 (GPIO41)                - distance 10s
+RX < I (1471989) wifi station:   K2 (GPIO40)                - relay toggle
+RX < I (1471999) wifi station:   K3 (GPIO39)                - wifi disconnect / reconnect (saved)
+RX < I (1472009) wifi station:   K4 (GPIO38)                - diode toggle
+TX > lamp timer 0
+RX < lamp timer 0
+RX < I (1472749) wifi station: [LAMP] timer cancelled
+TX > lamp color 255 255 255
+RX < lamp color 255 255 255
+RX < I (1472959) wifi station: [LAMP] color set: (255,255,255)
+TX > lamp brightness 50
+RX < lamp brightness 50
+RX < I (1473169) wifi station: [LAMP] brightness set: 50%
+TX > lamp mode solid
+RX < lamp mode solid
+RX < I (1473379) wifi station: [LAMP] mode set: solid
+TX > lamp off
+RX < lamp off
+RX < I (1473589) wifi station: [LAMP] off

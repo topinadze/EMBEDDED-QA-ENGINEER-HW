@@ -1,0 +1,57 @@
+Test: tests/test_lamp.py::TestLamp::test_help_lists_lamp_commands
+Firmware: 1.4.0
+Captured: 2026-10-12T04:03:05.345554+03:00
+
+TX > version
+RX < version
+RX < I (970491) wifi station: FW: v1.4.0 (build Sep 29 2026 14:16:47)
+RX < I (970491) wifi station:   partition: ota_0 @ 0x10000, state: valid
+TX > help
+RX < help
+RX < I (971111) wifi station: Available commands:
+RX < I (971111) wifi station:   connect                    - connect to WiFi AP
+RX < I (971111) wifi station:   disconnect                 - disconnect from WiFi AP
+RX < I (971111) wifi station:   status                     - show WiFi connection status
+RX < I (971121) wifi station:   scan                       - scan for WiFi networks
+RX < I (971131) wifi station:   distance                   - measure continuously (Enter to stop)
+RX < I (971131) wifi station:   distance 10                - measure for 10 seconds
+RX < I (971141) wifi station:   distance <seconds>         - measure for N seconds
+RX < I (971151) wifi station:   relay on                   - turn relay ON
+RX < I (971151) wifi station:   relay off                  - turn relay OFF
+RX < I (971161) wifi station:   led on                     - turn LED on (white)
+RX < I (971171) wifi station:   led off                    - turn LED off
+RX < I (971171) wifi station:   led auto                   - LED follows WiFi status
+RX < I (971181) wifi station:   led rgb                    - smooth RGB cycle for 5 seconds
+RX < I (971191) wifi station:   version                    - firmware version, partition, OTA state
+RX < I (971201) wifi station:   ota check                  - compare current version with server
+RX < I (971201) wifi station:   ota update                 - install latest stable firmware
+RX < I (971211) wifi station:   ota update beta            - install latest beta firmware
+RX < I (971221) wifi station:   ota install <ver> [force]  - install specific version (force = allow downgrade)
+RX < I (971231) wifi station:   ota broken                 - install intentionally broken fw (rollback demo)
+RX < I (971241) wifi station:   ota <url>                  - flash firmware from custom URL (http/https)
+RX < I (971251) wifi station:   ota-test-server            - simulate OTA update (fake, no download)
+RX < I (971251) wifi station: Smart Lamp:
+RX < I (971261) wifi station:   lamp on | lamp off         - turn lamp on/off
+RX < I (971261) wifi station:   lamp color <name>          - red green blue white yellow purple cyan
+RX < I (971271) wifi station:   lamp color <r> <g> <b>     - custom color, 0-255 each
+RX < I (971281) wifi station:   lamp brightness <0-100>    - brightness in %
+RX < I (971291) wifi station:   lamp mode <mode>           - solid blink breathe rainbow
+RX < I (971291) wifi station:   lamp timer <1-3600>        - auto-off after N seconds (0 = cancel)
+RX < I (971301) wifi station:   lamp scene save|load <1-3> - save/load color+brightness+mode
+RX < I (971311) wifi station:   lamp status                - lamp state as JSON
+RX < I (971321) wifi station:   sysinfo                    - show system information
+RX < I (971321) wifi station:   temp                       - show chip temperature
+RX < I (971331) wifi station:   sensor status              - show all sensors status
+RX < I (971341) wifi station:   reboot                     - reboot device
+RX < I (971341) wifi station:   help                       - show this help
+RX < I (971351) wifi station: Buttons:
+RX < I (971351) wifi station:   K1 (GPIO41)                - distance 10s
+RX < I (971361) wifi station:   K2 (GPIO40)                - relay toggle
+RX < I (971361) wifi station:   K3 (GPIO39)                - wifi disconnect / reconnect (saved)
+RX < I (971371) wifi station:   K4 (GPIO38)                - diode toggle
+TX > lamp timer 0
+RX < lamp timer 0
+RX < I (972121) wifi station: [LAMP] timer cancelled
+TX > lamp off
+RX < lamp off
+RX < I (972331) wifi station: [LAMP] off

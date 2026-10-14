@@ -1,0 +1,154 @@
+---- Sent utf8 encoded message: "lamp status\n" ----
+lamp status
+
+{"lamp":"off","color":[255,255,255],"brightness":50,"mode":"solid","timer_s":0}
+---- Sent utf8 encoded message: "lamp red\n" ----
+lamp red
+
+E (2054054) wifi station: error: unknown lamp command. See 'help'
+---- Sent utf8 encoded message: "lamp color red\n" ----
+lamp color red
+
+I (2107334) wifi station: [LAMP] color set: red (255,0,0)
+---- Sent utf8 encoded message: "lamp status\n" ----
+lamp status
+
+{"lamp":"off","color":[255,0,0],"brightness":50,"mode":"solid","timer_s":0}
+---- Sent utf8 encoded message: "lamp on\n" ----
+lamp on
+
+I (2134744) wifi station: [LAMP] on
+---- Sent utf8 encoded message: "lamp color red\n" ----
+lamp color red
+
+I (2145484) wifi station: [LAMP] color set: red (255,0,0)
+---- Sent utf8 encoded message: "lamp status\n" ----
+lamp status
+
+{"lamp":"on","color":[255,0,0],"brightness":50,"mode":"solid","timer_s":0}
+---- Sent utf8 encoded message: "lamp color green\n" ----
+lamp color green
+
+I (2168514) wifi station: [LAMP] color set: green (0,255,0)
+---- Sent utf8 encoded message: "lamp status\n" ----
+lamp status
+
+{"lamp":"on","color":[0,255,0],"brightness":50,"mode":"solid","timer_s":0}
+---- Sent utf8 encoded message: "lamp off\n" ----
+lamp off
+
+I (2189594) wifi station: [LAMP] off
+---- Sent utf8 encoded message: "lamp on\n" ----
+lamp on
+
+I (2193844) wifi station: [LAMP] on
+---- Sent utf8 encoded message: "lamp status\n" ----
+lamp status
+
+{"lamp":"on","color":[0,255,0],"brightness":50,"mode":"solid","timer_s":0}
+---- Sent utf8 encoded message: "lamp color red\n" ----
+lamp color red
+
+I (2242644) wifi station: [LAMP] color set: red (255,0,0)
+---- Sent utf8 encoded message: "lamp off\n" ----
+lamp off
+
+I (2247134) wifi station: [LAMP] off
+---- Sent utf8 encoded message: "lamp on\n" ----
+lamp on
+
+I (2251544) wifi station: [LAMP] on
+---- Sent utf8 encoded message: "lamp color green\n" ----
+lamp color green
+
+I (2260784) wifi station: [LAMP] color set: green (0,255,0)
+---- Sent utf8 encoded message: "lamp off\n" ----
+lamp off
+
+I (2265474) wifi station: [LAMP] off
+---- Sent utf8 encoded message: "lamp on\n" ----
+lamp on
+
+I (2267834) wifi station: [LAMP] on
+---- Sent utf8 encoded message: "lamp color blue\n" ----
+lamp color blue
+
+I (2277824) wifi station: [LAMP] color set: blue (0,0,255)
+---- Sent utf8 encoded message: "lamp off\n" ----
+lamp off
+
+I (2283244) wifi station: [LAMP] off
+---- Sent utf8 encoded message: "lamo on\n" ----
+lamo on
+
+I (2286214) wifi station: unknown command, type 'help' for available commands
+---- Sent utf8 encoded message: "lamp on\n" ----
+lamp on
+
+I (2291034) wifi station: [LAMP] on
+---- Sent utf8 encoded message: "lamp color white\n" ----
+lamp color white
+
+I (2299994) wifi station: [LAMP] color set: white (255,255,255)
+---- Sent utf8 encoded message: "lamp status\n" ----
+lamp status
+
+{"lamp":"on","color":[255,255,255],"brightness":50,"mode":"solid","timer_s":0}
+---- Sent utf8 encoded message: "lamp color yellow\n" ----
+lamp color yellow
+
+I (2325084) wifi station: [LAMP] color set: yellow (255,180,0)
+---- Sent utf8 encoded message: "lamp status\n" ----
+lamp status
+
+{"lamp":"on","color":[255,180,0],"brightness":50,"mode":"solid","timer_s":0}
+---- Sent utf8 encoded message: "lamp off\n" ----
+lamp off
+
+I (2355264) wifi station: [LAMP] off
+---- Sent utf8 encoded message: "lamp on\n" ----
+lamp on
+
+I (2359624) wifi station: [LAMP] on
+---- Sent utf8 encoded message: "lamp color purple\n" ----
+lamp color purple
+
+I (2369614) wifi station: [LAMP] color set: purple (160,0,255)
+---- Sent utf8 encoded message: "lamp status\n" ----
+lamp status
+
+{"lamp":"on","color":[160,0,255],"brightness":50,"mode":"solid","timer_s":0}
+---- Sent utf8 encoded message: "lamp color blue\n" ----
+lamp color blue
+
+I (2392624) wifi station: [LAMP] color set: blue (0,0,255)
+---- Sent utf8 encoded message: "lamp color purple\n" ----
+lamp color purple
+
+I (2403594) wifi station: [LAMP] color set: purple (160,0,255)
+---- Sent utf8 encoded message: "lamp color cyan\n" ----
+lamp color cyan
+
+I (2484364) wifi station: [LAMP] color set: cyan (0,255,255)
+---- Sent utf8 encoded message: "lamp status\n" ----
+lamp status
+
+{"lamp":"on","color":[0,255,255],"brightness":50,"mode":"solid","timer_s":0}
+---- Sent utf8 encoded message: "lamp off\n" ----
+lamp off
+
+I (2497004) wifi station: [LAMP] off
+---- Sent utf8 encoded message: "lamp on\n" ----
+lamp on
+
+I (2499624) wifi station: [LAMP] on
+---- Sent utf8 encoded message: "lamp color purple\n" ----
+lamp color purple
+
+I (2514874) wifi station: [LAMP] color set: purple (160,0,255)
+---- Sent utf8 encoded message: "lamp color cyan\n" ----
+lamp color cyan
+
+I (2525334) wifi station: [LAMP] color set: cyan (0,255,255)
+
+Physical observation from the tester: red and blue are swapped; purple and cyan are swapped. This was reproduced twice. Turning the lamp off and on did not change the behavior.

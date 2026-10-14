@@ -1,0 +1,29 @@
+Test: tests/test_lamp.py::TestLamp::test_timer_cancel_and_remaining_time
+Firmware: 1.4.0
+Captured: 2026-10-12T04:02:50.202998+03:00
+
+TX > version
+RX < version
+RX < I (953331) wifi station: FW: v1.4.0 (build Sep 29 2026 14:16:47)
+RX < I (953331) wifi station:   partition: ota_0 @ 0x10000, state: valid
+TX > lamp on
+RX < lamp on
+RX < I (953941) wifi station: [LAMP] on
+TX > lamp timer 30
+RX < lamp timer 30
+RX < I (954541) wifi station: [LAMP] auto-off in 30 s
+TX > lamp status
+RX < lamp status
+RX < {"lamp":"on","color":[255,255,255],"brightness":50,"mode":"breathe","timer_s":29}
+TX > lamp timer 0
+RX < lamp timer 0
+RX < I (955761) wifi station: [LAMP] timer cancelled
+TX > lamp status
+RX < lamp status
+RX < {"lamp":"on","color":[255,255,255],"brightness":50,"mode":"breathe","timer_s":0}
+TX > lamp timer 0
+RX < lamp timer 0
+RX < I (956981) wifi station: [LAMP] timer cancelled
+TX > lamp off
+RX < lamp off
+RX < I (957191) wifi station: [LAMP] off

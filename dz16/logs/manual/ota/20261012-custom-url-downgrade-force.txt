@@ -1,0 +1,27 @@
+---- Sent utf8 encoded message: "version\n" ----
+version
+
+I (926017) wifi station: FW: v1.5.0 (build Sep 29 2026 15:23:09)
+I (926017) wifi station:   partition: ota_0 @ 0x10000, state: valid
+---- Sent utf8 encoded message: "ota https://raw.githubusercontent.com/BohdanHorbanych/esp32-ota-files/main/firmware/v1.4.0/station_WiFi.bin\n" ----
+ota https://raw.githubusercontent.com/BohdanHorbanych/esp32-ota-files/main/firmware/v1.4.0/station_WiFi.bin
+
+I (996767) wifi station: [OTA] current version: 1.5.0 (partition ota_0)
+I (996767) wifi station: [OTA] target partition: ota_1
+I (996767) wifi station: [OTA] downloading: https://raw.githubusercontent.com/BohdanHorbanych/esp32-ota-files/main/firmware/v1.4.0/station_WiFi.bin
+I (997767) esp-x509-crt-bundle: Certificate validated
+I (998747) esp_https_ota: Starting OTA...
+I (998747) esp_https_ota: Writing to <ota_1> partition at offset 0x100000
+I (998897) wifi station: [OTA] new version: 1.4.0
+E (998897) wifi station: [OTA] downgrade blocked: 1.5.0 -> 1.4.0. Use 'ota install <ver> force'
+ota https://raw.githubusercontent.com/BohdanHorbanych/esp32-ota-files/main/firmware/v1.4.0/station_WiFi.bin force
+---- Sent utf8 encoded message: "ota https://raw.githubusercontent.com/BohdanHorbanych/esp32-ota-files/main/firmware/v1.4.0/station_WiFi.bin force\n" ----
+busercontent.com/BohdanHorbanych/esp32-ota-files/main/firmware/v1.4.0/station_WiFi.bin force
+
+I (1036417) wifi station: [OTA] current version: 1.5.0 (partition ota_0)
+I (1036417) wifi station: [OTA] target partition: ota_1
+I (1036417) wifi station: [OTA] downloading: https://raw.githubusercontent.com/BohdanHorbanych/esp32-ota-files/main/firmware/v1.4.0/station_WiFi.bin force
+E (1036427) HTTP_CLIENT: Error parse url https://raw.githubusercontent.com/BohdanHorbanych/esp32-ota-files/main/firmware/v1.4.0/station_WiFi.bin force
+E (1036437) HTTP_CLIENT: Failed to set URL
+E (1036447) esp_https_ota: Failed to initialise HTTP connection
+E (1036447) wifi station: [OTA] failed: cannot start download (ESP_FAIL)

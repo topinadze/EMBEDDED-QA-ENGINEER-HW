@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="1" time="12.746" timestamp="2026-10-14T04:22:05.442871+03:00" hostname="Prosha"><testcase classname="tests.test_ota.TestOta" name="test_forced_downgrade_completes_self_check[from-1.5-to-1.4]" time="12.662"><failure message="AssertionError: OTA did not target the inactive partition ota_1:&#10;  ota install 1.4.0 force&#10;  E (175551) wifi station: [OTA] error: update already in progress&#10;assert None&#10; +  where None = &lt;function search at 0x00000267C720E400&gt;('\\[OTA\\]\\s*target partition:\\s*ota_1\\b', 'ota install 1.4.0 force\nE (175551) wifi station: [OTA] error: update already in progress', re.IGNORECASE)&#10; +    where &lt;function search at 0x00000267C720E400&gt; = re.search&#10; +    and   re.IGNORECASE = re.IGNORECASE">tests\test_ota.py:457: in test_forced_downgrade_completes_self_check
+    _assert_successful_update(
+tests\test_ota.py:251: in _assert_successful_update
+    assert re.search(
+E   AssertionError: OTA did not target the inactive partition ota_1:
+E     ota install 1.4.0 force
+E     E (175551) wifi station: [OTA] error: update already in progress
+E   assert None
+E    +  where None = &lt;function search at 0x00000267C720E400&gt;('\\[OTA\\]\\s*target partition:\\s*ota_1\\b', 'ota install 1.4.0 force\nE (175551) wifi station: [OTA] error: update already in progress', re.IGNORECASE)
+E    +    where &lt;function search at 0x00000267C720E400&gt; = re.search
+E    +    and   re.IGNORECASE = re.IGNORECASE</failure></testcase></testsuite></testsuites>

@@ -1,0 +1,68 @@
+OTA same-version interruption and retry check on firmware 1.5.0
+Date: 2026-10-12
+Source: operator-provided UART transcript
+
+Wi-Fi became available before the OTA attempt:
+---- Sent utf8 encoded message: "version\n" ----
+I (155541) wifi station: connection timeout
+version
+
+I (155641) wifi station: FW: v1.5.0 (build Sep 29 2026 15:23:09)
+I (155641) wifi station:   partition: ota_0 @ 0x10000, state: valid
+I (170201) esp_netif_handlers: sta ip: 10.123.30.49, mask: 255.255.255.0, gw: 10.123.30.28
+I (170201) wifi station: got ip:10.123.30.49
+
+Same-version OTA:
+---- Sent utf8 encoded message: "ota install 1.5.0\n" ----
+I (1177391) wifi station: [OTA] current version: 1.5.0 (partition ota_0)
+I (1177391) wifi station: [OTA] target partition: ota_1
+I (1177391) wifi station: [OTA] downloading: https://raw.githubusercontent.com/BohdanHorbanych/esp32-ota-files/main/firmware/v1.5.0/station_WiFi.bin
+I (1178541) wifi:<ba-add>idx:0 (ifx:0, ea:7b:58:13:5e:ac), tid:0, ssn:13, winSize:64
+I (1179041) esp-x509-crt-bundle: Certificate validated
+I (1180261) esp_https_ota: Starting OTA...
+I (1180261) esp_https_ota: Writing to <ota_1> partition at offset 0x100000
+I (1180261) wifi station: [OTA] new version: 1.5.0
+W (1180261) wifi station: [OTA] new version is the same as current - flashing anyway
+I (1182881) wifi:[ADDBA]RX DELBA, reason:39, delete tid:0, initiator:0(recipient)
+I (1183961) wifi station: [OTA] progress: 10% (91136 / 908304 bytes)
+I (1186781) wifi station: [OTA] progress: 20% (185344 / 908304 bytes)
+I (1188871) wifi station: [OTA] progress: 30% (275456 / 908304 bytes)
+
+Wi-Fi interruption and failed automatic reconnect:
+I (1189311) wifi:state: run -> init (0x3c0)
+I (1189341) wifi:pm stop, total sleep time: 942058865 us / 1043740929 us
+
+I (1189341) wifi:<ba-del>idx:0, tid:0
+I (1189341) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0
+E (1189361) esp-tls-mbedtls: read error :-0x004C
+E (1189361) transport_base: esp_tls_conn_read error, errno=Software caused connection abort
+I (1189361) wifi station: retry to connect to the AP
+W (1189361) HTTP_CLIENT: esp_transport_read returned:-76 and errno:113
+E (1189371) HTTP_CLIENT: transport_read: error -1 | ESP_FAIL
+E (1189381) esp-tls-mbedtls: read error :-0x004C
+E (1189381) transport_base: esp_tls_conn_read error, errno=Socket is not connected
+W (1189391) HTTP_CLIENT: esp_transport_read returned:-76 and errno:128
+E (1189391) HTTP_CLIENT: transport_read: error -1 | ESP_FAIL
+E (1189401) esp_https_ota: data read -1, errno 128
+E (1189401) wifi station: [OTA] failed: download interrupted (ESP_FAIL)
+I (1191771) wifi station: retry to connect to the AP
+I (1194181) wifi station: retry to connect to the AP
+I (1196601) wifi station: retry to connect to the AP
+I (1199011) wifi station: retry to connect to the AP
+I (1201421) wifi station: connect to the AP fail
+
+State and retry without reboot:
+---- Sent utf8 encoded message: "version\n" ----
+version
+
+I (1243011) wifi station: FW: v1.5.0 (build Sep 29 2026 15:23:09)
+I (1243011) wifi station:   partition: ota_0 @ 0x10000, state: valid
+---- Sent utf8 encoded message: "ota install 1.5.0\n" ----
+ota install 1.5.0
+
+E (1248411) wifi station: [OTA] error: update already in progress
+
+The transcript confirms the device had obtained an IP before OTA, the download
+was interrupted at 30%, automatic Wi-Fi reconnect attempts failed, the active
+firmware remained valid, and the retry command was rejected as already in
+progress. No manual `connect` attempt after the interruption is present here.

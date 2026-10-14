@@ -1,0 +1,12 @@
+"""Compatibility example only; put real credentials in wifi_secrets.py."""
+
+WIFI_SSID = "TopA-node"
+WIFI_PASSWORD = ""
+WIFI_WRONG_PASSWORD = "WrongPassword123"
+WIFI_MISSING_SSID = "HW16-NONEXISTENT-NETWORK"
+
+SERIAL_PORT = "COM4"
+BAUDRATE = 115200
+SERIAL_TIMEOUT = 1.0
+WIFI_CONNECT_TIMEOUT = 10.0
+OTA_TIMEOUT = 120.0

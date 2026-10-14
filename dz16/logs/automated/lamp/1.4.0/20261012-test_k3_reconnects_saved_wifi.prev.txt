@@ -1,0 +1,20 @@
+Test: tests/test_wifi.py::TestWifiButtons::test_k3_reconnects_saved_wifi
+Firmware: 1.4.0
+Captured: 2026-10-12T04:16:53.632775+03:00
+
+TX > version
+RX < version
+RX < I (1799181) wifi station: FW: v1.4.0 (build Sep 29 2026 14:16:47)
+RX < I (1799181) wifi station:   partition: ota_0 @ 0x10000, state: valid
+TX > status
+RX < status
+RX < I (1799781) wifi station: WiFi: connected
+RX < I (1799781) wifi station:   SSID: TopA-node
+RX < I (1799781) wifi station:   IP:   10.123.30.49
+RX < I (1799781) wifi station:   RSSI: -26 dBm
+TX > lamp timer 0
+RX < lamp timer 0
+RX < I (1800441) wifi station: [LAMP] timer cancelled
+TX > lamp off
+RX < lamp off
+RX < I (1800651) wifi station: [LAMP] off

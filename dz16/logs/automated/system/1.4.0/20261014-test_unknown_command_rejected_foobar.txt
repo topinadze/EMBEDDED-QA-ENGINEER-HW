@@ -1,0 +1,29 @@
+Test: tests/test_system.py::TestSystem::test_unknown_command_rejected[foobar]
+Firmware: 1.4.0
+Captured: 2026-10-14T01:39:46.078659+03:00
+
+TX > lamp status
+RX < lamp status
+RX < {"lamp":"off","color":[255,255,255],"brightness":50,"mode":"solid","timer_s":0}
+TX > version
+RX < version
+RX < I (203946) wifi station: FW: v1.4.0 (build Sep 29 2026 14:16:47)
+RX < I (203946) wifi station:   partition: ota_0 @ 0x10000, state: valid
+TX > foobar
+RX < foobar
+RX < I (204556) wifi station: unknown command, type 'help' for available commands
+TX > lamp timer 0
+RX < lamp timer 0
+RX < I (205166) wifi station: [LAMP] timer cancelled
+TX > lamp color 255 255 255
+RX < lamp color 255 255 255
+RX < I (205386) wifi station: [LAMP] color set: (255,255,255)
+TX > lamp brightness 50
+RX < lamp brightness 50
+RX < I (205596) wifi station: [LAMP] brightness set: 50%
+TX > lamp mode solid
+RX < lamp mode solid
+RX < I (205806) wifi station: [LAMP] mode set: solid
+TX > lamp off
+RX < lamp off
+RX < I (206016) wifi station: [LAMP] off

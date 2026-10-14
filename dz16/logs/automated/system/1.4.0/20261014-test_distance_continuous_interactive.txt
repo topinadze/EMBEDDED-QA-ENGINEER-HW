@@ -1,0 +1,47 @@
+Test: tests/test_system.py::TestSystemInteractive::test_distance_continuous_interactive
+Firmware: 1.4.0
+Captured: 2026-10-14T01:41:31.285660+03:00
+
+TX > lamp status
+RX < lamp status
+RX < {"lamp":"off","color":[255,255,255],"brightness":50,"mode":"solid","timer_s":0}
+TX > version
+RX < version
+RX < I (243106) wifi station: FW: v1.4.0 (build Sep 29 2026 14:16:47)
+RX < I (243106) wifi station:   partition: ota_0 @ 0x10000, state: valid
+TX > distance
+RX < distance
+RX < I (287476) wifi station: measuring continuously, press Enter to stop...
+RX < I (287476) wifi station: distance: 8.1 cm
+RX < I (287976) wifi station: distance: 9.4 cm
+RX < I (288476) wifi station: distance: 9.8 cm
+RX < I (288976) wifi station: distance: 9.8 cm
+RX < I (289476) wifi station: distance: 9.8 cm
+RX < I (289976) wifi station: distance: 9.8 cm
+RX < I (290476) wifi station: distance: 9.8 cm
+RX < I (290976) wifi station: distance: 9.4 cm
+RX < I (291476) wifi station: distance: 8.1 cm
+RX < I (291976) wifi station: distance: 22.2 cm
+RX < I (292476) wifi station: distance: 23.4 cm
+RX < I (292976) wifi station: distance: 6.0 cm
+RX < I (293476) wifi station: distance: 22.2 cm
+RX < I (293976) wifi station: distance: 5.1 cm
+RX < I (294476) wifi station: distance: 2.8 cm
+RX < I (294976) wifi station: distance: 2.1 cm
+TX > 
+RX < I (295476) wifi station: distance: 4.4 cm
+TX > lamp timer 0
+RX < lamp timer 0
+RX < I (310376) wifi station: [LAMP] timer cancelled
+TX > lamp color 255 255 255
+RX < lamp color 255 255 255
+RX < I (310586) wifi station: [LAMP] color set: (255,255,255)
+TX > lamp brightness 50
+RX < lamp brightness 50
+RX < I (310796) wifi station: [LAMP] brightness set: 50%
+TX > lamp mode solid
+RX < lamp mode solid
+RX < I (311006) wifi station: [LAMP] mode set: solid
+TX > lamp off
+RX < lamp off
+RX < I (311216) wifi station: [LAMP] off

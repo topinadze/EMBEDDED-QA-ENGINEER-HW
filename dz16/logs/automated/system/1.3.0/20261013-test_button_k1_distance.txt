@@ -1,0 +1,50 @@
+Test: tests/test_system.py::TestSystemButtons::test_button_k1_distance
+Firmware: 1.3.0
+Captured: 2026-10-13T20:58:41.594463+03:00
+
+TX > lamp status
+RX < lamp status
+RX < {"lamp":"off","color":[255,255,255],"brightness":50,"mode":"solid","timer_s":0}
+TX > version
+RX < version
+RX < I (1650406) wifi station: FW: v1.3.0 (build Sep 29 2026 14:15:56)
+RX < I (1650406) wifi station:   partition: ota_1 @ 0x100000, state: valid
+RX < I (1663196) wifi station: button 1 pressed (GPIO41)
+RX < I (1663196) wifi station: [K1] distance 10s...
+RX < I (1663196) wifi station: distance: 8.4 cm
+RX < I (1663696) wifi station: distance: 8.3 cm
+RX < I (1664196) wifi station: distance: 8.4 cm
+RX < I (1664696) wifi station: distance: 8.4 cm
+RX < I (1665196) wifi station: distance: 23.4 cm
+RX < I (1665696) wifi station: distance: 8.7 cm
+RX < I (1666196) wifi station: distance: 8.7 cm
+RX < I (1666696) wifi station: distance: 22.2 cm
+RX < I (1667196) wifi station: distance: 7.7 cm
+RX < I (1667696) wifi station: distance: 7.8 cm
+RX < I (1668196) wifi station: distance: 7.8 cm
+RX < I (1668696) wifi station: distance: 7.8 cm
+RX < I (1669196) wifi station: distance: 7.7 cm
+RX < I (1669696) wifi station: distance: 7.7 cm
+RX < I (1670196) wifi station: distance: 7.7 cm
+RX < I (1670696) wifi station: distance: 7.7 cm
+RX < I (1671196) wifi station: distance: 7.7 cm
+RX < I (1671696) wifi station: distance: 7.8 cm
+RX < I (1672196) wifi station: distance: 7.7 cm
+RX < I (1672696) wifi station: distance: 7.7 cm
+RX < I (1673196) wifi station: distance: 7.8 cm
+RX < I (1673696) wifi station: [K1] done
+TX > lamp timer 0
+RX < lamp timer 0
+RX < I (1677696) wifi station: [LAMP] timer cancelled
+TX > lamp color 255 255 255
+RX < lamp color 255 255 255
+RX < I (1677916) wifi station: [LAMP] color set: (255,255,255)
+TX > lamp brightness 50
+RX < lamp brightness 50
+RX < I (1678126) wifi station: [LAMP] brightness set: 50%
+TX > lamp mode solid
+RX < lamp mode solid
+RX < I (1678336) wifi station: [LAMP] mode set: solid
+TX > lamp off
+RX < lamp off
+RX < I (1678546) wifi station: [LAMP] off

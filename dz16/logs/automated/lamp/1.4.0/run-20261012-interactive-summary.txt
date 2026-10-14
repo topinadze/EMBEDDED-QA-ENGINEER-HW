@@ -1,0 +1,34 @@
+DZ16 Smart Lamp interactive test run
+Date: 2026-10-12
+Firmware before run: 1.4.0, ota_0 @ 0x10000, state valid
+UART: COM4, 115200 baud
+Selection: tests/test_lamp.py, marker "lamp and interactive"
+Logging: DEBUG
+
+Pytest result: 27 passed, 1 skipped, 37 deselected
+Failed: 0
+Skipped: test_mode_visual[rainbow]; rainbow visual test is not applicable
+  to firmware 1.4.0 and was skipped by the test's firmware-version guard.
+
+Manual observations recorded PASS:
+- Lamp on indication and Wi-Fi indication after lamp off.
+- All seven named colors: red, green, blue, white, yellow, purple, cyan.
+- Custom RGB (255, 0, 128).
+- Invalid RGB values (300, 0, 0), (0, 0, 300), (-1, -1, -1), (256, 0, 0):
+  green baseline and unchanged green LED after rejection.
+- Unknown color "orange": yellow baseline and unchanged yellow LED after
+  rejection.
+- Brightness 0, 30, 50, 70, 100; 0% appeared off and other levels steadily lit.
+- Invalid brightness -5, 101, 150: white/50% baseline remained visually
+  unchanged after each rejected value.
+- Solid, blink (~1 Hz), and breathe (~3 s) modes.
+- Five-second timer expiration switched the lamp off and restored Wi-Fi LED
+  indication.
+- After reboot, lamp was off and Wi-Fi status indication returned.
+
+Persistent settings test left the lamp off with color [17, 34, 51],
+brightness 42, and mode solid. Wi-Fi auto-connect was disabled after reboot,
+as expected by the firmware configuration.
+
+Individual UART debug transcripts are saved beside this file. The skipped
+rainbow case also has a per-test transcript from fixture teardown.

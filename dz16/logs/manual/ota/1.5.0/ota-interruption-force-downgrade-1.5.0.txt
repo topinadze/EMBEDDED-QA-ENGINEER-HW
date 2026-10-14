@@ -1,0 +1,66 @@
+Interrupted forced downgrade attempt on firmware 1.5.0
+Date: 2026-10-12
+Source: operator-provided UART transcript
+
+Before OTA:
+---- Sent utf8 encoded message: "version\n" ----
+I (310371) wifi station: FW: v1.5.0 (build Sep 29 2026 15:23:09)
+I (310371) wifi station:   partition: ota_1 @ 0x100000, state: valid
+---- Sent utf8 encoded message: "status\n" ----
+I (312741) wifi station: WiFi: connected
+I (312741) wifi station:   SSID: TopA-node
+I (312741) wifi station:   IP:   10.123.30.49
+---- Sent utf8 encoded message: "lamp status\n" ----
+{"lamp":"off","color":[0,0,225],"brightness":50,"mode":"solid","timer_s":0}
+
+Forced downgrade OTA:
+---- Sent utf8 encoded message: "ota install 1.4.0 force\n" ----
+I (322781) wifi station: [OTA] current version: 1.5.0 (partition ota_1)
+I (322781) wifi station: [OTA] target partition: ota_0
+I (322781) wifi station: [OTA] downloading: https://raw.githubusercontent.com/BohdanHorbanych/esp32-ota-files/main/firmware/v1.4.0/station_WiFi.bin
+I (324771) esp_https_ota: Starting OTA...
+I (324771) esp_https_ota: Writing to <ota_0> partition at offset 0x10000
+I (324771) wifi station: [OTA] new version: 1.4.0
+I (328761) wifi station: [OTA] progress: 10% (91136 / 907872 bytes)
+I (330521) wifi station: [OTA] progress: 20% (185344 / 907872 bytes)
+I (332391) wifi station: [OTA] progress: 30% (275456 / 907872 bytes)
+I (334261) wifi station: [OTA] progress: 40% (365568 / 907872 bytes)
+I (340381) wifi:bcn_timeout,ap_probe_send_start
+I (342881) wifi:ap_probe_send over, reset wifi status to disassoc
+I (342881) wifi:state: run -> init (0xc800)
+E (342901) esp-tls-mbedtls: read error :-0x004C
+E (342901) transport_base: esp_tls_conn_read error, errno=Software caused connection abort
+W (342921) HTTP_CLIENT: esp_transport_read returned:-76 and errno:113
+E (342921) HTTP_CLIENT: transport_read: error - -1 | ESP_FAIL
+E (342931) esp-tls-mbedtls: read error :-0x004C
+E (342931) transport_base: esp_tls_conn_read error, errno=Software caused connection abort
+W (342941) HTTP_CLIENT: esp_transport_read returned:-76 and errno:113
+E (342951) esp_https_ota: data read -1, errno 113
+E (342961) wifi station: [OTA] failed: download interrupted (ESP_FAIL)
+
+Wi-Fi reconnect:
+I (350151) wifi:state: init -> auth (0xb0)
+I (350161) wifi:state: auth -> assoc (0x0)
+I (350171) wifi:state: assoc -> run (0x10)
+I (350181) wifi:connected with TopA-node, aid = 1, channel 11, BW20, rssi: -27 dBm
+I (351251) wifi station: got ip:10.123.30.49
+
+After interrupted attempt:
+---- Sent utf8 encoded message: "version\n" ----
+I (431841) wifi station: FW: v1.5.0 (build Sep 29 2026 15:23:09)
+I (431841) wifi station:   partition: ota_1 @ 0x100000, state: valid
+---- Sent utf8 encoded message: "status\n" ----
+I (434251) wifi station: WiFi: connected
+I (434251) wifi station:   SSID: TopA-node
+I (434251) wifi station:   IP:   10.123.30.49
+---- Sent utf8 encoded message: "lamp status\n" ----
+{"lamp":"off","color":[0,0,225],"brightness":50,"mode":"solid","timer_s":0}
+
+The failed attempt did not change the running firmware. Retry after reconnect, without an intervening reboot:
+---- Sent utf8 encoded message: "ota install 1.4.0 force\n" ----
+E (600481) wifi station: [OTA] error: update already in progress
+---- Sent utf8 encoded message: "version\n" ----
+I (628071) wifi station: FW: v1.5.0 (build Sep 29 2026 15:23:09)
+I (628071) wifi station:   partition: ota_1 @ 0x100000, state: valid
+
+The retry was blocked, so the forced downgrade did not succeed without reboot. The attempt targeted 1.4.0 (forced downgrade), not same-version 1.5.0 reinstall; that exact O-07 variant remains untested.

@@ -1,0 +1,26 @@
+---- Opened the serial port COM4 ----
+---- Sent utf8 encoded message: "version\n" ----
+version
+
+I (1503382) wifi station: FW: v1.5.0 (build Sep 29 2026 15:23:09)
+I (1503382) wifi station:   partition: ota_1 @ 0x100000, state: valid
+---- Sent utf8 encoded message: "lamp status\n" ----
+lamp status
+
+{"lamp":"off","color":[255,255,255],"brightness":50,"mode":"solid","timer_s":0}
+---- Sent utf8 encoded message: "lamp color 0 0 225\n" ----
+lamp color 0 0 225
+
+I (1730682) wifi station: [LAMP] color set: (0,0,225)
+---- Sent utf8 encoded message: "lamp mode breathe\n" ----
+lamp mode breathe
+
+I (1738262) wifi station: [LAMP] mode set: breathe
+---- Sent utf8 encoded message: "lamp on\n" ----
+lamp on
+
+I (1742112) wifi station: [LAMP] on
+---- Sent utf8 encoded message: "lamp scene save 7\n" ----
+lamp scene save 7
+
+E (1763502) wifi station: error: scene must be 1-3

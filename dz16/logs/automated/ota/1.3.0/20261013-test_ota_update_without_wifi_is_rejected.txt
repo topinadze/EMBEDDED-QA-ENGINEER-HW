@@ -1,0 +1,36 @@
+Test: tests/test_ota.py::TestOta::test_ota_update_without_wifi_is_rejected
+Firmware: 1.3.0
+Captured: 2026-10-13T03:14:47.746404+03:00
+
+TX > lamp status
+RX < I (345981) wifi station: connection timeout
+RX < lamp status
+RX < {"lamp":"off","color":[255,255,255],"brightness":50,"mode":"solid","timer_s":0}
+TX > version
+RX < version
+RX < I (346621) wifi station: FW: v1.3.0 (build Sep 29 2026 14:15:56)
+RX < I (346621) wifi station:   partition: ota_1 @ 0x100000, state: valid
+TX > version
+RX < version
+RX < I (347231) wifi station: FW: v1.3.0 (build Sep 29 2026 14:15:56)
+RX < I (347231) wifi station:   partition: ota_1 @ 0x100000, state: valid
+TX > disconnect
+RX < disconnect
+RX < I (347841) wifi:state: run -> init (0x0)
+RX < I (347851) wifi:pm stop, total sleep time: 38358619 us / 49348103 us
+RX < I (347851) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0
+RX < I (347851) wifi station: disconnected
+RX < I (347851) wifi station: connect to the AP fail
+TX > status
+RX < status
+RX < I (349851) wifi station: WiFi: disconnected
+TX > ota check
+RX < ota check
+RX < E (351861) wifi station: [OTA] failed: WiFi not connected. Use 'connect' first.
+TX > ota update beta
+RX < ota update beta
+RX < E (352071) wifi station: [OTA] failed: WiFi not connected. Use 'connect' first.
+TX > version
+RX < version
+RX < I (352281) wifi station: FW: v1.3.0 (build Sep 29 2026 14:15:56)
+RX < I (352281) wifi station:   partition: ota_1 @ 0x100000, state: valid

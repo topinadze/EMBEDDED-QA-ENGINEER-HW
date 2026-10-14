@@ -1,0 +1,88 @@
+OTA beta interruption check on firmware 1.4.0
+Date: 2026-10-12
+Source: operator-provided UART transcript
+
+Before OTA:
+---- Sent utf8 encoded message: "version\n" ----
+I (524464) wifi station: FW: v1.4.0 (build Sep 29 2026 14:16:47)
+I (524464) wifi station:   partition: ota_0 @ 0x10000, state: valid
+---- Sent utf8 encoded message: "lamp status\n" ----
+{"lamp":"off","color":[0,0,225],"brightness":50,"mode":"breathe","timer_s":0}
+
+OTA beta start:
+---- Sent utf8 encoded message: "ota update beta\n" ----
+I (579434) wifi station: [OTA] beta channel: 1.5.0, current: 1.4.0
+I (579434) wifi station: [OTA] current version: 1.4.0 (partition ota_0)
+I (579434) wifi station: [OTA] target partition: ota_1
+I (579434) wifi station: [OTA] downloading: https://raw.githubusercontent.com/BohdanHorbanych/esp32-ota-files/main/firmware/v1.5.0/station_WiFi.bin
+I (582324) esp_https_ota: Starting OTA...
+I (582324) esp_https_ota: Writing to <ota_1> partition at offset 0x100000
+I (582734) wifi station: [OTA] new version: 1.5.0
+I (588824) wifi station: [OTA] progress: 10% (91136 / 908304 bytes)
+I (591344) wifi station: [OTA] progress: 20% (185344 / 908304 bytes)
+I (592944) wifi:state: run -> init (0x3c0)
+I (592954) wifi:pm stop, total sleep time: 362709356 us / 390822541 us
+I (592994) wifi station: retry to connect to the AP
+I (593064) wifi station: [OTA] progress: 30% (275456 / 908304 bytes)
+E (593064) esp-tls-mbedtls: read error :-0x004C
+E (593064) transport_base: esp_tls_conn_read error, errno=Software caused connection abort
+W (593074) HTTP_CLIENT: esp_transport_read returned:-76 and errno:113
+E (593084) HTTP_CLIENT: transport_read: error - -1 | ESP_FAIL
+E (593094) esp-tls-mbedtls: read error :-0x004C
+E (593094) transport_base: esp_tls_conn_read error, errno=Socket is not connected
+W (593094) HTTP_CLIENT: esp_transport_read returned:-76 and errno:128
+E (593104) HTTP_CLIENT: transport_read: error - -1 | ESP_FAIL
+E (593104) esp_https_ota: data read -1, errno 128
+E (593114) wifi station: [OTA] failed: download interrupted (ESP_FAIL)
+
+Wi-Fi reconnected automatically:
+I (595404) wifi station: retry to connect to the AP
+I (597814) wifi station: retry to connect to the AP
+I (600224) wifi station: retry to connect to the AP
+I (601444) wifi:state: init -> auth (0xb0)
+I (601454) wifi:state: auth -> assoc (0x0)
+I (601464) wifi:state: assoc -> run (0x10)
+I (601484) wifi:connected with TopA-node, aid = 1, channel 11, BW20, bssid = ae:bf:6c:46:eb:4e
+I (602554) esp_netif_handlers: sta ip: 10.123.30.49, mask: 255.255.255.0, gw: 10.123.30.28
+I (602554) wifi station: got ip:10.123.30.49
+
+After interruption and reconnect:
+---- Sent utf8 encoded message: "version\n" ----
+I (614124) wifi station: FW: v1.4.0 (build Sep 29 2026 14:16:47)
+I (614124) wifi station:   partition: ota_0 @ 0x10000, state: valid
+---- Sent utf8 encoded message: "lamp status\n" ----
+{"lamp":"off","color":[0,0,225],"brightness":50,"mode":"breathe","timer_s":0}
+---- Sent utf8 encoded message: "status\n" ----
+I (623824) wifi station: WiFi: connected
+I (623824) wifi station:   SSID: TopA-node
+I (623824) wifi station:   IP:   10.123.30.49
+I (623824) wifi station:   RSSI: -55 dBm
+
+Successful retry after the interruption, without an intervening manual reboot:
+---- Sent utf8 encoded message: "ota update beta\n" ----
+I (717034) wifi station: [OTA] beta channel: 1.5.0, current: 1.4.0
+I (717034) wifi station: [OTA] current version: 1.4.0 (partition ota_0)
+I (717034) wifi station: [OTA] target partition: ota_1
+I (717044) wifi station: [OTA] downloading: https://raw.githubusercontent.com/BohdanHorbanych/esp32-ota-files/main/firmware/v1.5.0/station_WiFi.bin
+I (719394) esp_https_ota: Starting OTA...
+I (719394) esp_https_ota: Writing to <ota_1> partition at offset 0x100000
+I (719574) wifi station: [OTA] new version: 1.5.0
+I (721724) wifi station: [OTA] progress: 10% (91136 / 908304 bytes)
+I (723654) wifi station: [OTA] progress: 20% (185344 / 908304 bytes)
+I (725074) wifi station: [OTA] progress: 30% (275456 / 908304 bytes)
+I (726524) wifi station: [OTA] progress: 40% (365568 / 908304 bytes)
+I (727864) wifi station: [OTA] progress: 50% (455680 / 908304 bytes)
+I (729664) wifi station: [OTA] progress: 60% (545792 / 908304 bytes)
+I (731564) wifi station: [OTA] progress: 70% (635904 / 908304 bytes)
+I (733444) wifi station: [OTA] progress: 80% (730112 / 908304 bytes)
+I (735344) wifi station: [OTA] progress: 90% (820224 / 908304 bytes)
+I (736824) wifi station: [OTA] progress: 100% (908304 / 908304 bytes)
+I (737104) wifi station: [OTA] success: 1.4.0 -> 1.5.0 in 17 s. Rebooting...
+
+After retry reboot:
+I (290) boot: Loaded app from partition at offset 0x100000
+I (320) app_init: App version: 1.5.0
+I (678) wifi station: [OTA] running partition: ota_1, version 1.5.0
+W (688) wifi station: [OTA] new firmware, state PENDING_VERIFY - running self-check...
+I (728) wifi station: [OTA] self-check passed, firmware marked VALID
+I (728) wifi station: station_WiFi fw v1.5.0 ready. Type 'help' for commands

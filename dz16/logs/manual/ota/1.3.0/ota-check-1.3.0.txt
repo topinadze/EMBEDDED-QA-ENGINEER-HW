@@ -1,0 +1,60 @@
+---- Sent utf8 encoded message: "version\n" ----
+version
+
+I (7339351) wifi station: FW: v1.3.0 (build Sep 29 2026 14:15:56)
+I (7339351) wifi station:   partition: ota_0 @ 0x10000, state: valid
+---- Sent utf8 encoded message: "ota check\n" ----
+ota check
+
+E (7351101) wifi station: [OTA] failed: WiFi not connected. Use 'connect' first.
+---- Sent utf8 encoded message: "connect\n" ----
+connect
+
+I (7374711) wifi station: scanning...
+I (7377211) wifi station: found 16 networks:
+I (7377211) wifi station:   [1] TopA-node                         -24 dBm
+I (7377211) wifi station:   [2] TopAs_2.4G                        -60 dBm
+I (7377211) wifi station:   [3] AP_2987279135                     -66 dBm
+I (7377221) wifi station:   [4] 376                               -72 dBm
+I (7377221) wifi station:   [5] E_0184_2056_E                     -73 dBm
+I (7377231) wifi station:   [6] bambuh                            -73 dBm
+I (7377241) wifi station:   [7] bambuh                            -74 dBm
+I (7377241) wifi station:   [8] HiSmart-01-ca2c4fae5ef5           -81 dBm
+I (7377251) wifi station:   [9] VR46                              -85 dBm
+I (7377261) wifi station:   [10] Internet UTELS Wi-FI              -88 dBm
+I (7377261) wifi station:   [11] bababa_Guest                      -88 dBm
+I (7377271) wifi station:   [12] Solia                             -89 dBm
+I (7377281) wifi station:   [13] Sashka                            -89 dBm
+I (7377281) wifi station:   [14] Xiaomi_625B                       -89 dBm
+I (7377291) wifi station:   [15] SkyNet                            -91 dBm
+I (7377301) wifi station:   [16] SmileV                            -92 dBm
+Enter SSID, number from list, or Enter to use saved [TopA-node]:
+---- Sent utf8 encoded message: "\n" ----
+
+I (7380051) wifi station: using saved SSID: TopA-node
+I (7380051) wifi station: connecting to SSID:TopA-node ...
+I (7380171) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0
+I (7380181) wifi:state: init -> auth (0xb0)
+I (7380191) wifi:state: auth -> assoc (0x0)
+I (7380191) wifi:state: assoc -> run (0x10)
+I (7380221) wifi:connected with TopA-node, aid = 1, channel 1, BW20, bssid = 5a:69:8e:d7:95:0a
+I (7380221) wifi:security: WPA2-PSK, phy: bgn, rssi: -34, cipher(pairwise:0x3, group:0x3), pmf:1
+I (7380241) wifi:pm start, type: 1
+
+I (7380241) wifi:dp: 1, bi: 102400, li: 3, scale listen interval from 307200 us to 307200 us
+I (7380241) wifi:set rx beacon pti, rx_bcn_pti: 0, bcn_timeout: 25000, mt_pti: 0, mt_time: 10000
+I (7380251) wifi:dp: 2, bi: 102400, li: 4, scale listen interval from 307200 us to 409600 us
+I (7380261) wifi:AP's beacon interval = 102400 us, DTIM period = 2
+I (7381291) esp_netif_handlers: sta ip: 10.123.30.49, mask: 255.255.255.0, gw: 10.123.30.28
+I (7381291) wifi station: got ip:10.123.30.49
+I (7381291) wifi station: successfully connected to SSID:TopA-node
+---- Sent utf8 encoded message: "ota check\n" ----
+ota check
+
+I (7389931) wifi:<ba-add>idx:0 (ifx:0, 5a:69:8e:d7:95:0a), tid:0, ssn:3, winSize:64
+I (7390331) esp-x509-crt-bundle: Certificate validated
+I (7391871) esp-x509-crt-bundle: Certificate validated
+I (7392951) wifi station: [OTA] current version: 1.3.0
+I (7392951) wifi station: [OTA] stable channel:  1.4.0
+I (7392951) wifi station: [OTA] beta channel:    1.5.0
+I (7392961) wifi station: [OTA] update available. Type 'ota update'

@@ -1,0 +1,30 @@
+---- Sent utf8 encoded message: "lamp color 0 0 300\n" ----
+lamp color 0 0 300
+
+E (3112154) wifi station: error: rgb values must be 0-255
+---- Sent utf8 encoded message: "lamp color -1 -1 -1\n" ----
+lamp color -1 -1 -1
+
+E (3156284) wifi station: error: rgb values must be 0-255
+---- Sent utf8 encoded message: "lamp color 256 0 0\n" ----
+lamp color 256 0 0
+
+E (3176194) wifi station: error: rgb values must be 0-255
+---- Sent utf8 encoded message: "lamp color 300 0 0 \n" ----
+lamp color 300 0 0
+
+E (3186014) wifi station: error: rgb values must be 0-255
+---- Sent utf8 encoded message: "lamp color 300 0 0\n" ----
+lamp color 300 0 0
+
+E (3192444) wifi station: error: rgb values must be 0-255
+---- Sent utf8 encoded message: "lamp color 300 0 0\n" ----
+lamp color 300 0 0
+
+E (3196424) wifi station: error: rgb values must be 0-255
+---- Sent utf8 encoded message: "lamp color 999 999 999\n" ----
+lamp color 999 999 999
+
+E (3214904) wifi station: error: rgb values must be 0-255
+
+Only one of three attempts with `lamp color 300 0 0` returned `unknown command`; the other attempts and invalid values returned the expected range error. The lamp color remained unchanged.

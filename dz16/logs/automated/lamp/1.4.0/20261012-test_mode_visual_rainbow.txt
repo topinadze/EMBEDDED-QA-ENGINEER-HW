@@ -1,0 +1,14 @@
+Test: tests/test_lamp.py::TestLamp::test_mode_visual[rainbow]
+Firmware: 1.4.0
+Captured: 2026-10-12T03:45:49.794523+03:00
+
+TX > version
+RX < version
+RX < I (1473815) wifi station: FW: v1.4.0 (build Sep 29 2026 14:16:47)
+RX < I (1473815) wifi station:   partition: ota_0 @ 0x10000, state: valid
+TX > lamp timer 0
+RX < lamp timer 0
+RX < I (1474425) wifi station: [LAMP] timer cancelled
+TX > lamp off
+RX < lamp off
+RX < I (1474635) wifi station: [LAMP] off
