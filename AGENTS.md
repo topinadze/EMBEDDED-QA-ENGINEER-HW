@@ -30,4 +30,4 @@ Single source of truth for AI coding agents (Copilot, Codex, Cursor, Antigravity
 - Treat hardware tests as stateful operations: identify the target and firmware first, keep tests isolated, and disclose reboot, persistent-state, or physical-interaction effects before running them.
 - Never run hardware or interactive tests without an explicit request to execute them.
 - Use debug UART capture when requested or needed to diagnose a failure; retain the per-test transcripts and summarize the evidence without replacing it with assumptions.
-
+- For DZ16-specific test and evidence pitfalls, consult [DZ16 gotchas](./.agents/skills/interactive-hardware-tests/references/dz16-gotchas.md); treat `dz16/REPORT.md` and its linked artifacts as the source of truth for current bug status.

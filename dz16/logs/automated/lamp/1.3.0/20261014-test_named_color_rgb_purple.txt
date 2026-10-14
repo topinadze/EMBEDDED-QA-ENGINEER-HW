@@ -1,35 +1,35 @@
 Test: tests/test_lamp.py::TestLamp::test_named_color_rgb[purple]
 Firmware: 1.3.0
-Captured: 2026-10-14T05:50:09.408533+03:00
+Captured: 2026-10-14T13:05:02.191898+03:00
 
 TX > lamp status
 RX < lamp status
 RX < {"lamp":"off","color":[255,255,255],"brightness":50,"mode":"solid","timer_s":0}
 TX > version
 RX < version
-RX < I (471389) wifi station: FW: v1.3.0 (build Sep 29 2026 14:15:56)
-RX < I (471389) wifi station:   partition: ota_1 @ 0x100000, state: valid
+RX < I (488216) wifi station: FW: v1.3.0 (build Sep 29 2026 14:15:56)
+RX < I (488216) wifi station:   partition: ota_1 @ 0x100000, state: valid
 TX > lamp on
 RX < lamp on
-RX < I (471999) wifi station: [LAMP] on
+RX < I (488826) wifi station: [LAMP] on
 TX > lamp color purple
 RX < lamp color purple
-RX < I (472619) wifi station: [LAMP] color set: purple (160,0,255)
+RX < I (489446) wifi station: [LAMP] color set: purple (160,0,255)
 TX > lamp status
 RX < lamp status
 RX < {"lamp":"on","color":[160,0,255],"brightness":50,"mode":"solid","timer_s":0}
 TX > lamp timer 0
 RX < lamp timer 0
-RX < I (473819) wifi station: [LAMP] timer cancelled
+RX < I (490656) wifi station: [LAMP] timer cancelled
 TX > lamp color 255 255 255
 RX < lamp color 255 255 255
-RX < I (474049) wifi station: [LAMP] color set: (255,255,255)
+RX < I (490906) wifi station: [LAMP] color set: (255,255,255)
 TX > lamp brightness 50
 RX < lamp brightness 50
-RX < I (474249) wifi station: [LAMP] brightness set: 50%
+RX < I (491076) wifi station: [LAMP] brightness set: 50%
 TX > lamp mode solid
 RX < lamp mode solid
-RX < I (474459) wifi station: [LAMP] mode set: solid
+RX < I (491286) wifi station: [LAMP] mode set: solid
 TX > lamp off
 RX < lamp off
-RX < I (474669) wifi station: [LAMP] off
+RX < I (491506) wifi station: [LAMP] off

@@ -20,7 +20,10 @@ You coordinate the repository's embedded hardware QA workflow. Route work throug
 5. For debugging, transcripts, or test evidence, follow `uart-debug-evidence`.
 6. Before completion, follow `hardware-qa-code-validation` and ask `hw-qa-code-validator` to independently review the implementation and validation claims.
 
+For a new PRD in an existing project, follow `requirements-to-test-cases` in three evidence-separated stages: (1) analyze the new PRD independently and establish its bench workflow; (2) map its requirements to the previous PRD (for DZ16, `fw_6/PRD.md`), including changed/removed requirements and explicit match confidence; (3) only then map historical bugs, tests, and evidence to the new requirements, classifying links as direct, partial/possible, unrelated, or unresolved with rationale. Do not infer continuity from similar wording or shared hardware. Use only confirmed correspondences to select reusable tests and regression candidates; confirm test/workflow compatibility before porting. Keep the three analyses distinct, identify open questions, and do not treat a higher firmware version as proof a bug is fixed. Keep hardware execution opt-in and record unavailable firmware as `NOT RUN`.
+
 Apply only the skills relevant to the task, but always validate code changes. Keep requirement-to-test traceability and known-bug references current. Preserve the repository's established commands and conventions unless there is evidence that they are wrong.
+- When working in `dz16/`, consult the [DZ16 gotchas](../../.agents/skills/interactive-hardware-tests/references/dz16-gotchas.md) reference before changing tests or interpreting run evidence.
 
 ## Hardware safety and evidence
 

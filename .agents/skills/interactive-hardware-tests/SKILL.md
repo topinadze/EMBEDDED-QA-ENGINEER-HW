@@ -27,6 +27,7 @@ description: "Implement and execute pytest scenarios requiring physical buttons,
 - Keep test steps and prompts self-explanatory; use Allure steps around phases, action prompts, UART waits, and visual checks.
 - Design each case to run independently, including opening/closing its own UART fixture. Never assume a prior test has left the device in a suitable state.
 - Consider failure recovery and teardown ordering. If a test reboots on failure, do not issue later commands against a rebooting device.
+- For DZ16 firmware-specific examples (including physical LED color defects), consult [DZ16 gotchas](./references/dz16-gotchas.md); do not generalize those defects to other firmware or boards.
 
 ## Execution safeguards
 

@@ -34,3 +34,4 @@ description: "Design and implement reliable embedded pytest cases using data-dri
 - Run pytest collection and focused non-hardware checks first.
 - Never run serial, interactive, destructive, or persistent tests unless the user explicitly asked for hardware execution.
 - Use the project configuration and supported firmware checks rather than bypassing fixtures to force a result.
+- For DZ16 examples of firmware preconditions and state leakage between reboot/Wi-Fi tests, see [DZ16 gotchas](../interactive-hardware-tests/references/dz16-gotchas.md).

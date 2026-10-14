@@ -241,34 +241,34 @@ class TestLamp:
     ) -> None:
         prepare_observation(
             manual_prepare,
-            action="the lamp will be set to steady green as the baseline",
+            action="the lamp will be set to steady blue as the baseline",
             expected="note the LED appearance; it should be unchanged after the invalid RGB is tested",
             duration="about 3 seconds per observation",
         )
         device_driver.lamp_on()
         device_driver.lamp_set_mode("solid")
-        device_driver.lamp_set_color("green")
+        device_driver.lamp_set_color("blue")
         baseline_status = device_driver.lamp_status()
         baseline_visible = manual_check(
-            "Observe the steady green LED and confirm when ready to send an invalid RGB."
+            "Observe the steady blue LED and confirm when ready to send an invalid RGB."
         )
-        soft.check(baseline_status["color"] == [0, 255, 0], "Baseline status color is green")
-        soft.check(baseline_visible, "Baseline LED is steady green")
+        soft.check(baseline_status["color"] == [0, 0, 255], "Baseline status color is blue")
+        soft.check(baseline_visible, "Baseline LED is steady blue")
 
         prepare_observation(
             manual_prepare,
             action=f"the test will send invalid RGB {rgb}",
-            expected="the LED remains steady green",
+            expected="the LED remains steady blue",
             duration="about 3 seconds",
         )
         response = device_driver.lamp_set_color(rgb)
         status = device_driver.lamp_status()
         unchanged = manual_check(
-            "After the invalid RGB was rejected, does the LED remain green?"
+            "After the invalid RGB was rejected, does the LED remain blue?"
         )
         soft.check(_has_response(response, "error: rgb values must be 0-255"), "UART rejects invalid RGB")
-        soft.check(status["color"] == [0, 255, 0], "Status color stays green")
-        soft.check(unchanged, "LED remains green")
+        soft.check(status["color"] == [0, 0, 255], "Status color stays blue")
+        soft.check(unchanged, "LED remains blue")
         soft.assert_all()
 
     @allure.story("FR-L2: Unknown named color")

@@ -26,3 +26,4 @@ description: "Capture and analyze per-test UART logs for embedded firmware debug
 - Do not log, publish, or commit Wi-Fi passwords, tokens, or other secrets. Redact before sharing evidence.
 - Keep raw evidence intact where permitted; annotate findings separately rather than editing away contradictory output.
 - Do not state that a test passed unless the actual pytest result and required evidence show it.
+- For DZ16 examples of stale or version-ambiguous captures and evidence retention, see [DZ16 gotchas](../interactive-hardware-tests/references/dz16-gotchas.md).
