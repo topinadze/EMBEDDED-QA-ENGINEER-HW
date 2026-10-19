@@ -1,0 +1,13 @@
+Date: 2026-10-19
+Source: operator-supplied UART transcript
+Test: Restore v2.1.0 baseline by forced OTA downgrade, then verify Wi-Fi manually
+Redaction: Account credentials, account identifier, SSID, BSSID, MAC, IP, gateway, and wall-clock values omitted.
+
+Results:
+- Starting readback confirmed v2.3.0 valid on `ota_1`, NORMAL, Wi-Fi/internet OK, valve closed, and the default OTA server.
+- `ota install 2.1.0 force` downloaded the image and wrote it to inactive `ota_0`.
+- OTA completed successfully and rebooted. Boot loaded v2.1.0 from `ota_0`, entered PENDING_VERIFY, passed self-check, marked firmware VALID, and reported ready in NORMAL.
+- Firmware did not automatically reconnect at boot; the UART prompted for manual `reconnect`.
+- Manual `reconnect` associated with the previously saved network, obtained an IP, and reported internet reachable.
+- NTP synchronization succeeded. A subsequent login succeeded; subsequent `version`/`status` readbacks confirmed v2.1.0 valid on `ota_0`, NORMAL, internet OK, and valve closed. `ota status` showed v2.3.0 in `ota_1` as previous; validity is not inferred from that metadata.
+- This establishes the successful forced downgrade and manual Wi-Fi recovery only. It does not establish automatic Wi-Fi recovery or cover the remaining WF-1/WF-2 cases.

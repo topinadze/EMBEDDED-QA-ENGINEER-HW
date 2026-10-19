@@ -1,0 +1,39 @@
+Date: 2026-10-19
+Firmware: v2.1.0 (operator-reported from the preceding `status`)
+Source: operator-supplied UART transcript
+Test: WF-02 — saved-profile reconnect after WF-01 E112
+Redaction: Timestamps and network identifiers omitted.
+
+Precondition and sequence:
+- Following the short-password E112 check, a read-only `status` reported NORMAL and `buoy link down (known: [network redacted])`.
+- The operator then issued `reconnect`. It associated with the saved network, obtained an IP address, and reported internet reachable.
+- NTP synchronization failed with W106 `timestamps disabled`.
+- After telemetry continued in NORMAL, the operator issued `reconnect` again.
+
+Observed result:
+- The first `reconnect` restored Wi-Fi association, IP, and internet after the earlier link-down status. NTP was not synchronized in that attempt (W106).
+- The subsequent `reconnect` returned `W114 already connected`, consistent with the immediately preceding successful reconnect and telemetry. This is not a failure.
+- This excerpt does not include a final `status` readback after W114; current IP/internet/NTP status after that point is not independently confirmed.
+
+Selected redacted UART:
+```text
+status
+fw: v2.1.0 (ota_0)
+state: 1 NORMAL
+link: buoy link down (known: [network redacted])
+valve: closed
+
+reconnect
+I ([redacted]) sentry: [LINK] raising buoy antenna, connecting to '[network redacted]'...
+I ([redacted]) wifi:connected with [network redacted], aid = [redacted], channel [redacted], bssid = [MAC redacted]
+I ([redacted]) esp_netif_handlers: sta ip: [IP redacted], mask: [redacted], gw: [gateway redacted]
+I ([redacted]) sentry: [LINK] got ip [IP redacted]
+I ([redacted]) sentry: [LINK] connected to '[network redacted]', rssi [redacted] (excellent)
+I ([redacted]) sentry: [LINK] fleet network reachable (internet OK)
+W ([redacted]) sentry: W106 [LINK] time: NTP sync failed, timestamps disabled
+I ([redacted]) sentry: [TELEMETRY] state NORMAL, valve closed
+
+reconnect
+W ([redacted]) sentry: W114 already connected
+I ([redacted]) sentry: [TELEMETRY] state NORMAL, valve closed
+```

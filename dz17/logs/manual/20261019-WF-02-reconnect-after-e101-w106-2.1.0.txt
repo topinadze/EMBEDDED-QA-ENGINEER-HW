@@ -1,0 +1,29 @@
+Date: 2026-10-19
+Firmware: v2.1.0 (operator-reported from the immediately preceding `status`)
+Source: operator-supplied UART transcript
+Test: WF-02 — restore saved profile after WF-01 E101
+Redaction: SSID, BSSID/MAC, IP, gateway, RSSI, channel, and timestamps omitted.
+
+Precondition:
+- The preceding WF-01 `connect` attempt with an incorrect dummy password ended with E101.
+
+Observed result:
+- `reconnect` associated with the saved network, obtained an IP, and reported internet reachable.
+- NTP synchronization failed with W106 `timestamps disabled`.
+- This confirms saved-profile reconnection and internet reachability in this recovery attempt; it does not confirm NTP synchronization.
+- No credentials were entered during `reconnect`.
+
+Selected redacted UART:
+```text
+reconnect
+[LINK] raising buoy antenna, connecting to '[network redacted]'...
+wifi: state init -> auth
+wifi: state auth -> assoc
+wifi: state assoc -> run
+wifi: connected with [network redacted], bssid = [MAC redacted]
+esp_netif_handlers: sta ip: [IP redacted], mask: [redacted], gw: [gateway redacted]
+[LINK] got ip [IP redacted]
+[LINK] connected to '[network redacted]', rssi [redacted] (excellent)
+[LINK] fleet network reachable (internet OK)
+W106 [LINK] time: NTP sync failed, timestamps disabled
+```

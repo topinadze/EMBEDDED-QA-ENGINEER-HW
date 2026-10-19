@@ -1,0 +1,27 @@
+Date: 2026-10-19
+Firmware: v2.1.0
+Source: operator-supplied UART transcript
+Test: WF-02 — reconnect saved network after empty-SSID E111
+Redaction: SSID, BSSID, MAC, IP, gateway, and wall-clock values omitted.
+
+Precondition:
+- The preceding WF-01 empty-SSID attempt left Wi-Fi disconnected.
+- A previously saved network profile was available.
+
+Observed result:
+- `reconnect` associated with the saved network, obtained an IP, and reported internet reachable.
+- NTP synchronization then failed with W106 `timestamps disabled`.
+- This confirms saved-profile reconnect and internet reachability in this run. It does not establish NTP recovery; an available clock value alone would not prove synchronization.
+- The device was left Wi-Fi connected; no credentials were entered in this reconnect.
+
+Selected redacted UART:
+```text
+reconnect
+I ([redacted]) sentry: [LINK] raising buoy antenna, connecting to '[network redacted]'...
+I ([redacted]) wifi:connected with [network redacted], aid = [redacted], channel [redacted], bssid = [MAC redacted]
+I ([redacted]) esp_netif_handlers: sta ip: [IP redacted], mask: [redacted], gw: [gateway redacted]
+I ([redacted]) sentry: [LINK] got ip [IP redacted]
+I ([redacted]) sentry: [LINK] connected to '[network redacted]', rssi [redacted] (excellent)
+I ([redacted]) sentry: [LINK] fleet network reachable (internet OK)
+W ([redacted]) sentry: W106 [LINK] time: NTP sync failed, timestamps disabled
+```

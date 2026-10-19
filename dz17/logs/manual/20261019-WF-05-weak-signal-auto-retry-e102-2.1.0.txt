@@ -1,0 +1,64 @@
+Source: operator-supplied UART transcript in chat
+Date: 2026-10-19
+Firmware: v2.1.0 (operator-reported active Wi-Fi test session; not shown in this excerpt)
+Requirement: WF-2 weak-signal warning and WF-5 link-loss retries
+Setup context: Continuation of the prior weak-signal run in which the phone hotspot was moved to another room. Its position during each later retry is not independently confirmed in this excerpt.
+Redaction: SSID, BSSID/MAC, IP address, mask, gateway, and account/network identifiers omitted.
+
+Observed sequence:
+- A manual `reconnect` initially failed after retry 1/3 through 3/3 and returned E102 (saved network not found).
+- A second manual `reconnect` associated successfully, obtained an IP, and reported RSSI -90 dBm (the Wi-Fi driver line reported -93 dBm). Firmware emitted W107, consistent with the PRD threshold below -80 dBm.
+- The internet check then returned E105. Later telemetry showed weak-signal and no-internet warnings.
+- A subsequent Wi-Fi beacon timeout disassociated the station. Firmware emitted W110 with reason 200 and logged automatic retries 1/3 through 3/3.
+- After those automatic attempts, the operator manually issued `reconnect`. That separate manual attempt exhausted retries 1/3 through 3/3 and returned E102.
+- The operator issued `reconnect` again. After retry 1/3 and retry 2/3 messages, Wi-Fi associated, obtained an IP, and firmware reported RSSI -97 dBm with W107. The excerpt ends before internet reachability, NTP, or a later `status` result is shown.
+- W107 and E105 are distinct observations from the weak-signal connection. W110 and the three automatic retry messages were observed, but automatic recovery was not. The later E102 belongs to the operator-issued manual reconnect, not an automatic retry result.
+- WF-5 remains PARTIAL: the specified link-loss warning and retry count were observed, but successful automatic recovery was not. A later operator-issued reconnect did recover Wi-Fi association and IP on its second retry, at a reported -97 dBm with W107; internet and NTP outcomes are unknown. This excerpt alone does not establish why the link was lost or why one manual attempt could not find the network; no firmware defect is inferred.
+- The latest supplied excerpt ends after Wi-Fi association and IP acquisition, without a subsequent internet/NTP/status result.
+
+Selected redacted UART:
+```text
+reconnect
+[LINK] raising buoy antenna, connecting to '[network redacted]'...
+[LINK] retry 1/3...
+[LINK] retry 2/3...
+[LINK] retry 3/3...
+E102 network '[network redacted]' not found
+
+reconnect
+[LINK] raising buoy antenna, connecting to '[network redacted]'...
+wifi: state init -> auth -> assoc -> run
+wifi: connected with [network redacted], bssid = [MAC redacted], rssi: -93 dBm
+esp_netif_handlers: sta ip: [IP redacted], mask: [redacted], gw: [gateway redacted]
+[LINK] got ip [IP redacted]
+[LINK] connected to '[network redacted]', rssi -90 dBm (weak)
+W107 weak signal (-90 dBm), connection may be unstable
+E105 connected, but no internet (HTTPS failed: [error redacted])
+[TELEMETRY] ... rssi -88 ... WARN weak signal WARN no internet
+
+wifi:bcn_timeout,ap_probe_send_start
+wifi:ap_probe_send over, reset wifi status to disassoc
+wifi:state: run -> init
+W110 wifi connection lost (reason 200)
+[LINK] retry 1/3...
+[LINK] retry 2/3...
+[LINK] retry 3/3...
+
+reconnect
+[LINK] raising buoy antenna, connecting to '[network redacted]'...
+[LINK] retry 1/3...
+[LINK] retry 2/3...
+[LINK] retry 3/3...
+E102 network '[network redacted]' not found
+
+reconnect
+[LINK] raising buoy antenna, connecting to '[network redacted]'...
+[LINK] retry 1/3...
+[LINK] retry 2/3...
+wifi: state init -> auth -> assoc -> run
+wifi: connected with [network redacted], bssid = [MAC redacted], rssi: -87 dBm
+esp_netif_handlers: sta ip: [IP redacted], mask: [redacted], gw: [gateway redacted]
+[LINK] got ip [IP redacted]
+[LINK] connected to '[network redacted]', rssi -97 dBm (weak)
+W107 weak signal (-97 dBm), connection may be unstable
+```

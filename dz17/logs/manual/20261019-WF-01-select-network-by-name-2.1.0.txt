@@ -1,0 +1,42 @@
+Date: 2026-10-19
+Firmware: v2.1.0
+Source: operator-supplied UART transcript
+Test: WF-01 — select Wi-Fi network by name
+Redaction: Password line omitted; SSIDs, BSSID, MAC, IP, gateway, and wall-clock values redacted.
+
+Precondition:
+- The prior `disconnect` command was acknowledged. UART remained available.
+- Device was v2.1.0, NORMAL, with valve closed, following the recorded forced-downgrade and manual reconnect.
+
+Result:
+- `connect` scanned and listed networks, then prompted for `SSID or number`.
+- Operator entered the selected network name locally in UART (not the list index); the device proceeded to request the password.
+- After the operator entered the password locally, the device associated, obtained an IP, and reported internet reachable.
+- NTP synchronization failed with W106 `time: NTP sync failed, timestamps disabled`.
+- Immediately afterward, the operator ran `time`; it returned a local date/time with the Kyiv timezone rather than E121. This confirms that a clock value was available, not that NTP had synchronized. No subsequent NTP-success event was supplied.
+- The device then reported `network saved. Next time just type 'reconnect'`.
+- This verifies network-by-name selection and saved-profile confirmation, plus successful Wi-Fi/IP/internet connection. NTP failed on this attempt; no claim is made that WF-01 passed overall.
+- The supplied transcript included a credential-bearing line. It is intentionally omitted from this saved evidence. The exposed Wi-Fi password should be changed before further use.
+
+Selected redacted UART:
+```text
+disconnect
+I ([redacted]) sentry: [LINK] disconnected
+connect
+I ([redacted]) sentry: [LINK] scanning...
+I ([redacted]) sentry:   [ 1] [network redacted] - [RSSI redacted]
+SSID or number:
+[selected network name entered locally; redacted]
+Password:
+[credential input omitted]
+I ([redacted]) sentry: [LINK] raising buoy antenna, connecting to '[network redacted]'...
+I ([redacted]) wifi:connected with [network redacted], aid = [redacted], channel [redacted], bssid = [MAC redacted]
+I ([redacted]) esp_netif_handlers: sta ip: [IP redacted], mask: [redacted], gw: [gateway redacted]
+I ([redacted]) sentry: [LINK] got ip [IP redacted]
+I ([redacted]) sentry: [LINK] connected to '[network redacted]', rssi [redacted] (excellent)
+I ([redacted]) sentry: [LINK] fleet network reachable (internet OK)
+W ([redacted]) sentry: W106 [LINK] time: NTP sync failed, timestamps disabled
+I ([redacted]) sentry: [LINK] network saved. Next time just type 'reconnect'
+time
+I ([redacted]) sentry: [LINK] time: [wall-clock value redacted] (Kyiv)
+```

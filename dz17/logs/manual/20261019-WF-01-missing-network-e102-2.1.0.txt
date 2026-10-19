@@ -1,0 +1,33 @@
+Date: 2026-10-19
+Firmware: v2.1.0 (active firmware confirmed earlier in this Wi-Fi session)
+Source: operator-supplied UART transcript
+Test: WF-01 — network not found returns E102
+Redaction: Scanned SSIDs, selected SSID, password input, RSSI values, and timestamps omitted.
+
+Action:
+- The operator ran `connect` and reviewed the scan results.
+- The operator entered a made-up SSID that was not among the scanned networks.
+- At the password prompt, the operator entered a dummy value. The value is omitted and was not a real credential.
+
+Observed result:
+- Firmware raised the buoy antenna and performed three retries.
+- Firmware returned `E102 network not found`.
+- No IP assignment or internet-connected message appeared before E102 in the supplied excerpt.
+- This is a PASS for WF-1 network-not-found handling only. It does not complete the remaining WF-1 error cases.
+- The subsequent saved-profile reconnect restored Wi-Fi/IP/internet but emitted W106 for NTP failure; see [`20261019-WF-02-reconnect-after-e102-w106-2.1.0.txt`](20261019-WF-02-reconnect-after-e102-w106-2.1.0.txt).
+
+Selected redacted UART:
+```text
+connect
+[LINK] scanning...
+[ 1] [network redacted] - [RSSI redacted]
+SSID or number:
+[made-up SSID not found in scan; redacted]
+Password:
+[dummy value redacted]
+[LINK] raising buoy antenna, connecting to '[network redacted]'...
+[LINK] retry 1/3...
+[LINK] retry 2/3...
+[LINK] retry 3/3...
+E102 network not found
+```

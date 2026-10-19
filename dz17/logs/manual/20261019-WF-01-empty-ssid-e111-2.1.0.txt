@@ -1,0 +1,28 @@
+Date: 2026-10-19
+Firmware: v2.1.0 (confirmed immediately before this Wi-Fi test session)
+Source: operator-supplied UART transcript
+Test: WF-01 — empty SSID validation
+Redaction: All scanned SSIDs and any network identifiers are omitted.
+
+Precondition and action:
+- The device was disconnected from Wi-Fi using `disconnect`.
+- `connect` scanned and listed nearby networks.
+- At the `SSID or number:` prompt, the operator submitted an empty value (Enter).
+
+Observed result:
+- Firmware returned `E111 SSID cannot be empty`.
+- No password prompt, connection attempt, or firmware reboot followed in the supplied excerpt.
+- This is a PASS for the empty-SSID validation check only. It does not complete WF-01/WF-02.
+- Wi-Fi was left disconnected by this attempt; restore the saved connection with `reconnect` before proceeding.
+
+Selected redacted UART:
+```text
+disconnect
+I ([redacted]) sentry: [LINK] disconnected
+connect
+I ([redacted]) sentry: [LINK] scanning...
+I ([redacted]) sentry:   [ 1] [network redacted] - [RSSI redacted]
+SSID or number:
+[empty input]
+E ([redacted]) sentry: E111 SSID cannot be empty
+```

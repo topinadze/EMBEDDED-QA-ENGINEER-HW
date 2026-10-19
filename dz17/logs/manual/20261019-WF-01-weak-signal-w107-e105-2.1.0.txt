@@ -1,0 +1,32 @@
+Date: 2026-10-19
+Firmware: v2.1.0 (operator-reported from active Wi-Fi test session)
+Source: operator-supplied UART transcript
+Test: WF-2 — weak-signal warning W107 during saved-profile reconnect
+Redaction: SSID, BSSID/MAC, IP, gateway, channel, timestamps, and account/network identifiers omitted.
+
+Precondition and action:
+- The operator confirmed the access point was the phone hotspot and moved the phone to another room while keeping the board/UART in place.
+- The operator ran `reconnect` using the saved profile.
+
+Observed result:
+- Wi-Fi association succeeded at RSSI -91 dBm and the device obtained an IP address.
+- Firmware emitted `W107 weak signal (-91 dBm), connection may be unstable`, consistent with the PRD threshold of RSSI below -80 dBm.
+- The subsequent HTTPS internet check failed and firmware returned `E105 connected, but no internet`; later telemetry also reported `WARN no internet`.
+- This is a PASS for the PRD WF-2 W107 threshold/warning behavior during the deliberate weak-signal saved-profile reconnect. It is not a WF-1 interactive `connect` result because the command used was `reconnect`. Wi-Fi association and IP succeeded, but internet was unavailable in this run and E105 was returned. W107 is the low-RSSI warning; E105 is the distinct internet-check result observed while the phone hotspot was in another room.
+- The supplied excerpt ends while the device remains associated but reports no internet. Restoring the phone hotspot to its normal location and checking `status`/internet is recommended before more testing.
+
+Selected redacted UART:
+```text
+reconnect
+[LINK] raising buoy antenna, connecting to '[network redacted]'...
+wifi: state init -> auth
+wifi: state auth -> assoc
+wifi: state assoc -> run
+wifi: connected with [network redacted], bssid = [MAC redacted], rssi: [redacted]
+esp_netif_handlers: sta ip: [IP redacted], mask: [redacted], gw: [gateway redacted]
+[LINK] got ip [IP redacted]
+[LINK] connected to '[network redacted]', rssi -91 dBm (weak)
+W107 weak signal (-91 dBm), connection may be unstable
+E105 connected, but no internet (HTTPS failed: [error redacted])
+[TELEMETRY] ... WARN weak signal WARN no internet
+```
