@@ -1,0 +1,86 @@
+Date: 2026-10-18
+Firmware: 2.1.0, `ota_0` valid (confirmed after reboot in `20261018-DS-03-reboot-calibration-state-2.1.0.txt`)
+Source: operator-supplied UART transcript
+Physical setup: operator confirmed the same stationary target remained at the same 20 cm reference plane used for calibration.
+Precondition: post-reboot `relay status` reported closed, auto off, cycles 80.
+Purpose: Limited one-shot readings to check calibration state after reboot; not a resumption of broader sonar characterization.
+
+Observed result:
+- Initial post-reboot `distance stats` had returned `no measurements yet`, so it did not expose calibration state.
+- The operator then ran one-shot `distance` commands and `distance stats`. Stats reported 10 measurements, 0 errors, min 20.0 cm, max 23.0 cm, avg 22.4 cm; importantly, it explicitly reported calibration -2.0 cm, median filter 5, alarm on.
+- Therefore, the -2.0 cm calibration offset persisted across the documented software reboot. `distance calibrate reset` still has not succeeded; do not perform further sonar characterization until a supported method restores/validates calibration.
+- The supplied sample readings ranged from 20.0 to 23.0 cm at the operator-stated 20 cm target. Measurement accuracy remains inconclusive; existing near-field quality concerns and absent PRD accuracy tolerance preclude a pass/fail accuracy claim.
+- The 10 readings before `distance stats` were 20.0, 23.0, 23.0, 22.9, 22.9, 20.8, 22.9, 22.9, 22.9, and 22.9 cm (the stats average is consistent with these rounded values). After the `distance stats` query, eight additional one-shot readings were all 20.0 cm, while the operator confirms the target had not moved. This is a pronounced repeatability/state-change anomaly (BUG-012). The temporal association does not prove that the stats command caused the change; mechanism and root cause are unknown.
+- A proximity alarm at 20.0 cm with threshold 25 cm and a later collision message at a displayed 20.0 cm were logged. The displayed `< 20 cm` collision boundary is rounding-ambiguous. Telemetry continued to report valve closed; auto was off before the readings.
+- No assistant-run hardware or automated test was performed.
+
+Selected supplied UART transcript:
+---- Sent utf8 encoded message: "version\n" ----
+version
+I (380803) sentry: SENTRY SWM-2 sonar watch module, fw v2.1.0 (build Oct  6 2026 02:14:57)
+I (380803) sentry:   partition: ota_0 @ 0x20000, state: valid
+---- Sent utf8 encoded message: "relay status\n" ----
+relay status
+I (388803) sentry: [VALVE] closed, auto off, cycles 80
+---- Sent utf8 encoded message: "distance\n" ----
+distance
+I (457943) sentry: [SONAR] ping: echo 20.0 cm
+W (457943) sentry: [SONAR] PROXIMITY ALARM: contact at 20.0 cm (threshold 25 cm)
+---- Sent utf8 encoded message: "distance\n" ----
+distance
+I (459673) sentry: [SONAR] ping: echo 23.0 cm
+---- Sent utf8 encoded message: "distance\n" ----
+distance
+I (461963) sentry: [SONAR] ping: echo 23.0 cm
+---- Sent utf8 encoded message: "distance\n" ----
+distance
+I (463403) sentry: [SONAR] ping: echo 22.9 cm
+---- Sent utf8 encoded message: "distance\n" ----
+distance
+I (464893) sentry: [SONAR] ping: echo 22.9 cm
+---- Sent utf8 encoded message: "distance\n" ----
+distance
+I (465983) sentry: [SONAR] ping: echo 20.8 cm
+---- Sent utf8 encoded message: "distance\n" ----
+distance
+I (467033) sentry: [SONAR] ping: echo 22.9 cm
+---- Sent utf8 encoded message: "distance\n" ----
+distance
+I (468123) sentry: [SONAR] ping: echo 22.9 cm
+---- Sent utf8 encoded message: "distance\n" ----
+distance
+I (469123) sentry: [SONAR] ping: echo 22.9 cm
+---- Sent utf8 encoded message: "distance\n" ----
+distance
+I (470153) sentry: [SONAR] ping: echo 22.9 cm
+I (473643) sentry: [TELEMETRY #14] 02:55:13 up 00:07:53 heap 257KB rssi -29 temp 31.4C depth 42.1m hull 5.2bar batt 24.2V valve closed sonar 22.9cm state NORMAL
+---- Sent utf8 encoded message: "distance stats\n" ----
+distance stats
+I (482623) sentry: [SONAR] measurements 10, errors 0, min 20.0, max 23.0, avg 22.4 cm
+I (482623) sentry: [SONAR] calibration -2.0 cm, filter median 5, alarm on
+---- Sent utf8 encoded message: "distance\n" ----
+distance
+I (495653) sentry: [SONAR] ping: echo 20.0 cm
+E (495653) sentry: [COLLISION] contact too close: 20.0 cm (< 20 cm)
+---- Sent utf8 encoded message: "distance\n" ----
+distance
+I (496793) sentry: [SONAR] ping: echo 20.0 cm
+---- Sent utf8 encoded message: "distance\n" ----
+distance
+I (498633) sentry: [SONAR] ping: echo 20.0 cm
+---- Sent utf8 encoded message: "distance\n" ----
+distance
+I (499583) sentry: [SONAR] ping: echo 20.0 cm
+---- Sent utf8 encoded message: "distance\n" ----
+distance
+I (500463) sentry: [SONAR] ping: echo 20.0 cm
+---- Sent utf8 encoded message: "distance\n" ----
+distance
+I (501873) sentry: [SONAR] ping: echo 20.0 cm
+---- Sent utf8 encoded message: "distance\n" ----
+distance
+I (502773) sentry: [SONAR] ping: echo 20.0 cm
+I (503643) sentry: [TELEMETRY #15] 02:55:43 up 00:08:23 heap 257KB rssi -29 temp 31.4C depth 42.1m hull 5.2bar batt 24.2V valve closed sonar 20.0cm state NORMAL
+---- Sent utf8 encoded message: "distance\n" ----
+distance
+I (504173) sentry: [SONAR] ping: echo 20.0 cm

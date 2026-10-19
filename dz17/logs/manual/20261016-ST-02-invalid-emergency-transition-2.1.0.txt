@@ -1,0 +1,59 @@
+Date: 2026-10-16
+Firmware: 2.1.0 (`ota_0`)
+Source: sanitized excerpts from the operator-supplied UART transcript
+Sensitive credential inputs and build-tag value omitted.
+
+---- Sent utf8 encoded message: "state 1\n" ----
+state 1
+W (989553) sentry: [STATE] 3 VERBOSE -> 1 NORMAL (by command)
+---- Sent utf8 encoded message: "status\n" ----
+status
+I (997443) sentry: === SWM-2 status ===
+I (997443) sentry:   fw:       v2.1.0 (ota_0)
+I (997443) sentry:   state:    1 NORMAL
+I (997443) sentry:   link:     buoy link '[network redacted]', ip [IP redacted], rssi -39 dBm (excellent), ch 1
+I (997443) sentry:   internet: OK
+I (997453) sentry:   user:     [operator account] (user)
+
+---- Sent utf8 encoded message: "state 2\n" ----
+state 2
+W (1001993) sentry: [STATE] 1 NORMAL -> 2 DEBUG (by command)
+I (1001993) sentry: [STATE] DEBUG (maintenance): raw transducer data, LED blink codes, parser diagnostics
+---- Sent utf8 encoded message: "blinking blue\n" ----
+blinking blue
+E (1017093) sentry: [DBG] E001 parse error: token 'blinking' (len 8) not in command table (66 entries)
+---- Sent utf8 encoded message: "state 4\n" ----
+state 4
+I (1036773) sentry: [DBG] cmd 'state' args '4' need 2
+W (1036773) sentry: [STATE] 2 DEBUG -> 4 EMERGENCY (by command)
+E (1036773) sentry: [EMERGENCY] EMERGENCY SURFACING. Module locked. Allowed: help, status, whoami, version, health now, reboot. Exit: reboot only
+W (1042133) sentry: [TELEMETRY #51] 01:39:21 up 00:17:21 heap 258KB rssi -38 temp 32.4C depth 41.2m hull 5.1bar batt 24.1V valve closed sonar - state EMERGENCY
+W (1047133) sentry: [TELEMETRY #52] 01:39:26 up 00:17:26 heap 258KB rssi -39 temp 32.4C depth 40.5m hull 5.0bar batt 24.1V valve closed sonar - state EMERGENCY
+W (1052333) sentry: [TELEMETRY #53] 01:39:32 up 00:17:31 heap 258KB rssi -39 temp 32.4C depth 39.7m hull 5.0bar batt 24.1V valve closed sonar - state EMERGENCY
+
+---- Sent utf8 encoded message: "state 1\n" ----
+state 1
+E (1054293) sentry: E304 EMERGENCY can be left only by reboot
+---- Sent utf8 encoded message: "reboot\n" ----
+reboot
+I (1060623) sentry: rebooting in 3...
+I (1061623) sentry: rebooting in 2...
+I (1062623) sentry: rebooting in 1...
+I (1063623) sentry: last reset: software reboot
+I (633) sentry: [OTA] running v2.1.0 from ota_0
+I (643) sentry: ready. state 1 NORMAL (patrol). Type 'help'
+
+---- Sent utf8 encoded message: "status\n" ----
+status
+I (18373) sentry: === SWM-2 status ===
+I (18373) sentry:   fw:       v2.1.0 (ota_0)
+I (18373) sentry:   state:    1 NORMAL
+I (18373) sentry:   link:     buoy link down (known: [network redacted])
+I (18373) sentry:   user:     not logged in
+
+Assessment against PRD ST-2:
+- From confirmed state 2 DEBUG, `state 4` was accepted and entered EMERGENCY.
+- Expected: E302 and state unchanged because the source state was not 3 VERBOSE.
+- The attempted `state 1` while in EMERGENCY returned the PRD-specified E304.
+- Reboot returned firmware to NORMAL. The subsequent status shows Wi-Fi disconnected; the known network remains listed.
+- Emergency depth/descent values are simulator telemetry; no physical surfacing or actuation is evidenced.

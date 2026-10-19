@@ -1,0 +1,40 @@
+Date: 2026-10-16
+Firmware: 2.1.0 (`ota_0`)
+Source: sanitized excerpts from operator-supplied UART transcript
+Physical LED observation: operator confirmed the lamp illuminated and went out in accordance with `lamp on` / `lamp off`, and that the visible color changed after the color command.
+
+---- Sent utf8 encoded message: "lamp on\n" ----
+lamp on
+I (1303543) sentry: [BEACON] on (command) solid, 50%, color (255,255,255)
+I (1303543) sentry: [V] 'lamp' done in 0 ms
+I (1307343) sentry: [TELEMETRY #31] 02:01:30 up 00:21:46 heap 258KB rssi -30 temp 31.4C depth 42.8m hull 5.3bar batt 24.1V valve closed sonar - state VERBOSE
+I (1307343) sentry: [V] telemetry: min heap 211KB, beacon on, tasks 15, water 8.1C, source auto
+---- Sent utf8 encoded message: "lamp off\n" ----
+lamp off
+I (1311963) sentry: [BEACON] off (command)
+I (1311963) sentry: [V] 'lamp' done in 0 ms
+I (1317353) sentry: [TELEMETRY #32] 02:01:40 up 00:21:56 heap 258KB rssi -35 temp 32.4C depth 42.8m hull 5.3bar batt 24.1V valve closed sonar - state VERBOSE
+I (1317353) sentry: [V] telemetry: min heap 211KB, beacon off, tasks 15, water 8.1C, source auto
+---- Sent utf8 encoded message: "lamp status\n" ----
+lamp status
+I (1318173) sentry: [BEACON] off, color (255,255,255), brightness 50%, mode solid, timer off
+I (1318173) sentry: [V] 'lamp' done in 0 ms
+I (1327363) sentry: [TELEMETRY #33] 02:01:50 up 00:22:06 heap 258KB rssi -27 temp 31.4C depth 42.8m hull 5.3bar batt 24.1V valve closed sonar - state VERBOSE
+I (1327363) sentry: [V] telemetry: min heap 211KB, beacon off, tasks 15, water 8.1C, source auto
+---- Sent utf8 encoded message: "state 1\n" ----
+state 1
+W (1337063) sentry: [STATE] 3 VERBOSE -> 1 NORMAL (by command)
+I (1337373) sentry: [TELEMETRY #34] 02:02:00 up 00:22:16 heap 258KB rssi -27 temp 32.4C depth 42.7m hull 5.3bar batt 24.1V valve closed sonar - state NORMAL
+---- Sent utf8 encoded message: "lamp on\n" ----
+lamp on
+I (1344733) sentry: [BEACON] on (command) solid, 50%, color (255,255,255)
+---- Sent utf8 encoded message: "lamp color blue\n" ----
+lamp color blue
+I (1351653) sentry: [BEACON] color: blue (0,0,255)
+I (1367573) sentry: [TELEMETRY #35] 02:02:30 up 00:22:47 heap 258KB rssi -25 temp 31.4C depth 42.9m hull 5.3bar batt 24.1V valve closed sonar - state NORMAL
+
+Assessment:
+- UART logs report Beacon on at 50% brightness, then off; `lamp status` reports off, white (255,255,255), 50%, solid mode, timer off.
+- After returning to NORMAL, `lamp on` reports on at 50% and `lamp color blue` reports RGB (0,0,255).
+- Operator confirms the lamp physically illuminated and went out with the on/off commands and visibly changed color after the color command. Exact visually perceived color and a measured RGB output were not independently established.
+- Brightness ranges, other colors/RGB values, modes, timer, scenes, persistence, and LED priority behavior remain untested.

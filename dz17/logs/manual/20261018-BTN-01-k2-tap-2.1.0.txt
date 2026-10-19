@@ -1,0 +1,52 @@
+Source: operator-supplied UART transcript and physical observation in chat
+Date: 2026-10-18
+Firmware: 2.1.0, `ota_0` (confirmed by `version`)
+Requirement: §12 K2 tap toggles relay; RL-1 GPIO4 indicator is on when relay is on; RL-2 cycle counter increments once per state transition
+Redaction: Account/network identifiers and wall-clock values are omitted.
+
+Preconditions:
+- `status` reported firmware 2.1.0, NORMAL, and an authenticated user session.
+- Before button activity, telemetry and `status` reported valve closed; `relay status` reported closed, auto off, cycles 80.
+
+Observed result:
+- The operator pressed K2 once. UART reported `[BTN] K2 pressed` and `[VALVE] OPEN (K2)`.
+- `relay status` confirmed OPEN, auto off, cycles 82.
+- The operator reported that the indicator lamp on the relay module and the separate GPIO4 diode both went out when the relay was turned on.
+- The operator pressed K2 again. UART reported `[BTN] K2 pressed` and `[VALVE] CLOSED (K2)`.
+- `relay status` confirmed closed, auto off, cycles 84. The operator reported both observed indicators lit again when the relay was turned off.
+
+Assessment:
+- K2 tap switching between closed and open, followed by return to closed, was observed on 2.1.0.
+- The reported GPIO4 diode behavior is opposite to RL-1/WIRING, which expects the diode lit while the relay is on; this is a repeated observation for BUG-005, not a new diagnosis.
+- The cycle counter increased by two for each of the two state transitions (80 to 82 to 84), consistent with BUG-004.
+- During the tap-toggle portion, no long-press pulse was tested. The relay ended that portion closed, auto off.
+
+Selected UART:
+I ([redacted]) sentry: SENTRY SWM-2 sonar watch module, fw v2.1.0 (build [redacted])
+I ([redacted]) sentry:   partition: ota_0 @ 0x20000, state: valid
+I ([redacted]) sentry: [VALVE] closed, auto off, cycles 80
+I (6980579) sentry: [BTN] K2 pressed
+I (6980579) sentry: [VALVE] OPEN (K2)
+I (6992779) sentry: [VALVE] OPEN, auto off, cycles 82
+I (6997469) sentry: [BTN] K2 pressed
+I (6997479) sentry: [VALVE] CLOSED (K2)
+I (7001719) sentry: [VALVE] closed, auto off, cycles 84
+
+K2 long-press pulse check:
+- Before the long-press sequence, `relay status` confirmed closed, auto off, cycles 84.
+- The supplied UART excerpt contains two `[BTN] K2 long press` events. Each was followed by `[VALVE] OPEN (K2 pulse)` and `[VALVE] CLOSED (pulse end)` about 1.02 seconds later.
+- The operator confirmed that a pulse occurred. Telemetry after the pulses reported valve closed and state NORMAL.
+- No `relay status` was supplied after the pulses, so the post-pulse cycle counter was not verified. The GPIO4/relay-module physical indication during these pulses was not reported.
+
+Selected follow-up UART:
+I ([redacted]) sentry: [VALVE] closed, auto off, cycles 84
+I (7335129) sentry: [BTN] K2 long press
+I (7335129) sentry: [VALVE] OPEN (K2 pulse)
+I (7336149) sentry: [VALVE] CLOSED (pulse end)
+I (7354269) sentry: [BTN] K2 long press
+I (7354279) sentry: [VALVE] OPEN (K2 pulse)
+I (7355299) sentry: [VALVE] CLOSED (pulse end)
+I (7360009) sentry: [TELEMETRY #203] [clock redacted] up 02:02:39 heap 257KB rssi -66 temp 30.4C depth 39.0m hull 4.9bar batt 24.0V valve closed sonar - state NORMAL
+
+Physical observation:
+Operator confirmed: "був імпульс" (there was a pulse).

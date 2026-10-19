@@ -1,0 +1,19 @@
+Date: 2026-10-18
+Firmware context: 2.1.0 was confirmed earlier in the same reported device session; this supplied help excerpt does not repeat `version`.
+Source: operator-supplied UART transcript
+Purpose: Follow-up read-only `help` output after two rejected `distance calibrate reset` attempts.
+
+The firmware help advertises `reset` for calibration, although it does not show a complete command syntax. This confirms that `reset` is presented as a supported calibration option; the earlier attempts still returned E706. This help output does not itself query or change calibration state. The last confirmed stats before this follow-up showed calibration -2.0 cm.
+
+Selected supplied UART transcript:
+---- Sent utf8 encoded message: "help\n" ----
+help
+I (4726499) sentry: Commands ([wifi] - needs Wi-Fi, [login] - needs Wi-Fi + login, [debug] - debug access):
+I (4726839) sentry: Active sonar (alias: sonar):
+I (4726839) sentry:   distance [N]                 - measure once or N times (1-20) [login]
+I (4726849) sentry:   distance log [ms] | stop     - continuous measuring 100-5000 ms [login]
+I (4726859) sentry:   distance calibrate <cm>      - calibrate by reference object ('reset') [login]
+I (4726869) sentry:   distance alarm <cm>|off      - alarm threshold 5-300 cm [login]
+I (4726879) sentry:   distance filter on|off       - median filter of 5 samples [login]
+I (4726889) sentry:   distance stats|history       - statistics / last 10 measurements [login]
+I (4728569) sentry: [TELEMETRY #129] 02:43:43 up 01:18:48 heap 257KB rssi -26 temp 31.4C depth 42.0m hull 5.2bar batt 24.1V valve closed sonar - state NORMAL

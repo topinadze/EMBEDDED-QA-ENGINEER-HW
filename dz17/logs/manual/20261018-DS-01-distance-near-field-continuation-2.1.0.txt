@@ -1,0 +1,123 @@
+Date: 2026-10-18
+Firmware: 2.1.0 (`ota_0`, valid), confirmed by `version` and `status` at the start of this supplied excerpt
+Source: operator-supplied UART transcript
+Operator clarification: this is the same firmware session as the preceding near-field characterization; measurements extended down to 5 cm. The UART excerpt does not label individual physical target positions, so individual readings cannot be mapped to exact marks.
+
+Assessment:
+- The transcript includes valid reported echoes as low as 2.1 cm and 3.1 cm, both within the device's stated 2–400 cm range; the 3.1 cm and 2.1 cm readings each produced a collision warning for being below 20 cm.
+- Readings varied substantially during this operator-described near-field run: 22.6 cm, 151.1 cm, an E702 out-of-range response, values around 22.6–30.8 cm, then 3.1/2.1 cm and 146.6 cm. Since target positions are not associated with individual commands and the target's geometry/reference plane are not in UART, these values confirm inconsistent near-field responses but do not quantify error at a specific 5 cm target mark.
+- The reported proximity threshold was 25 cm. A 23.5 cm reading triggered the alarm; 22.6 cm later triggered it again, while 24.5/25.9/29.5 cm had no alarm line in the shown excerpts. A 151.1 cm reading cleared an alarm. The excerpt does not establish the full alarm state/history or controlled target movement, so this is not classified separately as an alarm defect.
+- Device identity and status precede the measurements in this same supplied transcript: 2.1.0 on valid `ota_0`, NORMAL, logged in as `[operator account]`, relay closed, sonar reported no contact. Calibration state remains unconfirmed.
+- Operator assessment: the sensor measurement quality is problematic, and a software-side cause is considered more likely than a faulty transducer. The supplied output supports investigating the firmware measurement/processing path, but does not isolate that cause from calibration, target placement/geometry, or environment.
+- Finding: poor measurement quality is observed in this 2.1.0 run and is consistent with the earlier near-field characterization. Treat software/processing as the leading root-cause hypothesis, not a confirmed diagnosis. PRD defines no numeric accuracy tolerance, and this excerpt does not map every echo to a controlled target position; it is not a calibrated accuracy test.
+
+Selected supplied UART transcript:
+---- Sent utf8 encoded message: "version\n" ----
+version
+I (1548009) sentry: SENTRY SWM-2 sonar watch module, fw v2.1.0 (build Oct  6 2026 02:14:57)
+I (1548009) sentry:   partition: ota_0 @ 0x20000, state: valid
+---- Sent utf8 encoded message: "status\n" ----
+status
+I (1549639) sentry: === SWM-2 status ===
+I (1549639) sentry:   fw:       v2.1.0 (ota_0)
+I (1549639) sentry:   state:    1 NORMAL
+I (1549639) sentry:   link:     buoy link '[network redacted]', ip [IP redacted], rssi -26 dBm (excellent), ch 1
+I (1549649) sentry:   internet: OK
+I (1549649) sentry:   user:     [operator account] (user)
+I (1549649) sentry:   time:     01:50:44, uptime 0h 25m 49s
+I (1549659) sentry:   valve:    closed
+I (1549659) sentry:   sonar:    no contact
+I (1549669) sentry:   carrier:  depth 43.7 m, hull 5.4 bar, water 8.1 C, battery 24.16 V (sim)
+I (1549669) sentry:   heap:     257 KB free
+---- Sent utf8 encoded message: "whoami\n" ----
+whoami
+I (1553009) sentry: user: [operator account], access: user
+I (1567279) sentry: [TELEMETRY #24] 01:51:02 up 00:26:06 heap 257KB rssi -23 temp 30.4C depth 43.7m hull 5.4bar batt 24.2V valve closed sonar - state NORMAL
+I (1597479) sentry: [TELEMETRY #25] 01:51:32 up 00:26:37 heap 257KB rssi -25 temp 30.4C depth 43.7m hull 5.4bar batt 24.2V valve closed sonar - state NORMAL
+I (1626699) sentry: [NAV] depth 43.8 m, heading 279, speed 3.2 kn
+I (1627679) sentry: [TELEMETRY #26] 01:52:02 up 00:27:07 heap 257KB rssi -28 temp 31.4C depth 43.8m hull 5.4bar batt 24.2V valve closed sonar - state NORMAL
+---- Sent utf8 encoded message: "distance\n" ----
+distance
+I (1656699) sentry: [SONAR] ping: echo 22.6 cm
+I (1657679) sentry: [TELEMETRY #27] 01:52:32 up 00:27:37 heap 257KB rssi -17 temp 31.4C depth 43.8m hull 5.4bar batt 24.2V valve closed sonar 22.6cm state NORMAL
+---- Sent utf8 encoded message: "distance\n" ----
+distance
+I (1661849) sentry: [SONAR] ping: echo 151.1 cm
+I (1661849) sentry: [SONAR] proximity alarm cleared (151.1 cm)
+---- Sent utf8 encoded message: "distance\n" ----
+distance
+E (1666239) sentry: E702 sonar: out of range (2-400 cm) - open water?
+---- Sent utf8 encoded message: "distance\n" ----
+distance
+I (1673449) sentry: [SONAR] ping: echo 23.5 cm
+W (1673449) sentry: [SONAR] PROXIMITY ALARM: contact at 23.5 cm (threshold 25 cm)
+---- Sent utf8 encoded message: "distance\n" ----
+distance
+I (1678839) sentry: [SONAR] ping: echo 23.5 cm
+---- Sent utf8 encoded message: "distance\n" ----
+distance
+I (1681859) sentry: [SONAR] ping: echo 24.5 cm
+I (1687679) sentry: [TELEMETRY #28] 01:53:02 up 00:28:07 heap 257KB rssi -21 temp 31.4C depth 43.8m hull 5.4bar batt 24.2V valve closed sonar 24.5cm state NORMAL
+---- Sent utf8 encoded message: "distance\n" ----
+distance
+I (1690379) sentry: [SONAR] ping: echo 29.5 cm
+---- Sent utf8 encoded message: "distance\n" ----
+distance
+I (1691539) sentry: [SONAR] ping: echo 25.9 cm
+distance
+---- Sent utf8 encoded message: "distance\n" ----
+I (1692369) sentry: [SONAR] ping: echo 25.9 cm
+I (1694729) sentry: [ACU] ambient noise 70 dB re 1uPa, sea state 2, water 7.9 C
+---- Sent utf8 encoded message: "distance\n" ----
+distance
+I (1698349) sentry: [SONAR] ping: echo 3.1 cm
+E (1698349) sentry: [COLLISION] contact too close: 3.1 cm (< 20 cm)
+---- Sent utf8 encoded message: "distance\n" ----
+distance
+I (1699829) sentry: [SONAR] ping: echo 22.6 cm
+---- Sent utf8 encoded message: "distance\n" ----
+distance
+I (1701119) sentry: [SONAR] ping: echo 22.6 cm
+---- Sent utf8 encoded message: "distance\n" ----
+distance
+I (1702789) sentry: [SONAR] ping: echo 22.6 cm
+I (1717879) sentry: [TELEMETRY #29] 01:53:32 up 00:28:37 heap 257KB rssi -32 temp 31.4C depth 44.2m hull 5.4bar batt 24.2V valve closed sonar 22.6cm state NORMAL
+---- Sent utf8 encoded message: "distance\n" ----
+distance
+I (1721099) sentry: [SONAR] ping: echo 22.3 cm
+---- Sent utf8 encoded message: "distance\n" ----
+distance
+I (1723249) sentry: [SONAR] ping: echo 2.1 cm
+---- Sent utf8 encoded message: "distance\n" ----
+distance
+I (1724199) sentry: [SONAR] ping: echo 2.1 cm
+---- Sent utf8 encoded message: "distance\n" ----
+distance
+I (1725959) sentry: [SONAR] ping: echo 2.1 cm
+---- Sent utf8 encoded message: "distance\n" ----
+distance
+I (1726919) sentry: [SONAR] ping: echo 146.6 cm
+I (1726919) sentry: [SONAR] proximity alarm cleared (146.6 cm)
+---- Sent utf8 encoded message: "distance\n" ----
+distance
+I (1728289) sentry: [SONAR] ping: echo 2.1 cm
+E (1728289) sentry: [COLLISION] contact too close: 2.1 cm (< 20 cm)
+W (1728289) sentry: [SONAR] PROXIMITY ALARM: contact at 2.1 cm (threshold 25 cm)
+---- Sent utf8 encoded message: "distance\n" ----
+distance
+I (1741679) sentry: [SONAR] ping: echo 30.8 cm
+I (1741679) sentry: [SONAR] proximity alarm cleared (30.8 cm)
+---- Sent utf8 encoded message: "distance\n" ----
+distance
+I (1742929) sentry: [SONAR] ping: echo 30.1 cm
+---- Sent utf8 encoded message: "distance\n" ----
+distance
+I (1743949) sentry: [SONAR] ping: echo 30.1 cm
+---- Sent utf8 encoded message: "distance\n" ----
+distance
+E (1744999) sentry: E702 sonar: out of range (2-400 cm) - open water?
+---- Sent utf8 encoded message: "distance\n" ----
+distance
+I (1746149) sentry: [SONAR] ping: echo 22.6 cm
+W (1746149) sentry: [SONAR] PROXIMITY ALARM: contact at 22.6 cm (threshold 25 cm)
+I (1747879) sentry: [TELEMETRY #30] 01:54:02 up 00:29:07 heap 257KB rssi -41 temp 30.4C depth 44.2m hull 5.4bar batt 24.2V valve closed sonar 22.6cm state NORMAL

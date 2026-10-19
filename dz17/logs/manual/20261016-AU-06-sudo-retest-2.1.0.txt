@@ -1,0 +1,49 @@
+Date: 2026-10-16
+Firmware: 2.1.0
+Source: sanitized excerpts from supplied UART transcript
+Secrets: account-password inputs and firmware build tag redacted
+Intervals: unrelated scan results and telemetry omitted
+
+Before reboot:
+I (3654833) sentry: === SWM-2 status ===
+I (3654833) sentry:   fw:       v2.1.0 (ota_0)
+I (3654833) sentry:   state:    1 NORMAL
+I (3654833) sentry:   link:     buoy link '[network redacted]', ip [IP redacted], rssi -29 dBm (excellent), ch 1
+I (3654843) sentry:   internet: OK
+I (3654843) sentry:   user:     [operator account] (user)
+---- Sent utf8 encoded message: "reboot\n" ----
+reboot
+I (3656993) sentry: rebooting in 3...
+I (3657993) sentry: rebooting in 2...
+I (3658993) sentry: rebooting in 1...
+rst:0xc (RTC_SW_CPU_RST),boot:0x8 (SPI_FAST_FLASH_BOOT)
+I (319) app_init: App version:      2.1.0
+I (603) sentry: [LINK] known network '[network redacted]'. Type 'reconnect' to connect
+I (603) sentry: [AUTH] profile '[operator account]' registered
+I (603) sentry: last reset: software reboot
+I (633) sentry: [NAV] carrier: SSK 'Skat', bow sonar bay #2, depth 41.8 m
+I (633) sentry: [OTA] running v2.1.0 from ota_0
+I (643) sentry: ready. state 1 NORMAL (patrol). Type 'help'
+
+Login was attempted before Wi-Fi was restored and returned E002. Initial reconnect timed out waiting for DHCP (E104); a subsequent reconnect obtained the saved network and internet:
+E (13273) sentry: E002 Wi-Fi required. Use 'reconnect' or 'connect'
+E (42283) sentry: E104 no IP address from router (DHCP timeout)
+---- Sent utf8 encoded message: "reconnect\n" ----
+reconnect
+I (76943) sentry: [LINK] raising buoy antenna, connecting to '[network redacted]'...
+I (78123) sentry: [LINK] got ip [IP redacted]
+I (78123) sentry: [LINK] connected to '[network redacted]', rssi -23 dBm (excellent)
+I (79463) sentry: [LINK] fleet network reachable (internet OK)
+I (81243) sentry: [LINK] time: synced via NTP, 01:23:20
+
+The attempted password variant was rejected by login; the next account password was accepted. That same accepted password was then tried with sudo:
+[Credential-bearing login command lines redacted.]
+E (99503) sentry: E209 wrong login or password. Attempts: 1/3
+[login [operator account] with the current account password; value redacted.]
+I (103463) sentry: [AUTH] operator [operator account] on watch, console 2
+---- Sent utf8 encoded message: "sudo [REDACTED; same password accepted by login above]\n" ----
+sudo [REDACTED]
+E (130123) sentry: E213 sudo: wrong password
+---- Sent utf8 encoded message: "whoami\n" ----
+whoami
+I (137783) sentry: user: [operator account], access: user

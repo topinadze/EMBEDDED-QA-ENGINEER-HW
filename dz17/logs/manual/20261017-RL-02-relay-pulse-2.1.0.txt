@@ -1,0 +1,106 @@
+Date: 2026-10-17
+Firmware: 2.1.0 (`ota_0`), build Oct 6 2026 02:14:57
+Source: operator-supplied UART transcript
+Physical observation: none supplied for this pulse run.
+
+---- Sent utf8 encoded message: "version\n" ----
+version
+I (1861969) sentry: SENTRY SWM-2 sonar watch module, fw v2.1.0 (build Oct  6 2026 02:14:57)
+I (1861969) sentry:   partition: ota_0 @ 0x20000, state: valid
+---- Sent utf8 encoded message: "status\n" ----
+status
+I (1865139) sentry: === SWM-2 status ===
+I (1865139) sentry:   fw:       v2.1.0 (ota_0)
+I (1865139) sentry:   state:    1 NORMAL
+I (1865139) sentry:   link:     buoy link '[network redacted]', ip [IP redacted], rssi -31 dBm (excellent), ch 1
+I (1865149) sentry:   internet: OK
+I (1865149) sentry:   user:     [operator account] (user)
+I (1865159) sentry:   valve:    closed
+---- Sent utf8 encoded message: "whoami\n" ----
+whoami
+I (1869859) sentry: user: [operator account], access: user
+---- Sent utf8 encoded message: "relay status\n" ----
+relay status
+I (1877949) sentry: [VALVE] closed, auto off, cycles 16
+
+---- Sent utf8 encoded message: "relay  pulse 100\n" ----
+relay  pulse 100
+I (1900319) sentry: [VALVE] OPEN (pulse)
+I (1900449) sentry: [VALVE] CLOSED (pulse end)
+---- Sent utf8 encoded message: "relay status\n" ----
+relay status
+I (1909019) sentry: [VALVE] closed, auto off, cycles 20
+
+---- Sent utf8 encoded message: "relay  pulse 10000\n" ----
+relay  pulse 10000
+I (1915709) sentry: [VALVE] OPEN (pulse)
+I (1925739) sentry: [VALVE] CLOSED (pulse end)
+---- Sent utf8 encoded message: "relay status\n" ----
+relay status
+I (1931889) sentry: [VALVE] closed, auto off, cycles 24
+
+---- Sent utf8 encoded message: "relay  pulse 1000\n" ----
+relay  pulse 1000
+I (1952899) sentry: [VALVE] OPEN (pulse)
+I (1953929) sentry: [VALVE] CLOSED (pulse end)
+---- Sent utf8 encoded message: "relay status\n" ----
+relay status
+I (1957719) sentry: [VALVE] closed, auto off, cycles 28
+
+---- Sent utf8 encoded message: "relay on\n" ----
+relay on
+I (1969039) sentry: [VALVE] OPEN (command)
+---- Sent utf8 encoded message: "relay pulse 100\n" ----
+relay pulse 100
+E (1974559) sentry: E604 relay is already on - pulse not possible
+---- Sent utf8 encoded message: "relay status\n" ----
+relay status
+I (1982919) sentry: [VALVE] OPEN, auto off, cycles 30
+---- Sent utf8 encoded message: "relay off\n" ----
+relay off
+I (1986629) sentry: [VALVE] CLOSED (command)
+
+---- Sent utf8 encoded message: "relay pulse 99\n" ----
+relay pulse 99
+I (2056359) sentry: [VALVE] OPEN (pulse)
+I (2056479) sentry: [VALVE] CLOSED (pulse end)
+---- Sent utf8 encoded message: "relay status\n" ----
+relay status
+I (2065849) sentry: [VALVE] closed, auto off, cycles 36
+
+---- Sent utf8 encoded message: "relay pulse 1\n" ----
+relay pulse 1
+E (2075069) sentry: E603 pulse must be 100-10000 ms
+---- Sent utf8 encoded message: "relay status\n" ----
+relay status
+I (2080289) sentry: [VALVE] closed, auto off, cycles 36
+
+---- Sent utf8 encoded message: "relay pulse 10\n" ----
+relay pulse 10
+I (2084669) sentry: [VALVE] OPEN (pulse)
+I (2084709) sentry: [VALVE] CLOSED (pulse end)
+---- Sent utf8 encoded message: "relay status\n" ----
+relay status
+I (2091139) sentry: [VALVE] closed, auto off, cycles 40
+
+---- Sent utf8 encoded message: "relay pulse 9\n" ----
+relay pulse 9
+E (2093729) sentry: E603 pulse must be 100-10000 ms
+---- Sent utf8 encoded message: "relay status\n" ----
+relay status
+I (2103079) sentry: [VALVE] closed, auto off, cycles 40
+
+---- Sent utf8 encoded message: "relay pulse 10001\n" ----
+relay pulse 10001
+E (2112769) sentry: E603 pulse must be 100-10000 ms
+---- Sent utf8 encoded message: "relay status\n" ----
+relay status
+I (2120129) sentry: [VALVE] closed, auto off, cycles 40
+
+Assessment:
+- Preconditions: device reports firmware 2.1.0, `ota_0` valid, NORMAL, logged in as user; relay was closed and auto off, `cycles 16`.
+- Valid pulse values 100, 1000, and 10000 were accepted and followed by `[VALVE] CLOSED (pulse end)`; 10000 ran for about 10.03 s by UART timestamps.
+- `relay pulse 100` while relay was already on returned E604; the relay remained open until the subsequent explicit `relay off`.
+- Invalid value 99 was accepted, opened the relay, then closed; value 10 was also accepted. In contrast, 1, 9 and 10001 returned E603 and left the relay closed. Acceptance of 99 and 10 violates RL-3's 100 ms minimum and is BUG-006.
+- Across this run, there were 12 actual relay state transitions: 5 accepted pulse cycles (10 transitions), plus the explicit on/off pair (2 transitions). The cycle count rose from 16 to 40, increasing by 24, or two per actual transition. This further reproduces BUG-004.
+- No physical observation was supplied for this pulse run. Schedule commands were not exercised.

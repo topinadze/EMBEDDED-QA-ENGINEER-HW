@@ -1,0 +1,28 @@
+Source: operator-supplied UART transcript in chat
+Date: 2026-10-18
+Firmware: 2.1.0 on `ota_0`
+Requirement: ST-2 / §12 — K4+K1 must enter EMERGENCY only from VERBOSE; from NORMAL expect E302 and unchanged state
+Redaction: Wall-clock values, network identifiers, and IP omitted.
+
+Precondition:
+- `status` confirmed firmware 2.1.0 on `ota_0`, state NORMAL, ordinary user logged in, and valve closed.
+- The operator confirmed the bench was safe for the short button-pair check.
+
+Observed result:
+- The operator held K4+K1 for about 2 seconds.
+- UART logged the pair gesture twice; each was followed by `E302 EMERGENCY can be entered only from 3 VERBOSE (now 1 NORMAL)`.
+- Subsequent telemetry still reported state NORMAL and valve closed.
+- The operator reported no physical change to the valve, LEDs, or other indicators.
+
+Assessment:
+- Rejection of K4+K1 from NORMAL with E302 was observed on 2.1.0, with no state transition or physical change reported.
+- This result covers the NORMAL button-pair precondition only. Rejection of K4+K1 from DEBUG remains unverified.
+- The duplicate gesture log is recorded as observed; its cause was not determined.
+
+Selected UART:
+I ([redacted]) sentry: [TELEMETRY #18] [clock redacted] up [redacted] heap 257KB rssi [redacted] temp 31.4C depth 41.3m hull 5.1bar batt 24.2V valve closed sonar - state NORMAL
+I ([redacted]) sentry: [BTN] K4+K1 held 2 s -> state 4
+E ([redacted]) sentry: E302 EMERGENCY can be entered only from 3 VERBOSE (now 1 NORMAL)
+I ([redacted]) sentry: [BTN] K4+K1 held 2 s -> state 4
+E ([redacted]) sentry: E302 EMERGENCY can be entered only from 3 VERBOSE (now 1 NORMAL)
+I ([redacted]) sentry: [TELEMETRY #19] [clock redacted] up [redacted] heap 257KB rssi [redacted] temp 31.4C depth 41.3m hull 5.1bar batt 24.2V valve closed sonar - state NORMAL

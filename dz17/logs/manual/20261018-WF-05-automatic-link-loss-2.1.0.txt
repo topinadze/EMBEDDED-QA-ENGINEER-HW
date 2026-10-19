@@ -1,0 +1,75 @@
+Source: operator-supplied UART transcript in chat
+Date: 2026-10-18
+Firmware: 2.1.0, confirmed earlier in the same boot by `version`; `ota_0`, valid
+Requirement: WF-5
+Precondition: Wi-Fi was connected; operator had been instructed to switch off the connected access point for approximately 15–20 seconds, then turn it back on.
+Redaction: SSID, BSSID, IP address, mask, and gateway redacted; no credential included.
+
+Observed result:
+- The Wi-Fi driver reported a beacon timeout and transitioned from `run` to `init`.
+- The device emitted `W110 wifi connection lost (reason 200)`.
+- The device logged all three automatic reconnect attempts: `retry 1/3`, `retry 2/3`, and `retry 3/3`.
+- A later navigation telemetry line appeared. The operator subsequently reported the access point had been turned back on; a later `status` still showed `buoy link down (known: [network redacted])`, NORMAL state, and a logged-in user.
+- No successful Wi-Fi association or IP/internet recovery occurred automatically in the supplied excerpts. The post-retry `status` showed the link remained down at that later check.
+- As a separate operator-issued cleanup action, `reconnect` after AP restoration associated successfully, obtained an IP, and reported internet reachable. It later emitted W106 because NTP synchronization failed. This manual recovery does not count as recovery by the automatic retries.
+- The W110 notification and three retry messages match the specified notification and retry count. Automatic recovery was not observed; the overall WF-5 result is partial on firmware 2.1.0. The reason automatic recovery did not occur is unknown, and no firmware defect is established by this evidence.
+
+Selected UART:
+I (2484239) sentry: [TELEMETRY #56] 15:48:28 up 00:41:23 heap 257KB rssi -58 temp 31.4C depth 41.0m hull 5.1bar batt 24.1V valve closed sonar - state NORMAL
+I (2484639) sentry: [PWR] battery bus 24.13 V, load 1.8 A
+I (2500639) wifi:bcn_timeout,ap_probe_send_start
+I (2503149) wifi:ap_probe_send over, reset wifi status to disassoc
+I (2503149) wifi:state: run -> init (0xc800)
+I (2503149) wifi:pm stop, total sleep time: 146627793 us / 170591278 us
+I (2503149) wifi:<ba-del>idx:0, tid:0
+I (2503149) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0
+W (2503159) sentry: W110 wifi connection lost (reason 200)
+I (2503169) sentry: [LINK] retry 1/3...
+I (2505579) sentry: [LINK] retry 2/3...
+I (2507999) sentry: [LINK] retry 3/3...
+I (2551639) sentry: [NAV] depth 41.4 m, heading 259, speed 3.2 kn
+
+Later status after the operator reported the access point was back on:
+---- Sent utf8 encoded message: "status\n" ----
+status
+I (2741699) sentry: === SWM-2 status ===
+I (2741699) sentry:   fw:       v2.1.0 (ota_0)
+I (2741699) sentry:   state:    1 NORMAL
+I (2741699) sentry:   link:     buoy link down (known: [network redacted])
+I (2741699) sentry:   user:     [account redacted] (user)
+I (2741709) sentry:   time:     [clock value redacted], uptime 0h 45m 41s
+I (2741709) sentry:   valve:    closed
+I (2741709) sentry:   sonar:    no contact
+I (2741719) sentry:   carrier:  depth 41.6 m, hull 5.2 bar, water 8.0 C, battery 24.13 V (sim)
+I (2741729) sentry:   heap:     258 KB free
+
+Separate manual recovery after the link-down status:
+W (2835639) sentry: [HW] transducer #1 impedance drift +2.1% (compensated)
+---- Sent utf8 encoded message: "reconnect\n" ----
+reconnect
+I (2872919) sentry: [LINK] raising buoy antenna, connecting to '[network redacted]'...
+I (2872919) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0
+I (2872919) wifi:state: init -> auth (0xb0)
+I (2872929) wifi:state: auth -> assoc (0x0)
+I (2872939) wifi:state: assoc -> run (0x10)
+I (2872949) wifi:connected with [network redacted], aid = 1, channel 1, BW20, bssid = [redacted]
+I (2872949) wifi:security: WPA2-PSK, phy: bgn, rssi: -32, cipher(pairwise:0x3, group:0x3), pmf:1
+I (2872959) wifi:pm start, type: 1
+I (2872959) wifi:dp: 1, bi: 102400, li: 3, scale listen interval from 307200 us to 307200 us
+I (2872969) wifi:set rx beacon pti, rx_bcn_pti: 0, bcn_timeout: 25000, mt_pti: 0, mt_time: 10000
+I (2873019) wifi:dp: 2, bi: 102400, li: 4, scale listen interval from 307200 us to 409600 us
+I (2873019) wifi:AP's beacon interval = 102400 us, DTIM period = 2
+I (2874009) esp_netif_handlers: sta ip: [redacted], mask: [redacted], gw: [redacted]
+I (2874009) sentry: [LINK] got ip [redacted]
+I (2874009) sentry: [LINK] connected to '[network redacted]', rssi -27 dBm (excellent)
+I (2874039) sentry: [TELEMETRY] auto report every 30 s ('health off' to stop)
+I (2877379) wifi:<ba-add>idx:0 (ifx:0, [redacted]), tid:0, ssn:2, winSize:64
+I (2877679) esp-x509-crt-bundle: Certificate validated
+I (2879089) sentry: [LINK] fleet network reachable (internet OK)
+I (2879579) wifi:[ADDBA]RX DELBA, reason:39, delete tid:0, initiator:0(recipient)
+W (2885089) sentry: W106 [LINK] time: NTP sync failed, timestamps disabled
+
+Later `time` query, approximately 15 minutes after W106; no intervening NTP status message was supplied:
+---- Sent utf8 encoded message: "time\n" ----
+time
+I (3813209) sentry: [LINK] time: [date/time redacted] (Kyiv)

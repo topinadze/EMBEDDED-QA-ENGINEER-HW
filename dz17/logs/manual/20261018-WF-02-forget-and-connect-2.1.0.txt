@@ -1,0 +1,105 @@
+Source: operator-supplied UART transcript in chat
+Date: 2026-10-18
+Firmware: 2.1.0, `ota_0` (confirmed by `status` in this capture)
+Requirement: WF-2/WF-3 saved-network handling
+Redaction: Wi-Fi password, scanned SSIDs, account name, IP/network addresses, BSSID and wall-clock values are omitted.
+
+Observed result:
+- `forget` reported `[LINK] known network forgotten`. An immediate `status` still showed the active Wi-Fi connection and internet reachable; forgetting did not drop the current association.
+- After `disconnect`, another `forget` again reported success. `reconnect` then returned `E113 no known network. Use 'connect' first`, confirming there was no saved profile available to that command.
+- `connect` scanned 20 networks (all SSIDs redacted), accepted selection by list index, and prompted for a password. The credential input is intentionally not retained.
+- The device re-associated, obtained an IP, reported internet reachable, and confirmed `[LINK] network saved. Next time just type 'reconnect'`.
+- The same connect attempt emitted `W106 [LINK] time: NTP sync failed, timestamps disabled`; network association and internet reachability succeeded, but NTP did not.
+- After a later `disconnect`, `status` showed link down with the saved network known. `reconnect` reused the saved profile without another credential prompt, restored Wi-Fi/IP/internet, and again emitted W106.
+- A `status` issued immediately after that W106 showed the link up, internet OK, and a local clock value. No NTP-success message appeared in this excerpt; the clock value alone does not prove NTP synchronization.
+
+Assessment:
+- Forgetting the saved network, the expected no-profile `E113` response, and recovery through an interactive `connect` were observed on 2.1.0.
+- The active connection remained available immediately after the first `forget`; the later disconnect and repeated `forget` preceded the E113 check.
+- A subsequent `reconnect` using the newly saved profile was verified to restore Wi-Fi/IP/internet.
+- This is partial WF-2/WF-3 evidence, not a full pass. The W106 immediately followed by a `status` containing local time is recorded as a synchronization-status inconsistency; it does not establish whether the clock was NTP-synchronized.
+
+Selected UART (sensitive values redacted):
+---- Sent utf8 encoded message: "forget\n" ----
+forget
+I (4805259) sentry: [LINK] known network forgotten
+---- Sent utf8 encoded message: "status\n" ----
+status
+I (4810789) sentry: === SWM-2 status ===
+I (4810789) sentry:   fw:       v2.1.0 (ota_0)
+I (4810789) sentry:   state:    1 NORMAL
+I (4810789) sentry:   link:     buoy link [network redacted], ip [redacted], rssi -38 dBm (excellent), ch 1
+I (4810799) sentry:   internet: OK
+I (4810799) sentry:   user:     [account redacted] (user)
+I (4810799) sentry:   time:     [clock value redacted], uptime 1h 20m 10s
+I (4810809) sentry:   valve:    closed
+I (4810809) sentry:   sonar:    no contact
+I (4810819) sentry:   carrier:  depth 41.8 m, hull 5.2 bar, water 8.1 C, battery 24.07 V (sim)
+I (4810819) sentry:   heap:     257 KB free
+
+---- Sent utf8 encoded message: "disconnect\n" ----
+disconnect
+I (4820229) wifi:state: run -> init (0x0)
+I (4820239) sentry: [LINK] disconnected
+---- Sent utf8 encoded message: "forget\n" ----
+forget
+I (4824919) sentry: [LINK] known network forgotten
+---- Sent utf8 encoded message: "reconnect\n" ----
+reconnect
+E (4830129) sentry: E113 no known network. Use 'connect' first
+---- Sent utf8 encoded message: "connect\n" ----
+connect
+I (4837809) sentry: [LINK] scanning...
+I (4840309) sentry:   [ 1] [SSID redacted]                  -37 dBm
+I (4840309) sentry:   [ 2] [SSID redacted]                  -57 dBm
+...
+I (4840409) sentry:   [20] [SSID redacted]                  -90 dBm
+SSID or number:
+---- Sent utf8 encoded message: "[operator selected index 1]\n" ----
+[operator selected index 1]
+Password: [operator entered locally; credential redacted]
+---- Sent utf8 encoded message: "[REDACTED]\n" ----
+[REDACTED]
+I (4851539) sentry: [LINK] raising buoy antenna, connecting to '[network redacted]'...
+I (4851609) wifi:connected with [network redacted], aid = 1, channel 1, BW20, bssid = [redacted]
+I (4852879) esp_netif_handlers: sta ip: [redacted], mask: [redacted], gw: [redacted]
+I (4852879) sentry: [LINK] got ip [redacted]
+I (4852879) sentry: [LINK] connected to '[network redacted]', rssi -37 dBm (excellent)
+I (4853039) sentry: [TELEMETRY] auto report every 30 s ('health off' to stop)
+I (4853289) esp-x509-crt-bundle: Certificate validated
+I (4854119) sentry: [LINK] fleet network reachable (internet OK)
+W (4860119) sentry: W106 [LINK] time: NTP sync failed, timestamps disabled
+I (4860119) sentry: [LINK] network saved. Next time just type 'reconnect'
+
+---- Sent utf8 encoded message: "disconnect\n" ----
+disconnect
+I (5125579) wifi:state: run -> init (0x0)
+I (5125589) sentry: [LINK] disconnected
+---- Sent utf8 encoded message: "status\n" ----
+status
+I (5128289) sentry: === SWM-2 status ===
+I (5128289) sentry:   fw:       v2.1.0 (ota_0)
+I (5128289) sentry:   state:    1 NORMAL
+I (5128289) sentry:   link:     buoy link down (known: [network redacted])
+I (5128299) sentry:   time:     [clock value redacted], uptime 1h 25m 27s
+---- Sent utf8 encoded message: "reconnect\n" ----
+reconnect
+I (5131559) sentry: [LINK] raising buoy antenna, connecting to '[network redacted]'...
+I (5131599) wifi:connected with [network redacted], aid = 1, channel 1, BW20, bssid = [redacted]
+I (5132839) esp_netif_handlers: sta ip: [redacted], mask: [redacted], gw: [redacted]
+I (5132839) sentry: [LINK] got ip [redacted]
+I (5132839) sentry: [LINK] connected to '[network redacted]', rssi -35 dBm (excellent)
+I (5134329) esp-x509-crt-bundle: Certificate validated
+I (5137459) sentry: [LINK] fleet network reachable (internet OK)
+W (5143469) sentry: W106 [LINK] time: NTP sync failed, timestamps disabled
+---- Sent utf8 encoded message: "status\n" ----
+status
+I (5143569) sentry: === SWM-2 status ===
+I (5143569) sentry:   fw:       v2.1.0 (ota_0)
+I (5143569) sentry:   state:    1 NORMAL
+I (5143569) sentry:   link:     buoy link '[network redacted]', ip [redacted], rssi -42 dBm (excellent), ch 1
+I (5143579) sentry:   internet: OK
+I (5143579) sentry:   time:     [clock value redacted], uptime 1h 25m 43s
+---- Sent utf8 encoded message: "time\n" ----
+time
+I (5490309) sentry: [LINK] time: [clock value redacted] (Kyiv)

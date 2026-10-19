@@ -1,0 +1,35 @@
+Date: 2026-10-19
+Firmware: v2.1.0
+Source: operator-supplied UART transcript
+Test: OTA-11 rejects a non-HTTP(S) URL
+Redaction: account/network identifiers, IP, build timestamp, and wall-clock values omitted.
+
+Preconditions:
+- `version` confirmed v2.1.0 valid on `ota_1`.
+- `status` reported NORMAL, internet OK, an authenticated ordinary user, and valve closed.
+- `ota status` reported v2.1.0 valid on `ota_1`, previous v2.1.0 on `ota_0`.
+
+Action and result:
+- Sent `ota url ftp://invalid.local/fw7.bin`.
+- Device returned `E418 url must start with http:// or https://`.
+- No download or reboot was reported.
+- Follow-up `version` and `ota status` confirmed v2.1.0 remains valid on `ota_1` and previous v2.1.0 remains on `ota_0`.
+- PASS for the non-HTTP scheme rejection on v2.1.0 only. HTTP/HTTPS URL handling and custom-server configuration/persistence were not tested; OTA-06 remains partial.
+
+Selected redacted UART:
+---- Preflight ----
+I ([redacted]) sentry:   fw: v2.1.0 (ota_1)
+I ([redacted]) sentry:   state: 1 NORMAL
+I ([redacted]) sentry:   internet: OK
+I ([redacted]) sentry:   user: [redacted] (user)
+I ([redacted]) sentry:   valve: closed
+I ([redacted]) sentry: [OTA] running: v2.1.0 in ota_1 (valid)
+I ([redacted]) sentry: [OTA] previous: v2.1.0 in ota_0
+---- Sent utf8 encoded message: "ota url ftp://invalid.local/fw7.bin\n" ----
+ota url ftp://invalid.local/fw7.bin
+E ([redacted]) sentry: E418 url must start with http:// or https://
+---- Post-check ----
+I ([redacted]) sentry: SENTRY SWM-2 sonar watch module, fw v2.1.0
+I ([redacted]) sentry:   partition: ota_1 @ 0x1a0000, state: valid
+I ([redacted]) sentry: [OTA] running: v2.1.0 in ota_1 (valid)
+I ([redacted]) sentry: [OTA] previous: v2.1.0 in ota_0

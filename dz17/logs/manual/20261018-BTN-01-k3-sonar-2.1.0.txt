@@ -1,0 +1,52 @@
+Source: operator-supplied UART transcript and target setup in chat
+Date: 2026-10-18
+Firmware: 2.1.0 (confirmed in the surrounding operator-supplied session)
+Requirement: §12 K3 starts sonar sampling for 30 s at 500 ms intervals; a second press stops it
+Redaction: Wall-clock values are omitted. No credentials or network identifiers retained.
+
+Preconditions:
+- Operator set a stationary target at 15 cm.
+- Device telemetry reported valve closed and state NORMAL.
+
+Observed result:
+- The first K3 press started sonar sampling; UART stated active pinging for 30 s every 500 ms.
+- Fifteen ping results were observed over about 7.7 s. Values ranged from 16.9 cm to 22.8 cm.
+- At the 17.0 cm first result, UART also reported collision contact too close (<20 cm) and proximity alarm at the 25 cm threshold.
+- The second K3 press was followed by `[SONAR] pinging stopped (K3)`.
+- `sonar stats` confirmed 15 measurements, 0 errors, min 16.9 cm, max 22.8 cm, average 17.6 cm; calibration was -2.0 cm, median filter 5, alarm on.
+- The ping log timestamps were separated by about 550 ms in this excerpt, rather than the stated 500 ms. This is an additional observed sample for existing BUG-010; no separate defect is created here.
+- Later telemetry reported valve closed, sonar 18.3 cm, and NORMAL. The UART stop confirmation establishes that the stream had terminated before the stats/telemetry checks.
+- No physical observation of the sensor/target measurement was supplied beyond the operator's target placement at 15 cm.
+
+Assessment:
+- K3 start, continuous UART measurements, second-press stop, and stream termination were observed.
+- The measured average exceeded the stated target placement; the device also reported a -2.0 cm calibration offset. This capture alone does not establish measurement accuracy at 15 cm.
+- The cadence discrepancy is noted as supporting observation for BUG-010. Keep BTN-01 PARTIAL because K1/K2 and button-pair coverage remains incomplete.
+
+Selected UART:
+I (7605599) sentry: [BTN] K3 pressed
+I (7605599) sentry: [SONAR] active pinging for 30 s, every 500 ms (K3)
+I (7605689) sentry: [SONAR] ping: echo 17.0 cm
+E (7605689) sentry: [COLLISION] contact too close: 17.0 cm (< 20 cm)
+W (7605689) sentry: [SONAR] PROXIMITY ALARM: contact at 17.0 cm (threshold 25 cm)
+I (7606239) sentry: [SONAR] ping: echo 16.9 cm
+I (7606789) sentry: [SONAR] ping: echo 17.0 cm
+I (7607339) sentry: [SONAR] ping: echo 17.0 cm
+I (7607889) sentry: [SONAR] ping: echo 16.9 cm
+I (7608439) sentry: [SONAR] ping: echo 19.7 cm
+I (7608989) sentry: [SONAR] ping: echo 16.9 cm
+I (7609539) sentry: [SONAR] ping: echo 17.0 cm
+I (7610089) sentry: [SONAR] ping: echo 17.0 cm
+I (7610639) sentry: [SONAR] ping: echo 16.9 cm
+I (7611189) sentry: [SONAR] ping: echo 16.9 cm
+I (7611739) sentry: [SONAR] ping: echo 17.0 cm
+I (7612289) sentry: [SONAR] ping: echo 16.9 cm
+I (7612839) sentry: [SONAR] ping: echo 22.8 cm
+I (7613389) sentry: [SONAR] ping: echo 18.3 cm
+I (7613639) sentry: [BTN] K3 pressed
+I (7613639) sentry: [SONAR] pinging stopped (K3)
+---- Sent utf8 encoded message: "sonar stats\n" ----
+sonar stats
+I (7626089) sentry: [SONAR] measurements 15, errors 0, min 16.9, max 22.8, avg 17.6 cm
+I (7626089) sentry: [SONAR] calibration -2.0 cm, filter median 5, alarm on
+I (7630409) sentry: [TELEMETRY #212] [clock redacted] up 02:07:10 heap 257KB rssi -51 temp 30.4C depth 39.3m hull 4.9bar batt 24.0V valve closed sonar 18.3cm state NORMAL

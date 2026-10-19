@@ -1,0 +1,81 @@
+Date: 2026-10-19
+Source: operator-supplied UART transcript
+Test: `ota update` while current and stable firmware are both v2.1.0
+Redaction: account/network identifiers, IP, wall-clock values, build tag, and credential-bearing input omitted.
+
+Preconditions:
+- `version` and `ota status` confirmed v2.1.0 valid in `ota_0`; previous v2.3.0 was in `ota_1`.
+- `status` reported NORMAL, internet OK, logged-in ordinary user, and valve closed.
+- `ota check` reported current v2.1.0, stable v2.1.0, beta v2.3.0, and `up to date (stable)`.
+
+Action/result:
+- `ota update` resolved stable v2.1.0 while current was v2.1.0, but did not take the documented no-op path.
+- It downloaded the same v2.1.0 image, selected `ota_1`, wrote the image, emitted `W409 same version v2.1.0 - reinstalling`, reached 100%, reported success v2.1.0 -> v2.1.0, and rebooted.
+- Boot loaded v2.1.0 from `ota_1`, entered PENDING_VERIFY, passed self-check, and marked the firmware VALID.
+- Post-boot `version` confirmed v2.1.0 valid on `ota_1`. The immediate `status` showed NORMAL, valve closed, but link down and user logged out; `ota status` then returned E002 because Wi-Fi was required. Manual `reconnect` restored Wi-Fi/IP, internet reachability, and NTP synchronization. A subsequent `ota status` before login returned E003; after local login, `ota status` reported v2.1.0 valid on `ota_1`, previous v2.1.0 in `ota_0`.
+- Result: FAIL against OTA-4 stable already-current behavior (expected `[OTA] already up to date`, no download, no reboot). Same-version installation completed successfully, but it is not the required no-op. Reconnection/login were required to recover post-reboot network/session state. This is one observed reproduction.
+
+Selected redacted UART:
+---- Sent utf8 encoded message: "version\n" ----
+version
+I ([redacted]) sentry: SENTRY SWM-2 sonar watch module, fw v2.1.0
+I ([redacted]) sentry:   partition: ota_0 @ 0x20000, state: valid
+---- Sent utf8 encoded message: "status\n" ----
+status
+I ([redacted]) sentry:   fw: v2.1.0 (ota_0)
+I ([redacted]) sentry:   state: 1 NORMAL
+I ([redacted]) sentry:   internet: OK
+I ([redacted]) sentry:   user: [redacted] (user)
+I ([redacted]) sentry:   valve: closed
+---- Sent utf8 encoded message: "ota check\n" ----
+ota check
+I ([redacted]) sentry: [OTA] current: v2.1.0
+I ([redacted]) sentry: [OTA] stable: v2.1.0
+I ([redacted]) sentry: [OTA] beta: v2.3.0
+I ([redacted]) sentry: [OTA] up to date (stable)
+---- Sent utf8 encoded message: "ota status\n" ----
+ota status
+I ([redacted]) sentry: [OTA] running: v2.1.0 in ota_0 (valid)
+I ([redacted]) sentry: [OTA] previous: v2.3.0 in ota_1
+---- Sent utf8 encoded message: "ota update\n" ----
+ota update
+I ([redacted]) sentry: [OTA] stable channel: v2.1.0, current: v2.1.0
+I ([redacted]) sentry: [OTA] current v2.1.0 (ota_0) -> target partition ota_1
+I ([redacted]) esp_https_ota: Writing to <ota_1> partition at offset 0x1a0000
+I ([redacted]) sentry: [OTA] image: sentry_fw7 v2.1.0
+W ([redacted]) sentry: W409 same version v2.1.0 - reinstalling
+I ([redacted]) sentry: [OTA] 100%
+I ([redacted]) sentry: [OTA] success: v2.1.0 -> v2.1.0 in 16 s. Rebooting...
+---- Boot ----
+I ([redacted]) sentry:   App version: 2.1.0
+I ([redacted]) sentry: [OTA] running v2.1.0 from ota_1
+W ([redacted]) sentry: [OTA] new firmware, PENDING_VERIFY - self-check...
+I ([redacted]) sentry: [OTA] self-check passed, firmware marked VALID
+I ([redacted]) sentry: ready. state 1 NORMAL (patrol).
+---- Sent utf8 encoded message: "version\n" ----
+version
+I ([redacted]) sentry: SENTRY SWM-2 sonar watch module, fw v2.1.0
+I ([redacted]) sentry:   partition: ota_1 @ 0x1a0000, state: valid
+---- Sent utf8 encoded message: "status\n" ----
+status
+I ([redacted]) sentry:   fw: v2.1.0 (ota_1)
+I ([redacted]) sentry:   state: 1 NORMAL
+I ([redacted]) sentry:   link: buoy link down (known: [redacted])
+I ([redacted]) sentry:   user: not logged in
+I ([redacted]) sentry:   valve: closed
+---- Sent utf8 encoded message: "ota status\n" [link down] ----
+E ([redacted]) sentry: E002 Wi-Fi required. Use 'reconnect' or 'connect'
+---- Sent utf8 encoded message: "reconnect\n" ----
+reconnect
+I ([redacted]) sentry: [LINK] got ip [redacted]
+I ([redacted]) sentry: [LINK] connected to [redacted]
+I ([redacted]) sentry: [LINK] fleet network reachable (internet OK)
+I ([redacted]) sentry: [LINK] time: synced via NTP, [redacted]
+---- Sent utf8 encoded message: "ota status\n" [while logged out] ----
+E ([redacted]) sentry: E003 login required. Use 'login <login> <pass>' or 'register'
+---- Successful local login ----
+Credential-bearing command and account identifier omitted; UART reported operator authenticated.
+---- Sent utf8 encoded message: "ota status\n" [after login] ----
+ota status
+I ([redacted]) sentry: [OTA] running: v2.1.0 in ota_1 (valid)
+I ([redacted]) sentry: [OTA] previous: v2.1.0 in ota_0

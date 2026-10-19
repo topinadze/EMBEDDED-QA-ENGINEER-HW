@@ -1,0 +1,43 @@
+Date: 2026-10-18
+Firmware: 2.1.0 (`ota_0`, valid), confirmed by `version` immediately before this test session (in supplied device session)
+Source: operator-supplied UART transcript
+Setup: `relay status` confirmed valve closed, auto off, cycles 80. Operator-prepared stationary target at 20 cm; physical position is not echoed by UART.
+
+Results:
+- `distance log 5000` was accepted with response “continuous pinging every 5000 ms (command)”.
+- Consecutive ping timestamps were 2915559, 2920609, 2925659, 2930709, and 2935759 ms: each delta is 5050 ms. This repeats the approximately +50 ms relative to configured delay seen as approximately +50 ms at the 100 ms setting. Actual timing semantics (period vs. delay after measurement/processing) are not specified further in the transcript; record as a repeatable cadence discrepancy for investigation, not an established implementation cause.
+- `distance stop` produced `[SONAR] pinging stopped (command)` without the PRD-documented W710 code. No subsequent ping was present before `distance log 99` was rejected at 2951539 ms or `distance log 5001` was rejected at 2960059 ms; cessation is therefore observed across the remainder of this excerpt.
+- `distance log 99` and `distance log 5001` each returned `E705 interval must be 100-5000 ms`, as expected for below-minimum and above-maximum intervals.
+- The 5000 ms group reported readings of 22.2 cm for the first four samples, then 22.3 cm. This is not an accuracy result because the user-reported setup position and sensor reference plane/calibration are not included in this transcript.
+
+Assessment:
+- Valid upper interval 5000 ms accepted, invalid values 99/5001 rejected with E705, and the stream stop acknowledgement was followed by no further pings in the captured interval.
+- Missing W710 has now appeared in two supplied 2.1.0 stream-stop transcripts. Track as BUG-009: response-code mismatch; stopping itself is observed to work.
+- At requested intervals of both 100 ms and 5000 ms, successive ping timestamps in supplied transcripts advance by approximately requested interval plus 50 ms (about 150 ms and 5050 ms, respectively). This strengthens BUG-010 as a repeated cadence discrepancy. Requirements/firmware semantics should be clarified and the timing retested before asserting a root cause.
+- No assistant-run hardware or automated test was performed.
+
+Selected UART transcript:
+I (2891839) sentry: [TELEMETRY #68] 02:13:06 up 00:48:11 heap 257KB rssi -29 temp 31.4C depth 43.0m hull 5.3bar batt 24.1V valve closed sonar - state NORMAL
+---- Sent utf8 encoded message: "relay status\n" ----
+relay status
+I (2892589) sentry: [VALVE] closed, auto off, cycles 80
+---- Sent utf8 encoded message: "distance log 5000\n" ----
+distance log 5000
+I (2915489) sentry: [SONAR] continuous pinging every 5000 ms (command). 'distance stop' to stop
+I (2915559) sentry: [SONAR] ping: echo 22.2 cm
+I (2920609) sentry: [SONAR] ping: echo 22.2 cm
+I (2921839) sentry: [TELEMETRY #69] 02:13:36 up 00:48:41 heap 257KB rssi -27 temp 31.4C depth 43.0m hull 5.3bar batt 24.1V valve closed sonar 22.2cm state NORMAL
+I (2925659) sentry: [SONAR] ping: echo 22.2 cm
+I (2930709) sentry: [SONAR] ping: echo 22.2 cm
+I (2930769) sentry: [PWR] battery bus 24.12 V, load 1.8 A
+I (2935759) sentry: [SONAR] ping: echo 22.3 cm
+---- Sent utf8 encoded message: "distance stop\n" ----
+distance stop
+I (2936379) sentry: [SONAR] pinging stopped (command)
+---- Sent utf8 encoded message: "distance log 99\n" ----
+distance log 99
+E (2951539) sentry: E705 interval must be 100-5000 ms
+I (2952039) sentry: [TELEMETRY #70] 02:14:07 up 00:49:11 heap 257KB rssi -28 temp 31.4C depth 43.2m hull 5.3bar batt 24.1V valve closed sonar 22.3cm state NORMAL
+---- Sent utf8 encoded message: "distance log 5001\n" ----
+distance log 5001
+E (2960059) sentry: E705 interval must be 100-5000 ms

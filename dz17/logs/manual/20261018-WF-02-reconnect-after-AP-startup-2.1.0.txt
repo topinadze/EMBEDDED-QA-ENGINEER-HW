@@ -1,0 +1,58 @@
+Source: operator-supplied UART transcript in chat
+Date: 2026-10-18
+Firmware: 2.1.0 (`ota_0`, valid), confirmed by `version`
+Case: WF-2 / WF-3
+Initial context: Operator reports the saved access point was not powered on when the device started. Device `status` showed NORMAL, saved network known but link down, and user not logged in. `health` returned E002 because Wi-Fi was unavailable.
+Redactions: Saved network name, IP address, BSSID and account identifier are omitted/redacted. No password was supplied in the transcript.
+
+Observed sequence:
+- First manual `reconnect`: three retries, then E102 (saved network not found).
+- Second manual `reconnect`: three retries, Wi-Fi authentication started, then E101 (wrong password).
+- Third manual `reconnect`: Wi-Fi associated successfully; device obtained an IP, reported internet reachable, and synchronized time via NTP.
+
+Assessment:
+- The boot-time `status` showed the saved network known but disconnected. This is consistent with WF-3's documented behavior that the device does not auto-connect at startup and requires `reconnect`.
+- E102 and E101 are the documented WF-2 errors for network-not-found and wrong-password outcomes. The subsequent successful connection demonstrates recovery after additional manual attempts.
+- Operator context says the access point was not powered on at device startup. The transcript does not establish why the second attempt returned E101 before the third succeeded; do not infer an actual password change or classify this sequence as a firmware defect.
+- These are manually issued `reconnect` attempts while link was down. They do not verify WF-5's automatic link-loss warning/retry behavior (`W110`).
+- Result is partial WF-2/WF-3 evidence for firmware 2.1.0; no physical AP power-state observation beyond the operator's report is attached.
+
+Selected UART transcript:
+---- Sent utf8 encoded message: "version\n" ----
+I (94309) sentry: SENTRY SWM-2 sonar watch module, fw v2.1.0 (build Oct  6 2026 02:14:57)
+I (94309) sentry:   partition: ota_0 @ 0x20000, state: valid
+---- Sent utf8 encoded message: "status\n" ----
+I (97429) sentry: === SWM-2 status ===
+I (97429) sentry:   fw:       v2.1.0 (ota_0)
+I (97429) sentry:   state:    1 NORMAL
+I (97429) sentry:   link:     buoy link down (known: [network redacted])
+I (97429) sentry:   user:     not logged in
+I (97429) sentry:   time:     --:--:--, uptime 0h 01m 37s
+---- Sent utf8 encoded message: "health\n" ----
+E (100979) sentry: E002 Wi-Fi required. Use 'reconnect' or 'connect'
+---- Sent utf8 encoded message: "reconnect\n" ----
+I (141339) sentry: [LINK] raising buoy antenna, connecting to '[network redacted]'...
+I (143749) sentry: [LINK] retry 1/3...
+I (146159) sentry: [LINK] retry 2/3...
+I (148579) sentry: [LINK] retry 3/3...
+E (150989) sentry: E102 network '[network redacted]' not found
+---- Sent utf8 encoded message: "reconnect\n" ----
+I (267439) sentry: [LINK] raising buoy antenna, connecting to '[network redacted]'...
+I (269849) sentry: [LINK] retry 1/3...
+I (272259) sentry: [LINK] retry 2/3...
+I (274669) sentry: [LINK] retry 3/3...
+I (274769) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0
+I (274769) wifi:state: init -> auth (0xb0)
+I (275769) wifi:state: auth -> init (0x200)
+E (275769) sentry: E101 wrong password for '[network redacted]'
+---- Sent utf8 encoded message: "reconnect\n" ----
+I (286359) sentry: [LINK] raising buoy antenna, connecting to '[network redacted]'...
+I (286369) wifi:state: init -> auth (0xb0)
+I (286369) wifi:state: auth -> assoc (0x0)
+I (286369) wifi:state: assoc -> run (0x10)
+I (286389) wifi:connected with [network redacted], aid = 1, channel 1, BW20, bssid = [redacted]
+I (287449) esp_netif_handlers: sta ip: [redacted]
+I (287449) sentry: [LINK] got ip [redacted]
+I (287449) sentry: [LINK] connected to '[network redacted]', rssi -39 dBm (excellent)
+I (289109) sentry: [LINK] fleet network reachable (internet OK)
+I (292989) sentry: [LINK] time: synced via NTP, 15:11:57

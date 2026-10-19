@@ -1,0 +1,134 @@
+Date: 2026-10-18
+Firmware: 2.1.0 (`ota_0`, valid), confirmed in the preceding `version`/`status` capture
+Requirement: HL-1, HL-3
+Source: operator-supplied UART transcript
+
+Preconditions observed immediately before this check:
+- `status`: firmware 2.1.0, NORMAL, Wi-Fi/internet connected, logged in as user, valve closed, heap 257 KB.
+- `health`: auto on, interval 30 s, current NORMAL cadence 30 s.
+
+Action: Sent `health now`.
+Observed result: Immediate `[TELEMETRY #61]` report at device time 03:42:27, uptime 00:32:00, heap 257 KB, RSSI -56 dBm, temp 32.4 C, depth 41.1 m, hull 5.1 bar, battery 24.1 V, valve closed, sonar -, state NORMAL.
+
+Automatic cadence observation from the subsequent operator-supplied capture:
+- `#62` at 03:42:36 (9 s after immediate report #61)
+- `#63` at 03:43:06 (30 s after #62)
+- `#64` at 03:43:36 (30 s after #63)
+- `#65` at 03:44:06 (30 s after #64)
+- `#66` at 03:44:37 (31 s after #65)
+- `#67` at 03:45:07 (30 s after #66)
+- Reports #62–#67 followed a 30–31 s cadence after the immediate report; the cause of the 9 s interval between #61 and #62 is unknown.
+- An ACU informational warning appeared between #63 and #64: `own-ship noise: pump #2 cavitation suspected`. It is not classified as an HL-2 health warning because it was a separate ACU line and PRD describes ACU messages as informational.
+
+VERBOSE cadence observation from a subsequent operator-supplied capture:
+- `state 3` confirmed transition `1 NORMAL -> 3 VERBOSE`; the UART banner stated telemetry every 10 s.
+- `#72` at 03:47:25, `#73` at 03:47:35, and `#74` at 03:47:45: each adjacent interval was 10 s by displayed timestamps.
+- The reports showed state VERBOSE and were followed by VERBOSE-only `[V] telemetry` detail.
+
+Return to NORMAL:
+- Operator sent `state 1`; UART confirmed `3 VERBOSE -> 1 NORMAL`.
+- Reports #77 at 03:48:15 and #78 at 03:48:45 followed at a 30 s interval by displayed timestamps; both reported state NORMAL.
+
+Automatic report on/off control:
+- Reports #80 at 03:49:45 and #81 at 03:50:15 were 30 s apart immediately before disabling.
+- `health off` returned `[TELEMETRY] auto report off` at uptime tick 2393299.
+- The supplied capture then shows non-telemetry `[NAV]` and `[ACU]` messages but no `[TELEMETRY #N]` before `health on` at tick 2489119, about 96 s later. This exceeds the planned 35 s observation period.
+- `health on` returned `[TELEMETRY] auto report on`. Report #82 followed at tick 2519149 / 03:52:24, approximately 30 s after enabling, and reported state NORMAL.
+- Final observed control state is auto on with interval 30 s, read back by `health` in NORMAL.
+- A later repeated `health on` while auto reporting was already enabled returned `W901 health check already on`; reports #82–#85 continued at 30–31 s intervals.
+- A subsequent read-only `health` query reported auto on, interval 30 s, current NORMAL cadence 30 s; report #87 followed at 03:54:55.
+- In a later check, `health` again read back auto on, interval 30 s, NORMAL before changing the state. The first `health off` returned `[TELEMETRY] auto report off`; repeating `health off` returned `W901 health check already off`. `health on` then returned `[TELEMETRY] auto report on`; reports #135–#140 continued at 30 s intervals by displayed timestamps in NORMAL. A subsequent `health` readback confirmed auto on, interval 30 s, current NORMAL cadence 30 s.
+
+Assessment:
+- `health now` produced a report immediately after the command in the supplied transcript.
+- Report fields observed: sequence number, time, uptime, heap, RSSI, temperature, simulated depth/hull/battery, valve, sonar, and state.
+- Reports #62–#67 in NORMAL were 30–31 s apart by displayed timestamps, consistent with the configured 30 s interval at this observation granularity. This is a partial HL-1 observation, not a timer-accuracy test.
+- The three reports in VERBOSE were 10 s apart by displayed timestamps, consistent with HL-1 for this observation.
+- After the confirmed transition back to NORMAL, the two supplied reports were 30 s apart and reported state NORMAL.
+- `health off` and `health on` each returned the documented control acknowledgement. No automatic telemetry report appeared in the supplied approximately 96 s off interval, while other subsystem messages continued; report #82 appeared around 30 s after re-enabling. This partially verifies HL-3 on/off behavior, not NVS persistence.
+- Repeating `health on` while already on returned the documented W901; subsequent periodic reports continued. Repeating `health off` while already off also returned the documented W901. After re-enabling, NORMAL reports resumed at 30 s intervals and `health` read back auto on with interval 30 s.
+- This remains a partial HL-1/HL-3 check. EMERGENCY cadence, health warning conditions, configuration boundaries, and persistence were not tested.
+- The earlier combined input `version status health` was answered only with the version output; separate `status` and `health` commands succeeded afterward. This is recorded as an input-handling observation, not a confirmed requirement defect.
+
+Selected supplied UART:
+---- Sent utf8 encoded message: "health now\n" ----
+health now
+I (1921169) sentry: [TELEMETRY #61] 03:42:27 up 00:32:00 heap 257KB rssi -56 temp 32.4C depth 41.1m hull 5.1bar batt 24.1V valve closed sonar - state NORMAL
+I (1930869) sentry: [TELEMETRY #62] 03:42:36 up 00:32:10 heap 257KB rssi -57 temp 32.4C depth 41.1m hull 5.1bar batt 24.1V valve closed sonar - state NORMAL
+I (1961069) sentry: [TELEMETRY #63] 03:43:06 up 00:32:40 heap 257KB rssi -58 temp 33.4C depth 41.1m hull 5.1bar batt 24.1V valve closed sonar - state NORMAL
+W (1962669) sentry: [ACU] own-ship noise: pump #2 cavitation suspected
+I (1991069) sentry: [TELEMETRY #64] 03:43:36 up 00:33:10 heap 257KB rssi -61 temp 32.4C depth 41.5m hull 5.1bar batt 24.2V valve closed sonar - state NORMAL
+I (2021099) sentry: [TELEMETRY #65] 03:44:06 up 00:33:40 heap 257KB rssi -58 temp 32.4C depth 41.5m hull 5.1bar batt 24.2V valve closed sonar - state NORMAL
+I (2051299) sentry: [TELEMETRY #66] 03:44:37 up 00:34:10 heap 257KB rssi -64 temp 32.4C depth 41.5m hull 5.2bar batt 24.2V valve closed sonar - state NORMAL
+I (2081299) sentry: [TELEMETRY #67] 03:45:07 up 00:34:40 heap 257KB rssi -59 temp 32.4C depth 41.5m hull 5.2bar batt 24.2V valve closed sonar - state NORMAL
+
+---- Sent utf8 encoded message: "state 3\n" ----
+W (2208929) sentry: [STATE] 1 NORMAL -> 3 VERBOSE (by command)
+I (2208929) sentry: [STATE] VERBOSE (tactical): extended logs, telemetry every 10 s, LED heartbeat
+I (2208929) sentry: [V] 'state' done in 3 ms
+I (2219299) sentry: [TELEMETRY #72] 03:47:25 up 00:36:58 heap 257KB rssi -52 temp 33.4C depth 41.7m hull 5.2bar batt 24.1V valve closed sonar - state VERBOSE
+I (2219299) sentry: [V] telemetry: min heap 211KB, beacon off, tasks 15, water 8.1C, source auto
+I (2229309) sentry: [TELEMETRY #73] 03:47:35 up 00:37:08 heap 257KB rssi -54 temp 32.4C depth 41.7m hull 5.2bar batt 24.1V valve closed sonar - state VERBOSE
+I (2229309) sentry: [V] telemetry: min heap 211KB, beacon off, tasks 15, water 8.1C, source auto
+I (2239319) sentry: [TELEMETRY #74] 03:47:45 up 00:37:18 heap 257KB rssi -68 temp 32.4C depth 41.6m hull 5.2bar batt 24.1V valve closed sonar - state VERBOSE
+I (2239319) sentry: [V] telemetry: min heap 211KB, beacon off, tasks 15, water 8.1C, source auto
+
+---- Sent utf8 encoded message: "state 1\n" ----
+W (2263239) sentry: [STATE] 3 VERBOSE -> 1 NORMAL (by command)
+I (2269349) sentry: [TELEMETRY #77] 03:48:15 up 00:37:48 heap 257KB rssi -51 temp 33.4C depth 41.2m hull 5.1bar batt 24.1V valve closed sonar - state NORMAL
+I (2299349) sentry: [TELEMETRY #78] 03:48:45 up 00:38:18 heap 257KB rssi -58 temp 32.4C depth 41.2m hull 5.1bar batt 24.1V valve closed sonar - state NORMAL
+
+---- Sent utf8 encoded message: "health\n" ----
+I (2334739) sentry: [TELEMETRY] auto on, interval 30 s (now 30 s in NORMAL)
+I (2359549) sentry: [TELEMETRY #80] 03:49:45 up 00:39:19 heap 257KB rssi -53 temp 32.4C depth 41.2m hull 5.1bar batt 24.1V valve closed sonar - state NORMAL
+I (2389549) sentry: [TELEMETRY #81] 03:50:15 up 00:39:49 heap 257KB rssi -67 temp 32.4C depth 41.2m hull 5.2bar batt 24.1V valve closed sonar - state NORMAL
+---- Sent utf8 encoded message: "health off\n" ----
+I (2393299) sentry: [TELEMETRY] auto report off
+I (2412669) sentry: [NAV] depth 41.0 m, heading 269, speed 2.8 kn
+I (2481669) sentry: [ACU] ambient noise 70 dB re 1uPa, sea state 2, water 8.1 C
+---- Sent utf8 encoded message: "health on\n" ----
+I (2489119) sentry: [TELEMETRY] auto report on
+I (2519149) sentry: [TELEMETRY #82] 03:52:24 up 00:41:58 heap 257KB rssi -48 temp 32.4C depth 40.9m hull 5.1bar batt 24.1V valve closed sonar - state NORMAL
+I (2549349) sentry: [TELEMETRY #83] 03:52:55 up 00:42:28 heap 257KB rssi -52 temp 33.4C depth 40.9m hull 5.1bar batt 24.1V valve closed sonar - state NORMAL
+I (2579349) sentry: [TELEMETRY #84] 03:53:25 up 00:42:58 heap 257KB rssi -52 temp 32.4C depth 40.5m hull 5.0bar batt 24.1V valve closed sonar - state NORMAL
+I (2609549) sentry: [TELEMETRY #85] 03:53:55 up 00:43:29 heap 257KB rssi -55 temp 32.4C depth 40.5m hull 5.0bar batt 24.1V valve closed sonar - state NORMAL
+---- Sent utf8 encoded message: "health on\n" ----
+W (2611079) sentry: W901 health check already on
+---- Sent utf8 encoded message: "health\n" ----
+I (2667169) sentry: [TELEMETRY] auto on, interval 30 s (now 30 s in NORMAL)
+I (2669949) sentry: [TELEMETRY #87] 03:54:55 up 00:44:29 heap 257KB rssi -56 temp 32.4C depth 40.7m hull 5.1bar batt 24.1V valve closed sonar - state NORMAL
+
+Repeated off-state W901 and restoration check (operator-supplied transcript; the follow-up excerpt below repeats the `health on` acknowledgement and report #135 as context):
+---- Sent utf8 encoded message: "status\n" ----
+I (3721009) sentry: === SWM-2 status ===
+I (3721009) sentry:   fw:       v2.1.0 (ota_0)
+I (3721009) sentry:   state:    1 NORMAL
+I (3721019) sentry:   link:     buoy link '[network redacted]', IP [redacted], RSSI -52 dBm (excellent), ch 1
+I (3721019) sentry:   internet: OK
+I (3721019) sentry:   user:     [account redacted] (user)
+I (3721029) sentry:   valve:    closed
+I (3721039) sentry:   heap:     257 KB free
+---- Sent utf8 encoded message: "health\n" ----
+I (3724279) sentry: [TELEMETRY] auto on, interval 30 s (now 30 s in NORMAL)
+---- Sent utf8 encoded message: "health off\n" ----
+I (3729839) sentry: [TELEMETRY] auto report off
+---- Sent utf8 encoded message: "health off\n" ----
+W (3759379) sentry: W901 health check already off
+---- Sent utf8 encoded message: "health on\n" ----
+I (3769579) sentry: [TELEMETRY] auto report on
+I (3799749) sentry: [TELEMETRY #135] 04:13:46 up 01:03:19 heap 257KB rssi -49 temp 32.4C depth 39.7m hull 5.0bar batt 24.1V valve closed sonar - state NORMAL
+---- Sent utf8 encoded message: "health on\n" ----
+I (3769579) sentry: [TELEMETRY] auto report on
+I (3799749) sentry: [TELEMETRY #135] 04:13:46 up 01:03:19 heap 257KB rssi -49 temp 32.4C depth 39.7m hull 5.0bar batt 24.1V valve closed sonar - state NORMAL
+I (3811669) sentry: [NAV] depth 39.4 m, heading 264, speed 2.8 kn
+I (3828979) wifi:[ADDBA]RX DELBA, reason:39, delete tid:0, initiator:0(recipient)
+I (3829949) sentry: [TELEMETRY #136] 04:14:16 up 01:03:49 heap 257KB rssi -55 temp 33.4C depth 39.4m hull 4.9bar batt 24.1V valve closed sonar - state NORMAL
+I (3859949) sentry: [TELEMETRY #137] 04:14:46 up 01:04:19 heap 257KB rssi -54 temp 32.4C depth 39.4m hull 4.9bar batt 24.1V valve closed sonar - state NORMAL
+I (3877669) sentry: [ACU] ambient noise 62 dB re 1uPa, sea state 2, water 8.3 C
+I (3890149) sentry: [TELEMETRY #138] 04:15:16 up 01:04:49 heap 257KB rssi -54 temp 32.4C depth 39.2m hull 4.9bar batt 24.1V valve closed sonar - state NORMAL
+I (3920149) sentry: [TELEMETRY #139] 04:15:46 up 01:05:19 heap 257KB rssi -51 temp 32.4C depth 39.2m hull 4.9bar batt 24.1V valve closed sonar - state NORMAL
+I (3950349) sentry: [TELEMETRY #140] 04:16:16 up 01:05:49 heap 257KB rssi -54 temp 32.4C depth 39.2m hull 4.9bar batt 24.1V valve closed sonar - state NORMAL
+I (3952669) sentry: [PWR] battery bus 24.09 V, load 1.7 A
+---- Sent utf8 encoded message: "health\n" ----
+health
+I (3970799) sentry: [TELEMETRY] auto on, interval 30 s (now 30 s in NORMAL)

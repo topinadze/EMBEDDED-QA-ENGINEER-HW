@@ -1,0 +1,69 @@
+Date: 2026-10-18
+Firmware: 2.1.0, `ota_0` valid before and after reboot
+Source: operator-supplied UART transcript; selected excerpt, not a complete boot log
+Action: Operator issued the documented `reboot` command after confirming the calibration offset was -2.0 cm.
+Redaction: Login password, network name, and network addressing/identifiers are omitted or redacted.
+
+Observed result:
+- Before reboot, `distance stats` reported calibration -2.0 cm.
+- `reboot` completed a software CPU reset. Bootloader loaded `ota_0`; firmware reported v2.1.0 and reached `ready. state 1 NORMAL`.
+- After reconnecting Wi-Fi and logging in, `distance stats` returned `[SONAR] no measurements yet. Timeouts: 0` rather than a stats line showing calibration. This indicates the measurement counters/history were reset, but does not establish whether the calibration offset persisted or was cleared.
+- Post-reboot calibration state remains unknown. Do not resume sonar characterization until it is verified. No post-reboot distance measurement was included in the supplied excerpt.
+
+Selected supplied UART transcript:
+---- Sent utf8 encoded message: "version\n" ----
+version
+I (4907759) sentry: SENTRY SWM-2 sonar watch module, fw v2.1.0 (build Oct  6 2026 02:14:57)
+I (4907759) sentry:   partition: ota_0 @ 0x20000, state: valid
+---- Sent utf8 encoded message: "distance stats\n" ----
+distance stats
+I (4916709) sentry: [SONAR] measurements 317, errors 17, min 2.1, max 151.1, avg 21.7 cm
+I (4916709) sentry: [SONAR] calibration -2.0 cm, filter median 5, alarm on
+---- Sent utf8 encoded message: "reboot\n" ----
+reboot
+I (4941879) sentry: rebooting in 3...
+I (4942879) sentry: rebooting in 2...
+I (4943879) sentry: rebooting in 1...
+I (4944879) wifi:state: run -> init (0x0)
+���ESP-ROM:esp32s3-20210327
+rst:0xc (RTC_SW_CPU_RST),boot:0x28 (SPI_FAST_FLASH_BOOT)
+I (286) boot: Loaded app from partition at offset 0x20000
+I (315) app_init: App version:      2.1.0
+I (613) sentry: last reset: software reboot
+I (643) sentry: [OTA] running v2.1.0 from ota_0
+I (653) sentry: ready. state 1 NORMAL (patrol). Type 'help'
+---- Sent utf8 encoded message: "version\n" ----
+version
+I (9613) sentry: SENTRY SWM-2 sonar watch module, fw v2.1.0 (build Oct  6 2026 02:14:57)
+I (9613) sentry:   partition: ota_0 @ 0x20000, state: valid
+---- Sent utf8 encoded message: "whoami\n" ----
+whoami
+I (15243) sentry: not logged in
+---- Sent utf8 encoded message: "login [operator account] [REDACTED]\n" ----
+login [operator account] [REDACTED]
+E (32883) sentry: E002 Wi-Fi required. Use 'reconnect' or 'connect'
+---- Sent utf8 encoded message: "reconnect\n" ----
+reconnect
+I (36573) sentry: [LINK] raising buoy antenna, connecting to '[REDACTED]'...
+I (38283) sentry: [LINK] got ip [REDACTED]
+I (38283) sentry: [LINK] connected to '[REDACTED]', rssi -28 dBm (excellent)
+I (40323) sentry: [LINK] fleet network reachable (internet OK)
+I (43463) sentry: [LINK] time: synced via NTP, 02:48:03
+---- Sent utf8 encoded message: "login [operator account] [REDACTED]\n" ----
+login [operator account] [REDACTED]
+I (51983) sentry: [AUTH] operator [operator account] on watch, console 2
+I (52043) sentry: [TELEMETRY] auto report every 30 s ('health off' to stop)
+---- Sent utf8 encoded message: "whoami\n" ----
+whoami
+I (59763) sentry: user: [operator account], access: user
+---- Sent utf8 encoded message: "distance stats\n" ----
+distance stats
+I (69453) sentry: [SONAR] no measurements yet. Timeouts: 0
+---- Sent utf8 encoded message: "version\n" ----
+version
+I (380803) sentry: SENTRY SWM-2 sonar watch module, fw v2.1.0 (build Oct  6 2026 02:14:57)
+I (380803) sentry:   partition: ota_0 @ 0x20000, state: valid
+I (383243) sentry: [TELEMETRY #11] 02:53:43 up 00:06:22 heap 257KB rssi -27 temp 31.4C depth 41.7m hull 5.2bar batt 24.2V valve closed sonar - state NORMAL
+---- Sent utf8 encoded message: "relay status\n" ----
+relay status
+I (388803) sentry: [VALVE] closed, auto off, cycles 80

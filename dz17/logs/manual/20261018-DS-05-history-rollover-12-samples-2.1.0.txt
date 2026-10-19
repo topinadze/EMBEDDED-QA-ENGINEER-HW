@@ -1,0 +1,54 @@
+Date: 2026-10-18
+Firmware: 2.1.0 (`ota_0`, valid), confirmed by `version` in the supplied session before the measurements
+Source: operator-supplied UART transcript
+Precondition: `relay status` returned closed, auto off, cycles 80. The preceding filter comparison ended with `filter median 5`; no filter change is shown before this 12-sample command.
+Operator setup: stationary target at 20 cm, as requested. Target position is not echoed by the device.
+
+Observed:
+- `distance 12` returned 12/12 valid readings: 22.2, 22.3, 22.3, 22.2, 22.2, 22.2, 22.2, 22.3, 22.2, 22.2, 22.2, 22.3 cm; average 22.2 cm.
+- `distance history` reported exactly ten entries. In order, it showed 22.3, 22.2, 22.2, 22.2, 22.2, 22.3, 22.2, 22.2, 22.2, 22.3 cm.
+- Those ten history values exactly match samples 3–12 (the most recent ten) of the preceding 12-sample result. The first two samples (22.2, 22.3 cm) are omitted.
+- History timestamps have one-second display precision; several entries share a timestamp. The underlying sample sequence and UART timestamps are consistent with multiple measurements occurring within the same displayed second.
+
+Assessment:
+- This run supports the DS-5 behavior that history returns the last ten measurements after twelve valid measurements: it excludes the first two and preserves samples 3–12 in order.
+- This tests one rollover scenario with 12 successful samples; broader rollover behavior after errors, reboot, or substantially more than ten new measurements was not tested.
+- Similar values are not treated as duplicate entries; each history value aligns positionally with the corresponding recent sample output.
+- The 20 cm target position is operator setup; this is not a formal accuracy result. No assistant-run hardware or automated test was performed.
+
+Selected supplied UART transcript:
+---- Sent utf8 encoded message: "version\n" ----
+version
+I (3847529) sentry: SENTRY SWM-2 sonar watch module, fw v2.1.0 (build Oct  6 2026 02:14:57)
+I (3847529) sentry:   partition: ota_0 @ 0x20000, state: valid
+---- Sent utf8 encoded message: "relay status\n" ----
+relay status
+I (4053619) sentry: [VALVE] closed, auto off, cycles 80
+---- Sent utf8 encoded message: "distance 12\n" ----
+distance 12
+I (4062379) sentry: [SONAR] 1/12: 22.2 cm
+I (4062529) sentry: [SONAR] 2/12: 22.3 cm
+I (4062679) sentry: [SONAR] 3/12: 22.3 cm
+I (4062829) sentry: [SONAR] 4/12: 22.2 cm
+I (4062979) sentry: [SONAR] 5/12: 22.2 cm
+I (4063129) sentry: [SONAR] 6/12: 22.2 cm
+I (4063279) sentry: [SONAR] 7/12: 22.2 cm
+I (4063429) sentry: [SONAR] 8/12: 22.3 cm
+I (4063579) sentry: [SONAR] 9/12: 22.2 cm
+I (4063729) sentry: [SONAR] 10/12: 22.2 cm
+I (4063879) sentry: [SONAR] 11/12: 22.2 cm
+I (4064029) sentry: [SONAR] 12/12: 22.3 cm
+I (4064129) sentry: [SONAR] avg 22.2 cm (12/12 ok)
+---- Sent utf8 encoded message: "distance history\n" ----
+distance history
+I (4074519) sentry: [SONAR] last 10 measurements:
+I (4074519) sentry:    1. 02:32:37  22.3 cm
+I (4074519) sentry:    2. 02:32:37  22.2 cm
+I (4074519) sentry:    3. 02:32:38  22.2 cm
+I (4074519) sentry:    4. 02:32:38  22.2 cm
+I (4074519) sentry:    5. 02:32:38  22.2 cm
+I (4074529) sentry:    6. 02:32:38  22.3 cm
+I (4074529) sentry:    7. 02:32:38  22.2 cm
+I (4074539) sentry:    8. 02:32:38  22.2 cm
+I (4074539) sentry:    9. 02:32:38  22.2 cm
+I (4074539) sentry:   10. 02:32:39  22.3 cm

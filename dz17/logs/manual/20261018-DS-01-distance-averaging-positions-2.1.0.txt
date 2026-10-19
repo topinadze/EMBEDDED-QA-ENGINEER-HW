@@ -1,0 +1,116 @@
+Date: 2026-10-18
+Firmware: 2.1.0 (`ota_0`, valid), confirmed by `version` and `status` before the measurements in the supplied transcript
+Source: operator-supplied UART transcript and subsequent clarification of physical target positions
+Operator clarification: target positions were 20 cm, then 10 cm, then 0 cm, then 5 cm. These are physical target distances; the numeric argument in `distance N` is the requested sample count, not target distance. UART did not echo target position labels, so the association below follows the operator's stated sequence and is not independently timestamp-marked.
+
+Results, aligned to operator-stated physical target sequence:
+
+| Target position (cm) | Command/result | Observed output |
+|---:|---|---|
+| 20 | `distance 19` | 19/19 samples accepted; mostly 21.6 cm; average 21.6 cm |
+| 10 | `distance 15` | 15/15 accepted; readings 11.8–11.9 cm; average 11.9 cm |
+| 0 | `distance 15` | 15 consecutive E702 out-of-range errors (device reports 2–400 cm) |
+| 5 | `distance 15` | 15/15 accepted; readings varied from 19.7 to 26.2 cm; average 22.2 cm |
+
+Other observations:
+- Initial `distance` and `distance 1` each reported 21.6 cm.
+- `distance 20`, `distance 0`, and `distance 21` were rejected with E704 (`count must be 1-20`); this concerns the requested sample count and is distinct from the physical target positions.
+- During the 10 cm sample set, a collision warning was logged at 11.9 cm (<20 cm).
+- The first accepted 15-sample group averaged 11.9 cm. A subsequent 15-sample group produced 15 E702 errors. The following 15-sample group was accepted with variable readings and a 22.2 cm average. No calibration command or calibration state appears in the supplied excerpt.
+- Device status before the run showed NORMAL, relay closed, sonar no contact. The status does not establish calibration state or sensor reference plane.
+
+Assessment:
+- With the operator's physical-position sequence, the 5 cm group averaging 22.2 cm is a pronounced measurement-quality failure candidate; it is far from the reported target position. The 20 cm group averaging 21.6 cm is close, while the 10 cm group averages 11.9 cm. At the reported 0 cm position, E702 is consistent with the stated 2 cm lower operating bound and is not itself evidence of a defect.
+- These observations support a significant distance-measurement quality problem on this 2.1.0 run, including unexpectedly high output at the reported 5 cm position and variable/out-of-range behavior across sequential 15-sample operations. Software measurement/processing is a plausible leading cause, but calibration, target geometry/alignment, and reference-plane uncertainty are not excluded. This evidence does not isolate root cause.
+- PRD does not specify a numeric accuracy tolerance. Preserve the observed values and classify as a measurement-quality finding requiring investigation, not a diagnosis of a specific firmware algorithm defect.
+
+Selected supplied UART lines:
+I (2012019) sentry: SENTRY SWM-2 sonar watch module, fw v2.1.0 (build Oct  6 2026 02:14:57)
+I (2012019) sentry:   partition: ota_0 @ 0x20000, state: valid
+I (2015749) sentry:   fw:       v2.1.0 (ota_0)
+I (2015749) sentry:   state:    1 NORMAL
+I (2015769) sentry:   valve:    closed
+I (2015769) sentry:   sonar:    no contact
+---- Sent utf8 encoded message: "distance\n" ----
+I (2070719) sentry: [SONAR] ping: echo 21.6 cm
+---- Sent utf8 encoded message: "distance 1\n" ----
+I (2075319) sentry: [SONAR] 1/1: 21.6 cm
+I (2075419) sentry: [SONAR] avg 21.6 cm (1/1 ok)
+---- Sent utf8 encoded message: "distance 20\n" ----
+E (2082899) sentry: E704 count must be 1-20
+---- Sent utf8 encoded message: "distance 0\n" ----
+E (2093549) sentry: E704 count must be 1-20
+---- Sent utf8 encoded message: "distance 21\n" ----
+E (2100489) sentry: E704 count must be 1-20
+---- Sent utf8 encoded message: "distance 19\n" ----
+I (2111729) sentry: [SONAR] 1/19: 21.6 cm
+I (2111879) sentry: [SONAR] 2/19: 21.6 cm
+I (2112029) sentry: [SONAR] 3/19: 21.6 cm
+I (2112179) sentry: [SONAR] 4/19: 21.6 cm
+I (2112329) sentry: [SONAR] 5/19: 21.6 cm
+I (2112479) sentry: [SONAR] 6/19: 21.6 cm
+I (2112629) sentry: [SONAR] 7/19: 21.6 cm
+I (2112779) sentry: [SONAR] 8/19: 21.6 cm
+I (2112929) sentry: [SONAR] 9/19: 21.6 cm
+I (2113079) sentry: [SONAR] 10/19: 21.6 cm
+I (2113229) sentry: [SONAR] 11/19: 21.6 cm
+I (2113379) sentry: [SONAR] 12/19: 21.6 cm
+I (2113529) sentry: [SONAR] 13/19: 21.6 cm
+I (2113679) sentry: [SONAR] 14/19: 21.6 cm
+I (2113829) sentry: [SONAR] 15/19: 21.6 cm
+I (2113979) sentry: [SONAR] 16/19: 21.6 cm
+I (2114129) sentry: [SONAR] 17/19: 21.6 cm
+I (2114279) sentry: [SONAR] 18/19: 21.6 cm
+I (2114429) sentry: [SONAR] 19/19: 21.6 cm
+I (2114529) sentry: [SONAR] avg 21.6 cm (19/19 ok)
+---- Sent utf8 encoded message: "distance 15\n" ----
+E (2136279) sentry: [COLLISION] contact too close: 11.9 cm (< 20 cm)
+I (2136279) sentry: [SONAR] 1/15: 11.9 cm
+I (2136429) sentry: [SONAR] 2/15: 11.9 cm
+I (2136579) sentry: [SONAR] 3/15: 11.8 cm
+I (2136729) sentry: [SONAR] 4/15: 11.8 cm
+I (2136879) sentry: [SONAR] 5/15: 11.8 cm
+I (2137029) sentry: [SONAR] 6/15: 11.8 cm
+I (2137179) sentry: [SONAR] 7/15: 11.9 cm
+I (2137329) sentry: [SONAR] 8/15: 11.8 cm
+I (2137479) sentry: [SONAR] 9/15: 11.9 cm
+I (2137629) sentry: [SONAR] 10/15: 11.9 cm
+I (2137779) sentry: [SONAR] 11/15: 11.9 cm
+I (2137929) sentry: [SONAR] 12/15: 11.9 cm
+I (2138079) sentry: [SONAR] 13/15: 11.9 cm
+I (2138229) sentry: [SONAR] 14/15: 11.8 cm
+I (2138379) sentry: [SONAR] 15/15: 11.8 cm
+I (2138479) sentry: [SONAR] avg 11.9 cm (15/15 ok)
+---- Sent utf8 encoded message: "distance 15\n" ----
+E (2158449) sentry: E702 sonar: out of range (2-400 cm) - open water?
+E (2158739) sentry: E702 sonar: out of range (2-400 cm) - open water?
+E (2159029) sentry: E702 sonar: out of range (2-400 cm) - open water?
+E (2159319) sentry: E702 sonar: out of range (2-400 cm) - open water?
+E (2159609) sentry: E702 sonar: out of range (2-400 cm) - open water?
+E (2159899) sentry: E702 sonar: out of range (2-400 cm) - open water?
+E (2160189) sentry: E702 sonar: out of range (2-400 cm) - open water?
+E (2160479) sentry: E702 sonar: out of range (2-400 cm) - open water?
+E (2160769) sentry: E702 sonar: out of range (2-400 cm) - open water?
+E (2161059) sentry: E702 sonar: out of range (2-400 cm) - open water?
+E (2161349) sentry: E702 sonar: out of range (2-400 cm) - open water?
+E (2161639) sentry: E702 sonar: out of range (2-400 cm) - open water?
+E (2161929) sentry: E702 sonar: out of range (2-400 cm) - open water?
+E (2162219) sentry: E702 sonar: out of range (2-400 cm) - open water?
+E (2162509) sentry: E702 sonar: out of range (2-400 cm) - open water?
+---- Sent utf8 encoded message: "distance 15\n" ----
+I (2174919) sentry: [SONAR] 1/15: 22.3 cm
+I (2175069) sentry: [SONAR] 2/15: 22.3 cm
+I (2175219) sentry: [SONAR] 3/15: 22.3 cm
+I (2175369) sentry: [SONAR] 4/15: 22.3 cm
+I (2175519) sentry: [SONAR] 5/15: 21.0 cm
+I (2175669) sentry: [SONAR] 6/15: 21.0 cm
+I (2175819) sentry: [SONAR] 7/15: 19.7 cm
+I (2175969) sentry: [SONAR] 8/15: 22.3 cm
+I (2176119) sentry: [SONAR] 9/15: 26.2 cm
+I (2176269) sentry: [SONAR] 10/15: 22.3 cm
+I (2176419) sentry: [SONAR] 11/15: 22.3 cm
+I (2176569) sentry: [SONAR] 12/15: 22.3 cm
+I (2176719) sentry: [SONAR] 13/15: 22.3 cm
+I (2176869) sentry: [SONAR] 14/15: 22.3 cm
+I (2177019) sentry: [SONAR] 15/15: 22.3 cm
+I (2177119) sentry: [SONAR] avg 22.2 cm (15/15 ok)

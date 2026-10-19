@@ -1,0 +1,97 @@
+Date: 2026-10-17/18 (device clock spans 23:55–00:03; transcript supplied 2026-10-18)
+Firmware: 2.1.0 (`ota_0`), build Oct 6 2026 02:14:57, state valid
+Source: selected, sanitized RL-5/DS-7 excerpts from operator-supplied 582-line UART transcript
+Operator clarification (2026-10-18): this transcript contains two separate sonar trials, first at a 30 cm alarm threshold and then at a 10 cm threshold. In both trials the target was moved closer and then farther away. During the 10 cm trial, the operator reports that the critical-proximity LED blinked while the target continued moving closer below 10 cm, went out when the target stopped, and blinked again when it approached further. The configured distance-alarm threshold is a separate behavior that triggers relay auto-open. DS-7 requires the proximity diode to remain continuously lit below 10 cm while the relay is on and measurements are running; the reported stationary-off behavior does not meet that requirement and is tracked as BUG-007. No separate physical relay actuation observation was supplied. The LED's exact hardware pin/identity was not independently confirmed.
+
+---- Sent utf8 encoded message: "version\n" ----
+version
+I (4130089) sentry: SENTRY SWM-2 sonar watch module, fw v2.1.0 (build Oct  6 2026 02:14:57)
+I (4130089) sentry:   partition: ota_0 @ 0x20000, state: valid
+---- Sent utf8 encoded message: "status\n" ----
+status
+I (4138529) sentry: === SWM-2 status ===
+I (4138529) sentry:   fw:       v2.1.0 (ota_0)
+I (4138529) sentry:   state:    1 NORMAL
+I (4138539) sentry:   internet: OK
+I (4138539) sentry:   user:     [operator account] (user)
+I (4138549) sentry:   valve:    closed
+I (4138559) sentry:   sonar:    no contact
+---- Sent utf8 encoded message: "whoami\n" ----
+whoami
+I (4146269) sentry: user: [operator account], access: user
+---- Sent utf8 encoded message: "relay status\n" ----
+relay status
+I (4150349) sentry: [VALVE] closed, auto off, cycles 68
+---- Sent utf8 encoded message: "distance\n" ----
+distance
+I (4154879) sentry: [SONAR] ping: echo 15.9 cm
+E (4154879) sentry: [COLLISION] contact too close: 15.9 cm (< 20 cm)
+---- Sent utf8 encoded message: "distance alarm 30\n" ----
+distance alarm 30
+I (4175089) sentry: [SONAR] alarm at 30 cm
+---- Sent utf8 encoded message: "relay auto on\n" ----
+relay auto on
+I (4193769) sentry: [VALVE] auto on - valve opens on sonar proximity alarm
+---- Sent utf8 encoded message: "distance log 500\n" ----
+distance log 500
+I (4253269) sentry: [SONAR] continuous pinging every 500 ms (command). 'distance stop' to stop
+I (4253339) sentry: [SONAR] ping: echo 18.6 cm
+W (4253339) sentry: [SONAR] PROXIMITY ALARM: contact at 18.6 cm (threshold 30 cm)
+I (4253349) sentry: [VALVE] OPEN (distance alarm)
+I (4253899) sentry: [SONAR] ping: echo 27.6 cm
+I (4254449) sentry: [SONAR] ping: echo 22.2 cm
+I (4373259) sentry: [SONAR] ping: echo 35.1 cm
+I (4373259) sentry: [SONAR] proximity alarm cleared (35.1 cm)
+I (4391839) sentry: [SONAR] ping: echo 29.9 cm
+W (4391839) sentry: [SONAR] PROXIMITY ALARM: contact at 29.9 cm (threshold 30 cm)
+---- Sent utf8 encoded message: "distance stop\n" ----
+distance stop
+I (4408599) sentry: [SONAR] pinging stopped (command)
+---- Sent utf8 encoded message: "relay status\n" ----
+relay status
+I (4417709) sentry: [VALVE] OPEN, auto on, cycles 70
+
+---- Sent utf8 encoded message: "distance alarm 10\n" ----
+distance alarm 10
+I (4445779) sentry: [SONAR] alarm at 10 cm
+---- Sent utf8 encoded message: "distance log 500\n" ----
+distance log 500
+I (4453549) sentry: [SONAR] continuous pinging every 500 ms (command). 'distance stop' to stop
+I (4453549) sentry: [SONAR] valve OPEN - proximity indicator: diode blinks faster when contact is closer
+I (4467439) sentry: [SONAR] ping: echo 19.3 cm
+I (4470189) sentry: [SONAR] ping: echo 16.7 cm
+I (4471289) sentry: [SONAR] ping: echo 13.2 cm
+I (4472939) sentry: [SONAR] ping: echo 10.4 cm
+W (4473489) sentry: [SONAR] PROXIMITY ALARM: contact at 9.8 cm (threshold 10 cm)
+I (4474039) sentry: [SONAR] ping: echo 8.8 cm
+I (4478439) sentry: [SONAR] ping: echo 11.5 cm
+I (4480639) sentry: [SONAR] ping: echo 14.9 cm
+I (4481189) sentry: [SONAR] proximity alarm cleared (15.6 cm)
+---- Sent utf8 encoded message: "distance stop\n" ----
+distance stop
+I (4549399) sentry: [SONAR] pinging stopped (command)
+---- Sent utf8 encoded message: "relay status\n" ----
+relay status
+I (4553809) sentry: [VALVE] OPEN, auto on, cycles 70
+---- Sent utf8 encoded message: "relayy auto off\n" ----
+relayy auto off
+E (4574889) sentry: E001 unknown command 'relayy'. Type 'help'
+---- Sent utf8 encoded message: "distance alarm off\n" ----
+distance alarm off
+I (4581499) sentry: [SONAR] alarm off
+---- Sent utf8 encoded message: "relay off\n" ----
+relay off
+I (4587649) sentry: [VALVE] CLOSED (command)
+---- Sent utf8 encoded message: "relay status\n" ----
+relay status
+I (4592729) sentry: [VALVE] closed, auto on, cycles 72
+
+Assessment:
+- Preconditions confirmed by device output: 2.1.0, valid `ota_0`, NORMAL, logged in as user, relay initially closed, auto off, cycles 68.
+- The operator clarifies that these were two separate target-movement trials: threshold 30 cm, then threshold 10 cm; in both, the target was moved closer and then farther. In the 30 cm trial, after `relay auto on`, the streamed alarm at 18.6 cm was immediately followed by `[VALVE] OPEN (distance alarm)`. The sonar alarm later cleared at 35.1 cm. The preceding one-shot reading of 15.9 cm predates alarm configuration, so it is not a captured baseline above 30 cm.
+- In the 10 cm trial, readings approached from 19.3 cm to 9.8 cm, triggering the 10 cm proximity alarm, then rose to 15.6 cm and cleared it as the target was moved away. The relay was already OPEN from the 30 cm trial, so no new relay-on transition can be attributed to the 10 cm threshold. Further threshold chatter appears in the full source transcript.
+- For DS-7 physical indication during the 10 cm trial, the operator reports the critical-proximity LED blinked during continued approach below 10 cm, extinguished when the target stopped, and blinked again on renewed approach. With the relay open and measurements active, DS-7 requires continuous light below 10 cm; the reported stationary-off behavior is tracked as BUG-007. Blink frequency by distance and the stationary LED state above 10 cm were not measured.
+- Relay status after stopping the 30 cm stream reported OPEN, auto on, cycles 70. A later 29.9 cm alarm had no separate relay-open transition in the excerpt because the relay was already open.
+- Cleanup typo `relayy auto off` returned E001, so automation was not disabled. `distance alarm off` succeeded and explicit `relay off` closed the relay, but final status still reported `auto on`. Further auto testing should wait until `relay auto off` is issued and `relay status` confirms auto off.
+- The operator confirms physical target approach/retreat in both trials and provides the DS-7 LED observation above. No separate observation of relay click, GPIO4 diode, or relay-module indicators was supplied. The 582-line original attachment remains read-only; this file contains selected excerpts rather than claiming to be its complete raw transcript.
+- Cycles rose from 68 to 70 on the automatic opening and from 70 to 72 on the explicit close, consistent with BUG-004's previously observed +2 per transition.

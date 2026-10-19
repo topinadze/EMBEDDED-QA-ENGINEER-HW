@@ -1,0 +1,41 @@
+Source: operator-supplied UART transcript in chat
+Date: 2026-10-18
+Firmware: 2.1.0, confirmed earlier in the same boot/session by `version`; `ota_0`, valid
+Requirement: WF-4 (`scan`)
+Precondition: Wi-Fi had reconnected successfully; user was logged in.
+Redaction: All SSIDs are replaced with `[SSID redacted]`; no network identifiers are retained.
+
+Observed result:
+- `scan` began scanning and returned 18 access-point entries.
+- Each entry included signal strength (dBm), channel and security status.
+- 17 entries were marked `secured`; one was marked `open`.
+- The displayed RSSI range was -33 to -96 dBm.
+- A routine telemetry line appeared during the scan; the scan results followed.
+
+Assessment:
+- Partial WF-4 evidence: scan result count and listed fields were observed on 2.1.0.
+- SSIDs are not retained. No connection or configuration change was made by this scan.
+
+Selected UART (all SSIDs redacted):
+---- Sent utf8 encoded message: "scan\n" ----
+scan
+I (1321359) sentry: [LINK] scanning...
+I (1322039) sentry: [TELEMETRY #25] [time redacted] up 00:22:01 heap 256KB rssi -36 temp 31.4C depth 40.7m hull 5.1bar batt 24.2V valve closed sonar - state NORMAL
+I (1324259) sentry:   [ 1] [SSID redacted] -33 dBm  ch  1  secured
+I (1324259) sentry:   [ 2] [SSID redacted] -51 dBm  ch  1  secured
+I (1324259) sentry:   [ 3] [SSID redacted] -54 dBm  ch  9  secured
+I (1324269) sentry:   [ 4] [SSID redacted] -59 dBm  ch  1  secured
+I (1324269) sentry:   [ 5] [SSID redacted] -69 dBm  ch  1  secured
+I (1324279) sentry:   [ 6] [SSID redacted] -77 dBm  ch 13  secured
+I (1324289) sentry:   [ 7] [SSID redacted] -84 dBm  ch  8  secured
+I (1324299) sentry:   [ 8] [SSID redacted] -85 dBm  ch  9  secured
+I (1324299) sentry:   [ 9] [SSID redacted] -89 dBm  ch 11  secured
+I (1324309) sentry:   [10] [SSID redacted] -89 dBm  ch 11  secured
+I (1324319) sentry:   [11] [SSID redacted] -90 dBm  ch  2  secured
+I (1324329) sentry:   [12] [SSID redacted] -91 dBm  ch  2  secured
+I (1324329) sentry:   [13] [SSID redacted] -91 dBm  ch 11  secured
+I (1324339) sentry:   [14] [SSID redacted] -92 dBm  ch  1  secured
+I (1324349) sentry:   [15] [SSID redacted] -92 dBm  ch  1  open
+I (1324359) sentry:   [16] [SSID redacted] -94 dBm  ch  4  secured
+I (1324359) sentry:   [17] [SSID redacted] -95 dBm  ch  1  secured
+I (1324369) sentry:   [18] [SSID redacted] -96 dBm  ch  1  secured

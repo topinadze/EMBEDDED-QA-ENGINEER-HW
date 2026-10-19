@@ -1,0 +1,114 @@
+Source: operator-supplied UART transcript and physical observation in chat
+Date: 2026-10-18
+Firmware: 2.1.0, `ota_0` (confirmed by `version` in this capture)
+Requirement: §12 K1 tap toggles lamp on/off
+Redaction: No credentials or network identifiers retained.
+
+Observed result:
+- Device telemetry reported state NORMAL.
+- After the operator pressed K1 once, UART reported `[BTN] K1 pressed` and `[BEACON] on (K1) solid, 100%, color (0,0,255)`.
+- The operator reported that the lamp turned on and appeared cyan/blue.
+- The lamp's state immediately before this first press was not captured; the follow-up below subsequently confirmed the ON-to-OFF toggle.
+
+Assessment:
+- K1 tap toggle behavior was verified on 2.1.0: the first press turned the lamp on, then a second press from confirmed ON turned it off.
+- K1 long-press color cycling was observed through all eight reported colors; the operator reported that physical colors matched the UART names.
+- Remaining button actions and button-pair state transitions were not tested in this capture.
+
+Selected UART:
+I (5949739) sentry: SENTRY SWM-2 sonar watch module, fw v2.1.0 (build [redacted])
+I (5949739) sentry:   partition: ota_0 @ 0x20000, state: valid
+I (5958459) sentry: [BTN] K1 pressed
+I (5958459) sentry: [BEACON] on (K1) solid, 100%, color (0,0,255)
+I (5975809) sentry: [TELEMETRY #157] [clock redacted] up 01:39:35 heap 257KB rssi -57 temp 30.4C depth 40.6m hull 5.1bar batt 24.0V valve closed sonar - state NORMAL
+
+Physical observation:
+Operator reported: "включилась лампа блакитного кольору" (the lamp turned on, cyan-colored ring).
+
+Follow-up toggle check:
+- Before the second K1 press, `lamp status` confirmed the beacon was ON, color (0,0,255), brightness 100%, mode solid, timer off.
+- The operator pressed K1 once. UART reported `[BTN] K1 pressed` followed by `[BEACON] off (K1)`.
+- A subsequent `lamp status` confirmed the beacon was off with the color, brightness, mode, and timer setting retained.
+- The operator confirmed that the lamp went out and reported the Wi-Fi indicator as green.
+
+Selected follow-up UART:
+---- Sent utf8 encoded message: "lamp status\n" ----
+lamp status
+I (6107389) sentry: [BEACON] ON, color (0,0,255), brightness 100%, mode solid, timer off
+I (6112959) sentry: [BTN] K1 pressed
+I (6112959) sentry: [BEACON] off (K1)
+---- Sent utf8 encoded message: "lamp status\n" ----
+lamp status
+I (6119429) sentry: [BEACON] off, color (0,0,255), brightness 100%, mode solid, timer off
+I (6126209) sentry: [TELEMETRY #162] [clock redacted] up 01:42:05 heap 257KB rssi -52 temp 30.4C depth 40.4m hull 5.0bar batt 24.0V valve closed sonar - state NORMAL
+
+Physical observation:
+Operator confirmed the lamp turned off and reported the Wi-Fi indicator was green. The Wi-Fi indicator color is retained as an operator observation, separate from the beacon toggle result.
+
+K1 long-press color-cycle check:
+- Before the color-cycle sequence, `lamp status` confirmed the lamp was off.
+- A short K1 press turned it on in blue. Subsequent UART `[BTN] K1 long press` events advanced the color in order: red, green, blue, yellow, purple, cyan, orange, white, then red again.
+- After the color changes, `lamp status` confirmed the reported active color at each sampled checkpoint. The operator reported that the physical colors matched the UART color names.
+- A final K1 press turned the lamp off; `lamp status` confirmed it was off with the last selected red color retained.
+
+Selected UART:
+---- Sent utf8 encoded message: "lamp status\n" ----
+lamp status
+I (6342289) sentry: [BEACON] off, color (0,0,255), brightness 100%, mode solid, timer off
+I (6345819) sentry: [BTN] K1 pressed
+I (6345819) sentry: [BEACON] on (K1) solid, 100%, color (0,0,255)
+I (6352869) sentry: [BTN] K1 long press
+I (6352879) sentry: [BEACON] color: red (255,0,0) by K1
+I (6359329) sentry: [BTN] K1 long press
+I (6359339) sentry: [BEACON] color: green (0,255,0) by K1
+I (6363929) sentry: [BTN] K1 long press
+I (6363939) sentry: [BEACON] color: blue (0,0,255) by K1
+I (6369469) sentry: [BEACON] color: yellow (255,180,0) by K1
+I (6375059) sentry: [BEACON] color: purple (160,0,255) by K1
+I (6380319) sentry: [BEACON] color: cyan (0,255,255) by K1
+I (6385159) sentry: [BEACON] color: orange (255,80,0) by K1
+I (6389879) sentry: [BEACON] color: white (255,255,255) by K1
+I (6394659) sentry: [BEACON] color: red (255,0,0) by K1
+---- Sent utf8 encoded message: "lamp status\n" ----
+lamp status
+I (6402879) sentry: [BEACON] ON, color (255,0,0), brightness 100%, mode solid, timer off
+I (6408199) sentry: [BEACON] color: green (0,255,0) by K1
+---- Sent utf8 encoded message: "lamp status\n" ----
+lamp status
+I (6410259) sentry: [BEACON] ON, color (0,255,0), brightness 100%, mode solid, timer off
+I (6413039) sentry: [BEACON] color: blue (0,0,255) by K1
+---- Sent utf8 encoded message: "lamp status\n" ----
+lamp status
+I (6414749) sentry: [BEACON] ON, color (0,0,255), brightness 100%, mode solid, timer off
+I (6417579) sentry: [BEACON] color: yellow (255,180,0) by K1
+---- Sent utf8 encoded message: "lamp status\n" ----
+lamp status
+I (6418829) sentry: [BEACON] ON, color (255,180,0), brightness 100%, mode solid, timer off
+I (6421399) sentry: [BEACON] color: purple (160,0,255) by K1
+---- Sent utf8 encoded message: "lamp status\n" ----
+lamp status
+I (6422669) sentry: [BEACON] ON, color (160,0,255), brightness 100%, mode solid, timer off
+I (6425459) sentry: [BEACON] color: cyan (0,255,255) by K1
+---- Sent utf8 encoded message: "lamp status\n" ----
+lamp status
+I (6426409) sentry: [BEACON] ON, color (0,255,255), brightness 100%, mode solid, timer off
+I (6429879) sentry: [BEACON] color: orange (255,80,0) by K1
+---- Sent utf8 encoded message: "lamp status\n" ----
+lamp status
+I (6431859) sentry: [BEACON] ON, color (255,80,0), brightness 100%, mode solid, timer off
+I (6435079) sentry: [BEACON] color: white (255,255,255) by K1
+---- Sent utf8 encoded message: "lamp status\n" ----
+lamp status
+I (6436409) sentry: [BEACON] ON, color (255,255,255), brightness 100%, mode solid, timer off
+I (6439469) sentry: [BEACON] color: red (255,0,0) by K1
+---- Sent utf8 encoded message: "lamp status\n" ----
+lamp status
+I (6441649) sentry: [BEACON] ON, color (255,0,0), brightness 100%, mode solid, timer off
+I (6442949) sentry: [BTN] K1 pressed
+I (6442949) sentry: [BEACON] off (K1)
+---- Sent utf8 encoded message: "lamp status\n" ----
+lamp status
+I (6444419) sentry: [BEACON] off, color (255,0,0), brightness 100%, mode solid, timer off
+
+Physical observation:
+Operator reported that the physical color changes matched the color names reported over UART.

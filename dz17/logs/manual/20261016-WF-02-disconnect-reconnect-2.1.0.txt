@@ -1,0 +1,312 @@
+Source: UART transcript pasted in the conversation.
+Date: 2026-10-16
+Port: COM4
+Firmware: 2.1.0
+Network credentials are redacted. Unrelated scan entries and periodic telemetry are omitted.
+The transcript contains separated excerpts; intervals not supplied are not reconstructed.
+
+---- Sent utf8 encoded message: "disconnect\n" ----
+disconnect
+I (1054993) wifi:state: run -> init (0x0)
+I (1054993) wifi:pm stop, total sleep time: 26541147 us / 32440656 us
+
+I (1054993) wifi:<ba-del>idx:0, tid:0
+I (1054993) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0
+I (1055003) sentry: [LINK] disconnected
+---- Sent utf8 encoded message: "status\n" ----
+status
+I (1060103) sentry: === SWM-2 status ===
+I (1060103) sentry:   fw:       v2.1.0 (ota_0)
+I (1060103) sentry:   state:    1 NORMAL
+I (1060103) sentry:   link:     buoy link down (known: [network redacted])
+I (1060103) sentry:   user:     [operator account] (user)
+I (1060113) sentry:   time:     00:38:39, uptime 0h 17m 39s
+I (1060113) sentry:   valve:    closed
+I (1060123) sentry:   sonar:    no contact
+I (1060123) sentry:   carrier:  depth 41.6 m, hull 5.2 bar, water 8.2 C, battery 24.17 V (sim)
+I (1060133) sentry:   heap:     258 KB free
+
+---- Sent utf8 encoded message: "wifi status\n" ----
+wifi status
+E (1073473) sentry: E001 unknown command 'wifi'. Type 'help'
+I (1077133) sentry: [ACU] ambient noise 60 dB re 1uPa, sea state 2, water 8.2 C
+---- Sent utf8 encoded message: "коннект\n" ----
+
+W (1083893) sentry: W006 non-latin characters ignored (use English layout)
+---- Sent utf8 encoded message: "ota\n" ----
+ota
+E (1096053) sentry: E002 Wi-Fi required. Use 'reconnect' or 'connect'
+I (1142133) sentry: [PWR] battery bus 24.17 V, load 1.6 A
+
+---- Sent utf8 encoded message: "reconnect\n" ----
+reconnect
+I (1146653) sentry: [LINK] raising buoy antenna, connecting to '[network redacted]'...
+I (1146653) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0
+I (1146663) wifi:state: init -> auth (0xb0)
+I (1146663) wifi:state: auth -> assoc (0x0)
+I (1146673) wifi:state: assoc -> run (0x10)
+I (1146693) wifi:connected with [network redacted], aid = 1, channel 1, BW20, bssid = [MAC redacted]
+I (1146693) wifi:security: WPA2-PSK, phy: bgn, rssi: -24, cipher(pairwise:0x3, group:0x3), pmf:1
+I (1146693) wifi:pm start, type: 1
+
+I (1146693) wifi:dp: 1, bi: 102400, li: 3, scale listen interval from 307200 us to 307200 us
+I (1146703) wifi:set rx beacon pti, rx_bcn_pti: 0, bcn_timeout: 25000, mt_pti: 0, mt_time: 10000
+I (1146723) wifi:dp: 2, bi: 102400, li: 4, scale listen interval from 307200 us to 409600 us
+I (1146723) wifi:AP's beacon interval = 102400 us, DTIM period = 2
+I (1148053) esp_netif_handlers: sta ip: [IP redacted], mask: 255.255.255.0, gw: [gateway redacted]
+I (1148053) sentry: [LINK] got ip [IP redacted]
+I (1148053) sentry: [LINK] connected to '[network redacted]', rssi -23 dBm (excellent)
+I (1148133) sentry: [TELEMETRY] auto report every 30 s ('health off' to stop)
+I (1149093) wifi:<ba-add>idx:0 (ifx:0, [MAC redacted]), tid:0, ssn:3, winSize:64
+I (1149393) esp-x509-crt-bundle: Certificate validated
+I (1150043) sentry: [LINK] fleet network reachable (internet OK)
+W (1156043) sentry: W106 [LINK] time: NTP sync failed, timestamps disabled
+---- Sent utf8 encoded message: "status\n" ----
+status
+I (1164143) sentry: === SWM-2 status ===
+I (1164143) sentry:   fw:       v2.1.0 (ota_0)
+I (1164143) sentry:   state:    1 NORMAL
+I (1164143) sentry:   link:     buoy link '[network redacted]', ip [IP redacted], rssi -22 dBm (excellent), ch 1
+I (1164153) sentry:   internet: OK
+I (1164153) sentry:   user:     [operator account] (user)
+I (1164153) sentry:   time:     00:40:24, uptime 0h 19m 23s
+I (1164163) sentry:   valve:    closed
+I (1164163) sentry:   sonar:    no contact
+I (1164173) sentry:   carrier:  depth 42.0 m, hull 5.2 bar, water 8.2 C, battery 24.17 V (sim)
+I (1164173) sentry:   heap:     258 KB free
+
+---- Sent utf8 encoded message: "disconnect\n" ----
+disconnect
+I (1177893) wifi:state: run -> init (0x0)
+I (1177893) wifi:pm stop, total sleep time: 27956858 us / 31191708 us
+
+I (1177893) wifi:<ba-del>idx:0, tid:0
+I (1177893) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0
+I (1177903) sentry: [LINK] disconnected
+---- Sent utf8 encoded message: "connect\n" ----
+connect
+I (1181393) sentry: [LINK] scanning...
+[Network scan results omitted.]
+SSID or number:
+---- Sent utf8 encoded message: "1\n" ----
+1
+Password:
+---- Sent utf8 encoded message: "[REDACTED]\n" ----
+[REDACTED]
+I (1192173) sentry: [LINK] raising buoy antenna, connecting to '[network redacted]'...
+I (1192173) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0
+I (1192183) wifi:state: init -> auth (0xb0)
+I (1192183) wifi:state: auth -> assoc (0x0)
+I (1192193) wifi:state: assoc -> run (0x10)
+I (1192213) wifi:connected with [network redacted], aid = 1, channel 1, BW20, bssid = [MAC redacted]
+I (1192213) wifi:security: WPA2-PSK, phy: bgn, rssi: -23, cipher(pairwise:0x3, group:0x3), pmf:1
+I (1192213) wifi:pm start, type: 1
+
+[Transcript interval not supplied.]
+
+---- Sent utf8 encoded message: "isloggedin\n" ----
+isloggedin
+E (1701203) sentry: E001 unknown command 'isloggedin'. Type 'help'
+---- Sent utf8 encoded message: "login\n" ----
+login
+E (1706973) sentry: E002 Wi-Fi required. Use 'reconnect' or 'connect'
+---- Sent utf8 encoded message: "relogin\n" ----
+relogin
+E (1718723) sentry: E001 unknown command 'relogin'. Type 'help'
+---- Sent utf8 encoded message: "logout\n" ----
+logout
+I (1728523) sentry: [AUTH] operator [operator account] relieved from watch
+---- Sent utf8 encoded message: "status\n" ----
+status
+I (1736353) sentry: === SWM-2 status ===
+I (1736353) sentry:   fw:       v2.1.0 (ota_0)
+I (1736353) sentry:   state:    1 NORMAL
+I (1736353) sentry:   link:     buoy link down (known: [network redacted])
+I (1736353) sentry:   user:     not logged in
+I (1736363) sentry:   time:     00:49:56, uptime 0h 28m 55s
+I (1736363) sentry:   valve:    closed
+I (1736363) sentry:   sonar:    no contact
+I (1736373) sentry:   carrier:  depth 43.2 m, hull 5.3 bar, water 8.1 C, battery 24.15 V (sim)
+I (1736383) sentry:   heap:     258 KB free
+---- Sent utf8 encoded message: "wifi\n" ----
+wifi
+E (1742773) sentry: E001 unknown command 'wifi'. Type 'help'
+I (1745133) sentry: [NAV] depth 43.3 m, heading 278, speed 2.9 kn
+---- Sent utf8 encoded message: "ota\n" ----
+ota
+E (1748493) sentry: E002 Wi-Fi required. Use 'reconnect' or 'connect'
+---- Sent utf8 encoded message: "reconnect\n" ----
+reconnect
+I (1761263) sentry: [LINK] raising buoy antenna, connecting to '[network redacted]'...
+I (1761263) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0
+I (1761263) wifi:state: init -> auth (0xb0)
+I (1761273) wifi:state: auth -> assoc (0x0)
+I (1761283) wifi:state: assoc -> run (0x10)
+I (1761293) wifi:connected with [network redacted], aid = 1, channel 1, BW20, bssid = [MAC redacted]
+I (1761303) wifi:security: WPA2-PSK, phy: bgn, rssi: -24, cipher(pairwise:0x3, group:0x3), pmf:1
+I (1761303) wifi:pm start, type: 1
+
+I (1761303) wifi:dp: 1, bi: 102400, li: 3, scale listen interval from 307200 us to 307200 us
+I (1761313) wifi:set rx beacon pti, rx_bcn_pti: 0, bcn_timeout: 25000, mt_pti: 0, mt_time: 10000
+I (1761343) wifi:dp: 2, bi: 102400, li: 4, scale listen interval from 307200 us to 409600 us
+I (1761343) wifi:AP's beacon interval = 102400 us, DTIM period = 2
+I (1770093) esp_netif_handlers: sta ip: [IP redacted], mask: 255.255.255.0, gw: [gateway redacted]
+I (1770093) sentry: [LINK] got ip [IP redacted]
+I (1770093) sentry: [LINK] connected to '[network redacted]', rssi -26 dBm (excellent)
+I (1770163) wifi:<ba-add>idx:0 (ifx:0, [MAC redacted]), tid:0, ssn:6, winSize:64
+I (1770473) esp-x509-crt-bundle: Certificate validated
+I (1771703) sentry: [LINK] fleet network reachable (internet OK)
+W (1777703) sentry: W106 [LINK] time: NTP sync failed, timestamps disabled
+I (1822133) sentry: [ACU] ambient noise 60 dB re 1uPa, sea state 2, water 7.9 C
+W (1904133) sentry: [ACU] own-ship noise: pump #2 cavitation suspected
+I (1947933) wifi:[ADDBA]RX DELBA, reason:39, delete tid:0, initiator:0(recipient)
+I (1991133) sentry: [PWR] battery bus 24.15 V, load 1.4 A
+I (2068133) sentry: [NAV] depth 44.1 m, heading 278, speed 3.4 kn
+---- Sent utf8 encoded message: "relogin\n" ----
+relogin
+E (2103163) sentry: E001 unknown command 'relogin'. Type 'help'
+---- Sent utf8 encoded message: "logout\n" ----
+logout
+W (2108833) sentry: W211 not logged in
+---- Sent utf8 encoded message: "login\n" ----
+login
+E (2114693) sentry: E201 usage: login <login> <password>
+---- Sent utf8 encoded message: "login [operator account] [REDACTED]\n" ----
+login [operator account] [REDACTED]
+I (2124353) sentry: [AUTH] operator [operator account] on watch, console 2
+I (2124533) sentry: [TELEMETRY] auto report every 30 s ('health off' to stop)
+I (2154533) sentry: [TELEMETRY #7] 00:56:54 up 00:35:54 heap 258KB rssi -47 temp 31.4C depth 44.1m hull 5.4bar batt 24.1V valve closed sonar - state NORMAL
+I (2157133) sentry: [ACU] ambient noise 72 dB re 1uPa, sea state 2, water 8.0 C
+I (2184533) sentry: [TELEMETRY #8] 00:57:24 up 00:36:24 heap 258KB rssi -23 temp 32.4C depth 44.3m hull 5.4bar batt 24.1V valve closed sonar - state NORMAL
+
+---- Sent utf8 encoded message: "status\n" ----
+status
+I (2529063) sentry: === SWM-2 status ===
+I (2529063) sentry:   fw:       v2.1.0 (ota_0)
+I (2529063) sentry:   state:    1 NORMAL
+I (2529063) sentry:   link:     buoy link '[network redacted]', ip [IP redacted], rssi -26 dBm (excellent), ch 1
+I (2529073) sentry:   internet: OK
+I (2529073) sentry:   user:     [operator account] (user)
+I (2529073) sentry:   time:     01:03:08, uptime 0h 42m 08s
+I (2529083) sentry:   valve:    closed
+I (2529083) sentry:   sonar:    no contact
+I (2529093) sentry:   carrier:  depth 44.0 m, hull 5.4 bar, water 8.0 C, battery 24.13 V (sim)
+I (2529103) sentry:   heap:     258 KB free
+
+[Transcript continues; the first supplied line begins mid-line.]
+4.1V valve closed sonar - state NORMAL
+---- Sent utf8 encoded message: "loggedin\n" ----
+loggedin
+E (2574213) sentry: E001 unknown command 'loggedin'. Type 'help'
+I (2575733) sentry: [TELEMETRY #21] 01:03:55 up 00:42:55 heap 258KB rssi -25 temp 32.4C depth 44.0m hull 5.4bar batt 24.1V valve closed sonar - state NORMAL
+I (2578133) sentry: [ACU] ambient noise 71 dB re 1uPa, sea state 2, water 8.0 C
+---- Sent utf8 encoded message: "status\n" ----
+status
+I (2581173) sentry: === SWM-2 status ===
+I (2581173) sentry:   fw:       v2.1.0 (ota_0)
+I (2581173) sentry:   state:    1 NORMAL
+I (2581173) sentry:   link:     buoy link '[network redacted]', ip [IP redacted], rssi -26 dBm (excellent), ch 1
+I (2581183) sentry:   internet: OK
+I (2581183) sentry:   user:     [operator account] (user)
+I (2581183) sentry:   time:     01:04:01, uptime 0h 43m 00s
+I (2581193) sentry:   valve:    closed
+I (2581193) sentry:   sonar:    no contact
+I (2581203) sentry:   carrier:  depth 44.3 m, hull 5.4 bar, water 8.0 C, battery 24.13 V (sim)
+I (2581203) sentry:   heap:     258 KB free
+---- Sent utf8 encoded message: "logout\n" ----
+logout
+I (2594313) sentry: [AUTH] operator [operator account] relieved from watch
+---- Sent utf8 encoded message: "status\n" ----
+status
+I (2600263) sentry: === SWM-2 status ===
+I (2600263) sentry:   fw:       v2.1.0 (ota_0)
+I (2600263) sentry:   state:    1 NORMAL
+I (2600263) sentry:   link:     buoy link '[network redacted]', ip [IP redacted], rssi -27 dBm (excellent), ch 1
+I (2600273) sentry:   internet: OK
+I (2600273) sentry:   user:     not logged in
+I (2600273) sentry:   time:     01:04:20, uptime 0h 43m 19s
+I (2600283) sentry:   valve:    closed
+I (2600283) sentry:   sonar:    no contact
+I (2600293) sentry:   carrier:  depth 44.3 m, hull 5.4 bar, water 8.0 C, battery 24.13 V (sim)
+I (2600293) sentry:   heap:     258 KB free
+---- Sent utf8 encoded message: "relogin\n" ----
+relogin
+E (2608163) sentry: E001 unknown command 'relogin'. Type 'help'
+
+[Additional sanitized excerpts from the supplied 2026-10-16 UART transcript.]
+[Intervals omitted; all account-password inputs have been redacted.]
+---- Sent utf8 encoded message: "status\n" ----
+status
+I (2903983) sentry: === SWM-2 status ===
+I (2903983) sentry:   fw:       v2.1.0 (ota_0)
+I (2903983) sentry:   state:    1 NORMAL
+I (2903983) sentry:   link:     buoy link '[network redacted]', ip [IP redacted], rssi -27 dBm (excellent), ch 1
+I (2903993) sentry:   internet: OK
+I (2903993) sentry:   user:     not logged in
+---- Sent utf8 encoded message: "disconnect\n" ----
+disconnect
+I (2915013) sentry: [LINK] disconnected
+---- Sent utf8 encoded message: "status\n" ----
+status
+I (2917293) sentry:   link:     buoy link down (known: [network redacted])
+I (2917293) sentry:   user:     not logged in
+---- Sent utf8 encoded message: "disconnect\n" ----
+disconnect
+W (2920623) sentry: W115 not connected
+[Wi-Fi scan output omitted.]
+---- Sent utf8 encoded message: "reconnect\n" ----
+reconnect
+I (2939113) sentry: [LINK] raising buoy antenna, connecting to '[network redacted]'...
+I (2940443) sentry: [LINK] got ip [IP redacted]
+I (2940443) sentry: [LINK] connected to '[network redacted]', rssi -27 dBm (excellent)
+I (2941963) sentry: [LINK] fleet network reachable (internet OK)
+W (2947963) sentry: W106 [LINK] time: NTP sync failed, timestamps disabled
+---- Sent utf8 encoded message: "status\n" ----
+status
+I (2948063) sentry:   link:     buoy link '[network redacted]', ip [IP redacted], rssi -26 dBm (excellent), ch 1
+I (2948073) sentry:   internet: OK
+I (2948073) sentry:   user:     not logged in
+---- Sent utf8 encoded message: "ota status\n" ----
+ota status
+E (2972543) sentry: E003 login required. Use 'login <login> <pass>' or 'register'
+---- Sent utf8 encoded message: "ota\n" ----
+ota
+E (2975163) sentry: E003 login required. Use 'login <login> <pass>' or 'register'
+[Credential-bearing login command lines redacted.]
+E (2997553) sentry: E209 wrong login or password. Attempts: 1/3
+E (3005973) sentry: E209 wrong login or password. Attempts: 2/3
+E (3007333) sentry: E209 wrong login or password. Attempts: 3/3
+E (3007333) sentry: E210 too many attempts, account locked for 30 s
+[Account-credential command line redacted.]
+E (3016433) sentry: E207 account locked. Try again in 21 s
+[Later credential-bearing login command line redacted.]
+I (3084533) sentry: [AUTH] operator [operator account] on watch, console 2
+[Status at 01:12:32 confirmed Wi-Fi/internet available and user [operator account] (user).]
+---- Sent utf8 encoded message: "debug\n" ----
+debug
+E (3099903) sentry: E001 unknown command 'debug'. Type 'help'
+---- Sent utf8 encoded message: "help\n" ----
+help
+I (3103103) sentry: Commands ([wifi] - needs Wi-Fi, [login] - needs Wi-Fi + login, [debug] - debug access):
+I (3103183) sentry:   net                          - IP, gateway, DNS, MAC [wifi]
+I (3103193) sentry:   ping [host]                  - ping host (default 8.8.8.8) [wifi]
+I (3103193) sentry:   time                         - current time (NTP) [wifi]
+I (3103213) sentry:   login <login> <pass>         - start session [wifi]
+I (3103243) sentry:   passwd <old> <new>           - change password [login]
+I (3103243) sentry:   sudo <password>              - elevate current user to debug [login]
+I (3103263) sentry:   ota [status]                 - running / previous firmware [login]
+[The supplied complete help output contained no command annotated [debug].]
+---- Sent utf8 encoded message: "whoami\n" ----
+whoami
+I (3178653) sentry: user: [operator account], access: user
+---- Sent utf8 encoded message: "passwd [REDACTED] [REDACTED]\n" ----
+passwd [REDACTED] [REDACTED]
+I (3219703) sentry: [AUTH] password changed
+[The valid account password from before the passwd change and the valid new account password were both tried with sudo; password inputs are redacted.]
+E (3227383) sentry: E213 sudo: wrong password
+E (3242423) sentry: E213 sudo: wrong password
+[A further sudo attempt also returned E213.]
+E (3277983) sentry: E213 sudo: wrong password
+---- Sent utf8 encoded message: "whoami\n" ----
+whoami
+I (3283773) sentry: user: [operator account], access: user

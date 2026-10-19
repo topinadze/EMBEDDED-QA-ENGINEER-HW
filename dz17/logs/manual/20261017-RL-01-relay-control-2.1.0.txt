@@ -1,0 +1,101 @@
+Date: 2026-10-17
+Firmware: 2.1.0 (`ota_0`), build Oct 6 2026 02:14:57
+Source: operator-supplied UART transcript; account identifier retained, no credential material present
+Physical observation (operator): each relay activation produced an audible click. The relay-module indicators changed: one indicator remained lit while relay was on, and two were lit while off. The separate GPIO4 LED was off while relay was on and lit while relay was off. This is opposite to the fw_7 PRD/WIRING expectation that the GPIO4 indicator is lit when the relay is on.
+
+---- Sent utf8 encoded message: "version\n" ----
+version
+I (1136769) sentry: SENTRY SWM-2 sonar watch module, fw v2.1.0 (build Oct  6 2026 02:14:57)
+I (1136769) sentry:   partition: ota_0 @ 0x20000, state: valid
+---- Sent utf8 encoded message: "status\n" ----
+status
+I (1140259) sentry: === SWM-2 status ===
+I (1140259) sentry:   fw:       v2.1.0 (ota_0)
+I (1140259) sentry:   state:    1 NORMAL
+I (1140259) sentry:   link:     buoy link '[network redacted]', ip [IP redacted], rssi -30 dBm (excellent), ch 1
+I (1140269) sentry:   internet: OK
+I (1140269) sentry:   user:     [operator account] (user)
+I (1140269) sentry:   time:     23:05:16, uptime 0h 18m 59s
+I (1140279) sentry:   valve:    closed
+I (1140279) sentry:   sonar:    no contact
+I (1140289) sentry:   carrier:  depth 42.6 m, hull 5.3 bar, water 8.1 C, battery 24.17 V (sim)
+I (1140289) sentry:   heap:     257 KB free
+---- Sent utf8 encoded message: "whoami\n" ----
+whoami
+I (1143549) sentry: user: [operator account], access: user
+---- Sent utf8 encoded message: "relay status\n" ----
+relay status
+I (1149399) sentry: [VALVE] closed, auto off, cycles 0
+---- Sent utf8 encoded message: "relay health\n" ----
+relay health
+I (1156229) sentry: [VALVE] seal: 0 / 100000 cycles, wear 0.00% (good)
+I (1156229) sentry: [VALVE] solenoid: OK, contact resistance: 45 mOhm
+---- Sent utf8 encoded message: "reley on\n" ----
+reley on
+E (1191779) sentry: E001 unknown command 'reley'. Type 'help'
+---- Sent utf8 encoded message: "relay on\n" ----
+relay on
+I (1198319) sentry: [VALVE] OPEN (command)
+---- Sent utf8 encoded message: "relay status\n" ----
+relay status
+I (1205939) sentry: [VALVE] OPEN, auto off, cycles 2
+---- Sent utf8 encoded message: "relay on\n" ----
+relay on
+W (1215949) sentry: W601 relay already on
+---- Sent utf8 encoded message: "relay status\n" ----
+relay status
+I (1219019) sentry: [VALVE] OPEN, auto off, cycles 2
+---- Sent utf8 encoded message: "relay off\n" ----
+relay off
+I (1223129) sentry: [VALVE] CLOSED (command)
+---- Sent utf8 encoded message: "relay status\n" ----
+relay status
+I (1226699) sentry: [VALVE] closed, auto off, cycles 4
+---- Sent utf8 encoded message: "relay off\n" ----
+relay off
+W (1231529) sentry: W601 relay already off
+---- Sent utf8 encoded message: "relay status\n" ----
+relay status
+I (1234399) sentry: [VALVE] closed, auto off, cycles 4
+---- Sent utf8 encoded message: "relay on\n" ----
+relay on
+I (1241219) sentry: [VALVE] OPEN (command)
+---- Sent utf8 encoded message: "relay status\n" ----
+relay status
+I (1253569) sentry: [VALVE] OPEN, auto off, cycles 6
+---- Sent utf8 encoded message: "relay off\n" ----
+relay off
+I (1261949) sentry: [VALVE] CLOSED (command)
+---- Sent utf8 encoded message: "relay toggle\n" ----
+relay toggle
+I (1275899) sentry: [VALVE] OPEN (command)
+---- Sent utf8 encoded message: "relay status\n" ----
+relay status
+I (1288499) sentry: [VALVE] OPEN, auto off, cycles 10
+---- Sent utf8 encoded message: "relay toggle\n" ----
+relay toggle
+I (1293919) sentry: [VALVE] CLOSED (command)
+---- Sent utf8 encoded message: "relay off\n" ----
+relay off
+W (1301279) sentry: W601 relay already off
+---- Sent utf8 encoded message: "relay toggle\n" ----
+relay toggle
+I (1305069) sentry: [VALVE] OPEN (command)
+---- Sent utf8 encoded message: "relay status\n" ----
+relay status
+I (1310489) sentry: [VALVE] OPEN, auto off, cycles 14
+---- Sent utf8 encoded message: "relay off\n" ----
+relay off
+I (1324239) sentry: [VALVE] CLOSED (command)
+---- Sent utf8 encoded message: "relay health\n" ----
+relay health
+I (1332419) sentry: [VALVE] seal: 16 / 100000 cycles, wear 0.02% (good)
+I (1332419) sentry: [VALVE] solenoid: OK, contact resistance: 45 mOhm
+
+Assessment:
+- Initial preconditions confirmed 2.1.0, NORMAL, logged-in user access, relay closed, auto off, cycles 0.
+- `reley on` returned E001 for an unknown command. Correct `relay on|off|toggle` commands worked; repeated on/off returned W601 and did not change the reported counter.
+- There were eight actual relay state transitions after the initial `cycles 0`. The counter/health reported 16 cycles, increasing by 2 per actual transition instead of the PRD-defined +1. No rapid-switch sequence was attempted.
+- `relay health` reported seal 16/100000, wear 0.02%, solenoid OK and contact resistance 45 mOhm.
+- Operator heard a click on each relay activation. The GPIO4 LED observation is opposite to the PRD/WIRING behavior. Relay-module indicator observations are recorded without interpreting the module's indicator meanings.
+- The capture ends with a relay-off command, but no final `relay status` response follows it; the command response says CLOSED. No reboot/persistence check was performed.

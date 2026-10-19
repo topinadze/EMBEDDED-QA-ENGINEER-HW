@@ -1,0 +1,68 @@
+Date: 2026-10-18
+Firmware: 2.1.0 (`ota_0`, valid), confirmed by preceding `version`/`status` capture
+Requirement: HL-3
+Source: operator-supplied UART transcript
+Related setup/cadence evidence: [`20261018-HL-01-health-now-2.1.0.txt`](20261018-HL-01-health-now-2.1.0.txt)
+
+Preconditions:
+- `health` reported auto on, interval 30 s, current NORMAL cadence 30 s.
+- Operator authorized temporary interval changes with final restoration to 30 s.
+- No reboot was performed.
+
+Results:
+
+| Command | UART result | Follow-up/readback |
+|---|---|---|
+| `health interval 10` | Accepted: `[TELEMETRY] interval 10 s` | Reports #90/#91 at 03:56:15/03:56:25; `health` read back auto on, interval 10 s. Subsequent reports #92–#94 were about 10–11 s apart. |
+| `health interval 9` | E902: `interval must be 10-300 s` | `health` read back auto on, interval 10 s, confirming the rejected value did not replace the prior setting. |
+| `health interval 300` | E902: `interval must be 10-300 s` | Subsequent `health` read back interval 10 s. |
+| `health interval 301` | E902: `interval must be 10-300 s` | A direct readback immediately after this command is not present in the supplied sequence. |
+| `health interval 299` | Accepted: `[TELEMETRY] interval 299 s` | `health` read back auto on, interval 299 s. |
+| `health interval 30` | Accepted: `[TELEMETRY] interval 30 s` | Afterward `health` read back auto on, interval 30 s in NORMAL. Report #112 appeared about 30 s after setting 30 s. |
+
+Assessment:
+- HL-3 specifies interval range 10–300 inclusive. The lower bound 10 was accepted; 9 was rejected with E902 and readback remained 10.
+- The documented upper bound 300 was rejected with E902, while 299 was accepted and read back. This reproduces a likely upper-bound validation defect (BUG-013) on firmware 2.1.0. The 301 rejection is consistent with the specified out-of-range response.
+- The final configured interval was restored to 30 s and independently read back. No reboot/persistence-across-reboot test was performed.
+
+Selected supplied UART:
+---- Sent utf8 encoded message: "version\n" ----
+I (1830369) sentry: SENTRY SWM-2 sonar watch module, fw v2.1.0 (build Oct  6 2026 02:14:57)
+I (1830369) sentry:   partition: ota_0 @ 0x20000, state: valid
+---- Sent utf8 encoded message: "status\n" ----
+I (1832349) sentry: === SWM-2 status ===
+I (1832349) sentry:   fw:       v2.1.0 (ota_0)
+I (1832349) sentry:   state:    1 NORMAL
+I (1832359) sentry:   link:     [network and IP redacted], rssi -55 dBm (excellent), ch 1
+I (1832359) sentry:   internet: OK
+I (1832359) sentry:   user:     [account redacted] (user)
+I (1832359) sentry:   valve:    closed
+I (1832379) sentry:   heap:     257 KB free
+---- Sent utf8 encoded message: "health interval 10\n" ----
+I (2739699) sentry: [TELEMETRY] interval 10 s
+I (2749749) sentry: [TELEMETRY #90] 03:56:15 up 00:45:49 heap 257KB rssi -71 temp 32.4C depth 40.7m hull 5.1bar batt 24.1V valve closed sonar - state NORMAL
+I (2759949) sentry: [TELEMETRY #91] 03:56:25 up 00:45:59 heap 257KB rssi -67 temp 33.4C depth 40.7m hull 5.1bar batt 24.1V valve closed sonar - state NORMAL
+I (2770149) sentry: [TELEMETRY #92] 03:56:35 up 00:46:09 heap 257KB rssi -58 temp 32.4C depth 40.4m hull 5.0bar batt 24.1V valve closed sonar - state NORMAL
+I (2780349) sentry: [TELEMETRY #93] 03:56:46 up 00:46:19 heap 257KB rssi -63 temp 32.4C depth 40.4m hull 5.0bar batt 24.1V valve closed sonar - state NORMAL
+---- Sent utf8 encoded message: "health\n" ----
+I (2789579) sentry: [TELEMETRY] auto on, interval 10 s (now 10 s in NORMAL)
+I (2790549) sentry: [TELEMETRY #94] 03:56:56 up 00:46:30 heap 257KB rssi -56 temp 32.4C depth 40.4m hull 5.0bar batt 24.1V valve closed sonar - state NORMAL
+---- Sent utf8 encoded message: "health interval 9\n" ----
+E (2821489) sentry: E902 interval must be 10-300 s
+---- Sent utf8 encoded message: "health\n" ----
+I (2875869) sentry: [TELEMETRY] auto on, interval 10 s (now 10 s in NORMAL)
+---- Sent utf8 encoded message: "health interval 300\n" ----
+E (2915099) sentry: E902 interval must be 10-300 s
+---- Sent utf8 encoded message: "health\n" ----
+I (2922229) sentry: [TELEMETRY] auto on, interval 10 s (now 10 s in NORMAL)
+---- Sent utf8 encoded message: "health interval 301\n" ----
+E (2928089) sentry: E902 interval must be 10-300 s
+---- Sent utf8 encoded message: "health interval 299\n" ----
+I (2966069) sentry: [TELEMETRY] interval 299 s
+---- Sent utf8 encoded message: "health\n" ----
+I (2969999) sentry: [TELEMETRY] auto on, interval 299 s (now 299 s in NORMAL)
+---- Sent utf8 encoded message: "health interval 30\n" ----
+I (3014219) sentry: [TELEMETRY] interval 30 s
+I (3044349) sentry: [TELEMETRY #112] 04:01:10 up 00:50:43 heap 257KB rssi -73 temp 33.4C depth 40.5m hull 5.0bar batt 24.1V valve closed sonar - state NORMAL
+---- Sent utf8 encoded message: "health\n" ----
+I (3047369) sentry: [TELEMETRY] auto on, interval 30 s (now 30 s in NORMAL)

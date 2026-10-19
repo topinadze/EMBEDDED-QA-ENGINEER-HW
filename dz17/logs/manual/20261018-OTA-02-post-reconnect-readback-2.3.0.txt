@@ -1,0 +1,57 @@
+Date: 2026-10-18
+Source: operator-supplied UART transcript after beta OTA
+Firmware: 2.3.0 on `ota_1` (status readback); NORMAL
+Pre-upgrade comparison: `20261018-OTA-01-02-pre-upgrade-snapshot-2.1.0.txt`
+Redaction: Credential-bearing transmission, account/network identifiers, IP, and wall-clock values omitted.
+
+Post-upgrade recovery and readback:
+- `reconnect` restored the saved Wi-Fi connection and IP; firmware reported internet reachable and NTP sync success.
+- After local login, `status` confirmed 2.3.0 on `ota_1`, NORMAL, internet OK, ordinary-user access, valve closed, Guard disarmed with zero unacknowledged alerts, and sonar no contact.
+- `whoami` confirmed ordinary-user access.
+- `lamp status` reported beacon off, configured color `(255,0,0)`, brightness 100%, solid mode, timer off. These values match the 2.1.0 pre-upgrade lamp readback.
+- `distance stats` reported no measurements and zero timeouts. The 2.1.0 pre-upgrade readback also reported no measurements and zero timeouts. Neither readback exposes calibration, alarm threshold, or filter; their retention remains unverified.
+- `relay status` reported closed, auto off, cycles 100, matching the captured 2.1.0 pre-upgrade readback.
+- `health` reported auto on, interval 30 s (current 30 s in NORMAL), matching the captured 2.1.0 pre-upgrade readback.
+- `ota status` reported v2.3.0 valid in `ota_1`, with previous v2.1.0 in `ota_0`.
+- `guard status` reported disarmed, zone 50 cm, last distance -1.0 cm. Guard did not exist on the 2.1.0 baseline, so no before/after retention comparison can be made.
+- The saved Wi-Fi profile was used successfully by `reconnect`; login succeeded locally, but the password-bearing transmission was excluded and password/profile retention is not independently verified beyond this successful use.
+- The password-bearing login line from the supplied transcript is intentionally not reproduced. The login succeeded, but this excerpt does not verify the password by logout/relogin or prove profile/password retention independently.
+
+Selected redacted UART:
+---- Sent utf8 encoded message: "reconnect\n" ----
+reconnect
+I ([redacted]) sentry: [LINK] connected to '[redacted]', rssi [redacted] dBm
+I ([redacted]) sentry: [LINK] got ip [redacted]
+I ([redacted]) sentry: [LINK] fleet network reachable (internet OK)
+I ([redacted]) sentry: [LINK] time: synced via NTP, [redacted]
+---- Sent utf8 encoded message: "status\n" ----
+status
+I ([redacted]) sentry:   fw: v2.3.0 (ota_1)
+I ([redacted]) sentry:   state: 1 NORMAL
+I ([redacted]) sentry:   internet: OK
+I ([redacted]) sentry:   user: [redacted] (user)
+I ([redacted]) sentry:   valve: closed
+I ([redacted]) sentry:   watch: disarmed, CIC alerts unacked: 0
+I ([redacted]) sentry:   sonar: no contact
+---- Sent utf8 encoded message: "whoami\n" ----
+whoami
+I ([redacted]) sentry: user: [redacted], access: user
+---- Sent utf8 encoded message: "lamp status\n" ----
+lamp status
+I ([redacted]) sentry: [BEACON] off, color (255,0,0), brightness 100%, mode solid, timer off
+---- Sent utf8 encoded message: "distance stats\n" ----
+distance stats
+I ([redacted]) sentry: [SONAR] no measurements yet. Timeouts: 0
+---- Sent utf8 encoded message: "relay status\n" ----
+relay status
+I ([redacted]) sentry: [VALVE] closed, auto off, cycles 100
+---- Sent utf8 encoded message: "health\n" ----
+health
+I ([redacted]) sentry: [TELEMETRY] auto on, interval 30 s (now 30 s in NORMAL)
+---- Sent utf8 encoded message: "ota status\n" ----
+ota status
+I ([redacted]) sentry: [OTA] running: v2.3.0 in ota_1 (valid)
+I ([redacted]) sentry: [OTA] previous: v2.1.0 in ota_0
+---- Sent utf8 encoded message: "guard status\n" ----
+guard status
+I ([redacted]) sentry: [WATCH] disarmed, zone 50 cm, last distance -1.0 cm

@@ -1,0 +1,30 @@
+Source: operator-reported physical observations and operator-supplied UART excerpt
+Date: 2026-10-18
+Firmware: 2.1.0 (confirmed in the same session)
+Requirement: LM-8 — when the lamp is off, the built-in RGB LED indicates system status; PRD defines priority, but not the Wi-Fi/login color mapping
+Redaction: Account, network identifiers, IP, wall-clock values, and credentials omitted.
+
+Operator-reported physical observations:
+
+| Wi-Fi | User session | Built-in RGB LED appearance |
+|---|---|---|
+| Connected | Logged in | Green |
+| Connected | Logged out | Orange (initially described as yellow/orange) |
+| Disconnected | Logged in | Red |
+| Disconnected | Logged out | Red |
+
+The operator confirmed that all four combinations were observed on firmware 2.1.0 and that the indicator was the board's built-in RGB LED. These are visual descriptions; no colorimetric measurement was made.
+
+Related command readback:
+- After local login, `lamp status` returned `[BEACON] off, color (255,0,0), brightness 100%, mode solid, timer off`.
+- The command reports the beacon's logical on/off state and configured color. It does not, by itself, describe the physical status-indicator color being displayed while the beacon is off.
+
+Assessment:
+- The observations are consistent with LM-8's general requirement that the RGB LED show system status while the lamp is off.
+- PRD §6 / LM-8 specifies indicator priority but does not define these specific colors or map them to Wi-Fi/login combinations. Treat the matrix as observed behavior, not yet as a normative contract or a confirmed defect.
+- Detailed confirmation of each LED priority override and the exact Wi-Fi/auth color mapping remains open.
+
+Selected UART:
+---- Sent utf8 encoded message: "lamp status\n" ----
+lamp status
+I ([redacted]) sentry: [BEACON] off, color (255,0,0), brightness 100%, mode solid, timer off

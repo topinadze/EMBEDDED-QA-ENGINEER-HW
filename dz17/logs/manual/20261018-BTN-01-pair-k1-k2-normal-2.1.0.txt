@@ -1,0 +1,47 @@
+Source: operator-supplied UART transcript in chat
+Date: 2026-10-18
+Firmware: 2.1.0 (confirmed in surrounding supplied session; exact version lines not repeated in this excerpt)
+Requirement: §12 K1+K2 held for 2 s requests state 1 NORMAL
+Redaction: Wall-clock values omitted; no credentials or network identifiers retained.
+
+Precondition:
+- Telemetry immediately before this excerpt showed valve closed and state NORMAL.
+
+Observed result:
+- UART twice reported `[BTN] K1+K2 held 2 s -> state 1` followed by `W303 already in 1 NORMAL`.
+- Individual button and output events also appear adjacent to the pair events: K1 pressed with beacon on/off; later K1 pressed with beacon on and K2 pressed with valve OPEN/CLOSED.
+- The excerpt does not provide explicit markers that unambiguously associate those individual press/output events with a specific pair press or release. They are recorded as observed side effects, not attributed conclusively to the pair gesture.
+- Telemetry between the adjacent individual output events and the second pair message reported valve closed and NORMAL.
+- A later `relay status` confirmed closed, auto off, cycles 100. The first attempted lamp query was mistyped as `lamps status` and returned E001; the corrected `lamp status` confirmed the beacon ON, red (255,0,0), brightness 100%, solid, timer off.
+- No operator physical observations were supplied for these events.
+
+Assessment:
+- The already-in-NORMAL response W303 for K1+K2 was observed.
+- Final readback shows the beacon ON red and relay closed. The excerpt is insufficient to establish whether the adjacent individual K1/K2 events or changes in the relay cycle counter were caused by, or merely coincident with, the pair gesture.
+- No entry into another state was attempted or observed.
+
+Selected UART:
+I ([redacted]) sentry: [TELEMETRY #217] [clock redacted] up 02:09:40 heap 257KB rssi -58 temp 30.4C depth 39.1m hull 4.9bar batt 24.0V valve closed sonar - state NORMAL
+I (7789379) sentry: [BTN] K1 pressed
+I (7789379) sentry: [BEACON] on (K1) solid, 100%, color (255,0,0)
+I (7790759) sentry: [BTN] K1 pressed
+I (7790759) sentry: [BEACON] off (K1)
+I (7794179) sentry: [BTN] K1+K2 held 2 s -> state 1
+W (7794179) sentry: W303 already in 1 NORMAL
+I (7804799) sentry: [BTN] K1 pressed
+I (7804799) sentry: [BEACON] on (K1) solid, 100%, color (255,0,0)
+I (7806179) sentry: [BTN] K2 pressed
+I (7806179) sentry: [VALVE] OPEN (K2)
+I (7809519) sentry: [VALVE] CLOSED (K2)
+I ([redacted]) sentry: [TELEMETRY #218] [clock redacted] up 02:10:10 heap 257KB rssi -64 temp 31.4C depth 39.1m hull 4.9bar batt 24.0V valve closed sonar - state NORMAL
+I (7812399) sentry: [BTN] K1+K2 held 2 s -> state 1
+W (7812399) sentry: W303 already in 1 NORMAL
+---- Sent utf8 encoded message: "lamps status\n" ----
+lamps status
+E ([redacted]) sentry: E001 unknown command 'lamps'. Type 'help'
+---- Sent utf8 encoded message: "relay status\n" ----
+relay status
+I (8216989) sentry: [VALVE] closed, auto off, cycles 100
+---- Sent utf8 encoded message: "lamp status\n" ----
+lamp status
+I (8246809) sentry: [BEACON] ON, color (255,0,0), brightness 100%, mode solid, timer off

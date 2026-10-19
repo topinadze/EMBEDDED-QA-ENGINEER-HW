@@ -1,0 +1,140 @@
+Source: terminal output provided by operator in chat.
+Date: 2026-10-16
+Port: COM4
+Firmware: 2.1.0
+Initial state: Wi-Fi connected to saved network; no user session.
+Security: test account password redacted in command echoes; it is not retained in this evidence file.
+
+login
+E (779353) sentry: E201 usage: login <login> <password>
+
+I (779843) sentry: [ACU] ambient noise 67 dB re 1uPa, sea state 2, water 8.1 C
+
+---- Sent utf8 encoded message: "register\n" ----
+register
+E (794013) sentry: E201 usage: register <login> <password>
+
+---- Sent utf8 encoded message: "register [operator account] [REDACTED]\n" ----
+register [operator account] [REDACTED]
+I (818123) sentry: [AUTH] profile '[operator account]' registered. Now 'login [operator account] <password>'
+
+---- Sent utf8 encoded message: "login [operator account] [REDACTED]\n" ----
+login [operator account] [REDACTED]
+I (836513) sentry: [AUTH] operator [operator account] on watch, console 2
+I (836633) sentry: [TELEMETRY] auto report every 30 s ('health off' to stop)
+
+I (843843) sentry: [PWR] battery bus 24.18 V, load 1.7 A
+
+---- Sent utf8 encoded message: "version\n" ----
+version
+I (856613) sentry: SENTRY SWM-2 sonar watch module, fw v2.1.0 (build Oct  6 2026 02:14:57)
+I (856613) sentry:   partition: ota_0 @ 0x20000, state: valid
+
+---- Sent utf8 encoded message: "ota\n" ----
+ota
+I (858793) sentry: [OTA] running:  v2.1.0 in ota_0 (valid)
+I (858793) sentry: [OTA] previous: none (ota_1 is empty)
+
+---- Sent utf8 encoded message: "status\n" ----
+status
+I (861103) sentry: === SWM-2 status ===
+I (861103) sentry:   fw:       v2.1.0 (ota_0)
+I (861103) sentry:   state:    1 NORMAL
+I (861103) sentry:   link:     buoy link '[network redacted]', ip [IP redacted], rssi -25 dBm (excellent), ch 1
+I (861103) sentry:   internet: OK
+I (861113) sentry:   user:     [operator account] (user)
+I (861113) sentry:   time:     00:35:20, uptime 0h 14m 20s
+I (861123) sentry:   valve:    closed
+I (861123) sentry:   sonar:    no contact
+I (861123) sentry:   carrier:  depth 41.6 m, hull 5.2 bar, water 8.1 C, battery 24.18 V (sim)
+I (861133) sentry:   heap:     258 KB free
+I (866633) sentry: [TELEMETRY #1] 00:35:26 up 00:14:26 heap 258KB rssi -24 temp 31.4C depth 41.6m hull 5.2bar batt 24.2V valve closed sonar - state NORMAL
+
+---- Sent utf8 encoded message: "help\n" ----
+help
+I (879643) sentry: Commands ([wifi] - needs Wi-Fi, [login] - needs Wi-Fi + login, [debug] - debug access):
+I (879643) sentry: System:
+I (879643) sentry:   help                         - this help
+I (879653) sentry:   status                       - full device status
+I (879653) sentry:   version                      - firmware version and partition
+I (879663) sentry:   sysinfo                      - chip, memory, uptime
+I (879673) sentry:   temp                         - chip temperature
+I (879673) sentry:   uptime                       - time since boot
+I (879673) sentry:   reboot                       - reboot device
+I (879683) sentry: Buoy link (Wi-Fi):
+I (879683) sentry:   connect                      - connect to Wi-Fi (scan, SSID, password)
+I (879693) sentry:   reconnect                    - connect to known network
+I (879703) sentry:   forget                       - forget known network
+I (879703) sentry:   disconnect                   - disconnect from Wi-Fi
+I (879713) sentry:   scan                         - list Wi-Fi networks
+I (879723) sentry:   net                          - IP, gateway, DNS, MAC [wifi]
+I (879723) sentry:   ping [host]                  - ping host (default 8.8.8.8) [wifi]
+I (879733) sentry:   time                         - current time (NTP) [wifi]
+I (879743) sentry: Account:
+I (879743) sentry:   register <login> <pass>      - create profile (one per device) [wifi]
+I (879753) sentry:   login <login> <pass>         - start session [wifi]
+I (879763) sentry:   logout                       - end session
+I (879763) sentry:   whoami                       - current user and access
+I (879773) sentry:   passwd <old> <new>           - change password [login]
+I (879773) sentry:   sudo <password>              - elevate current user to debug [login]
+I (879783) sentry: States:
+I (879783) sentry:   state [1-4|name]             - show / change system state [login]
+I (879793) sentry: OTA:
+I (879793) sentry:   ota [status]                 - running / previous firmware [login]
+I (879803) sentry:   ota check                    - check stable and beta channels [login]
+I (879813) sentry:   ota update [beta]            - update to stable (or beta) [login]
+I (879823) sentry:   ota install <X.Y.Z> [force]  - install exact version (force - allow downgrade) [login]
+I (879833) sentry:   ota broken                   - install broken build (rollback test) [login]
+I (879843) sentry:   ota rollback                 - boot previous firmware [login]
+I (879843) sentry:   ota url <url> [force]        - install image from any http(s) link [login]
+I (879853) sentry:   ota server [<url>|default]   - show / set update server (default - GitHub) [login]
+I (879863) sentry: Beacon light (alias: beacon):
+I (879863) sentry:   lamp on|off|toggle           - Smart Lamp power [login]
+I (879873) sentry:   lamp status                  - lamp settings [login]
+I (879883) sentry:   lamp color <name|R G B>      - white red green blue yellow purple cyan orange [login]
+I (879893) sentry:   lamp brightness <0-100>      - brightness, % [login]
+I (879893) sentry:   lamp mode <mode>              - solid | blink | breathe | rainbow [login]
+I (879903) sentry:   lamp timer <sec>             - auto-off 1-3600 s (0 - cancel) [login]
+I (879913) sentry:   lamp scene save|load <1-3>   - save / load lamp preset [login]
+I (879923) sentry: Trim valve (alias: valve, open|close):
+I (879923) sentry:   relay on|off|toggle          - relay + indicator diode [login]
+I (879933) sentry:   relay status                 - state, auto mode, switch counter [login]
+I (879943) sentry:   relay pulse <ms>             - turn on for 100-10000 ms [login]
+I (879953) sentry:   relay schedule <on> <off>    - cycle on/off in seconds ('off' - stop) [login]
+I (879953) sentry:   relay auto on|off            - turn relay on by distance alarm [login]
+I (879963) sentry:   relay health                 - contact wear and coil check [login]
+I (879973) sentry: Active sonar (alias: sonar):
+I (879973) sentry:   distance [N]                 - measure once or N times (1-20) [login]
+I (879983) sentry:   distance log [ms] | stop     - continuous measuring 100-5000 ms [login]
+I (879993) sentry:   distance calibrate <cm>      - calibrate by reference object ('reset') [login]
+I (880003) sentry:   distance alarm <cm>|off      - alarm threshold 5-300 cm [login]
+I (880013) sentry:   distance filter on|off       - median filter of 5 samples [login]
+I (880013) sentry:   distance stats|history       - statistics / last 10 measurements [login]
+I (880023) sentry: Telemetry (alias: telemetry):
+I (880033) sentry:   health now                   - health report now [login]
+I (880033) sentry:   health on|off                - auto report (after login, 30 s) [login]
+I (880043) sentry:   health interval <sec>        - auto interval 10-300 s (VERBOSE 10 s) [login]
+I (880053) sentry: Perimeter watch, CIC alerts: planned in v2.3.0
+I (880063) sentry: Buttons [login]:
+I (880063) sentry:   K1 press / hold 1.5 s        - beacon on/off / next color [login]
+I (880073) sentry:   K2 press / hold 1.5 s        - valve open/close / 1 s pulse [login]
+I (880073) sentry:   K3 press                     - active sonar for 30 s (press again - stop) [login]
+I (880083) sentry:   K4                           - perimeter watch (planned in v2.3.0)
+I (880093) sentry:   hold 2 s: K1+K2 - 1 NORMAL, K2+K3 - 2 DEBUG, K3+K4 - 3 VERBOSE, K4+K1 - 4 EMERGENCY (only from 3)
+
+---- Sent utf8 encoded message: "sysinfo\n" ----
+sysinfo
+I (883043) sentry:   chip:      ESP32-S3 rev 2, 2 cores, 160 MHz
+I (883043) sentry:   flash:     4MB
+I (883043) sentry:   heap:      257 KB free, min 212 KB
+I (883043) sentry: uptime: 0h 14m 42s
+I (883043) sentry: chip temperature: 31.4 C
+
+---- Sent utf8 encoded message: "temp\n" ----
+temp
+I (886633) sentry: chip temperature: 31.4 C
+
+---- Sent utf8 encoded message: "uptime\n" ----
+uptime
+I (890503) sentry: uptime: 0h 14m 50s
+I (896703) sentry: [TELEMETRY #2] 00:35:56 up 00:14:56 heap 257KB rssi -22 temp 32.4C depth 41.6m hull 5.2bar batt 24.2V valve closed sonar - state NORMAL

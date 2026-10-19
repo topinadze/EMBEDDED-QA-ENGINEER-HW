@@ -1,0 +1,89 @@
+Date: 2026-10-16
+Firmware: 2.1.0 (`ota_0`)
+Source: sanitized excerpt from operator-supplied UART transcript
+Credential value redacted from the `login` command.
+
+---- Sent utf8 encoded message: "login\n" ----
+login
+E (453783) sentry: E002 Wi-Fi required. Use 'reconnect' or 'connect'
+---- Sent utf8 encoded message: "whoami\n" ----
+whoami
+I (461743) sentry: not logged in
+---- Sent utf8 encoded message: "status\n" ----
+status
+I (466573) sentry: === SWM-2 status ===
+I (466573) sentry:   fw:       v2.1.0 (ota_0)
+I (466573) sentry:   state:    1 NORMAL
+I (466573) sentry:   link:     buoy link down (known: [network redacted])
+I (466573) sentry:   user:     not logged in
+I (466573) sentry:   time:     --:--:--, uptime 0h 07m 46s
+
+---- Sent utf8 encoded message: "reconnect\n" ----
+reconnect
+I (480053) sentry: [LINK] raising buoy antenna, connecting to '[network redacted]'...
+I (480163) wifi:state: init -> auth (0xb0)
+I (480163) wifi:state: auth -> assoc (0x0)
+I (480173) wifi:state: assoc -> run (0x10)
+I (480193) wifi:connected with [network redacted], aid = 1, channel 1, BW20
+I (481283) esp_netif_handlers: sta ip: [IP redacted], mask: 255.255.255.0, gw: [gateway redacted]
+I (481283) sentry: [LINK] got ip [IP redacted]
+I (481283) sentry: [LINK] connected to '[network redacted]', rssi -28 dBm (excellent)
+I (482003) esp-x509-crt-bundle: Certificate validated
+I (483503) sentry: [LINK] fleet network reachable (internet OK)
+I (483803) sentry: [LINK] time: synced via NTP, 01:47:47
+
+---- Sent utf8 encoded message: "status\n" ----
+status
+I (537803) sentry: === SWM-2 status ===
+I (537803) sentry:   fw:       v2.1.0 (ota_0)
+I (537803) sentry:   state:    1 NORMAL
+I (537803) sentry:   link:     buoy link '[network redacted]', ip [IP redacted], rssi -35 dBm (excellent), ch 1
+I (537803) sentry:   internet: OK
+I (537813) sentry:   user:     not logged in
+I (537813) sentry:   time:     01:48:41, uptime 0h 08m 57s
+
+---- Sent utf8 encoded message: "whoami\n" ----
+whoami
+I (545133) sentry: not logged in
+---- Sent utf8 encoded message: "login\n" ----
+login
+E (548243) sentry: E201 usage: login <login> <password>
+---- Sent utf8 encoded message: "login [operator account] [REDACTED]\n" ----
+login [operator account] [REDACTED]
+I (638903) sentry: [AUTH] operator [operator account] on watch, console 2
+I (639043) sentry: [TELEMETRY] auto report every 30 s ('health off' to stop)
+---- Sent utf8 encoded message: "whoami\n" ----
+whoami
+I (643113) sentry: user: [operator account], access: user
+---- Sent utf8 encoded message: "status\n" ----
+status
+I (645833) sentry: === SWM-2 status ===
+I (645833) sentry:   fw:       v2.1.0 (ota_0)
+I (645833) sentry:   state:    1 NORMAL
+I (645833) sentry:   link:     buoy link '[network redacted]', ip [IP redacted], rssi -29 dBm (excellent), ch 1
+I (645833) sentry:   internet: OK
+I (645843) sentry:   user:     [operator account] (user)
+I (645843) sentry:   time:     01:50:29, uptime 0h 10m 45s
+
+---- Sent utf8 encoded message: "state 3\n" ----
+state 3
+W (650673) sentry: [STATE] 1 NORMAL -> 3 VERBOSE (by command)
+I (650673) sentry: [STATE] VERBOSE (tactical): extended logs, telemetry every 10 s, LED heartbeat
+I (660843) sentry: [TELEMETRY #1] 01:50:44 up 00:11:00 heap 258KB rssi -27 temp 32.4C depth 42.4m hull 5.2bar batt 24.2V valve closed sonar - state VERBOSE
+I (660843) sentry: [V] telemetry: min heap 211KB, beacon off, tasks 15, water 8.0C, source auto
+I (670853) sentry: [TELEMETRY #2] 01:50:54 up 00:11:10 heap 258KB rssi -29 temp 32.4C depth 42.4m hull 5.2bar batt 24.2V valve closed sonar - state VERBOSE
+I (670853) sentry: [V] telemetry: min heap 211KB, beacon off, tasks 15, water 8.0C, source auto
+
+---- Sent utf8 encoded message: "logout\n" ----
+logout
+I (677913) sentry: [AUTH] operator [operator account] relieved from watch
+W (677913) sentry: [STATE] 3 VERBOSE -> 1 NORMAL (by logout)
+---- Sent utf8 encoded message: "status\n" ----
+status
+I (682923) sentry: === SWM-2 status ===
+I (682923) sentry:   fw:       v2.1.0 (ota_0)
+I (682923) sentry:   state:    1 NORMAL
+I (682923) sentry:   link:     buoy link '[network redacted]', ip [IP redacted], rssi -29 dBm (excellent), ch 1
+I (682923) sentry:   internet: OK
+I (682933) sentry:   user:     not logged in
+I (682933) sentry:   time:     01:51:06, uptime 0h 11m 22s

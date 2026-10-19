@@ -1,0 +1,50 @@
+Source: operator-supplied UART transcript in chat
+Date: 2026-10-18
+Firmware: 2.1.0, confirmed by `version` earlier in the same boot; `ota_0`, valid
+Requirement: WF-4
+Precondition: Wi-Fi reconnect and user login had succeeded; `health` readback shortly before showed auto on, interval 30 s, NORMAL.
+Redaction: Concrete IP, subnet, gateway, DNS and MAC values are intentionally omitted.
+
+Observed result:
+- `net` output included all five reported fields: IP, mask, gateway, DNS and MAC.
+- The command completed with values for each field; the actual network identifiers are not retained here.
+- `time` returned a local date/time and the `Kyiv` timezone after the preceding reconnect sequence reported successful NTP synchronization.
+- `ping` with no host argument selected the documented default `8.8.8.8`; all four probes timed out and the summary was `0/4 ok, avg 0 ms`. The transcript also included `ping_sock: send error=0`.
+- A later custom-host `ping 1.1.1.1` attempt on the same firmware run also timed out on all four probes and returned `0/4 ok, avg 0 ms`; the transcript again included `ping_sock: send error=0`.
+
+Assessment:
+- This is partial WF-4 evidence for `net`, `time`, and both default-host and custom-host `ping` behavior on firmware 2.1.0. Neither target returned ICMP responses in the supplied runs; this does not establish general internet unavailability, and the cause (ICMP filtering, path/network conditions, or device behavior) is undetermined.
+- No private network address values or clock value are preserved. The public custom ping target is retained. `scan` is recorded separately.
+
+Selected UART (values redacted):
+---- Sent utf8 encoded message: "net\n" ----
+net
+I (1122259) sentry:   ip:      [redacted]
+I (1122259) sentry:   mask:    [redacted]
+I (1122259) sentry:   gateway: [redacted]
+I (1122259) sentry:   dns:     [redacted]
+I (1122259) sentry:   mac:     [redacted]
+
+---- Sent utf8 encoded message: "time\n" ----
+I (1224369) sentry: [LINK] time: [date/time redacted] (Kyiv)
+
+---- Sent utf8 encoded message: "ping\n" ----
+ping
+I (1466399) sentry: ping 8.8.8.8 (8.8.8.8)...
+W (1467399) sentry:   timeout
+W (1468399) sentry:   timeout
+W (1469399) sentry:   timeout
+E (1469399) ping_sock: send error=0
+W (1470399) sentry:   timeout
+I (1470399) sentry: ping: 0/4 ok, avg 0 ms
+I (1472439) sentry: [TELEMETRY #30] [time redacted] up 00:24:32 heap 257KB rssi -31 temp 29.4C depth 40.6m hull 5.1bar batt 24.2V valve closed sonar - state NORMAL
+
+---- Sent utf8 encoded message: "ping 1.1.1.1\n" ----
+ping 1.1.1.1
+I (4437469) sentry: ping 1.1.1.1 (1.1.1.1)...
+W (4438469) sentry:   timeout
+W (4439469) sentry:   timeout
+W (4440469) sentry:   timeout
+E (4440469) ping_sock: send error=0
+W (4441649) sentry:   timeout
+I (4441649) sentry: ping: 0/4 ok, avg 0 ms

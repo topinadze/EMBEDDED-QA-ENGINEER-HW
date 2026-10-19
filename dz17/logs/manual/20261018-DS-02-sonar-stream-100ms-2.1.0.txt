@@ -1,0 +1,85 @@
+Date: 2026-10-18
+Firmware: 2.1.0 (`ota_0`, valid), confirmed by `version` immediately before the run
+Source: selected excerpt from operator-supplied UART transcript
+Setup reported in the preceding test instruction: stationary target at 20 cm; relay closed, auto off. Status confirmed relay closed. Target physical position is operator setup, not echoed by UART.
+
+Results:
+- `distance log 100` was accepted and announced continuous pinging every 100 ms.
+- UART ping timestamps in the excerpt are generally 150 ms apart (for example, 2638799, 2638949, 2639099, 2639249). This is an observed cadence discrepancy requiring a controlled retest; this transcript alone does not isolate whether the period is measurement duration plus requested delay or another timing effect.
+- While the stream was active, `distance` returned `E711 measuring is running. Use 'distance stop'`, matching DS-2.
+- `distance stop` returned `[SONAR] pinging stopped (command)`, but the documented W710 code was not present in the supplied output. The stop acknowledgement is present; no post-stop quiet interval is included to independently verify that pings ceased.
+- At the stationary target setup, readings mostly fluctuated around 23.2–27.2 cm, with occasional 29.7, 30.5, and 37.4 cm. With a 25 cm proximity threshold, alarm/clear messages alternated as readings crossed the threshold and apparent 30 cm clear boundary. This is evidence of changing reported readings at the fixed setup, not by itself proof that hysteresis logic is defective.
+- The transcript includes a mistyped `reley status` command returning E001; the corrected `relay status` confirmed `closed, auto off, cycles 80`.
+- No physical LED/relay observation was supplied for this stream check.
+
+Assessment:
+- DS-2 stream start and E711 behavior were observed. Stop produced a textual acknowledgement, but the expected W710 code was not emitted in the captured output. Track as an observed requirement/response mismatch pending retest.
+- The reported 100 ms interval did not match the approximately 150 ms between consecutive ping log timestamps. Track as a cadence discrepancy requiring controlled confirmation; do not infer its implementation cause from UART alone.
+- The reading fluctuation and corresponding alarm state changes reinforce the previously reported sonar measurement-quality concern. They are not separately classified as a DS-4 hysteresis defect because the reported readings crossed the configured 25 cm threshold and its 5 cm clear band.
+- No automated or assistant-run hardware test was performed.
+
+Selected UART evidence:
+---- Sent utf8 encoded message: "version\n" ----
+version
+I (2553139) sentry: SENTRY SWM-2 sonar watch module, fw v2.1.0 (build Oct  6 2026 02:14:57)
+I (2553139) sentry:   partition: ota_0 @ 0x20000, state: valid
+---- Sent utf8 encoded message: "status\n" ----
+status
+I (2556699) sentry: === SWM-2 status ===
+I (2556699) sentry:   fw:       v2.1.0 (ota_0)
+I (2556699) sentry:   state:    1 NORMAL
+I (2556719) sentry:   valve:    closed
+---- Sent utf8 encoded message: "reley status\n" ----
+reley status
+E (2605309) sentry: E001 unknown command 'reley'. Type 'help'
+---- Sent utf8 encoded message: "relay status\n" ----
+relay status
+I (2617799) sentry: [VALVE] closed, auto off, cycles 80
+---- Sent utf8 encoded message: "distance log 100\n" ----
+distance log 100
+I (2638719) sentry: [SONAR] continuous pinging every 100 ms (command). 'distance stop' to stop
+I (2638799) sentry: [SONAR] ping: echo 23.5 cm
+I (2638949) sentry: [SONAR] ping: echo 23.5 cm
+I (2639099) sentry: [SONAR] ping: echo 25.3 cm
+I (2639249) sentry: [SONAR] ping: echo 23.5 cm
+I (2639399) sentry: [SONAR] ping: echo 23.5 cm
+I (2639549) sentry: [SONAR] ping: echo 23.5 cm
+I (2639699) sentry: [SONAR] ping: echo 24.5 cm
+I (2639849) sentry: [SONAR] ping: echo 24.5 cm
+I (2639999) sentry: [SONAR] ping: echo 24.5 cm
+I (2640149) sentry: [SONAR] ping: echo 23.5 cm
+I (2640299) sentry: [SONAR] ping: echo 23.5 cm
+I (2640449) sentry: [SONAR] ping: echo 23.5 cm
+I (2640599) sentry: [SONAR] ping: echo 24.4 cm
+I (2640749) sentry: [SONAR] ping: echo 23.5 cm
+I (2640899) sentry: [SONAR] ping: echo 23.5 cm
+I (2641049) sentry: [SONAR] ping: echo 23.5 cm
+I (2641199) sentry: [SONAR] ping: echo 25.3 cm
+I (2641349) sentry: [SONAR] ping: echo 23.5 cm
+I (2641499) sentry: [SONAR] ping: echo 23.5 cm
+I (2641649) sentry: [SONAR] ping: echo 23.5 cm
+I (2642549) sentry: [SONAR] ping: echo 29.7 cm
+---- Sent utf8 encoded message: "distance\n" ----
+distance
+E (2644159) sentry: E711 measuring is running. Use 'distance stop'
+I (2644199) sentry: [SONAR] ping: echo 26.2 cm
+I (2644349) sentry: [SONAR] ping: echo 24.0 cm
+I (2644499) sentry: [SONAR] ping: echo 26.2 cm
+I (2644649) sentry: [SONAR] ping: echo 27.2 cm
+I (2644949) sentry: [SONAR] ping: echo 23.2 cm
+I (2645099) sentry: [SONAR] ping: echo 23.2 cm
+I (2645409) sentry: [SONAR] ping: echo 30.5 cm
+I (2645409) sentry: [SONAR] proximity alarm cleared (30.5 cm)
+I (2645559) sentry: [SONAR] ping: echo 24.5 cm
+W (2645559) sentry: [SONAR] PROXIMITY ALARM: contact at 24.5 cm (threshold 25 cm)
+I (2645709) sentry: [SONAR] ping: echo 37.4 cm
+I (2645709) sentry: [SONAR] proximity alarm cleared (37.4 cm)
+I (2645859) sentry: [SONAR] ping: echo 37.4 cm
+I (2646009) sentry: [SONAR] ping: echo 25.3 cm
+I (2646159) sentry: [SONAR] ping: echo 24.5 cm
+W (2646159) sentry: [SONAR] PROXIMITY ALARM: contact at 24.5 cm (threshold 25 cm)
+I (2651229) sentry: [TELEMETRY #60] 02:09:06 up 00:44:10 heap 257KB rssi -26 temp 31.4C depth 42.5m hull 5.2bar batt 24.1V valve closed sonar 23.5cm state NORMAL
+---- Sent utf8 encoded message: "distance stop\n" ----
+distance stop
+I (2651859) sentry: [SONAR] ping: echo 23.5 cm
+I (2651939) sentry: [SONAR] pinging stopped (command)

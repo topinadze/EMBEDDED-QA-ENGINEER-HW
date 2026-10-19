@@ -1,0 +1,72 @@
+Date: 2026-10-18
+Source: operator-supplied UART transcript
+Firmware: v2.3.0, valid on `ota_1`
+Redaction: account/network identifiers, IP, and wall-clock values omitted. Credential-bearing command lines are omitted.
+
+Initial state:
+- `version` reported v2.3.0 valid on `ota_1`.
+- `status` reported NORMAL, internet OK, user logged out, and valve closed.
+- `ota status` returned E003 while logged out; `whoami` confirmed logged out.
+- `ota install 2.1` while logged out returned E003, so version parsing was not reached on that attempt.
+- A first login attempt was rejected with E209. A subsequent login succeeded; credential-bearing input is intentionally not reproduced.
+
+Version validation after login:
+- `ota install 2.1` returned E414, bad version format; expected format `X.Y.Z`.
+- `ota install 2.1.0.0` returned E414, bad version format; expected format `X.Y.Z`.
+- `ota install abc` returned E414, bad version format; expected format `X.Y.Z`.
+- `ota install 999.999.999` reached the server and returned E415, version not found.
+
+Follow-up:
+- `version` reported v2.3.0 valid on `ota_1`.
+- `status` reported v2.3.0 on `ota_1`, NORMAL, internet OK, ordinary-user access, and valve closed.
+- `ota status` reported v2.3.0 valid in `ota_1`, previous v2.1.0 in `ota_0`.
+- Uptime at initial status was 0h 04m 55s and at final status 0h 06m 38s; no reboot was reported during these commands. The uptime reset relative to an earlier evidence session is outside this test and its cause is not inferred here.
+- Result: E414 malformed-version handling and E415 unavailable-version handling PASS for these sampled inputs. This does not cover malformed input boundaries beyond these samples, downgrade/force, or OTA image error handling.
+
+Selected redacted UART:
+---- Sent utf8 encoded message: "version\n" ----
+version
+I ([redacted]) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0
+I ([redacted]) sentry:   partition: ota_1 @ 0x1a0000, state: valid
+---- Sent utf8 encoded message: "status\n" ----
+status
+I ([redacted]) sentry:   fw: v2.3.0 (ota_1)
+I ([redacted]) sentry:   state: 1 NORMAL
+I ([redacted]) sentry:   internet: OK
+I ([redacted]) sentry:   user: not logged in
+I ([redacted]) sentry:   time: [redacted], uptime 0h 04m 55s
+I ([redacted]) sentry:   valve: closed
+---- Sent utf8 encoded message: "ota status\n" ----
+ota status
+E ([redacted]) sentry: E003 login required. Use 'login <login> <pass>' or 'register'
+---- Sent utf8 encoded message: "whoami\n" ----
+whoami
+I ([redacted]) sentry: not logged in
+---- Sent utf8 encoded message: "ota install 2.1\n" [while logged out] ----
+E ([redacted]) sentry: E003 login required. Use 'login <login> <pass>' or 'register'
+---- Successful local login ----
+Credential-bearing command and account identifier omitted; UART reported operator authenticated.
+---- Sent utf8 encoded message: "ota install 2.1\n" [after login] ----
+E ([redacted]) sentry: E414 bad version '2.1'. Format: X.Y.Z
+---- Sent utf8 encoded message: "ota install 2.1.0.0\n" ----
+E ([redacted]) sentry: E414 bad version '2.1.0.0'. Format: X.Y.Z
+---- Sent utf8 encoded message: "ota install abc\n" ----
+E ([redacted]) sentry: E414 bad version 'abc'. Format: X.Y.Z
+---- Sent utf8 encoded message: "ota install 999.999.999\n" ----
+E ([redacted]) sentry: E415 version v999.999.999 not found on server
+---- Sent utf8 encoded message: "version\n" ----
+version
+I ([redacted]) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0
+I ([redacted]) sentry:   partition: ota_1 @ 0x1a0000, state: valid
+---- Sent utf8 encoded message: "status\n" ----
+status
+I ([redacted]) sentry:   fw: v2.3.0 (ota_1)
+I ([redacted]) sentry:   state: 1 NORMAL
+I ([redacted]) sentry:   internet: OK
+I ([redacted]) sentry:   user: [redacted] (user)
+I ([redacted]) sentry:   time: [redacted], uptime 0h 06m 38s
+I ([redacted]) sentry:   valve: closed
+---- Sent utf8 encoded message: "ota status\n" ----
+ota status
+I ([redacted]) sentry: [OTA] running: v2.3.0 in ota_1 (valid)
+I ([redacted]) sentry: [OTA] previous: v2.1.0 in ota_0

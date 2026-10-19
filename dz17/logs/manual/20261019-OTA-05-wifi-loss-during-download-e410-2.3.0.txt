@@ -1,0 +1,69 @@
+Date: 2026-10-19
+Firmware: v2.3.0
+Source: operator-supplied UART transcript
+Test: OTA-9 slow download with temporary Wi-Fi interruption
+Redaction: local host address, Wi-Fi identifiers, account identifier, build timestamp, wall-clock values, and credential-bearing commands omitted.
+
+Preconditions:
+- v2.3.0 was valid on `ota_0`; `status` showed NORMAL, internet OK, and valve closed.
+- Local OTA server ran with `--slow 20`.
+
+Action and result:
+- Sent the valid same-version v2.3.0 local image URL. OTA targeted inactive `ota_1`, emitted W409, and reached 20%.
+- Wi-Fi was interrupted. The device logged W110 (Wi-Fi connection lost, reason 3), retried the link, then returned E410 `download interrupted (ESP_FAIL)` after TCP read failures. This is the PRD's interrupted-download error, not E411.
+- Post-error `version` confirmed v2.3.0 valid on `ota_0`; `status` showed NORMAL and valve closed while the link was down. `ota status` returned E002 while Wi-Fi was unavailable.
+- `reconnect` restored Wi-Fi and internet. The first reconnect logged W106 (NTP sync failed, timestamps disabled). A later valid same-version local URL retry with `force`, after restarting the server without `--slow`, wrote `ota_1`, completed successfully, rebooted, passed PENDING_VERIFY self-check, and marked v2.3.0 VALID. Boot reported NORMAL; `version` confirmed v2.3.0 valid on `ota_1`.
+- After the recovery reboot, reconnect restored internet and a later NTP synchronization succeeded. This later sync does not establish that the earlier W106 was cleared on the same reconnect; BUG-014 remains open.
+- A subsequent `status` readback confirmed v2.3.0 on `ota_1`, NORMAL, internet OK, valve closed, and user logged out.
+- Operator confirmed that the local OTA server process is now stopped. This does not verify or change the device's persistent `ota server` setting.
+- Result: PASS for this sampled E410 handling and successful subsequent OTA attempt on v2.3.0. The separate PRD E411 no-internet case remains NOT RUN.
+
+Selected redacted UART:
+---- Slow-download interruption ----
+ota url http://[local host redacted]:8000/fw7/v2.3.0/sentry_fw7.bin
+I ([redacted]) sentry: [OTA] current v2.3.0 (ota_0) -> target partition ota_1
+I ([redacted]) esp_https_ota: Writing to <ota_1> partition at offset 0x1a0000
+I ([redacted]) sentry: [OTA] image: sentry_fw7 v2.3.0
+W ([redacted]) sentry: W409 same version v2.3.0 - reinstalling
+I ([redacted]) sentry: [OTA]  20%
+W ([redacted]) sentry: W110 wifi connection lost (reason 3)
+I ([redacted]) sentry: [LINK] retry 1/3...
+E ([redacted]) transport_base: tcp_read error, errno=Software caused connection abort
+E ([redacted]) sentry: E410 download interrupted (ESP_FAIL)
+---- Post-error active state ----
+I ([redacted]) sentry:   partition: ota_0 @ 0x20000, state: valid
+I ([redacted]) sentry:   state: 1 NORMAL
+I ([redacted]) sentry:   link: buoy link down
+I ([redacted]) sentry:   valve: closed
+E ([redacted]) sentry: E002 Wi-Fi required. Use 'reconnect' or 'connect'
+---- Initial reconnect ----
+I ([redacted]) sentry: [LINK] fleet network reachable (internet OK)
+W ([redacted]) sentry: W106 [LINK] time: NTP sync failed, timestamps disabled
+---- Valid same-version recovery retry (normal server, force) ----
+ota url http://[local host redacted]:8000/fw7/v2.3.0/sentry_fw7.bin force
+I ([redacted]) sentry: [OTA] current v2.3.0 (ota_0) -> target partition ota_1
+I ([redacted]) esp_https_ota: Writing to <ota_1> partition at offset 0x1a0000
+W ([redacted]) sentry: W409 same version v2.3.0 - reinstalling
+I ([redacted]) sentry: [OTA] 100%
+I ([redacted]) sentry: [OTA] success: v2.3.0 -> v2.3.0 in 9 s. Rebooting...
+I ([redacted]) sentry: [OTA] running v2.3.0 from ota_1
+W ([redacted]) sentry: [OTA] new firmware, PENDING_VERIFY - self-check...
+I ([redacted]) sentry: [OTA] self-check passed, firmware marked VALID
+I ([redacted]) sentry: ready. state 1 NORMAL (patrol).
+---- Post-recovery readback and reconnect ----
+I ([redacted]) sentry:   partition: ota_1 @ 0x1a0000, state: valid
+I ([redacted]) sentry: [LINK] fleet network reachable (internet OK)
+I ([redacted]) sentry: [LINK] time: synced via NTP, [time redacted]
+---- Final post-reconnect status ----
+status
+I ([redacted]) sentry:   fw: v2.3.0 (ota_1)
+I ([redacted]) sentry:   state: 1 NORMAL
+I ([redacted]) sentry:   link: buoy link [network redacted], ip [redacted], rssi [redacted]
+I ([redacted]) sentry:   internet: OK
+I ([redacted]) sentry:   user: not logged in
+I ([redacted]) sentry:   time: [redacted]
+I ([redacted]) sentry:   valve: closed
+I ([redacted]) sentry:   watch: disarmed, CIC alerts unacked: 0
+I ([redacted]) sentry:   sonar: no contact
+I ([redacted]) sentry:   carrier: [redacted]
+I ([redacted]) sentry:   heap: 251 KB free

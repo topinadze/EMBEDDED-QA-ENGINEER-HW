@@ -1,0 +1,60 @@
+Source: operator-supplied UART transcript in chat
+Date: 2026-10-18
+Firmware: 2.1.0, `ota_0` before and after software reboot
+Requirement: ST-3 prohibited commands return E005/E001 and raise transducer-driver temperature; reboot is the only EMERGENCY exit; ST-4 reboot returns to NORMAL
+Redaction: Account, network identifiers, IP, build tag, and wall-clock values are omitted.
+
+Precondition:
+- The device was in EMERGENCY after the documented K4+K1 pair transition from VERBOSE.
+- Allowed commands had been checked in the preceding capture. The `help` output listed the global `state` command, but it was not invoked here.
+
+Observed result:
+- `lamp on`, `reconnect`, `disconnect`, `logout`, and `distance` were each rejected with E005 as blocked in EMERGENCY.
+- After each rejected command, UART reported a rising transducer-driver temperature and incremented the invalid-command count:
+  - 30.4 C -> 38.5 C (invalid: 1)
+  - 38.5 C -> 47.5 C (invalid: 2)
+  - 47.5 C -> 55.7 C (invalid: 3)
+  - 55.7 C -> 66.0 C (invalid: 4)
+  - 66.0 C -> 76.1 C (invalid: 5)
+- Telemetry after the fifth rejection displayed `WARN overheat` at 76.1 C. The operator closed the serial port, then reopened it to issue the allowed `reboot` command. No further rejected commands were attempted.
+- Reboot counted down 3, 2, 1 and booted with reset reason `software reboot`.
+- Boot output identified firmware 2.1.0, loaded `ota_0`, reported `ready. state 1 NORMAL (patrol)`, and retained the saved Wi-Fi network. The boot log also reported the test user profile as registered.
+- Simulator NAV messages reported depth at 0.0 m during EMERGENCY; no physical surfacing or actuator movement is inferred.
+
+Assessment:
+- Rejection of five sampled prohibited commands with E005 and increasing reported driver temperature was observed. The temperature reached 76.1 C and the firmware warned `overheat`; this is below the PRD's stated 95 C emergency-reboot threshold. No claim is made about physical sensor temperature.
+- The operator-issued reboot exited the current EMERGENCY entry and restored 2.1.0 in NORMAL.
+- Prohibited button behavior, automatic reboot at 95 C, and detailed LED behavior remain untested.
+
+Selected UART (sensitive fields redacted):
+---- Sent utf8 encoded message: "lamp on\n" ----
+lamp on
+E (9169229) sentry: E005 'lamp on' blocked in EMERGENCY
+E (9169229) sentry: [EMERGENCY] transducer driver temp rising: 30.4 C -> 38.5 C (invalid: 1)
+---- Sent utf8 encoded message: "reconnect\n" ----
+reconnect
+E (9176279) sentry: E005 'reconnect' blocked in EMERGENCY
+E (9176279) sentry: [EMERGENCY] transducer driver temp rising: 38.5 C -> 47.5 C (invalid: 2)
+---- Sent utf8 encoded message: "disconnect\n" ----
+disconnect
+E (9182049) sentry: E005 'disconnect' blocked in EMERGENCY
+E (9182049) sentry: [EMERGENCY] transducer driver temp rising: 47.5 C -> 55.7 C (invalid: 3)
+---- Sent utf8 encoded message: "logout\n" ----
+logout
+E (9188309) sentry: E005 'logout' blocked in EMERGENCY
+E (9188309) sentry: [EMERGENCY] transducer driver temp rising: 55.7 C -> 66.0 C (invalid: 4)
+---- Sent utf8 encoded message: "distance\n" ----
+distance
+E (9196299) sentry: E005 'distance' blocked in EMERGENCY
+E (9196299) sentry: [EMERGENCY] transducer driver temp rising: 66.0 C -> 76.1 C (invalid: 5)
+W ([redacted]) sentry: [TELEMETRY #355] [clock redacted] up 02:33:19 heap 257KB rssi -51 temp 76.1C depth 0.0m hull 1.0bar batt 24.0V valve closed sonar - state EMERGENCY WARN overheat
+---- Sent utf8 encoded message: "reboot\n" ----
+reboot
+I (9264909) sentry: rebooting in 3...
+I (9265909) sentry: rebooting in 2...
+I (9266909) sentry: rebooting in 1...
+ESP-ROM:esp32s3-20210327
+rst:0xc (RTC_SW_CPU_RST),boot:0x8 (SPI_FAST_FLASH_BOOT)
+I (613) sentry: last reset: software reboot
+I (643) sentry: [OTA] running v2.1.0 from ota_0
+I (643) sentry: ready. state 1 NORMAL (patrol). Type 'help'

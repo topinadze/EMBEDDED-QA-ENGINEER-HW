@@ -1,0 +1,38 @@
+Source: operator-supplied UART transcript and operator-reported physical observations
+Date: 2026-10-18
+Firmware: 2.1.0 on `ota_0`
+Requirements: LM-1 on/off behavior; LM-7 status; LM-8 status indication while the beacon is off
+Redaction: Account and network identifiers, IP, wall-clock values, and credentials omitted.
+
+Precondition:
+- `status` confirmed NORMAL, Wi-Fi/internet connected, an ordinary user logged in, and valve closed.
+- `lamp status` reported beacon off, configured red `(255,0,0)`, brightness 100%, solid mode, timer off.
+
+Observed result:
+- `lamp on` returned `[BEACON] on (command) solid, 100%, color (255,0,0)`.
+- The operator confirmed the physical lamp color was red.
+- `lamp off` returned `[BEACON] off (command)`.
+- The operator then reported the built-in RGB LED showing green.
+
+Assessment:
+- The commanded red beacon-on state matched the operator's physical observation.
+- After turning the beacon off while Wi-Fi was connected and the user was logged in, the operator observed green status indication, consistent with the previously reported LM-8 color mapping.
+- No post-off `lamp status` query was supplied in this capture; the off state is supported by the explicit UART acknowledgement. No photometric/colorimetric measurement was made.
+
+Selected UART:
+---- Sent utf8 encoded message: "status\n" ----
+status
+I ([redacted]) sentry:   fw: v2.1.0 (ota_0)
+I ([redacted]) sentry:   state: 1 NORMAL
+I ([redacted]) sentry:   internet: OK
+I ([redacted]) sentry:   user: [redacted] (user)
+I ([redacted]) sentry:   valve: closed
+---- Sent utf8 encoded message: "lamp status\n" ----
+lamp status
+I ([redacted]) sentry: [BEACON] off, color (255,0,0), brightness 100%, mode solid, timer off
+---- Sent utf8 encoded message: "lamp on\n" ----
+lamp on
+I ([redacted]) sentry: [BEACON] on (command) solid, 100%, color (255,0,0)
+---- Sent utf8 encoded message: "lamp off\n" ----
+lamp off
+I ([redacted]) sentry: [BEACON] off (command)

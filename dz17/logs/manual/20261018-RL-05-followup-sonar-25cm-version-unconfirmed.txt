@@ -1,0 +1,45 @@
+Date: 2026-10-18
+Firmware: not shown in this pasted excerpt; the associated earlier RL-05 run confirmed 2.1.0 (`ota_0`, valid)
+Source: selected UART excerpts from operator-supplied 247-line pasted transcript; original snapshot is read-only
+Scope: supplemental 25 cm proximity-alarm trial and cleanup
+
+---- Sent utf8 encoded message: "distance alarm 25\n" ----
+distance alarm 25
+I (4910689) sentry: [SONAR] alarm at 25 cm
+---- Sent utf8 encoded message: "relay auto on\n" ----
+relay auto on
+I (4915889) sentry: [VALVE] auto on - valve opens on sonar proximity alarm
+---- Sent utf8 encoded message: "distance log 500\n" ----
+distance log 500
+I (4923539) sentry: [SONAR] continuous pinging every 500 ms (command). 'distance stop' to stop
+I (4923589) sentry: [SONAR] ping: echo 15.3 cm
+E (4923589) sentry: [COLLISION] contact too close: 15.3 cm (< 20 cm)
+W (4923589) sentry: [SONAR] PROXIMITY ALARM: contact at 15.3 cm (threshold 25 cm)
+I (4923589) sentry: [VALVE] OPEN (distance alarm)
+I (4925269) sentry: [SONAR] ping: echo 39.4 cm
+I (4925269) sentry: [SONAR] proximity alarm cleared (39.4 cm)
+I (4930219) sentry: [SONAR] ping: echo 24.9 cm
+W (4930219) sentry: [SONAR] PROXIMITY ALARM: contact at 24.9 cm (threshold 25 cm)
+I (4943969) sentry: [SONAR] ping: echo 20.0 cm
+E (4943969) sentry: [COLLISION] contact too close: 20.0 cm (< 20 cm)
+I (4993509) sentry: [SONAR] ping: echo 57.4 cm
+I (4993509) sentry: [SONAR] proximity alarm cleared (57.4 cm)
+---- Sent utf8 encoded message: "distance alarm off\n" ----
+distance alarm off
+I (5001299) sentry: [SONAR] alarm off
+---- Sent utf8 encoded message: "relay off\n" ----
+relay off
+I (5017839) sentry: [VALVE] CLOSED (command)
+---- Sent utf8 encoded message: "distance stop\n" ----
+distance stop
+I (5030009) sentry: [SONAR] pinging stopped (command)
+I (5034079) sentry: [TELEMETRY #131] 00:10:09 up 01:23:53 heap 257KB rssi -28 temp 30.4C depth 42.3m hull 5.2bar batt 24.1V valve closed sonar 37.0cm state NORMAL
+---- Sent utf8 encoded message: "relay auto off\n" ----
+relay auto off
+I (5038889) sentry: [VALVE] auto off - valve ignores on sonar proximity alarm
+
+Assessment:
+- The 25 cm threshold generated a proximity alarm at 15.3 cm and opened the relay. The alarm cleared at 39.4 cm, then triggered again at 24.9 cm and later cleared at 57.4 cm. This supports the alarm's observed set/clear behavior and re-trigger after clearing.
+- A collision warning was emitted at a displayed 20.0 cm. The UART reports one decimal place, so the underlying value may have been slightly below 20 cm before rounding; this is not enough to establish a DS-6 boundary defect.
+- Cleanup succeeded in this follow-up: the relay was explicitly closed, the distance stream stopped, and `relay auto off` returned an acknowledgement that auto mode ignores sonar alarms. This corrects the earlier RL-05 run's final `auto on` state for this later sequence; no final `relay status` followed the acknowledgement.
+- The supplied excerpt does not show a version command or any physical LED observation. Do not treat it as independent confirmation of firmware version or DS-7 indicator behavior.

@@ -1,0 +1,24 @@
+Source: terminal output provided by operator in chat.
+Date: 2026-10-16
+Port: COM4
+Firmware: 2.1.0
+
+---- Sent utf8 encoded message: "status\n" ----
+status
+I (932107) sentry: === SWM-2 status ===
+I (932107) sentry:   fw:       v2.1.0 (ota_0)
+I (932107) sentry:   state:    1 NORMAL
+I (932107) sentry:   link:     buoy link down (known: none)
+I (932107) sentry:   user:     not logged in
+I (932107) sentry:   time:     --:--:--, uptime 0h 15m 31s
+I (932117) sentry:   valve:    closed
+I (932117) sentry:   sonar:    no contact
+I (932127) sentry:   carrier:  depth 42.5 m, hull 5.2 bar, water 8.2 C, battery 24.17 V (sim)
+I (932137) sentry:   heap:     261 KB free
+---- Sent utf8 encoded message: "sysinfo\n" ----
+sysinfo
+I (935947) sentry:   chip:      ESP32-S3 rev 2, 2 cores, 160 MHz
+I (935947) sentry:   flash:     4MB
+I (935947) sentry:   heap:      261 KB free, min 257 KB
+I (935947) sentry: uptime: 0h 15m 35s
+I (935947) sentry: chip temperature: 30.4 C

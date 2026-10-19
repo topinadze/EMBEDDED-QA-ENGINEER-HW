@@ -1,0 +1,32 @@
+Date: 2026-10-18
+Source: operator-supplied UART transcript
+Attempt: `ota install 2.1.0` from firmware v2.3.0
+Redaction: account/network identifiers, IP, and wall-clock values omitted.
+
+Precondition: immediately before this attempt, `version` reported v2.3.0 valid on `ota_1`; `status` reported NORMAL, internet OK, ordinary-user access, and valve closed; `ota status` reported previous v2.1.0 in `ota_0`.
+
+Result: the command failed with E402 because the OTA server could not be reached (HTTP -1) after a connection timeout. The downgrade policy was therefore not exercised; this is not evidence for expected E408 behavior and is not classified as a downgrade defect. Follow-up `version`, `status`, and `ota status` confirmed v2.3.0 remained valid on `ota_1`, NORMAL, internet OK, valve closed, and previous v2.1.0 remained in `ota_0`. General internet reachability was reported as OK, but the OTA endpoint failure was not diagnosed.
+
+Selected redacted UART:
+---- Sent utf8 encoded message: "ota install 2.1.0\n" ----
+ota install 2.1.0
+E ([redacted]) esp-tls: [sock=54] select() timeout
+E ([redacted]) esp-tls: Failed to open new connection
+E ([redacted]) transport_base: Failed to open a new connection
+E ([redacted]) HTTP_CLIENT: Connection failed, sock < 0
+E ([redacted]) sentry: E402 cannot reach OTA server (HTTP -1)
+---- Sent utf8 encoded message: "version\n" ----
+version
+I ([redacted]) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0
+I ([redacted]) sentry:   partition: ota_1 @ 0x1a0000, state: valid
+---- Sent utf8 encoded message: "status\n" ----
+status
+I ([redacted]) sentry:   fw: v2.3.0 (ota_1)
+I ([redacted]) sentry:   state: 1 NORMAL
+I ([redacted]) sentry:   internet: OK
+I ([redacted]) sentry:   valve: closed
+I ([redacted]) sentry:   watch: disarmed, CIC alerts unacked: 0
+---- Sent utf8 encoded message: "ota status\n" ----
+ota status
+I ([redacted]) sentry: [OTA] running: v2.3.0 in ota_1 (valid)
+I ([redacted]) sentry: [OTA] previous: v2.1.0 in ota_0

@@ -1,0 +1,153 @@
+Source: terminal output provided by operator in chat.
+Date: 2026-10-16
+Port: COM4
+Firmware: 2.1.0
+Initial state: Wi-Fi disconnected, user not logged in.
+Security: entered Wi-Fi password redacted; it is not retained in this evidence file.
+
+connect
+I (674933) sentry: [LINK] scanning...
+I (677433) sentry:   [ 1] [network redacted]                         -23 dBm
+I (677433) sentry:   [ 2] TopAs_2.4G                        -58 dBm
+I (677433) sentry:   [ 3] bambuh                            -58 dBm
+I (677433) sentry:   [ 4] AP_2987279135                     -74 dBm
+I (677443) sentry:   [ 5] bambuh                            -75 dBm
+I (677453) sentry:   [ 6] E_0184_2056_E                     -79 dBm
+I (677453) sentry:   [ 7] GreenMint                         -80 dBm
+I (677463) sentry:   [ 8] VR46                              -84 dBm
+I (677463) sentry:   [ 9] bababa_Guest                      -86 dBm
+I (677473) sentry:   [10] bababa                            -87 dBm
+I (677483) sentry:   [11] c687a67b                          -89 dBm
+I (677483) sentry:   [12] SmileV                            -91 dBm
+I (677493) sentry:   [13] rabbits                           -92 dBm
+I (677493) sentry:   [14] SkyNet                            -92 dBm
+I (677503) sentry:   [15] c67c1415                          -93 dBm
+I (677503) sentry:   [16] Tp-link1000                       -93 dBm
+I (677513) sentry:   [17] Home_sweet_home                   -93 dBm
+I (677523) sentry:   [18] FAN: 0047002357425710             -95 dBm
+I (677523) sentry:   [19] D262100562C0                      -96 dBm
+SSID or number:
+---- Sent utf8 encoded message: "1\n" ----
+1
+Password:
+---- Sent utf8 encoded message: "[REDACTED]\n" ----
+[REDACTED]
+I (688353) sentry: [LINK] raising buoy antenna, connecting to '[network redacted]'...
+I (688443) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0
+I (688443) wifi:state: init -> auth (0xb0)
+I (688453) wifi:state: auth -> assoc (0x0)
+I (688463) wifi:state: assoc -> run (0x10)
+I (688473) wifi:connected with [network redacted], aid = 1, channel 1, BW20, bssid = [MAC redacted]
+I (688473) wifi:security: WPA2-PSK, phy: bgn, rssi: -25, cipher(pairwise:0x3, group:0x3), pmf:1
+I (688483) wifi:pm start, type: 1
+
+I (688483) wifi:dp: 1, bi: 102400, li: 3, scale listen interval from 307200 us to 307200 us
+I (688493) wifi:set rx beacon pti, rx_bcn_pti: 0, bcn_timeout: 25000, mt_pti: 0, mt_time: 10000
+I (688583) wifi:dp: 2, bi: 102400, li: 4, scale listen interval from 307200 us to 409600 us
+I (688583) wifi:AP's beacon interval = 102400 us, DTIM period = 2
+I (689543) esp_netif_handlers: sta ip: [IP redacted], mask: 255.255.255.0, gw: [gateway redacted]
+I (689543) sentry: [LINK] got ip [IP redacted]
+I (689543) sentry: [LINK] connected to '[network redacted]', rssi -21 dBm (excellent)
+I (689753) wifi:<ba-add>idx:0 (ifx:0, [MAC redacted]), tid:0, ssn:3, winSize:64
+I (690053) esp-x509-crt-bundle: Certificate validated
+I (691063) sentry: [LINK] fleet network reachable (internet OK)
+I (693803) sentry: [LINK] time: synced via NTP, 00:32:33
+I (693803) sentry: [LINK] network saved. Next time just type 'reconnect'
+
+---- Sent utf8 encoded message: "version\n" ----
+version
+I (701173) sentry: SENTRY SWM-2 sonar watch module, fw v2.1.0 (build Oct  6 2026 02:14:57)
+I (701173) sentry:   partition: ota_0 @ 0x20000, state: valid
+
+---- Sent utf8 encoded message: "ota\n" ----
+ota
+E (704013) sentry: E003 login required. Use 'login <login> <pass>' or 'register'
+I (713843) sentry: [NAV] depth 41.9 m, heading 273, speed 3.1 kn
+
+---- Sent utf8 encoded message: "help\n" ----
+help
+I (715123) sentry: Commands ([wifi] - needs Wi-Fi, [login] - needs Wi-Fi + login, [debug] - debug access):
+I (715123) sentry: System:
+I (715123) sentry:   help                         - this help
+I (715123) sentry:   status                       - full device status
+I (715133) sentry:   version                      - firmware version and partition
+I (715133) sentry:   sysinfo                      - chip, memory, uptime
+I (715143) sentry:   temp                         - chip temperature
+I (715153) sentry:   uptime                       - time since boot
+I (715153) sentry:   reboot                       - reboot device
+I (715163) sentry: Buoy link (Wi-Fi):
+I (715163) sentry:   connect                      - connect to Wi-Fi (scan, SSID, password)
+I (715173) sentry:   reconnect                    - connect to known network
+I (715183) sentry:   forget                       - forget known network
+I (715183) sentry:   disconnect                   - disconnect from Wi-Fi
+I (715193) sentry:   scan                         - list Wi-Fi networks
+I (715203) sentry:   net                          - IP, gateway, DNS, MAC [wifi]
+I (715203) sentry:   ping [host]                  - ping host (default 8.8.8.8) [wifi]
+I (715213) sentry:   time                         - current time (NTP) [wifi]
+I (715223) sentry: Account:
+I (715223) sentry:   register <login> <pass>      - create profile (one per device) [wifi]
+I (715233) sentry:   login <login> <pass>         - start session [wifi]
+I (715243) sentry:   logout                       - end session
+I (715243) sentry:   whoami                       - current user and access
+I (715253) sentry:   passwd <old> <new>           - change password [login]
+I (715253) sentry:   sudo <password>              - elevate current user to debug [login]
+I (715263) sentry: States:
+I (715263) sentry:   state [1-4|name]             - show / change system state [login]
+I (715273) sentry: OTA:
+I (715273) sentry:   ota [status]                 - running / previous firmware [login]
+I (715283) sentry:   ota check                    - check stable and beta channels [login]
+I (715293) sentry:   ota update [beta]            - update to stable (or beta) [login]
+I (715303) sentry:   ota install <X.Y.Z> [force]  - install exact version (force - allow downgrade) [login]
+I (715313) sentry:   ota broken                   - install broken build (rollback test) [login]
+I (715323) sentry:   ota rollback                 - boot previous firmware [login]
+I (715323) sentry:   ota url <url> [force]        - install image from any http(s) link [login]
+I (715333) sentry:   ota server [<url>|default]   - show / set update server (default - GitHub) [login]
+I (715343) sentry: Beacon light (alias: beacon):
+I (715343) sentry:   lamp on|off|toggle           - Smart Lamp power [login]
+I (715353) sentry:   lamp status                  - lamp settings [login]
+I (715363) sentry:   lamp color <name|R G B>      - white red green blue yellow purple cyan orange [login]
+I (715373) sentry:   lamp brightness <0-100>      - brightness, % [login]
+I (715373) sentry:   lamp mode <mode>              - solid | blink | breathe | rainbow [login]
+I (715383) sentry:   lamp timer <sec>             - auto-off 1-3600 s (0 - cancel) [login]
+I (715393) sentry:   lamp scene save|load <1-3>   - save / load lamp preset [login]
+I (715403) sentry: Trim valve (alias: valve, open|close):
+I (715403) sentry:   relay on|off|toggle          - relay + indicator diode [login]
+I (715413) sentry:   relay status                 - state, auto mode, switch counter [login]
+I (715423) sentry:   relay pulse <ms>             - turn on for 100-10000 ms [login]
+I (715433) sentry:   relay schedule <on> <off>    - cycle on/off in seconds ('off' - stop)
+I (715433) sentry:   relay auto on|off            - turn relay on by distance alarm [login]
+I (715443) sentry:   relay health                 - contact wear and coil check [login]
+I (715453) sentry: Active sonar (alias: sonar):
+I (715453) sentry:   distance [N]                 - measure once or N times (1-20) [login]
+I (715463) sentry:   distance log [ms] | stop     - continuous measuring 100-5000 ms [login]
+I (715473) sentry:   distance calibrate <cm>      - calibrate by reference object ('reset') [login]
+I (715483) sentry:   distance alarm <cm>|off      - alarm threshold 5-300 cm [login]
+I (715493) sentry:   distance filter on|off       - median filter of 5 samples [login]
+I (715493) sentry:   distance stats|history       - statistics / last 10 measurements [login]
+I (715503) sentry: Telemetry (alias: telemetry):
+I (715513) sentry:   health now                   - health report now [login]
+I (715513) sentry:   health on|off                - auto report (after login, 30 s) [login]
+I (715523) sentry:   health interval <sec>        - auto interval 10-300 s (VERBOSE 10 s) [login]
+I (715533) sentry: Perimeter watch, CIC alerts: planned in v2.3.0
+I (715543) sentry: Buttons [login]:
+I (715543) sentry:   K1 press / hold 1.5 s        - beacon on/off / next color [login]
+I (715553) sentry:   K2 press / hold 1.5 s        - valve open/close / 1 s pulse [login]
+I (715553) sentry:   K3 press                     - active sonar for 30 s (press again - stop) [login]
+I (715563) sentry:   K4                           - perimeter watch (planned in v2.3.0)
+I (715573) sentry:   hold 2 s: K1+K2 - 1 NORMAL, K2+K3 - 2 DEBUG, K3+K4 - 3 VERBOSE, K4+K1 - 4 EMERGENCY (only from 3)
+
+---- Sent utf8 encoded message: "sysinfo\n" ----
+sysinfo
+I (721133) sentry:   chip:      ESP32-S3 rev 2, 2 cores, 160 MHz
+I (721133) sentry:   flash:     4MB
+I (721133) sentry:   heap:      258 KB free, min 212 KB
+I (721133) sentry: uptime: 0h 12m 00s
+I (721133) sentry: chip temperature: 31.4 C
+
+---- Sent utf8 encoded message: "temp\n" ----
+temp
+I (723583) sentry: chip temperature: 31.4 C
+
+---- Sent utf8 encoded message: "uptime\n" ----
+uptime
+I (726583) sentry: uptime: 0h 12m 06s

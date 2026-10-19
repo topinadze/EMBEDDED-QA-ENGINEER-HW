@@ -1,0 +1,62 @@
+Date: 2026-10-16
+Firmware: 2.1.0
+Source: sanitized excerpts from supplied UART transcript
+Port: COM4
+Intervals: routine status fields and unrelated telemetry omitted where not needed
+
+---- Sent utf8 encoded message: "status\n" ----
+status
+I (674283) sentry: === SWM-2 status ===
+I (674283) sentry:   fw:       v2.1.0 (ota_0)
+I (674283) sentry:   state:    1 NORMAL
+I (674283) sentry:   link:     buoy link '[network redacted]', ip [IP redacted], rssi -32 dBm (excellent), ch 1
+I (674283) sentry:   internet: OK
+I (674293) sentry:   user:     [operator account] (user)
+I (674293) sentry:   time:     01:33:13, uptime 0h 11m 13s
+---- Sent utf8 encoded message: "STATUS\n" ----
+STATUS
+I (676973) sentry: === SWM-2 status ===
+I (676973) sentry:   fw:       v2.1.0 (ota_0)
+I (676973) sentry:   state:    1 NORMAL
+I (676973) sentry:   link:     buoy link '[network redacted]', ip [IP redacted], rssi -37 dBm (excellent), ch 1
+I (676973) sentry:   internet: OK
+I (676983) sentry:   user:     [operator account] (user)
+I (676983) sentry:   time:     01:33:16, uptime 0h 11m 16s
+---- Sent utf8 encoded message: "Status\n" ----
+Status
+I (679253) sentry: === SWM-2 status ===
+I (679253) sentry:   fw:       v2.1.0 (ota_0)
+I (679253) sentry:   state:    1 NORMAL
+I (679253) sentry:   link:     buoy link '[network redacted]', ip [IP redacted], rssi -32 dBm (excellent), ch 1
+I (679263) sentry:   internet: OK
+I (679263) sentry:   user:     [operator account] (user)
+I (679263) sentry:   time:     01:33:18, uptime 0h 11m 18s
+---- Sent utf8 encoded message: "state 3\n" ----
+state 3
+W (693193) sentry: [STATE] 1 NORMAL -> 3 VERBOSE (by command)
+I (693193) sentry: [STATE] VERBOSE (tactical): extended logs, telemetry every 10 s, LED heartbeat
+I (693193) sentry: [V] 'state' done in 3 ms
+I (703243) sentry: [TELEMETRY #20] 01:33:42 up 00:11:42 heap 258KB rssi -29 temp 32.4C depth 42.1m hull 5.2bar batt 24.2V valve closed sonar - state VERBOSE
+I (703243) sentry: [V] telemetry: min heap 211KB, beacon off, tasks 15, water 8.1C, source auto
+---- Sent utf8 encoded message: "state\n" ----
+state
+I (707313) sentry: state: 3 VERBOSE
+I (707313) sentry:   1 normal (patrol) | 2 debug (maintenance) | 3 verbose (tactical) | 4 emergency (surfacing, only from 3)
+I (707313) sentry: [V] 'state' done in 3 ms
+I (713253) sentry: [TELEMETRY #21] 01:33:52 up 00:11:52 heap 258KB rssi -28 temp 32.4C depth 42.1m hull 5.2bar batt 24.2V valve closed sonar - state VERBOSE
+I (713253) sentry: [V] telemetry: min heap 211KB, beacon off, tasks 15, water 8.1C, source auto
+I (723263) sentry: [TELEMETRY #22] 01:34:02 up 00:12:02 heap 258KB rssi -29 temp 32.4C depth 42.4m hull 5.2bar batt 24.2V valve closed sonar - state VERBOSE
+I (723263) sentry: [V] telemetry: min heap 211KB, beacon off, tasks 15, water 8.0C, source auto
+---- Sent utf8 encoded message: "status\n" ----
+status
+I (726893) sentry: === SWM-2 status ===
+I (726893) sentry:   fw:       v2.1.0 (ota_0)
+I (726893) sentry:   state:    3 VERBOSE
+I (726893) sentry:   link:     buoy link '[network redacted]', ip [IP redacted], rssi -32 dBm (excellent), ch 1
+I (726903) sentry:   internet: OK
+I (726903) sentry:   user:     [operator account] (user)
+I (726903) sentry:   time:     01:34:06, uptime 0h 12m 06s
+I (726933) sentry: [V] 'status' done in 41 ms
+I (733273) sentry: [TELEMETRY #23] 01:34:12 up 00:12:12 heap 258KB rssi -39 temp 32.4C depth 42.4m hull 5.2bar batt 24.2V valve closed sonar - state VERBOSE
+I (733273) sentry: [V] telemetry: min heap 211KB, beacon off, tasks 15, water 8.0C, source auto
+I (743283) sentry: [TELEMETRY #24] 01:34:22 up 00:12:22 heap 258KB rssi -26 temp 32.4C depth 42.5m hull 5.3bar batt 24.2V valve closed sonar - state VERBOSE

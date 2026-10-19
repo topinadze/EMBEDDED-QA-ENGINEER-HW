@@ -1,0 +1,34 @@
+Source: operator-supplied UART transcript in chat
+Date: 2026-10-18
+Firmware: 2.1.0 on `ota_0`
+Requirement: ST-4 — logout from DEBUG returns to NORMAL; Wi-Fi remains connected
+Redaction: Account and network identifiers, IP, wall-clock values, and credentials omitted.
+
+Precondition:
+- `status` confirmed firmware 2.1.0 on `ota_0`, state DEBUG, ordinary user session, Wi-Fi/internet connected, and valve closed.
+
+Observed result:
+- The operator issued `logout`.
+- UART reported the operator was relieved from watch and `[STATE] 2 DEBUG -> 1 NORMAL (by logout)`.
+- Subsequent `status` confirmed NORMAL, Wi-Fi/internet still connected, user not logged in, and valve closed.
+- `whoami` returned `not logged in`.
+
+Assessment:
+- Logout from DEBUG returned the device to NORMAL and ended the user session while preserving Wi-Fi/internet connectivity; valve remained closed.
+- No claim is made about logout from VERBOSE based on this capture.
+
+Selected UART:
+---- Sent utf8 encoded message: "logout\n" ----
+logout
+I ([redacted]) sentry: [AUTH] operator [redacted] relieved from watch
+W ([redacted]) sentry: [STATE] 2 DEBUG -> 1 NORMAL (by logout)
+---- Sent utf8 encoded message: "status\n" ----
+I ([redacted]) sentry:   fw: v2.1.0 (ota_0)
+I ([redacted]) sentry:   state: 1 NORMAL
+I ([redacted]) sentry:   link: buoy link '[redacted]', ip [redacted], rssi [redacted], ch [redacted]
+I ([redacted]) sentry:   internet: OK
+I ([redacted]) sentry:   user: not logged in
+I ([redacted]) sentry:   valve: closed
+---- Sent utf8 encoded message: "whoami\n" ----
+whoami
+I ([redacted]) sentry: not logged in

@@ -1,0 +1,67 @@
+Date: 2026-10-18
+Firmware: 2.1.0 (`ota_0`, valid), confirmed at the start of the supplied transcript
+Source: operator-supplied UART transcript
+Physical setup: operator was instructed to place a stationary target at a measured 20 cm from the sensor reference plane. The supplied output does not independently record the reference plane or measurement method.
+State context: `relay status` returned closed, auto off, cycles 80. A preceding DS-5 stats snapshot in this same reported session had calibration +0.0 cm, but the attempted immediate `distansce stats` command in this excerpt was misspelled and returned E001, so baseline was not rechecked immediately before calibration.
+
+Observed sequence:
+- Baseline `distance` returned 22.0 cm.
+- `distance calibrate 20` was accepted and reported `calibrated: measured 22.0 cm, offset -2.0 cm`.
+- Subsequent single readings were 20.8 cm, then 20.0 cm repeatedly.
+- `distance stats` reported calibration -2.0 cm, median filter 5, alarm on.
+- `distance calibrate reset` returned `E706 usage: distance calibrate <ref 5-300 cm>`.
+- A subsequent `distance stats` still reported calibration -2.0 cm.
+- After another few measurements, `distance calibrate 20` was accepted again with offset -2.0 cm; immediately following `distance calibrate reset` again returned the same E706 usage error.
+- No later stats command confirmed a cleared calibration. The last displayed calibration state is -2.0 cm.
+
+Assessment:
+- PRD DS-3 explicitly documents `distance calibrate reset` as the command to clear the offset. In this 2.1.0 transcript the documented command was rejected twice with E706 and the offset remained -2.0 cm in the intervening stats output. Track as BUG-011.
+- The user was not able to restore the original +0.0 cm calibration state using the documented reset command. The operator subsequently authorized a reboot; post-reboot stats showed no measurements yet and omitted calibration, so the calibration's current persistence/clear state is unknown. Do not resume sonar characterization until that state is verified.
+- The initial misspelled stats command (`distansce stats`) returned E001 and did not change device state. It means immediate baseline calibration was not confirmed before the first calibration action.
+- The baseline 22.0 cm and post-calibration 20.0 cm readings are broadly consistent with the reported -2.0 cm software offset, but target reference-plane measurement and calibration effectiveness are not independently established here.
+- Firmware output also logged a collision warning at displayed 20.0 cm despite wording `< 20 cm`; rounded display/boundary behavior cannot be concluded from this one value.
+- The reboot and post-reboot commands were performed by the operator, not the assistant. No assistant-run hardware or automated test was performed.
+
+Selected supplied UART transcript:
+---- Sent utf8 encoded message: "version\n" ----
+version
+I (4335409) sentry: SENTRY SWM-2 sonar watch module, fw v2.1.0 (build Oct  6 2026 02:14:57)
+I (4335409) sentry:   partition: ota_0 @ 0x20000, state: valid
+---- Sent utf8 encoded message: "relay status\n" ----
+relay status
+I (4341869) sentry: [VALVE] closed, auto off, cycles 80
+---- Sent utf8 encoded message: "distansce stats\n" ----
+distansce stats
+E (4349019) sentry: E001 unknown command 'distansce'. Type 'help'
+---- Sent utf8 encoded message: "distance\n" ----
+distance
+I (4373929) sentry: [SONAR] ping: echo 22.0 cm
+---- Sent utf8 encoded message: "distance calibrate 20\n" ----
+distance calibrate 20
+I (4402489) sentry: [SONAR] calibrating: put object at 20.0 cm...
+I (4403099) sentry: [SONAR] calibrated: measured 22.0 cm, offset -2.0 cm
+---- Sent utf8 encoded message: "distance\n" ----
+distance
+I (4413039) sentry: [SONAR] ping: echo 20.8 cm
+---- Sent utf8 encoded message: "distance\n" ----
+distance
+I (4430989) sentry: [SONAR] ping: echo 20.0 cm
+E (4430989) sentry: [COLLISION] contact too close: 20.0 cm (< 20 cm)
+---- Sent utf8 encoded message: "distance stats\n" ----
+distance stats
+I (4453309) sentry: [SONAR] measurements 314, errors 17, min 2.1, max 151.1, avg 21.7 cm
+I (4453309) sentry: [SONAR] calibration -2.0 cm, filter median 5, alarm on
+---- Sent utf8 encoded message: "distance calibrate reset\n" ----
+distance calibrate reset
+E (4468499) sentry: E706 usage: distance calibrate <ref 5-300 cm>
+---- Sent utf8 encoded message: "distance stats\n" ----
+distance stats
+I (4494859) sentry: [SONAR] measurements 314, errors 17, min 2.1, max 151.1, avg 21.7 cm
+I (4494859) sentry: [SONAR] calibration -2.0 cm, filter median 5, alarm on
+---- Sent utf8 encoded message: "distance calibrate 20\n" ----
+distance calibrate 20
+I (4520799) sentry: [SONAR] calibrating: put object at 20.0 cm...
+I (4521409) sentry: [SONAR] calibrated: measured 22.0 cm, offset -2.0 cm
+---- Sent utf8 encoded message: "distance calibrate reset\n" ----
+distance calibrate reset
+E (4538029) sentry: E706 usage: distance calibrate <ref 5-300 cm>

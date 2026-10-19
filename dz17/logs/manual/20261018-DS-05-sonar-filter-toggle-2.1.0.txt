@@ -1,0 +1,39 @@
+Date: 2026-10-18
+Firmware: 2.1.0 (`ota_0`, valid), confirmed at the start of the supplied transcript
+Source: operator-supplied UART transcript
+Precondition evidence: `relay status` returned closed, auto off, cycles 80.
+
+Observed:
+- `distance filter off` was accepted; UART reported `[SONAR] filter off`.
+- Subsequent `distance stats` reported `filter off`.
+- `distance filter on` was accepted; UART reported `filter on (median of 5)`.
+- Subsequent `distance stats` reported `filter median 5`, confirming the filter setting was restored.
+- Measurement counters/statistics remained at 286 measurements, 17 errors, min 2.1 cm, max 151.1 cm, average 21.7 cm in both snapshots; calibration was +0.0 cm and alarm on.
+
+Assessment:
+- Filter state control and reporting were observed functioning in this supplied 2.1.0 session. The filter was returned to its original median-of-five setting.
+- The unchanged accumulated statistics do not establish filtering effectiveness or median-of-five output behavior; no controlled comparison of raw versus filtered readings was performed.
+- No assistant-run hardware or automated test was performed.
+
+Selected UART transcript:
+version
+---- Sent utf8 encoded message: "version\n" ----
+I (3482399) sentry: SENTRY SWM-2 sonar watch module, fw v2.1.0 (build Oct  6 2026 02:14:57)
+I (3482399) sentry:   partition: ota_0 @ 0x20000, state: valid
+---- Sent utf8 encoded message: "relay status\n" ----
+relay status
+I (3485839) sentry: [VALVE] closed, auto off, cycles 80
+---- Sent utf8 encoded message: "distance filter off\n" ----
+distance filter off
+I (3500579) sentry: [SONAR] filter off
+---- Sent utf8 encoded message: "distance stats\n" ----
+distance stats
+I (3515309) sentry: [SONAR] measurements 286, errors 17, min 2.1, max 151.1, avg 21.7 cm
+I (3515309) sentry: [SONAR] calibration +0.0 cm, filter off, alarm on
+---- Sent utf8 encoded message: "distance filter on\n" ----
+distance filter on
+I (3524849) sentry: [SONAR] filter on (median of 5)
+---- Sent utf8 encoded message: "distance stats\n" ----
+distance stats
+I (3536189) sentry: [SONAR] measurements 286, errors 17, min 2.1, max 151.1, avg 21.7 cm
+I (3536189) sentry: [SONAR] calibration +0.0 cm, filter median 5, alarm on

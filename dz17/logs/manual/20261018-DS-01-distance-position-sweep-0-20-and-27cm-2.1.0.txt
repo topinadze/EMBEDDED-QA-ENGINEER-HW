@@ -1,0 +1,55 @@
+Date: 2026-10-18
+Firmware: 2.1.0 (`ota_0`, valid), confirmed by the supplied `version` response
+Source: operator-supplied UART transcript and clarification
+Test: 66 separate `distance` one-shot commands, three at each operator-reported target position from 0 through 20 cm, then three at approximately 27 cm
+Calibration/filter: `distance stats` before the sweep reported calibration -2.0 cm, median filter 5, alarm on. The offset remained active throughout this characterization.
+Physical setup: target positions and three-command grouping were confirmed by the operator. Exact sensor reference plane, target orientation, and exact final position near 27 cm were not specified.
+Other state evidence: telemetry showed the valve closed. No physical observation/photo was supplied.
+
+Results, mapped by the operator-confirmed command order:
+
+| Target position (cm) | Three sequential `distance` results (cm) |
+|---:|---|
+| 0 | 21.2, 22.0, 21.7 |
+| 1 | 21.7, 20.5, 20.5 |
+| 2 | E702, E702, 20.3 |
+| 3 | 22.4, 20.5, 20.5 |
+| 4 | 21.1, 21.2, 21.2 |
+| 5 | 29.5, 29.5, 29.5 |
+| 6 | 21.1, 26.5, 25.6 |
+| 7 | 5.8, 21.5, 21.4 |
+| 8 | 20.0, 6.4, 20.0 |
+| 9 | 7.8, 7.8, 7.8 |
+| 10 | 9.2, 8.9, 8.9 |
+| 11 | 20.3, 10.3, 20.3 |
+| 12 | 9.9, 11.3, 11.3 |
+| 13 | 13.7, 20.3, 13.7 |
+| 14 | 13.3, 13.3, 13.3 |
+| 15 | 13.4, 13.4, 13.4 |
+| 16 | 16.9, 18.3, 18.4 |
+| 17 | 16.3, 16.3, 16.3 |
+| 18 | 19.6, 19.7, 19.7 |
+| 19 | 19.0, 19.0, 17.7 |
+| 20 | 20.0, 18.7, 19.7 |
+| approximately 27 | 22.1, 22.1, 22.1 |
+
+Pre-sweep stats reported 1 measurement, 0 errors, min/max/avg 20.0 cm, and calibration -2.0 cm. Post-sweep stats reported 65 measurements, 2 errors, min 5.8 cm, max 29.5 cm, avg 17.8 cm, and calibration -2.0 cm. Thus the 66 sweep commands yielded 64 valid echoes and the two E702 responses shown at the operator-reported 2 cm position; the cumulative stats include the earlier measurement.
+
+Assessment:
+- The sequence contains substantial variation between and within some position triplets. Examples include three 29.5 cm echoes at the stated 5 cm position, and mixed 5.8/21.5/21.4 cm echoes at 7 cm. At 0 and 1 cm the reported echoes were around 20–22 cm; the target reference geometry was not specified, so those positions and results are recorded as supplied, not interpreted as a verified zero-distance measurement.
+- The two E702 responses are consistent with an out-of-range response for a near-field target, but only one of three commands at the stated 2 cm position returned a valid echo.
+- This is characterization only: the persistent -2.0 cm calibration offset was active, the sensor reference plane/orientation were not documented, and PRD defines no numeric accuracy tolerance. Do not classify individual readings as pass/fail accuracy or infer a firmware root cause from this run.
+
+Selected supplied UART summary:
+---- Sent utf8 encoded message: "version\n" ----
+I (622389) sentry: SENTRY SWM-2 sonar watch module, fw v2.1.0 (build Oct  6 2026 02:14:57)
+I (622389) sentry:   partition: ota_0 @ 0x20000, state: valid
+---- Sent utf8 encoded message: "distance stats\n" ----
+I (628409) sentry: [SONAR] measurements 1, errors 0, min 20.0, max 20.0, avg 20.0 cm
+I (628409) sentry: [SONAR] calibration -2.0 cm, filter median 5, alarm on
+
+The table above is a transcription of the one-shot command/result pairs in the operator-supplied chat excerpt, grouped by the operator-confirmed target-position sequence. The full raw UART transcript is not duplicated in this evidence file; non-sonar telemetry is omitted.
+
+---- Sent utf8 encoded message: "distance stats\n" ----
+I (851889) sentry: [SONAR] measurements 65, errors 2, min 5.8, max 29.5, avg 17.8 cm
+I (851889) sentry: [SONAR] calibration -2.0 cm, filter median 5, alarm on

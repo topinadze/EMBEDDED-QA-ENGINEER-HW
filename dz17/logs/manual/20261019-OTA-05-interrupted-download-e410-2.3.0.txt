@@ -1,0 +1,51 @@
+Date: 2026-10-19
+Firmware: v2.3.0
+Source: operator-supplied UART transcript
+Test: OTA-9 interrupted local download (`--drop-at 50`)
+Redaction: local host address, Wi-Fi identifiers, account identifier, build timestamp, wall-clock values, and credential-bearing commands omitted.
+
+Preconditions:
+- `version` and `ota status` confirmed v2.3.0 valid on `ota_1`.
+- `status` confirmed NORMAL, internet OK, and valve closed.
+
+Action and result:
+- Started the local OTA server with `--drop-at 50`.
+- Sent `ota url http://[local host redacted]:8000/fw7/v2.3.0/sentry_fw7.bin`.
+- OTA targeted inactive `ota_0`, identified the v2.3.0 image, emitted W409, and reported progress through 40%. The TCP read then failed (`errno=128`); firmware returned E410 `download interrupted (ESP_FAIL)`.
+- Post-error `version` confirmed v2.3.0 valid on active `ota_1`. `status` remained NORMAL, internet OK, and valve closed. `ota status` reported v2.3.0 valid on `ota_1`, previous v2.3.0 in `ota_0`; that previous-slot metadata did not establish `ota_0` validity.
+- Restarted the server without `--drop-at` and retried the valid same-version image URL with `force`. OTA wrote `ota_0`, reached 100%, succeeded, and rebooted. Boot self-check passed and marked v2.3.0 VALID. Post-boot `version` and `ota status` confirmed v2.3.0 valid on `ota_0`; `ota_1` was listed as previous, with its validity not inferred from that metadata. Reconnect/NTP synchronization was observed. No post-recovery `status` result is claimed here.
+- Result: PASS for this sampled E410 handling and successful subsequent OTA attempt on v2.3.0. Aggregate OTA-05 remains PARTIAL because other error and recovery cases remain untested.
+
+Selected redacted UART:
+---- Interrupted download ----
+ota url http://[local host redacted]:8000/fw7/v2.3.0/sentry_fw7.bin
+I ([redacted]) sentry: [OTA] current v2.3.0 (ota_1) -> target partition ota_0
+I ([redacted]) esp_https_ota: Writing to <ota_0> partition at offset 0x20000
+I ([redacted]) sentry: [OTA] image: sentry_fw7 v2.3.0
+W ([redacted]) sentry: W409 same version v2.3.0 - reinstalling
+I ([redacted]) sentry: [OTA]  40%
+E ([redacted]) HTTP_CLIENT: transport_read: error - 57347 | ERROR
+E ([redacted]) esp_https_ota: data read -1, errno 128
+E ([redacted]) sentry: E410 download interrupted (ESP_FAIL)
+---- Post-error active state ----
+I ([redacted]) sentry:   partition: ota_1 @ 0x1a0000, state: valid
+I ([redacted]) sentry:   state: 1 NORMAL
+I ([redacted]) sentry:   internet: OK
+I ([redacted]) sentry:   valve: closed
+I ([redacted]) sentry: [OTA] running: v2.3.0 in ota_1 (valid)
+I ([redacted]) sentry: [OTA] previous: v2.3.0 in ota_0
+---- Valid same-version recovery retry (normal server, force) ----
+ota url http://[local host redacted]:8000/fw7/v2.3.0/sentry_fw7.bin force
+I ([redacted]) sentry: [OTA] current v2.3.0 (ota_1) -> target partition ota_0
+I ([redacted]) esp_https_ota: Writing to <ota_0> partition at offset 0x20000
+I ([redacted]) sentry: [OTA] 100%
+I ([redacted]) sentry: [OTA] success: v2.3.0 -> v2.3.0 in 12 s. Rebooting...
+I ([redacted]) sentry: [OTA] running v2.3.0 from ota_0
+W ([redacted]) sentry: [OTA] new firmware, PENDING_VERIFY - self-check...
+I ([redacted]) sentry: [OTA] self-check passed, firmware marked VALID
+---- Post-recovery readback ----
+I ([redacted]) sentry:   partition: ota_0 @ 0x20000, state: valid
+I ([redacted]) sentry: [OTA] running: v2.3.0 in ota_0 (valid)
+I ([redacted]) sentry: [OTA] previous: v2.3.0 in ota_1
+---- Post-reconnect network confirmation ----
+I ([redacted]) sentry: [LINK] time: synced via NTP, [time redacted]

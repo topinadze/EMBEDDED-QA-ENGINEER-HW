@@ -1,0 +1,18 @@
+Date: 2026-10-16
+Firmware: 2.1.0 (`ota_0`)
+Source: operator-supplied UART transcript
+Context: status at 01:56:45 in `20261016-AC-02-unknown-command-verbose-2.1.0.txt` confirmed state 3 VERBOSE and user logged in.
+
+---- Sent utf8 encoded message: "statis\n" ----
+statis
+E (1128963) sentry: E001 unknown command 'statis'. Did you mean 'status'?
+I (1137173) sentry: [TELEMETRY #14] 01:58:40 up 00:18:56 heap 258KB rssi -30 temp 32.4C depth 43.2m hull 5.3bar batt 24.2V valve closed sonar - state VERBOSE
+I (1137173) sentry: [V] telemetry: min heap 211KB, beacon off, tasks 15, water 8.1C, source auto
+---- Sent utf8 encoded message: "staty\n" ----
+staty
+E (1139993) sentry: E001 unknown command 'staty'. Did you mean 'state'?
+
+Assessment:
+- Both near-typo inputs returned E001 and suggested the corresponding valid command while operating in VERBOSE.
+- Telemetry after the first attempt confirms the device remained in VERBOSE.
+- This verifies the tested VERBOSE unknown-command suggestion behavior for these two inputs; it does not establish suggestions for every possible unknown token.

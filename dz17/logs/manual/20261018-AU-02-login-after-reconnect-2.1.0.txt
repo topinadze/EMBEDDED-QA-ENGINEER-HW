@@ -1,0 +1,32 @@
+Source: operator-supplied UART transcript in chat
+Date: 2026-10-18
+Firmware: 2.1.0, carried forward from the preceding confirmed `version` output in the same operator-supplied reconnect sequence; partition `ota_0`, valid
+Case: AU-2 / AU-4, continuation of WF-2/WF-3 reconnect recovery
+Precondition: The preceding transcript showed successful Wi-Fi connection, internet reachability, and NTP synchronization. This excerpt begins with the user logged out.
+Security: The password was redacted. Account identifier is represented as `[account redacted]` in this saved evidence.
+
+Observed result:
+- `whoami` returned `not logged in`.
+- A login attempt for the existing test account succeeded; UART confirmed an operator session and enabled the automatic telemetry notice.
+- A subsequent `whoami` reported the account with access `user`.
+- A later `health` query returned auto on, interval 30 s, current NORMAL cadence 30 s.
+
+Assessment:
+- This confirms successful login and user-level identity after reconnect on the confirmed firmware run.
+- The later health readback confirms reporting remained enabled at 30 s in NORMAL after the reconnect/login sequence; it does not test persistence across reboot.
+- It does not test login failure/lockout boundaries, password persistence, or debug elevation. No credentials are retained.
+
+Selected UART:
+---- Sent utf8 encoded message: "whoami\n" ----
+whoami
+I (560659) sentry: not logged in
+---- Sent utf8 encoded message: "login [account redacted] [password redacted]\n" ----
+I (569119) sentry: [AUTH] operator [account redacted] on watch, console 2
+I (569239) sentry: [TELEMETRY] auto report every 30 s ('health off' to stop)
+---- Sent utf8 encoded message: "whoami\n" ----
+whoami
+I (580589) sentry: user: [account redacted], access: user
+
+---- Sent utf8 encoded message: "health\n" ----
+health
+I (880679) sentry: [TELEMETRY] auto on, interval 30 s (now 30 s in NORMAL)

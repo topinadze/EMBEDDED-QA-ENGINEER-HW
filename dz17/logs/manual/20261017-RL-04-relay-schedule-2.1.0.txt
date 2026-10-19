@@ -1,0 +1,84 @@
+Date: 2026-10-17
+Firmware: 2.1.0 (`ota_0`), build Oct 6 2026 02:14:57
+Source: operator-supplied UART transcript
+Physical observation (operator): visual relay response matched the schedule commands. The operator did not describe specific GPIO4 or relay-module indicator states for this run.
+
+I (2289959) sentry: [LINK] buoy cable tension high, link quality may degrade
+I (2293639) sentry: [TELEMETRY #40] 23:24:30 up 00:38:13 heap 257KB rssi -30 temp 30.4C depth 43.2m hull 5.3bar batt 24.1V valve closed sonar - state NORMAL
+I (2297389) sentry: SENTRY SWM-2 sonar watch module, fw v2.1.0 (build Oct  6 2026 02:14:57)
+I (2297389) sentry:   partition: ota_0 @ 0x20000, state: valid
+I (2299219) sentry: === SWM-2 status ===
+I (2299219) sentry:   fw:       v2.1.0 (ota_0)
+I (2299219) sentry:   state:    1 NORMAL
+I (2299229) sentry:   internet: OK
+I (2299229) sentry:   user:     [operator account] (user)
+I (2299239) sentry:   valve:    closed
+---- Sent utf8 encoded message: "whouami\n" ----
+whouami
+E (2301799) sentry: E001 unknown command 'whouami'. Type 'help'
+---- Sent utf8 encoded message: "relay status\n" ----
+relay status
+I (2305319) sentry: [VALVE] closed, auto off, cycles 40
+I (2323659) sentry: [TELEMETRY #41] 23:25:00 up 00:38:43 heap 257KB rssi -30 temp 30.4C depth 43.2m hull 5.3bar batt 24.1V valve closed sonar - state NORMAL
+
+---- Sent utf8 encoded message: "relay schedule 2 2\n" ----
+relay schedule 2 2
+I (2325769) sentry: [VALVE] schedule: 2 s on / 2 s off
+I (2325769) sentry: [VALVE] OPEN (schedule)
+I (2327799) sentry: [VALVE] CLOSED (schedule)
+I (2329799) sentry: [VALVE] OPEN (schedule)
+I (2331809) sentry: [VALVE] CLOSED (schedule)
+I (2333819) sentry: [VALVE] OPEN (schedule)
+I (2335829) sentry: [VALVE] CLOSED (schedule)
+I (2337829) sentry: [VALVE] OPEN (schedule)
+I (2339839) sentry: [VALVE] CLOSED (schedule)
+I (2341839) sentry: [VALVE] OPEN (schedule)
+I (2343869) sentry: [VALVE] CLOSED (schedule)
+I (2345869) sentry: [VALVE] OPEN (schedule)
+I (2347879) sentry: [VALVE] CLOSED (schedule)
+I (2349879) sentry: [VALVE] OPEN (schedule)
+---- Sent utf8 encoded message: "relay schedule off\n" ----
+relay schedule off
+I (2350879) sentry: [VALVE] schedule stopped
+I (2353659) sentry: [TELEMETRY #42] 23:25:30 up 00:39:13 heap 257KB rssi -31 temp 30.4C depth 43.2m hull 5.3bar batt 24.1V valve open sonar - state NORMAL
+---- Sent utf8 encoded message: "relay status\n" ----
+relay status
+I (2354589) sentry: [VALVE] OPEN, auto off, cycles 66
+---- Sent utf8 encoded message: "relay status off\n" ----
+relay status off
+I (2360989) sentry: [VALVE] OPEN, auto off, cycles 66
+I (2373959) sentry: [ACU] ambient noise 58 dB re 1uPa, sea state 2, water 8.0 C
+I (2383659) sentry: [TELEMETRY #43] 23:26:00 up 00:39:43 heap 257KB rssi -31 temp 30.4C depth 43.6m hull 5.4bar batt 24.1V valve open sonar - state NORMAL
+
+---- Sent utf8 encoded message: "relay schedule 3600 3600\n" ----
+relay schedule 3600 3600
+I (2394539) sentry: [VALVE] schedule: 3600 s on / 3600 s off
+I (2394549) sentry: [VALVE] CLOSED (schedule)
+---- Sent utf8 encoded message: "relay schedule off\n" ----
+relay schedule off
+I (2406069) sentry: [VALVE] schedule stopped
+---- Sent utf8 encoded message: "relay status\n" ----
+relay status
+I (2410939) sentry: [VALVE] closed, auto off, cycles 68
+I (2413859) sentry: [TELEMETRY #44] 23:26:30 up 00:40:13 heap 257KB rssi -30 temp 30.4C depth 43.6m hull 5.4bar batt 24.1V valve closed sonar - state NORMAL
+
+---- Sent utf8 encoded message: "relay schedule 1 2\n" ----
+relay schedule 1 2
+E (2424549) sentry: E606 usage: relay schedule <on 2-3600 s> <off 2-3600 s> | off
+---- Sent utf8 encoded message: "relay schedule 2 3601\n" ----
+relay schedule 2 3601
+E (2437029) sentry: E606 usage: relay schedule <on 2-3600 s> <off 2-3600 s> | off
+W (2437959) sentry: [NAV] thermocline at 35 m - sonar range may drop
+---- Sent utf8 encoded message: "relay status\n" ----
+relay status
+I (2441219) sentry: [VALVE] closed, auto off, cycles 68
+I (2444059) sentry: [TELEMETRY #45] 23:27:00 up 00:40:43 heap 257KB rssi -29 temp 31.4C depth 43.3m hull 5.3bar batt 24.1V valve closed sonar - state NORMAL
+
+Assessment:
+- Preconditions: 2.1.0 on valid `ota_0`, NORMAL, logged in as user; relay closed, auto off, cycles 40.
+- `relay schedule 2 2` was accepted and produced approximately 2-second open/closed intervals. It was stopped while OPEN; the subsequent status remained OPEN with schedule off. A later `relay schedule 3600 3600` was accepted, transitioned the relay closed, and was manually stopped; status then showed closed.
+- `relay status off` was parsed as `relay status` and reported state; it did not stop the schedule. Do not treat this as the inactive-schedule W605 check.
+- Both invalid schedule cases, `1 2` and `2 3601`, returned E606; later status showed closed, auto off, cycles 68.
+- Operator visually confirmed that relay behavior matched the schedule commands. Specific diode/module-indicator behavior was not separately described.
+- Cycle counter increased 40 -> 66 during 13 actual transitions in the first schedule (+2 each), then 66 -> 68 on the second schedule's immediate close (+2). This corroborates BUG-004.
+- A high cable tension and thermocline warning were also present in the supplied session excerpt; no causal relation to relay behavior is established.

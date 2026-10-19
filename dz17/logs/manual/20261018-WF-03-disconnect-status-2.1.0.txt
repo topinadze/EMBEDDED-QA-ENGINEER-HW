@@ -1,0 +1,146 @@
+Source: operator-supplied UART transcript in chat
+Date: 2026-10-18
+Firmware: 2.1.0, confirmed earlier in the same boot by `version`; `ota_0`, valid
+Requirement: WF-3 (`disconnect`)
+Precondition: Wi-Fi was connected and the user was logged in.
+Redaction: Saved network identifier is omitted.
+
+Observed result:
+- `disconnect` caused the Wi-Fi station interface to leave `run` and the device reported `[LINK] disconnected`.
+- A subsequent `status` reported NORMAL, link down with a saved network still known, user still logged in, and device time still available.
+- Valve was closed; sonar showed no contact.
+
+Assessment:
+- The explicit disconnect command worked in this observed case. The connection was intentionally interrupted; no credential or saved-network setting was changed.
+- Subsequent recovery on the same 2.1.0 run: manual `reconnect` obtained an IP and reported internet reachable, then emitted W106 because NTP synchronization failed. Telemetry continued afterward. Network identifiers, BSSID and IP are omitted.
+- A later `time` command returned a local date/time with timezone `Kyiv`. This confirms the command returned a time value after the W106 event, but the supplied excerpt did not show a new NTP success message at that point. A subsequent operator-issued `disconnect`/`reconnect` sequence explicitly reported `time: synced via NTP`, followed by a `time` response in the same timezone. This confirms synchronization after that later manual reconnect, not when or whether it recovered before the sequence. Exact clock values and network identifiers are redacted.
+- On a later check while status again showed link down, repeating `disconnect` returned the expected `W115 not connected`. A subsequent manual `reconnect` restored association, IP and internet reachability, but again returned W106 because NTP synchronization failed. This does not test loss of connection without an operator command or WF-5's W110/automatic retries.
+- In a later already-connected state, issuing `reconnect` returned the specified `W114 already connected`; subsequent telemetry continued in NORMAL. No disconnect/reconnect action followed this W114 response.
+- Result is partial WF-3 evidence for firmware 2.1.0.
+
+Selected UART:
+---- Sent utf8 encoded message: "disconnect\n" ----
+disconnect
+I (1587479) wifi:state: run -> init (0x0)
+I (1587479) wifi:pm stop, total sleep time: 1186617839 us / 1301077878 us
+I (1587479) wifi:<ba-del>idx:0, tid:0
+I (1587479) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0
+I (1587489) sentry: [LINK] disconnected
+---- Sent utf8 encoded message: "status\n" ----
+I (1592159) sentry: === SWM-2 status ===
+I (1592159) sentry:   fw:       v2.1.0 (ota_0)
+I (1592159) sentry:   state:    1 NORMAL
+I (1592159) sentry:   link:     buoy link down (known: [network redacted])
+I (1592159) sentry:   user:     [account redacted] (user)
+I (1592169) sentry:   time:     [clock value redacted], uptime 0h 26m 31s
+I (1592169) sentry:   valve:    closed
+I (1592169) sentry:   sonar:    no contact
+I (1592179) sentry:   carrier:  depth 40.5 m, hull 5.0 bar, water 8.2 C, battery 24.16 V (sim)
+I (1592189) sentry:   heap:     258 KB free
+I (1597639) sentry: [PWR] battery bus 24.16 V, load 1.4 A
+
+---- Sent utf8 encoded message: "reconnect\n" ----
+reconnect
+I (1729589) sentry: [LINK] raising buoy antenna, connecting to '[network redacted]'...
+I (1729599) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0
+I (1729599) wifi:state: init -> auth (0xb0)
+I (1729599) wifi:state: auth -> assoc (0x0)
+I (1729609) wifi:state: assoc -> run (0x10)
+I (1729639) wifi:connected with [network redacted], aid = 1, channel 1, BW20, bssid = [redacted]
+I (1729639) wifi:security: WPA2-PSK, phy: bgn, rssi: -41, cipher(pairwise:0x3, group:0x3), pmf:1
+I (1729639) wifi:pm start, type: 1
+I (1729649) wifi:dp: 1, bi: 102400, li: 3, scale listen interval from 307200 us to 307200 us
+I (1729649) wifi:set rx beacon pti, rx_bcn_pti: 0, bcn_timeout: 25000, mt_pti: 0, mt_time: 10000
+I (1729699) wifi:dp: 2, bi: 102400, li: 4, scale listen interval from 307200 us to 409600 us
+I (1729699) wifi:AP's beacon interval = 102400 us, DTIM period = 2
+I (1734399) esp_netif_handlers: sta ip: [redacted], mask: [redacted], gw: [redacted]
+I (1734399) sentry: [LINK] got ip [redacted]
+I (1734399) sentry: [LINK] connected to '[network redacted]', rssi -36 dBm (excellent)
+I (1734439) sentry: [TELEMETRY] auto report every 30 s ('health off' to stop)
+I (1734869) wifi:<ba-add>idx:0 (ifx:0, [redacted]), tid:0, ssn:6, winSize:64
+I (1735159) esp-x509-crt-bundle: Certificate validated
+I (1736679) sentry: [LINK] fleet network reachable (internet OK)
+W (1742679) sentry: W106 [LINK] time: NTP sync failed, timestamps disabled
+W (1751639) sentry: [ACU] own-ship noise: pump #2 cavitation suspected
+I (1764629) sentry: [TELEMETRY #34] [time redacted] up 00:29:24 heap 257KB rssi -35 temp 29.4C depth 40.6m hull 5.1bar batt 24.2V valve closed sonar - state NORMAL
+---- Sent utf8 encoded message: "time\n" ----
+I (2016779) sentry: [LINK] time: [date/time redacted] (Kyiv)
+
+Repeated disconnect while already disconnected and recovery:
+---- Sent utf8 encoded message: "disconnect\n" ----
+W (2290799) sentry: W115 not connected
+---- Sent utf8 encoded message: "status\n" ----
+I (2294289) sentry: === SWM-2 status ===
+I (2294289) sentry:   fw:       v2.1.0 (ota_0)
+I (2294289) sentry:   state:    1 NORMAL
+I (2294289) sentry:   link:     buoy link down (known: [network redacted])
+I (2294289) sentry:   user:     [account redacted] (user)
+I (2294299) sentry:   time:     [clock value redacted], uptime 0h 38m 13s
+I (2294299) sentry:   valve:    closed
+I (2294299) sentry:   sonar:    no contact
+I (2294309) sentry:   carrier:  depth 41.1 m, hull 5.1 bar, water 8.2 C, battery 24.14 V (sim)
+I (2294319) sentry:   heap:     258 KB free
+---- Sent utf8 encoded message: "reconnect\n" ----
+I (2332509) sentry: [LINK] raising buoy antenna, connecting to '[network redacted]'...
+I (2332519) wifi:state: init -> auth (0xb0)
+I (2332519) wifi:state: auth -> assoc (0x0)
+I (2332529) wifi:state: assoc -> run (0x10)
+I (2332549) wifi:connected with [network redacted], aid = 1, channel 1, BW20, bssid = [redacted]
+I (2332549) wifi:security: WPA2-PSK, phy: bgn, rssi: -34, cipher(pairwise:0x3, group:0x3), pmf:1
+I (2332549) wifi:pm start, type: 1
+I (2332559) wifi:dp: 1, bi: 102400, li: 3, scale listen interval from 307200 us to 307200 us
+I (2332559) wifi:set rx beacon pti, rx_bcn_pti: 0, bcn_timeout: 25000, mt_pti: 0, mt_time: 10000
+I (2332639) wifi:dp: 2, bi: 102400, li: 4, scale listen interval from 307200 us to 409600 us
+I (2332639) wifi:AP's beacon interval = 102400 us, DTIM period = 2
+I (2333609) esp_netif_handlers: sta ip: [redacted], mask: [redacted], gw: [redacted]
+I (2333609) sentry: [LINK] got ip [redacted]
+I (2333609) sentry: [LINK] connected to '[network redacted]', rssi -31 dBm (excellent)
+I (2333629) sentry: [TELEMETRY] auto report every 30 s ('health off' to stop)
+I (2333669) wifi:<ba-add>idx:0 (ifx:0, [redacted]), tid:0, ssn:2, winSize:64
+I (2333969) esp-x509-crt-bundle: Certificate validated
+I (2336989) sentry: [LINK] fleet network reachable (internet OK)
+I (2337289) wifi:[ADDBA]RX DELBA, reason:39, delete tid:0, initiator:0(recipient)
+I (2338639) sentry: [NAV] depth 40.9 m, heading 260, speed 2.9 kn
+W (2342989) sentry: W106 [LINK] time: NTP sync failed, timestamps disabled
+
+Later manual disconnect/reconnect and explicit NTP synchronization:
+---- Sent utf8 encoded message: "disconnect\n" ----
+disconnect
+I (3996099) wifi:state: run -> init (0x0)
+I (3996099) wifi:pm stop, total sleep time: 982794137 us / 1123133437 us
+I (3996099) wifi:<ba-del>idx:0, tid:0
+I (3996099) wifi:<ba-del>idx:0, tid:0
+I (3996099) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0
+I (3996109) sentry: [LINK] disconnected
+---- Sent utf8 encoded message: "reconnect\n" ----
+reconnect
+I (4000809) sentry: [LINK] raising buoy antenna, connecting to '[network redacted]'...
+I (4000809) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0
+I (4000819) wifi:state: init -> auth (0xb0)
+I (4000819) wifi:state: auth -> assoc (0x0)
+I (4000829) wifi:state: assoc -> run (0x10)
+I (4000839) wifi:connected with [network redacted], aid = 1, channel 1, BW20, bssid = [redacted]
+I (4000839) wifi:security: WPA2-PSK, phy: bgn, rssi: -45, cipher(pairwise:0x3, group:0x3), pmf:1
+I (4000849) wifi:pm start, type: 1
+I (4000849) wifi:dp: 1, bi: 102400, li: 3, scale listen interval from 307200 us to 307200 us
+I (4000859) wifi:set rx beacon pti, rx_bcn_pti: 0, bcn_timeout: 25000, mt_pti: 0, mt_time: 10000
+I (4000889) wifi:dp: 2, bi: 102400, li: 4, scale listen interval from 307200 us to 409600 us
+I (4000889) wifi:AP's beacon interval = 102400 us, DTIM period = 2
+I (4003759) esp_netif_handlers: sta ip: [redacted], mask: [redacted], gw: [redacted]
+I (4003759) sentry: [LINK] got ip [redacted]
+I (4003759) sentry: [LINK] connected to '[network redacted]', rssi -46 dBm (excellent)
+I (4003939) sentry: [TELEMETRY] auto report every 30 s ('health off' to stop)
+I (4004169) wifi:<ba-add>idx:0 (ifx:0, [redacted]), tid:0, ssn:3, winSize:64
+I (4004469) esp-x509-crt-bundle: Certificate validated
+I (4005609) sentry: [LINK] fleet network reachable (internet OK)
+I (4005609) sentry: [LINK] time: synced via NTP, [clock value redacted]
+---- Sent utf8 encoded message: "time\n" ----
+time
+I (4015889) sentry: [LINK] time: [date/time redacted] (Kyiv)
+I (4025939) sentry: [NAV] depth 41.1 m, heading 260, speed 2.8 kn
+
+Reconnect while already connected:
+---- Sent utf8 encoded message: "reconnect\n" ----
+reconnect
+W (4662689) sentry: W114 already connected
+I (4665139) sentry: [TELEMETRY #115] [time redacted] up 01:17:44 heap 257KB rssi -36 temp 30.4C depth 41.4m hull 5.1bar batt 24.1V valve closed sonar - state NORMAL

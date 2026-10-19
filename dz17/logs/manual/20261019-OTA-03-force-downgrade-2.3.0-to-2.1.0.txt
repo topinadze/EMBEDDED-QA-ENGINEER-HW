@@ -1,0 +1,41 @@
+Date: 2026-10-19
+Source: operator-supplied UART transcript
+Transition: forced downgrade from v2.3.0 to v2.1.0
+Redaction: account/network identifiers, MAC, IP, wall-clock values, build tag, and credential-bearing input omitted.
+
+Action/result:
+- `ota install 2.1.0 force` downloaded the v2.1.0 image and wrote to `ota_0` at offset `0x20000`.
+- OTA reached 100% and reported success: v2.3.0 -> v2.1.0, then rebooted.
+- Boot loaded v2.1.0 from `ota_0`, entered PENDING_VERIFY, passed self-check, and marked the firmware VALID.
+- Post-boot `version` confirmed v2.1.0, valid on `ota_0 @ 0x20000`.
+- Post-boot `status` confirmed NORMAL and valve closed.
+- `ota status` confirmed v2.1.0 valid in `ota_0`, previous v2.3.0 in `ota_1`.
+- Result: forced downgrade and post-boot self-check PASS. This is not the broken-image automatic-rollback test (OTA-8); that remains NOT RUN.
+
+Selected redacted UART:
+---- Sent utf8 encoded message: "ota install 2.1.0 force\n" ----
+ota install 2.1.0 force
+I ([redacted]) sentry: [OTA] current v2.3.0 (ota_1) -> target partition ota_0
+I ([redacted]) esp_https_ota: Writing to <ota_0> partition at offset 0x20000
+I ([redacted]) sentry: [OTA] image: sentry_fw7 v2.1.0
+I ([redacted]) sentry: [OTA] 100%
+I ([redacted]) sentry: [OTA] success: v2.3.0 -> v2.1.0 in 20 s. Rebooting...
+---- Boot ----
+I ([redacted]) sentry:   App version: 2.1.0
+I ([redacted]) sentry: [OTA] running v2.1.0 from ota_0
+W ([redacted]) sentry: [OTA] new firmware, PENDING_VERIFY - self-check...
+I ([redacted]) sentry: [OTA] self-check passed, firmware marked VALID
+I ([redacted]) sentry: ready. state 1 NORMAL (patrol).
+---- Sent utf8 encoded message: "version\n" ----
+version
+I ([redacted]) sentry: SENTRY SWM-2 sonar watch module, fw v2.1.0
+I ([redacted]) sentry:   partition: ota_0 @ 0x20000, state: valid
+---- Sent utf8 encoded message: "status\n" ----
+status
+I ([redacted]) sentry:   fw: v2.1.0 (ota_0)
+I ([redacted]) sentry:   state: 1 NORMAL
+I ([redacted]) sentry:   valve: closed
+---- Sent utf8 encoded message: "ota status\n" ----
+ota status
+I ([redacted]) sentry: [OTA] running: v2.1.0 in ota_0 (valid)
+I ([redacted]) sentry: [OTA] previous: v2.3.0 in ota_1

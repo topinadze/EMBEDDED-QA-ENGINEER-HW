@@ -1,0 +1,11 @@
+Date/time: 2026-10-19 03:29:13 +03:00
+Source: operator-supplied UART output
+Test: Read back OTA server setting after OTA testing
+
+Command and response:
+ota server
+I (2614522) sentry: [OTA] server: https://raw.githubusercontent.com/BohdanHorbanych/esp32-ota-files/main/fw7/ (default)
+
+Result:
+- The device reported the default OTA server URL and labeled it `(default)`.
+- This confirms the OTA server setting at the time of this readback; it does not change the separate E411 result.

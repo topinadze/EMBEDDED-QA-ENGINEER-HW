@@ -1,0 +1,62 @@
+Date: 2026-10-19
+Firmware: v2.3.0
+Source: operator-supplied UART transcript
+Test: OTA-9 corrupted image via local OTA server (`corrupted.bin`)
+Redaction: local host address, Wi-Fi identifiers, MAC, build timestamp, wall-clock values, and credential-bearing commands omitted.
+
+Preconditions:
+- `version` confirmed v2.3.0 valid on `ota_0`.
+- `status` reported NORMAL, internet OK, logged-in ordinary user, and valve closed.
+
+Action and result:
+- A preceding command used the misspelled fixture name `currupted.bin`; the local server returned 404 and the device returned E405 before OTA started. This setup typo is excluded from the `corrupted.bin` test result.
+- Sent `ota url http://[local host redacted]:8000/test/corrupted.bin`.
+- OTA selected `ota_1`, started OTA, and logged `Writing to <ota_1>`. It identified the image as v2.3.0, emitted W409 for same-version reinstall, reached 100%, then reported `Image hash failed - image is corrupt`, `New image failed verification`, and `E412 image validation failed (corrupted image)`.
+- No reboot was reported. Follow-up `version` confirmed v2.3.0 valid on `ota_0`; `status` remained NORMAL, internet OK, logged in, valve closed. `ota status` listed previous v2.3.0 in `ota_1` but did not establish that image's validity.
+- Recovery attempt: sent the valid local v2.3.0 image URL with `force`. OTA targeted `ota_1`, emitted W409, completed successfully, rebooted, passed PENDING_VERIFY self-check, and marked the image VALID. Post-boot `version` confirmed v2.3.0 valid on `ota_1`; `status` showed NORMAL and valve closed, with link down/user logged out. `ota status` returned E002 while Wi-Fi was down. The operator reconnected, the device reported NTP synchronization, and after login `ota status` confirmed v2.3.0 valid in `ota_1`, previous v2.3.0 in `ota_0`. Previous-slot validity is not inferred from the OTA metadata.
+- Result: PASS for this sampled E412 handling and successful subsequent OTA attempt on v2.3.0. OTA-05 remains PARTIAL because other errors/recovery cases are untested; post-reboot slot/session readbacks are only partial.
+
+Selected redacted UART:
+---- Sent utf8 encoded message: "ota url http://[local host redacted]:8000/test/corrupted.bin\n" ----
+ota url http://[local host redacted]:8000/test/corrupted.bin
+I ([redacted]) sentry: [OTA] current v2.3.0 (ota_0) -> target partition ota_1
+I ([redacted]) esp_https_ota: Writing to <ota_1> partition at offset 0x1a0000
+I ([redacted]) sentry: [OTA] image: sentry_fw7 v2.3.0
+W ([redacted]) sentry: W409 same version v2.3.0 - reinstalling
+I ([redacted]) sentry: [OTA] 100%
+E ([redacted]) esp_image: Image hash failed - image is corrupt
+E ([redacted]) esp_ota_ops: New image failed verification
+E ([redacted]) sentry: E412 image validation failed (corrupted image)
+---- Post-error readbacks ----
+I ([redacted]) sentry:   partition: ota_0 @ 0x20000, state: valid
+I ([redacted]) sentry:   state: 1 NORMAL
+I ([redacted]) sentry:   internet: OK
+I ([redacted]) sentry:   user: [redacted] (user)
+I ([redacted]) sentry:   valve: closed
+I ([redacted]) sentry: [OTA] running: v2.3.0 in ota_0 (valid)
+I ([redacted]) sentry: [OTA] previous: v2.3.0 in ota_1
+---- Recovery retry: valid local v2.3.0 image with force ----
+ota url http://[local host redacted]:8000/fw7/v2.3.0/sentry_fw7.bin force
+I ([redacted]) sentry: [OTA] current v2.3.0 (ota_0) -> target partition ota_1
+I ([redacted]) esp_https_ota: Writing to <ota_1> partition at offset 0x1a0000
+I ([redacted]) sentry: [OTA] image: sentry_fw7 v2.3.0
+W ([redacted]) sentry: W409 same version v2.3.0 - reinstalling
+I ([redacted]) sentry: [OTA] 100%
+I ([redacted]) sentry: [OTA] success: v2.3.0 -> v2.3.0 in 9 s. Rebooting...
+---- Boot ----
+I ([redacted]) sentry: [OTA] running v2.3.0 from ota_1
+W ([redacted]) sentry: [OTA] new firmware, PENDING_VERIFY - self-check...
+I ([redacted]) sentry: [OTA] self-check passed, firmware marked VALID
+I ([redacted]) sentry: ready. state 1 NORMAL (patrol).
+---- Post-boot readbacks ----
+I ([redacted]) sentry:   partition: ota_1 @ 0x1a0000, state: valid
+I ([redacted]) sentry:   state: 1 NORMAL
+I ([redacted]) sentry:   link: buoy link down (known: [network])
+I ([redacted]) sentry:   user: not logged in
+I ([redacted]) sentry:   valve: closed
+E ([redacted]) sentry: E002 Wi-Fi required. Use 'reconnect' or 'connect'
+I ([redacted]) sentry: [LINK] time: synced via NTP, [time redacted]
+---- Post-reconnect, post-login slot readback ----
+ota status
+I ([redacted]) sentry: [OTA] running: v2.3.0 in ota_1 (valid)
+I ([redacted]) sentry: [OTA] previous: v2.3.0 in ota_0

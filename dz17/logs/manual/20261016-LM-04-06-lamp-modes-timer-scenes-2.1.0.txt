@@ -1,0 +1,106 @@
+Date: 2026-10-16
+Firmware: 2.1.0 (`ota_0`)
+Source: sanitized excerpt from operator-supplied UART transcript
+Physical note (operator confirmation, 2026-10-16): all lamp changes in this and the preceding lamp-control transcript were visually confirmed on the real lamp, including the selected modes, timer auto-off/cancellation behavior, and scene restoration. This is a visual observation, not a photometric measurement.
+
+I (2776203) sentry: [TELEMETRY #81] 02:25:59 up 00:46:15 heap 257KB rssi -28 temp 32.4C depth 42.6m hull 5.3bar batt 24.1V valve closed sonar - state NORMAL
+---- Sent utf8 encoded message: "lamp status\n" ----
+lamp status
+I (2776723) sentry: [BEACON] ON, color (254,0,0), brightness 100%, mode solid, timer off
+---- Sent utf8 encoded message: "lamp mode solid\n" ----
+lamp mode solid
+I (2784303) sentry: [BEACON] mode: solid
+---- Sent utf8 encoded message: "lamp mode blink\n" ----
+lamp mode blink
+I (2798733) sentry: [BEACON] mode: blink
+---- Sent utf8 encoded message: "lamp mode breath\n" ----
+lamp mode breath
+E (2806033) sentry: E505 unknown mode 'breath'. Modes: solid blink breathe rainbow
+I (2806403) sentry: [TELEMETRY #82] 02:26:29 up 00:46:46 heap 257KB rssi -27 temp 32.4C depth 42.6m hull 5.3bar batt 24.1V valve closed sonar - state NORMAL
+---- Sent utf8 encoded message: "lamp mode breathe\n" ----
+lamp mode breathe
+I (2812443) sentry: [BEACON] mode: breathe
+---- Sent utf8 encoded message: "lamp mode rainbow\n" ----
+lamp mode rainbow
+I (2823833) sentry: [BEACON] mode: rainbow
+I (2836403) sentry: [TELEMETRY #83] 02:26:59 up 00:47:16 heap 257KB rssi -28 temp 32.4C depth 42.6m hull 5.3bar batt 24.1V valve closed sonar - state NORMAL
+I (2846643) sentry: [ACU] ambient noise 75 dB re 1uPa, sea state 2, water 8.1 C
+---- Sent utf8 encoded message: "lamp mode solid\n" ----
+lamp mode solid
+I (2847623) sentry: [BEACON] mode: solid
+I (2866603) sentry: [TELEMETRY #84] 02:27:29 up 00:47:46 heap 257KB rssi -30 temp 32.4C depth 42.9m hull 5.3bar batt 24.1V valve closed sonar - state NORMAL
+---- Sent utf8 encoded message: "lamp timer 5\n" ----
+lamp timer 5
+I (2869713) sentry: [BEACON] auto-off in 5 ms
+I (2874723) sentry: [BEACON] off (timer expired)
+---- Sent utf8 encoded message: "lamp on\n" ----
+lamp on
+I (2882373) sentry: [BEACON] on (command) solid, 100%, color (254,0,0)
+---- Sent utf8 encoded message: "lamp color blue\n" ----
+lamp color blue
+I (2887853) sentry: [BEACON] color: blue (0,0,255)
+I (2896603) sentry: [TELEMETRY #85] 02:27:59 up 00:48:16 heap 257KB rssi -25 temp 33.4C depth 42.9m hull 5.3bar batt 24.1V valve closed sonar - state NORMAL
+I (2913643) sentry: [PWR] battery bus 24.09 V, load 1.6 A
+---- Sent utf8 encoded message: "lamp timer 10\n" ----
+lamp timer 10
+I (2918403) sentry: [BEACON] auto-off in 10 ms
+---- Sent utf8 encoded message: "lamp status\n" ----
+lamp status
+I (2924963) sentry: [BEACON] ON, color (0,0,255), brightness 100%, mode solid, timer 3 s left
+I (2926803) sentry: [TELEMETRY #86] 02:28:30 up 00:48:46 heap 257KB rssi -28 temp 32.4C depth 42.9m hull 5.3bar batt 24.1V valve closed sonar - state NORMAL
+I (2928403) sentry: [BEACON] off (timer expired)
+---- Sent utf8 encoded message: "lamp on\n" ----
+lamp on
+I (2936853) sentry: [BEACON] on (command) solid, 100%, color (0,0,255)
+---- Sent utf8 encoded message: "lamp status 10\n" ----
+lamp status 10
+E (2941353) sentry: E501 usage: lamp on|off|toggle|status|color <name|R G B>|brightness <0-100>|mode <m>|timer <s>|scene save|load <1-3>
+---- Sent utf8 encoded message: "lamp status 0\n" ----
+lamp status 0
+E (2944373) sentry: E501 usage: lamp on|off|toggle|status|color <name|R G B>|brightness <0-100>|mode <m>|timer <s>|scene save|load <1-3>
+I (2956803) sentry: [TELEMETRY #87] 02:29:00 up 00:49:16 heap 257KB rssi -28 temp 32.4C depth 42.9m hull 5.3bar batt 24.1V valve closed sonar - state NORMAL
+---- Sent utf8 encoded message: "lamp timer 10\n" ----
+lamp timer 10
+I (2957903) sentry: [BEACON] auto-off in 10 ms
+---- Sent utf8 encoded message: "lamp timer 0\n" ----
+lamp timer 0
+I (2962023) sentry: [BEACON] timer cancelled
+---- Sent utf8 encoded message: "lamp status\n" ----
+lamp status
+I (2966803) sentry: [BEACON] ON, color (0,0,255), brightness 100%, mode solid, timer off
+---- Sent utf8 encoded message: "lamp timer 3601\n" ----
+lamp timer 3601
+E (2979703) sentry: E506 timer must be 1-3600 s (0 - cancel)
+I (2985643) sentry: [NAV] depth 42.7 m, heading 280, speed 2.7 kn
+I (2986803) sentry: [TELEMETRY #88] 02:29:30 up 00:49:46 heap 257KB rssi -25 temp 32.4C depth 42.7m hull 5.3bar batt 24.1V valve closed sonar - state NORMAL
+---- Sent utf8 encoded message: "lamp scene load 1\n" ----
+lamp scene load 1
+E (2998313) sentry: E509 scene 1 is empty. Use 'lamp scene save 1'
+---- Sent utf8 encoded message: "lamp scene save\n" ----
+lamp scene save
+E (3003773) sentry: E501 usage: lamp on|off|toggle|status|color <name|R G B>|brightness <0-100>|mode <m>|timer <s>|scene save|load <1-3>
+---- Sent utf8 encoded message: "lamp scene save 1\n" ----
+lamp scene save 1
+I (3006733) sentry: [BEACON] scene 1 saved
+---- Sent utf8 encoded message: "lamp color yellow\n" ----
+lamp color yellow
+I (3014533) sentry: [BEACON] color: yellow (255,180,0)
+I (3017003) sentry: [TELEMETRY #89] 02:30:00 up 00:50:16 heap 257KB rssi -26 temp 32.4C depth 42.7m hull 5.3bar batt 24.1V valve closed sonar - state NORMAL
+---- Sent utf8 encoded message: "lamp brightness 50\n" ----
+lamp brightness 50
+I (3022943) sentry: [BEACON] brightness: 50%
+---- Sent utf8 encoded message: "lamp scene load 1\n" ----
+lamp scene load 1
+I (3033083) sentry: [BEACON] scene 1 loaded: (0,0,255) 100% solid
+I (3047003) sentry: [TELEMETRY #90] 02:30:30 up 00:50:46 heap 257KB rssi -23 temp 32.4C depth 42.7m hull 5.3bar batt 24.1V valve closed sonar - state NORMAL
+---- Sent utf8 encoded message: "lamp status\n" ----
+lamp status
+I (3049643) sentry: [BEACON] ON, color (0,0,255), brightness 100%, mode solid, timer off
+I (3049643) sentry: [ACU] ambient noise 72 dB re 1uPa, sea state 2, water 8.1 C
+
+Assessment:
+- LM-4: solid, blink, breathe and rainbow mode commands were accepted and operator visually confirmed the lamp's corresponding changes. The unsupported typo `breath` returned E505 with the supported modes listed. This does not verify brightness behavior across every mode.
+- LM-5: timer 5 and timer 10 expired after approximately 5 and 10 seconds, respectively, based on device timestamps; status reported 3 s remaining during the 10-second timer. The operator visually confirmed the changes, including timer auto-off and cancellation. 3601 returned E506. The timer-start messages incorrectly label the input value as milliseconds (`ms`), while PRD specifies seconds (`s`); see BUG-003.
+- LM-6: loading empty scene 1 returned E509; save without a scene number returned E501; saving scene 1 succeeded. After changing the color and brightness, loading scene 1 restored blue (0,0,255), 100%, solid; operator visually confirmed the lamp changes. No reboot/power-cycle persistence check was performed.
+- LM-7: status reported ON, RGB, brightness, mode and timer state. Persistence in NVS was not checked.
+- Visual behavior for the changes in this and the preceding lamp-control transcript was confirmed by the operator; exact color/luminance measurements were not made.

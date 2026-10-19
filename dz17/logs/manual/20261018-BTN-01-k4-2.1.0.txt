@@ -1,0 +1,49 @@
+Source: operator-supplied UART transcripts in chat
+Date: 2026-10-18
+Firmware: 2.1.0 on `ota_0`
+Requirement: §12 requires login for button actions; 2.1.0 planned response for unsupported K4 behavior is E099
+Redaction: Account and network identifiers, IP, wall-clock values, and credentials are omitted.
+
+Attempt 1 precondition:
+- Read-only `status` showed NORMAL, buoy link down, and not logged in.
+
+Attempt 1 observed result:
+- The operator pressed K4 once briefly and observed UART/indicators for about 5 seconds.
+- UART reported `[BTN] K4 pressed`, followed by `E003 guard: login required`.
+- The operator reported no indicator or device-state change.
+
+Attempt 1 assessment:
+- E003 is consistent with the §12 login prerequisite. This attempt did not reach the planned E099 response.
+
+Attempt 2 precondition:
+- `reconnect` restored Wi-Fi; subsequent `status` confirmed 2.1.0 on `ota_0`, NORMAL, internet OK, and not logged in.
+- The operator logged in locally; `whoami` reported an ordinary user access level. The account name and credentials are intentionally omitted.
+- The operator confirmed the bench was safe before the physical action.
+
+Attempt 2 observed result:
+- The operator pressed K4 once briefly and observed UART/indicators for about 5 seconds.
+- UART reported `[BTN] K4 pressed`, followed by `E099 K4: perimeter watch is planned in v2.3.0`.
+- The operator reported no physical/indicator change.
+
+Assessment:
+- The authenticated attempt produced the documented planned E099 response on 2.1.0, with no physical change reported.
+- No K4 feature failure is indicated by these 2.1.0 results.
+
+Selected UART:
+I ([redacted]) sentry:   fw: v2.1.0 (ota_0)
+I ([redacted]) sentry:   state: 1 NORMAL
+I ([redacted]) sentry:   link: buoy link down (known: [redacted])
+I ([redacted]) sentry:   user: not logged in
+I ([redacted]) sentry: [BTN] K4 pressed
+E ([redacted]) sentry: E003 guard: login required
+I ([redacted]) sentry: [LINK] connected to [redacted], rssi [redacted]
+I ([redacted]) sentry: [LINK] fleet network reachable (internet OK)
+I ([redacted]) sentry: [LINK] time: synced via NTP, [clock redacted]
+I ([redacted]) sentry:   fw: v2.1.0 (ota_0)
+I ([redacted]) sentry:   state: 1 NORMAL
+I ([redacted]) sentry:   link: buoy link '[redacted]', ip [redacted], rssi [redacted], ch [redacted]
+I ([redacted]) sentry:   internet: OK
+I ([redacted]) sentry:   user: not logged in
+I ([redacted]) sentry: user: [redacted], access: user
+I ([redacted]) sentry: [BTN] K4 pressed
+E ([redacted]) sentry: E099 K4: perimeter watch is planned in v2.3.0

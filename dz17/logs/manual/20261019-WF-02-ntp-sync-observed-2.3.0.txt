@@ -1,0 +1,7 @@
+Date: 2026-10-19
+Firmware: v2.3.0 (per operator context)
+Source: operator-supplied UART line
+Observation: the device explicitly reported successful NTP synchronization. The supplied excerpt contains no W106, but does not show the preceding reconnect sequence or establish that BUG-014 is absent/fixed on this firmware.
+
+Redacted UART:
+I ([redacted]) sentry: [LINK] time: synced via NTP, [time redacted]

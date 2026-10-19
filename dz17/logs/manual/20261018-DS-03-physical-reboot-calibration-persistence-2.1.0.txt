@@ -1,0 +1,59 @@
+Date: 2026-10-18
+Firmware: 2.1.0, `ota_0` valid
+Source: operator-supplied UART transcript following operator-reported physical power cycle
+Sensitive-data handling: Login password is redacted. Wi-Fi SSID, IP, gateway, BSSID, and device MAC are omitted/redacted.
+
+Observed sequence:
+- `version` confirmed fw 2.1.0 on valid `ota_0`.
+- Before Wi-Fi reconnect, `distance stats`, `relay status`, and `distance` each returned E002 Wi-Fi required. These were access/precondition responses; they do not establish calibration or relay state.
+- `reconnect` restored Wi-Fi and NTP. `relay status` then returned E003 because login was required. After the operator logged in, `relay status` reported valve closed, auto off, cycles 80.
+- The operator issued one `distance` at the stationary operator-confirmed 20 cm target: sonar reported 20.0 cm, alongside a collision message and proximity alarm at threshold 25 cm.
+- Immediately afterward, `distance stats` reported 1 measurement, 0 errors, min/max/avg 20.0 cm, and calibration -2.0 cm.
+- Therefore, the -2.0 cm offset survived the operator-reported physical reboot. A physical reboot is not a recovery/reset for this calibration state. Do not resume sonar characterization until a supported reset/recovery method is established and `stats` verifies the offset has cleared.
+- This one reading does not establish accuracy or repeatability. No evidence shows that the relay opened; relay was closed and auto off immediately beforehand.
+- No assistant-run hardware or automated test was performed.
+
+Selected supplied UART transcript:
+---- Sent utf8 encoded message: "version\n" ----
+version
+I (13709) sentry: SENTRY SWM-2 sonar watch module, fw v2.1.0 (build Oct  6 2026 02:14:57)
+I (13709) sentry:   partition: ota_0 @ 0x20000, state: valid
+---- Sent utf8 encoded message: "distance stats\n" ----
+distance stats
+E (20519) sentry: E002 Wi-Fi required. Use 'reconnect' or 'connect'
+I (20669) sentry: [NAV] depth 41.5 m, heading 276, speed 2.6 kn
+---- Sent utf8 encoded message: "relay status\n" ----
+relay status
+E (28329) sentry: E002 Wi-Fi required. Use 'reconnect' or 'connect'
+---- Sent utf8 encoded message: "distance\n" ----
+distance
+E (32999) sentry: E002 Wi-Fi required. Use 'reconnect' or 'connect'
+---- Sent utf8 encoded message: "reconnect\n" ----
+reconnect
+I (38569) wifi:connected with [REDACTED], aid = 1, channel 1
+I (40099) esp_netif_handlers: sta ip: [REDACTED], mask 255.255.255.0, gw [REDACTED]
+I (40099) sentry: [LINK] got ip [REDACTED]
+I (40099) sentry: [LINK] connected to '[REDACTED]', rssi -30 dBm (excellent)
+I (41929) sentry: [LINK] fleet network reachable (internet OK)
+I (45399) sentry: [LINK] time: synced via NTP, 03:11:11
+---- Sent utf8 encoded message: "relay status\n" ----
+relay status
+E (86249) sentry: E003 login required. Use 'login <login> <pass>' or 'register'
+---- Sent utf8 encoded message: "login [operator account] [REDACTED]\n" ----
+login [operator account] [REDACTED]
+I (94239) sentry: [AUTH] operator [operator account] on watch, console 2
+I (94269) sentry: [TELEMETRY] auto report every 30 s ('health off' to stop)
+---- Sent utf8 encoded message: "relay status\n" ----
+relay status
+I (97679) sentry: [VALVE] closed, auto off, cycles 80
+I (99669) sentry: [ACU] ambient noise 75 dB re 1uPa, sea state 2, water 8.2 C
+---- Sent utf8 encoded message: "distance\n" ----
+distance
+I (105299) sentry: [SONAR] ping: echo 20.0 cm
+E (105299) sentry: [COLLISION] contact too close: 20.0 cm (< 20 cm)
+W (105299) sentry: [SONAR] PROXIMITY ALARM: contact at 20.0 cm (threshold 25 cm)
+---- Sent utf8 encoded message: "distance stats\n" ----
+distance stats
+I (123409) sentry: [SONAR] measurements 1, errors 0, min 20.0, max 20.0, avg 20.0 cm
+I (123409) sentry: [SONAR] calibration -2.0 cm, filter median 5, alarm on
+I (124269) sentry: [TELEMETRY #1] 03:12:30 up 00:02:03 heap 257KB rssi -29 temp 31.4C depth 41.3m hull 5.1bar batt 24.2V valve closed sonar 20.0cm state NORMAL

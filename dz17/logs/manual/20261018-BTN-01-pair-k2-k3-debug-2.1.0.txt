@@ -1,0 +1,27 @@
+Source: operator-supplied UART transcript in chat
+Date: 2026-10-18
+Firmware: 2.1.0 (confirmed in surrounding supplied session)
+Requirement: §12 K2+K3 held for 2 s requests state 2 DEBUG
+Redaction: Wall-clock values omitted; no credentials or network identifiers retained.
+
+Precondition:
+- Telemetry immediately before the button pair reported state NORMAL and valve closed.
+
+Observed result:
+- UART reported `[BTN] K2+K3 held 2 s -> state 2`.
+- UART then confirmed `[STATE] 1 NORMAL -> 2 DEBUG (by buttons)` and emitted the DEBUG maintenance description.
+- Subsequent telemetry reported state DEBUG and valve closed.
+- The operator reported that the lamp was blinking blue after the transition.
+- No individual K2 or K3 press/action, relay opening, or sonar stream-start message appears in this excerpt.
+- The operator had confirmed before the test that short relay actuation and sonar measurement were safe; no additional physical observation was supplied.
+
+Assessment:
+- K2+K3 pair transition from NORMAL to DEBUG was observed on 2.1.0.
+- This capture does not verify DEBUG sensor diagnostics. The operator-reported blue blinking lamp is physical observation; no independent measurement of its color or cadence was made.
+
+Selected UART:
+I ([redacted]) sentry: [TELEMETRY #238] [clock redacted] up 02:20:12 heap 257KB rssi -51 temp 31.4C depth 39.4m hull 4.9bar batt 24.0V valve closed sonar - state NORMAL
+I (8423529) sentry: [BTN] K2+K3 held 2 s -> state 2
+W (8423529) sentry: [STATE] 1 NORMAL -> 2 DEBUG (by buttons)
+I (8423529) sentry: [STATE] DEBUG (maintenance): raw transducer data, LED blink codes, parser diagnostics
+I ([redacted]) sentry: [TELEMETRY #239] [clock redacted] up 02:20:42 heap 257KB rssi -54 temp 31.4C depth 39.1m hull 4.9bar batt 24.0V valve closed sonar - state DEBUG

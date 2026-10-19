@@ -1,0 +1,78 @@
+Source: terminal output provided by operator in chat.
+Date: 2026-10-16
+Port: COM4
+Firmware: 2.1.0
+Command:
+help
+
+---- Sent utf8 encoded message: "help\n" ----
+help
+I (862657) sentry: Commands ([wifi] - needs Wi-Fi, [login] - needs Wi-Fi + login, [debug] - debug access):
+I (862657) sentry: System:
+I (862657) sentry:   help                         - this help
+I (862657) sentry:   status                       - full device status
+I (862667) sentry:   version                      - firmware version and partition
+I (862667) sentry:   sysinfo                      - chip, memory, uptime
+I (862677) sentry:   temp                         - chip temperature
+I (862687) sentry:   uptime                       - time since boot
+I (862687) sentry:   reboot                       - reboot device
+I (862697) sentry: Buoy link (Wi-Fi):
+I (862697) sentry:   connect                      - connect to Wi-Fi (scan, SSID, password)
+I (862707) sentry:   reconnect                    - connect to known network
+I (862717) sentry:   forget                       - forget known network
+I (862717) sentry:   disconnect                   - disconnect from Wi-Fi
+I (862727) sentry:   scan                         - list Wi-Fi networks
+I (862737) sentry:   net                          - IP, gateway, DNS, MAC [wifi]
+I (862737) sentry:   ping [host]                  - ping host (default 8.8.8.8) [wifi]
+I (862747) sentry:   time                         - current time (NTP) [wifi]
+I (862757) sentry: Account:
+I (862757) sentry:   register <login> <pass>      - create profile (one per device) [wifi]
+I (862767) sentry:   login <login> <pass>         - start session [wifi]
+I (862777) sentry:   logout                       - end session
+I (862777) sentry:   whoami                       - current user and access
+I (862787) sentry:   passwd <old> <new>           - change password [login]
+I (862787) sentry:   sudo <password>              - elevate current user to debug [login]
+I (862797) sentry: States:
+I (862797) sentry:   state [1-4|name]             - show / change system state [login]
+I (862807) sentry: OTA:
+I (862807) sentry:   ota [status]                 - running / previous firmware [login]
+I (862817) sentry:   ota check                    - check stable and beta channels [login]
+I (862827) sentry:   ota update [beta]            - update to stable (or beta) [login]
+I (862837) sentry:   ota install <X.Y.Z> [force]  - install exact version (force - allow downgrade) [login]
+I (862847) sentry:   ota broken                   - install broken build (rollback test) [login]
+I (862857) sentry:   ota rollback                 - boot previous firmware [login]
+I (862857) sentry:   ota url <url> [force]        - install image from any http(s) link [login]
+I (862867) sentry:   ota server [<url>|default]   - show / set update server (default - GitHub) [login]
+I (862877) sentry: Beacon light (alias: beacon):
+I (862877) sentry:   lamp on|off|toggle           - Smart Lamp power [login]
+I (862887) sentry:   lamp status                  - lamp settings [login]
+I (862897) sentry:   lamp color <name|R G B>      - white red green blue yellow purple cyan orange [login]
+I (862907) sentry:   lamp brightness <0-100>      - brightness, % [login]
+I (862907) sentry:   lamp mode <mode>             - solid | blink | breathe | rainbow [login]
+I (862917) sentry:   lamp timer <sec>             - auto-off 1-3600 s (0 - cancel) [login]
+I (862927) sentry:   lamp scene save|load <1-3>   - save / load lamp preset [login]
+I (862937) sentry: Trim valve (alias: valve, open|close):
+I (862937) sentry:   relay on|off|toggle          - relay + indicator diode [login]
+I (862947) sentry:   relay status                 - state, auto mode, switch counter [login]
+I (862957) sentry:   relay pulse <ms>             - turn on for 100-10000 ms [login]
+I (862967) sentry:   relay schedule <on> <off>    - cycle on/off in seconds ('off' - stop) [login]
+I (862967) sentry:   relay auto on|off            - turn relay on by distance alarm [login]
+I (862977) sentry:   relay health                 - contact wear and coil check [login]
+I (862987) sentry: Active sonar (alias: sonar):
+I (862987) sentry:   distance [N]                 - measure once or N times (1-20) [login]
+I (862997) sentry:   distance log [ms] | stop     - continuous measuring 100-5000 ms [login]
+I (863007) sentry:   distance calibrate <cm>      - calibrate by reference object ('reset') [login]
+I (863017) sentry:   distance alarm <cm>|off      - alarm threshold 5-300 cm [login]
+I (863027) sentry:   distance filter on|off       - median filter of 5 samples [login]
+I (863027) sentry:   distance stats|history       - statistics / last 10 measurements [login]
+I (863037) sentry: Telemetry (alias: telemetry):
+I (863047) sentry:   health now                   - health report now [login]
+I (863047) sentry:   health on|off                - auto report (after login, 30 s) [login]
+I (863057) sentry:   health interval <sec>        - auto interval 10-300 s (VERBOSE 10 s) [login]
+I (863067) sentry: Perimeter watch, CIC alerts: planned in v2.3.0
+I (863077) sentry: Buttons [login]:
+I (863077) sentry:   K1 press / hold 1.5 s        - beacon on/off / next color
+I (863087) sentry:   K2 press / hold 1.5 s        - valve open/close / 1 s pulse
+I (863087) sentry:   K3 press                     - active sonar for 30 s (press again - stop)
+I (863097) sentry:   K4                           - perimeter watch (planned in v2.3.0)
+I (863107) sentry:   hold 2 s: K1+K2 - 1 NORMAL, K2+K3 - 2 DEBUG, K3+K4 - 3 VERBOSE, K4+K1 - 4 EMERGENCY (only from 3)

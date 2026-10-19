@@ -1,0 +1,132 @@
+Date: 2026-10-16
+Firmware: 2.1.0 (`ota_0`)
+Source: sanitized excerpts from operator-supplied UART transcript
+Credential material omitted: login command arguments are redacted.
+Physical note (operator confirmation, 2026-10-16): all lamp changes represented in this and the preceding lamp-control transcript were visually confirmed on the real lamp, including on/off/toggle, named and RGB colors, and brightness changes. This confirms visible response, not colorimetric accuracy or measured luminance.
+
+---- Sent utf8 encoded message: "status\n" ----
+status
+I (1628363) sentry: === SWM-2 status ===
+I (1628363) sentry:   fw:       v2.1.0 (ota_0)
+I (1628363) sentry:   state:    1 NORMAL
+I (1628363) sentry:   link:     buoy link '[network redacted]', ip [IP redacted], rssi -33 dBm (excellent), ch 1
+I (1628373) sentry:   internet: OK
+I (1628373) sentry:   user:     [operator account] (user)
+I (1628373) sentry:   time:     02:06:51, uptime 0h 27m 07s
+
+---- Sent utf8 encoded message: "lamp on\n" ----
+lamp on
+W (1631523) sentry: W510 lamp already on
+---- Sent utf8 encoded message: "lamp off\n" ----
+lamp off
+I (1635623) sentry: [BEACON] off (command)
+---- Sent utf8 encoded message: "lamp on\n" ----
+lamp on
+I (1638683) sentry: [BEACON] on (command) solid, 50%, color (0,0,255)
+---- Sent utf8 encoded message: "lamp toggle\n" ----
+lamp toggle
+I (1645973) sentry: [BEACON] off (command)
+---- Sent utf8 encoded message: "lamp toggle\n" ----
+lamp toggle
+I (1649773) sentry: [BEACON] on (command) solid, 50%, color (0,0,255)
+---- Sent utf8 encoded message: "logout\n" ----
+logout
+I (1671483) sentry: [AUTH] operator relieved from watch
+I (1671483) sentry: [BEACON] off (logout)
+---- Sent utf8 encoded message: "lamp on\n" ----
+lamp on
+E (1674693) sentry: E003 login required. Use 'login <login> <pass>' or 'register'
+---- Sent utf8 encoded message: "lamp off\n" ----
+lamp off
+E (1680203) sentry: E003 login required. Use 'login <login> <pass>' or 'register'
+---- Sent utf8 encoded message: "login [REDACTED]\n" ----
+login [REDACTED]
+I (1692433) sentry: [AUTH] operator on watch, console 2
+
+---- Sent utf8 encoded message: "lamp color white\n" ----
+lamp color white
+I (1709853) sentry: [BEACON] color: white (255,255,255)
+---- Sent utf8 encoded message: "lamp on\n" ----
+lamp on
+I (1716953) sentry: [BEACON] on (command) solid, 50%, color (255,255,255)
+---- Sent utf8 encoded message: "lamp color red\n" ----
+lamp color red
+I (1736333) sentry: [BEACON] color: red (255,0,0)
+---- Sent utf8 encoded message: "lamp color green\n" ----
+lamp color green
+I (1742343) sentry: [BEACON] color: green (0,255,0)
+---- Sent utf8 encoded message: "lamp color blue\n" ----
+lamp color blue
+I (1748833) sentry: [BEACON] color: blue (0,0,255)
+---- Sent utf8 encoded message: "lamp color yellow\n" ----
+lamp color yellow
+I (1754413) sentry: [BEACON] color: yellow (255,180,0)
+---- Sent utf8 encoded message: "lamp color purple\n" ----
+lamp color purple
+I (1765603) sentry: [BEACON] color: purple (160,0,255)
+---- Sent utf8 encoded message: "lamp color cyan\n" ----
+lamp color cyan
+I (1771463) sentry: [BEACON] color: cyan (0,255,255)
+---- Sent utf8 encoded message: "lamp color orange\n" ----
+lamp color orange
+I (1778733) sentry: [BEACON] color: orange (255,80,0)
+---- Sent utf8 encoded message: "lamp color 255 0 0\n" ----
+lamp color 255 0 0
+I (1792723) sentry: [BEACON] color: (255,0,0)
+---- Sent utf8 encoded message: "lamp status\n" ----
+lamp status
+I (1803413) sentry: [BEACON] ON, color (255,0,0), brightness 50%, mode solid, timer off
+---- Sent utf8 encoded message: "lamp color 0 255 0\n" ----
+lamp color 0 255 0
+I (1816893) sentry: [BEACON] color: (0,255,0)
+---- Sent utf8 encoded message: "lamp color 0 0 255\n" ----
+lamp color 0 0 255
+I (1825713) sentry: [BEACON] color: (0,0,255)
+---- Sent utf8 encoded message: "lamp color fozzy\n" ----
+lamp color fozzy
+E (1859873) sentry: E503 unknown color 'fozzy'. Colors: white red green blue yellow purple cyan orange, or 'color R G B'
+---- Sent utf8 encoded message: "lamp color 300 0 0\n" ----
+lamp color 300 0 0
+E (1874013) sentry: E502 rgb values must be 0-255
+---- Sent utf8 encoded message: "lamp color -1 -1 -1\n" ----
+lamp color -1 -1 -1
+E (1884103) sentry: E502 rgb values must be 0-255
+---- Sent utf8 encoded message: "lamp color 224 0 0 \n" ----
+lamp color 224 0 0
+I (1891283) sentry: [BEACON] color: (224,0,0)
+---- Sent utf8 encoded message: "lamp color 226 0 0 \n" ----
+lamp color 226 0 0
+I (1898803) sentry: [BEACON] color: (226,0,0)
+---- Sent utf8 encoded message: "lamp color 254 0 0 \n" ----
+lamp color 254 0 0
+I (1917223) sentry: [BEACON] color: (254,0,0)
+---- Sent utf8 encoded message: "lamp color 256 0 0 \n" ----
+lamp color 256 0 0
+E (1922143) sentry: E502 rgb values must be 0-255
+
+---- Sent utf8 encoded message: "lamp brightness 0\n" ----
+lamp brightness 0
+I (1944583) sentry: [BEACON] brightness: 0%
+---- Sent utf8 encoded message: "lamp brightness 50\n" ----
+lamp brightness 50
+I (1953673) sentry: [BEACON] brightness: 50%
+---- Sent utf8 encoded message: "lamp brightness 100\n" ----
+lamp brightness 100
+I (1962343) sentry: [BEACON] brightness: 100%
+---- Sent utf8 encoded message: "lamp brightness 101\n" ----
+lamp brightness 101
+E (1965273) sentry: E504 brightness must be 0-100
+---- Sent utf8 encoded message: "lamp brightness -1\n" ----
+lamp brightness -1
+E (1969263) sentry: E504 brightness must be 0-100
+---- Sent utf8 encoded message: "lamp brightness 100000\n" ----
+lamp brightness 100000
+E (1974633) sentry: E504 brightness must be 0-100
+
+Assessment:
+- LM-1: repeated `lamp on` while already on returned W510; `lamp off` and both `lamp toggle` transitions were logged; logout logged Beacon off; lamp commands after logout returned E003. Post-reboot lamp-off behavior was not tested in this run.
+- LM-2: all eight named colors were accepted and logged with RGB values. Valid RGB examples including channel values 0 and 255 were accepted; invalid color returned E503; RGB values below 0 or above 255 returned E502. These are UART reports of configured values, not colorimeter measurements.
+- LM-3: brightness 0%, 50%, and 100% were accepted; -1, 101, and 100000 returned E504.
+- Operator reports these checks were performed on the real lamp without observed physical errors. Exact perceived color/luminance per setting was not independently recorded.
+- No `lamp mode ...` command appears in the supplied UART excerpt. No specific solid/blink/breathe/rainbow command result is established here.
+- LM-4 through LM-8 (mode commands, timer, scenes, NVS persistence, and LED priority) remain unverified except for the `lamp status` snapshot included above.

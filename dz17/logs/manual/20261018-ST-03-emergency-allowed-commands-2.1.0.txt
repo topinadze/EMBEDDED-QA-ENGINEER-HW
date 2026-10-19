@@ -1,0 +1,60 @@
+Source: operator-supplied UART transcript in chat
+Date: 2026-10-18
+Firmware: 2.1.0, `ota_0` (confirmed by `status`/`version`)
+Requirement: ST-3 allowed commands in EMERGENCY: `help`, `status`, `whoami`, `version`, `health now`, `reboot`
+Redaction: Account name, network identifier, IP, and wall-clock values are omitted.
+
+Precondition:
+- Current state was EMERGENCY after the K4+K1 pair from VERBOSE; the linked pair evidence records the transition and module lock message.
+
+Observed result:
+- `help` returned the system/account/state/telemetry command groups and listed `help`, `status`, `version`, `reboot`, `whoami`, and `health now`. It did not return E005/E001.
+- `status` confirmed firmware 2.1.0 (`ota_0`), state 4 EMERGENCY, Wi-Fi/internet connected, logged-in user, valve closed, sonar no contact, and device telemetry fields. Sensitive values are redacted.
+- `whoami` returned the logged-in user with access `user`.
+- A second `help` was issued and returned the same available-command listing.
+- `version` confirmed firmware 2.1.0 on `ota_0`, state valid.
+- `health now` was followed by telemetry reports #321 and #322 at the same displayed second, then continuing EMERGENCY telemetry at about 5 s intervals. No distinct one-shot health summary or explicit command error appears in the supplied excerpt; exact command response semantics remain unclear.
+- Throughout the excerpt, telemetry reports state EMERGENCY and valve closed; recurring simulated NAV EMERGENCY BLOW messages continue. Temperatures shown remain about 30.4 C. No unlisted/unsafe command or button action was attempted in this capture.
+- `reboot` has not yet been executed for this EMERGENCY entry.
+
+Assessment:
+- The sampled allowed commands `help`, `status`, `whoami`, and `version` were observed to operate in EMERGENCY without an explicit error.
+- `health now` was issued without an explicit error, but the excerpt does not clearly distinguish an immediate one-shot report from recurring telemetry. Do not claim its report format is verified.
+- ST-3 remains PARTIAL: prohibited-command/button rejection, temperature-limit behavior, and exit by reboot for this current entry remain untested.
+
+Selected UART:
+---- Sent utf8 encoded message: "help\n" ----
+help
+I (9009069) sentry: Commands ([wifi] - needs Wi-Fi, [login] - needs Wi-Fi + login, [debug] - debug access):
+I (9009069) sentry: System:
+I (9009069) sentry:   help                         - this help
+I (9009069) sentry:   status                       - full device status
+I (9009079) sentry:   version                      - firmware version and partition
+I (9009089) sentry:   reboot                       - reboot device
+I (9009089) sentry: Account:
+I (9009089) sentry:   whoami                       - current user and access
+I (9009099) sentry: States:
+I (9009099) sentry:   state [1-4|name]             - show / change system state [login]
+I (9009109) sentry: Telemetry (alias: telemetry):
+I (9009119) sentry:   health now                   - health report now [login]
+---- Sent utf8 encoded message: "status\n" ----
+status
+I (9011029) sentry: === SWM-2 status ===
+I (9011029) sentry:   fw:       v2.1.0 (ota_0)
+I (9011029) sentry:   state:    4 EMERGENCY
+I (9011029) sentry:   link:     buoy link '[network redacted]', ip [redacted], rssi -64 dBm (good), ch 1
+I (9011039) sentry:   internet: OK
+I (9011039) sentry:   user:     [account redacted] (user)
+I (9011049) sentry:   valve:    closed
+I (9011049) sentry:   sonar:    no contact
+---- Sent utf8 encoded message: "whoami\n" ----
+whoami
+I (9014239) sentry: user: [account redacted], access: user
+---- Sent utf8 encoded message: "version\n" ----
+version
+I (9024429) sentry: SENTRY SWM-2 sonar watch module, fw v2.1.0 (build [redacted])
+I (9024429) sentry:   partition: ota_0 @ 0x20000, state: valid
+---- Sent utf8 encoded message: "health now\n" ----
+health now
+W (9030919) sentry: [TELEMETRY #321] [clock redacted] up 02:30:30 heap 257KB rssi -63 temp 30.4C depth 0.0m hull 1.0bar batt 24.0V valve closed sonar - state EMERGENCY
+W (9031129) sentry: [TELEMETRY #322] [clock redacted] up 02:30:30 heap 257KB rssi -63 temp 30.4C depth 0.0m hull 1.0bar batt 24.0V valve closed sonar - state EMERGENCY

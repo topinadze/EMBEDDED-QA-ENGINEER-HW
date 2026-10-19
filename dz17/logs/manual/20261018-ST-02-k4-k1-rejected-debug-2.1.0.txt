@@ -1,0 +1,27 @@
+Source: operator-supplied UART transcript in chat
+Date: 2026-10-18
+Firmware: 2.1.0 on `ota_0` (confirmed in the same session)
+Requirement: ST-2 / §12 — K4+K1 must enter EMERGENCY only from VERBOSE; from DEBUG expect E302 and unchanged state
+Redaction: Wall-clock values omitted; no credentials or network identifiers retained.
+
+Precondition:
+- Telemetry showed state DEBUG and valve closed.
+- Immediately preceding K2+K3 pair transitioned the device from NORMAL to DEBUG.
+- The operator reported the lamp was blinking blue in DEBUG.
+
+Observed result:
+- UART emitted `[V] button K4 down` and `[V] button K1 down`.
+- UART then reported `[BTN] K4+K1 held 2 s -> state 4`, followed by `E302 EMERGENCY can be entered only from 3 VERBOSE (now 2 DEBUG)`.
+- The operator reported no physical change after the K4+K1 attempt.
+
+Assessment:
+- Rejection of K4+K1 from DEBUG with E302 was observed on 2.1.0; the operator reported no physical change.
+- The DEBUG capture includes separate verbose per-button down notifications before the combined-gesture result. The supplied K2+K3 DEBUG-entry and K3+K4 VERBOSE-entry captures do not show analogous separate notifications. PRD §12 specifies pair gestures and state transitions but does not specify whether these individual notifications should be emitted or suppressed; record this as a version/state-specific observation, not a confirmed defect.
+- No subsequent state telemetry was supplied after the E302 response; unchanged DEBUG is supported by the rejection response, but a post-action state readback was not captured.
+
+Selected UART:
+I ([redacted]) sentry: [TELEMETRY #28] [clock redacted] up [redacted] heap 257KB rssi [redacted] temp 32.4C depth 41.4m hull 5.1bar batt 24.2V valve closed sonar - state DEBUG
+I ([redacted]) sentry: [V] button K4 down
+I ([redacted]) sentry: [V] button K1 down
+I ([redacted]) sentry: [BTN] K4+K1 held 2 s -> state 4
+E ([redacted]) sentry: E302 EMERGENCY can be entered only from 3 VERBOSE (now 2 DEBUG)

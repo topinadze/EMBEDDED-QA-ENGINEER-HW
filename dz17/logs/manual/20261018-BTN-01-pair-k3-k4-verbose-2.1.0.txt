@@ -1,0 +1,34 @@
+Source: operator-supplied UART transcript in chat
+Date: 2026-10-18
+Firmware: 2.1.0 (confirmed in surrounding supplied session)
+Requirement: §12 K3+K4 held for 2 s requests state 3 VERBOSE
+Redaction: Wall-clock values omitted; no credentials or network identifiers retained.
+
+Precondition:
+- The previous supplied button-pair evidence showed transition from NORMAL to DEBUG using K2+K3.
+- Telemetry and state outputs in this capture identify the starting state as DEBUG.
+
+Observed result:
+- UART reported `[BTN] K3+K4 held 2 s -> state 3`, then confirmed `2 DEBUG -> 3 VERBOSE (by buttons)`.
+- The device described VERBOSE as tactical mode with extended logs, telemetry every 10 s, and LED heartbeat.
+- Four subsequent telemetry records reported state VERBOSE, each accompanied by `[V] telemetry` output. Device timestamps were separated by 10,010 ms, 10,010 ms, and 10,010 ms.
+- Telemetry reported valve closed and sonar inactive. No separate K3 sonar-start or K4 standalone action appears in the excerpt.
+- The operator supplied no physical LED observation.
+
+Assessment:
+- K3+K4 pair transition from DEBUG to VERBOSE was observed on 2.1.0.
+- The observed 10 s telemetry cadence and verbose output match the stated mode behavior in this capture.
+- Physical LED heartbeat behavior was not independently observed.
+
+Selected UART:
+I (8569359) sentry: [BTN] K3+K4 held 2 s -> state 3
+W (8569359) sentry: [STATE] 2 DEBUG -> 3 VERBOSE (by buttons)
+I (8569359) sentry: [STATE] VERBOSE (tactical): extended logs, telemetry every 10 s, LED heartbeat
+I (8579409) sentry: [TELEMETRY #244] [clock redacted] up 02:22:59 heap 257KB rssi -51 temp 31.4C depth 38.6m hull 4.9bar batt 24.0V valve closed sonar - state VERBOSE
+I (8579409) sentry: [V] telemetry: min heap 211KB, beacon on, tasks 15, water 8.3C, source auto
+I (8589419) sentry: [TELEMETRY #245] [clock redacted] up 02:23:09 heap 257KB rssi -50 temp 30.4C depth 38.6m hull 4.9bar batt 24.0V valve closed sonar - state VERBOSE
+I (8589419) sentry: [V] telemetry: min heap 211KB, beacon on, tasks 15, water 8.3C, source auto
+I (8599429) sentry: [TELEMETRY #246] [clock redacted] up 02:23:19 heap 257KB rssi -51 temp 30.4C depth 38.8m hull 4.9bar batt 24.0V valve closed sonar - state VERBOSE
+I (8599429) sentry: [V] telemetry: min heap 211KB, beacon on, tasks 15, water 8.2C, source auto
+I (8609439) sentry: [TELEMETRY #247] [clock redacted] up 02:23:29 heap 257KB rssi -49 temp 31.4C depth 38.8m hull 4.9bar batt 24.0V valve closed sonar - state VERBOSE
+I (8609439) sentry: [V] telemetry: min heap 211KB, beacon on, tasks 15, water 8.2C, source auto

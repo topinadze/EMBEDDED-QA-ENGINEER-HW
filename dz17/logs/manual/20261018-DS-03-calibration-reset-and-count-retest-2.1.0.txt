@@ -1,0 +1,36 @@
+Date: 2026-10-18
+Firmware: 2.1.0, `ota_0` valid
+Source: operator-supplied UART transcript
+State context: preceding `distance stats` reported calibration -2.0 cm, median filter 5, alarm on. Telemetry in this excerpt reports valve closed, state NORMAL.
+
+Observed sequence:
+- `distance stats`: 18 measurements, 0 errors, min 20.0 cm, max 23.0 cm, avg 21.4 cm; calibration -2.0 cm.
+- `distance 20` returned E704 `count must be 1-20` despite DS-1 allowing count 20 inclusive. This repeats BUG-008 after reboot.
+- Typo `distance calivrate reset` returned E703 usage. This is a malformed command, not a calibration-reset attempt.
+- Correct `distance calibrate reset` returned E706 `usage: distance calibrate <ref 5-300 cm>`, repeating BUG-011. The immediately preceding stats had shown the -2.0 cm offset; no post-error stats query appears in this excerpt.
+- The offset remains last confirmed at -2.0 cm and was not reset. Do not continue sonar characterization until a supported reset/recovery procedure clears it and the cleared state is verified.
+- No assistant-run hardware or automated test was performed.
+
+Selected supplied UART transcript:
+I (901663) sentry: [PWR] battery bus 24.17 V, load 1.5 A
+---- Sent utf8 encoded message: "version\n" ----
+version
+I (908943) sentry: SENTRY SWM-2 sonar watch module, fw v2.1.0 (build Oct  6 2026 02:14:57)
+I (908943) sentry:   partition: ota_0 @ 0x20000, state: valid
+---- Sent utf8 encoded message: "distance stats\n" ----
+distance stats
+I (913903) sentry: [SONAR] measurements 18, errors 0, min 20.0, max 23.0, avg 21.4 cm
+I (913903) sentry: [SONAR] calibration -2.0 cm, filter median 5, alarm on
+I (925243) sentry: [TELEMETRY #29] 03:02:45 up 00:15:24 heap 257KB rssi -30 temp 31.4C depth 42.4m hull 5.2bar batt 24.2V valve closed sonar - state NORMAL
+---- Sent utf8 encoded message: "distance 20\n" ----
+distance 20
+E (925933) sentry: E704 count must be 1-20
+---- Sent utf8 encoded message: "distance calivrate reset\n" ----
+distance calivrate reset
+E (950273) sentry: E703 usage: distance [N]|log [ms]|stop|calibrate <cm>|reset|alarm <cm>|off|filter on|off|stats|history
+I (955243) sentry: [TELEMETRY #30] 03:03:15 up 00:15:54 heap 257KB rssi -30 temp 31.4C depth 42.4m hull 5.2bar batt 24.2V valve closed sonar - state NORMAL
+W (963663) sentry: [ACU] biologics detected (snapping shrimp), passive filter on
+---- Sent utf8 encoded message: "distance calibrate reset\n" ----
+distance calibrate reset
+E (964703) sentry: E706 usage: distance calibrate <ref 5-300 cm>
+I (985243) sentry: [TELEMETRY #31] 03:03:45 up 00:16:24 heap 257KB rssi -29 temp 31.4C depth 42.5m hull 5.2bar batt 24.2V valve closed sonar - state NORMAL

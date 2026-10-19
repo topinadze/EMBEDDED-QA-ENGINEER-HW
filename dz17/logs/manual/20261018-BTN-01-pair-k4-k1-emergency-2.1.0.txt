@@ -1,0 +1,31 @@
+Source: operator-supplied UART transcript in chat
+Date: 2026-10-18
+Firmware: 2.1.0 (confirmed in surrounding supplied session)
+Requirement: §12 K4+K1 held for 2 s requests state 4 EMERGENCY only from state 3 VERBOSE (ST-2)
+Redaction: Wall-clock values omitted; no credentials or network identifiers retained.
+
+Precondition:
+- The preceding K3+K4 pair evidence confirmed state DEBUG -> VERBOSE.
+
+Observed result:
+- UART reported `[BTN] K4+K1 held 2 s -> state 4`.
+- UART confirmed `3 VERBOSE -> 4 EMERGENCY (by buttons)`.
+- The device reported EMERGENCY SURFACING, module locked, and listed allowed commands including `reboot`; it stated reboot is the only exit.
+- Subsequent NAV messages reported EMERGENCY BLOW and ascending depth; telemetry reported valve closed and state EMERGENCY.
+- No separate standalone K4 action or physical LED observation appears in the supplied excerpt.
+
+Assessment:
+- The supported K4+K1 transition from VERBOSE to EMERGENCY was observed on 2.1.0.
+- This pair transition is distinct from the 2.1.0 standalone K4 feature, which is planned for 2.3.0.
+- Device remains in EMERGENCY after this capture; the operator previously confirmed that reboot is safe and will perform the documented exit after this evidence is recorded.
+
+Selected UART:
+I (8697039) sentry: [BTN] K4+K1 held 2 s -> state 4
+W (8697039) sentry: [STATE] 3 VERBOSE -> 4 EMERGENCY (by buttons)
+E (8697039) sentry: [EMERGENCY] EMERGENCY SURFACING. Module locked. Allowed: help, status, whoami, version, health now, reboot. Exit: reboot only
+W (8697939) sentry: [NAV] EMERGENCY BLOW: depth 37.8 m, ascending
+W (8699529) sentry: [TELEMETRY #256] [clock redacted] up 02:24:59 heap 257KB rssi -51 temp 30.4C depth 37.6m hull 4.8bar batt 24.0V valve closed sonar - state EMERGENCY
+W (8702939) sentry: [NAV] EMERGENCY BLOW: depth 37.0 m, ascending
+W (8704729) sentry: [TELEMETRY #257] [clock redacted] up 02:25:04 heap 257KB rssi -51 temp 31.4C depth 36.9m hull 4.7bar batt 24.0V valve closed sonar - state EMERGENCY
+W (8707939) sentry: [NAV] EMERGENCY BLOW: depth 36.3 m, ascending
+W (8709929) sentry: [TELEMETRY #258] [clock redacted] up 02:25:09 heap 257KB rssi -49 temp 30.4C depth 36.1m hull 4.6bar batt 24.0V valve closed sonar - state EMERGENCY

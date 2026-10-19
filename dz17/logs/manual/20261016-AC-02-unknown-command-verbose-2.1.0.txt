@@ -1,0 +1,42 @@
+Date: 2026-10-16
+Firmware: 2.1.0 (`ota_0`)
+Source: sanitized excerpts from operator-supplied UART transcript
+Credential value redacted from the `login` command.
+
+---- Sent utf8 encoded message: "login [operator account] [REDACTED]\n" ----
+login [operator account] [REDACTED]
+I (1012813) sentry: [AUTH] operator [operator account] on watch, console 2
+I (1012863) sentry: [TELEMETRY] auto report every 30 s ('health off' to stop)
+---- Sent utf8 encoded message: "state 3\n" ----
+state 3
+W (1017013) sentry: [STATE] 1 NORMAL -> 3 VERBOSE (by command)
+I (1017013) sentry: [STATE] VERBOSE (tactical): extended logs, telemetry every 10 s, LED heartbeat
+I (1017013) sentry: [V] 'state' done in 3 ms
+---- Sent utf8 encoded message: "status\n" ----
+status
+I (1021913) sentry: === SWM-2 status ===
+I (1021913) sentry:   fw:       v2.1.0 (ota_0)
+I (1021913) sentry:   state:    3 VERBOSE
+I (1021913) sentry:   link:     buoy link '[network redacted]', ip [IP redacted], rssi -32 dBm (excellent), ch 1
+I (1021923) sentry:   internet: OK
+I (1021923) sentry:   user:     [operator account] (user)
+I (1021923) sentry:   time:     01:56:45, uptime 0h 17m 01s
+---- Sent utf8 encoded message: "unknown command\n" ----
+unknown command
+E (1031793) sentry: E001 unknown command 'unknown'. Type 'help'
+I (1037073) sentry: [TELEMETRY #4] 01:57:00 up 00:17:16 heap 258KB rssi -38 temp 32.4C depth 43.7m hull 5.4bar batt 24.2V valve closed sonar - state VERBOSE
+I (1037073) sentry: [V] telemetry: min heap 211KB, beacon off, tasks 15, water 8.0C, source auto
+---- Sent utf8 encoded message: "дивна команда\n" ----
+W (1043183) sentry: W006 non-latin characters ignored (use English layout)
+I (1047083) sentry: [TELEMETRY #5] 01:57:10 up 00:17:26 heap 258KB rssi -37 temp 31.4C depth 43.6m hull 5.4bar batt 24.2V valve closed sonar - state VERBOSE
+I (1047083) sentry: [V] telemetry: min heap 211KB, beacon off, tasks 15, water 8.1C source auto
+I (1057093) sentry: [TELEMETRY #6] 01:57:20 up 00:17:36 heap 258KB rssi -27 temp 32.4C depth 43.6m hull 5.4bar batt 24.2V valve closed sonar - state VERBOSE
+I (1057093) sentry: [V] telemetry: min heap 211KB, beacon off, tasks 15, water 8.1C source auto
+I (1067103) sentry: [TELEMETRY #7] 01:57:30 up 00:17:46 heap 258KB rssi -28 temp 32.4C depth 43.4m hull 5.3bar batt 24.2V valve closed sonar - state VERBOSE
+I (1067103) sentry: [V] telemetry: min heap 211KB, beacon off, tasks 15, water 8.0C source auto
+
+Assessment:
+- `status` confirms the device was connected, logged in as `[operator account]`, and in VERBOSE before the unknown input.
+- The two-token input `unknown command` produced E001 naming the first token, `unknown`; no `Did you mean ...` hint appears in the supplied excerpt.
+- The input was a generic unknown phrase, not a near-typo of a valid command. The suggested-command behavior for a close typo (for example, `statu`) is still not conclusively tested; no failure is inferred from this excerpt alone.
+- Cyrillic input produced W006. The subsequent telemetry confirms the device remained in VERBOSE.

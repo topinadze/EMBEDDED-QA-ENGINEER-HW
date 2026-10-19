@@ -1,0 +1,59 @@
+Date: 2026-10-18
+Source: operator-supplied UART transcript
+Target: ESP32-S3 DevKit, UART COM4 at 115200 8N1
+Case: OTA-02 / OTA-4, OTA-6, OTA-7; OTA-10 retention verification pending
+Pre-state evidence: `20261018-OTA-01-02-pre-upgrade-snapshot-2.1.0.txt`
+Redaction: Device build-tag field omitted because it contained a credential-like encoded value. Account/network identifiers, IP, wall-clock values, and credentials omitted.
+
+Upgrade result:
+- Before the command, telemetry showed NORMAL and valve closed.
+- `ota update beta` resolved beta to v2.3.0 while running v2.1.0.
+- OTA downloaded `sentry_fw7 v2.3.0` to inactive `ota_1` at offset `0x1a0000`; progress reached 100%.
+- Firmware reported successful transition `v2.1.0 -> v2.3.0` and rebooted.
+- Boot loaded the application from `ota_1`; the 2.3.0 image entered PENDING_VERIFY, passed self-check, and was marked VALID.
+- Subsequent `version` confirmed v2.3.0 on `ota_1 @ 0x1a0000`, valid.
+- The post-boot `status` showed NORMAL, known saved network but link down, logged out, and valve closed. Thus pre-upgrade connectivity/session state did not persist as an active link/session across reboot; the saved-profile behavior still needs an explicit reconnect check.
+- `ota status` immediately after boot returned E002 because Wi-Fi was disconnected. No post-boot `lamp status`, `relay status`, `distance stats`, or `health` readbacks were included in the supplied transcript. OTA-10 comparisons are therefore pending; do not infer retention from this transition log.
+- The supplied boot log included a credential-like encoded build-tag field. Its value is intentionally excluded here; rotate the associated credential if it is valid.
+
+Selected redacted UART:
+---- Sent utf8 encoded message: "ota update beta\n" ----
+ota update beta
+I ([redacted]) sentry: [OTA] beta channel: v2.3.0, current: v2.1.0
+I ([redacted]) sentry: [OTA] current v2.1.0 (ota_0) -> target partition ota_1
+I ([redacted]) sentry: [OTA] downloading https://raw.githubusercontent.com/BohdanHorbanych/esp32-ota-files/main/fw7/v2.3.0/sentry_fw7.bin
+I ([redacted]) esp_https_ota: Writing to <ota_1> partition at offset 0x1a0000
+I ([redacted]) sentry: [OTA] image: sentry_fw7 v2.3.0 (build Oct 6 2026 02:15:26)
+I ([redacted]) sentry: [OTA]  10%
+I ([redacted]) sentry: [OTA]  20%
+I ([redacted]) sentry: [OTA]  30%
+I ([redacted]) sentry: [OTA]  40%
+I ([redacted]) sentry: [OTA]  50%
+I ([redacted]) sentry: [OTA]  60%
+I ([redacted]) sentry: [OTA]  70%
+I ([redacted]) sentry: [OTA]  80%
+I ([redacted]) sentry: [OTA]  90%
+I ([redacted]) sentry: [OTA] 100%
+I ([redacted]) sentry: [OTA] success: v2.1.0 -> v2.3.0 in 18 s. Rebooting...
+rst:0xc (RTC_SW_CPU_RST),boot:0x8 (SPI_FAST_FLASH_BOOT)
+I ([redacted]) boot: Loaded app from partition at offset 0x1a0000
+I ([redacted]) app_init: App version: 2.3.0
+I ([redacted]) sentry: [OTA] running v2.3.0 from ota_1
+W ([redacted]) sentry: [OTA] new firmware, PENDING_VERIFY - self-check...
+I ([redacted]) sentry: [OTA] self-check passed, firmware marked VALID
+I ([redacted]) sentry: ready. state 1 NORMAL (patrol). Type 'help'
+---- Sent utf8 encoded message: "version\n" ----
+version
+I ([redacted]) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct 6 2026 02:15:26)
+I ([redacted]) sentry:   partition: ota_1 @ 0x1a0000, state: valid
+---- Sent utf8 encoded message: "status\n" ----
+status
+I ([redacted]) sentry:   fw: v2.3.0 (ota_1)
+I ([redacted]) sentry:   state: 1 NORMAL
+I ([redacted]) sentry:   link: buoy link down (known: [redacted])
+I ([redacted]) sentry:   user: not logged in
+I ([redacted]) sentry:   valve: closed
+I ([redacted]) sentry:   watch: disarmed, CIC alerts unacked: 0
+---- Sent utf8 encoded message: "ota status\n" ----
+ota status
+E ([redacted]) sentry: E002 Wi-Fi required. Use 'reconnect' or 'connect'

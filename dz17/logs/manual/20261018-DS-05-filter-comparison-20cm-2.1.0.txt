@@ -1,0 +1,53 @@
+Date: 2026-10-18
+Firmware: 2.1.0 (`ota_0`, valid), confirmed by `version` before the test
+Source: operator-supplied UART transcript
+Setup: operator selected a stationary target at 20 cm; physical position is not echoed in UART. `relay status` confirmed closed, auto off, cycles 80.
+
+Comparison:
+
+| Filter mode | Five reported samples (cm) | Reported average |
+|---|---|---:|
+| Off | 22.3, 22.2, 22.2, 22.2, 22.2 | 22.2 |
+| Median of 5 | 22.3, 22.2, 22.2, 22.3, 22.3 | 22.3 |
+
+- `distance filter off` was accepted and the subsequent five-sample command returned 5/5 valid samples.
+- `distance filter on` was accepted and reported `median of 5`; the subsequent five-sample command returned 5/5 valid samples.
+- Final `distance stats` reported 296 measurements, 17 errors, min 2.1 cm, max 151.1 cm, avg 21.7 cm, calibration +0.0 cm, filter median 5, alarm on. Thus the requested default filter setting was restored.
+- The two averages differ by 0.1 cm, with overlapping sample values. This one sequential comparison does not establish filter efficacy or general measurement accuracy; no repeated paired trials or raw-echo versus filtered-output comparison were recorded. Firmware filter behavior may affect how individual reported samples are produced, so the printed samples are not assumed to be raw sensor data.
+
+Assessment: filter on/off control, response, and status reporting worked in this supplied 2.1.0 run. The output does not demonstrate a material effect from median-of-five filtering in this single trial. The 20 cm target label is operator setup, not an independently echoed/calibrated reference; do not treat the 22.2/22.3 cm values as a formal tolerance failure.
+
+Selected supplied UART transcript:
+---- Sent utf8 encoded message: "version\n" ----
+version
+I (3847529) sentry: SENTRY SWM-2 sonar watch module, fw v2.1.0 (build Oct  6 2026 02:14:57)
+I (3847529) sentry:   partition: ota_0 @ 0x20000, state: valid
+---- Sent utf8 encoded message: "relay status\n" ----
+relay status
+I (3851749) sentry: [VALVE] closed, auto off, cycles 80
+---- Sent utf8 encoded message: "distance filter off\n" ----
+distance filter off
+I (3863959) sentry: [SONAR] filter off
+---- Sent utf8 encoded message: "distance 5\n" ----
+distance 5
+I (3869369) sentry: [SONAR] 1/5: 22.3 cm
+I (3869469) sentry: [SONAR] 2/5: 22.2 cm
+I (3869569) sentry: [SONAR] 3/5: 22.2 cm
+I (3869669) sentry: [SONAR] 4/5: 22.2 cm
+I (3869769) sentry: [SONAR] 5/5: 22.2 cm
+I (3869869) sentry: [SONAR] avg 22.2 cm (5/5 ok)
+---- Sent utf8 encoded message: "distance filter on\n" ----
+distance filter on
+I (3875199) sentry: [SONAR] filter on (median of 5)
+---- Sent utf8 encoded message: "distance 5\n" ----
+distance 5
+I (3879419) sentry: [SONAR] 1/5: 22.3 cm
+I (3879569) sentry: [SONAR] 2/5: 22.2 cm
+I (3879719) sentry: [SONAR] 3/5: 22.2 cm
+I (3879869) sentry: [SONAR] 4/5: 22.3 cm
+I (3880019) sentry: [SONAR] 5/5: 22.3 cm
+I (3880119) sentry: [SONAR] avg 22.3 cm (5/5 ok)
+---- Sent utf8 encoded message: "distance stats\n" ----
+distance stats
+I (3887829) sentry: [SONAR] measurements 296, errors 17, min 2.1, max 151.1, avg 21.7 cm
+I (3887829) sentry: [SONAR] calibration +0.0 cm, filter median 5, alarm on

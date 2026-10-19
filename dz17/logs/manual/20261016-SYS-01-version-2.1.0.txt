@@ -1,0 +1,22 @@
+Source: terminal output provided by operator in chat.
+Date: 2026-10-16
+Port: COM4
+Command:
+version
+
+---- Opened the serial port COM4 ----
+---- Sent utf8 encoded message: "version\n" ----
+version
+I (15247) sentry: SENTRY SWM-2 sonar watch module, fw v2.1.0 (build Oct  6 2026 02:14:57)
+I (15247) sentry:   partition: ota_0 @ 0x20000, state: valid
+I (20657) sentry: [NAV] depth 42.1 m, heading 274, speed 2.9 kn
+I (96657) sentry: [ACU] ambient noise 71 dB re 1uPa, sea state 2, water 8.0 C
+I (177657) sentry: [PWR] battery bus 24.19 V, load 1.3 A
+I (257657) sentry: [NAV] depth 42.4 m, heading 271, speed 2.8 kn
+I (338657) sentry: [ACU] ambient noise 75 dB re 1uPa, sea state 2, water 8.1 C
+I (425657) sentry: [PWR] battery bus 24.19 V, load 1.6 A
+I (497657) sentry: [NAV] depth 42.1 m, heading 268, speed 2.9 kn
+I (558657) sentry: [ACU] ambient noise 75 dB re 1uPa, sea state 2, water 8.2 C
+I (647657) sentry: [PWR] battery bus 24.18 V, load 1.7 A
+I (711657) sentry: [NAV] depth 42.3 m, heading 269, speed 2.9 kn
+I (785657) sentry: [ACU] ambient noise 68 dB re 1uPa, sea state 2, water 8.2 C

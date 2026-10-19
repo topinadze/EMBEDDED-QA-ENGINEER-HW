@@ -1,0 +1,12 @@
+Date: 2026-10-16
+Firmware: 2.1.0
+Test context: operator reports this observation while state 2 DEBUG was active; the supplied UART excerpt confirms transition to DEBUG.
+Source: operator-provided physical observation
+
+Observation:
+- Blue LED "breathing" (repeated gradual brightening/dimming) was reported in DEBUG.
+- Exact observation time, interval, and color/blink-code mapping were not supplied.
+
+Assessment:
+- PRD ST-1 says the LED shows blink codes in DEBUG but does not define their colors or cadence.
+- This observation is recorded without assigning a code meaning or treating the color as a defect.

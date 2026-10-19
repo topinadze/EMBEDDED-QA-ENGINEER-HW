@@ -1,0 +1,125 @@
+Date: 2026-10-18
+Firmware: 2.1.0 (`ota_0`, valid), confirmed by a device `version` query approximately 3 minutes after the measurement sequence, with continuous uptime indicating the same boot
+Source: operator-supplied UART measurement text, stated physical procedure, and subsequent device identity/status excerpt
+Procedure stated by operator: place target at 5 cm, move it away in 1 cm increments through 25 cm, take three single `distance` measurements at each position
+Interpretation: the 63 UART readings are grouped sequentially into 21 triplets based on the stated procedure; target-position labels were not echoed by the device
+
+| Target position (cm) | Three reported readings (cm) | Observation |
+|---:|---|---|
+| 5 | 22.9, 22.9, 22.9 | Stable, but about 17.9 cm above stated target position |
+| 6 | 6.4, 22.6, 22.6 | Two large high readings |
+| 7 | 7.4, 7.8, 7.8 | Close to target |
+| 8 | 23.2, 8.8, 8.8 | One large high reading |
+| 9 | 9.1, 9.1, 9.1 | Close to target |
+| 10 | 10.9, 10.9, 10.9 | About 0.9 cm high |
+| 11 | 11.8, 10.5, 10.5 | Spread of 1.3 cm |
+| 12 | 13.3, 13.3, 14.2 | About 1.3–2.2 cm high |
+| 13 | 15.7, 15.7, 15.7 | About 2.7 cm high |
+| 14 | 15.4, 15.4, 15.4 | About 1.4 cm high |
+| 15 | 17.3, 17.3, 17.3 | About 2.3 cm high |
+| 16 | 18.0, 23.2, 16.7 | One large high reading |
+| 17 | 17.9, 17.9, 18.0 | About 0.9–1.0 cm high |
+| 18 | 20.0, 20.0, 20.0 | About 2.0 cm high |
+| 19 | 19.7, 19.7, 19.7 | About 0.7 cm high |
+| 20 | 22.1, 22.1, 22.1 | About 2.1 cm high |
+| 21 | 22.9, 22.1, 22.0 | Spread of 0.9 cm |
+| 22 | 22.3, 22.3, 22.3 | About 0.3 cm high |
+| 23 | 23.2, 23.2, 23.2 | About 0.2 cm high |
+| 24 | 23.2, 23.2, 23.2 | About 0.8 cm low |
+| 25 | 23.2, 23.2, 23.2 | About 1.8 cm low |
+
+Assessment:
+- The sequence includes strong near-field discrepancies and inconsistent repeated readings at 6, 8, and 16 cm. In particular, all three readings at the stated 5 cm position report 22.9 cm.
+- Most positions from 7 cm onward track the increasing target distance broadly, but there is a gradual positive offset through parts of the range and occasional large outliers. The repeated identical triplets indicate repeatability at some positions but do not establish accuracy.
+- `distance` was issued repeatedly for single measurements; `distance 3` average behavior was not tested. No calibration command appears in this excerpt.
+- The transcript contains a split command echo (`distan` / `ce`) around the 12 cm group, followed by a measurement response. It does not by itself establish a lost or corrupted measurement.
+- Firmware version, exact target reference plane/placement, calibration state, and numeric accuracy tolerance are not shown/defined in this excerpt. Treat this as a significant sensor-measurement anomaly requiring a controlled rerun, not a conclusive firmware defect attribution yet.
+- No stream was active in this sequence, and the earlier sonar follow-up had relay closed and `relay auto off` acknowledged.
+- A later `version`/`status` query in the same boot confirmed firmware 2.1.0 (`ota_0`, valid), NORMAL state, logged-in user, relay closed, and sonar `no contact`. It confirms the device/version context but does not establish the calibration state during the measurement sequence.
+
+Selected UART excerpt:
+I (1212279) sentry: [SONAR] ping: echo 22.9 cm
+I (1215439) sentry: [SONAR] ping: echo 22.9 cm
+I (1217429) sentry: [SONAR] ping: echo 22.9 cm
+I (1222969) sentry: [SONAR] ping: echo 6.4 cm
+I (1224539) sentry: [SONAR] ping: echo 22.6 cm
+I (1226079) sentry: [SONAR] ping: echo 22.6 cm
+I (1231619) sentry: [SONAR] ping: echo 7.4 cm
+I (1232899) sentry: [SONAR] ping: echo 7.8 cm
+I (1234279) sentry: [SONAR] ping: echo 7.8 cm
+I (1239829) sentry: [SONAR] ping: echo 23.2 cm
+I (1241189) sentry: [SONAR] ping: echo 8.8 cm
+I (1242489) sentry: [SONAR] ping: echo 8.8 cm
+I (1249429) sentry: [SONAR] ping: echo 9.1 cm
+I (1250669) sentry: [SONAR] ping: echo 9.1 cm
+I (1251849) sentry: [SONAR] ping: echo 9.1 cm
+I (1258849) sentry: [SONAR] ping: echo 10.9 cm
+I (1260099) sentry: [SONAR] ping: echo 10.9 cm
+I (1261309) sentry: [SONAR] ping: echo 10.9 cm
+I (1266139) sentry: [SONAR] ping: echo 11.8 cm
+I (1267379) sentry: [SONAR] ping: echo 10.5 cm
+I (1268449) sentry: [SONAR] ping: echo 10.5 cm
+I (1273359) sentry: [SONAR] ping: echo 13.3 cm
+I (1274549) sentry: [SONAR] ping: echo 13.3 cm
+I (1275889) sentry: [SONAR] ping: echo 14.2 cm
+I (1281349) sentry: [SONAR] ping: echo 15.7 cm
+I (1282559) sentry: [SONAR] ping: echo 15.7 cm
+I (1283739) sentry: [SONAR] ping: echo 15.7 cm
+I (1289769) sentry: [SONAR] ping: echo 15.4 cm
+I (1290949) sentry: [SONAR] ping: echo 15.4 cm
+I (1292059) sentry: [SONAR] ping: echo 15.4 cm
+I (1296479) sentry: [SONAR] ping: echo 17.3 cm
+I (1297769) sentry: [SONAR] ping: echo 17.3 cm
+I (1298909) sentry: [SONAR] ping: echo 17.3 cm
+I (1305629) sentry: [SONAR] ping: echo 18.0 cm
+I (1306819) sentry: [SONAR] ping: echo 23.2 cm
+I (1308389) sentry: [SONAR] ping: echo 16.7 cm
+I (1313429) sentry: [SONAR] ping: echo 17.9 cm
+I (1314609) sentry: [SONAR] ping: echo 17.9 cm
+I (1315959) sentry: [SONAR] ping: echo 18.0 cm
+I (1321489) sentry: [SONAR] ping: echo 20.0 cm
+I (1322649) sentry: [SONAR] ping: echo 20.0 cm
+I (1323809) sentry: [SONAR] ping: echo 20.0 cm
+I (1330699) sentry: [SONAR] ping: echo 19.7 cm
+I (1331839) sentry: [SONAR] ping: echo 19.7 cm
+I (1333119) sentry: [SONAR] ping: echo 19.7 cm
+I (1337259) sentry: [SONAR] ping: echo 22.1 cm
+I (1338419) sentry: [SONAR] ping: echo 22.1 cm
+I (1339559) sentry: [SONAR] ping: echo 22.1 cm
+I (1345299) sentry: [SONAR] ping: echo 22.9 cm
+I (1346509) sentry: [SONAR] ping: echo 22.1 cm
+I (1347959) sentry: [SONAR] ping: echo 22.0 cm
+I (1352239) sentry: [SONAR] ping: echo 22.3 cm
+I (1353389) sentry: [SONAR] ping: echo 22.3 cm
+I (1354589) sentry: [SONAR] ping: echo 22.3 cm
+I (1360429) sentry: [SONAR] ping: echo 23.2 cm
+I (1361529) sentry: [SONAR] ping: echo 23.2 cm
+I (1362619) sentry: [SONAR] ping: echo 23.2 cm
+I (1367529) sentry: [SONAR] ping: echo 23.2 cm
+I (1368649) sentry: [SONAR] ping: echo 23.2 cm
+I (1369799) sentry: [SONAR] ping: echo 23.2 cm
+I (1373369) sentry: [SONAR] ping: echo 23.2 cm
+I (1374399) sentry: [SONAR] ping: echo 23.2 cm
+I (1375369) sentry: [SONAR] ping: echo 23.2 cm
+
+Subsequent device identity and state confirmation (same continuous uptime):
+---- Sent utf8 encoded message: "version\n" ----
+version
+I (1548009) sentry: SENTRY SWM-2 sonar watch module, fw v2.1.0 (build Oct  6 2026 02:14:57)
+I (1548009) sentry:   partition: ota_0 @ 0x20000, state: valid
+---- Sent utf8 encoded message: "status\n" ----
+status
+I (1549639) sentry: === SWM-2 status ===
+I (1549639) sentry:   fw:       v2.1.0 (ota_0)
+I (1549639) sentry:   state:    1 NORMAL
+I (1549649) sentry:   link:     buoy link '[network redacted]', ip [IP redacted], rssi -26 dBm (excellent), ch 1
+I (1549649) sentry:   internet: OK
+I (1549649) sentry:   user:     [operator account] (user)
+I (1549649) sentry:   time:     01:50:44, uptime 0h 25m 49s
+I (1549659) sentry:   valve:    closed
+I (1549659) sentry:   sonar:    no contact
+I (1549669) sentry:   carrier:  depth 43.7 m, hull 5.4 bar, water 8.1 C, battery 24.16 V (sim)
+I (1549669) sentry:   heap:     257 KB free
+---- Sent utf8 encoded message: "whoami\n" ----
+whoami
+I (1553009) sentry: user: [operator account], access: user

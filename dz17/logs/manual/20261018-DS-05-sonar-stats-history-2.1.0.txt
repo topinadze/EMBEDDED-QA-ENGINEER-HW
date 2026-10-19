@@ -1,0 +1,39 @@
+Date: 2026-10-18
+Firmware: 2.1.0 (`ota_0`, valid), confirmed by `version` immediately before the commands
+Source: operator-supplied UART transcript
+Precondition evidence: `relay status` returned closed, auto off, cycles 80. The preceding DS-2 run had issued `distance stop`; this excerpt shows no stream-start command.
+
+Observed DS-5 output:
+- `distance stats` reported: 286 measurements, 17 errors, min 2.1 cm, max 151.1 cm, average 21.7 cm.
+- The same stats response reported calibration +0.0 cm, median filter 5, alarm on.
+- `distance history` reported “last 10 measurements” and listed ten entries. The first five were 23.5 cm at displayed time 02:09:06; the next five were 22.2, 22.2, 22.2, 22.2, and 22.3 cm at 02:13:30, 02:13:35, 02:13:40, 02:13:45, and 02:13:50.
+- The five entries with displayed time 02:09:06 are consistent with the earlier rapid 100 ms stream on the same session, whose timestamps were all within that displayed second. The history prints only whole seconds, so this repeated timestamp is not by itself evidence of duplicate/corrupt history entries.
+- This is a snapshot of stats/history reporting only. No controlled reset/baseline was taken, and no independent recalculation of lifetime counters or min/max/average is possible from this excerpt.
+- This does not test changing filter state, median-of-five behavior against raw samples, or history rollover after more than ten newly recorded samples.
+
+Selected supplied UART transcript:
+I (3283039) sentry: [TELEMETRY #81] 02:19:38 up 00:54:42 heap 257KB rssi -27 temp 31.4C depth 43.6m hull 5.4bar batt 24.1V valve closed sonar - state NORMAL
+---- Sent utf8 encoded message: "version\n" ----
+version
+I (3292849) sentry: SENTRY SWM-2 sonar watch module, fw v2.1.0 (build Oct  6 2026 02:14:57)
+I (3292849) sentry:   partition: ota_0 @ 0x20000, state: valid
+---- Sent utf8 encoded message: "relay status\n" ----
+relay status
+I (3297179) sentry: [VALVE] closed, auto off, cycles 80
+---- Sent utf8 encoded message: "distance stats\n" ----
+distance stats
+I (3307669) sentry: [SONAR] measurements 286, errors 17, min 2.1, max 151.1, avg 21.7 cm
+I (3307669) sentry: [SONAR] calibration +0.0 cm, filter median 5, alarm on
+---- Sent utf8 encoded message: "distance history\n" ----
+distance history
+I (3316849) sentry: [SONAR] last 10 measurements:
+I (3316849) sentry:    1. 02:09:06  23.5 cm
+I (3316849) sentry:    2. 02:09:06  23.5 cm
+I (3316849) sentry:    3. 02:09:06  23.5 cm
+I (3316849) sentry:    4. 02:09:06  23.5 cm
+I (3316849) sentry:    5. 02:09:06  23.5 cm
+I (3316859) sentry:    6. 02:13:30  22.2 cm
+I (3316859) sentry:    7. 02:13:35  22.2 cm
+I (3316869) sentry:    8. 02:13:40  22.2 cm
+I (3316869) sentry:    9. 02:13:45  22.2 cm
+I (3316869) sentry:   10. 02:13:50  22.3 cm

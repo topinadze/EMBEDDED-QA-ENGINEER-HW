@@ -1,0 +1,20 @@
+Date/time reported: 2026-10-16 01:36:03 EEST
+Firmware: 2.1.0
+Test context: UART telemetry at device time 01:36:03 reported state VERBOSE, coinciding with the operator's observation timestamp.
+Source: operator-provided physical observation
+
+UART context from the supplied transcript (device times immediately before the reported observation):
+I (833373) sentry: [TELEMETRY #33] 01:35:53 up 00:13:52 heap 258KB rssi -32 temp 31.4C depth 42.2m hull 5.2bar batt 24.2V valve closed sonar - state VERBOSE
+I (833373) sentry: [V] telemetry: min heap 211KB, beacon off, tasks 15, water 8.1C, source auto
+I (843383) sentry: [TELEMETRY #34] 01:36:03 up 00:14:03 heap 258KB rssi -27 temp 32.4C depth 42.1m hull 5.2bar batt 24.2V valve closed sonar - state VERBOSE
+I (843383) sentry: [V] telemetry: min heap 211KB, beacon off, tasks 15, water 8.1C, source auto
+
+Observation:
+- Green indication identified as Wi-Fi status.
+- The indicator was also observed blinking with a purple-appearing color.
+- Exact blink cadence and color/state mapping were not established.
+
+Assessment:
+- Physical LED activity was reported while UART telemetry reported VERBOSE.
+- PRD ST-1 requires an LED heartbeat in VERBOSE but does not specify its color or cadence; this observation alone does not establish a color-mapping defect or verify the expected heartbeat pattern.
+- Button-pair state entry remains unverified.

@@ -1,0 +1,41 @@
+Date: 2026-10-19
+Firmware: v2.3.0
+Source: operator-supplied UART transcript
+Test: Attempt to exercise PRD OTA-9 E411 with phone hotspot upstream disabled
+Redaction: Wi-Fi identifiers, IP addresses, account identifier, wall-clock values, and credential-bearing commands omitted.
+
+Initial state:
+- v2.3.0 valid on `ota_1`, NORMAL, internet OK, valve closed. User session was logged out.
+- A router-level per-device access rule was tried first, but `status` showed `link down`; this was a connectivity precondition failure, not an OTA test. The rule was removed and `reconnect` restored Wi-Fi and internet.
+
+Attempt:
+- The board was connected to a phone hotspot. The phone's upstream Wi-Fi and mobile data were disabled while keeping hotspot enabled; no other clients were using the hotspot.
+- During this attempted isolation, `status` showed v2.3.0 on `ota_1`, NORMAL, Wi-Fi link up, `internet: OK`, valve closed. Thus the intended no-internet precondition was not confirmed by status.
+- Ran the read-only `ota check` command (no firmware installation or reboot). The request timed out while opening a connection to `stable.txt`; firmware returned E402 `cannot reach OTA server (stable.txt)`. E411 was not observed.
+- Restored the phone's upstream Wi-Fi. Final `status` showed v2.3.0 on `ota_1`, NORMAL, internet OK, and valve closed.
+
+Conclusion:
+- E411 test attempt is BLOCKED by E402: this does not verify PRD E411, and E402 here does not establish whether the device correctly distinguishes no internet from an unreachable OTA metadata server.
+- The intended no-internet precondition was not confirmed; classify this as blocked/inconclusive rather than a firmware defect.
+- No firmware write, OTA reboot, or device persistent-setting change was performed. The separate E411 behavior remains unverified.
+
+Selected redacted UART:
+---- Status while attempting to remove upstream internet ----
+I ([redacted]) sentry:   fw: v2.3.0 (ota_1)
+I ([redacted]) sentry:   state: 1 NORMAL
+I ([redacted]) sentry:   link: buoy link [network redacted], ip [redacted], rssi [redacted]
+I ([redacted]) sentry:   internet: OK
+I ([redacted]) sentry:   user: [redacted]
+I ([redacted]) sentry:   valve: closed
+---- Read-only OTA metadata check ----
+ota check
+E ([redacted]) esp-tls: select() timeout
+E ([redacted]) HTTP_CLIENT: Connection failed, sock < 0
+E ([redacted]) sentry: E402 cannot reach OTA server (stable.txt)
+---- Restored upstream Wi-Fi; final status ----
+I ([redacted]) sentry:   fw: v2.3.0 (ota_1)
+I ([redacted]) sentry:   state: 1 NORMAL
+I ([redacted]) sentry:   link: buoy link [network redacted], ip [redacted], rssi [redacted]
+I ([redacted]) sentry:   internet: OK
+I ([redacted]) sentry:   user: [redacted]
+I ([redacted]) sentry:   valve: closed

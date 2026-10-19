@@ -1,0 +1,114 @@
+Source: terminal output provided by operator in chat.
+Date: 2026-10-16
+Port: COM4
+Firmware: 2.1.0
+Initial state: Wi-Fi disconnected, user not logged in.
+
+version
+I (430633) sentry: SENTRY SWM-2 sonar watch module, fw v2.1.0 (build Oct  6 2026 02:14:57)
+I (430633) sentry:   partition: ota_0 @ 0x20000, state: valid
+
+---- Sent utf8 encoded message: "ota\n" ----
+ota
+E (432713) sentry: E002 Wi-Fi required. Use 'reconnect' or 'connect'
+
+---- Sent utf8 encoded message: "status\n" ----
+status
+I (443623) sentry: === SWM-2 status ===
+I (443623) sentry:   fw:       v2.1.0 (ota_0)
+I (443623) sentry:   state:    1 NORMAL
+I (443623) sentry:   link:     buoy link down (known: none)
+I (443623) sentry:   user:     not logged in
+I (443623) sentry:   time:     --:--:--, uptime 0h 07m 23s
+I (443633) sentry:   valve:    closed
+I (443633) sentry:   sonar:    no contact
+I (443643) sentry:   carrier:  depth 42.3 m, hull 5.2 bar, water 8.1 C, battery 24.19 V (sim)
+I (443653) sentry:   heap:     261 KB free
+
+---- Sent utf8 encoded message: "help\n" ----
+help
+I (449373) sentry: Commands ([wifi] - needs Wi-Fi, [login] - needs Wi-Fi + login, [debug] - debug access):
+I (449373) sentry: System:
+I (449373) sentry:   help                         - this help
+I (449373) sentry:   status                       - full device status
+I (449383) sentry:   version                      - firmware version and partition
+I (449383) sentry:   sysinfo                      - chip, memory, uptime
+I (449393) sentry:   temp                         - chip temperature
+I (449403) sentry:   uptime                       - time since boot
+I (449403) sentry:   reboot                       - reboot device
+I (449413) sentry: Buoy link (Wi-Fi):
+I (449413) sentry:   connect                      - connect to Wi-Fi (scan, SSID, password)
+I (449423) sentry:   reconnect                    - connect to known network
+I (449433) sentry:   forget                       - forget known network
+I (449433) sentry:   disconnect                   - disconnect from Wi-Fi
+I (449443) sentry:   scan                         - list Wi-Fi networks
+I (449453) sentry:   net                          - IP, gateway, DNS, MAC [wifi]
+I (449453) sentry:   ping [host]                  - ping host (default 8.8.8.8) [wifi]
+I (449463) sentry:   time                         - current time (NTP) [wifi]
+I (449473) sentry: Account:
+I (449473) sentry:   register <login> <pass>      - create profile (one per device) [wifi]
+I (449483) sentry:   login <login> <pass>         - start session [wifi]
+I (449493) sentry:   logout                       - end session
+I (449493) sentry:   whoami                       - current user and access
+I (449503) sentry:   passwd <old> <new>           - change password [login]
+I (449503) sentry:   sudo <password>              - elevate current user to debug [login]
+I (449513) sentry: States:
+I (449513) sentry:   state [1-4|name]             - show / change system state [login]
+I (449523) sentry: OTA:
+I (449523) sentry:   ota [status]                 - running / previous firmware [login]
+I (449533) sentry:   ota check                    - check stable and beta channels [login]
+I (449543) sentry:   ota update [beta]            - update to stable (or beta) [login]
+I (449553) sentry:   ota install <X.Y.Z> [force]  - install exact version (force - allow downgrade) [login]
+I (449563) sentry:   ota broken                   - install broken build (rollback test) [login]
+I (449573) sentry:   ota rollback                 - boot previous firmware [login]
+I (449573) sentry:   ota url <url> [force]        - install image from any http(s) link [login]
+I (449583) sentry:   ota server [<url>|default]   - show / set update server (default - GitHub) [login]
+I (449593) sentry: Beacon light (alias: beacon):
+I (449593) sentry:   lamp on|off|toggle           - Smart Lamp power [login]
+I (449603) sentry:   lamp status                  - lamp settings [login]
+I (449613) sentry:   lamp color <name|R G B>      - white red green blue yellow purple cyan orange [login]
+I (449623) sentry:   lamp brightness <0-100>      - brightness, % [login]
+I (449623) sentry:   lamp mode <mode>             - solid | blink | breathe | rainbow [login]
+I (449633) sentry:   lamp timer <sec>             - auto-off 1-3600 s (0 - cancel) [login]
+I (449643) sentry:   lamp scene save|load <1-3>   - save / load lamp preset [login]
+I (449653) sentry: Trim valve (alias: valve, open|close):
+I (449653) sentry:   relay on|off|toggle          - relay + indicator diode [login]
+I (449663) sentry:   relay status                 - state, auto mode, switch counter [login]
+I (449673) sentry:   relay pulse <ms>             - turn on for 100-10000 ms [login]
+I (449683) sentry:   relay schedule <on> <off>    - cycle on/off in seconds ('off' - stop)
+I (449683) sentry:   relay auto on|off            - turn relay on by distance alarm [login]
+I (449693) sentry:   relay health                 - contact wear and coil check [login]
+I (449703) sentry: Active sonar (alias: sonar):
+I (449703) sentry:   distance [N]                 - measure once or N times (1-20) [login]
+I (449713) sentry:   distance log [ms] | stop     - continuous measuring 100-5000 ms [login]
+I (449723) sentry:   distance calibrate <cm>      - calibrate by reference object ('reset') [login]
+I (449733) sentry:   distance alarm <cm>|off      - alarm threshold 5-300 cm [login]
+I (449743) sentry:   distance filter on|off       - median filter of 5 samples [login]
+I (449743) sentry:   distance stats|history       - statistics / last 10 measurements [login]
+I (449753) sentry: Telemetry (alias: telemetry):
+I (449763) sentry:   health now                   - health report now [login]
+I (449763) sentry:   health on|off                - auto report (after login, 30 s) [login]
+I (449773) sentry:   health interval <sec>        - auto interval 10-300 s (VERBOSE 10 s) [login]
+I (449783) sentry: Perimeter watch, CIC alerts: planned in v2.3.0
+I (449793) sentry: Buttons [login]:
+I (449793) sentry:   K1 press / hold 1.5 s        - beacon on/off / next color
+I (449803) sentry:   K2 press / hold 1.5 s        - valve open/close / 1 s pulse
+I (449803) sentry:   K3 press                     - active sonar for 30 s (press again - stop)
+I (449813) sentry:   K4                           - perimeter watch (planned in v2.3.0)
+I (449823) sentry:   hold 2 s: K1+K2 - 1 NORMAL, K2+K3 - 2 DEBUG, K3+K4 - 3 VERBOSE, K4+K1 - 4 EMERGENCY (only from 3)
+
+---- Sent utf8 encoded message: "sysinfo\n" ----
+sysinfo
+I (454233) sentry:   chip:      ESP32-S3 rev 2, 2 cores, 160 MHz
+I (454233) sentry:   flash:     4MB
+I (454233) sentry:   heap:      261 KB free, min 256 KB
+I (454233) sentry: uptime: 0h 07m 33s
+I (454233) sentry: chip temperature: 31.4 C
+
+---- Sent utf8 encoded message: "temp\n" ----
+temp
+I (457143) sentry: chip temperature: 30.4 C
+
+---- Sent utf8 encoded message: "uptime\n" ----
+uptime
+I (461103) sentry: uptime: 0h 07m 40s
