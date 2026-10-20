@@ -226,6 +226,13 @@ def test_soft_checks_collect_all_failures() -> None:
         soft.assert_all()
 
 
+def test_soft_checks_report_manual_check_as_not_run_without_failing() -> None:
+    soft = manual_checks.SoftChecks()
+
+    assert soft.check(None, "Beacon visibly shows blue") is None
+    soft.assert_all()
+
+
 def test_manual_check_rejects_unavailable_input(
     monkeypatch: pytest.MonkeyPatch,
 ) -> None:

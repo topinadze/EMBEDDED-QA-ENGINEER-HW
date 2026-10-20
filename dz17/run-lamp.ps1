@@ -3,7 +3,7 @@ param(
     [string]$Markers = "",
     [string]$TestName = "",
     [string]$Port = "COM4",
-    [switch]$Interactive,
+    [Alias("Interactive")][switch]$ManualChecks,
     [switch]$All,
     [switch]$Persistent
 )
@@ -18,14 +18,8 @@ if (-not (Test-Path $python)) {
 if (-not $Markers) {
     if ($All) {
         $Markers = "lamp"
-    } elseif ($Interactive) {
-        $markerParts = @("lamp and interactive")
-        if (-not $Persistent) {
-            $markerParts += "not persistent"
-        }
-        $Markers = $markerParts -join " and "
     } else {
-        $markerParts = @("lamp and not interactive")
+        $markerParts = @("lamp")
         if (-not $Persistent) {
             $markerParts += "not persistent"
         }
@@ -41,8 +35,9 @@ $pytestArgs = @(
     "-m", "pytest"
 )
 
-if ($Interactive -or $All) {
+if ($ManualChecks -or $All) {
     $pytestArgs += "-s"
+    $pytestArgs += "--manual-checks"
 }
 
 $pytestArgs += @(
@@ -63,5 +58,5 @@ if ($TestName) {
     $pytestArgs += @("-k", $TestName)
 }
 
-Write-Host "Running Lamp tests with markers: '$Markers' against FW $Fw on $Port..." -ForegroundColor Cyan
+Write-Host "Running Lamp tests with markers: '$Markers' against FW $Fw on $Port (manual checks: $($ManualChecks -or $All))..." -ForegroundColor Cyan
 & $python @pytestArgs

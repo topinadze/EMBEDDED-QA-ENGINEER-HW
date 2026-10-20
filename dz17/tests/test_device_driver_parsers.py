@@ -26,6 +26,18 @@ class FakeSerial:
     def flush(self) -> None:
         pass
 
+    def reset_input_buffer(self) -> None:
+        self._data = b""
+
+
+class RebootFakeSerial(FakeSerial):
+    def __init__(self, post_reset_data: bytes) -> None:
+        super().__init__(b"I (0) sentry: ready\n")
+        self._post_reset_data = post_reset_data
+
+    def reset_input_buffer(self) -> None:
+        self._data = self._post_reset_data
+
 
 def test_buffer_len_reports_current_uart_log_size() -> None:
     driver = DeviceDriver(port="DUMMY")
@@ -101,6 +113,29 @@ def test_login_nowait_redacts_password_in_prefixed_uart_output() -> None:
     assert "[REDACTED]" in "\n".join(driver.uart_log)
 
 
+@pytest.mark.parametrize(
+    "response, expected",
+    [
+        (b"I (1) sentry: ready\n", True),
+        (b"sentry:\n", True),
+        (b"I (2) sentry: booting firmware\n", False),
+    ],
+    ids=["ready", "console-prompt", "logger-tag-is-not-prompt"],
+)
+def test_reboot_accepts_either_ready_or_console_prompt(
+    response: bytes,
+    expected: bool,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    driver = DeviceDriver(port="DUMMY")
+    serial = RebootFakeSerial(response)
+    driver.serial = serial  # type: ignore[assignment]
+    monkeypatch.setattr("drivers.device_driver.time.sleep", lambda _: None)
+
+    assert driver.reboot(timeout=0.02) is expected
+    assert serial.writes == [b"reboot\r\n"]
+
+
 def test_wifi_status_waits_for_link_phrase_and_parses_response() -> None:
     driver = DeviceDriver(port="DUMMY")
     driver.serial = FakeSerial(
@@ -119,6 +154,63 @@ def test_wifi_status_waits_for_link_phrase_and_parses_response() -> None:
     assert status["internet"] is True
     assert status["user"] == "testUser"
     assert driver.uart_log[0] == "TX > status"
+
+
+@pytest.mark.parametrize(
+    "response",
+    [
+        b"I (1) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0\n",
+        b"I (1) sentry: firmware version: 2.3.0\n",
+        b"I (1) sentry: sentry_fw7_2.3.0\n",
+        b"I (1) sentry: fw: 2.3.0\n",
+    ],
+)
+def test_version_waits_for_supported_firmware_phrase(
+    response: bytes,
+) -> None:
+    driver = DeviceDriver(port="DUMMY")
+    serial = FakeSerial(response)
+    driver.serial = serial  # type: ignore[assignment]
+
+    version = driver.version(timeout=0.2)
+
+    assert version == "2.3.0"
+    assert serial.writes == [b"version\r\n"]
+    assert driver.uart_log[0] == "TX > version"
+
+
+def test_version_fails_when_firmware_phrase_never_arrives() -> None:
+    driver = DeviceDriver(port="DUMMY")
+    driver.serial = FakeSerial(b"I (1) sentry: ready\n")  # type: ignore[assignment]
+
+    with pytest.raises(TimeoutError, match="supported firmware version response"):
+        driver.version(timeout=0.02)
+
+
+def test_wifi_status_waits_for_all_required_status_phrases() -> None:
+    driver = DeviceDriver(port="DUMMY")
+    driver.serial = FakeSerial(
+        b"I (1) sentry:   link: buoy link down (known: TestAP)\n"
+        b"I (2) sentry:   user: not logged in\n"
+        b"I (3) sentry:   heap: 251 KB free\n"
+    )  # type: ignore[assignment]
+
+    status = driver.wifi_status(timeout=0.2)
+
+    assert status["connected"] is False
+    assert status["user"] == "not"
+    assert status["raw"]
+
+
+def test_wifi_status_fails_when_required_status_phrase_is_missing() -> None:
+    driver = DeviceDriver(port="DUMMY")
+    driver.serial = FakeSerial(
+        b"I (1) sentry:   link: buoy link down (known: TestAP)\n"
+        b"I (2) sentry:   user: not logged in\n"
+    )  # type: ignore[assignment]
+
+    with pytest.raises(TimeoutError, match="heap:"):
+        driver.wifi_status(timeout=0.02)
 
 
 def test_wifi_reconnect_waits_for_uart_connection_events() -> None:

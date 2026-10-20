@@ -185,7 +185,13 @@ class SoftChecks:
     def __init__(self) -> None:
         self.failures: list[str] = []
 
-    def check(self, condition: object, message: str) -> bool:
+    def check(self, condition: object, message: str) -> bool | None:
+        if condition is None:
+            LOGGER.info("MANUAL CHECK | NOT RUN (UART-only mode) | %s", message)
+            with allure.step(f"NOT RUN (UART-only mode): {message}"):
+                pass
+            return None
+
         ok = bool(condition)
         if not ok:
             LOGGER.error("SOFT CHECK FAILED | %s", message)

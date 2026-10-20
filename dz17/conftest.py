@@ -40,11 +40,15 @@ from manual_checks import (
     prepare_manually,
     verify_manually,
 )
+from tests.lamp_test_helpers import LampState, cleanup_lamp_test_state
 
 ESP32_VIDS = {0x10C4, 0x1A86, 0x0403, 0x303A}
 ESP32_DESCRIPTORS = ("cp210", "ch340", "ch343", "ft232", "esp32", "usb-to-uart", "usb serial")
 SUPPORTED_VERSIONS = {"2.1.0", "2.3.0"}
 FIRMWARE_VERSION_KEY = pytest.StashKey[str]()
+LAMP_STATE_FIXTURE_ACTIVE = pytest.StashKey[bool]()
+WIFI_STATUS_ATTEMPTS = 3
+IDENTITY_ATTEMPTS = 3
 
 
 def _debug_logging_enabled(config: pytest.Config) -> bool:
@@ -129,6 +133,12 @@ def pytest_addoption(parser: pytest.Parser) -> None:
         help="Fail if the connected board is not running this firmware version.",
     )
     parser.addoption(
+        "--manual-checks",
+        action="store_true",
+        default=False,
+        help="Enable operator prompts for lamp physical observations.",
+    )
+    parser.addoption(
         "--wifi-ssid",
         action="store",
         default=None,
@@ -203,12 +213,16 @@ def _find_esp32_port() -> str:
 
 
 def pytest_runtest_setup(item: pytest.Item) -> None:
+    requires_console = item.get_closest_marker("lamp") is None or item.config.getoption(
+        "manual_checks"
+    )
     if (
         item.get_closest_marker("interactive") is not None
+        and requires_console
         and item.config.getoption("capture") != "no"
     ):
         pytest.fail(
-            "Interactive checks require console input; run with '-s -m interactive'."
+            "Interactive checks require console input; run with '-s'."
         )
 
 
@@ -224,22 +238,45 @@ def pytest_runtest_makereport(
 def _require_console(pytestconfig: pytest.Config) -> None:
     if pytestconfig.getoption("capture") != "no":
         pytest.fail(
-            "Interactive checks require console input; run with '-s -m interactive'."
+            "Interactive checks require console input; run with '-s'."
         )
 
 
 @pytest.fixture
 def manual_check(
-    pytestconfig: pytest.Config,
-) -> Callable[[str], bool]:
+    pytestconfig: pytest.Config, request: pytest.FixtureRequest
+) -> Callable[[str], bool | None]:
+    if (
+        request.node.get_closest_marker("lamp") is not None
+        and not pytestconfig.getoption("manual_checks")
+    ):
+        return lambda instruction: None
+
     _require_console(pytestconfig)
     return verify_manually
 
 
 @pytest.fixture
 def manual_prepare(
-    pytestconfig: pytest.Config,
+    pytestconfig: pytest.Config, request: pytest.FixtureRequest
 ) -> Callable[[str], None]:
+    if (
+        request.node.get_closest_marker("lamp") is not None
+        and not pytestconfig.getoption("manual_checks")
+    ):
+        def skip_manual_preparation(instruction: str) -> None:
+            with allure.step("Manual preparation not run (UART-only mode)"):
+                allure.attach(
+                    instruction,
+                    name="Manual preparation not run",
+                    attachment_type=allure.attachment_type.TEXT,
+                )
+            logging.getLogger(__name__).info(
+                "MANUAL PREPARE | NOT RUN (UART-only mode) | %s", instruction
+            )
+
+        return skip_manual_preparation
+
     _require_console(pytestconfig)
     return prepare_manually
 
@@ -307,8 +344,7 @@ def _restore_lamp(
 def _get_confirmed_firmware_version(
     driver: DeviceDriver, request: pytest.FixtureRequest
 ) -> str:
-    lines = driver.send_command("version", timeout=1.0)
-    version = driver.get_firmware_version(lines)
+    version = driver.version()
     request.node.stash[FIRMWARE_VERSION_KEY] = version
     expected = request.config.getoption("--expected-fw-version")
     if expected is not None and version != expected:
@@ -345,6 +381,7 @@ def device_driver(request: pytest.FixtureRequest) -> Generator[DeviceDriver, Non
                 driver.is_open
                 and lamp_snapshot_taken
                 and request.node.get_closest_marker("persistent") is None
+                and not request.node.stash.get(LAMP_STATE_FIXTURE_ACTIVE, False)
             ):
                 _restore_lamp(
                     driver,
@@ -467,13 +504,25 @@ def _ensure_wifi_connected(
             not ssid or status.get("ssid") == ssid
         )
 
-    status = device_driver.wifi_status(timeout=0.8)
+    def read_wifi_status() -> dict[str, Any]:
+        last_error: TimeoutError | None = None
+        for _ in range(WIFI_STATUS_ATTEMPTS):
+            try:
+                return device_driver.wifi_status()
+            except TimeoutError as exc:
+                last_error = exc
+        pytest.fail(
+            "Could not read a complete Wi-Fi status response after "
+            f"{WIFI_STATUS_ATTEMPTS} attempts: {last_error}"
+        )
+
+    status = read_wifi_status()
     if has_valid_target_connection(status):
         return
 
     with allure.step("Reconnect to the saved Wi-Fi profile"):
         device_driver.wifi_reconnect(timeout=20.0)
-    status = device_driver.wifi_status(timeout=1.0)
+    status = read_wifi_status()
     if has_valid_target_connection(status):
         return
 
@@ -492,7 +541,7 @@ def _ensure_wifi_connected(
                 f"'connect' fallback did not connect to SSID '{ssid}'."
             )
 
-    status = device_driver.wifi_status(timeout=1.0)
+    status = read_wifi_status()
     if not has_valid_target_connection(status):
         pytest.fail(
             "Wi-Fi 'connect' fallback returned success, but status did not confirm "
@@ -517,38 +566,43 @@ def _ensure_authenticated_device(
 
     _ensure_wifi_connected(device_driver, request)
 
-    identity_mark = len(device_driver.uart_log)
-    device_driver.send_command_nowait("whoami")
-    identity_result = device_driver.wait_for_any(
-        ("not logged in", ", access:"),
-        timeout=2.0,
-        since_index=identity_mark,
-    )
-    if identity_result is None:
-        pytest.fail("Timed out waiting for the UART identity response.")
-
-    current_user: str | None = None
-    if identity_result != "not logged in":
-        for entry in device_driver.uart_log[identity_mark:]:
-            match = re.search(
-                r"user:\s*([^\s,]+),\s*access:\s*([^\s,]+)",
-                entry,
-                re.IGNORECASE,
+    def read_identity() -> tuple[str | None, str | None]:
+        for _ in range(IDENTITY_ATTEMPTS):
+            identity_mark = len(device_driver.uart_log)
+            device_driver.send_command_nowait("whoami")
+            identity_result = device_driver.wait_for_any(
+                ("not logged in", ", access:"),
+                timeout=2.0,
+                since_index=identity_mark,
             )
-            if match:
-                current_user = match.group(1)
-                break
+            if identity_result is not None:
+                current_user = None
+                for entry in device_driver.uart_log[identity_mark:]:
+                    match = re.search(
+                        r"user:\s*([^\s,]+),\s*access:\s*([^\s,]+)",
+                        entry,
+                        re.IGNORECASE,
+                    )
+                    if match:
+                        current_user = match.group(1)
+                        break
+                return identity_result, current_user
+        return None, None
+
+    identity_result, current_user = read_identity()
+    if identity_result is None:
+        pytest.fail(
+            "Timed out waiting for the UART identity response after "
+            f"{IDENTITY_ATTEMPTS} attempts."
+        )
+
+    if identity_result != "not logged in":
         if current_user == user:
             return
 
         device_driver.logout()
-        logout_mark = len(device_driver.uart_log)
-        device_driver.send_command_nowait("whoami")
-        if not device_driver.wait_for(
-            "not logged in",
-            timeout=2.0,
-            since_index=logout_mark,
-        ):
+        identity_result, _ = read_identity()
+        if identity_result != "not logged in":
             pytest.fail(
                 "Could not end the existing SENTRY SWM-2 session before logging "
                 f"in as configured user '{user}'."
@@ -568,6 +622,22 @@ def _ensure_authenticated_device(
         timeout=15.0,
         since_index=login_mark,
     )
+    if login_result == "E002":
+        _ensure_wifi_connected(device_driver, request)
+        login_mark = len(device_driver.uart_log)
+        device_driver.login_nowait(user, password)
+        login_result = device_driver.wait_for_any(
+            (
+                f"[AUTH] operator {user} on watch",
+                "wrong login or password",
+                "E209",
+                "E210",
+                "E207",
+                "E002",
+            ),
+            timeout=15.0,
+            since_index=login_mark,
+        )
     if login_result in {"wrong login or password", "E209", "E210", "E207"}:
         pytest.fail(
             "Configured SENTRY SWM-2 login was rejected or temporarily locked. "
@@ -578,21 +648,12 @@ def _ensure_authenticated_device(
             "Login was rejected because Wi-Fi is unavailable after the connection "
             "precondition was verified."
         )
-    if login_result is None:
-        pytest.fail(
-            "Timed out waiting for the UART login success or rejection response."
-        )
 
-    identity_mark = len(device_driver.uart_log)
-    device_driver.send_command_nowait("whoami")
-    if not device_driver.wait_for(
-        f"user: {user}, access:",
-        timeout=5.0,
-        since_index=identity_mark,
-    ):
+    identity_result, current_user = read_identity()
+    if identity_result != ", access:" or current_user != user:
         pytest.fail(
             f"Login for configured SENTRY SWM-2 user '{user}' did not establish "
-            "the expected session."
+            "the expected session after checking the UART identity response."
         )
 
 
@@ -620,3 +681,40 @@ def authenticated_device(
     """Ensure Wi-Fi and the configured login before [login] tests."""
     ensure_authenticated_device(device_driver)
     yield device_driver
+
+
+@pytest.fixture
+def lamp_state(
+    request: pytest.FixtureRequest,
+    authenticated_device: DeviceDriver,
+    ensure_authenticated_device: Callable[[DeviceDriver], None],
+) -> Generator[LampState, None, None]:
+    """Restore the captured Beacon state after each lamp test."""
+    with allure.step("Capture the original Beacon state for teardown"):
+        initial_status = authenticated_device.lamp_status()
+        if initial_status["timer_s"] != 0:
+            pytest.fail(
+                "Lamp tests require the Beacon timer to be off before starting; "
+                f"got {initial_status}."
+            )
+        state = LampState(initial_status)
+
+    request.node.stash[LAMP_STATE_FIXTURE_ACTIVE] = True
+    try:
+        yield state
+    finally:
+        if state.restore_after_test:
+            call_report = getattr(request.node, "rep_call", None)
+            cleanup_lamp_test_state(
+                authenticated_device,
+                state.initial_status,
+                ensure_authenticated_device=ensure_authenticated_device,
+                primary_failed=call_report is not None and call_report.failed,
+            )
+        else:
+            allure.attach(
+                state.cleanup_skip_reason
+                or "Beacon cleanup was skipped because device recovery was not confirmed.",
+                name="Beacon cleanup skipped",
+                attachment_type=allure.attachment_type.TEXT,
+            )

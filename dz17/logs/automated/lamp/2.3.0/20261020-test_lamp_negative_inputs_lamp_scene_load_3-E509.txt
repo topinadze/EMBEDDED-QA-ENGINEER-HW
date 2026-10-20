@@ -1,0 +1,46 @@
+Test: tests/test_lamp.py::TestLamp::test_lamp_negative_inputs[lamp scene load 3-E509]
+Firmware: 2.3.0
+Captured: 2026-10-20T17:14:42.952069+03:00
+
+TX > version
+RX < version
+RX < I (5160885) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+RX < I (5160885) sentry:   partition: ota_0 @ 0x20000, state: valid
+TX > lamp status
+RX < lamp status
+RX < I (5161085) sentry: [BEACON] off, color (0,255,0), brightness 100%, mode solid, timer off
+TX > status
+RX < status
+RX < I (5161695) sentry: === SWM-2 status ===
+RX < I (5161695) sentry:   fw:       v2.3.0 (ota_0)
+RX < I (5161695) sentry:   state:    1 NORMAL
+RX < I (5161695) sentry:   link:     buoy link 'TopA-node', ip 10.223.162.49, rssi -28 dBm (excellent), ch 1
+RX < I (5161705) sentry:   internet: OK
+RX < I (5161705) sentry:   user:     testUser (user)
+RX < I (5161705) sentry:   time:     17:14:37, uptime 1h 26m 01s
+RX < I (5161715) sentry:   valve:    closed
+RX < I (5161715) sentry:   watch:    disarmed, CIC alerts unacked: 1
+RX < I (5161725) sentry:   sonar:    no contact
+RX < I (5161725) sentry:   carrier:  depth 41.0 m, hull 5.1 bar, water 8.1 C, battery 24.06 V (sim)
+RX < I (5161735) sentry:   heap:     251 KB free
+TX > whoami
+RX < whoami
+RX < I (5161895) sentry: user: testUser, access: user
+TX > lamp scene load 3
+RX < lamp scene load 3
+RX < E (5162105) sentry: E509 scene 3 is empty. Use 'lamp scene save 3'
+TX > lamp timer 0
+RX < lamp timer 0
+RX < I (5162715) sentry: [BEACON] timer cancelled
+TX > lamp color 0 255 0
+RX < lamp color 0 255 0
+RX < I (5163125) sentry: [BEACON] color: (0,255,0)
+TX > lamp brightness 100
+RX < lamp brightness 100
+RX < I (5163535) sentry: [BEACON] brightness: 100%
+TX > lamp mode solid
+RX < lamp mode solid
+RX < I (5163945) sentry: [BEACON] mode: solid
+TX > lamp off
+RX < lamp off
+RX < W (5164355) sentry: W510 lamp already off

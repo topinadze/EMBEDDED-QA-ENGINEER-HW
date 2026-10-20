@@ -15,9 +15,11 @@ dz17/
 │   └── device_driver.py        # SENTRY SWM-2 UART driver (parsers for [BEACON], [LINK], [SONAR], [VALVE], etc.)
 ├── manual_checks.py            # Operator preparation prompts (manual_prepare) and verification (manual_check)
 ├── pytest.ini                  # Pytest markers and default exclusion of interactive & persistent tests
-├── conftest.py                 # Fixtures: device_driver verifies firmware and captures versioned UART logs
+├── conftest.py                 # Fixtures: firmware/UART lifecycle and Beacon state teardown
 ├── tests/
-│   ├── test_lamp.py            # LM-1 to LM-7, LM-2 per-color visual checks
+│   ├── test_lamp.py            # LM-1 to LM-8, interactive lamp/status-LED observations
+│   ├── lamp_test_helpers.py    # Shared lamp status, timer, power/configuration, and recovery steps
+│   ├── test_lamp_helpers.py    # Unit tests for shared lamp helpers (no hardware)
 │   ├── test_wifi.py            # WF-1 to WF-5 with LM-8 status-LED confirmations
 │   ├── test_buttons.py         # §12: K1-K4 actions and button pairs
 │   ├── test_distance.py        # DS-1 to DS-5: sonar measurement, stream, stats, filter, calibration
@@ -46,8 +48,8 @@ dz17/
   Every operator-facing notification (preparation, manual check, result, and invalid response) is separated by simple `=` divider lines, without a box or fixed-width wrapping. Preparation is cyan, checks are yellow, PASS is green, and FAIL/invalid input is red when the terminal supports ANSI color; headings, field labels, and input prompts are highlighted. Recognized lamp/LED color names (for example, “Blue lamp”) and valid RGB triplets also receive color-matched indicator dots. Captured output, `NO_COLOR`, and `TERM=dumb` remain plain text but retain the divider lines. The action, observation, and duration fields are separated by blank lines for readability.
 - **Streaming Discipline**:
   Continuous streams (e.g. `distance log 100`, K3 sonar stream) are cleanly stopped (`distance stop` / second K3 tap) and confirmed stopped *before* prompting for manual verification.
-- **Built-in RGB Status LED**:
-  Manual connectivity checks distinguish this status indicator from the main Beacon lamp: RED means Wi-Fi disconnected, ORANGE means Wi-Fi connected but logged out, and GREEN means Wi-Fi connected and logged in. The UART-reported state and the operator's physical LED observation are checked separately.
+- **Lamp RGB LED and status indication**:
+  There is one RGB LED, not a separate Beacon emitter and board status LED. When lamp output is ON it shows the configured lamp color; when lamp output is OFF, the same LED shows connection/login status: RED means Wi-Fi disconnected, ORANGE means Wi-Fi connected but logged out, and GREEN means Wi-Fi connected and logged in. UART-reported state and the operator's physical observation are checked separately.
 - **Multi-Line UART Captures**:
   UART log indexes (`mark = len(device_driver.uart_log)`) are recorded prior to prompts to avoid race conditions.
 - **UART Transcript Retention**:
@@ -126,7 +128,7 @@ before using a launcher.
 .\run-guard.ps1 -Port COM4 -Fw 2.3.0 -All
 .\run-alert.ps1 -Port COM4 -Fw 2.3.0 -All
 
-# Run the default non-interactive, non-persistent subsets.
+# Run the default UART-only, non-persistent subsets.
 .\run-lamp.ps1 -Port COM4 -Fw 2.1.0
 .\run-wifi.ps1 -Port COM4 -Fw 2.1.0
 .\run-distance.ps1 -Port COM4 -Fw 2.1.0
@@ -148,9 +150,24 @@ Wi-Fi configuration, and add alert-history entries. It does not flash firmware.
 # Run interactive operator buttons tests (the K2 relay test actuates the relay)
 .\run-buttons.ps1 -Port COM4 -Fw 2.1.0
 
-# Run the interactive named-color checks one color at a time
-.\run-lamp.ps1 -Port COM4 -Fw 2.1.0 -Interactive
-.\run-lamp.ps1 -Port COM4 -Fw 2.1.0 -Interactive -TestName "test_lamp_named_color_visual and red"
+# Run the full lamp pack with UART assertions only (manual physical checks skipped).
+# Persistent-state tests still require the explicit -Persistent opt-in.
+.\run-lamp.ps1 -Port COM4 -Fw 2.1.0 -Persistent
+
+# Run the same lamp cases with operator physical observations enabled.
+# This includes persistent scene/reboot checks: scene 1 and scene 2 are
+# overwritten, and the device reboots. See the safety notes below.
+.\run-lamp.ps1 -Port COM4 -Fw 2.1.0 -ManualChecks -Persistent
+
+# The previous -Interactive spelling remains an alias for -ManualChecks.
+.\run-lamp.ps1 -Port COM4 -Fw 2.1.0 -Interactive -Persistent -TestName "test_lamp_named_color_visual and red"
+
+# Run automated logout/relogin verification that the Beacon remains off.
+.\run-lamp.ps1 -Port COM4 -Fw 2.3.0 -TestName "test_lamp_logout_and_relogin_keeps_beacon_off"
+
+# Check the observed status-LED mapping for each Wi-Fi/login combination.
+# This is interactive and changes Wi-Fi/login state temporarily; the test restores both.
+.\run-lamp.ps1 -Port COM4 -Fw 2.3.0 -Interactive -TestName "test_lamp_status_led_connection_login_mapping"
 
 # Wi-Fi disconnect/reconnect tests include their corresponding status-LED
 # physical confirmations (main Beacon lamp must be OFF).
@@ -171,6 +188,74 @@ Wi-Fi configuration, and add alert-history entries. It does not flash firmware.
 # Requires operator interaction and may change persistent device state.
 .\run-distance.ps1 -Port COM4 -All -Fw 2.3.0
 ```
+
+Lamp Beacon scenarios each contain UART response/readback assertions plus optional
+physical observations. Run them without prompts for UART-only validation, or pass
+`-ManualChecks` (equivalent to `--manual-checks -s`) to enable the preparation and
+operator-confirmation prompts. In UART-only mode, Allure marks those physical
+checks as NOT RUN rather than passing them. The tests remain marked `interactive`
+to identify scenarios capable of operator verification, and persistent-state
+tests still require the explicit `-Persistent` opt-in. Coverage includes on/off/
+toggle, named and custom colors, brightness, operating modes, timer expiry/
+cancellation, scene restore, and persisted settings after reboot. Prompts describe
+each observation and wait for readiness before device actions.
+
+The lamp status-color mapping characterization is interactive but does not write
+persistent state. It temporarily changes Wi-Fi/login state, requires the
+device in NORMAL with Guard disarmed and higher-priority LED indications inactive,
+and restores the configured Wi-Fi connection and user session after each case.
+The lamp has one RGB LED: when lamp output is OFF, that same LED indicates Wi-Fi
+and login status rather than becoming dark or acting as a separate board LED.
+Expected observed colors are GREEN (connected/logged in), ORANGE (connected/
+logged out), and RED (disconnected); this is not a PRD-defined color contract.
+Lamp-off manual prompts use shared wording from `tests/lamp_test_helpers.py`;
+after `lamp off`, an OFF toggle, logout, timer expiry, or reboot, they ask for
+the status color expected for the verified connection/login state. The reboot
+persistence case checks the OFF/status-color state after startup before turning
+the lamp output on to inspect the saved scene.
+The interactive negative-input sweep verifies every rejected
+command and its unchanged UART readback while the operator confirms that the
+Beacon remains visibly lit. Timer boundary and E507 checks likewise verify
+UART state and include a physical observation when the lamp output changes.
+On logout, the same LED is expected to change from the configured lamp color
+to ORANGE; after login it remains OFF as a lamp output and shows GREEN. The
+logout/relogin test does not issue protected lamp-status commands while logged out.
+
+Lamp-setting checks establish and read back Beacon `ON` before changing color,
+RGB, brightness, or mode, and confirm the lamp remains on with the requested
+setting. The E507 timer test begins from a verified `ON` state, confirms the
+actual `ON`→`OFF` transition, asks the operator to confirm the GREEN status
+indication on the same RGB LED (Wi-Fi connected and user logged in), and only
+then attempts to start a timer. Off-state and toggle checks verify the relevant
+starting state and response, rather than accepting a no-op from a lamp that was
+already in the target state. Scene save/change/load and reboot
+persistence workflows request physical observations after each meaningful
+output configuration, while keeping UART assertions separate from operator
+evidence. The
+`lamp_state` fixture captures the state and enforces a timer-off precondition
+once for every lamp test, then restores captured power/settings after the test
+and recovers Wi-Fi and the authenticated session when needed. The shared
+`assert_lamp_status` and `assert_lamp_timer_active` helpers check UART readbacks
+consistently; scenario-specific expected behavior remains asserted in the tests.
+The revised cases are implementation-only until hardware execution.
+
+Reusable lamp actions, status assertions, and Allure steps live in
+[`tests/lamp_test_helpers.py`](tests/lamp_test_helpers.py); requirement-specific
+assertions, scenario order, and manual observations stay in
+[`tests/test_lamp.py`](tests/test_lamp.py). Put shared hardware behaviors in a
+test-support module and decorate reusable actions with `@allure.step` so they
+remain visible as nested Allure steps. Reserve `conftest.py` for pytest fixture
+setup/teardown and shared fixture lifecycle; put low-level reusable UART
+operations in `drivers/device_driver.py`.
+
+The scene case permanently overwrites saved scene 1, but the fixture restores
+the captured lamp settings and power state. The reboot case permanently
+overwrites scene 2 with yellow/50%/blink and temporarily changes the current
+settings to purple/75%/breathe. After a successful reboot and session recovery,
+the fixture restores the pre-test lamp settings and power state. If reboot or
+session recovery is not confirmed, it does not send further device commands.
+Previous scene contents cannot be recovered. Do not select these cases if scene
+1 or scene 2 must be preserved.
 
 For the Distance launcher, `-All` selects every test marked `distance`, including
 `interactive` and `persistent` cases, and enables uncaptured console input (`-s`).
@@ -318,9 +403,11 @@ Explicitly selected persistent tests can change NVS and device settings:
 
 - `test_lamp_scenes` overwrites scene 1. It restores the current lamp output but cannot recover the
   previous contents of scene 1.
-- `test_lamp_persistence_after_reboot` overwrites scene 2 and sets the lamp to purple, 75%
-  brightness, and breathe mode before loading that scene. It does not restore the previous scene 2
-  or lamp settings.
+- `test_lamp_persistence_after_reboot` overwrites scene 2 and temporarily sets the lamp to purple,
+  75% brightness, and breathe mode before loading that scene. After a successful reboot and
+  authenticated-session recovery, the `lamp_state` fixture restores the pre-test lamp settings and
+  power state. If recovery is not confirmed, teardown does not send device commands; the previous
+  scene 2 contents cannot be restored.
 - `test_wifi_connect_success` saves the supplied Wi-Fi profile.
 - `test_distance_persistence_after_reboot` sets the proximity alarm to 45 cm and filter on, then
   disables the alarm and restores the filter's initial enabled/disabled state. The prior numeric

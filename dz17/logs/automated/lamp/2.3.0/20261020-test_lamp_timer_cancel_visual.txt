@@ -1,0 +1,104 @@
+Test: tests/test_lamp.py::TestLamp::test_lamp_timer_cancel_visual
+Firmware: 2.3.0
+Captured: 2026-10-20T22:00:10.551226+03:00
+
+TX > version
+RX < version
+RX < I (562475) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+RX < I (562475) sentry:   partition: ota_0 @ 0x20000, state: valid
+TX > status
+RX < status
+RX < I (562685) sentry: === SWM-2 status ===
+RX < I (562685) sentry:   fw:       v2.3.0 (ota_0)
+RX < I (562685) sentry:   state:    1 NORMAL
+RX < I (562685) sentry:   link:     buoy link 'TopA-node', ip 10.223.162.49, rssi -25 dBm (excellent), ch 1
+RX < I (562685) sentry:   internet: OK
+RX < I (562695) sentry:   user:     testUser (user)
+RX < I (562695) sentry:   time:     21:59:35, uptime 0h 09m 22s
+RX < I (562705) sentry:   valve:    closed
+RX < I (562705) sentry:   watch:    disarmed, CIC alerts unacked: 0
+RX < I (562715) sentry:   sonar:    no contact
+RX < I (562715) sentry:   carrier:  depth 42.0 m, hull 5.2 bar, water 8.1 C, battery 24.19 V (sim)
+RX < I (562725) sentry:   heap:     251 KB free
+TX > whoami
+RX < whoami
+RX < I (562885) sentry: user: testUser, access: user
+TX > lamp status
+RX < lamp status
+RX < I (563095) sentry: [BEACON] off, color (160,0,255), brightness 75%, mode breathe, timer off
+TX > lamp status
+RX < lamp status
+RX < I (565205) sentry: [BEACON] off, color (160,0,255), brightness 75%, mode breathe, timer off
+TX > lamp on
+RX < lamp on
+RX < I (565805) sentry: [BEACON] on (command) breathe, 75%, color (160,0,255)
+TX > lamp status
+RX < lamp status
+RX < I (566415) sentry: [BEACON] ON, color (160,0,255), brightness 75%, mode breathe, timer off
+TX > lamp color blue
+RX < lamp color blue
+RX < I (567035) sentry: [BEACON] color: blue (0,0,255)
+TX > lamp brightness 100
+RX < lamp brightness 100
+RX < I (567645) sentry: [BEACON] brightness: 100%
+TX > lamp mode solid
+RX < lamp mode solid
+RX < I (568255) sentry: [BEACON] mode: solid
+TX > lamp status
+RX < lamp status
+RX < I (568855) sentry: [BEACON] ON, color (0,0,255), brightness 100%, mode solid, timer off
+TX > lamp timer 5
+RX < lamp timer 5
+RX < I (573545) sentry: [BEACON] auto-off in 5 s
+TX > lamp status
+RX < lamp status
+RX < I (574155) sentry: [BEACON] ON, color (0,0,255), brightness 100%, mode solid, timer 4 s left
+TX > lamp timer 0
+RX < lamp timer 0
+RX < I (575765) sentry: [BEACON] timer cancelled
+TX > lamp status
+RX < lamp status
+RX < I (576365) sentry: [BEACON] ON, color (0,0,255), brightness 100%, mode solid, timer off
+RX < W (576755) sentry: [ACU] own-ship noise: pump #2 cavitation suspected
+TX > lamp status
+RX < lamp status
+RX < I (581985) sentry: [BEACON] ON, color (0,0,255), brightness 100%, mode solid, timer off
+RX < I (582015) sentry: [TELEMETRY #19] 21:59:54 up 00:09:41 heap 251KB rssi -23 temp 31.4C depth 41.9m hull 5.2bar batt 24.2V valve closed sonar - watch disarmed alerts 0 state NORMAL
+TX > status
+RX < status
+RX < I (593975) sentry: === SWM-2 status ===
+RX < I (593975) sentry:   fw:       v2.3.0 (ota_0)
+RX < I (593975) sentry:   state:    1 NORMAL
+RX < I (593975) sentry:   link:     buoy link 'TopA-node', ip 10.223.162.49, rssi -24 dBm (excellent), ch 1
+RX < I (593975) sentry:   internet: OK
+RX < I (593985) sentry:   user:     testUser (user)
+RX < I (593985) sentry:   time:     22:00:06, uptime 0h 09m 53s
+RX < I (593995) sentry:   valve:    closed
+RX < I (593995) sentry:   watch:    disarmed, CIC alerts unacked: 0
+RX < I (594005) sentry:   sonar:    no contact
+RX < I (594005) sentry:   carrier:  depth 41.9 m, hull 5.2 bar, water 8.0 C, battery 24.18 V (sim)
+RX < I (594015) sentry:   heap:     251 KB free
+TX > whoami
+RX < whoami
+RX < I (594175) sentry: user: testUser, access: user
+TX > lamp timer 0
+RX < lamp timer 0
+RX < I (594385) sentry: [BEACON] timer cancelled
+TX > lamp status
+RX < lamp status
+RX < I (594995) sentry: [BEACON] ON, color (0,0,255), brightness 100%, mode solid, timer off
+TX > lamp color 160 0 255
+RX < lamp color 160 0 255
+RX < I (595615) sentry: [BEACON] color: (160,0,255)
+TX > lamp brightness 75
+RX < lamp brightness 75
+RX < I (596225) sentry: [BEACON] brightness: 75%
+TX > lamp mode breathe
+RX < lamp mode breathe
+RX < I (596825) sentry: [BEACON] mode: breathe
+TX > lamp off
+RX < lamp off
+RX < I (597425) sentry: [BEACON] off (command)
+TX > lamp status
+RX < lamp status
+RX < I (598035) sentry: [BEACON] off, color (160,0,255), brightness 75%, mode breathe, timer off

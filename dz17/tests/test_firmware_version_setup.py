@@ -6,6 +6,7 @@ from unittest.mock import Mock, call
 
 import pytest
 from drivers.device_driver import DeviceDriver
+from tests import lamp_test_helpers
 
 import conftest
 
@@ -38,9 +39,44 @@ def _driver_with_firmware(version: str) -> Mock:
     driver = Mock(spec=DeviceDriver)
     driver.is_open = True
     driver.uart_log = [f"RX < fw v{version}"]
-    driver.send_command.return_value = [f"fw v{version}"]
-    driver.get_firmware_version.return_value = version
+    driver.version.return_value = version
     return driver
+
+
+def _setup_item(
+    *, lamp: bool, manual_checks: bool, capture: str = "fd"
+) -> SimpleNamespace:
+    markers = {"interactive"}
+    if lamp:
+        markers.add("lamp")
+    return SimpleNamespace(
+        get_closest_marker=lambda name: object() if name in markers else None,
+        config=SimpleNamespace(
+            getoption=lambda name: (
+                capture if name == "capture" else manual_checks
+            )
+        ),
+    )
+
+
+def test_lamp_interactive_setup_allows_uart_only_without_console() -> None:
+    conftest.pytest_runtest_setup(
+        _setup_item(lamp=True, manual_checks=False)
+    )
+
+
+def test_lamp_interactive_setup_requires_console_for_manual_checks() -> None:
+    with pytest.raises(pytest.fail.Exception, match="require console input"):
+        conftest.pytest_runtest_setup(
+            _setup_item(lamp=True, manual_checks=True)
+        )
+
+
+def test_other_interactive_setup_still_requires_console() -> None:
+    with pytest.raises(pytest.fail.Exception, match="require console input"):
+        conftest.pytest_runtest_setup(
+            _setup_item(lamp=False, manual_checks=False)
+        )
 
 
 def test_device_driver_stores_actual_firmware_version() -> None:
@@ -51,7 +87,7 @@ def test_device_driver_stores_actual_firmware_version() -> None:
 
     assert version == "2.1.0"
     assert request.node.stash[conftest.FIRMWARE_VERSION_KEY] == "2.1.0"
-    driver.send_command.assert_called_once_with("version", timeout=1.0)
+    driver.version.assert_called_once_with()
 
 
 def test_uart_log_keeps_only_latest_per_test_and_firmware(
@@ -168,6 +204,25 @@ def test_wifi_precondition_accepts_saved_reconnect_after_status_confirmation(
     assert driver.wifi_status.call_count == 2
 
 
+def test_wifi_precondition_retries_status_until_uart_response_arrives(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    request = FakeRequest(expected_version=None)
+    driver = Mock(spec=DeviceDriver)
+    connected = {"connected": True, "ssid": "test-network", "ip": "192.168.1.20"}
+    driver.wifi_status.side_effect = [TimeoutError("incomplete status"), connected]
+    monkeypatch.setattr(
+        conftest,
+        "resolve_wifi_credentials",
+        lambda **_: ("test-network", "dummy-password"),
+    )
+
+    conftest._ensure_wifi_connected(driver, request)
+
+    assert driver.wifi_status.call_count == 2
+    driver.wifi_reconnect.assert_not_called()
+
+
 def test_wifi_precondition_falls_back_and_verifies_configured_network(
     monkeypatch: pytest.MonkeyPatch,
 ) -> None:
@@ -213,10 +268,11 @@ def test_authenticated_device_waits_for_login_and_expected_identity(
 
     driver.send_command_nowait.side_effect = send_command
     driver.wait_for_any.side_effect = [
+        None,
         "not logged in",
         "[AUTH] operator testUser on watch",
+        ", access:",
     ]
-    driver.wait_for.return_value = True
     ensure_wifi = Mock()
     monkeypatch.setattr(
         conftest,
@@ -229,11 +285,45 @@ def test_authenticated_device_waits_for_login_and_expected_identity(
 
     ensure_wifi.assert_called_once_with(driver, request)
     driver.login_nowait.assert_called_once_with("testUser", "secret")
-    driver.wait_for.assert_called_once_with(
-        "user: testUser, access:",
-        timeout=5.0,
-        since_index=1,
+    assert driver.send_command_nowait.call_args_list == [
+        call("whoami"),
+        call("whoami"),
+        call("whoami"),
+    ]
+
+
+def test_authenticated_device_reconnects_after_transient_login_wifi_error(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    request = FakeRequest(expected_version=None)
+    driver = Mock(spec=DeviceDriver)
+    driver.uart_log = []
+    driver.send_command_nowait.side_effect = lambda command: driver.uart_log.append(
+        "RX < I (1) sentry: not logged in"
+        if len(driver.uart_log) == 0
+        else "RX < I (2) sentry: user: testUser, access: user"
     )
+    driver.wait_for_any.side_effect = [
+        "not logged in",
+        "E002",
+        "[AUTH] operator testUser on watch",
+        ", access:",
+    ]
+    ensure_wifi = Mock()
+    monkeypatch.setattr(
+        conftest,
+        "resolve_account_credentials",
+        lambda **_: ("testUser", "secret"),
+    )
+    monkeypatch.setattr(conftest, "_ensure_wifi_connected", ensure_wifi)
+
+    conftest._ensure_authenticated_device(driver, request)
+
+    assert ensure_wifi.call_args_list == [
+        call(driver, request),
+        call(driver, request),
+    ]
+    assert driver.login_nowait.call_count == 2
 
 
 def test_authenticated_device_replaces_a_different_logged_in_user(
@@ -257,7 +347,9 @@ def test_authenticated_device_replaces_a_different_logged_in_user(
     driver.send_command_nowait.side_effect = send_command
     driver.wait_for_any.side_effect = [
         ", access:",
+        "not logged in",
         "[AUTH] operator testUser on watch",
+        ", access:",
     ]
     driver.wait_for.return_value = True
     ensure_wifi = Mock()
@@ -277,3 +369,138 @@ def test_authenticated_device_replaces_a_different_logged_in_user(
         call("whoami"),
     ]
     driver.login_nowait.assert_called_once_with("testUser", "secret")
+
+
+@pytest.mark.parametrize("primary_failed", [False, True])
+def test_lamp_state_fixture_restores_captured_status_after_test(
+    monkeypatch: pytest.MonkeyPatch,
+    primary_failed: bool,
+) -> None:
+    request = FakeRequest(expected_version=None)
+    request.node.rep_call = SimpleNamespace(failed=primary_failed)
+    driver = Mock(spec=DeviceDriver)
+    initial_status = {
+        "lamp": "off",
+        "color": (160, 0, 255),
+        "brightness": 75,
+        "mode": "breathe",
+        "timer_s": 0,
+    }
+    driver.lamp_status.return_value = initial_status
+    ensure_wifi = Mock()
+    ensure_authenticated = Mock()
+    cleanup = Mock()
+    monkeypatch.setattr(conftest, "cleanup_lamp_test_state", cleanup)
+
+    fixture = conftest.lamp_state.__wrapped__(
+        request,
+        driver,
+        ensure_authenticated,
+    )
+    state = next(fixture)
+
+    assert state.initial_status == initial_status
+    assert request.node.stash[conftest.LAMP_STATE_FIXTURE_ACTIVE] is True
+    with pytest.raises(StopIteration):
+        next(fixture)
+
+    cleanup.assert_called_once_with(
+        driver,
+        initial_status,
+        ensure_authenticated_device=ensure_authenticated,
+        primary_failed=primary_failed,
+    )
+
+
+def test_lamp_state_fixture_skips_commands_when_reboot_recovery_is_unconfirmed(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    request = FakeRequest(expected_version=None)
+    driver = Mock(spec=DeviceDriver)
+    driver.lamp_status.return_value = {
+        "lamp": "off",
+        "color": (160, 0, 255),
+        "brightness": 75,
+        "mode": "breathe",
+        "timer_s": 0,
+    }
+    cleanup = Mock()
+    attach = Mock()
+    monkeypatch.setattr(conftest, "cleanup_lamp_test_state", cleanup)
+    monkeypatch.setattr(conftest.allure, "attach", attach)
+
+    fixture = conftest.lamp_state.__wrapped__(
+        request,
+        driver,
+        Mock(),
+    )
+    state = next(fixture)
+    state.restore_after_test = False
+    state.cleanup_skip_reason = "Device recovery was not confirmed."
+
+    with pytest.raises(StopIteration):
+        next(fixture)
+
+    cleanup.assert_not_called()
+    attach.assert_called_once_with(
+        "Device recovery was not confirmed.",
+        name="Beacon cleanup skipped",
+        attachment_type=conftest.allure.attachment_type.TEXT,
+    )
+
+
+def test_device_driver_does_not_duplicate_lamp_state_fixture_cleanup(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    request = FakeRequest(expected_version=None)
+    request.node.stash[conftest.LAMP_STATE_FIXTURE_ACTIVE] = True
+    driver = _driver_with_firmware("2.1.0")
+    driver.lamp_status.return_value = {
+        "lamp": "off",
+        "color": (160, 0, 255),
+        "brightness": 75,
+        "mode": "breathe",
+        "timer_s": 0,
+    }
+    restore_lamp = Mock()
+    monkeypatch.setattr(conftest, "DeviceDriver", lambda **_: driver)
+    monkeypatch.setattr(conftest, "_restore_lamp", restore_lamp)
+
+    fixture = conftest.device_driver.__wrapped__(request)
+    assert next(fixture) is driver
+    fixture.close()
+
+    driver.lamp_status.assert_called_once_with(timeout=0.6)
+    restore_lamp.assert_not_called()
+    driver.close.assert_called_once_with()
+
+
+def test_lamp_cleanup_attempts_beacon_restore_after_pytest_recovery_failure(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    driver = Mock(spec=DeviceDriver)
+    initial_status = {
+        "lamp": "off",
+        "color": (160, 0, 255),
+        "brightness": 75,
+        "mode": "breathe",
+        "timer_s": 0,
+    }
+    restore_lamp = Mock()
+    ensure_authenticated = Mock(
+        side_effect=pytest.fail.Exception("session recovery failed")
+    )
+    monkeypatch.setattr(
+        lamp_test_helpers,
+        "_restore_lamp_state",
+        restore_lamp,
+    )
+
+    with pytest.raises(RuntimeError, match="session recovery failed"):
+        conftest.cleanup_lamp_test_state(
+            driver,
+            initial_status,
+            ensure_authenticated_device=ensure_authenticated,
+        )
+
+    restore_lamp.assert_called_once_with(driver, initial_status)

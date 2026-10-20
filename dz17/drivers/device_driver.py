@@ -281,8 +281,25 @@ class DeviceDriver:
         return versions[-1]
 
     @allure.step("Read firmware version")
-    def version(self, timeout: float = 0.6) -> str:
-        lines = self.send_command("version", timeout=timeout)
+    def version(self, timeout: float = 10.0) -> str:
+        start_idx = len(self.uart_log)
+        self.send_command_nowait("version")
+        version_phrases = ("fw v", "fw:", "version:", "version ", "sentry_fw7_")
+        version_response = self.wait_for_any(
+            version_phrases,
+            timeout=timeout,
+            since_index=start_idx,
+        )
+        if version_response is None:
+            raise TimeoutError(
+                "Timed out waiting for a supported firmware version response "
+                f"({', '.join(version_phrases)})."
+            )
+        lines = [
+            entry[5:]
+            for entry in self.uart_log[start_idx:]
+            if entry.startswith("RX < ")
+        ]
         return self.get_firmware_version(lines)
 
     @allure.step("Parse system state from UART response")
@@ -315,7 +332,18 @@ class DeviceDriver:
         time.sleep(3.5)
         self._receive_buffer = ""
         connection.reset_input_buffer()
-        return self.wait_for("ready", timeout=timeout) or self.wait_for("sentry:", timeout=timeout)
+        start_idx = len(self.uart_log)
+        deadline = time.monotonic() + timeout
+        while True:
+            for entry in self.uart_log[start_idx:]:
+                response = entry.removeprefix("RX < ").strip().casefold()
+                if "ready" in response or response == "sentry:":
+                    return True
+
+            remaining = deadline - time.monotonic()
+            if remaining <= 0:
+                return False
+            self._read_for(min(0.2, remaining))
 
     # --- Authentication & Account ---
 
@@ -595,11 +623,23 @@ class DeviceDriver:
         }
 
     @allure.step("Read Wi-Fi / system connection status")
-    def wifi_status(self, timeout: float = 1.0) -> dict[str, Any]:
+    def wifi_status(self, timeout: float = 10.0) -> dict[str, Any]:
         start_idx = len(self.uart_log)
         self.send_command_nowait("status")
-        if not self.wait_for("heap:", timeout=timeout, since_index=start_idx):
-            raise TimeoutError("Timed out waiting for the complete Wi-Fi status response.")
+        status_phrases = ("link:", "user:", "heap:")
+        received_phrases = self.wait_for_all(
+            status_phrases,
+            timeout=timeout,
+            since_index=start_idx,
+        )
+        missing_phrases = [
+            phrase for phrase, received in received_phrases.items() if not received
+        ]
+        if missing_phrases:
+            raise TimeoutError(
+                "Timed out waiting for complete Wi-Fi status fields: "
+                f"{', '.join(missing_phrases)}."
+            )
         response_lines = [
             entry[5:]
             for entry in self.uart_log[start_idx:]
