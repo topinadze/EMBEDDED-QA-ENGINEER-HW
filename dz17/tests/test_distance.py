@@ -4,7 +4,8 @@ import logging
 import re
 import sys
 import time
-from typing import Any, Callable
+from dataclasses import dataclass
+from typing import Any, Callable, Generator
 from unittest.mock import Mock
 
 import allure
@@ -12,7 +13,8 @@ import pytest
 from drivers.device_driver import DeviceDriver
 from manual_checks import SoftChecks, prepare_observation
 
-DISTANCE_MEASUREMENT_TOLERANCE_CM = 0.5
+REFERENCE_PLACEMENT_TOLERANCE_CM = 0.5
+MINIMUM_STABLE_READINGS = 3
 LOGGER = logging.getLogger(__name__)
 DISTANCE_AVERAGE_PATTERN = re.compile(
     r"\[SONAR\]\s+avg\s+(\d+(?:\.\d+)?)\s+cm\s+\((\d+)/(\d+)\s+ok\)"
@@ -20,10 +22,168 @@ DISTANCE_AVERAGE_PATTERN = re.compile(
 DISTANCE_READING_PATTERN = re.compile(
     r"\[SONAR\]\s+ping:\s+echo\s+(\d+(?:\.\d+)?)\s+cm"
 )
+COLLISION_PATTERN = re.compile(
+    r"\[COLLISION\]\s*contact too close:\s*(\d+(?:\.\d+)?)\s*cm",
+    re.IGNORECASE,
+)
 DISTANCE_ALERT_PATTERN = re.compile(
     r"\[CIC\s+#(\d+)\s+(?:INFO|WARNING|CRITICAL)\]\s+sonar:",
     re.IGNORECASE,
 )
+
+
+@dataclass
+class SonarTestResources:
+    stream_active: bool = False
+    relay_may_be_open: bool = False
+
+
+@pytest.fixture
+def sonar_test_resources(
+    authenticated_device: DeviceDriver,
+    request: pytest.FixtureRequest,
+) -> Generator[SonarTestResources, None, None]:
+    state = SonarTestResources()
+    yield state
+
+    failures: list[str] = []
+    if state.stream_active:
+        with allure.step("Teardown: stop the active sonar stream"):
+            try:
+                lines = authenticated_device.distance_stop()
+                if not any(
+                    "[SONAR] pinging stopped" in line or "W710" in line
+                    for line in lines
+                ):
+                    failures.append(f"Could not confirm sonar stream stop: {lines}")
+            except Exception as exc:
+                failures.append(f"Could not stop sonar stream: {exc}")
+
+    if state.relay_may_be_open:
+        with allure.step("Teardown: close the relay and verify automation is off"):
+            try:
+                lines = authenticated_device.relay_off()
+                status = authenticated_device.relay_status()
+                if not any(
+                    "[VALVE] CLOSED" in line or "W601" in line for line in lines
+                ):
+                    failures.append(f"Relay close was not confirmed: {lines}")
+                if status["state"] != "CLOSED" or status["auto"] != "off":
+                    failures.append(f"Unsafe relay state after cleanup: {status}")
+            except Exception as exc:
+                failures.append(f"Could not close relay: {exc}")
+
+    if not failures:
+        return
+
+    summary = "\n".join(failures)
+    allure.attach(
+        summary,
+        name="Sonar test cleanup failures",
+        attachment_type=allure.attachment_type.TEXT,
+    )
+    if getattr(getattr(request.node, "rep_call", None), "failed", False):
+        LOGGER.error("Sonar cleanup also failed after the test failure:\n%s", summary)
+    else:
+        pytest.fail("Sonar cleanup failed:\n" + summary, pytrace=False)
+
+
+@pytest.fixture
+def original_sonar_filter(
+    authenticated_device: DeviceDriver,
+    request: pytest.FixtureRequest,
+) -> Generator[bool, None, None]:
+    driver = authenticated_device
+    stats = driver.distance_stats()
+    if stats["filter"] is None or stats["alarm"] is None:
+        relay_status = driver.relay_status()
+        if relay_status["auto"] != "off":
+            pytest.skip(
+                "Cannot safely prime sonar filter configuration while relay "
+                "automation is enabled; current relay status: "
+                f"{relay_status['raw']}"
+            )
+        stats = _distance_stats_with_config(
+            driver,
+            expected_relay_state=relay_status["state"],
+        )
+
+    assert stats["filter"] in {0, 1, 5}, (
+        "Cannot verify or restore the sonar filter because its initial state "
+        f"was not reported: {stats['raw']}"
+    )
+    original_enabled = stats["filter"] != 0
+    yield original_enabled
+
+    try:
+        with allure.step("Teardown: restore and verify the original sonar filter state"):
+            driver.distance_filter(original_enabled)
+            restored_stats = driver.distance_stats()
+            assert restored_stats["filter"] is not None and (
+                restored_stats["filter"] != 0
+            ) == original_enabled, (
+                f"Sonar filter restoration failed; expected enabled="
+                f"{original_enabled}, got {restored_stats['raw']}"
+            )
+    except Exception as exc:
+        message = f"Could not restore the original sonar filter state: {exc}"
+        allure.attach(
+            message,
+            name="Sonar filter cleanup failure",
+            attachment_type=allure.attachment_type.TEXT,
+        )
+        if getattr(getattr(request.node, "rep_call", None), "failed", False):
+            LOGGER.error("%s", message)
+        else:
+            pytest.fail(message, pytrace=False)
+
+
+def _start_sonar_stream(
+    driver: DeviceDriver, resource_state: SonarTestResources, interval_ms: int
+) -> None:
+    resource_state.stream_active = True
+    lines = driver.distance_log(interval_ms)
+    assert any("[SONAR] continuous pinging" in line for line in lines), (
+        f"Could not start the sonar stream: {lines}"
+    )
+
+
+def _stop_sonar_stream(
+    driver: DeviceDriver, resource_state: SonarTestResources
+) -> None:
+    lines = driver.distance_stop()
+    assert any("[SONAR] pinging stopped" in line for line in lines), (
+        f"Could not confirm sonar stream termination: {lines}"
+    )
+    resource_state.stream_active = False
+
+
+def _observe_sonar_stream_phase(
+    driver: DeviceDriver,
+    *,
+    duration_s: float,
+    scenario: str,
+) -> list[str]:
+    uart_mark = driver.buffer_len()
+    _observe_sonar_stream(driver, duration_s=duration_s, scenario=scenario)
+    return driver.uart_log[uart_mark:]
+
+
+def _capture_sonar_stream_phase(
+    driver: DeviceDriver,
+    resource_state: SonarTestResources,
+    *,
+    duration_s: float,
+    scenario: str,
+) -> list[str]:
+    _start_sonar_stream(driver, resource_state, 500)
+    captured = _observe_sonar_stream_phase(
+        driver,
+        duration_s=duration_s,
+        scenario=scenario,
+    )
+    _stop_sonar_stream(driver, resource_state)
+    return captured
 
 
 def _distance_stats_with_config(
@@ -90,6 +250,124 @@ def _distance_reading_cm(lines: list[str]) -> float | None:
     return None
 
 
+def _assert_guard_disarmed_when_available(
+    driver: DeviceDriver, firmware_version: str
+) -> None:
+    if firmware_version == "2.1.0":
+        return
+
+    lines = driver.guard_status()
+    assert any(
+        re.search(r"\[WATCH\]\s*disarmed\b", line, re.IGNORECASE) for line in lines
+    ), f"Sonar target movement requires Guard disarmed, got: {lines}"
+
+
+def _observe_sonar_stream(
+    driver: DeviceDriver, duration_s: float, scenario: str
+) -> None:
+    deadline = time.monotonic() + duration_s
+    print(
+        f"\n{scenario}: sonar stream is active for about {duration_s:.0f} seconds. "
+        "Move the target now; live sonar readings follow.",
+        flush=True,
+    )
+    while (remaining := deadline - time.monotonic()) > 0:
+        lines = driver.read_for(min(0.5, remaining))
+        for line in lines:
+            if "[SONAR]" in line or "[COLLISION]" in line or "E70" in line:
+                print(f"UART: {line}", flush=True)
+
+
+def _sonar_stream_readings(lines: list[str]) -> list[tuple[int, float]]:
+    readings: list[tuple[int, float]] = []
+    for index, line in enumerate(lines):
+        match = DISTANCE_READING_PATTERN.search(line)
+        if match:
+            readings.append((index, float(match.group(1))))
+    return readings
+
+
+def _assert_collision_phase(
+    lines: list[str], *, expected_events: int, phase: str
+) -> None:
+    events = [
+        float(match.group(1))
+        for line in lines
+        if (match := COLLISION_PATTERN.search(line))
+    ]
+    assert len(events) == expected_events, (
+        f"Expected {expected_events} collision event(s) during {phase}, "
+        f"got {events}: {lines}"
+    )
+    assert all(distance < 20 for distance in events), (
+        f"Collision events during {phase} must report distances below 20 cm: "
+        f"{events}"
+    )
+
+
+def _assert_collision_approach(lines: list[str], phase: str) -> None:
+    _assert_collision_phase(lines, expected_events=1, phase=phase)
+    events = [
+        index
+        for index, line in enumerate(lines)
+        if COLLISION_PATTERN.search(line)
+    ]
+    readings = _sonar_stream_readings(lines)
+    _assert_minimum_readings(
+        [distance for index, distance in readings if index < events[0]],
+        lambda distance: distance > 25,
+        f">25 cm before the collision event during {phase}",
+    )
+    _assert_minimum_readings(
+        [distance for _, distance in readings],
+        lambda distance: distance < 20,
+        f"<20 cm during {phase}",
+    )
+
+
+def _assert_minimum_readings(
+    readings: list[float],
+    predicate: Callable[[float], bool],
+    condition: str,
+) -> None:
+    matches = [distance for distance in readings if predicate(distance)]
+    assert len(matches) >= MINIMUM_STABLE_READINGS, (
+        f"Expected at least {MINIMUM_STABLE_READINGS} readings {condition}, "
+        f"got {len(matches)} matching readings from {readings}"
+    )
+
+
+def _assert_proximity_reading_progression(lines: list[str]) -> None:
+    readings = [distance for _, distance in _sonar_stream_readings(lines)]
+    far_indices = [
+        index for index, distance in enumerate(readings) if distance > 25
+    ]
+    _assert_minimum_readings(
+        readings,
+        lambda distance: distance > 25,
+        "above 25 cm at the start",
+    )
+
+    third_far_index = far_indices[MINIMUM_STABLE_READINGS - 1]
+    approach_indices = [
+        index
+        for index, distance in enumerate(readings)
+        if index > third_far_index and 10 <= distance < 20
+    ]
+    _assert_minimum_readings(
+        readings[third_far_index + 1 :],
+        lambda distance: 10 <= distance < 20,
+        "between 10 and 20 cm after the initial >25 cm reading",
+    )
+
+    third_approach_index = approach_indices[MINIMUM_STABLE_READINGS - 1]
+    _assert_minimum_readings(
+        readings[third_approach_index + 1 :],
+        lambda distance: distance < 10,
+        "below 10 cm after the 10–20 cm approach reading",
+    )
+
+
 def _alert_ids(lines: list[str]) -> set[str]:
     return {
         match.group(1)
@@ -148,6 +426,155 @@ def test_distance_reading_cm_requires_single_echo(
     lines: list[str], expected: float | None
 ) -> None:
     assert _distance_reading_cm(lines) == expected
+
+
+@pytest.mark.parametrize(
+    ("lines", "expected_events", "valid"),
+    [
+        (["[COLLISION] contact too close: 19.5 cm"], 1, True),
+        (["[COLLISION] contact too close: 18.0 cm"] * 2, 1, False),
+        (["[SONAR] ping: echo 30.0 cm"], 0, True),
+    ],
+)
+def test_collision_phase_checks_exact_event_count(
+    lines: list[str], expected_events: int, valid: bool
+) -> None:
+    if valid:
+        _assert_collision_phase(
+            lines,
+            expected_events=expected_events,
+            phase="test phase",
+        )
+    else:
+        with pytest.raises(AssertionError, match="Expected"):
+            _assert_collision_phase(
+                lines,
+                expected_events=expected_events,
+                phase="test phase",
+            )
+
+
+@pytest.mark.parametrize(
+    ("lines", "valid"),
+    [
+        (
+            [
+                "[SONAR] ping: echo 30.0 cm",
+                "[SONAR] ping: echo 29.8 cm",
+                "[SONAR] ping: echo 30.2 cm",
+                "[SONAR] ping: echo 15.0 cm",
+                "[SONAR] ping: echo 15.2 cm",
+                "[SONAR] ping: echo 14.8 cm",
+                "[SONAR] ping: echo 9.0 cm",
+                "[SONAR] ping: echo 9.2 cm",
+                "[SONAR] ping: echo 8.8 cm",
+            ],
+            True,
+        ),
+        (
+            [
+                "[SONAR] ping: echo 15.0 cm",
+                "[SONAR] ping: echo 15.0 cm",
+                "[SONAR] ping: echo 9.0 cm",
+                "[SONAR] ping: echo 9.0 cm",
+                "[SONAR] ping: echo 9.0 cm",
+                "[SONAR] ping: echo 30.0 cm",
+                "[SONAR] ping: echo 30.0 cm",
+                "[SONAR] ping: echo 30.0 cm",
+                "[SONAR] ping: echo 9.0 cm",
+                "[SONAR] ping: echo 8.8 cm",
+            ],
+            False,
+        ),
+        (
+            [
+                "[SONAR] ping: echo 30.0 cm",
+                "[SONAR] ping: echo 15.0 cm",
+                "[SONAR] ping: echo 9.0 cm",
+                "[SONAR] ping: echo 9.0 cm",
+                "[SONAR] ping: echo 9.0 cm",
+                "[SONAR] ping: echo 11.0 cm",
+            ],
+            False,
+        ),
+        (
+            [
+                "[SONAR] ping: echo 30.0 cm",
+                "[SONAR] ping: echo 30.0 cm",
+                "[SONAR] ping: echo 30.0 cm",
+                "[SONAR] ping: echo 15.0 cm",
+                "[SONAR] ping: echo 15.0 cm",
+                "[SONAR] ping: echo 15.0 cm",
+                "[SONAR] ping: echo 9.0 cm",
+                "[SONAR] ping: echo 9.0 cm",
+                "[SONAR] ping: echo 9.0 cm",
+                "[SONAR] ping: echo 14.3 cm",
+                "[SONAR] ping: echo 14.3 cm",
+                "[SONAR] ping: echo 14.3 cm",
+            ],
+            True,
+        ),
+    ],
+)
+def test_proximity_readings_require_ordered_zones_and_three_near_readings(
+    lines: list[str], valid: bool
+) -> None:
+    if valid:
+        _assert_proximity_reading_progression(lines)
+    else:
+        with pytest.raises(AssertionError):
+            _assert_proximity_reading_progression(lines)
+
+
+@pytest.mark.parametrize(
+    ("lines", "valid"),
+    [
+        (
+            [
+                "[SONAR] ping: echo 30.0 cm",
+                "[SONAR] ping: echo 30.0 cm",
+                "[SONAR] ping: echo 30.0 cm",
+                "[SONAR] ping: echo 30.0 cm",
+                "[SONAR] ping: echo 30.0 cm",
+                "[SONAR] ping: echo 30.0 cm",
+                "[SONAR] ping: echo 30.0 cm",
+                "[SONAR] ping: echo 30.0 cm",
+                "[SONAR] ping: echo 30.0 cm",
+                "[SONAR] ping: echo 19.0 cm",
+                "[SONAR] ping: echo 19.0 cm",
+                "[SONAR] ping: echo 19.0 cm",
+                "[SONAR] ping: echo 18.0 cm",
+                "[SONAR] ping: echo 17.0 cm",
+                "[SONAR] ping: echo 16.0 cm",
+                "[COLLISION] contact too close: 19.5 cm",
+            ],
+            True,
+        ),
+        (
+            [
+                "[SONAR] ping: echo 30.0 cm",
+                "[SONAR] ping: echo 30.0 cm",
+                "[COLLISION] contact too close: 19.5 cm",
+                "[SONAR] ping: echo 19.0 cm",
+                "[SONAR] ping: echo 18.0 cm",
+                "[SONAR] ping: echo 17.0 cm",
+            ],
+            False,
+        ),
+        (
+            ["[COLLISION] contact too close: 19.5 cm"],
+            False,
+        ),
+    ],
+)
+def test_collision_approach_requires_clear_reading_before_event(
+    lines: list[str], valid: bool
+) -> None:
+    if valid:
+        _assert_collision_approach(lines, "test approach")
+    else:
+        with pytest.raises(AssertionError, match="at least 3 readings"):
+            _assert_collision_approach(lines, "test approach")
 
 
 def test_alert_id_parsers_scope_to_sonar_source_and_listed_ids() -> None:
@@ -351,31 +778,432 @@ class TestDistance:
             f"Expected E705 for invalid interval {interval}, got: {lines}"
         )
 
+    @allure.story("DS-6 Collision detection and re-arm")
+    @allure.title("Emit one collision event per approach, re-arming only beyond 25 cm")
+    @pytest.mark.interactive
+    def test_distance_collision_rearms_after_target_retreats(
+        self,
+        authenticated_device: DeviceDriver,
+        sonar_test_resources: SonarTestResources,
+        firmware_version: str,
+        manual_prepare: Any,
+    ) -> None:
+        driver = authenticated_device
+        _assert_guard_disarmed_when_available(driver, firmware_version)
+        initial_relay = driver.relay_status()
+        assert initial_relay["state"] == "CLOSED" and initial_relay["auto"] == "off", (
+            "Collision re-arm test requires a closed relay and relay automation off: "
+            f"{initial_relay}"
+        )
+
+        phases = (
+            (
+                "first approach",
+                "Keep the target farther than 25 cm until a >25 cm reading appears "
+                "three times in the live console. Then move it smoothly (not in a "
+                "quick flick) from beyond 25 cm to below 20 cm over about 2-3 seconds. "
+                "Hold it below 20 cm for at least 2 seconds and until three readings "
+                "below 20 cm appear.",
+                1,
+                8.0,
+            ),
+            (
+                "re-arm retreat",
+                "Move the target smoothly away from the sensor to beyond 25 cm over "
+                "about 2-3 seconds; do not pull it away in one quick motion. Hold it "
+                "there for at least 2 seconds and until three readings above 25 cm "
+                "appear.",
+                0,
+                8.0,
+            ),
+            (
+                "second approach",
+                "Wait for three >25 cm readings in the live console, then move the "
+                "target smoothly below 20 cm over about 2-3 seconds. Hold it there "
+                "for at least 2 seconds and until three readings below 20 cm appear.",
+                1,
+                8.0,
+            ),
+        )
+        first_phase, first_action, first_expected_events, first_duration = phases[0]
+        prepare_observation(
+            manual_prepare,
+            action=(
+                "Do not move the target until you press Enter and the test prints "
+                "the phase-capture start message; UART readings are not displayed "
+                "while this readiness prompt is open. " + first_action
+            ),
+            expected=(
+                f"After capture starts, during the {first_phase}, the UART should "
+                f"show exactly "
+                f"{first_expected_events} collision event reporting below "
+                "20 cm, after a >25 cm reading."
+            ),
+            duration=f"~{first_duration:.0f} seconds after readiness confirmation",
+        )
+        with allure.step("Start one continuous sonar stream for all collision phases"):
+            _start_sonar_stream(driver, sonar_test_resources, 500)
+
+        for phase_index, (phase, action, expected_events, duration_s) in enumerate(
+            phases
+        ):
+            if phase_index > 0:
+                prepare_observation(
+                    manual_prepare,
+                    action=(
+                        "Do not move the target until you press Enter and the test "
+                        "resumes live UART capture; readings are not displayed "
+                        "while this readiness prompt is open. " + action
+                    ),
+                    expected=(
+                        f"After capture resumes, during the {phase}, the UART "
+                        f"should show exactly "
+                        f"{expected_events} collision event(s), each below 20 cm."
+                        if expected_events
+                        else "After capture resumes, the UART should show a "
+                        "distance above 25 cm and no collision event while the "
+                        "target remains there."
+                    ),
+                    duration=(
+                        f"~{duration_s:.0f} seconds after readiness confirmation"
+                    ),
+                )
+            with allure.step(f"Capture the DS-6 {phase} phase"):
+                captured = _observe_sonar_stream_phase(
+                    driver,
+                    duration_s=duration_s,
+                    scenario=f"DS-6 {phase}",
+                )
+                allure.attach(
+                    "\n".join(captured),
+                    name=f"DS-6 {phase} UART evidence",
+                    attachment_type=allure.attachment_type.TEXT,
+                )
+                if expected_events:
+                    _assert_collision_approach(captured, phase)
+                else:
+                    _assert_collision_phase(
+                        captured,
+                        expected_events=expected_events,
+                        phase=phase,
+                    )
+                    readings = [
+                        distance
+                        for _, distance in _sonar_stream_readings(captured)
+                    ]
+                    _assert_minimum_readings(
+                        readings,
+                        lambda distance: distance > 25,
+                        "above 25 cm during the re-arm retreat",
+                    )
+
+        with allure.step("Stop the continuous stream after all collision phases"):
+            _stop_sonar_stream(driver, sonar_test_resources)
+
+        final_relay = driver.relay_status()
+        assert final_relay["state"] == "CLOSED" and final_relay["auto"] == "off", (
+            "Collision test unexpectedly changed relay state or automation: "
+            f"{final_relay}"
+        )
+
+    @allure.story("DS-6 Out-of-range indication")
+    @allure.title("Out-of-range sonar response E702 displays the red LED for two seconds")
+    @pytest.mark.interactive
+    @pytest.mark.long_range
+    def test_distance_out_of_range_shows_red_led(
+        self,
+        authenticated_device: DeviceDriver,
+        manual_prepare: Any,
+        manual_check: Any,
+    ) -> None:
+        driver = authenticated_device
+        prepare_observation(
+            manual_prepare,
+            action=(
+                "This test needs a clear path with at least 4.1 m between the "
+                "HC-SR04 sensor face and a flat target. If that space is unavailable "
+                "on this bench, do not run this test; use the regular distance suite "
+                "without the optional long-range case. If available, place the target "
+                "at least 4.1 m away and look directly at the device LED."
+            ),
+            expected=(
+                "The next one-shot measurement returns E702 specifically because "
+                "the target exceeds the approximately 4 m sonar range, and the "
+                "device LED lights RED for about two seconds. This does not test "
+                "the separate E701 no-echo condition."
+            ),
+            duration=(
+                "Allow ~2 seconds immediately after the one-shot measurement; "
+                "the physical setup needs at least 4.1 m of clear space"
+            ),
+        )
+
+        with allure.step("Issue one sonar measurement with the target out of range"):
+            print(
+                "\nReadiness confirmed; issuing one sonar measurement now.",
+                flush=True,
+            )
+            uart_mark = driver.buffer_len()
+            driver.send_command_nowait("distance")
+            got_out_of_range = driver.wait_for(
+                "E702",
+                timeout=1.2,
+                since_index=uart_mark,
+            )
+            captured = driver.uart_log[uart_mark:]
+            output = "\n".join(captured)
+            print(output or "UART: no response received.", flush=True)
+            assert got_out_of_range, (
+                f"Expected E702 for a target beyond the sensor range, got: {captured}"
+            )
+            allure.attach(
+                output,
+                name="DS-6 out-of-range UART response",
+                attachment_type=allure.attachment_type.TEXT,
+            )
+
+        with allure.step("Confirm the physical out-of-range LED indication"):
+            assert manual_check(
+                "Did the device LED light RED for about two seconds immediately after "
+                "the E702 response?"
+            ), "Operator did not observe the required two-second red LED indication"
+
+    @allure.story("DS-7 Distance proximity indicator")
+    @allure.title("Proximity indicator blinks faster near the target and stays lit below 10 cm")
+    @pytest.mark.interactive
+    @pytest.mark.persistent
+    def test_distance_proximity_indicator_tracks_target(
+        self,
+        authenticated_device: DeviceDriver,
+        sonar_test_resources: SonarTestResources,
+        firmware_version: str,
+        manual_prepare: Any,
+        manual_check: Any,
+        soft: SoftChecks,
+    ) -> None:
+        driver = authenticated_device
+        _assert_guard_disarmed_when_available(driver, firmware_version)
+        initial_relay = driver.relay_status()
+        assert initial_relay["state"] == "CLOSED" and initial_relay["auto"] == "off", (
+            "DS-7 requires a closed relay and relay automation off before setup: "
+            f"{initial_relay}"
+        )
+
+        prepare_observation(
+            manual_prepare,
+            action=(
+                "Place a flat target about 30 cm from the front face of the HC-SR04 "
+                "sensor and hold it still. The test will then open the relay and run "
+                "a separate sonar stream for each distance zone. Opening the relay "
+                "increments its persistent cycle counter; this test is marked "
+                "persistent and requires explicit opt-in."
+            ),
+            expected=(
+                "First observe the proximity indicator with the target held around "
+                "30 cm. Later prompts will ask you to move to ~15 cm and then ~8 cm. "
+                "At each phase, watch both the live readings and the diode while the "
+                "relay is OPEN and the stream is running. The diode should blink "
+                "faster near the target and stay lit below 10 cm."
+            ),
+            duration=(
+                "~4 seconds for the initial ~30 cm phase; each later phase has its "
+                "own prompt and 7-second stream window"
+            ),
+        )
+
+        with allure.step("Open the relay for the DS-7 indicator condition"):
+            sonar_test_resources.relay_may_be_open = True
+            open_lines = driver.relay_on()
+            assert any("[VALVE] OPEN" in line for line in open_lines), (
+                f"Could not open the relay for DS-7: {open_lines}"
+            )
+            relay_status = driver.relay_status()
+            assert relay_status["state"] == "OPEN" and relay_status["auto"] == "off", (
+                f"DS-7 requires relay OPEN with automation off: {relay_status}"
+            )
+            assert manual_check(
+                "Did you hear the relay click OPEN before sonar streaming started?"
+            ), "Operator did not confirm the physical relay opening"
+
+        captured_phases: list[str] = []
+
+        with allure.step("Observe and capture the target in the far zone (~30 cm)"):
+            far_lines = _capture_sonar_stream_phase(
+                driver,
+                sonar_test_resources,
+                duration_s=4.0,
+                scenario="DS-7 far zone (~30 cm)",
+            )
+            captured_phases.extend(far_lines)
+            allure.attach(
+                "\n".join(far_lines),
+                name="DS-7 far-zone UART evidence",
+                attachment_type=allure.attachment_type.TEXT,
+            )
+            far_readings = [
+                distance for _, distance in _sonar_stream_readings(far_lines)
+            ]
+            _assert_minimum_readings(
+                far_readings,
+                lambda distance: distance > 25,
+                "above 25 cm in the far zone",
+            )
+        with allure.step("Confirm the physical far-zone indicator behavior"):
+            soft.check(
+                manual_check(
+                    "While the target was held around 30 cm and the stream was "
+                    "active, did the proximity diode show its slower/far-distance "
+                    "blink?"
+                ),
+                "Operator did not confirm the far-zone indicator behavior",
+            )
+
+        prepare_observation(
+            manual_prepare,
+            action=(
+                "Move the target smoothly from ~30 cm to ~15 cm over about 3 seconds "
+                "(not a quick flick), then hold it still at 15 cm for at least "
+                "2 seconds. Keep it at 10–20 cm for the full 7-second stream."
+            ),
+            expected=(
+                "The live sonar console should show at least three readings between "
+                "10 cm and 20 cm. Watch whether the proximity diode blinks faster "
+                "than it did in the ~30 cm phase."
+            ),
+            duration="~7 seconds of streaming, including the 3-second move and hold",
+        )
+        with allure.step("Observe and capture the middle zone (~15 cm)"):
+            middle_lines = _capture_sonar_stream_phase(
+                driver,
+                sonar_test_resources,
+                duration_s=7.0,
+                scenario="DS-7 middle zone (~15 cm)",
+            )
+            captured_phases.extend(middle_lines)
+            allure.attach(
+                "\n".join(middle_lines),
+                name="DS-7 middle-zone UART evidence",
+                attachment_type=allure.attachment_type.TEXT,
+            )
+            middle_readings = [
+                distance for _, distance in _sonar_stream_readings(middle_lines)
+            ]
+            _assert_minimum_readings(
+                middle_readings,
+                lambda distance: 10 <= distance < 20,
+                "between 10 and 20 cm in the middle zone",
+            )
+        with allure.step("Confirm the physical middle-zone indicator behavior"):
+            soft.check(
+                manual_check(
+                    "While the target was held around 15 cm and the stream was "
+                    "active, did the proximity diode blink faster than in the "
+                    "~30 cm phase?"
+                ),
+                "Operator did not observe a faster blink in the middle zone",
+            )
+
+        prepare_observation(
+            manual_prepare,
+            action=(
+                "Move the target smoothly from ~15 cm to about 8 cm over 1-2 seconds "
+                "(do not jerk or sweep it quickly). Hold it still at ~8 cm for at "
+                "least 3 seconds and until three sonar readings below 10 cm appear."
+            ),
+            expected=(
+                "The live sonar console should show at least three readings below "
+                "10 cm during this phase. While those readings arrive, observe "
+                "whether the proximity diode remains continuously lit."
+            ),
+            duration="~7 seconds of streaming, including the move and at least 3-second hold",
+        )
+        with allure.step("Observe and capture the near zone (~8 cm)"):
+            near_lines = _capture_sonar_stream_phase(
+                driver,
+                sonar_test_resources,
+                duration_s=7.0,
+                scenario="DS-7 near zone (~8 cm)",
+            )
+            captured_phases.extend(near_lines)
+            allure.attach(
+                "\n".join(near_lines),
+                name="DS-7 near-zone UART evidence",
+                attachment_type=allure.attachment_type.TEXT,
+            )
+            near_readings = [
+                distance for _, distance in _sonar_stream_readings(near_lines)
+            ]
+            _assert_minimum_readings(
+                near_readings,
+                lambda distance: distance < 10,
+                "below 10 cm in the near zone",
+            )
+        near_indicator_failure = (
+            "Operator did not observe a continuously lit diode below 10 cm"
+        )
+        with allure.step("Confirm the physical near-zone indicator behavior"):
+            near_indicator_ok = soft.check(
+                manual_check(
+                    "While the target was held around 8 cm (<10 cm) and the stream "
+                    "was active, did the proximity diode stay continuously lit?"
+                ),
+                near_indicator_failure,
+            )
+
+        allure.attach(
+            "\n".join(captured_phases),
+            name="DS-7 ordered target-zone UART evidence",
+            attachment_type=allure.attachment_type.TEXT,
+        )
+        _assert_proximity_reading_progression(captured_phases)
+        final_relay = driver.relay_status()
+        assert final_relay["state"] == "OPEN" and final_relay["auto"] == "off", (
+            "Relay must remain OPEN with automation off throughout DS-7: "
+            f"{final_relay}"
+        )
+
+        if near_indicator_ok is False:
+            soft.failures.remove(near_indicator_failure)
+            if not soft.failures:
+                pytest.xfail(
+                    "BUG-007: DS-7 proximity indicator did not stay continuously "
+                    "lit below 10 cm; reproduced on firmware 2.1.0 and 2.3.0. "
+                    "See dz17/REPORT.md, BUG-007."
+                )
+
+        soft.assert_all()
+
     @allure.story("DS-5 Sonar statistics and median filter")
     @allure.title("Query sonar statistics and toggle median filter")
     @pytest.mark.positive
     def test_distance_stats_and_filter(
         self,
         authenticated_device: DeviceDriver,
+        original_sonar_filter: bool,
     ) -> None:
         driver = authenticated_device
-        with allure.step("Query 'distance stats'"):
+        with allure.step("Verify reported sonar statistics and filter state"):
             stats = driver.distance_stats()
-            assert stats["filter"] in {0, 1, 5}
-            assert stats["alarm"] in {"on", "off"}
+            assert stats["filter"] in {0, 1, 5}, (
+                f"Unexpected sonar filter setting: {stats['raw']}"
+            )
+            assert stats["alarm"] in {"on", "off"}, (
+                f"Unexpected sonar alarm setting: {stats['raw']}"
+            )
 
-        original_filter = stats["filter"]
-        try:
-            with allure.step("Toggle median filter OFF"):
-                off_lines = driver.distance_filter(False)
-                assert any("filter: off" in line.casefold() or "filter off" in line.casefold() for line in off_lines)
+        with allure.step("Toggle median filter OFF and verify the reported state"):
+            driver.distance_filter(False)
+            off_stats = driver.distance_stats()
+            assert off_stats["filter"] == 0, (
+                f"Expected filter off in distance stats: {off_stats['raw']}"
+            )
 
-            with allure.step("Toggle median filter ON"):
-                on_lines = driver.distance_filter(True)
-                assert any("filter: on" in line.casefold() or "filter on" in line.casefold() or "median" in line.casefold() for line in on_lines)
-        finally:
-            with allure.step("Restore the original median filter state"):
-                driver.distance_filter(original_filter != 0)
+        with allure.step("Toggle median filter ON and verify the reported state"):
+            driver.distance_filter(True)
+            on_stats = driver.distance_stats()
+            assert on_stats["filter"] in {1, 5}, (
+                f"Expected filter on in distance stats: {on_stats['raw']}"
+            )
 
     @allure.story("DS-3 Calibration bounds validation")
     @allure.title("Reject out-of-bounds calibration distances with error E706")
@@ -538,8 +1366,8 @@ class TestDistance:
                     attachment_type=allure.attachment_type.TEXT,
                 )
 
-    @allure.story("DS-1 Interactive distance measurement accuracy")
-    @allure.title("Collect sonar readings at operator-selected measured distances")
+    @allure.story("DS-1 Interactive distance measurement characterization")
+    @allure.title("Record sonar readings with target-placement tolerance")
     @pytest.mark.interactive
     def test_distance_interactive_measurement(
         self,
@@ -571,11 +1399,12 @@ class TestDistance:
 
         measurements: list[tuple[float, float | None]] = []
         while True:
-            if not manual_continue():
+            if measurements and not manual_continue():
                 break
 
             reference_distance_cm = manual_distance(
-                "Enter the ruler-measured gap from the sensor face to the target"
+                "Measure the gap from the sensor face to the target with a ruler "
+                "and enter that distance in centimeters"
             )
             prepare_observation(
                 manual_prepare,
@@ -586,9 +1415,12 @@ class TestDistance:
                 ),
                 expected=(
                     "The console reports one sonar echo in centimeters. Keep the "
-                    "target still until the command completes. Sonar alerts may be "
-                    "added to persistent history; this test will not acknowledge or "
-                    "delete alert records."
+                    "target still until the command completes. The entered ruler "
+                    "distance allows ±"
+                    f"{REFERENCE_PLACEMENT_TOLERANCE_CM:.2f} cm for target placement "
+                    "uncertainty; this is not a PRD-defined sensor accuracy claim. "
+                    "Sonar alerts may be added to persistent history; this test will "
+                    "not acknowledge or delete alert records."
                 ),
                 duration="~1 second for the one-shot measurement",
             )
@@ -627,14 +1459,20 @@ class TestDistance:
                     ),
                 )
                 if reading_cm is not None:
-                    error_cm = abs(reading_cm - reference_distance_cm)
-                    within_tolerance = error_cm <= DISTANCE_MEASUREMENT_TOLERANCE_CM
+                    signed_delta_cm = reading_cm - reference_distance_cm
+                    within_placement_tolerance = (
+                        abs(signed_delta_cm) <= REFERENCE_PLACEMENT_TOLERANCE_CM
+                    )
                     comparison = (
                         f"Reference: {reference_distance_cm:.2f} cm\n"
                         f"Sonar reading: {reading_cm:.2f} cm\n"
-                        f"Absolute error: {error_cm:.2f} cm\n"
-                        f"Acceptance tolerance: ±{DISTANCE_MEASUREMENT_TOLERANCE_CM:.2f} cm\n"
-                        f"Result: {'PASS' if within_tolerance else 'FAIL'}"
+                        f"Signed difference (reading - reference): "
+                        f"{signed_delta_cm:+.2f} cm\n"
+                        "Target placement uncertainty allowance: "
+                        f"±{REFERENCE_PLACEMENT_TOLERANCE_CM:.2f} cm\n"
+                        "Within placement allowance: "
+                        f"{'YES' if within_placement_tolerance else 'NO'}\n"
+                        "This allowance is not a PRD-defined sensor accuracy spec."
                     )
                     allure.attach(
                         comparison,
@@ -642,11 +1480,12 @@ class TestDistance:
                         attachment_type=allure.attachment_type.TEXT,
                     )
                     soft.check(
-                        within_tolerance,
+                        within_placement_tolerance,
                         (
-                            f"At reference {reference_distance_cm:.2f} cm, sonar reading "
-                            f"was {reading_cm:.2f} cm (absolute error {error_cm:.2f} cm; "
-                            f"allowed ±{DISTANCE_MEASUREMENT_TOLERANCE_CM:.2f} cm)"
+                            f"At ruler reference {reference_distance_cm:.2f} cm, "
+                            f"reading was {reading_cm:.2f} cm (difference "
+                            f"{signed_delta_cm:+.2f} cm); target placement allowance "
+                            f"is ±{REFERENCE_PLACEMENT_TOLERANCE_CM:.2f} cm"
                         ),
                     )
 
@@ -662,24 +1501,25 @@ class TestDistance:
 
         with allure.step("Summarize all measurements and evaluate the completed series"):
             summary_lines = [
-                "Index | Reference (cm) | Reading (cm) | Error (cm) | Result",
+                "Index | Reference (cm) | Reading (cm) | Signed difference (cm) | Placement allowance",
                 "--- | ---: | ---: | ---: | ---",
             ]
             for index, (reference_cm, reading_cm) in enumerate(measurements, start=1):
                 if reading_cm is None:
                     summary_lines.append(
-                        f"{index} | {reference_cm:.2f} | no valid echo | n/a | FAIL"
+                        f"{index} | {reference_cm:.2f} | no valid echo | n/a | NO VALID ECHO"
                     )
                     continue
-                error_cm = reading_cm - reference_cm
+                signed_delta_cm = reading_cm - reference_cm
                 result = (
-                    "PASS"
-                    if abs(error_cm) <= DISTANCE_MEASUREMENT_TOLERANCE_CM
-                    else "FAIL"
+                    "WITHIN"
+                    if abs(signed_delta_cm) <= REFERENCE_PLACEMENT_TOLERANCE_CM
+                    else "OUTSIDE"
                 )
                 summary_lines.append(
                     f"{index} | {reference_cm:.2f} | {reading_cm:.2f} | "
-                    f"{error_cm:+.2f} | {result}"
+                    f"{signed_delta_cm:+.2f} | {result} ±"
+                    f"{REFERENCE_PLACEMENT_TOLERANCE_CM:.2f} cm"
                 )
 
             summary = "\n".join(summary_lines)

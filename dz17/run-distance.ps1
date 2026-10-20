@@ -4,7 +4,8 @@ param(
     [string]$Port = "COM4",
     [switch]$Interactive,
     [switch]$All,
-    [switch]$Persistent
+    [switch]$Persistent,
+    [switch]$LongRangeOnly
 )
 
 Set-Location $PSScriptRoot
@@ -14,20 +15,27 @@ if (-not (Test-Path $python)) {
     throw "DZ17 virtual environment not found. Create it with: python -m venv .venv; .\.venv\Scripts\python.exe -m pip install -r requirements.txt"
 }
 
-if (-not $Markers) {
+if ($LongRangeOnly) {
+    if ($Markers) {
+        throw "Do not combine -LongRangeOnly with -Markers; select the long-range case using one option."
+    }
+    $Markers = "distance and long_range"
+} elseif (-not $Markers) {
     if ($All) {
-        $Markers = "distance"
+        $Markers = "distance and not long_range"
     } elseif ($Interactive) {
         $markerParts = @("distance and interactive")
         if (-not $Persistent) {
             $markerParts += "not persistent"
         }
+        $markerParts += "not long_range"
         $Markers = $markerParts -join " and "
     } else {
         $markerParts = @("distance and not interactive")
         if (-not $Persistent) {
             $markerParts += "not persistent"
         }
+        $markerParts += "not long_range"
         $Markers = $markerParts -join " and "
     }
 }
@@ -40,7 +48,7 @@ $pytestArgs = @(
     "-m", "pytest"
 )
 
-if ($Interactive -or $All) {
+if ($Interactive -or $All -or $LongRangeOnly) {
     $pytestArgs += "-s"
 }
 
