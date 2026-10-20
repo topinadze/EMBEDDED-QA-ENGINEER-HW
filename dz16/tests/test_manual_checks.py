@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import builtins
+import io
 
 import pytest
 
@@ -37,11 +38,59 @@ def test_manual_check_records_comment_then_result(
     assert manual_checks.verify_manually("LED shows red.") is False
 
 
-def test_prepare_waits_for_enter(monkeypatch: pytest.MonkeyPatch) -> None:
+def test_prepare_waits_for_enter_and_displays_clear_phase(
+    monkeypatch: pytest.MonkeyPatch,
+    capsys: pytest.CaptureFixture[str],
+    caplog: pytest.LogCaptureFixture,
+) -> None:
     _provide_responses(monkeypatch, "")
 
     manual_checks.prepare_manually("Watch the LED.")
 
+    output = capsys.readouterr().out
+    assert output.startswith("\n")
+    assert "GET READY - MANUAL PREPARE\n\nWatch the LED." in output
+    assert "\033[" not in output
+    assert "MANUAL PREPARE | Waiting for operator confirmation." in caplog.text
+    assert "MANUAL PREPARE | Watch the LED." not in caplog.text
+
+
+def test_prepare_uses_color_on_interactive_terminal(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    class TTYOutput(io.StringIO):
+        def isatty(self) -> bool:
+            return True
+
+    output = TTYOutput()
+    monkeypatch.setattr(manual_checks.sys, "stdout", output)
+    monkeypatch.delenv("NO_COLOR", raising=False)
+    monkeypatch.delenv("TERM", raising=False)
+    _provide_responses(monkeypatch, "")
+
+    manual_checks.prepare_manually(
+        "Inspect the Blue lamp, RGB (0, 128, 255), and invalid RGB (300, 0, 0)."
+    )
+
+    prompt = output.getvalue()
+    assert "\033[1;36mGET READY - MANUAL PREPARE\033[0m" in prompt
+    assert "\033[94m●\033[0m Blue lamp" in prompt
+    assert "\033[1;38;2;0;128;255m●\033[0m RGB (0, 128, 255)" in prompt
+    assert "invalid RGB (300, 0, 0)" in prompt
+    assert "\033[38;2;300;0;0m" not in prompt
+
+
+def test_manual_check_displays_separate_phase(
+    monkeypatch: pytest.MonkeyPatch, capsys: pytest.CaptureFixture[str]
+) -> None:
+    _provide_responses(monkeypatch, "y")
+
+    assert manual_checks.verify_manually("LED shows red.") is True
+
+    output = capsys.readouterr().out
+    assert output.startswith("\n")
+    assert "MANUAL CHECK\n\nLED shows red." in output
+    assert "\033[" not in output
 
 def test_prepare_observation_formats_action_expectation_and_duration() -> None:
     prompts: list[str] = []
@@ -54,8 +103,8 @@ def test_prepare_observation_formats_action_expectation_and_duration() -> None:
     )
 
     assert prompts == [
-        "What to do: press K3 once\n"
-        "What to observe: the LED shows dim red\n"
+        "What to do: press K3 once\n\n"
+        "What to observe: the LED shows dim red\n\n"
         "Duration: 5 seconds."
     ]
 

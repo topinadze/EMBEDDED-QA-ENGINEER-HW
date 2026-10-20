@@ -1,39 +1,363 @@
-# DZ17 — SENTRY SWM-2 manual acceptance testing
+# DZ17 — SENTRY SWM-2 Acceptance Testing & Autotests
 
-This package prepares the manual acceptance work defined in [`../fw_7/HW-17.md`](../fw_7/HW-17.md). It is based on the fw_7 PRD and bench instructions, with dz16 used only as a source of reusable workflow ideas and historical regression candidates.
+This package implements automated and interactive pytest test suites and bench procedures for **SENTRY SWM-2 (fw_7)**, based on [`../fw_7/PRD.md`](../fw_7/PRD.md), [`../fw_7/HW-17.md`](../fw_7/HW-17.md), and manual check baselines in [`REPORT.md`](REPORT.md) and [`TEST_PLAN.md`](TEST_PLAN.md).
 
-**This stage is manual-only.** No pytest automation is included. The operator completed the beta OTA transition from firmware 2.1.0 to 2.3.0; the upgrade and self-check succeeded, and the partial OTA-10 comparison is recorded in [`REPORT.md`](REPORT.md). Remaining OTA scenarios and the 2.3.0 acceptance checklist are outstanding. Do not mark a case complete without the required evidence from the actual device.
+## Test Suite Architecture
 
-## Authoritative materials
+```
+dz17/
+├── config/
+│   ├── test_config.py          # Credential resolution (env vars, secrets, CLI overrides)
+│   ├── wifi_config.py          # Wi-Fi and UART configuration compatibility facade
+│   ├── wifi_secrets.example.py # Template for local credentials
+│   └── wifi_secrets.py         # Local credentials (git-ignored)
+├── drivers/
+│   └── device_driver.py        # SENTRY SWM-2 UART driver (parsers for [BEACON], [LINK], [SONAR], [VALVE], etc.)
+├── manual_checks.py            # Operator preparation prompts (manual_prepare) and verification (manual_check)
+├── pytest.ini                  # Pytest markers and default exclusion of interactive & persistent tests
+├── conftest.py                 # Fixtures: device_driver verifies firmware and captures versioned UART logs
+├── tests/
+│   ├── test_lamp.py            # LM-1 to LM-7, LM-2 per-color visual checks
+│   ├── test_wifi.py            # WF-1 to WF-5 with LM-8 status-LED confirmations
+│   ├── test_buttons.py         # §12: K1-K4 actions and button pairs
+│   ├── test_distance.py        # DS-1 to DS-5: sonar measurement, stream, stats, filter, calibration
+│   ├── test_relay.py           # RL-1 to RL-7: valve control, cycle accounting, schedule, auto, health
+│   ├── test_guard.py           # Partial GD-1 to GD-3 coverage: status/zones, arming and panic
+│   ├── test_alert.py           # Partial AL-1 to AL-5 coverage: generation, listing, acknowledgement, critical effects
+│   ├── test_device_driver_parsers.py # Unit tests for driver UART parsers (no hardware required)
+│   └── test_manual_checks.py   # Unit tests for manual check protocol (no hardware required)
+├── run.ps1                     # Main test launcher
+├── run-lamp.ps1                # Lamp test launcher
+├── run-wifi.ps1                # Wi-Fi test launcher
+├── run-buttons.ps1             # Buttons test launcher (runs with -s)
+├── run-distance.ps1            # Distance test launcher
+├── run-guard.ps1               # Guard test launcher (2.3.0, -s)
+└── run-alert.ps1               # Alert Center test launcher (2.3.0, -s)
+```
 
-- Requirements: [`../fw_7/PRD.md`](../fw_7/PRD.md)
-- Required scenarios and submission format: [`../fw_7/HW-17.md`](../fw_7/HW-17.md)
-- Flashing, initial firmware check, UART settings: [`../fw_7/README.md`](../fw_7/README.md)
-- Bench wiring and physical observations: [`../fw_7/WIRING.md`](../fw_7/WIRING.md)
-- Local OTA server and its error fixtures: [`../fw_7/tools/README.md`](../fw_7/tools/README.md)
-- Case IDs, execution sequence, PRD correspondence, and historical bug applicability: [`TEST_PLAN.md`](TEST_PLAN.md)
+## Safety & Interactive Protocol (`AGENTS.md`)
 
-## Before testing
+- **Interactive Test Protocol (`manual_prepare`)**:
+  All tests marked `@pytest.mark.interactive` present a clear 4-part preparation prompt to the operator before any physical action or observation:
+  1. **What to do**: which button to press, where to position obstacle.
+  2. **What to observe**: LED color, relay click, measurement stream.
+  3. **Duration / time limit**: specified time (e.g. ~5-10 s).
+  4. **Confirmation**: waits for Enter before proceeding (`Press Enter when ready:`).
+  Every operator-facing notification (preparation, manual check, result, and invalid response) is separated by simple `=` divider lines, without a box or fixed-width wrapping. Preparation is cyan, checks are yellow, PASS is green, and FAIL/invalid input is red when the terminal supports ANSI color; headings, field labels, and input prompts are highlighted. Recognized lamp/LED color names (for example, “Blue lamp”) and valid RGB triplets also receive color-matched indicator dots. Captured output, `NO_COLOR`, and `TERM=dumb` remain plain text but retain the divider lines. The action, observation, and duration fields are separated by blank lines for readability.
+- **Streaming Discipline**:
+  Continuous streams (e.g. `distance log 100`, K3 sonar stream) are cleanly stopped (`distance stop` / second K3 tap) and confirmed stopped *before* prompting for manual verification.
+- **Built-in RGB Status LED**:
+  Manual connectivity checks distinguish this status indicator from the main Beacon lamp: RED means Wi-Fi disconnected, ORANGE means Wi-Fi connected but logged out, and GREEN means Wi-Fi connected and logged in. The UART-reported state and the operator's physical LED observation are checked separately.
+- **Multi-Line UART Captures**:
+  UART log indexes (`mark = len(device_driver.uart_log)`) are recorded prior to prompts to avoid race conditions.
+- **UART Transcript Retention**:
+  With DEBUG logging enabled, one latest transcript is kept for each test within each firmware-version folder under `logs/automated/<category>/<firmware>/`. A newer run replaces the previous transcript for that same test and firmware; logs for other tests and firmware versions are retained.
+- **Credentials**:
+  Passwords and tokens are redacted from UART transcripts and Allure attachments; `wifi_secrets.py` is excluded by `.gitignore`.
+  Free-text manual comments are sanitized for common password/token/secret key-value formats before
+  logging and display; operators should still never enter credentials or secrets in a comment.
+  Copy `config/wifi_secrets.example.py` to `config/wifi_secrets.py` and set the local Wi-Fi and
+  device account credentials there. Alternatively, provide account values with `HW17_USER` /
+  `HW17_PASSWORD` or `TEST_USER` / `TEST_PASSWORD`; environment values override the local file.
+  Do not commit or share the local secrets file.
 
-1. Assemble and inspect the bench using `fw_7/WIRING.md`. All modules must be powered from 3.3 V; do not connect a module to the ESP32-S3 5 V pin.
-2. Confirm the target ESP32-S3, UART port, 115200 8N1 terminal, HC-SR04, relay/diode, and the buttons. Record the bench and host details in `REPORT.md`.
-3. Flash the supplied `fw_7/sentry_fw7_v2.1.0_merged.bin` using the `erase-flash` procedure in `fw_7/README.md`. Erasing flash removes existing NVS data. Record the operation and confirm `version`, partition, image state, and boot log before continuing.
-4. Establish Wi-Fi and account setup through the serial console. The account and saved device settings persist; record non-secret identifiers only. Never save the Wi-Fi password or other credentials in UART captures, this report, screenshots, or the submission archive.
-5. Perform the 2.1.0 checklist first, then the beta OTA to 2.3.0, verify OTA-10 state retention, and perform the 2.3.0 checklist. Follow the exact OTA and local-server scenarios in `TEST_PLAN.md`.
-6. Do not start OTA or persistent-state scenarios until the tester has recorded the current firmware, active partition, account and configuration state, and accepted the described change/reboot effects. Do not run destructive or interactive checks implicitly.
+## Test Execution
 
-## Evidence handling
+### Configuration locations
 
-Save raw UART captures, including command and response, under `logs/manual/` with filenames that identify the test case, firmware version, date, and OTA transition where applicable. Keep pre- and post-OTA evidence attributable to the same run. Include physical observations (for example relay click, diode state, RGB color, button response, and sensor target/distance) as separate notes or media; UART output alone does not prove a physical result.
+| Setting | Where to configure it |
+|---|---|
+| Test selection defaults and marker definitions | [`pytest.ini`](pytest.ini). By default, pytest excludes tests marked `interactive` or `persistent`. |
+| UART port, baud rate, expected firmware | [`conftest.py`](conftest.py): `--port`, `--baudrate`, `--expected-fw-version`. Hardware launchers default to `COM4`; pass `-Port` and `-Fw` to set the target explicitly. Direct pytest defaults to 115200 baud and detects a unique ESP32 port if `--port` is omitted. |
+| Launcher defaults and run options | The relevant [`run-*.ps1`](.) script. Main/lamp/Wi-Fi/buttons/distance launchers default to firmware 2.1.0; Guard and Alert default to 2.3.0. |
+| Wi-Fi and device-account defaults | Copy [`config/wifi_secrets.example.py`](config/wifi_secrets.example.py) to the git-ignored `config/wifi_secrets.py` and set `DEFAULT_WIFI_SSID`, `DEFAULT_WIFI_PASSWORD`, `DEFAULT_APP_USER`, and `DEFAULT_APP_PASSWORD`. Environment alternatives are `HW17_WIFI_SSID` / `HW17_WIFI_PASSWORD` or `TEST_WIFI_SSID` / `TEST_WIFI_PASSWORD`, and `HW17_USER` / `HW17_PASSWORD` or `TEST_USER` / `TEST_PASSWORD`. Per-run pytest options are `--wifi-ssid`, `--wifi-password`, `--app-user`, and `--app-password`. |
+| Invalid Wi-Fi scenario inputs | Set `HW17_WIFI_WRONG_PASSWORD` (or `TEST_WIFI_WRONG_PASSWORD`) and `HW17_WIFI_MISSING_SSID` (or `TEST_WIFI_MISSING_SSID`) in the local environment. |
+| Guard PIN | Set `HW17_GUARD_PIN` in the local environment. It must be four digits; do not put it in source or share it. |
+| Generated logs and test results | `logs/automated/<category>/<firmware>/`; launchers also save dated run logs and JUnit XML. Per-test UART transcripts are written when DEBUG logging is enabled. |
 
-Redact Wi-Fi passwords before retaining or sharing a capture. Keep evidence unchanged otherwise; add interpretation in `REPORT.md`, not by editing away contradictory output. Link each checklist result and bug reproduction to its evidence path.
+For credentials, precedence is per-run CLI override, then `HW17_*`, then the corresponding
+`TEST_*` variable, then `config/wifi_secrets.py` or the code default. Never commit or share
+credentials.
 
-The root `.gitignore` excludes `dz17/logs/automated/` for possible future use; manual evidence in `dz17/logs/manual/` is not covered by that rule. This package does not create automated tests or automated logs.
+Before every authenticated test, the fixture verifies a valid Wi-Fi connection and IP even when
+the device already has an active session; when a test SSID is configured, the connected SSID must
+match it exactly. If the current connection is invalid or on another network, it first tries
+`reconnect` using the device's saved profile. If that does not establish a valid connection to the
+configured SSID, it falls back to `connect` using the configured test SSID/password from the local
+secrets file, environment, or launcher overrides. This fallback can save or replace the device's
+persistent Wi-Fi profile; configure only the intended test network. The password is redacted from
+UART/Allure evidence.
 
-## Status vocabulary
+The fixture confirms `whoami` after Wi-Fi is ready. If the configured user is not logged in, it
+logs out any different active account, waits for the logged-out response, then logs in with the
+configured account and waits for both the login confirmation and matching `whoami` response.
+Tests that only require Wi-Fi use `device_driver` with `ensure_wifi_connected`; tests that begin
+with a deliberate logged-out or disconnected state use the lower-level `device_driver` fixture and
+establish only the preconditions they need. `ensure_authenticated_device` exposes the same
+Wi-Fi/account preparation for a second time within a test, such as after reboot. The fixture leaves
+the session logged in during teardown.
 
-- `NOT RUN`: no execution evidence collected.
-- `PARTIAL`: only some required observations or steps were verified.
-- `PASS`: every stated UART, state, and physical observation for the case is supported by retained evidence.
-- `FAIL`: observed behavior differs from the cited PRD requirement; create/link a bug report.
-- `BLOCKED`: a documented precondition or required hardware/service was unavailable. Do not count this as a product failure.
+### 1. Run Unit Tests (No hardware required)
+```powershell
+python -m venv .venv
+.\.venv\Scripts\python.exe -m pip install -r requirements.txt
+.\.venv\Scripts\python.exe -m pytest tests/test_device_driver_parsers.py tests/test_manual_checks.py
+```
+
+All DZ17 PowerShell launchers use the isolated `dz17\.venv`; they do not reuse the DZ16
+environment or fall back to a system Python. Run the setup commands above from the `dz17` folder
+before using a launcher.
+
+### 2. Run Automated Hardware Suites (Non-interactive, non-persistent)
+```powershell
+# Run all automated tests on COM4 against FW 2.1.0
+.\run.ps1 -Port COM4 -Fw 2.1.0
+
+# Run the complete discovered DZ17 suite on FW 2.3.0, including interactive
+# and persistent-state tests (see the safety note below).
+.\run.ps1 -Port COM4 -Fw 2.3.0 -All
+
+# Run an entire functional package, including interactive and persistent tests.
+# Review required operator actions and persistent effects before using -All.
+.\run-lamp.ps1 -Port COM4 -Fw 2.1.0 -All
+.\run-wifi.ps1 -Port COM4 -Fw 2.1.0 -All
+.\run-buttons.ps1 -Port COM4 -Fw 2.1.0 -All
+.\run-distance.ps1 -Port COM4 -Fw 2.3.0 -All
+.\run-guard.ps1 -Port COM4 -Fw 2.3.0 -All
+.\run-alert.ps1 -Port COM4 -Fw 2.3.0 -All
+
+# Run the default non-interactive, non-persistent subsets.
+.\run-lamp.ps1 -Port COM4 -Fw 2.1.0
+.\run-wifi.ps1 -Port COM4 -Fw 2.1.0
+.\run-distance.ps1 -Port COM4 -Fw 2.1.0
+
+# Guard / Alert safe tests default to firmware 2.3.0 and exclude
+# interactive and persistent-state cases.
+.\run-guard.ps1 -Port COM4
+.\run-alert.ps1 -Port COM4
+```
+
+The full-suite `run.ps1 -All` command runs every discovered test, including cases that require
+operator interaction and cases marked persistent. It passes `-s` so interactive prompts work and
+checks that the connected device reports firmware 2.3.0. Review the interactive and persistent-state
+effects described below before running it; it may actuate the relay, change device settings, save
+Wi-Fi configuration, and add alert-history entries. It does not flash firmware.
+
+### 3. Run Interactive Hardware Tests (Requires operator action, uncaptured console `-s`)
+```powershell
+# Run interactive operator buttons tests (the K2 relay test actuates the relay)
+.\run-buttons.ps1 -Port COM4 -Fw 2.1.0
+
+# Run the interactive named-color checks one color at a time
+.\run-lamp.ps1 -Port COM4 -Fw 2.1.0 -Interactive
+.\run-lamp.ps1 -Port COM4 -Fw 2.1.0 -Interactive -TestName "test_lamp_named_color_visual and red"
+
+# Wi-Fi disconnect/reconnect tests include their corresponding status-LED
+# physical confirmations (main Beacon lamp must be OFF).
+.\run-wifi.ps1 -Port COM4 -Fw 2.1.0 -Interactive -TestName "test_wifi_disconnect"
+.\run-wifi.ps1 -Port COM4 -Fw 2.1.0 -Interactive -TestName "test_wifi_reconnect"
+# The unauthenticated button test verifies the status LED after logout and
+# confirms K1 does not change it.
+.\run-buttons.ps1 -Port COM4 -Fw 2.1.0 -TestName "test_button_unauthenticated_blocked"
+
+# Run the interactive sonar measurement characterization.
+# For each position, answer yes, enter the ruler-measured gap, position and hold
+# the target after the preparation prompt, and the test captures one `distance`
+# reading. Repeat until answering no; the final summary and aggregate assertion
+# include every attempted position. The ±0.5 cm threshold is exploratory only.
+.\run-distance.ps1 -Port COM4 -Fw 2.1.0 -Interactive
+
+# Run every Distance test, including interactive and persistent cases.
+# Requires operator interaction and may change persistent device state.
+.\run-distance.ps1 -Port COM4 -All -Fw 2.3.0
+```
+
+For the Distance launcher, `-All` selects every test marked `distance`, including
+`interactive` and `persistent` cases, and enables uncaptured console input (`-s`).
+Without `-All`, the default excludes both categories; `-Interactive` selects interactive
+Distance cases, and `-Persistent` opts into persistent but non-interactive cases.
+The operator distance-accuracy sweep runs before the reboot/persistence test so a reboot
+failure cannot prevent the physical measurement check from being reached.
+
+Across the Lamp, Wi-Fi, Buttons, Distance, Guard, and Alert launchers, `-All` selects every test
+in that package, including interactive and persistent cases, and enables uncaptured console input
+where required. The Buttons launcher targets the full button suite and accepts `-All` to make that
+selection explicit. For Alert, full-history cleanup remains separately gated by the operator
+confirmation at launcher startup.
+
+### 4. Run 2.3.0 Guard and Alert Tests
+
+Guard and Alert Center are 2.3.0-only features. The read-only/status and invalid-zone tests are
+safe to select without persistent-state tests; valid-zone boundary checks alter the configured
+Guard zone temporarily and restore it. Alert-generation/acknowledgement tests add entries to alert
+history and are explicitly persistent. Critical-alert tests actuate the relay and switch NORMAL
+to VERBOSE; the operator should observe the relay and confirm the Beacon lamp flashes purple.
+Guard-alarm tests also actuate the relay and require operator observation of the physical effects.
+The automated tests cover only a subset of GD-1
+to GD-5 and AL-1 to AL-5; intrusion timing, alternate panic triggers, Guard PIN/log behavior,
+20-alert retention, acknowledge-all, successful clear, invalid test levels, and the EMERGENCY
+exception remain uncovered as detailed in [TEST_PLAN.md](TEST_PLAN.md). The Guard-panic test
+acknowledges its generated critical alert during cleanup, but the alert-history entry remains.
+
+```powershell
+# Guard status and invalid-zone checks (safe default)
+.\run-guard.ps1 -Port COM4
+
+# Guard zone boundary check (temporarily changes zone, restores its initial value)
+.\run-guard.ps1 -Port COM4 -Persistent
+
+# Alert launcher asks whether to clear history before starting the pack.
+# Answer y to review the list and receive a final approval prompt before cleanup,
+# or n to keep history unchanged and continue without clearing.
+.\run-alert.ps1 -Port COM4 -Persistent
+
+# Explicit cleanup-only mode remains available when cleanup is intentionally run by itself.
+.\run-alert.ps1 -Port COM4 -ClearHistory
+
+# Include non-persistent and interactive Alert cases; still asks before cleanup.
+.\run-alert.ps1 -Port COM4 -All
+```
+
+#### Understanding `selected`, `deselected`, and `skipped`
+
+Pytest's `deselected` count means tests were collected but excluded by the launcher's marker
+selector; they did not execute. It is not the same as `skipped`, where a selected test starts and
+then reports that it cannot or should not proceed. The launcher excludes the destructive
+`alert_cleanup` case from the main selection; when the operator answers `y`, it runs that case
+separately before the selected Alert tests.
+
+For the 2026-10-20 00:44–00:46 Alert run, pytest collected 21 cases: 10 hardware Alert cases were
+selected and 11 were deselected. Those 11 were the 10 offline parser/cleanup unit-test cases in
+`tests/test_alert.py` (they do not carry the `alert` marker) plus the one interactive
+`alert_cleanup` case. The launcher excluded cleanup from that run's selected pack because it
+acknowledges all alerts and erases the entire history. The current launcher asks the operator at
+startup and runs the cleanup case separately only after approval. The 10 selected cases produced
+8 passes and 2 failures; deselected cases did not contribute to that result.
+
+To run only the offline Alert parser/cleanup checks without accessing hardware:
+
+```powershell
+.\.venv\Scripts\python.exe -m pytest -c pytest.ini -m "not interactive and not persistent" tests\test_alert.py
+```
+
+The count can change when tests are added or parameterization changes. Use the pytest summary and
+marker selection, rather than treating a non-zero `deselected` count as test failures.
+
+The `alert clear` guard test creates its own pending alert and verifies that `alert clear`
+returns E855 without clearing history. It does not acknowledge or clear pre-existing alerts;
+cleanup targets only the alert created by that test. It can therefore run when older alerts are
+pending. On the 2026-10-20 00:44–00:46 run on device-reported firmware 2.3.0, numeric
+`alert ack <id>` was confirmed to acknowledge the preceding displayed ID instead of the requested
+one (BUG-016); the latest-ACK command without an ID passed and was used for safe test cleanup.
+The exact-ID check is a strict expected failure for confirmed BUG-016; it continues to assert the
+AL-3 contract without compensating for the firmware defect. The duplicate-ACK diagnostic creates
+three consecutive test alerts. It uses the displayed target ID on fixed behavior, or a one-ID-higher
+selector only after readback confirms the known N-to-N−1 behavior, then checks W852 and verifies
+that the repeated ACK changes no alert state. This selector shift diagnoses duplicate-ACK behavior;
+it is not a workaround for the exact-ID requirement. If other alerts interrupt the generated
+sequence, the diagnostic is skipped. Test cleanup uses `alert ack` without an ID only when the
+latest pending alert belongs to the test; it verifies that generated alerts were acknowledged and
+existing entries were preserved.
+
+For normal Alert test-pack runs, the operator is first asked whether to clear history before the
+selected Alert tests. Answering `n` (the default) leaves history untouched. Answering `y` starts
+the cleanup check, which displays the current list and requires a second, explicit approval after
+review; if approved, it acknowledges **all** pending alerts (including sonar/Guard alerts), then
+deletes the **entire** Alert Center history and verifies that the list is empty. If final approval
+is declined, history remains unchanged and the selected Alert tests continue. The cleanup-only
+`-ClearHistory` option remains available, but is not needed for a normal Alert run; it reports a
+non-zero exit when cleanup is skipped or otherwise not completed. Do not approve cleanup if any
+pending alert or history entry must be preserved. Full-history cleanup is never run by distance,
+lamp, or other non-Alert launchers; those tests check/clean only their own alerts.
+
+Guard arming/disarming and panic tests require `HW17_GUARD_PIN` in the local environment; the PIN
+is redacted from UART and Allure evidence. Configure it locally without sharing it in chat or
+committing it. These tests also require `-s`, an unobstructed sensor path for arming, and operator
+observation of the relay/LED:
+```powershell
+.\run-guard.ps1 -Port COM4 -Interactive
+.\run-alert.ps1 -Port COM4 -Interactive
+
+# Run one interactive Guard case by name, such as physical K4-hold PANIC.
+.\run-guard.ps1 -Port COM4 -Interactive -TestName "test_k4_hold_triggers_panic_alarm"
+```
+
+Both launchers default to firmware 2.3.0 and safely exclude interactive and persistent tests.
+Use `-Persistent` to opt into persistent but non-interactive cases, `-Interactive` to run
+operator-interaction cases (including persistent effects), or `-All` to include every case in the
+area. All modes capture live DEBUG output, JUnit results, and per-test UART transcripts under the
+matching `logs\automated\guard\<firmware>` or `logs\automated\alert\<firmware>` folder.
+`-TestName` filters to a pytest name substring; `-Markers` can supply a custom pytest marker
+expression.
+
+The Guard panic and critical-alert tests raise an alarm, open the relay, change NORMAL to VERBOSE,
+then attempt cleanup to disarm/acknowledge and restore the relay/system state. Relay cycles and
+alert-history entries are persistent. Inspect device state and bench preconditions before running
+them.
+
+### 5. Retest 2.1.0 xfail regressions on 2.3.0
+
+The known-defect checks are version-aware: on 2.1.0 they xfail only for the documented symptom;
+on 2.3.0 they require the PRD behavior normally. Run this focused set on a device-confirmed 2.3.0
+image to verify the fixes. It includes persistent relay actuation and an interactive GPIO4 check:
+```powershell
+python -m pytest -c pytest.ini -s -o addopts='' --port COM4 --expected-fw-version 2.3.0 `
+  tests/test_lamp.py::TestLamp::test_lamp_timer_unit_text `
+  tests/test_distance.py::TestDistance::test_distance_averaging_max_boundary_20 `
+  tests/test_distance.py::TestDistance::test_distance_stream_and_stop `
+  tests/test_relay.py::TestRelay::test_relay_commands_and_cycle_count `
+  tests/test_relay.py::TestRelay::test_relay_pulse_rejects_out_of_range_duration `
+  tests/test_relay.py::TestRelay::test_relay_gpio4_indicator
+```
+These are test procedures, not execution results. Hardware tests must be run explicitly on the
+indicated firmware, and their outcomes recorded separately in [REPORT.md](REPORT.md).
+
+### 6. Run Persistent-State Tests
+
+Explicitly selected persistent tests can change NVS and device settings:
+
+- `test_lamp_scenes` overwrites scene 1. It restores the current lamp output but cannot recover the
+  previous contents of scene 1.
+- `test_lamp_persistence_after_reboot` overwrites scene 2 and sets the lamp to purple, 75%
+  brightness, and breathe mode before loading that scene. It does not restore the previous scene 2
+  or lamp settings.
+- `test_wifi_connect_success` saves the supplied Wi-Fi profile.
+- `test_distance_persistence_after_reboot` sets the proximity alarm to 45 cm and filter on, then
+  disables the alarm and restores the filter's initial enabled/disabled state. The prior numeric
+  alarm threshold cannot be read back or restored by the current firmware interface.
+
+Confirm these changes are acceptable before using persistent-suite options.
+
+```powershell
+.\run-lamp.ps1 -Port COM4 -Fw 2.1.0 -Persistent
+.\run-wifi.ps1 -Port COM4 -Fw 2.1.0 -Persistent
+.\run-distance.ps1 -Port COM4 -Fw 2.1.0 -Persistent
+```
+
+Relay tests actuate the valve and increment the persistent relay cycle counter. The K2 button test
+also actuates the valve and increments the counter; it restores the initial relay state when
+possible. Review the bench preconditions and persistent effects before explicitly running these
+tests; relay checks are excluded from the default suite. With DEBUG UART capture enabled, relay
+transcripts are saved under `logs/automated/relay/<firmware>/`. The non-interactive relay checks are:
+```powershell
+python -m pytest -c pytest.ini -m "relay and persistent and not interactive" --port COM4 --expected-fw-version 2.1.0 tests/test_relay.py
+```
+
+The GPIO4 indicator and RL-5 threshold-crossing checks are interactive and require uncaptured
+console input (`-s`). RL-5 sets the alarm threshold to 30 cm, drives the relay, disables the alarm
+afterward, and cannot restore a previous numeric threshold:
+```powershell
+python -m pytest -c pytest.ini -s -m "relay and persistent and interactive" --port COM4 --expected-fw-version 2.1.0 tests/test_relay.py
+```
+
+## Known Firmware Defects Tracked in Tests
+
+| Bug ID | Description | Test Handling |
+|---|---|---|
+| **BUG-002** | `state 4` accepted from DEBUG | Tested in `test_button_pair_k4_k1_rejected_from_normal` (button path returns E302) |
+| **BUG-003** | `lamp timer` start message reports `ms` instead of `s` | `test_lamp_timer_unit_text` marks xfail only on 2.1.0; the timer expiration is tested separately |
+| **BUG-004** | Relay cycle counter increments twice per actual state transition | `test_relay_commands_and_cycle_count` marks xfail on 2.1.0 |
+| **BUG-005** | GPIO4 relay indicator appears inverted | `test_relay_gpio4_indicator` marks xfail on 2.1.0 only when both observed states are inverted |
+| **BUG-006** | Relay accepts a 99 ms pulse below the documented 100 ms minimum | `test_relay_pulse_rejects_out_of_range_duration` marks xfail on 2.1.0 |
+| **BUG-008** | `distance 20` rejects maximum valid DS-1 sample count | `test_distance_averaging_max_boundary_20` marks xfail on 2.1.0 for E704 |
+| **BUG-009** | `distance stop` omits documented W710 response code | `test_distance_stream_and_stop` marks xfail on 2.1.0 for missing W710 |
