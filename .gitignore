@@ -7,5 +7,3 @@ allure-report/
 .vscode/
 dz16/config/wifi_secrets.py
 dz17/config/wifi_secrets.py
-/dz16/logs/automated/
-/dz17/logs/automated/

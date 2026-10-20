@@ -1,0 +1,64 @@
+DEBUG    drivers.device_driver:device_driver.py:89 TX > version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (5151645) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (5151645) sentry:   partition: ota_0 @ 0x20000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (5152645) sentry: [BEACON] off, color (255,0,0), brightness 100%, mode solid, timer off
+DEBUG    drivers.device_driver:device_driver.py:89 TX > status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (5153255) sentry: === SWM-2 status ===
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (5153255) sentry:   fw:       v2.3.0 (ota_0)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (5153255) sentry:   state:    1 NORMAL
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (5153255) sentry:   link:     buoy link 'TopA-node', ip 10.223.162.49, rssi -26 dBm (excellent), ch 1
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (5153265) sentry:   internet: OK
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (5153265) sentry:   user:     testUser (user)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (5153265) sentry:   time:     04:25:21, uptime 1h 25m 52s
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (5153275) sentry:   valve:    closed
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (5153275) sentry:   watch:    disarmed, CIC alerts unacked: 2
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (5153285) sentry:   sonar:    no contact
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (5153285) sentry:   carrier:  depth 43.3 m, hull 5.3 bar, water 8.0 C, battery 24.06 V (sim)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (5153295) sentry:   heap:     251 KB free
+DEBUG    drivers.device_driver:device_driver.py:89 TX > whoami
+DEBUG    drivers.device_driver:device_driver.py:89 RX < whoami
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (5153455) sentry: user: testUser, access: user
+DEBUG    drivers.device_driver:device_driver.py:89 TX > relay status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < relay status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (5153675) sentry: [VALVE] closed, auto off, cycles 148
+DEBUG    drivers.device_driver:device_driver.py:89 TX > distance stats
+DEBUG    drivers.device_driver:device_driver.py:89 RX < distance stats
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (5154285) sentry: [SONAR] measurements 94, errors 0, min 2.0, max 23.8, avg 14.0 cm
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (5154285) sentry: [SONAR] calibration -2.0 cm, filter median 5, alarm off
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (5154775) sentry: [TELEMETRY #168] 04:25:22 up 01:25:54 heap 251KB rssi -27 temp 32.4C depth 43.3m hull 5.3bar batt 24.1V valve closed sonar - watch disarmed alerts 2 state NORMAL
+INFO     manual_checks:manual_checks.py:265 MANUAL INPUT | Continue distance measurements: yes
+INFO     manual_checks:manual_checks.py:237 MANUAL INPUT | Enter the ruler-measured gap from the sensor face to the target: 20.00 cm
+INFO     manual_checks:manual_checks.py:209 MANUAL PREPARE | Waiting for operator confirmation.
+DEBUG    drivers.device_driver:device_driver.py:89 TX > distance
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (5182715) sentry: [ACU] ambient noise 74 dB re 1uPa, sea state 2, water 8.0 C
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (5184775) sentry: [TELEMETRY #169] 04:25:52 up 01:26:24 heap 251KB rssi -25 temp 32.4C depth 42.9m hull 5.3bar batt 24.1V valve closed sonar - watch disarmed alerts 2 state NORMAL
+DEBUG    drivers.device_driver:device_driver.py:89 RX < distance
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (5194735) sentry: [SONAR] ping: echo 20.1 cm
+DEBUG    drivers.device_driver:device_driver.py:89 TX > relay status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < relay status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (5195695) sentry: [VALVE] closed, auto off, cycles 148
+INFO     manual_checks:manual_checks.py:273 MANUAL INPUT | Continue distance measurements: no
+INFO     tests.test_distance:test_distance.py:696 DISTANCE SERIES SUMMARY
+Index | Reference (cm) | Reading (cm) | Error (cm) | Result
+--- | ---: | ---: | ---: | ---
+1 | 20.00 | 20.10 | +0.10 | PASS
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (5198305) sentry: [BEACON] timer cancelled
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp color 255 0 0
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp color 255 0 0
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (5198725) sentry: [BEACON] color: (255,0,0)
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp brightness 100
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp brightness 100
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (5199135) sentry: [BEACON] brightness: 100%
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp mode solid
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp mode solid
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (5199535) sentry: [BEACON] mode: solid
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp off
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp off
+DEBUG    drivers.device_driver:device_driver.py:89 RX < W (5199945) sentry: W510 lamp already off
+INFO     conftest:conftest.py:366 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz17\logs\automated\distance\2.3.0\20261020-test_distance_interactive_measurement.txt

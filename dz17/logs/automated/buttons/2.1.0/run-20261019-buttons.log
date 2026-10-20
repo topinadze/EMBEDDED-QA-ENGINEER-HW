@@ -1,0 +1,15 @@
+DEBUG    drivers.device_driver:device_driver.py:89 TX > version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (723382) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (723382) sentry:   partition: ota_0 @ 0x20000, state: valid
+INFO     conftest:conftest.py:317 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz17\logs\automated\buttons\2.3.0\20261019-test_button_unauthenticated_blocked.txt
+DEBUG    drivers.device_driver:device_driver.py:89 TX > version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (724482) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (724482) sentry:   partition: ota_0 @ 0x20000, state: valid
+INFO     conftest:conftest.py:317 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz17\logs\automated\buttons\2.3.0\20261019-test_button_k1_tap_toggle_lamp.txt
+DEBUG    drivers.device_driver:device_driver.py:89 TX > version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (725532) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (725532) sentry:   partition: ota_0 @ 0x20000, state: valid
+INFO     conftest:conftest.py:317 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz17\logs\automated\buttons\unknown\20261019-test_button_k1_hold_next_color.txt

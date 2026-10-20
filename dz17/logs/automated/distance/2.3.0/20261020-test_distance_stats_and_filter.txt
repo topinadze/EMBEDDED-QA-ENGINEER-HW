@@ -1,0 +1,57 @@
+Test: tests/test_distance.py::TestDistance::test_distance_stats_and_filter
+Firmware: 2.3.0
+Captured: 2026-10-20T03:47:01.771969+03:00
+
+TX > version
+RX < version
+RX < I (2846275) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+RX < I (2846275) sentry:   partition: ota_0 @ 0x20000, state: valid
+TX > lamp status
+RX < lamp status
+RX < I (2847285) sentry: [BEACON] off, color (255,0,0), brightness 100%, mode solid, timer off
+TX > status
+RX < status
+RX < I (2847885) sentry: === SWM-2 status ===
+RX < I (2847885) sentry:   fw:       v2.3.0 (ota_0)
+RX < I (2847885) sentry:   state:    1 NORMAL
+RX < I (2847885) sentry:   link:     buoy link 'TopA-node', ip 10.223.162.49, rssi -24 dBm (excellent), ch 1
+RX < I (2847895) sentry:   internet: OK
+RX < I (2847895) sentry:   user:     testUser (user)
+RX < I (2847895) sentry:   time:     03:46:55, uptime 0h 47m 27s
+RX < I (2847905) sentry:   valve:    closed
+RX < I (2847905) sentry:   watch:    disarmed, CIC alerts unacked: 2
+RX < I (2847915) sentry:   sonar:    last echo 12.2 cm
+RX < I (2847915) sentry:   carrier:  depth 40.8 m, hull 5.1 bar, water 8.1 C, battery 24.12 V (sim)
+RX < I (2847925) sentry:   heap:     251 KB free
+TX > whoami
+RX < whoami
+RX < I (2848095) sentry: user: testUser, access: user
+TX > distance stats
+RX < distance stats
+RX < I (2848305) sentry: [SONAR] measurements 51, errors 0, min 10.9, max 20.6, avg 12.4 cm
+RX < I (2848305) sentry: [SONAR] calibration -2.0 cm, filter median 5, alarm off
+TX > distance filter off
+RX < distance filter off
+RX < I (2849115) sentry: [SONAR] filter off
+TX > distance filter on
+RX < distance filter on
+RX < I (2849725) sentry: [SONAR] filter on (median of 5)
+TX > distance filter on
+RX < distance filter on
+RX < I (2850315) sentry: [SONAR] filter on (median of 5)
+TX > lamp timer 0
+RX < lamp timer 0
+RX < I (2850935) sentry: [BEACON] timer cancelled
+TX > lamp color 255 0 0
+RX < lamp color 255 0 0
+RX < I (2851345) sentry: [BEACON] color: (255,0,0)
+TX > lamp brightness 100
+RX < lamp brightness 100
+RX < I (2851755) sentry: [BEACON] brightness: 100%
+RX < I (2851925) sentry: [TELEMETRY #92] 03:46:59 up 00:47:31 heap 251KB rssi -22 temp 31.4C depth 40.8m hull 5.1bar batt 24.1V valve closed sonar 12.2cm watch disarmed alerts 2 state NORMAL
+TX > lamp mode solid
+RX < lamp mode solid
+RX < I (2852155) sentry: [BEACON] mode: solid
+TX > lamp off
+RX < lamp off
+RX < W (2852565) sentry: W510 lamp already off

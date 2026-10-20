@@ -1,0 +1,48 @@
+Test: tests/test_distance.py::TestDistance::test_distance_single
+Firmware: 2.3.0
+Captured: 2026-10-20T03:45:21.495004+03:00
+
+TX > version
+RX < version
+RX < I (2747615) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+RX < I (2747615) sentry:   partition: ota_0 @ 0x20000, state: valid
+TX > lamp status
+RX < lamp status
+RX < I (2748615) sentry: [BEACON] off, color (255,0,0), brightness 100%, mode solid, timer off
+TX > status
+RX < status
+RX < I (2749225) sentry: === SWM-2 status ===
+RX < I (2749225) sentry:   fw:       v2.3.0 (ota_0)
+RX < I (2749225) sentry:   state:    1 NORMAL
+RX < I (2749225) sentry:   link:     buoy link 'TopA-node', ip 10.223.162.49, rssi -32 dBm (excellent), ch 1
+RX < I (2749235) sentry:   internet: OK
+RX < I (2749235) sentry:   user:     testUser (user)
+RX < I (2749235) sentry:   time:     03:45:17, uptime 0h 45m 48s
+RX < I (2749245) sentry:   valve:    closed
+RX < I (2749245) sentry:   watch:    disarmed, CIC alerts unacked: 1
+RX < I (2749255) sentry:   sonar:    no contact
+RX < I (2749255) sentry:   carrier:  depth 41.0 m, hull 5.1 bar, water 8.2 C, battery 24.13 V (sim)
+RX < I (2749265) sentry:   heap:     251 KB free
+TX > whoami
+RX < whoami
+RX < I (2749435) sentry: user: testUser, access: user
+TX > distance
+RX < distance
+RX < I (2749695) sentry: [SONAR] ping: echo 12.3 cm
+RX < E (2749695) sentry: [COLLISION] contact too close: 12.3 cm (< 20 cm)
+RX < W (2749695) sentry: [CIC #2 WARNING] sonar: collision risk: contact at 12.3 cm
+TX > lamp timer 0
+RX < lamp timer 0
+RX < I (2750655) sentry: [BEACON] timer cancelled
+TX > lamp color 255 0 0
+RX < lamp color 255 0 0
+RX < I (2751065) sentry: [BEACON] color: (255,0,0)
+TX > lamp brightness 100
+RX < lamp brightness 100
+RX < I (2751475) sentry: [BEACON] brightness: 100%
+TX > lamp mode solid
+RX < lamp mode solid
+RX < I (2751885) sentry: [BEACON] mode: solid
+TX > lamp off
+RX < lamp off
+RX < W (2752295) sentry: W510 lamp already off

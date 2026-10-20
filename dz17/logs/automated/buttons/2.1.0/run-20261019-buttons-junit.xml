@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="2" failures="0" skipped="0" tests="2" time="3.401" timestamp="2026-10-19T17:30:48.499345+03:00" hostname="Prosha"><testcase classname="tests.test_buttons.TestButtons" name="test_button_unauthenticated_blocked" time="1.046"><error message="failed on setup with &quot;Failed: Expected firmware 2.1.0, but device reports 2.3.0.&quot;">conftest.py:287: in device_driver
+    _get_confirmed_firmware_version(driver, request)
+conftest.py:266: in _get_confirmed_firmware_version
+    pytest.fail(f"Expected firmware {expected}, but device reports {version}.")
+E   Failed: Expected firmware 2.1.0, but device reports 2.3.0.</error></testcase><testcase classname="tests.test_buttons.TestButtons" name="test_button_k1_tap_toggle_lamp" time="1.036"><error message="failed on setup with &quot;Failed: Expected firmware 2.1.0, but device reports 2.3.0.&quot;">conftest.py:287: in device_driver
+    _get_confirmed_firmware_version(driver, request)
+conftest.py:266: in _get_confirmed_firmware_version
+    pytest.fail(f"Expected firmware {expected}, but device reports {version}.")
+E   Failed: Expected firmware 2.1.0, but device reports 2.3.0.</error></testcase></testsuite></testsuites>

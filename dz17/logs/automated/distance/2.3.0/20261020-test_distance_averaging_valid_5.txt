@@ -1,0 +1,53 @@
+Test: tests/test_distance.py::TestDistance::test_distance_averaging_valid[5]
+Firmware: 2.3.0
+Captured: 2026-10-20T03:45:32.632540+03:00
+
+TX > version
+RX < version
+RX < I (2758015) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+RX < I (2758015) sentry:   partition: ota_0 @ 0x20000, state: valid
+TX > lamp status
+RX < lamp status
+RX < I (2759025) sentry: [BEACON] off, color (255,0,0), brightness 100%, mode solid, timer off
+TX > status
+RX < status
+RX < I (2759625) sentry: === SWM-2 status ===
+RX < I (2759625) sentry:   fw:       v2.3.0 (ota_0)
+RX < I (2759625) sentry:   state:    1 NORMAL
+RX < I (2759625) sentry:   link:     buoy link 'TopA-node', ip 10.223.162.49, rssi -28 dBm (excellent), ch 1
+RX < I (2759635) sentry:   internet: OK
+RX < I (2759635) sentry:   user:     testUser (user)
+RX < I (2759635) sentry:   time:     03:45:27, uptime 0h 45m 59s
+RX < I (2759645) sentry:   valve:    closed
+RX < I (2759645) sentry:   watch:    disarmed, CIC alerts unacked: 2
+RX < I (2759655) sentry:   sonar:    last echo 20.6 cm
+RX < I (2759655) sentry:   carrier:  depth 41.0 m, hull 5.1 bar, water 8.2 C, battery 24.13 V (sim)
+RX < I (2759665) sentry:   heap:     251 KB free
+TX > whoami
+RX < whoami
+RX < I (2759825) sentry: user: testUser, access: user
+TX > distance 5
+RX < distance 5
+RX < I (2760085) sentry: [SONAR] 1/5: 12.3 cm
+RX < I (2760235) sentry: [SONAR] 2/5: 12.2 cm
+RX < I (2760385) sentry: [SONAR] 3/5: 12.2 cm
+RX < I (2760535) sentry: [SONAR] 4/5: 12.2 cm
+RX < I (2760685) sentry: [SONAR] 5/5: 11.0 cm
+RX < I (2760785) sentry: [SONAR] avg 12.0 cm (5/5 ok)
+RX < I (2761665) sentry: [TELEMETRY #89] 03:45:29 up 00:46:01 heap 25
+TX > lamp timer 0
+RX < 1KB rssi -26 temp 31.4C depth 41.0m hull 5.1bar batt 24.1V valve closed sonar 11.0cm watch disarmed alerts 2 state NORMAL
+RX < lamp timer 0
+RX < I (2761795) sentry: [BEACON] timer cancelled
+TX > lamp color 255 0 0
+RX < lamp color 255 0 0
+RX < I (2762205) sentry: [BEACON] color: (255,0,0)
+TX > lamp brightness 100
+RX < lamp brightness 100
+RX < I (2762615) sentry: [BEACON] brightness: 100%
+TX > lamp mode solid
+RX < lamp mode solid
+RX < I (2763025) sentry: [BEACON] mode: solid
+TX > lamp off
+RX < lamp off
+RX < W (2763425) sentry: W510 lamp already off

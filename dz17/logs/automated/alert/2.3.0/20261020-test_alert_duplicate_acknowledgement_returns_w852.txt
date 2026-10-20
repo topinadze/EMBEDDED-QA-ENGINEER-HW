@@ -1,0 +1,140 @@
+Test: tests/test_alert.py::TestAlertCenter::test_alert_duplicate_acknowledgement_returns_w852
+Firmware: 2.3.0
+Captured: 2026-10-20T00:45:02.908576+03:00
+
+TX > version
+RX < version
+RX < I (3620080) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+RX < I (3620080) sentry:   partition: ota_0 @ 0x20000, state: valid
+TX > whoami
+RX < whoami
+RX < I (3621100) sentry: user: testUser, access: user
+RX < I (3621180) sentry: [NAV] depth 38.5 m, heading 274, speed 3.3 kn
+TX > alert test info
+RX < alert test info
+RX < I (3621310) sentry: [CIC #30 INFO] test: test alert
+TX > alert test warning
+RX < alert test warning
+RX < I (3621900) sentry: [TELEMETRY #115] 00:44:57 up 01:00:21 heap 251KB rssi -26 temp 31.4C depth 38.5m hull 4.8bar batt 24.1V valve closed sonar - watch disarmed alerts 3 state NORMAL
+RX < W (3621920) sentry: [CIC #31 WARNING] test: test alert
+TX > alert list
+RX < alert list
+RX < I (3622530) sentry: [CIC] 20 alerts, 4 unacknowledged:
+RX < I (3622530) sentry:   #12  00:15:13 INFO     * test    test alert
+RX < I (3622530) sentry:   #13  00:15:13 WARNING    test    test alert
+RX < I (3622530) sentry:   #14  00:15:19 INFO       test    test alert
+RX < I (3622540) sentry:   #15  00:15:20 WARNING    test    test alert
+RX < I (3622540) sentry:   #16  00:15:26 INFO       test    test alert
+RX < I (3622550) sentry:   #17  00:15:37 INFO       test    test alert
+RX < I (3622550) sentry:   #18  00:16:57 CRITICAL   test    test alert
+RX < I (3622560) sentry:   #19  00:17:22 CRITICAL   test    test alert
+RX < I (3622570) sentry:   #20  00:26:06 INFO       test    test alert
+RX < I (3622570) sentry:   #21  00:26:10 WARNING    test    test alert
+RX < I (3622580) sentry:   #22  00:26:19 INFO     * test    test alert
+RX < I (3622580) sentry:   #23  00:26:20 WARNING    test    test alert
+RX < I (3622590) sentry:   #24  00:44:28 INFO       test    test alert
+RX < I (3622590) sentry:   #25  00:44:33 WARNING    test    test alert
+RX < I (3622600) sentry:   #26  00:44:43 INFO       test    test alert
+RX < I (3622610) sentry:   #27  00:44:43 WARNING    test    test alert
+RX < I (3622610) sentry:   #28  00:44:49 INFO       test    test alert
+RX < I (3622620) sentry:   #29  00:44:50 WARNING    test    test alert
+RX < I (3622620) sentry:   #30  00:44:56 INFO     * test    test alert
+RX < I (3622630) sentry:   #31  00:44:57 WARNING  * test    test alert
+TX > alert ack 31
+RX < alert ack 31
+RX < I (3623130) sentry: [CIC] #31 acknowledged
+TX > alert list
+RX < alert list
+RX < I (3623730) sentry: [CIC] 20 alerts, 3 unacknowledged:
+RX < I (3623730) sentry:   #12  00:15:13 INFO     * test    test alert
+RX < I (3623730) sentry:   #13  00:15:13 WARNING    test    test alert
+RX < I (3623730) sentry:   #14  00:15:19 INFO       test    test alert
+RX < I (3623740) sentry:   #15  00:15:20 WARNING    test    test alert
+RX < I (3623740) sentry:   #16  00:15:26 INFO       test    test alert
+RX < I (3623750) sentry:   #17  00:15:37 INFO       test    test alert
+RX < I (3623750) sentry:   #18  00:16:57 CRITICAL   test    test alert
+RX < I (3623760) sentry:   #19  00:17:22 CRITICAL   test    test alert
+RX < I (3623770) sentry:   #20  00:26:06 INFO       test    test alert
+RX < I (3623770) sentry:   #21  00:26:10 WARNING    test    test alert
+RX < I (3623780) sentry:   #22  00:26:19 INFO     * test    test alert
+RX < I (3623780) sentry:   #23  00:26:20 WARNING    test    test alert
+RX < I (3623790) sentry:   #24  00:44:28 INFO       test    test alert
+RX < I (3623790) sentry:   #25  00:44:33 WARNING    test    test alert
+RX < I (3623800) sentry:   #26  00:44:43 INFO       test    test alert
+RX < I (3623810) sentry:   #27  00:44:43 WARNING    test    test alert
+RX < I (3623810) sentry:   #28  00:44:49 INFO       test    test alert
+RX < I (3623820) sentry:   #29  00:44:50 WARNING    test    test alert
+RX < I (3623820) sentry:   #30  00:44:56 INFO       test    test alert
+RX < I (3623830) sentry:   #31  00:44:57 WARNING  * test    test alert
+TX > alert list
+RX < alert list
+RX < I (3624350) sentry: [CIC] 20 alerts, 3 unacknowledged:
+RX < I (3624350) sentry:   #12  00:15:13 INFO     * test    test alert
+RX < I (3624350) sentry:   #13  00:15:13 WARNING    test    test alert
+RX < I (3624350) sentry:   #14  00:15:19 INFO       test    test alert
+RX < I (3624360) sentry:   #15  00:15:20 WARNING    test    test alert
+RX < I (3624360) sentry:   #16  00:15:26 INFO       test    test alert
+RX < I (3624370) sentry:   #17  00:15:37 INFO       test    test alert
+RX < I (3624370) sentry:   #18  00:16:57 CRITICAL   test    test alert
+RX < I (3624380) sentry:   #19  00:17:22 CRITICAL   test    test alert
+RX < I (3624390) sentry:   #20  00:26:06 INFO       test    test alert
+RX < I (3624390) sentry:   #21  00:26:10 WARNING    test    test alert
+RX < I (3624400) sentry:   #22  00:26:19 INFO     * test    test alert
+RX < I (3624400) sentry:   #23  00:26:20 WARNING    test    test alert
+RX < I (3624410) sentry:   #24  00:44:28 INFO       test    test alert
+RX < I (3624410) sentry:   #25  00:44:33 WARNING    test    test alert
+RX < I (3624420) sentry:   #26  00:44:43 INFO       test    test alert
+RX < I (3624430) sentry:   #27  00:44:43 WARNING    test    test alert
+RX < I (3624430) sentry:   #28  00:44:49 INFO       test    test alert
+RX < I (3624440) sentry:   #29  00:44:50 WARNING    test    test alert
+RX < I (3624440) sentry:   #30  00:44:56 INFO       test    test alert
+RX < I (3624450) sentry:   #31  00:44:57 WARNING  * test    test alert
+TX > alert ack
+RX < alert ack
+RX < I (3624950) sentry: [CIC] #31 acknowledged (command). Unacked: 2
+TX > alert list
+RX < alert list
+RX < I (3625560) sentry: [CIC] 20 alerts, 2 unacknowledged:
+RX < I (3625560) sentry:   #12  00:15:13 INFO     * test    test alert
+RX < I (3625560) sentry:   #13  00:15:13 WARNING    test    test alert
+RX < I (3625560) sentry:   #14  00:15:19 INFO       test    test alert
+RX < I (3625570) sentry:   #15  00:15:20 WARNING    test    test alert
+RX < I (3625570) sentry:   #16  00:15:26 INFO       test    test alert
+RX < I (3625580) sentry:   #17  00:15:37 INFO       test    test alert
+RX < I (3625580) sentry:   #18  00:16:57 CRITICAL   test    test alert
+RX < I (3625590) sentry:   #19  00:17:22 CRITICAL   test    test alert
+RX < I (3625600) sentry:   #20  00:26:06 INFO       test    test alert
+RX < I (3625600) sentry:   #21  00:26:10 WARNING    test    test alert
+RX < I (3625610) sentry:   #22  00:26:19 INFO     * test    test alert
+RX < I (3625610) sentry:   #23  00:26:20 WARNING    test    test alert
+RX < I (3625620) sentry:   #24  00:44:28 INFO       test    test alert
+RX < I (3625620) sentry:   #25  00:44:33 WARNING    test    test alert
+RX < I (3625630) sentry:   #26  00:44:43 INFO       test    test alert
+RX < I (3625640) sentry:   #27  00:44:43 WARNING    test    test alert
+RX < I (3625640) sentry:   #28  00:44:49 INFO       test    test alert
+RX < I (3625650) sentry:   #29  00:44:50 WARNING    test    test alert
+RX < I (3625650) sentry:   #30  00:44:56 INFO       test    test alert
+RX < I (3625660) sentry:   #31  00:44:57 WARNING    test    test alert
+TX > alert list
+RX < alert list
+RX < I (3626160) sentry: [CIC] 20 alerts, 2 unacknowledged:
+RX < I (3626160) sentry:   #12  00:15:13 INFO     * test    test alert
+RX < I (3626160) sentry:   #13  00:15:13 WARNING    test    test alert
+RX < I (3626160) sentry:   #14  00:15:19 INFO       test    test alert
+RX < I (3626170) sentry:   #15  00:15:20 WARNING    test    test alert
+RX < I (3626170) sentry:   #16  00:15:26 INFO       test    test alert
+RX < I (3626180) sentry:   #17  00:15:37 INFO       test    test alert
+RX < I (3626180) sentry:   #18  00:16:57 CRITICAL   test    test alert
+RX < I (3626190) sentry:   #19  00:17:22 CRITICAL   test    test alert
+RX < I (3626200) sentry:   #20  00:26:06 INFO       test    test alert
+RX < I (3626200) sentry:   #21  00:26:10 WARNING    test    test alert
+RX < I (3626210) sentry:   #22  00:26:19 INFO     * test    test alert
+RX < I (3626210) sentry:   #23  00:26:20 WARNING    test    test alert
+RX < I (3626220) sentry:   #24  00:44:28 INFO       test    test alert
+RX < I (3626220) sentry:   #25  00:44:33 WARNING    test    test alert
+RX < I (3626230) sentry:   #26  00:44:43 INFO       test    test alert
+RX < I (3626240) sentry:   #27  00:44:43 WARNING    test    test alert
+RX < I (3626240) sentry:   #28  00:44:49 INFO       test    test alert
+RX < I (3626250) sentry:   #29  00:44:50 WARNING    test    test alert
+RX < I (3626250) sentry:   #30  00:44:56 INFO       test    test alert
+RX < I (3626260) sentry:   #31  00:44:57 WARNING    test    test alert

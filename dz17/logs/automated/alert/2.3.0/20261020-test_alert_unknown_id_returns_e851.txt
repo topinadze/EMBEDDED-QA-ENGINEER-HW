@@ -1,0 +1,55 @@
+Test: tests/test_alert.py::TestAlertCenter::test_alert_unknown_id_returns_e851
+Firmware: 2.3.0
+Captured: 2026-10-20T00:45:08.054150+03:00
+
+TX > version
+RX < version
+RX < I (3626830) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+RX < I (3626830) sentry:   partition: ota_0 @ 0x20000, state: valid
+TX > lamp status
+RX < lamp status
+RX < I (3627850) sentry: [BEACON] off, color (255,0,0), brightness 100%, mode solid, timer off
+TX > whoami
+RX < whoami
+RX < I (3628450) sentry: user: testUser, access: user
+TX > alert list
+RX < alert list
+RX < I (3628660) sentry: [CIC] 20 alerts, 2 unacknowledged:
+RX < I (3628660) sentry:   #12  00:15:13 INFO     * test    test alert
+RX < I (3628660) sentry:   #13  00:15:13 WARNING    test    test alert
+RX < I (3628660) sentry:   #14  00:15:19 INFO       test    test alert
+RX < I (3628670) sentry:   #15  00:15:20 WARNING    test    test alert
+RX < I (3628670) sentry:   #16  00:15:26 INFO       test    test alert
+RX < I (3628680) sentry:   #17  00:15:37 INFO       test    test alert
+RX < I (3628680) sentry:   #18  00:16:57 CRITICAL   test    test alert
+RX < I (3628690) sentry:   #19  00:17:22 CRITICAL   test    test alert
+RX < I (3628700) sentry:   #20  00:26:06 INFO       test    test alert
+RX < I (3628700) sentry:   #21  00:26:10 WARNING    test    test alert
+RX < I (3628710) sentry:   #22  00:26:19 INFO     * test    test alert
+RX < I (3628710) sentry:   #23  00:26:20 WARNING    test    test alert
+RX < I (3628720) sentry:   #24  00:44:28 INFO       test    test alert
+RX < I (3628720) sentry:   #25  00:44:33 WARNING    test    test alert
+RX < I (3628730) sentry:   #26  00:44:43 INFO       test    test alert
+RX < I (3628740) sentry:   #27  00:44:43 WARNING    test    test alert
+RX < I (3628740) sentry:   #28  00:44:49 INFO       test    test alert
+RX < I (3628750) sentry:   #29  00:44:50 WARNING    test    test alert
+RX < I (3628750) sentry:   #30  00:44:56 INFO       test    test alert
+RX < I (3628760) sentry:   #31  00:44:57 WARNING    test    test alert
+TX > alert ack 999999999
+RX < alert ack 999999999
+RX < E (3629280) sentry: E851 no alert #999999999
+TX > lamp timer 0
+RX < lamp timer 0
+RX < I (3629890) sentry: [BEACON] timer cancelled
+TX > lamp color 255 0 0
+RX < lamp color 255 0 0
+RX < I (3630300) sentry: [BEACON] color: (255,0,0)
+TX > lamp brightness 100
+RX < lamp brightness 100
+RX < I (3630710) sentry: [BEACON] brightness: 100%
+TX > lamp mode solid
+RX < lamp mode solid
+RX < I (3631120) sentry: [BEACON] mode: solid
+TX > lamp off
+RX < lamp off
+RX < W (3631530) sentry: W510 lamp already off

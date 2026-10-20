@@ -1,0 +1,38 @@
+Test: tests/test_buttons.py::TestButtons::test_button_k1_tap_toggle_lamp
+Firmware: 2.3.0
+Captured: 2026-10-19T19:53:49.529056+03:00
+
+TX > version
+RX < version
+RX < I (3142580) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+RX < I (3142580) sentry:   partition: ota_0 @ 0x20000, state: valid
+TX > lamp status
+RX < lamp status
+RX < I (3143590) sentry: [BEACON] off, color (255,0,0), brightness 100%, mode solid, timer off
+TX > whoami
+RX < whoami
+RX < I (3144190) sentry: user: testUser, access: user
+TX > lamp status
+RX < lamp status
+RX < I (3144400) sentry: [BEACON] off, color (255,0,0), brightness 100%, mode solid, timer off
+RX < I (3168240) sentry: [TELEMETRY #99] 19:53:41 up 00:52:47 heap 251KB rssi -22 temp 31.4C depth 42.5m hull 5.2bar batt 24.1V valve closed sonar - watch disarmed alerts 2 state NORMAL
+RX < I (3169790) sentry: [BTN] K1 pressed
+RX < I (3169790) sentry: [BEACON] on (K1) solid, 100%, color (255,0,0)
+TX > lamp status
+RX < lamp status
+RX < I (3170050) sentry: [BEACON] ON, color (255,0,0), brightness 100%, mode solid, timer off
+TX > lamp timer 0
+RX < lamp timer 0
+RX < I (3173290) sentry: [BEACON] timer cancelled
+TX > lamp color 255 0 0
+RX < lamp color 255 0 0
+RX < I (3173700) sentry: [BEACON] color: (255,0,0)
+TX > lamp brightness 100
+RX < lamp brightness 100
+RX < I (3174110) sentry: [BEACON] brightness: 100%
+TX > lamp mode solid
+RX < lamp mode solid
+RX < I (3174520) sentry: [BEACON] mode: solid
+TX > lamp off
+RX < lamp off
+RX < I (3174930) sentry: [BEACON] off (command)

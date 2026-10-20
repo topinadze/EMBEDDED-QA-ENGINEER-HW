@@ -1,0 +1,95 @@
+DEBUG    drivers.device_driver:device_driver.py:89 TX > version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (4744550) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (4744550) sentry:   partition: ota_0 @ 0x20000, state: valid
+INFO     conftest:conftest.py:317 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz17\logs\automated\distance\2.3.0\20261020-test_distance_single.txt
+DEBUG    drivers.device_driver:device_driver.py:89 TX > version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (4745640) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (4745640) sentry:   partition: ota_0 @ 0x20000, state: valid
+INFO     conftest:conftest.py:317 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz17\logs\automated\distance\2.3.0\20261020-test_distance_averaging_valid_1.txt
+DEBUG    drivers.device_driver:device_driver.py:89 TX > version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (4746700) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (4746700) sentry:   partition: ota_0 @ 0x20000, state: valid
+INFO     conftest:conftest.py:317 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz17\logs\automated\distance\2.3.0\20261020-test_distance_averaging_valid_5.txt
+DEBUG    drivers.device_driver:device_driver.py:89 TX > version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (4747750) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (4747750) sentry:   partition: ota_0 @ 0x20000, state: valid
+INFO     conftest:conftest.py:317 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz17\logs\automated\distance\2.3.0\20261020-test_distance_averaging_valid_10.txt
+DEBUG    drivers.device_driver:device_driver.py:89 TX > version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (4748800) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (4748800) sentry:   partition: ota_0 @ 0x20000, state: valid
+INFO     conftest:conftest.py:317 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz17\logs\automated\distance\2.3.0\20261020-test_distance_averaging_valid_19.txt
+DEBUG    drivers.device_driver:device_driver.py:89 TX > version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (4749850) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (4749850) sentry:   partition: ota_0 @ 0x20000, state: valid
+INFO     conftest:conftest.py:317 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz17\logs\automated\distance\2.3.0\20261020-test_distance_averaging_max_boundary_20.txt
+DEBUG    drivers.device_driver:device_driver.py:89 TX > version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (4750910) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (4750910) sentry:   partition: ota_0 @ 0x20000, state: valid
+INFO     conftest:conftest.py:317 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz17\logs\automated\distance\2.3.0\20261020-test_distance_invalid_sample_counts_0.txt
+DEBUG    drivers.device_driver:device_driver.py:89 TX > version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (4751970) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (4751970) sentry:   partition: ota_0 @ 0x20000, state: valid
+INFO     conftest:conftest.py:317 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz17\logs\automated\distance\2.3.0\20261020-test_distance_invalid_sample_counts_21.txt
+DEBUG    drivers.device_driver:device_driver.py:89 TX > version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (4753020) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (4753020) sentry:   partition: ota_0 @ 0x20000, state: valid
+INFO     conftest:conftest.py:317 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz17\logs\automated\distance\2.3.0\20261020-test_distance_invalid_sample_counts_100.txt
+DEBUG    drivers.device_driver:device_driver.py:89 TX > version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (4754070) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (4754070) sentry:   partition: ota_0 @ 0x20000, state: valid
+INFO     conftest:conftest.py:317 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz17\logs\automated\distance\2.3.0\20261020-test_distance_stream_and_stop.txt
+DEBUG    drivers.device_driver:device_driver.py:89 TX > version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (4755130) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (4755130) sentry:   partition: ota_0 @ 0x20000, state: valid
+INFO     conftest:conftest.py:317 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz17\logs\automated\distance\2.3.0\20261020-test_distance_stream_invalid_interval_50.txt
+DEBUG    drivers.device_driver:device_driver.py:89 TX > version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (4756190) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (4756190) sentry:   partition: ota_0 @ 0x20000, state: valid
+INFO     conftest:conftest.py:317 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz17\logs\automated\distance\2.3.0\20261020-test_distance_stream_invalid_interval_99.txt
+DEBUG    drivers.device_driver:device_driver.py:89 TX > version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (4757250) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (4757250) sentry:   partition: ota_0 @ 0x20000, state: valid
+INFO     conftest:conftest.py:317 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz17\logs\automated\distance\2.3.0\20261020-test_distance_stream_invalid_interval_5001.txt
+DEBUG    drivers.device_driver:device_driver.py:89 TX > version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (4758310) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (4758310) sentry:   partition: ota_0 @ 0x20000, state: valid
+INFO     conftest:conftest.py:317 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz17\logs\automated\distance\2.3.0\20261020-test_distance_stream_invalid_interval_10000.txt
+DEBUG    drivers.device_driver:device_driver.py:89 TX > version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (4759370) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (4759370) sentry:   partition: ota_0 @ 0x20000, state: valid
+INFO     conftest:conftest.py:317 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz17\logs\automated\distance\2.3.0\20261020-test_distance_stats_and_filter.txt
+DEBUG    drivers.device_driver:device_driver.py:89 TX > version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (4760410) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (4760410) sentry:   partition: ota_0 @ 0x20000, state: valid
+INFO     conftest:conftest.py:317 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz17\logs\automated\distance\2.3.0\20261020-test_distance_calibration_out_of_bounds_4.txt
+DEBUG    drivers.device_driver:device_driver.py:89 TX > version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (4761470) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (4761470) sentry:   partition: ota_0 @ 0x20000, state: valid
+INFO     conftest:conftest.py:317 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz17\logs\automated\distance\2.3.0\20261020-test_distance_calibration_out_of_bounds_301.txt
+DEBUG    drivers.device_driver:device_driver.py:89 TX > version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (4762520) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (4762520) sentry:   partition: ota_0 @ 0x20000, state: valid
+INFO     conftest:conftest.py:317 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz17\logs\automated\distance\2.3.0\20261020-test_distance_logged_out_blocked.txt
+DEBUG    drivers.device_driver:device_driver.py:89 TX > version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (4763580) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (4763580) sentry:   partition: ota_0 @ 0x20000, state: valid
+INFO     conftest:conftest.py:317 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz17\logs\automated\distance\2.3.0\20261020-test_distance_interactive_measurement.txt

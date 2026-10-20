@@ -1,0 +1,5 @@
+Test: tests/test_distance.py::TestDistance::test_distance_interactive_measurement
+Firmware: unknown
+Captured: 2026-10-20T02:08:35.170778+03:00
+
+TX > version

@@ -1,0 +1,46 @@
+Test: tests/test_distance.py::TestDistance::test_distance_stream_invalid_interval[99]
+Firmware: 2.3.0
+Captured: 2026-10-20T03:46:45.579748+03:00
+
+TX > version
+RX < version
+RX < I (2832115) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+RX < I (2832115) sentry:   partition: ota_0 @ 0x20000, state: valid
+TX > lamp status
+RX < lamp status
+RX < I (2833115) sentry: [BEACON] off, color (255,0,0), brightness 100%, mode solid, timer off
+TX > status
+RX < status
+RX < I (2833725) sentry: === SWM-2 status ===
+RX < I (2833725) sentry:   fw:       v2.3.0 (ota_0)
+RX < I (2833725) sentry:   state:    1 NORMAL
+RX < I (2833725) sentry:   link:     buoy link 'TopA-node', ip 10.223.162.49, rssi -23 dBm (excellent), ch 1
+RX < I (2833735) sentry:   internet: OK
+RX < I (2833735) sentry:   user:     testUser (user)
+RX < I (2833735) sentry:   time:     03:46:41, uptime 0h 47m 13s
+RX < I (2833745) sentry:   valve:    closed
+RX < I (2833745) sentry:   watch:    disarmed, CIC alerts unacked: 2
+RX < I (2833755) sentry:   sonar:    last echo 12.2 cm
+RX < I (2833755) sentry:   carrier:  depth 40.8 m, hull 5.1 bar, water 8.1 C, battery 24.12 V (sim)
+RX < I (2833765) sentry:   heap:     251 KB free
+TX > whoami
+RX < whoami
+RX < I (2833935) sentry: user: testUser, access: user
+TX > distance log 99
+RX < distance log 99
+RX < E (2834145) sentry: E705 interval must be 100-5000 ms
+TX > lamp timer 0
+RX < lamp timer 0
+RX < I (2834755) sentry: [BEACON] timer cancelled
+TX > lamp color 255 0 0
+RX < lamp color 255 0 0
+RX < I (2835155) sentry: [BEACON] color: (255,0,0)
+TX > lamp brightness 100
+RX < lamp brightness 100
+RX < I (2835565) sentry: [BEACON] brightness: 100%
+TX > lamp mode solid
+RX < lamp mode solid
+RX < I (2835975) sentry: [BEACON] mode: solid
+TX > lamp off
+RX < lamp off
+RX < W (2836375) sentry: W510 lamp already off

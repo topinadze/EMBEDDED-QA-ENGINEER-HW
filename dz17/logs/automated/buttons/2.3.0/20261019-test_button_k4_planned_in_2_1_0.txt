@@ -1,0 +1,29 @@
+Test: tests/test_buttons.py::TestButtons::test_button_k4_planned_in_2_1_0
+Firmware: 2.3.0
+Captured: 2026-10-19T19:05:02.663236+03:00
+
+TX > version
+RX < version
+RX < I (243900) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+RX < I (243900) sentry:   partition: ota_0 @ 0x20000, state: valid
+TX > lamp status
+RX < lamp status
+RX < I (244910) sentry: [BEACON] off, color (255,0,0), brightness 100%, mode solid, timer off
+TX > whoami
+RX < whoami
+RX < I (245510) sentry: user: testUser, access: user
+TX > lamp timer 0
+RX < lamp timer 0
+RX < I (246340) sentry: [BEACON] timer cancelled
+TX > lamp color 255 0 0
+RX < lamp color 255 0 0
+RX < I (246750) sentry: [BEACON] color: (255,0,0)
+TX > lamp brightness 100
+RX < lamp brightness 100
+RX < I (247160) sentry: [BEACON] brightness: 100%
+TX > lamp mode solid
+RX < lamp mode solid
+RX < I (247570) sentry: [BEACON] mode: solid
+TX > lamp off
+RX < lamp off
+RX < W (247980) sentry: W510 lamp already off

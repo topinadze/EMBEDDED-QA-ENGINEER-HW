@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="19" failures="0" skipped="0" tests="19" time="20.106" timestamp="2026-10-20T01:03:40.599629+03:00" hostname="Prosha"><testcase classname="tests.test_distance.TestDistance" name="test_distance_single" time="1.038"><error message="failed on setup with &quot;Failed: Expected firmware 2.1.0, but device reports 2.3.0.&quot;">conftest.py:287: in device_driver
+    _get_confirmed_firmware_version(driver, request)
+conftest.py:266: in _get_confirmed_firmware_version
+    pytest.fail(f"Expected firmware {expected}, but device reports {version}.")
+E   Failed: Expected firmware 2.1.0, but device reports 2.3.0.</error></testcase><testcase classname="tests.test_distance.TestDistance" name="test_distance_averaging_valid[1]" time="1.038"><error message="failed on setup with &quot;Failed: Expected firmware 2.1.0, but device reports 2.3.0.&quot;">conftest.py:287: in device_driver
+    _get_confirmed_firmware_version(driver, request)
+conftest.py:266: in _get_confirmed_firmware_version
+    pytest.fail(f"Expected firmware {expected}, but device reports {version}.")
+E   Failed: Expected firmware 2.1.0, but device reports 2.3.0.</error></testcase><testcase classname="tests.test_distance.TestDistance" name="test_distance_averaging_valid[5]" time="1.040"><error message="failed on setup with &quot;Failed: Expected firmware 2.1.0, but device reports 2.3.0.&quot;">conftest.py:287: in device_driver
+    _get_confirmed_firmware_version(driver, request)
+conftest.py:266: in _get_confirmed_firmware_version
+    pytest.fail(f"Expected firmware {expected}, but device reports {version}.")
+E   Failed: Expected firmware 2.1.0, but device reports 2.3.0.</error></testcase><testcase classname="tests.test_distance.TestDistance" name="test_distance_averaging_valid[10]" time="1.036"><error message="failed on setup with &quot;Failed: Expected firmware 2.1.0, but device reports 2.3.0.&quot;">conftest.py:287: in device_driver
+    _get_confirmed_firmware_version(driver, request)
+conftest.py:266: in _get_confirmed_firmware_version
+    pytest.fail(f"Expected firmware {expected}, but device reports {version}.")
+E   Failed: Expected firmware 2.1.0, but device reports 2.3.0.</error></testcase><testcase classname="tests.test_distance.TestDistance" name="test_distance_averaging_valid[19]" time="1.038"><error message="failed on setup with &quot;Failed: Expected firmware 2.1.0, but device reports 2.3.0.&quot;">conftest.py:287: in device_driver
+    _get_confirmed_firmware_version(driver, request)
+conftest.py:266: in _get_confirmed_firmware_version
+    pytest.fail(f"Expected firmware {expected}, but device reports {version}.")
+E   Failed: Expected firmware 2.1.0, but device reports 2.3.0.</error></testcase><testcase classname="tests.test_distance.TestDistance" name="test_distance_averaging_max_boundary_20" time="1.043"><error message="failed on setup with &quot;Failed: Expected firmware 2.1.0, but device reports 2.3.0.&quot;">conftest.py:287: in device_driver
+    _get_confirmed_firmware_version(driver, request)
+conftest.py:266: in _get_confirmed_firmware_version
+    pytest.fail(f"Expected firmware {expected}, but device reports {version}.")
+E   Failed: Expected firmware 2.1.0, but device reports 2.3.0.</error></testcase><testcase classname="tests.test_distance.TestDistance" name="test_distance_invalid_sample_counts[0]" time="1.045"><error message="failed on setup with &quot;Failed: Expected firmware 2.1.0, but device reports 2.3.0.&quot;">conftest.py:287: in device_driver
+    _get_confirmed_firmware_version(driver, request)
+conftest.py:266: in _get_confirmed_firmware_version
+    pytest.fail(f"Expected firmware {expected}, but device reports {version}.")
+E   Failed: Expected firmware 2.1.0, but device reports 2.3.0.</error></testcase><testcase classname="tests.test_distance.TestDistance" name="test_distance_invalid_sample_counts[21]" time="1.035"><error message="failed on setup with &quot;Failed: Expected firmware 2.1.0, but device reports 2.3.0.&quot;">conftest.py:287: in device_driver
+    _get_confirmed_firmware_version(driver, request)
+conftest.py:266: in _get_confirmed_firmware_version
+    pytest.fail(f"Expected firmware {expected}, but device reports {version}.")
+E   Failed: Expected firmware 2.1.0, but device reports 2.3.0.</error></testcase><testcase classname="tests.test_distance.TestDistance" name="test_distance_invalid_sample_counts[100]" time="1.040"><error message="failed on setup with &quot;Failed: Expected firmware 2.1.0, but device reports 2.3.0.&quot;">conftest.py:287: in device_driver
+    _get_confirmed_firmware_version(driver, request)
+conftest.py:266: in _get_confirmed_firmware_version
+    pytest.fail(f"Expected firmware {expected}, but device reports {version}.")
+E   Failed: Expected firmware 2.1.0, but device reports 2.3.0.</error></testcase><testcase classname="tests.test_distance.TestDistance" name="test_distance_stream_and_stop" time="1.042"><error message="failed on setup with &quot;Failed: Expected firmware 2.1.0, but device reports 2.3.0.&quot;">conftest.py:287: in device_driver
+    _get_confirmed_firmware_version(driver, request)
+conftest.py:266: in _get_confirmed_firmware_version
+    pytest.fail(f"Expected firmware {expected}, but device reports {version}.")
+E   Failed: Expected firmware 2.1.0, but device reports 2.3.0.</error></testcase><testcase classname="tests.test_distance.TestDistance" name="test_distance_stream_invalid_interval[50]" time="1.051"><error message="failed on setup with &quot;Failed: Expected firmware 2.1.0, but device reports 2.3.0.&quot;">conftest.py:287: in device_driver
+    _get_confirmed_firmware_version(driver, request)
+conftest.py:266: in _get_confirmed_firmware_version
+    pytest.fail(f"Expected firmware {expected}, but device reports {version}.")
+E   Failed: Expected firmware 2.1.0, but device reports 2.3.0.</error></testcase><testcase classname="tests.test_distance.TestDistance" name="test_distance_stream_invalid_interval[99]" time="1.041"><error message="failed on setup with &quot;Failed: Expected firmware 2.1.0, but device reports 2.3.0.&quot;">conftest.py:287: in device_driver
+    _get_confirmed_firmware_version(driver, request)
+conftest.py:266: in _get_confirmed_firmware_version
+    pytest.fail(f"Expected firmware {expected}, but device reports {version}.")
+E   Failed: Expected firmware 2.1.0, but device reports 2.3.0.</error></testcase><testcase classname="tests.test_distance.TestDistance" name="test_distance_stream_invalid_interval[5001]" time="1.046"><error message="failed on setup with &quot;Failed: Expected firmware 2.1.0, but device reports 2.3.0.&quot;">conftest.py:287: in device_driver
+    _get_confirmed_firmware_version(driver, request)
+conftest.py:266: in _get_confirmed_firmware_version
+    pytest.fail(f"Expected firmware {expected}, but device reports {version}.")
+E   Failed: Expected firmware 2.1.0, but device reports 2.3.0.</error></testcase><testcase classname="tests.test_distance.TestDistance" name="test_distance_stream_invalid_interval[10000]" time="1.045"><error message="failed on setup with &quot;Failed: Expected firmware 2.1.0, but device reports 2.3.0.&quot;">conftest.py:287: in device_driver
+    _get_confirmed_firmware_version(driver, request)
+conftest.py:266: in _get_confirmed_firmware_version
+    pytest.fail(f"Expected firmware {expected}, but device reports {version}.")
+E   Failed: Expected firmware 2.1.0, but device reports 2.3.0.</error></testcase><testcase classname="tests.test_distance.TestDistance" name="test_distance_stats_and_filter" time="1.030"><error message="failed on setup with &quot;Failed: Expected firmware 2.1.0, but device reports 2.3.0.&quot;">conftest.py:287: in device_driver
+    _get_confirmed_firmware_version(driver, request)
+conftest.py:266: in _get_confirmed_firmware_version
+    pytest.fail(f"Expected firmware {expected}, but device reports {version}.")
+E   Failed: Expected firmware 2.1.0, but device reports 2.3.0.</error></testcase><testcase classname="tests.test_distance.TestDistance" name="test_distance_calibration_out_of_bounds[4]" time="1.040"><error message="failed on setup with &quot;Failed: Expected firmware 2.1.0, but device reports 2.3.0.&quot;">conftest.py:287: in device_driver
+    _get_confirmed_firmware_version(driver, request)
+conftest.py:266: in _get_confirmed_firmware_version
+    pytest.fail(f"Expected firmware {expected}, but device reports {version}.")
+E   Failed: Expected firmware 2.1.0, but device reports 2.3.0.</error></testcase><testcase classname="tests.test_distance.TestDistance" name="test_distance_calibration_out_of_bounds[301]" time="1.045"><error message="failed on setup with &quot;Failed: Expected firmware 2.1.0, but device reports 2.3.0.&quot;">conftest.py:287: in device_driver
+    _get_confirmed_firmware_version(driver, request)
+conftest.py:266: in _get_confirmed_firmware_version
+    pytest.fail(f"Expected firmware {expected}, but device reports {version}.")
+E   Failed: Expected firmware 2.1.0, but device reports 2.3.0.</error></testcase><testcase classname="tests.test_distance.TestDistance" name="test_distance_logged_out_blocked" time="1.036"><error message="failed on setup with &quot;Failed: Expected firmware 2.1.0, but device reports 2.3.0.&quot;">conftest.py:287: in device_driver
+    _get_confirmed_firmware_version(driver, request)
+conftest.py:266: in _get_confirmed_firmware_version
+    pytest.fail(f"Expected firmware {expected}, but device reports {version}.")
+E   Failed: Expected firmware 2.1.0, but device reports 2.3.0.</error></testcase><testcase classname="tests.test_distance.TestDistance" name="test_distance_interactive_measurement" time="1.035"><error message="failed on setup with &quot;Failed: Expected firmware 2.1.0, but device reports 2.3.0.&quot;">conftest.py:287: in device_driver
+    _get_confirmed_firmware_version(driver, request)
+conftest.py:266: in _get_confirmed_firmware_version
+    pytest.fail(f"Expected firmware {expected}, but device reports {version}.")
+E   Failed: Expected firmware 2.1.0, but device reports 2.3.0.</error></testcase></testsuite></testsuites>

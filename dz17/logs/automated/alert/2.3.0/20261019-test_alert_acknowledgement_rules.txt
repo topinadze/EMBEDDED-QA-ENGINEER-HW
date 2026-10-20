@@ -1,0 +1,50 @@
+Test: tests/test_alert.py::TestAlertCenter::test_alert_acknowledgement_rules
+Firmware: 2.3.0
+Captured: 2026-10-19T20:24:59.958480+03:00
+
+TX > version
+RX < version
+RX < I (5041510) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+RX < I (5041510) sentry:   partition: ota_0 @ 0x20000, state: valid
+TX > whoami
+RX < whoami
+RX < I (5042530) sentry: user: testUser, access: user
+TX > alert test info
+RX < alert test info
+RX < I (5042740) sentry: [CIC #12 INFO] test: test alert
+TX > alert ack
+RX < alert ack
+RX < I (5043350) sentry: [CIC] #12 acknowledged (command). Unacked: 3
+TX > alert list
+RX < alert list
+RX < I (5043950) sentry: [CIC] 12 alerts, 3 unacknowledged:
+RX < I (5043950) sentry:   #1   19:04:50 WARNING  * sonar   collision risk: contact at 14.0 cm
+RX < I (5043950) sentry:   #2   19:04:50 INFO     * sonar   proximity threshold 25 cm crossed: 14.0 cm
+RX < I (5043960) sentry:   #3   19:32:14 INFO       test    test alert
+RX < I (5043960) sentry:   #4   19:56:44 INFO       test    test alert
+RX < I (5043970) sentry:   #5   20:12:37 INFO       test    test alert
+RX < I (5043970) sentry:   #6   20:12:40 WARNING    test    test alert
+RX < I (5043980) sentry:   #7   20:12:47 INFO       test    test alert
+RX < I (5043980) sentry:   #8   20:12:52 INFO       test    test alert
+RX < I (5043990) sentry:   #9   20:13:20 CRITICAL   test    test alert
+RX < I (5044000) sentry:   #10  20:24:45 INFO       test    test alert
+RX < I (5044000) sentry:   #11  20:24:48 WARNING  * test    test alert
+RX < I (5044010) sentry:   #12  20:24:56 INFO       test    test alert
+TX > alert ack 12
+RX < alert ack 12
+RX < I (5044560) sentry: [CIC] #12 acknowledged
+TX > alert list
+RX < alert list
+RX < I (5045170) sentry: [CIC] 12 alerts, 2 unacknowledged:
+RX < I (5045170) sentry:   #1   19:04:50 WARNING  * sonar   collision risk: contact at 14.0 cm
+RX < I (5045170) sentry:   #2   19:04:50 INFO     * sonar   proximity threshold 25 cm crossed: 14.0 cm
+RX < I (5045180) sentry:   #3   19:32:14 INFO       test    test alert
+RX < I (5045180) sentry:   #4   19:56:44 INFO       test    test alert
+RX < I (5045190) sentry:   #5   20:12:37 INFO       test    test alert
+RX < I (5045190) sentry:   #6   20:12:40 WARNING    test    test alert
+RX < I (5045200) sentry:   #7   20:12:47 INFO       test    test alert
+RX < I (5045200) sentry:   #8   20:12:52 INFO       test    test alert
+RX < I (5045210) sentry:   #9   20:13:20 CRITICAL   test    test alert
+RX < I (5045220) sentry:   #10  20:24:45 INFO       test    test alert
+RX < I (5045220) sentry:   #11  20:24:48 WARNING    test    test alert
+RX < I (5045230) sentry:   #12  20:24:56 INFO       test    test alert

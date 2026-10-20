@@ -1,0 +1,45 @@
+Test: tests/test_buttons.py::TestButtons::test_button_k3_sonar_stream
+Firmware: 2.3.0
+Captured: 2026-10-19T19:56:43.434162+03:00
+
+TX > version
+RX < version
+RX < I (3327240) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+RX < I (3327240) sentry:   partition: ota_0 @ 0x20000, state: valid
+TX > lamp status
+RX < lamp status
+RX < I (3328250) sentry: [BEACON] off, color (255,0,0), brightness 100%, mode solid, timer off
+TX > whoami
+RX < whoami
+RX < I (3328860) sentry: user: testUser, access: user
+RX < I (3329890) sentry: [NAV] depth 42.4 m, heading 270, speed 3.1 kn
+RX < I (3341510) sentry: [BTN] K3 pressed
+RX < I (3341510) sentry: [SONAR] active pinging for 30 s, every 500 ms (K3)
+RX < I (3341590) sentry: [SONAR] ping: echo 14.0 cm
+RX < I (3342140) sentry: [SONAR] ping: echo 14.0 cm
+RX < I (3342690) sentry: [SONAR] ping: echo 14.0 cm
+RX < I (3343240) sentry: [SONAR] ping: echo 14.0 cm
+RX < I (3343790) sentry: [SONAR] ping: echo 14.0 cm
+RX < I (3344340) sentry: [SONAR] ping: echo 10.6 cm
+RX < I (3344890) sentry: [SONAR] ping: echo 9.5 cm
+RX < I (3345440) sentry: [SONAR] ping: echo 9.5 cm
+RX < I (3345990) sentry: [SONAR] ping: echo 9.5 cm
+RX < I (3346540) sentry: [SONAR] ping: echo 9.5 cm
+RX < I (3346910) sentry: [BTN] K3 pressed
+RX < I (3346910) sentry: [SONAR] pinging stopped (K3)
+TX > lamp timer 0
+RX < lamp timer 0
+RX < I (3347210) sentry: [BEACON] timer cancelled
+TX > lamp color 255 0 0
+RX < lamp color 255 0 0
+RX < I (3347620) sentry: [BEACON] color: (255,0,0)
+TX > lamp brightness 100
+RX < lamp brightness 100
+RX < I (3348030) sentry: [BEACON] brightness: 100%
+TX > lamp mode solid
+RX < lamp mode solid
+RX < I (3348440) sentry: [BEACON] mode: solid
+RX < I (3348640) sentry: [TELEMETRY #105] 19:56:42 up 00:55:48 heap 251KB rssi -28 temp 31.4C depth 42.4m hull 5.2bar batt 24.1V valve closed sonar 9.5cm watch disarmed alerts 2 state NORMAL
+TX > lamp off
+RX < lamp off
+RX < W (3348840) sentry: W510 lamp already off

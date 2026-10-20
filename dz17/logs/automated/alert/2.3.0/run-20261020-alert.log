@@ -1,0 +1,1216 @@
+DEBUG    drivers.device_driver:device_driver.py:89 TX > version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3592240) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3592240) sentry:   partition: ota_0 @ 0x20000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:89 TX > whoami
+DEBUG    drivers.device_driver:device_driver.py:89 RX < whoami
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3593250) sentry: user: testUser, access: user
+DEBUG    drivers.device_driver:device_driver.py:89 TX > alert test info
+DEBUG    drivers.device_driver:device_driver.py:89 RX < alert test info
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3593460) sentry: [CIC #24 INFO] test: test alert
+DEBUG    drivers.device_driver:device_driver.py:89 TX > alert list
+DEBUG    drivers.device_driver:device_driver.py:89 RX < alert list
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3594060) sentry: [CIC] 20 alerts, 3 unacknowledged:
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3594060) sentry:   #5   23:49:52 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3594060) sentry:   #6   23:49:52 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3594060) sentry:   #7   23:49:58 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3594070) sentry:   #8   23:51:26 CRITICAL   test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3594070) sentry:   #9   23:52:00 CRITICAL   test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3594080) sentry:   #10  00:15:00 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3594080) sentry:   #11  00:15:04 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3594090) sentry:   #12  00:15:13 INFO     * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3594100) sentry:   #13  00:15:13 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3594100) sentry:   #14  00:15:19 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3594110) sentry:   #15  00:15:20 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3594110) sentry:   #16  00:15:26 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3594120) sentry:   #17  00:15:37 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3594120) sentry:   #18  00:16:57 CRITICAL   test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3594130) sentry:   #19  00:17:22 CRITICAL   test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3594140) sentry:   #20  00:26:06 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3594140) sentry:   #21  00:26:10 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3594150) sentry:   #22  00:26:19 INFO     * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3594150) sentry:   #23  00:26:20 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3594160) sentry:   #24  00:44:28 INFO     * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 TX > alert list
+DEBUG    drivers.device_driver:device_driver.py:89 RX < alert list
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3594670) sentry: [CIC] 20 alerts, 3 unacknowledged:
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3594670) sentry:   #5   23:49:52 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3594670) sentry:   #6   23:49:52 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3594670) sentry:   #7   23:49:58 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3594680) sentry:   #8   23:51:26 CRITICAL   test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3594680) sentry:   #9   23:52:00 CRITICAL   test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3594690) sentry:   #10  00:15:00 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3594690) sentry:   #11  00:15:04 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3594700) sentry:   #12  00:15:13 INFO     * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3594710) sentry:   #13  00:15:13 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3594710) sentry:   #14  00:15:19 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3594720) sentry:   #15  00:15:20 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3594720) sentry:   #16  00:15:26 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3594730) sentry:   #17  00:15:37 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3594730) sentry:   #18  00:16:57 CRITICAL   test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3594740) sentry:   #19  00:17:22 CRITICAL   test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3594750) sentry:   #20  00:26:06 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3594750) sentry:   #21  00:26:10 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3594760) sentry:   #22  00:26:19 INFO     * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3594760) sentry:   #23  00:26:20 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3594770) sentry:   #24  00:44:28 INFO     * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 TX > alert ack
+DEBUG    drivers.device_driver:device_driver.py:89 RX < alert ack
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3595280) sentry: [CIC] #24 acknowledged (command). Unacked: 2
+DEBUG    drivers.device_driver:device_driver.py:89 TX > alert list
+DEBUG    drivers.device_driver:device_driver.py:89 RX < alert list
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3595880) sentry: [CIC] 20 alerts, 2 unacknowledged:
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3595880) sentry:   #5   23:49:52 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3595880) sentry:   #6   23:49:52 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3595880) sentry:   #7   23:49:58 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3595890) sentry:   #8   23:51:26 CRITICAL   test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3595890) sentry:   #9   23:52:00 CRITICAL   test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3595900) sentry:   #10  00:15:00 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3595900) sentry:   #11  00:15:04 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3595910) sentry:   #12  00:15:13 INFO     * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3595920) sentry:   #13  00:15:13 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3595920) sentry:   #14  00:15:19 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3595930) sentry:   #15  00:15:20 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3595930) sentry:   #16  00:15:26 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3595940) sentry:   #17  00:15:37 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3595940) sentry:   #18  00:16:57 CRITICAL   test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3595950) sentry:   #19  00:17:22 CRITICAL   test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3595960) sentry:   #20  00:26:06 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3595960) sentry:   #21  00:26:10 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3595970) sentry:   #22  00:26:19 INFO     * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3595970) sentry:   #23  00:26:20 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3595980) sentry:   #24  00:44:28 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 TX > alert list
+DEBUG    drivers.device_driver:device_driver.py:89 RX < alert list
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3596500) sentry: [CIC] 20 alerts, 2 unacknowledged:
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3596500) sentry:   #5   23:49:52 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3596500) sentry:   #6   23:49:52 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3596500) sentry:   #7   23:49:58 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3596510) sentry:   #8   23:51:26 CRITICAL   test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3596510) sentry:   #9   23:52:00 CRITICAL   test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3596520) sentry:   #10  00:15:00 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3596520) sentry:   #11  00:15:04 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3596530) sentry:   #12  00:15:13 INFO     * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3596540) sentry:   #13  00:15:13 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3596540) sentry:   #14  00:15:19 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3596550) sentry:   #15  00:15:20 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3596550) sentry:   #16  00:15:26 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3596560) sentry:   #17  00:15:37 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3596560) sentry:   #18  00:16:57 CRITICAL   test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3596570) sentry:   #19  00:17:22 CRITICAL   test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3596580) sentry:   #20  00:26:06 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3596580) sentry:   #21  00:26:10 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3596590) sentry:   #22  00:26:19 INFO     * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3596590) sentry:   #23  00:26:20 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3596600) sentry:   #24  00:44:28 INFO       test    test alert
+INFO     conftest:conftest.py:317 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz17\logs\automated\alert\2.3.0\20261020-test_alert_test_generation_and_list_INFO.txt
+DEBUG    drivers.device_driver:device_driver.py:89 TX > version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3597150) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3597150) sentry:   partition: ota_0 @ 0x20000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:89 TX > whoami
+DEBUG    drivers.device_driver:device_driver.py:89 RX < whoami
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3598160) sentry: user: testUser, access: user
+DEBUG    drivers.device_driver:device_driver.py:89 TX > alert test warning
+DEBUG    drivers.device_driver:device_driver.py:89 RX < alert test warning
+DEBUG    drivers.device_driver:device_driver.py:89 RX < W (3598370) sentry: [CIC #25 WARNING] test: test alert
+DEBUG    drivers.device_driver:device_driver.py:89 TX > alert list
+DEBUG    drivers.device_driver:device_driver.py:89 RX < alert list
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3598980) sentry: [CIC] 20 alerts, 3 unacknowledged:
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3598980) sentry:   #6   23:49:52 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3598980) sentry:   #7   23:49:58 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3598980) sentry:   #8   23:51:26 CRITICAL   test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3598990) sentry:   #9   23:52:00 CRITICAL   test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3598990) sentry:   #10  00:15:00 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3599000) sentry:   #11  00:15:04 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3599000) sentry:   #12  00:15:13 INFO     * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3599010) sentry:   #13  00:15:13 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3599020) sentry:   #14  00:15:19 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3599020) sentry:   #15  00:15:20 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3599030) sentry:   #16  00:15:26 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3599030) sentry:   #17  00:15:37 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3599040) sentry:   #18  00:16:57 CRITICAL   test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3599040) sentry:   #19  00:17:22 CRITICAL   test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3599050) sentry:   #20  00:26:06 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3599060) sentry:   #21  00:26:10 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3599060) sentry:   #22  00:26:19 INFO     * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3599070) sentry:   #23  00:26:20 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3599070) sentry:   #24  00:44:28 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3599080) sentry:   #25  00:44:33 WARNING  * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 TX > alert list
+DEBUG    drivers.device_driver:device_driver.py:89 RX < alert list
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3599590) sentry: [CIC] 20 alerts, 3 unacknowledged:
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3599590) sentry:   #6   23:49:52 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3599590) sentry:   #7   23:49:58 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3599590) sentry:   #8   23:51:26 CRITICAL   test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3599600) sentry:   #9   23:52:00 CRITICAL   test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3599600) sentry:   #10  00:15:00 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3599610) sentry:   #11  00:15:04 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3599610) sentry:   #12  00:15:13 INFO     * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3599620) sentry:   #13  00:15:13 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3599630) sentry:   #14  00:15:19 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3599630) sentry:   #15  00:15:20 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3599640) sentry:   #16  00:15:26 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3599640) sentry:   #17  00:15:37 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3599650) sentry:   #18  00:16:57 CRITICAL   test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3599650) sentry:   #19  00:17:22 CRITICAL   test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3599660) sentry:   #20  00:26:06 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3599670) sentry:   #21  00:26:10 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3599670) sentry:   #22  00:26:19 INFO     * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3599680) sentry:   #23  00:26:20 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3599680) sentry:   #24  00:44:28 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3599690) sentry:   #25  00:44:33 WARNING  * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 TX > alert ack
+DEBUG    drivers.device_driver:device_driver.py:89 RX < alert ack
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3600190) sentry: [CIC] #25 acknowledged (command). Unacked: 2
+DEBUG    drivers.device_driver:device_driver.py:89 TX > alert list
+DEBUG    drivers.device_driver:device_driver.py:89 RX < alert list
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3600800) sentry: [CIC] 20 alerts, 2 unacknowledged:
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3600800) sentry:   #6   23:49:52 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3600800) sentry:   #7   23:49:58 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3600800) sentry:   #8   23:51:26 CRITICAL   test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3600810) sentry:   #9   23:52:00 CRITICAL   test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3600810) sentry:   #10  00:15:00 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3600820) sentry:   #11  00:15:04 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3600820) sentry:   #12  00:15:13 INFO     * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3600830) sentry:   #13  00:15:13 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3600840) sentry:   #14  00:15:19 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3600840) sentry:   #15  00:15:20 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3600850) sentry:   #16  00:15:26 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3600850) sentry:   #17  00:15:37 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3600860) sentry:   #18  00:16:57 CRITICAL   test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3600860) sentry:   #19  00:17:22 CRITICAL   test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3600870) sentry:   #20  00:26:06 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3600880) sentry:   #21  00:26:10 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3600880) sentry:   #22  00:26:19 INFO     * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3600890) sentry:   #23  00:26:20 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3600890) sentry:   #24  00:44:28 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3600900) sentry:   #25  00:44:33 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 TX > alert list
+DEBUG    drivers.device_driver:device_driver.py:89 RX < alert list
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3601410) sentry: [CIC] 20 alerts, 2 unacknowledged:
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3601410) sentry:   #6   23:49:52 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3601410) sentry:   #7   23:49:58 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3601410) sentry:   #8   23:51:26 CRITICAL   test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3601420) sentry:   #9   23:52:00 CRITICAL   test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3601420) sentry:   #10  00:15:00 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3601430) sentry:   #11  00:15:04 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3601430) sentry:   #12  00:15:13 INFO     * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3601440) sentry:   #13  00:15:13 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3601450) sentry:   #14  00:15:19 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3601450) sentry:   #15  00:15:20 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3601460) sentry:   #16  00:15:26 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3601460) sentry:   #17  00:15:37 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3601470) sentry:   #18  00:16:57 CRITICAL   test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3601470) sentry:   #19  00:17:22 CRITICAL   test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3601480) sentry:   #20  00:26:06 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3601490) sentry:   #21  00:26:10 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3601490) sentry:   #22  00:26:19 INFO     * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3601500) sentry:   #23  00:26:20 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3601500) sentry:   #24  00:44:28 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3601510) sentry:   #25  00:44:33 WARNING    test    test alert
+INFO     conftest:conftest.py:317 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz17\logs\automated\alert\2.3.0\20261020-test_alert_test_generation_and_list_WARNING.txt
+DEBUG    drivers.device_driver:device_driver.py:89 TX > version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3602070) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3602070) sentry:   partition: ota_0 @ 0x20000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3603080) sentry: [BEACON] off, color (255,0,0), brightness 100%, mode solid, timer off
+DEBUG    drivers.device_driver:device_driver.py:89 TX > whoami
+DEBUG    drivers.device_driver:device_driver.py:89 RX < whoami
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3603690) sentry: user: testUser, access: user
+DEBUG    drivers.device_driver:device_driver.py:89 TX > alert list
+DEBUG    drivers.device_driver:device_driver.py:89 RX < alert list
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3603900) sentry: [CIC] 20 alerts, 2 unacknowledged:
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3603900) sentry:   #6   23:49:52 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3603900) sentry:   #7   23:49:58 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3603900) sentry:   #8   23:51:26 CRITICAL   test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3603910) sentry:   #9   23:52:00 CRITICAL   test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3603910) sentry:   #10  00:15:00 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3603920) sentry:   #11  00:15:04 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3603920) sentry:   #12  00:15:13 INFO     * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3603930) sentry:   #13  00:15:13 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3603940) sentry:   #14  00:15:19 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3603940) sentry:   #15  00:15:20 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3603950) sentry:   #16  00:15:26 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3603950) sentry:   #17  00:15:37 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3603960) sentry:   #18  00:16:57 CRITICAL   test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3603960) sentry:   #19  00:17:22 CRITICAL   test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3603970) sentry:   #20  00:26:06 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3603980) sentry:   #21  00:26:10 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3603980) sentry:   #22  00:26:19 INFO     * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3603990) sentry:   #23  00:26:20 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3603990) sentry:   #24  00:44:28 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3604000) sentry:   #25  00:44:33 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3604510) sentry: [BEACON] timer cancelled
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp color 255 0 0
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp color 255 0 0
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3604920) sentry: [BEACON] color: (255,0,0)
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp brightness 100
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp brightness 100
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3605330) sentry: [BEACON] brightness: 100%
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp mode solid
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp mode solid
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3605740) sentry: [BEACON] mode: solid
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp off
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp off
+DEBUG    drivers.device_driver:device_driver.py:89 RX < W (3606150) sentry: W510 lamp already off
+INFO     conftest:conftest.py:317 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz17\logs\automated\alert\2.3.0\20261020-test_alert_list_or_planned_response.txt
+DEBUG    drivers.device_driver:device_driver.py:89 TX > version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3606590) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3606590) sentry:   partition: ota_0 @ 0x20000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:89 TX > whoami
+DEBUG    drivers.device_driver:device_driver.py:89 RX < whoami
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3607600) sentry: user: testUser, access: user
+DEBUG    drivers.device_driver:device_driver.py:89 TX > alert test info
+DEBUG    drivers.device_driver:device_driver.py:89 RX < alert test info
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3607810) sentry: [CIC #26 INFO] test: test alert
+DEBUG    drivers.device_driver:device_driver.py:89 TX > alert test warning
+DEBUG    drivers.device_driver:device_driver.py:89 RX < alert test warning
+DEBUG    drivers.device_driver:device_driver.py:89 RX < W (3608430) sentry: [CIC #27 WARNING] test: test alert
+DEBUG    drivers.device_driver:device_driver.py:89 TX > alert list
+DEBUG    drivers.device_driver:device_driver.py:89 RX < alert list
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3609040) sentry: [CIC] 20 alerts, 4 unacknowledged:
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3609040) sentry:   #8   23:51:26 CRITICAL   test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3609040) sentry:   #9   23:52:00 CRITICAL   test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3609040) sentry:   #10  00:15:00 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3609050) sentry:   #11  00:15:04 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3609050) sentry:   #12  00:15:13 INFO     * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3609060) sentry:   #13  00:15:13 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3609060) sentry:   #14  00:15:19 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3609070) sentry:   #15  00:15:20 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3609080) sentry:   #16  00:15:26 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3609080) sentry:   #17  00:15:37 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3609090) sentry:   #18  00:16:57 CRITICAL   test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3609090) sentry:   #19  00:17:22 CRITICAL   test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3609100) sentry:   #20  00:26:06 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3609100) sentry:   #21  00:26:10 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3609110) sentry:   #22  00:26:19 INFO     * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3609120) sentry:   #23  00:26:20 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3609120) sentry:   #24  00:44:28 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3609130) sentry:   #25  00:44:33 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3609130) sentry:   #26  00:44:43 INFO     * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3609140) sentry:   #27  00:44:43 WARNING  * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 TX > alert ack
+DEBUG    drivers.device_driver:device_driver.py:89 RX < alert ack
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3609640) sentry: [CIC] #27 acknowledged (command). Unacked: 3
+DEBUG    drivers.device_driver:device_driver.py:89 TX > alert list
+DEBUG    drivers.device_driver:device_driver.py:89 RX < alert list
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3610240) sentry: [CIC] 20 alerts, 3 unacknowledged:
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3610240) sentry:   #8   23:51:26 CRITICAL   test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3610240) sentry:   #9   23:52:00 CRITICAL   test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3610240) sentry:   #10  00:15:00 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3610250) sentry:   #11  00:15:04 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3610250) sentry:   #12  00:15:13 INFO     * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3610260) sentry:   #13  00:15:13 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3610260) sentry:   #14  00:15:19 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3610270) sentry:   #15  00:15:20 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3610280) sentry:   #16  00:15:26 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3610280) sentry:   #17  00:15:37 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3610290) sentry:   #18  00:16:57 CRITICAL   test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3610290) sentry:   #19  00:17:22 CRITICAL   test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3610300) sentry:   #20  00:26:06 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3610300) sentry:   #21  00:26:10 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3610310) sentry:   #22  00:26:19 INFO     * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3610320) sentry:   #23  00:26:20 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3610320) sentry:   #24  00:44:28 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3610330) sentry:   #25  00:44:33 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3610330) sentry:   #26  00:44:43 INFO     * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3610340) sentry:   #27  00:44:43 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 TX > alert list
+DEBUG    drivers.device_driver:device_driver.py:89 RX < alert list
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3610850) sentry: [CIC] 20 alerts, 3 unacknowledged:
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3610850) sentry:   #8   23:51:26 CRITICAL   test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3610850) sentry:   #9   23:52:00 CRITICAL   test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3610850) sentry:   #10  00:15:00 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3610860) sentry:   #11  00:15:04 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3610860) sentry:   #12  00:15:13 INFO     * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3610870) sentry:   #13  00:15:13 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3610870) sentry:   #14  00:15:19 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3610880) sentry:   #15  00:15:20 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3610890) sentry:   #16  00:15:26 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3610890) sentry:   #17  00:15:37 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3610900) sentry:   #18  00:16:57 CRITICAL   test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3610900) sentry:   #19  00:17:22 CRITICAL   test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3610910) sentry:   #20  00:26:06 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3610910) sentry:   #21  00:26:10 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3610920) sentry:   #22  00:26:19 INFO     * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3610930) sentry:   #23  00:26:20 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3610930) sentry:   #24  00:44:28 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3610940) sentry:   #25  00:44:33 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3610940) sentry:   #26  00:44:43 INFO     * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3610950) sentry:   #27  00:44:43 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 TX > alert ack
+DEBUG    drivers.device_driver:device_driver.py:89 RX < alert ack
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3611460) sentry: [CIC] #26 acknowledged (command). Unacked: 2
+DEBUG    drivers.device_driver:device_driver.py:89 TX > alert list
+DEBUG    drivers.device_driver:device_driver.py:89 RX < alert list
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3612070) sentry: [CIC] 20 alerts, 2 unacknowledged:
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3612070) sentry:   #8   23:51:26 CRITICAL   test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3612070) sentry:   #9   23:52:00 CRITICAL   test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3612070) sentry:   #10  00:15:00 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3612080) sentry:   #11  00:15:04 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3612080) sentry:   #12  00:15:13 INFO     * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3612090) sentry:   #13  00:15:13 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3612090) sentry:   #14  00:15:19 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3612100) sentry:   #15  00:15:20 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3612110) sentry:   #16  00:15:26 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3612110) sentry:   #17  00:15:37 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3612120) sentry:   #18  00:16:57 CRITICAL   test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3612120) sentry:   #19  00:17:22 CRITICAL   test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3612130) sentry:   #20  00:26:06 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3612130) sentry:   #21  00:26:10 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3612140) sentry:   #22  00:26:19 INFO     * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3612150) sentry:   #23  00:26:20 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3612150) sentry:   #24  00:44:28 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3612160) sentry:   #25  00:44:33 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3612160) sentry:   #26  00:44:43 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3612170) sentry:   #27  00:44:43 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 TX > alert list
+DEBUG    drivers.device_driver:device_driver.py:89 RX < alert list
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3612670) sentry: [CIC] 20 alerts, 2 unacknowledged:
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3612670) sentry:   #8   23:51:26 CRITICAL   test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3612670) sentry:   #9   23:52:00 CRITICAL   test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3612670) sentry:   #10  00:15:00 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3612680) sentry:   #11  00:15:04 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3612680) sentry:   #12  00:15:13 INFO     * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3612690) sentry:   #13  00:15:13 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3612690) sentry:   #14  00:15:19 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3612700) sentry:   #15  00:15:20 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3612710) sentry:   #16  00:15:26 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3612710) sentry:   #17  00:15:37 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3612720) sentry:   #18  00:16:57 CRITICAL   test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3612720) sentry:   #19  00:17:22 CRITICAL   test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3612730) sentry:   #20  00:26:06 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3612730) sentry:   #21  00:26:10 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3612740) sentry:   #22  00:26:19 INFO     * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3612750) sentry:   #23  00:26:20 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3612750) sentry:   #24  00:44:28 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3612760) sentry:   #25  00:44:33 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3612760) sentry:   #26  00:44:43 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3612770) sentry:   #27  00:44:43 WARNING    test    test alert
+INFO     conftest:conftest.py:317 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz17\logs\automated\alert\2.3.0\20261020-test_alert_acknowledge_latest.txt
+DEBUG    drivers.device_driver:device_driver.py:89 TX > version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3613310) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3613310) sentry:   partition: ota_0 @ 0x20000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:89 TX > whoami
+DEBUG    drivers.device_driver:device_driver.py:89 RX < whoami
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3614320) sentry: user: testUser, access: user
+DEBUG    drivers.device_driver:device_driver.py:89 TX > alert test info
+DEBUG    drivers.device_driver:device_driver.py:89 RX < alert test info
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3614530) sentry: [CIC #28 INFO] test: test alert
+DEBUG    drivers.device_driver:device_driver.py:89 TX > alert test warning
+DEBUG    drivers.device_driver:device_driver.py:89 RX < alert test warning
+DEBUG    drivers.device_driver:device_driver.py:89 RX < W (3615130) sentry: [CIC #29 WARNING] test: test alert
+DEBUG    drivers.device_driver:device_driver.py:89 TX > alert list
+DEBUG    drivers.device_driver:device_driver.py:89 RX < alert list
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3615740) sentry: [CIC] 20 alerts, 4 unacknowledged:
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3615740) sentry:   #10  00:15:00 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3615740) sentry:   #11  00:15:04 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3615740) sentry:   #12  00:15:13 INFO     * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3615750) sentry:   #13  00:15:13 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3615750) sentry:   #14  00:15:19 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3615760) sentry:   #15  00:15:20 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3615760) sentry:   #16  00:15:26 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3615770) sentry:   #17  00:15:37 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3615780) sentry:   #18  00:16:57 CRITICAL   test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3615780) sentry:   #19  00:17:22 CRITICAL   test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3615790) sentry:   #20  00:26:06 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3615790) sentry:   #21  00:26:10 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3615800) sentry:   #22  00:26:19 INFO     * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3615800) sentry:   #23  00:26:20 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3615810) sentry:   #24  00:44:28 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3615820) sentry:   #25  00:44:33 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3615820) sentry:   #26  00:44:43 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3615830) sentry:   #27  00:44:43 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3615830) sentry:   #28  00:44:49 INFO     * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3615840) sentry:   #29  00:44:50 WARNING  * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 TX > alert ack 29
+DEBUG    drivers.device_driver:device_driver.py:89 RX < alert ack 29
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3616340) sentry: [CIC] #29 acknowledged
+DEBUG    drivers.device_driver:device_driver.py:89 TX > alert list
+DEBUG    drivers.device_driver:device_driver.py:89 RX < alert list
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3616950) sentry: [CIC] 20 alerts, 3 unacknowledged:
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3616950) sentry:   #10  00:15:00 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3616950) sentry:   #11  00:15:04 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3616950) sentry:   #12  00:15:13 INFO     * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3616960) sentry:   #13  00:15:13 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3616960) sentry:   #14  00:15:19 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3616970) sentry:   #15  00:15:20 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3616970) sentry:   #16  00:15:26 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3616980) sentry:   #17  00:15:37 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3616990) sentry:   #18  00:16:57 CRITICAL   test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3616990) sentry:   #19  00:17:22 CRITICAL   test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3617000) sentry:   #20  00:26:06 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3617000) sentry:   #21  00:26:10 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3617010) sentry:   #22  00:26:19 INFO     * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3617010) sentry:   #23  00:26:20 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3617020) sentry:   #24  00:44:28 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3617030) sentry:   #25  00:44:33 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3617030) sentry:   #26  00:44:43 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3617040) sentry:   #27  00:44:43 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3617040) sentry:   #28  00:44:49 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3617050) sentry:   #29  00:44:50 WARNING  * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 TX > alert list
+DEBUG    drivers.device_driver:device_driver.py:89 RX < alert list
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3617560) sentry: [CIC] 20 alerts, 3 unacknowledged:
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3617560) sentry:   #10  00:15:00 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3617560) sentry:   #11  00:15:04 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3617560) sentry:   #12  00:15:13 INFO     * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3617570) sentry:   #13  00:15:13 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3617570) sentry:   #14  00:15:19 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3617580) sentry:   #15  00:15:20 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3617580) sentry:   #16  00:15:26 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3617590) sentry:   #17  00:15:37 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3617600) sentry:   #18  00:16:57 CRITICAL   test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3617600) sentry:   #19  00:17:22 CRITICAL   test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3617610) sentry:   #20  00:26:06 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3617610) sentry:   #21  00:26:10 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3617620) sentry:   #22  00:26:19 INFO     * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3617620) sentry:   #23  00:26:20 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3617630) sentry:   #24  00:44:28 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3617640) sentry:   #25  00:44:33 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3617640) sentry:   #26  00:44:43 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3617650) sentry:   #27  00:44:43 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3617650) sentry:   #28  00:44:49 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3617660) sentry:   #29  00:44:50 WARNING  * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 TX > alert ack
+DEBUG    drivers.device_driver:device_driver.py:89 RX < alert ack
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3618170) sentry: [CIC] #29 acknowledged (command). Unacked: 2
+DEBUG    drivers.device_driver:device_driver.py:89 TX > alert list
+DEBUG    drivers.device_driver:device_driver.py:89 RX < alert list
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3618780) sentry: [CIC] 20 alerts, 2 unacknowledged:
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3618780) sentry:   #10  00:15:00 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3618780) sentry:   #11  00:15:04 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3618780) sentry:   #12  00:15:13 INFO     * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3618790) sentry:   #13  00:15:13 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3618790) sentry:   #14  00:15:19 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3618800) sentry:   #15  00:15:20 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3618800) sentry:   #16  00:15:26 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3618810) sentry:   #17  00:15:37 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3618820) sentry:   #18  00:16:57 CRITICAL   test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3618820) sentry:   #19  00:17:22 CRITICAL   test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3618830) sentry:   #20  00:26:06 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3618830) sentry:   #21  00:26:10 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3618840) sentry:   #22  00:26:19 INFO     * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3618840) sentry:   #23  00:26:20 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3618850) sentry:   #24  00:44:28 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3618860) sentry:   #25  00:44:33 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3618860) sentry:   #26  00:44:43 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3618870) sentry:   #27  00:44:43 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3618870) sentry:   #28  00:44:49 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3618880) sentry:   #29  00:44:50 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 TX > alert list
+DEBUG    drivers.device_driver:device_driver.py:89 RX < alert list
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3619390) sentry: [CIC] 20 alerts, 2 unacknowledged:
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3619390) sentry:   #10  00:15:00 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3619390) sentry:   #11  00:15:04 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3619390) sentry:   #12  00:15:13 INFO     * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3619400) sentry:   #13  00:15:13 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3619400) sentry:   #14  00:15:19 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3619410) sentry:   #15  00:15:20 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3619410) sentry:   #16  00:15:26 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3619420) sentry:   #17  00:15:37 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3619430) sentry:   #18  00:16:57 CRITICAL   test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3619430) sentry:   #19  00:17:22 CRITICAL   test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3619440) sentry:   #20  00:26:06 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3619440) sentry:   #21  00:26:10 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3619450) sentry:   #22  00:26:19 INFO     * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3619450) sentry:   #23  00:26:20 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3619460) sentry:   #24  00:44:28 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3619470) sentry:   #25  00:44:33 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3619470) sentry:   #26  00:44:43 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3619480) sentry:   #27  00:44:43 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3619480) sentry:   #28  00:44:49 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3619490) sentry:   #29  00:44:50 WARNING    test    test alert
+INFO     conftest:conftest.py:317 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz17\logs\automated\alert\2.3.0\20261020-test_alert_acknowledge_exact_id.txt
+DEBUG    drivers.device_driver:device_driver.py:89 TX > version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3620080) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3620080) sentry:   partition: ota_0 @ 0x20000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:89 TX > whoami
+DEBUG    drivers.device_driver:device_driver.py:89 RX < whoami
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3621100) sentry: user: testUser, access: user
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3621180) sentry: [NAV] depth 38.5 m, heading 274, speed 3.3 kn
+DEBUG    drivers.device_driver:device_driver.py:89 TX > alert test info
+DEBUG    drivers.device_driver:device_driver.py:89 RX < alert test info
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3621310) sentry: [CIC #30 INFO] test: test alert
+DEBUG    drivers.device_driver:device_driver.py:89 TX > alert test warning
+DEBUG    drivers.device_driver:device_driver.py:89 RX < alert test warning
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3621900) sentry: [TELEMETRY #115] 00:44:57 up 01:00:21 heap 251KB rssi -26 temp 31.4C depth 38.5m hull 4.8bar batt 24.1V valve closed sonar - watch disarmed alerts 3 state NORMAL
+DEBUG    drivers.device_driver:device_driver.py:89 RX < W (3621920) sentry: [CIC #31 WARNING] test: test alert
+DEBUG    drivers.device_driver:device_driver.py:89 TX > alert list
+DEBUG    drivers.device_driver:device_driver.py:89 RX < alert list
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3622530) sentry: [CIC] 20 alerts, 4 unacknowledged:
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3622530) sentry:   #12  00:15:13 INFO     * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3622530) sentry:   #13  00:15:13 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3622530) sentry:   #14  00:15:19 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3622540) sentry:   #15  00:15:20 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3622540) sentry:   #16  00:15:26 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3622550) sentry:   #17  00:15:37 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3622550) sentry:   #18  00:16:57 CRITICAL   test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3622560) sentry:   #19  00:17:22 CRITICAL   test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3622570) sentry:   #20  00:26:06 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3622570) sentry:   #21  00:26:10 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3622580) sentry:   #22  00:26:19 INFO     * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3622580) sentry:   #23  00:26:20 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3622590) sentry:   #24  00:44:28 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3622590) sentry:   #25  00:44:33 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3622600) sentry:   #26  00:44:43 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3622610) sentry:   #27  00:44:43 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3622610) sentry:   #28  00:44:49 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3622620) sentry:   #29  00:44:50 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3622620) sentry:   #30  00:44:56 INFO     * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3622630) sentry:   #31  00:44:57 WARNING  * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 TX > alert ack 31
+DEBUG    drivers.device_driver:device_driver.py:89 RX < alert ack 31
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3623130) sentry: [CIC] #31 acknowledged
+DEBUG    drivers.device_driver:device_driver.py:89 TX > alert list
+DEBUG    drivers.device_driver:device_driver.py:89 RX < alert list
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3623730) sentry: [CIC] 20 alerts, 3 unacknowledged:
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3623730) sentry:   #12  00:15:13 INFO     * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3623730) sentry:   #13  00:15:13 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3623730) sentry:   #14  00:15:19 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3623740) sentry:   #15  00:15:20 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3623740) sentry:   #16  00:15:26 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3623750) sentry:   #17  00:15:37 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3623750) sentry:   #18  00:16:57 CRITICAL   test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3623760) sentry:   #19  00:17:22 CRITICAL   test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3623770) sentry:   #20  00:26:06 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3623770) sentry:   #21  00:26:10 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3623780) sentry:   #22  00:26:19 INFO     * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3623780) sentry:   #23  00:26:20 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3623790) sentry:   #24  00:44:28 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3623790) sentry:   #25  00:44:33 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3623800) sentry:   #26  00:44:43 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3623810) sentry:   #27  00:44:43 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3623810) sentry:   #28  00:44:49 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3623820) sentry:   #29  00:44:50 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3623820) sentry:   #30  00:44:56 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3623830) sentry:   #31  00:44:57 WARNING  * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 TX > alert list
+DEBUG    drivers.device_driver:device_driver.py:89 RX < alert list
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3624350) sentry: [CIC] 20 alerts, 3 unacknowledged:
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3624350) sentry:   #12  00:15:13 INFO     * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3624350) sentry:   #13  00:15:13 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3624350) sentry:   #14  00:15:19 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3624360) sentry:   #15  00:15:20 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3624360) sentry:   #16  00:15:26 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3624370) sentry:   #17  00:15:37 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3624370) sentry:   #18  00:16:57 CRITICAL   test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3624380) sentry:   #19  00:17:22 CRITICAL   test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3624390) sentry:   #20  00:26:06 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3624390) sentry:   #21  00:26:10 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3624400) sentry:   #22  00:26:19 INFO     * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3624400) sentry:   #23  00:26:20 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3624410) sentry:   #24  00:44:28 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3624410) sentry:   #25  00:44:33 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3624420) sentry:   #26  00:44:43 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3624430) sentry:   #27  00:44:43 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3624430) sentry:   #28  00:44:49 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3624440) sentry:   #29  00:44:50 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3624440) sentry:   #30  00:44:56 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3624450) sentry:   #31  00:44:57 WARNING  * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 TX > alert ack
+DEBUG    drivers.device_driver:device_driver.py:89 RX < alert ack
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3624950) sentry: [CIC] #31 acknowledged (command). Unacked: 2
+DEBUG    drivers.device_driver:device_driver.py:89 TX > alert list
+DEBUG    drivers.device_driver:device_driver.py:89 RX < alert list
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3625560) sentry: [CIC] 20 alerts, 2 unacknowledged:
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3625560) sentry:   #12  00:15:13 INFO     * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3625560) sentry:   #13  00:15:13 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3625560) sentry:   #14  00:15:19 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3625570) sentry:   #15  00:15:20 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3625570) sentry:   #16  00:15:26 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3625580) sentry:   #17  00:15:37 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3625580) sentry:   #18  00:16:57 CRITICAL   test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3625590) sentry:   #19  00:17:22 CRITICAL   test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3625600) sentry:   #20  00:26:06 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3625600) sentry:   #21  00:26:10 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3625610) sentry:   #22  00:26:19 INFO     * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3625610) sentry:   #23  00:26:20 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3625620) sentry:   #24  00:44:28 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3625620) sentry:   #25  00:44:33 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3625630) sentry:   #26  00:44:43 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3625640) sentry:   #27  00:44:43 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3625640) sentry:   #28  00:44:49 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3625650) sentry:   #29  00:44:50 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3625650) sentry:   #30  00:44:56 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3625660) sentry:   #31  00:44:57 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 TX > alert list
+DEBUG    drivers.device_driver:device_driver.py:89 RX < alert list
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3626160) sentry: [CIC] 20 alerts, 2 unacknowledged:
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3626160) sentry:   #12  00:15:13 INFO     * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3626160) sentry:   #13  00:15:13 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3626160) sentry:   #14  00:15:19 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3626170) sentry:   #15  00:15:20 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3626170) sentry:   #16  00:15:26 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3626180) sentry:   #17  00:15:37 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3626180) sentry:   #18  00:16:57 CRITICAL   test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3626190) sentry:   #19  00:17:22 CRITICAL   test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3626200) sentry:   #20  00:26:06 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3626200) sentry:   #21  00:26:10 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3626210) sentry:   #22  00:26:19 INFO     * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3626210) sentry:   #23  00:26:20 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3626220) sentry:   #24  00:44:28 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3626220) sentry:   #25  00:44:33 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3626230) sentry:   #26  00:44:43 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3626240) sentry:   #27  00:44:43 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3626240) sentry:   #28  00:44:49 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3626250) sentry:   #29  00:44:50 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3626250) sentry:   #30  00:44:56 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3626260) sentry:   #31  00:44:57 WARNING    test    test alert
+INFO     conftest:conftest.py:317 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz17\logs\automated\alert\2.3.0\20261020-test_alert_duplicate_acknowledgement_returns_w852.txt
+DEBUG    drivers.device_driver:device_driver.py:89 TX > version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3626830) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3626830) sentry:   partition: ota_0 @ 0x20000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3627850) sentry: [BEACON] off, color (255,0,0), brightness 100%, mode solid, timer off
+DEBUG    drivers.device_driver:device_driver.py:89 TX > whoami
+DEBUG    drivers.device_driver:device_driver.py:89 RX < whoami
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3628450) sentry: user: testUser, access: user
+DEBUG    drivers.device_driver:device_driver.py:89 TX > alert list
+DEBUG    drivers.device_driver:device_driver.py:89 RX < alert list
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3628660) sentry: [CIC] 20 alerts, 2 unacknowledged:
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3628660) sentry:   #12  00:15:13 INFO     * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3628660) sentry:   #13  00:15:13 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3628660) sentry:   #14  00:15:19 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3628670) sentry:   #15  00:15:20 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3628670) sentry:   #16  00:15:26 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3628680) sentry:   #17  00:15:37 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3628680) sentry:   #18  00:16:57 CRITICAL   test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3628690) sentry:   #19  00:17:22 CRITICAL   test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3628700) sentry:   #20  00:26:06 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3628700) sentry:   #21  00:26:10 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3628710) sentry:   #22  00:26:19 INFO     * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3628710) sentry:   #23  00:26:20 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3628720) sentry:   #24  00:44:28 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3628720) sentry:   #25  00:44:33 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3628730) sentry:   #26  00:44:43 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3628740) sentry:   #27  00:44:43 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3628740) sentry:   #28  00:44:49 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3628750) sentry:   #29  00:44:50 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3628750) sentry:   #30  00:44:56 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3628760) sentry:   #31  00:44:57 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 TX > alert ack 999999999
+DEBUG    drivers.device_driver:device_driver.py:89 RX < alert ack 999999999
+DEBUG    drivers.device_driver:device_driver.py:89 RX < E (3629280) sentry: E851 no alert #999999999
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3629890) sentry: [BEACON] timer cancelled
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp color 255 0 0
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp color 255 0 0
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3630300) sentry: [BEACON] color: (255,0,0)
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp brightness 100
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp brightness 100
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3630710) sentry: [BEACON] brightness: 100%
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp mode solid
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp mode solid
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3631120) sentry: [BEACON] mode: solid
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp off
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp off
+DEBUG    drivers.device_driver:device_driver.py:89 RX < W (3631530) sentry: W510 lamp already off
+INFO     conftest:conftest.py:317 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz17\logs\automated\alert\2.3.0\20261020-test_alert_unknown_id_returns_e851.txt
+DEBUG    drivers.device_driver:device_driver.py:89 TX > version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3631970) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3631970) sentry:   partition: ota_0 @ 0x20000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:89 TX > whoami
+DEBUG    drivers.device_driver:device_driver.py:89 RX < whoami
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3632980) sentry: user: testUser, access: user
+DEBUG    drivers.device_driver:device_driver.py:89 TX > alert list
+DEBUG    drivers.device_driver:device_driver.py:89 RX < alert list
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3633180) sentry: [CIC] 20 alerts, 2 unacknowledged:
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3633180) sentry:   #12  00:15:13 INFO     * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3633180) sentry:   #13  00:15:13 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3633180) sentry:   #14  00:15:19 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3633190) sentry:   #15  00:15:20 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3633190) sentry:   #16  00:15:26 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3633200) sentry:   #17  00:15:37 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3633200) sentry:   #18  00:16:57 CRITICAL   test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3633210) sentry:   #19  00:17:22 CRITICAL   test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3633220) sentry:   #20  00:26:06 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3633220) sentry:   #21  00:26:10 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3633230) sentry:   #22  00:26:19 INFO     * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3633230) sentry:   #23  00:26:20 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3633240) sentry:   #24  00:44:28 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3633240) sentry:   #25  00:44:33 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3633250) sentry:   #26  00:44:43 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3633260) sentry:   #27  00:44:43 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3633260) sentry:   #28  00:44:49 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3633270) sentry:   #29  00:44:50 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3633270) sentry:   #30  00:44:56 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3633280) sentry:   #31  00:44:57 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 TX > alert test info
+DEBUG    drivers.device_driver:device_driver.py:89 RX < alert test info
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3633800) sentry: [CIC #32 INFO] test: test alert
+DEBUG    drivers.device_driver:device_driver.py:89 TX > alert list
+DEBUG    drivers.device_driver:device_driver.py:89 RX < alert list
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3634400) sentry: [CIC] 20 alerts, 2 unacknowledged:
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3634400) sentry:   #13  00:15:13 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3634400) sentry:   #14  00:15:19 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3634400) sentry:   #15  00:15:20 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3634410) sentry:   #16  00:15:26 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3634410) sentry:   #17  00:15:37 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3634420) sentry:   #18  00:16:57 CRITICAL   test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3634420) sentry:   #19  00:17:22 CRITICAL   test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3634430) sentry:   #20  00:26:06 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3634440) sentry:   #21  00:26:10 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3634440) sentry:   #22  00:26:19 INFO     * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3634450) sentry:   #23  00:26:20 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3634450) sentry:   #24  00:44:28 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3634460) sentry:   #25  00:44:33 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3634460) sentry:   #26  00:44:43 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3634470) sentry:   #27  00:44:43 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3634480) sentry:   #28  00:44:49 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3634480) sentry:   #29  00:44:50 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3634490) sentry:   #30  00:44:56 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3634490) sentry:   #31  00:44:57 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3634500) sentry:   #32  00:45:09 INFO     * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 TX > alert clear
+DEBUG    drivers.device_driver:device_driver.py:89 RX < alert clear
+DEBUG    drivers.device_driver:device_driver.py:89 RX < E (3635010) sentry: E855 2 alerts not acknowledged. Use 'alert ack all' first
+DEBUG    drivers.device_driver:device_driver.py:89 TX > alert list
+DEBUG    drivers.device_driver:device_driver.py:89 RX < alert list
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3635610) sentry: [CIC] 20 alerts, 2 unacknowledged:
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3635610) sentry:   #13  00:15:13 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3635610) sentry:   #14  00:15:19 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3635610) sentry:   #15  00:15:20 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3635620) sentry:   #16  00:15:26 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3635620) sentry:   #17  00:15:37 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3635630) sentry:   #18  00:16:57 CRITICAL   test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3635630) sentry:   #19  00:17:22 CRITICAL   test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3635640) sentry:   #20  00:26:06 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3635650) sentry:   #21  00:26:10 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3635650) sentry:   #22  00:26:19 INFO     * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3635660) sentry:   #23  00:26:20 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3635660) sentry:   #24  00:44:28 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3635670) sentry:   #25  00:44:33 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3635670) sentry:   #26  00:44:43 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3635680) sentry:   #27  00:44:43 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3635690) sentry:   #28  00:44:49 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3635690) sentry:   #29  00:44:50 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3635700) sentry:   #30  00:44:56 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3635700) sentry:   #31  00:44:57 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3635710) sentry:   #32  00:45:09 INFO     * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 TX > alert list
+DEBUG    drivers.device_driver:device_driver.py:89 RX < alert list
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3636220) sentry: [CIC] 20 alerts, 2 unacknowledged:
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3636220) sentry:   #13  00:15:13 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3636220) sentry:   #14  00:15:19 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3636220) sentry:   #15  00:15:20 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3636230) sentry:   #16  00:15:26 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3636230) sentry:   #17  00:15:37 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3636240) sentry:   #18  00:16:57 CRITICAL   test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3636240) sentry:   #19  00:17:22 CRITICAL   test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3636250) sentry:   #20  00:26:06 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3636260) sentry:   #21  00:26:10 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3636260) sentry:   #22  00:26:19 INFO     * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3636270) sentry:   #23  00:26:20 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3636270) sentry:   #24  00:44:28 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3636280) sentry:   #25  00:44:33 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3636280) sentry:   #26  00:44:43 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3636290) sentry:   #27  00:44:43 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3636300) sentry:   #28  00:44:49 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3636300) sentry:   #29  00:44:50 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3636310) sentry:   #30  00:44:56 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3636310) sentry:   #31  00:44:57 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3636320) sentry:   #32  00:45:09 INFO     * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 TX > alert ack
+DEBUG    drivers.device_driver:device_driver.py:89 RX < alert ack
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3636820) sentry: [CIC] #32 acknowledged (command). Unacked: 1
+DEBUG    drivers.device_driver:device_driver.py:89 TX > alert list
+DEBUG    drivers.device_driver:device_driver.py:89 RX < alert list
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3637430) sentry: [CIC] 20 alerts, 1 unacknowledged:
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3637430) sentry:   #13  00:15:13 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3637430) sentry:   #14  00:15:19 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3637430) sentry:   #15  00:15:20 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3637440) sentry:   #16  00:15:26 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3637440) sentry:   #17  00:15:37 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3637450) sentry:   #18  00:16:57 CRITICAL   test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3637450) sentry:   #19  00:17:22 CRITICAL   test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3637460) sentry:   #20  00:26:06 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3637470) sentry:   #21  00:26:10 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3637470) sentry:   #22  00:26:19 INFO     * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3637480) sentry:   #23  00:26:20 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3637480) sentry:   #24  00:44:28 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3637490) sentry:   #25  00:44:33 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3637490) sentry:   #26  00:44:43 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3637500) sentry:   #27  00:44:43 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3637510) sentry:   #28  00:44:49 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3637510) sentry:   #29  00:44:50 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3637520) sentry:   #30  00:44:56 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3637520) sentry:   #31  00:44:57 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3637530) sentry:   #32  00:45:09 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 TX > alert list
+DEBUG    drivers.device_driver:device_driver.py:89 RX < alert list
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3638040) sentry: [CIC] 20 alerts, 1 unacknowledged:
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3638040) sentry:   #13  00:15:13 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3638040) sentry:   #14  00:15:19 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3638040) sentry:   #15  00:15:20 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3638050) sentry:   #16  00:15:26 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3638050) sentry:   #17  00:15:37 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3638060) sentry:   #18  00:16:57 CRITICAL   test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3638060) sentry:   #19  00:17:22 CRITICAL   test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3638070) sentry:   #20  00:26:06 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3638080) sentry:   #21  00:26:10 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3638080) sentry:   #22  00:26:19 INFO     * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3638090) sentry:   #23  00:26:20 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3638090) sentry:   #24  00:44:28 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3638100) sentry:   #25  00:44:33 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3638100) sentry:   #26  00:44:43 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3638110) sentry:   #27  00:44:43 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3638120) sentry:   #28  00:44:49 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3638120) sentry:   #29  00:44:50 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3638130) sentry:   #30  00:44:56 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3638130) sentry:   #31  00:44:57 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3638140) sentry:   #32  00:45:09 INFO       test    test alert
+INFO     conftest:conftest.py:317 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz17\logs\automated\alert\2.3.0\20261020-test_alert_clear_requires_acknowledgement.txt
+DEBUG    drivers.device_driver:device_driver.py:89 TX > version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3638680) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3638680) sentry:   partition: ota_0 @ 0x20000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:89 TX > whoami
+DEBUG    drivers.device_driver:device_driver.py:89 RX < whoami
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3639700) sentry: user: testUser, access: user
+DEBUG    drivers.device_driver:device_driver.py:89 TX > relay status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < relay status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3639910) sentry: [VALVE] closed, auto off, cycles 144
+DEBUG    drivers.device_driver:device_driver.py:89 TX > state
+DEBUG    drivers.device_driver:device_driver.py:89 RX < state
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3640520) sentry: state: 1 NORMAL
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3640520) sentry:   1 normal (patrol) | 2 debug (maintenance) | 3 verbose (tactical) | 4 emergency (surfacing, only from 3)
+DEBUG    drivers.device_driver:device_driver.py:89 TX > state
+DEBUG    drivers.device_driver:device_driver.py:89 RX < state
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3641130) sentry: state: 1 NORMAL
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3641130) sentry:   1 normal (patrol) | 2 debug (maintenance) | 3 verbose (tactical) | 4 emergency (surfacing, only from 3)
+INFO     manual_checks:manual_checks.py:192 MANUAL PREPARE | Waiting for operator confirmation.
+DEBUG    drivers.device_driver:device_driver.py:89 TX > alert test critical
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3651970) sentry: [TELEMETRY #116] 00:45:27 up 01:00:51 heap 251KB rssi -21 temp 31.4C depth 38.5m hull 4.8bar batt 24.1V valve closed sonar - watch disarmed alerts 1 state NORMAL
+DEBUG    drivers.device_driver:device_driver.py:89 RX < alert test critical
+DEBUG    drivers.device_driver:device_driver.py:89 RX < E (3673830) sentry: [CIC #33 CRITICAL] test: test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3673830) sentry: [VALVE] OPEN (critical alert)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < W (3673830) sentry: [STATE] 1 NORMAL -> 3 VERBOSE (by critical alert)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3673830) sentry: [STATE] VERBOSE (tactical): extended logs, telemetry every 10 s, LED heartbeat
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3673840) sentry: [V] 'alert' done in 14 ms
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3674330) sentry: [ACU] ambient noise 65 dB re 1uPa, sea state 2, water 8.2 C
+INFO     manual_checks:manual_checks.py:157 MANUAL CHECK | Did you hear the relay open after the CRITICAL alert changed NORMAL to VERBOSE? | result=PASS | comment=-
+INFO     manual_checks:manual_checks.py:157 MANUAL CHECK | Additional observation only (not an AL-5 pass criterion): Did the Beacon lamp flash purple? | result=PASS | comment=-
+DEBUG    drivers.device_driver:device_driver.py:89 TX > alert list
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3681970) sentry: [TELEMETRY #117] 00:45:57 up 01:01:21 heap 251KB rssi -30 temp 31.4C depth 38.8m hull 4.9bar batt 24.1V valve open sonar - watch disarmed alerts 2 state VERBOSE
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3681970) sentry: [V] telemetry: min heap 201KB, beacon off, tasks 16, water 8.2C, source auto
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3691980) sentry: [TELEMETRY #118] 00:46:07 up 01:01:31 heap 251KB rssi -37 temp 31.4C depth 38.8m hull 4.9bar batt 24.1V valve open sonar - watch disarmed alerts 2 state VERBOSE
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3691980) sentry: [V] telemetry: min heap 201KB, beacon off, tasks 16, water 8.2C, source auto
+DEBUG    drivers.device_driver:device_driver.py:89 RX < W (3694330) sentry: [PWR] battery bus ripple 140 mV (limit 250 mV)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < alert list
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3700120) sentry: [CIC] 20 alerts, 2 unacknowledged:
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3700120) sentry:   #14  00:15:19 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3700120) sentry:   #15  00:15:20 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3700120) sentry:   #16  00:15:26 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3700130) sentry:   #17  00:15:37 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3700130) sentry:   #18  00:16:57 CRITICAL   test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3700140) sentry:   #19  00:17:22 CRITICAL   test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3700140) sentry:   #20  00:26:06 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3700150) sentry:   #21  00:26:10 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3700160) sentry:   #22  00:26:19 INFO     * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3700160) sentry:   #23  00:26:20 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3700170) sentry:   #24  00:44:28 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3700170) sentry:   #25  00:44:33 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3700180) sentry:   #26  00:44:43 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3700180) sentry:   #27  00:44:43 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3700190) sentry:   #28  00:44:49 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3700200) sentry:   #29  00:44:50 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3700200) sentry:   #30  00:44:56 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3700210) sentry:   #31  00:44:57 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3700210) sentry:   #32  00:45:09 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3700220) sentry:   #33  00:45:49 CRITICAL * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3700230) sentry: [V] 'alert' done in 110 ms
+DEBUG    drivers.device_driver:device_driver.py:89 TX > relay status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < relay status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3700730) sentry: [VALVE] OPEN, auto off, cycles 145
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3700730) sentry: [V] 'relay' done in 0 ms
+DEBUG    drivers.device_driver:device_driver.py:89 TX > state
+DEBUG    drivers.device_driver:device_driver.py:89 RX < state
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3701340) sentry: state: 3 VERBOSE
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3701340) sentry:   1 normal (patrol) | 2 debug (maintenance) | 3 verbose (tactical) | 4 emergency (surfacing, only from 3)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3701340) sentry: [V] 'state' done in 3 ms
+DEBUG    drivers.device_driver:device_driver.py:89 TX > relay off
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3702030) sentry: [TELEMETRY #119] 00:46:17 up 01:01:41 heap 251KB rssi -25 temp 31.4C depth 38.9m hull 4.9bar batt 24.1V valve open sonar - watch disarmed alerts 2 state VERBOSE
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3702030) sentry: [V] telemetry: min heap 201KB, beacon off, tasks 16, water 8.2C, source auto
+DEBUG    drivers.device_driver:device_driver.py:89 RX < relay off
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3702510) sentry: [VALVE] CLOSED (command)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3702510) sentry: [V] valve driver GPIO8=0, cycles 146
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3702510) sentry: [V] 'relay' done in 11 ms
+DEBUG    drivers.device_driver:device_driver.py:89 TX > state
+DEBUG    drivers.device_driver:device_driver.py:89 RX < state
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3703100) sentry: state: 3 VERBOSE
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3703100) sentry:   1 normal (patrol) | 2 debug (maintenance) | 3 verbose (tactical) | 4 emergency (surfacing, only from 3)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3703100) sentry: [V] 'state' done in 3 ms
+DEBUG    drivers.device_driver:device_driver.py:89 TX > state 1
+DEBUG    drivers.device_driver:device_driver.py:89 RX < state 1
+DEBUG    drivers.device_driver:device_driver.py:89 RX < W (3703720) sentry: [STATE] 3 VERBOSE -> 1 NORMAL (by command)
+DEBUG    drivers.device_driver:device_driver.py:89 TX > state
+DEBUG    drivers.device_driver:device_driver.py:89 RX < state
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3704320) sentry: state: 1 NORMAL
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3704320) sentry:   1 normal (patrol) | 2 debug (maintenance) | 3 verbose (tactical) | 4 emergency (surfacing, only from 3)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3704330) sentry: [PWR] battery bus 24.08 V, load 1.8 A
+DEBUG    drivers.device_driver:device_driver.py:89 TX > alert list
+DEBUG    drivers.device_driver:device_driver.py:89 RX < alert list
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3704930) sentry: [CIC] 20 alerts, 2 unacknowledged:
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3704930) sentry:   #14  00:15:19 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3704930) sentry:   #15  00:15:20 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3704930) sentry:   #16  00:15:26 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3704940) sentry:   #17  00:15:37 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3704940) sentry:   #18  00:16:57 CRITICAL   test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3704950) sentry:   #19  00:17:22 CRITICAL   test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3704950) sentry:   #20  00:26:06 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3704960) sentry:   #21  00:26:10 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3704970) sentry:   #22  00:26:19 INFO     * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3704970) sentry:   #23  00:26:20 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3704980) sentry:   #24  00:44:28 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3704980) sentry:   #25  00:44:33 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3704990) sentry:   #26  00:44:43 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3704990) sentry:   #27  00:44:43 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3705000) sentry:   #28  00:44:49 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3705010) sentry:   #29  00:44:50 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3705010) sentry:   #30  00:44:56 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3705020) sentry:   #31  00:44:57 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3705020) sentry:   #32  00:45:09 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3705030) sentry:   #33  00:45:49 CRITICAL * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 TX > alert ack
+DEBUG    drivers.device_driver:device_driver.py:89 RX < alert ack
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3705530) sentry: [CIC] #33 acknowledged (command). Unacked: 1
+DEBUG    drivers.device_driver:device_driver.py:89 TX > alert list
+DEBUG    drivers.device_driver:device_driver.py:89 RX < alert list
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3706140) sentry: [CIC] 20 alerts, 1 unacknowledged:
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3706140) sentry:   #14  00:15:19 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3706140) sentry:   #15  00:15:20 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3706140) sentry:   #16  00:15:26 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3706150) sentry:   #17  00:15:37 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3706150) sentry:   #18  00:16:57 CRITICAL   test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3706160) sentry:   #19  00:17:22 CRITICAL   test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3706160) sentry:   #20  00:26:06 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3706170) sentry:   #21  00:26:10 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3706180) sentry:   #22  00:26:19 INFO     * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3706180) sentry:   #23  00:26:20 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3706190) sentry:   #24  00:44:28 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3706190) sentry:   #25  00:44:33 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3706200) sentry:   #26  00:44:43 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3706200) sentry:   #27  00:44:43 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3706210) sentry:   #28  00:44:49 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3706220) sentry:   #29  00:44:50 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3706220) sentry:   #30  00:44:56 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3706230) sentry:   #31  00:44:57 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3706230) sentry:   #32  00:45:09 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3706240) sentry:   #33  00:45:49 CRITICAL   test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 TX > alert list
+DEBUG    drivers.device_driver:device_driver.py:89 RX < alert list
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3706740) sentry: [CIC] 20 alerts, 1 unacknowledged:
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3706740) sentry:   #14  00:15:19 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3706740) sentry:   #15  00:15:20 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3706740) sentry:   #16  00:15:26 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3706750) sentry:   #17  00:15:37 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3706750) sentry:   #18  00:16:57 CRITICAL   test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3706760) sentry:   #19  00:17:22 CRITICAL   test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3706760) sentry:   #20  00:26:06 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3706770) sentry:   #21  00:26:10 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3706780) sentry:   #22  00:26:19 INFO     * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3706780) sentry:   #23  00:26:20 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3706790) sentry:   #24  00:44:28 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3706790) sentry:   #25  00:44:33 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3706800) sentry:   #26  00:44:43 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3706800) sentry:   #27  00:44:43 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3706810) sentry:   #28  00:44:49 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3706820) sentry:   #29  00:44:50 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3706820) sentry:   #30  00:44:56 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3706830) sentry:   #31  00:44:57 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3706830) sentry:   #32  00:45:09 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3706840) sentry:   #33  00:45:49 CRITICAL   test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 TX > relay status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < relay status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3707350) sentry: [VALVE] closed, auto off, cycles 146
+DEBUG    drivers.device_driver:device_driver.py:89 TX > state
+DEBUG    drivers.device_driver:device_driver.py:89 RX < state
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3707960) sentry: state: 1 NORMAL
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3707960) sentry:   1 normal (patrol) | 2 debug (maintenance) | 3 verbose (tactical) | 4 emergency (surfacing, only from 3)
+INFO     conftest:conftest.py:317 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz17\logs\automated\alert\2.3.0\20261020-test_alert_critical_effects_from-normal.txt
+DEBUG    drivers.device_driver:device_driver.py:89 TX > version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3708600) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3708600) sentry:   partition: ota_0 @ 0x20000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:89 TX > whoami
+DEBUG    drivers.device_driver:device_driver.py:89 RX < whoami
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3709610) sentry: user: testUser, access: user
+DEBUG    drivers.device_driver:device_driver.py:89 TX > relay status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < relay status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3709820) sentry: [VALVE] closed, auto off, cycles 146
+DEBUG    drivers.device_driver:device_driver.py:89 TX > state
+DEBUG    drivers.device_driver:device_driver.py:89 RX < state
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3710430) sentry: state: 1 NORMAL
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3710430) sentry:   1 normal (patrol) | 2 debug (maintenance) | 3 verbose (tactical) | 4 emergency (surfacing, only from 3)
+DEBUG    drivers.device_driver:device_driver.py:89 TX > state 2
+DEBUG    drivers.device_driver:device_driver.py:89 RX < state 2
+DEBUG    drivers.device_driver:device_driver.py:89 RX < W (3711040) sentry: [STATE] 1 NORMAL -> 2 DEBUG (by command)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3711040) sentry: [STATE] DEBUG (maintenance): raw transducer data, LED blink codes, parser diagnostics
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3711040) sentry: [V] 'state' done in 3 ms
+DEBUG    drivers.device_driver:device_driver.py:89 RX < W (3711330) sentry: [ACU] biologics detected (snapping shrimp), passive filter on
+DEBUG    drivers.device_driver:device_driver.py:89 TX > state
+DEBUG    drivers.device_driver:device_driver.py:89 RX < state
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3711650) sentry: [DBG] cmd 'state' args '' need 2
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3711650) sentry: state: 2 DEBUG
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3711650) sentry:   1 normal (patrol) | 2 debug (maintenance) | 3 verbose (tactical) | 4 emergency (surfacing, only from 3)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3711650) sentry: [V] 'state' done in 7 ms
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3712060) sentry: [TELEMETRY #120] 00:46:27 up 01:01:51 heap 251KB rssi -28 temp 31.4C depth 38.8m hull 4.9bar batt 24.1V valve closed sonar - watch disarmed alerts 1 state DEBUG
+INFO     manual_checks:manual_checks.py:192 MANUAL PREPARE | Waiting for operator confirmation.
+DEBUG    drivers.device_driver:device_driver.py:89 TX > alert test critical
+DEBUG    drivers.device_driver:device_driver.py:89 RX < alert test critical
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3720770) sentry: [DBG] cmd 'alert' args 'test critical' need 2
+DEBUG    drivers.device_driver:device_driver.py:89 RX < E (3720770) sentry: [CIC #34 CRITICAL] test: test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3720770) sentry: [VALVE] OPEN (critical alert)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3720770) sentry: [V] valve driver GPIO8=1, cycles 147
+DEBUG    drivers.device_driver:device_driver.py:89 RX < W (3720770) sentry: [STATE] 2 DEBUG -> 3 VERBOSE (by critical alert)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3720780) sentry: [STATE] VERBOSE (tactical): extended logs, telemetry every 10 s, LED heartbeat
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3720790) sentry: [V] 'alert' done in 23 ms
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3721330) sentry: [NAV] depth 38.4 m, heading 272, speed 2.9 kn
+INFO     manual_checks:manual_checks.py:157 MANUAL CHECK | Did you hear the relay open after the CRITICAL alert changed DEBUG to VERBOSE? | result=PASS | comment=-
+INFO     manual_checks:manual_checks.py:157 MANUAL CHECK | Additional observation only (not an AL-5 pass criterion): Did the Beacon lamp flash purple? | result=PASS | comment=-
+DEBUG    drivers.device_driver:device_driver.py:89 TX > alert list
+DEBUG    drivers.device_driver:device_driver.py:89 RX < alert list
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3730840) sentry: [CIC] 20 alerts, 2 unacknowledged:
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3730840) sentry:   #15  00:15:20 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3730840) sentry:   #16  00:15:26 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3730840) sentry:   #17  00:15:37 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3730850) sentry:   #18  00:16:57 CRITICAL   test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3730850) sentry:   #19  00:17:22 CRITICAL   test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3730860) sentry:   #20  00:26:06 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3730860) sentry:   #21  00:26:10 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3730870) sentry:   #22  00:26:19 INFO     * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3730880) sentry:   #23  00:26:20 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3730880) sentry:   #24  00:44:28 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3730890) sentry:   #25  00:44:33 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3730890) sentry:   #26  00:44:43 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3730900) sentry:   #27  00:44:43 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3730900) sentry:   #28  00:44:49 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3730910) sentry:   #29  00:44:50 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3730920) sentry:   #30  00:44:56 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3730920) sentry:   #31  00:44:57 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3730930) sentry:   #32  00:45:09 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3730930) sentry:   #33  00:45:49 CRITICAL   test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3730940) sentry:   #34  00:46:36 CRITICAL * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3730950) sentry: [V] 'alert' done in 110 ms
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3730950) sentry: [TELEMETRY #121] 00:46:46 up 01:02:10 heap 251KB rssi -31 temp 31.4C depth 38.4m hull 4.8bar batt 24.1V valve open sonar - watch disarmed alerts 2 state VERBOSE
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3730970) sentry: [V] telemetry: min heap 201KB, beacon off, tasks 16, water 8.3C, source auto
+DEBUG    drivers.device_driver:device_driver.py:89 TX > relay status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < relay status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3731440) sentry: [VALVE] OPEN, auto off, cycles 147
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3731440) sentry: [V] 'relay' done in 0 ms
+DEBUG    drivers.device_driver:device_driver.py:89 TX > state
+DEBUG    drivers.device_driver:device_driver.py:89 RX < state
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3732040) sentry: state: 3 VERBOSE
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3732040) sentry:   1 normal (patrol) | 2 debug (maintenance) | 3 verbose (tactical) | 4 emergency (surfacing, only from 3)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3732040) sentry: [V] 'state' done in 3 ms
+DEBUG    drivers.device_driver:device_driver.py:89 TX > relay off
+DEBUG    drivers.device_driver:device_driver.py:89 RX < relay off
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3733210) sentry: [VALVE] CLOSED (command)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3733210) sentry: [V] valve driver GPIO8=0, cycles 148
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3733210) sentry: [V] 'relay' done in 11 ms
+DEBUG    drivers.device_driver:device_driver.py:89 TX > state
+DEBUG    drivers.device_driver:device_driver.py:89 RX < state
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3733810) sentry: state: 3 VERBOSE
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3733810) sentry:   1 normal (patrol) | 2 debug (maintenance) | 3 verbose (tactical) | 4 emergency (surfacing, only from 3)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3733810) sentry: [V] 'state' done in 3 ms
+DEBUG    drivers.device_driver:device_driver.py:89 TX > state 1
+DEBUG    drivers.device_driver:device_driver.py:89 RX < state 1
+DEBUG    drivers.device_driver:device_driver.py:89 RX < W (3734420) sentry: [STATE] 3 VERBOSE -> 1 NORMAL (by command)
+DEBUG    drivers.device_driver:device_driver.py:89 TX > state
+DEBUG    drivers.device_driver:device_driver.py:89 RX < state
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3735020) sentry: state: 1 NORMAL
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3735020) sentry:   1 normal (patrol) | 2 debug (maintenance) | 3 verbose (tactical) | 4 emergency (surfacing, only from 3)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3735330) sentry: [ACU] ambient noise 58 dB re 1uPa, sea state 2, water 8.3 C
+DEBUG    drivers.device_driver:device_driver.py:89 TX > alert list
+DEBUG    drivers.device_driver:device_driver.py:89 RX < alert list
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3735630) sentry: [CIC] 20 alerts, 2 unacknowledged:
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3735630) sentry:   #15  00:15:20 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3735630) sentry:   #16  00:15:26 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3735630) sentry:   #17  00:15:37 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3735640) sentry:   #18  00:16:57 CRITICAL   test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3735640) sentry:   #19  00:17:22 CRITICAL   test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3735650) sentry:   #20  00:26:06 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3735650) sentry:   #21  00:26:10 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3735660) sentry:   #22  00:26:19 INFO     * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3735670) sentry:   #23  00:26:20 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3735670) sentry:   #24  00:44:28 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3735680) sentry:   #25  00:44:33 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3735680) sentry:   #26  00:44:43 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3735690) sentry:   #27  00:44:43 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3735690) sentry:   #28  00:44:49 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3735700) sentry:   #29  00:44:50 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3735710) sentry:   #30  00:44:56 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3735710) sentry:   #31  00:44:57 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3735720) sentry:   #32  00:45:09 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3735720) sentry:   #33  00:45:49 CRITICAL   test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3735730) sentry:   #34  00:46:36 CRITICAL * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 TX > alert ack
+DEBUG    drivers.device_driver:device_driver.py:89 RX < alert ack
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3736240) sentry: [CIC] #34 acknowledged (command). Unacked: 1
+DEBUG    drivers.device_driver:device_driver.py:89 TX > alert list
+DEBUG    drivers.device_driver:device_driver.py:89 RX < alert list
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3736850) sentry: [CIC] 20 alerts, 1 unacknowledged:
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3736850) sentry:   #15  00:15:20 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3736850) sentry:   #16  00:15:26 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3736850) sentry:   #17  00:15:37 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3736860) sentry:   #18  00:16:57 CRITICAL   test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3736860) sentry:   #19  00:17:22 CRITICAL   test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3736870) sentry:   #20  00:26:06 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3736870) sentry:   #21  00:26:10 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3736880) sentry:   #22  00:26:19 INFO     * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3736890) sentry:   #23  00:26:20 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3736890) sentry:   #24  00:44:28 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3736900) sentry:   #25  00:44:33 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3736900) sentry:   #26  00:44:43 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3736910) sentry:   #27  00:44:43 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3736910) sentry:   #28  00:44:49 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3736920) sentry:   #29  00:44:50 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3736930) sentry:   #30  00:44:56 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3736930) sentry:   #31  00:44:57 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3736940) sentry:   #32  00:45:09 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3736940) sentry:   #33  00:45:49 CRITICAL   test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3736950) sentry:   #34  00:46:36 CRITICAL   test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 TX > alert list
+DEBUG    drivers.device_driver:device_driver.py:89 RX < alert list
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3737460) sentry: [CIC] 20 alerts, 1 unacknowledged:
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3737460) sentry:   #15  00:15:20 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3737460) sentry:   #16  00:15:26 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3737460) sentry:   #17  00:15:37 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3737470) sentry:   #18  00:16:57 CRITICAL   test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3737470) sentry:   #19  00:17:22 CRITICAL   test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3737480) sentry:   #20  00:26:06 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3737480) sentry:   #21  00:26:10 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3737490) sentry:   #22  00:26:19 INFO     * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3737500) sentry:   #23  00:26:20 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3737500) sentry:   #24  00:44:28 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3737510) sentry:   #25  00:44:33 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3737510) sentry:   #26  00:44:43 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3737520) sentry:   #27  00:44:43 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3737520) sentry:   #28  00:44:49 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3737530) sentry:   #29  00:44:50 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3737540) sentry:   #30  00:44:56 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3737540) sentry:   #31  00:44:57 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3737550) sentry:   #32  00:45:09 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3737550) sentry:   #33  00:45:49 CRITICAL   test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3737560) sentry:   #34  00:46:36 CRITICAL   test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 TX > relay status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < relay status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3738070) sentry: [VALVE] closed, auto off, cycles 148
+DEBUG    drivers.device_driver:device_driver.py:89 TX > state
+DEBUG    drivers.device_driver:device_driver.py:89 RX < state
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3738670) sentry: state: 1 NORMAL
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3738670) sentry:   1 normal (patrol) | 2 debug (maintenance) | 3 verbose (tactical) | 4 emergency (surfacing, only from 3)
+INFO     conftest:conftest.py:317 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz17\logs\automated\alert\2.3.0\20261020-test_alert_critical_effects_from-debug.txt

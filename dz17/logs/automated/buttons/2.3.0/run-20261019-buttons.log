@@ -1,0 +1,417 @@
+DEBUG    drivers.device_driver:device_driver.py:89 TX > version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3014300) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3014300) sentry:   partition: ota_0 @ 0x20000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3015310) sentry: [BEACON] off, color (255,0,0), brightness 100%, mode solid, timer off
+DEBUG    drivers.device_driver:device_driver.py:89 TX > whoami
+DEBUG    drivers.device_driver:device_driver.py:89 RX < whoami
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3015920) sentry: user: testUser, access: user
+DEBUG    drivers.device_driver:device_driver.py:89 TX > status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3016120) sentry: === SWM-2 status ===
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3016120) sentry:   fw:       v2.3.0 (ota_0)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3016120) sentry:   state:    1 NORMAL
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3016120) sentry:   link:     buoy link 'TopA-node', ip 10.223.162.49, rssi -22 dBm (excellent), ch 1
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3016130) sentry:   internet: OK
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3016130) sentry:   user:     testUser (user)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3016130) sentry:   time:     19:51:09, uptime 0h 50m 15s
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3016140) sentry:   valve:    closed
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3016140) sentry:   watch:    disarmed, CIC alerts unacked: 2
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3016150) sentry:   sonar:    no contact
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3016150) sentry:   carrier:  depth 42.2 m, hull 5.2 bar, water 8.1 C, battery 24.12 V (sim)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3016160) sentry:   heap:     251 KB free
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3016330) sentry: [BEACON] off, color (255,0,0), brightness 100%, mode solid, timer off
+INFO     manual_checks:manual_checks.py:153 MANUAL PREPARE | Waiting for operator confirmation.
+DEBUG    drivers.device_driver:device_driver.py:89 TX > logout
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3024240) sentry: [TELEMETRY #97] 19:51:17 up 00:50:23 heap 251KB rssi -25 temp 31.4C depth 42.2m hull 5.2bar batt 24.1V valve closed sonar - watch disarmed alerts 2 state NORMAL
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3035890) sentry: [NAV] depth 42.4 m, heading 270, speed 2.8 kn
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3054240) sentry: [TELEMETRY #98] 19:51:47 up 00:50:53 heap 251KB rssi -23 temp 31.4C depth 42.4m hull 5.2bar batt 24.1V valve closed sonar - watch disarmed alerts 2 state NORMAL
+DEBUG    drivers.device_driver:device_driver.py:89 RX < logout
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3069530) sentry: [AUTH] operator testUser relieved from watch
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3070250) sentry: [BTN] K1 pressed
+DEBUG    drivers.device_driver:device_driver.py:89 RX < E (3070250) sentry: E003 lamp: login required
+DEBUG    drivers.device_driver:device_driver.py:89 TX > whoami
+DEBUG    drivers.device_driver:device_driver.py:89 RX < whoami
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3070540) sentry: not logged in
+DEBUG    drivers.device_driver:device_driver.py:89 TX > status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3071150) sentry: === SWM-2 status ===
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3071150) sentry:   fw:       v2.3.0 (ota_0)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3071150) sentry:   state:    1 NORMAL
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3071150) sentry:   link:     buoy link 'TopA-node', ip 10.223.162.49, rssi -25 dBm (excellent), ch 1
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3071160) sentry:   internet: OK
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3071160) sentry:   user:     not logged in
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3071160) sentry:   time:     19:52:04, uptime 0h 51m 10s
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3071170) sentry:   valve:    closed
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3071170) sentry:   watch:    disarmed, CIC alerts unacked: 2
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3071180) sentry:   sonar:    no contact
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3071180) sentry:   carrier:  depth 42.4 m, hull 5.2 bar, water 8.1 C, battery 24.12 V (sim)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3071190) sentry:   heap:     251 KB free
+INFO     manual_checks:manual_checks.py:118 MANUAL CHECK | Status LED guide: RED = Wi-Fi disconnected; ORANGE = Wi-Fi connected, logged out; GREEN = Wi-Fi connected, logged in. After logout, does the built-in RGB status LED show ORANGE (Wi-Fi connected, logged out)? | result=PASS | comment=-
+INFO     manual_checks:manual_checks.py:153 MANUAL PREPARE | Waiting for operator confirmation.
+DEBUG    drivers.device_driver:device_driver.py:89 RX < W (3111890) sentry: [HW] transducer #1 impedance drift +2.1% (compensated)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3134480) sentry: [BTN] K1 pressed
+DEBUG    drivers.device_driver:device_driver.py:89 RX < E (3134480) sentry: E003 lamp: login required
+INFO     manual_checks:manual_checks.py:118 MANUAL CHECK | Status LED guide: RED = Wi-Fi disconnected; ORANGE = Wi-Fi connected, logged out; GREEN = Wi-Fi connected, logged in. After the rejected K1 press, does the status LED still show ORANGE (Wi-Fi connected, logged out)? | result=PASS | comment=-
+DEBUG    drivers.device_driver:device_driver.py:89 TX > login testUser [REDACTED]
+DEBUG    drivers.device_driver:device_driver.py:89 RX < login testUser [REDACTED]
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3137850) sentry: [AUTH] operator testUser on watch, console 2
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3138040) sentry: [TELEMETRY] auto report every 30 s ('health off' to stop)
+DEBUG    drivers.device_driver:device_driver.py:89 TX > whoami
+DEBUG    drivers.device_driver:device_driver.py:89 RX < whoami
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3139860) sentry: user: testUser, access: user
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3140490) sentry: [BEACON] timer cancelled
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp color 255 0 0
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp color 255 0 0
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3140910) sentry: [BEACON] color: (255,0,0)
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp brightness 100
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp brightness 100
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3141310) sentry: [BEACON] brightness: 100%
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp mode solid
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp mode solid
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3141720) sentry: [BEACON] mode: solid
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp off
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp off
+DEBUG    drivers.device_driver:device_driver.py:89 RX < W (3142130) sentry: W510 lamp already off
+INFO     conftest:conftest.py:317 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz17\logs\automated\buttons\2.3.0\20261019-test_button_unauthenticated_blocked.txt
+DEBUG    drivers.device_driver:device_driver.py:89 TX > version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3142580) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3142580) sentry:   partition: ota_0 @ 0x20000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3143590) sentry: [BEACON] off, color (255,0,0), brightness 100%, mode solid, timer off
+DEBUG    drivers.device_driver:device_driver.py:89 TX > whoami
+DEBUG    drivers.device_driver:device_driver.py:89 RX < whoami
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3144190) sentry: user: testUser, access: user
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3144400) sentry: [BEACON] off, color (255,0,0), brightness 100%, mode solid, timer off
+INFO     manual_checks:manual_checks.py:153 MANUAL PREPARE | Waiting for operator confirmation.
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3168240) sentry: [TELEMETRY #99] 19:53:41 up 00:52:47 heap 251KB rssi -22 temp 31.4C depth 42.5m hull 5.2bar batt 24.1V valve closed sonar - watch disarmed alerts 2 state NORMAL
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3169790) sentry: [BTN] K1 pressed
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3169790) sentry: [BEACON] on (K1) solid, 100%, color (255,0,0)
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3170050) sentry: [BEACON] ON, color (255,0,0), brightness 100%, mode solid, timer off
+INFO     manual_checks:manual_checks.py:118 MANUAL CHECK | Did the Beacon lamp physically turn ON? Expected lamp color: RGB (255, 0, 0). | result=PASS | comment=-
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3173290) sentry: [BEACON] timer cancelled
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp color 255 0 0
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp color 255 0 0
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3173700) sentry: [BEACON] color: (255,0,0)
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp brightness 100
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp brightness 100
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3174110) sentry: [BEACON] brightness: 100%
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp mode solid
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp mode solid
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3174520) sentry: [BEACON] mode: solid
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp off
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp off
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3174930) sentry: [BEACON] off (command)
+INFO     conftest:conftest.py:317 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz17\logs\automated\buttons\2.3.0\20261019-test_button_k1_tap_toggle_lamp.txt
+DEBUG    drivers.device_driver:device_driver.py:89 TX > version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3175380) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3175380) sentry:   partition: ota_0 @ 0x20000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3176390) sentry: [BEACON] off, color (255,0,0), brightness 100%, mode solid, timer off
+DEBUG    drivers.device_driver:device_driver.py:89 TX > whoami
+DEBUG    drivers.device_driver:device_driver.py:89 RX < whoami
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3177000) sentry: user: testUser, access: user
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp color blue
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp color blue
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3177220) sentry: [BEACON] color: blue (0,0,255)
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp off
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp off
+DEBUG    drivers.device_driver:device_driver.py:89 RX < W (3177810) sentry: W510 lamp already off
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3178430) sentry: [BEACON] off, color (0,0,255), brightness 100%, mode solid, timer off
+INFO     manual_checks:manual_checks.py:153 MANUAL PREPARE | Waiting for operator confirmation.
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3183890) sentry: [ACU] ambient noise 65 dB re 1uPa, sea state 2, water 8.2 C
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3186500) sentry: [BTN] K1 pressed
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3186500) sentry: [BEACON] on (K1) solid, 100%, color (0,0,255)
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3186760) sentry: [BEACON] ON, color (0,0,255), brightness 100%, mode solid, timer off
+INFO     manual_checks:manual_checks.py:118 MANUAL CHECK | Did the Beacon lamp physically turn ON and show blue (RGB 0, 0, 255)? | result=PASS | comment=-
+INFO     manual_checks:manual_checks.py:153 MANUAL PREPARE | Waiting for operator confirmation.
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3197330) sentry: [BTN] K1 long press
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3197340) sentry: [BEACON] color: yellow (255,180,0) by K1
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3197510) sentry: [BEACON] ON, color (255,180,0), brightness 100%, mode solid, timer off
+INFO     manual_checks:manual_checks.py:118 MANUAL CHECK | Did the Beacon lamp physically change to its reported next color (RGB (255, 180, 0)) after K1 hold 1? | result=PASS | comment=-
+INFO     manual_checks:manual_checks.py:153 MANUAL PREPARE | Waiting for operator confirmation.
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3198240) sentry: [TELEMETRY #100] 19:54:11 up 00:53:17 heap 251KB rssi -27 temp 32.4C depth 42.4m hull 5.2bar batt 24.1V valve closed sonar - watch disarmed alerts 2 state NORMAL
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3228440) sentry: [TELEMETRY #101] 19:54:42 up 00:53:48 heap 251KB rssi -26 temp 31.4C depth 42.4m hull 5.2bar batt 24.1V valve closed sonar - watch disarmed alerts 2 state NORMAL
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3258440) sentry: [TELEMETRY #102] 19:55:12 up 00:54:18 heap 251KB rssi -26 temp 32.4C depth 42.4m hull 5.2bar batt 24.1V valve closed sonar - watch disarmed alerts 2 state NORMAL
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3258890) sentry: [PWR] battery bus 24.11 V, load 1.4 A
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3288640) sentry: [TELEMETRY #103] 19:55:42 up 00:54:48 heap 251KB rssi -21 temp 32.4C depth 42.1m hull 5.2bar batt 24.1V valve closed sonar - watch disarmed alerts 2 state NORMAL
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3289950) sentry: [BTN] K1 long press
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3289960) sentry: [BEACON] color: purple (160,0,255) by K1
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3290200) sentry: [BEACON] ON, color (160,0,255), brightness 100%, mode solid, timer off
+INFO     manual_checks:manual_checks.py:118 MANUAL CHECK | Did the Beacon lamp physically change to its reported next color (RGB (160, 0, 255)) after K1 hold 2? | result=PASS | comment=-
+INFO     manual_checks:manual_checks.py:153 MANUAL PREPARE | Waiting for operator confirmation.
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3296020) sentry: [BTN] K1 long press
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3296030) sentry: [BEACON] color: cyan (0,255,255) by K1
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3296280) sentry: [BEACON] ON, color (0,255,255), brightness 100%, mode solid, timer off
+INFO     manual_checks:manual_checks.py:118 MANUAL CHECK | Did the Beacon lamp physically change to its reported next color (RGB (0, 255, 255)) after K1 hold 3? | result=PASS | comment=-
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3299000) sentry: [BEACON] timer cancelled
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp color 255 0 0
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp color 255 0 0
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3299420) sentry: [BEACON] color: (255,0,0)
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp brightness 100
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp brightness 100
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3299820) sentry: [BEACON] brightness: 100%
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp mode solid
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp mode solid
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3300230) sentry: [BEACON] mode: solid
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp off
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp off
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3300640) sentry: [BEACON] off (command)
+INFO     conftest:conftest.py:317 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz17\logs\automated\buttons\2.3.0\20261019-test_button_k1_hold_next_color.txt
+DEBUG    drivers.device_driver:device_driver.py:89 TX > version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3301090) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3301090) sentry:   partition: ota_0 @ 0x20000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:89 TX > whoami
+DEBUG    drivers.device_driver:device_driver.py:89 RX < whoami
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3302100) sentry: user: testUser, access: user
+DEBUG    drivers.device_driver:device_driver.py:89 TX > relay status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < relay status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3302310) sentry: [VALVE] closed, auto off, cycles 124
+INFO     manual_checks:manual_checks.py:153 MANUAL PREPARE | Waiting for operator confirmation.
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3307340) sentry: [BTN] K2 pressed
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3307340) sentry: [VALVE] OPEN (K2)
+INFO     manual_checks:manual_checks.py:118 MANUAL CHECK | Did you hear/observe the relay switch to OPEN? | result=PASS | comment=-
+DEBUG    drivers.device_driver:device_driver.py:89 TX > relay status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < relay status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3310050) sentry: [VALVE] OPEN, auto off, cycles 125
+DEBUG    drivers.device_driver:device_driver.py:89 TX > relay off
+DEBUG    drivers.device_driver:device_driver.py:89 RX < relay off
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3310670) sentry: [VALVE] CLOSED (command)
+DEBUG    drivers.device_driver:device_driver.py:89 TX > relay status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < relay status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3311270) sentry: [VALVE] closed, auto off, cycles 126
+INFO     conftest:conftest.py:317 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz17\logs\automated\buttons\2.3.0\20261019-test_button_k2_tap_toggle_relay.txt
+DEBUG    drivers.device_driver:device_driver.py:89 TX > version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3311920) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3311920) sentry:   partition: ota_0 @ 0x20000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3312930) sentry: [BEACON] off, color (255,0,0), brightness 100%, mode solid, timer off
+DEBUG    drivers.device_driver:device_driver.py:89 TX > whoami
+DEBUG    drivers.device_driver:device_driver.py:89 RX < whoami
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3313540) sentry: user: testUser, access: user
+DEBUG    drivers.device_driver:device_driver.py:89 TX > relay off
+DEBUG    drivers.device_driver:device_driver.py:89 RX < relay off
+DEBUG    drivers.device_driver:device_driver.py:89 RX < W (3313750) sentry: W601 relay already off
+INFO     manual_checks:manual_checks.py:153 MANUAL PREPARE | Waiting for operator confirmation.
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3318640) sentry: [TELEMETRY #104] 19:56:12 up 00:55:18 heap 251KB rssi -26 temp 32.4C depth 42.1m hull 5.2bar batt 24.1V valve closed sonar - watch disarmed alerts 2 state NORMAL
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3321050) sentry: [BTN] K2 long press
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3321050) sentry: [VALVE] OPEN (K2 pulse)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3322080) sentry: [VALVE] CLOSED (pulse end)
+INFO     manual_checks:manual_checks.py:118 MANUAL CHECK | Did the relay click OPEN and then click CLOSED after 1 second? | result=PASS | comment=-
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3325150) sentry: [BEACON] timer cancelled
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp color 255 0 0
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp color 255 0 0
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3325560) sentry: [BEACON] color: (255,0,0)
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp brightness 100
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp brightness 100
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3325970) sentry: [BEACON] brightness: 100%
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp mode solid
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp mode solid
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3326380) sentry: [BEACON] mode: solid
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp off
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp off
+DEBUG    drivers.device_driver:device_driver.py:89 RX < W (3326790) sentry: W510 lamp already off
+INFO     conftest:conftest.py:317 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz17\logs\automated\buttons\2.3.0\20261019-test_button_k2_hold_pulse_relay.txt
+DEBUG    drivers.device_driver:device_driver.py:89 TX > version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3327240) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3327240) sentry:   partition: ota_0 @ 0x20000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3328250) sentry: [BEACON] off, color (255,0,0), brightness 100%, mode solid, timer off
+DEBUG    drivers.device_driver:device_driver.py:89 TX > whoami
+DEBUG    drivers.device_driver:device_driver.py:89 RX < whoami
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3328860) sentry: user: testUser, access: user
+INFO     manual_checks:manual_checks.py:153 MANUAL PREPARE | Waiting for operator confirmation.
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3329890) sentry: [NAV] depth 42.4 m, heading 270, speed 3.1 kn
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3341510) sentry: [BTN] K3 pressed
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3341510) sentry: [SONAR] active pinging for 30 s, every 500 ms (K3)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3341590) sentry: [SONAR] ping: echo 14.0 cm
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3342140) sentry: [SONAR] ping: echo 14.0 cm
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3342690) sentry: [SONAR] ping: echo 14.0 cm
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3343240) sentry: [SONAR] ping: echo 14.0 cm
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3343790) sentry: [SONAR] ping: echo 14.0 cm
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3344340) sentry: [SONAR] ping: echo 10.6 cm
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3344890) sentry: [SONAR] ping: echo 9.5 cm
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3345440) sentry: [SONAR] ping: echo 9.5 cm
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3345990) sentry: [SONAR] ping: echo 9.5 cm
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3346540) sentry: [SONAR] ping: echo 9.5 cm
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3346910) sentry: [BTN] K3 pressed
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3346910) sentry: [SONAR] pinging stopped (K3)
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3347210) sentry: [BEACON] timer cancelled
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp color 255 0 0
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp color 255 0 0
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3347620) sentry: [BEACON] color: (255,0,0)
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp brightness 100
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp brightness 100
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3348030) sentry: [BEACON] brightness: 100%
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp mode solid
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp mode solid
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3348440) sentry: [BEACON] mode: solid
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3348640) sentry: [TELEMETRY #105] 19:56:42 up 00:55:48 heap 251KB rssi -28 temp 31.4C depth 42.4m hull 5.2bar batt 24.1V valve closed sonar 9.5cm watch disarmed alerts 2 state NORMAL
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp off
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp off
+DEBUG    drivers.device_driver:device_driver.py:89 RX < W (3348840) sentry: W510 lamp already off
+INFO     conftest:conftest.py:317 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz17\logs\automated\buttons\2.3.0\20261019-test_button_k3_sonar_stream.txt
+DEBUG    drivers.device_driver:device_driver.py:89 TX > version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3349290) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3349290) sentry:   partition: ota_0 @ 0x20000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:89 TX > whoami
+DEBUG    drivers.device_driver:device_driver.py:89 RX < whoami
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3350290) sentry: user: testUser, access: user
+DEBUG    drivers.device_driver:device_driver.py:89 TX > alert test info
+DEBUG    drivers.device_driver:device_driver.py:89 RX < alert test info
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3350500) sentry: [CIC #4 INFO] test: test alert
+DEBUG    drivers.device_driver:device_driver.py:89 TX > alert list
+DEBUG    drivers.device_driver:device_driver.py:89 RX < alert list
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3351110) sentry: [CIC] 4 alerts, 3 unacknowledged:
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3351110) sentry:   #1   19:04:50 WARNING  * sonar   collision risk: contact at 14.0 cm
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3351110) sentry:   #2   19:04:50 INFO     * sonar   proximity threshold 25 cm crossed: 14.0 cm
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3351120) sentry:   #3   19:32:14 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3351120) sentry:   #4   19:56:44 INFO     * test    test alert
+INFO     manual_checks:manual_checks.py:153 MANUAL PREPARE | Waiting for operator confirmation.
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3361010) sentry: [BTN] K4 pressed
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3361010) sentry: [CIC] #4 acknowledged (K4). Unacked: 2
+DEBUG    drivers.device_driver:device_driver.py:89 TX > alert list
+DEBUG    drivers.device_driver:device_driver.py:89 RX < alert list
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3361140) sentry: [CIC] 4 alerts, 2 unacknowledged:
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3361140) sentry:   #1   19:04:50 WARNING  * sonar   collision risk: contact at 14.0 cm
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3361140) sentry:   #2   19:04:50 INFO     * sonar   proximity threshold 25 cm crossed: 14.0 cm
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3361150) sentry:   #3   19:32:14 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3361150) sentry:   #4   19:56:44 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 TX > alert list
+DEBUG    drivers.device_driver:device_driver.py:89 RX < alert list
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3361750) sentry: [CIC] 4 alerts, 2 unacknowledged:
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3361750) sentry:   #1   19:04:50 WARNING  * sonar   collision risk: contact at 14.0 cm
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3361750) sentry:   #2   19:04:50 INFO     * sonar   proximity threshold 25 cm crossed: 14.0 cm
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3361760) sentry:   #3   19:32:14 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3361760) sentry:   #4   19:56:44 INFO       test    test alert
+INFO     conftest:conftest.py:317 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz17\logs\automated\buttons\2.3.0\20261019-test_button_k4_tap_acknowledges_latest_alert_or_returns_e099.txt
+DEBUG    drivers.device_driver:device_driver.py:89 TX > version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3362400) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3362400) sentry:   partition: ota_0 @ 0x20000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3363410) sentry: [BEACON] off, color (255,0,0), brightness 100%, mode solid, timer off
+DEBUG    drivers.device_driver:device_driver.py:89 TX > whoami
+DEBUG    drivers.device_driver:device_driver.py:89 RX < whoami
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3364010) sentry: user: testUser, access: user
+INFO     manual_checks:manual_checks.py:153 MANUAL PREPARE | Waiting for operator confirmation.
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3378840) sentry: [TELEMETRY #106] 19:57:12 up 00:56:18 heap 251KB rssi -27 temp 31.4C depth 42.4m hull 5.2bar batt 24.1V valve closed sonar 9.5cm watch disarmed alerts 2 state NORMAL
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3396860) sentry: [BTN] K2+K3 held 2 s -> state 2
+DEBUG    drivers.device_driver:device_driver.py:89 RX < W (3396860) sentry: [STATE] 1 NORMAL -> 2 DEBUG (by buttons)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3396860) sentry: [STATE] DEBUG (maintenance): raw transducer data, LED blink codes, parser diagnostics
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3396890) sentry: [ACU] ambient noise 72 dB re 1uPa, sea state 2, water 8.1 C
+DEBUG    drivers.device_driver:device_driver.py:89 TX > state
+DEBUG    drivers.device_driver:device_driver.py:89 RX < state
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3397050) sentry: [DBG] cmd 'state' args '' need 2
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3397050) sentry: state: 2 DEBUG
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3397050) sentry:   1 normal (patrol) | 2 debug (maintenance) | 3 verbose (tactical) | 4 emergency (surfacing, only from 3)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3397050) sentry: [V] 'state' done in 7 ms
+INFO     manual_checks:manual_checks.py:118 MANUAL CHECK | Did the device enter DEBUG state (RGB LED blinking blue)? | result=PASS | comment=-
+INFO     manual_checks:manual_checks.py:153 MANUAL PREPARE | Waiting for operator confirmation.
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3408560) sentry: [V] button K1 down
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3408890) sentry: [V] button K2 down
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3409040) sentry: [TELEMETRY #107] 19:57:42 up 00:56:48 heap 251KB rssi -26 temp 31.4C depth 42.6m hull 5.3bar batt 24.1V valve closed sonar - watch disarmed alerts 2 state DEBUG
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3410900) sentry: [BTN] K1+K2 held 2 s -> state 1
+DEBUG    drivers.device_driver:device_driver.py:89 RX < W (3410900) sentry: [STATE] 2 DEBUG -> 1 NORMAL (by buttons)
+DEBUG    drivers.device_driver:device_driver.py:89 TX > state
+DEBUG    drivers.device_driver:device_driver.py:89 RX < W (3411890) sentry: [ACU] own-ship noise: pump #2 cavitation suspected
+DEBUG    drivers.device_driver:device_driver.py:89 RX < state
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3412170) sentry: state: 1 NORMAL
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3412170) sentry:   1 normal (patrol) | 2 debug (maintenance) | 3 verbose (tactical) | 4 emergency (surfacing, only from 3)
+INFO     manual_checks:manual_checks.py:118 MANUAL CHECK | Did the device return to NORMAL state? | result=PASS | comment=-
+DEBUG    drivers.device_driver:device_driver.py:89 TX > state
+DEBUG    drivers.device_driver:device_driver.py:89 RX < state
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3417140) sentry: state: 1 NORMAL
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3417140) sentry:   1 normal (patrol) | 2 debug (maintenance) | 3 verbose (tactical) | 4 emergency (surfacing, only from 3)
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3417750) sentry: [BEACON] timer cancelled
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp color 255 0 0
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp color 255 0 0
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3418170) sentry: [BEACON] color: (255,0,0)
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp brightness 100
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp brightness 100
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3418580) sentry: [BEACON] brightness: 100%
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp mode solid
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp mode solid
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3418990) sentry: [BEACON] mode: solid
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp off
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp off
+DEBUG    drivers.device_driver:device_driver.py:89 RX < W (3419400) sentry: W510 lamp already off
+INFO     conftest:conftest.py:317 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz17\logs\automated\buttons\2.3.0\20261019-test_button_pairs_debug_and_normal.txt
+DEBUG    drivers.device_driver:device_driver.py:89 TX > version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3419850) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3419850) sentry:   partition: ota_0 @ 0x20000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3420860) sentry: [BEACON] off, color (255,0,0), brightness 100%, mode solid, timer off
+DEBUG    drivers.device_driver:device_driver.py:89 TX > whoami
+DEBUG    drivers.device_driver:device_driver.py:89 RX < whoami
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3421470) sentry: user: testUser, access: user
+DEBUG    drivers.device_driver:device_driver.py:89 TX > state
+DEBUG    drivers.device_driver:device_driver.py:89 RX < state
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3421680) sentry: state: 1 NORMAL
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3421680) sentry:   1 normal (patrol) | 2 debug (maintenance) | 3 verbose (tactical) | 4 emergency (surfacing, only from 3)
+INFO     manual_checks:manual_checks.py:153 MANUAL PREPARE | Waiting for operator confirmation.
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3433010) sentry: [BTN] K4+K1 held 2 s -> state 4
+DEBUG    drivers.device_driver:device_driver.py:89 RX < E (3433010) sentry: E302 EMERGENCY can be entered only from 3 VERBOSE (now 1 NORMAL)
+DEBUG    drivers.device_driver:device_driver.py:89 TX > state
+DEBUG    drivers.device_driver:device_driver.py:89 RX < state
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3433180) sentry: state: 1 NORMAL
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3433180) sentry:   1 normal (patrol) | 2 debug (maintenance) | 3 verbose (tactical) | 4 emergency (surfacing, only from 3)
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3433790) sentry: [BEACON] timer cancelled
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp color 255 0 0
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp color 255 0 0
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3434200) sentry: [BEACON] color: (255,0,0)
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp brightness 100
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp brightness 100
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3434610) sentry: [BEACON] brightness: 100%
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp mode solid
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp mode solid
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (3435020) sentry: [BEACON] mode: solid
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp off
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp off
+DEBUG    drivers.device_driver:device_driver.py:89 RX < W (3435440) sentry: W510 lamp already off
+INFO     conftest:conftest.py:317 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz17\logs\automated\buttons\2.3.0\20261019-test_button_pair_k4_k1_rejected_from_normal.txt

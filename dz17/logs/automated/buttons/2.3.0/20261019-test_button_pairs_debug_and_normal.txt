@@ -1,0 +1,54 @@
+Test: tests/test_buttons.py::TestButtons::test_button_pairs_debug_and_normal
+Firmware: 2.3.0
+Captured: 2026-10-19T19:57:53.987727+03:00
+
+TX > version
+RX < version
+RX < I (3362400) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+RX < I (3362400) sentry:   partition: ota_0 @ 0x20000, state: valid
+TX > lamp status
+RX < lamp status
+RX < I (3363410) sentry: [BEACON] off, color (255,0,0), brightness 100%, mode solid, timer off
+TX > whoami
+RX < whoami
+RX < I (3364010) sentry: user: testUser, access: user
+RX < I (3378840) sentry: [TELEMETRY #106] 19:57:12 up 00:56:18 heap 251KB rssi -27 temp 31.4C depth 42.4m hull 5.2bar batt 24.1V valve closed sonar 9.5cm watch disarmed alerts 2 state NORMAL
+RX < I (3396860) sentry: [BTN] K2+K3 held 2 s -> state 2
+RX < W (3396860) sentry: [STATE] 1 NORMAL -> 2 DEBUG (by buttons)
+RX < I (3396860) sentry: [STATE] DEBUG (maintenance): raw transducer data, LED blink codes, parser diagnostics
+RX < I (3396890) sentry: [ACU] ambient noise 72 dB re 1uPa, sea state 2, water 8.1 C
+TX > state
+RX < state
+RX < I (3397050) sentry: [DBG] cmd 'state' args '' need 2
+RX < I (3397050) sentry: state: 2 DEBUG
+RX < I (3397050) sentry:   1 normal (patrol) | 2 debug (maintenance) | 3 verbose (tactical) | 4 emergency (surfacing, only from 3)
+RX < I (3397050) sentry: [V] 'state' done in 7 ms
+RX < I (3408560) sentry: [V] button K1 down
+RX < I (3408890) sentry: [V] button K2 down
+RX < I (3409040) sentry: [TELEMETRY #107] 19:57:42 up 00:56:48 heap 251KB rssi -26 temp 31.4C depth 42.6m hull 5.3bar batt 24.1V valve closed sonar - watch disarmed alerts 2 state DEBUG
+RX < I (3410900) sentry: [BTN] K1+K2 held 2 s -> state 1
+RX < W (3410900) sentry: [STATE] 2 DEBUG -> 1 NORMAL (by buttons)
+TX > state
+RX < W (3411890) sentry: [ACU] own-ship noise: pump #2 cavitation suspected
+RX < state
+RX < I (3412170) sentry: state: 1 NORMAL
+RX < I (3412170) sentry:   1 normal (patrol) | 2 debug (maintenance) | 3 verbose (tactical) | 4 emergency (surfacing, only from 3)
+TX > state
+RX < state
+RX < I (3417140) sentry: state: 1 NORMAL
+RX < I (3417140) sentry:   1 normal (patrol) | 2 debug (maintenance) | 3 verbose (tactical) | 4 emergency (surfacing, only from 3)
+TX > lamp timer 0
+RX < lamp timer 0
+RX < I (3417750) sentry: [BEACON] timer cancelled
+TX > lamp color 255 0 0
+RX < lamp color 255 0 0
+RX < I (3418170) sentry: [BEACON] color: (255,0,0)
+TX > lamp brightness 100
+RX < lamp brightness 100
+RX < I (3418580) sentry: [BEACON] brightness: 100%
+TX > lamp mode solid
+RX < lamp mode solid
+RX < I (3418990) sentry: [BEACON] mode: solid
+TX > lamp off
+RX < lamp off
+RX < W (3419400) sentry: W510 lamp already off

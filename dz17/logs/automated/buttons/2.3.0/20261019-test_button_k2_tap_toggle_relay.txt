@@ -1,0 +1,25 @@
+Test: tests/test_buttons.py::TestButtons::test_button_k2_tap_toggle_relay
+Firmware: 2.3.0
+Captured: 2026-10-19T19:56:06.064199+03:00
+
+TX > version
+RX < version
+RX < I (3301090) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+RX < I (3301090) sentry:   partition: ota_0 @ 0x20000, state: valid
+TX > whoami
+RX < whoami
+RX < I (3302100) sentry: user: testUser, access: user
+TX > relay status
+RX < relay status
+RX < I (3302310) sentry: [VALVE] closed, auto off, cycles 124
+RX < I (3307340) sentry: [BTN] K2 pressed
+RX < I (3307340) sentry: [VALVE] OPEN (K2)
+TX > relay status
+RX < relay status
+RX < I (3310050) sentry: [VALVE] OPEN, auto off, cycles 125
+TX > relay off
+RX < relay off
+RX < I (3310670) sentry: [VALVE] CLOSED (command)
+TX > relay status
+RX < relay status
+RX < I (3311270) sentry: [VALVE] closed, auto off, cycles 126

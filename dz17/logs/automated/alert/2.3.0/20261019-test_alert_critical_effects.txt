@@ -1,0 +1,60 @@
+Test: tests/test_alert.py::TestAlertCenter::test_alert_critical_effects
+Firmware: 2.3.0
+Captured: 2026-10-19T20:25:25.552640+03:00
+
+TX > version
+RX < version
+RX < I (5049560) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+RX < I (5049560) sentry:   partition: ota_0 @ 0x20000, state: valid
+TX > whoami
+RX < whoami
+RX < I (5050570) sentry: user: testUser, access: user
+TX > relay status
+RX < relay status
+RX < I (5050770) sentry: [VALVE] closed, auto off, cycles 130
+TX > state
+RX < state
+RX < I (5051390) sentry: state: 1 NORMAL
+RX < I (5051390) sentry:   1 normal (patrol) | 2 debug (maintenance) | 3 verbose (tactical) | 4 emergency (surfacing, only from 3)
+TX > alert test critical
+RX < I (5059370) sentry: [TELEMETRY #163] 20:25:12 up 01:24:18 heap 251KB rssi -21 temp 31.4C depth 40.3m hull 5.0bar batt 24.1V valve closed sonar - watch disarmed alerts 3 state NORMAL
+RX < alert test critical
+RX < E (5061030) sentry: [CIC #14 CRITICAL] test: test alert
+RX < I (5061030) sentry: [VALVE] OPEN (critical alert)
+RX < W (5061030) sentry: [STATE] 1 NORMAL -> 3 VERBOSE (by critical alert)
+RX < I (5061030) sentry: [STATE] VERBOSE (tactical): extended logs, telemetry every 10 s, LED heartbeat
+RX < I (5061040) sentry: [V] 'alert' done in 13 ms
+RX < I (5061890) sentry: [PWR] battery bus 24.06 V, load 1.6 A
+TX > relay status
+RX < relay status
+RX < I (5062040) sentry: [VALVE] OPEN, auto off, cycles 131
+RX < I (5062040) sentry: [V] 'relay' done in 0 ms
+TX > state
+RX < state
+RX < I (5062650) sentry: state: 3 VERBOSE
+RX < I (5062650) sentry:   1 normal (patrol) | 2 debug (maintenance) | 3 verbose (tactical) | 4 emergency (surfacing, only from 3)
+RX < I (5062650) sentry: [V] 'state' done in 3 ms
+TX > relay off
+RX < relay off
+RX < I (5067780) sentry: [VALVE] CLOSED (command)
+RX < I (5067780) sentry: [V] valve driver GPIO8=0, cycles 132
+RX < I (5067780) sentry: [V] 'relay' done in 11 ms
+TX > state
+RX < state
+RX < I (5068370) sentry: state: 3 VERBOSE
+RX < I (5068370) sentry:   1 normal (patrol) | 2 debug (maintenance) | 3 verbose (tactical) | 4 emergency (surfacing, only from 3)
+RX < I (5068370) sentry: [V] 'state' done in 3 ms
+TX > state 1
+RX < state 1
+RX < W (5068980) sentry: [STATE] 3 VERBOSE -> 1 NORMAL (by command)
+TX > alert ack 14
+RX < alert ack 14
+RX < I (5069590) sentry: [CIC] #14 acknowledged
+RX < I (5069890) sentry: [NAV] depth 40.5 m, heading 272, speed 3.3 kn
+TX > relay status
+RX < relay status
+RX < I (5070200) sentry: [VALVE] closed, auto off, cycles 132
+TX > state
+RX < state
+RX < I (5070810) sentry: state: 1 NORMAL
+RX < I (5070810) sentry:   1 normal (patrol) | 2 debug (maintenance) | 3 verbose (tactical) | 4 emergency (surfacing, only from 3)

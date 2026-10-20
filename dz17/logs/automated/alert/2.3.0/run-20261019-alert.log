@@ -1,0 +1,573 @@
+DEBUG    drivers.device_driver:device_driver.py:89 TX > version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (288280) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (288280) sentry:   partition: ota_0 @ 0x20000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:89 TX > whoami
+DEBUG    drivers.device_driver:device_driver.py:89 RX < whoami
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (289290) sentry: not logged in
+DEBUG    drivers.device_driver:device_driver.py:89 TX > status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (289500) sentry: === SWM-2 status ===
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (289500) sentry:   fw:       v2.3.0 (ota_0)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (289500) sentry:   state:    1 NORMAL
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (289500) sentry:   link:     buoy link down (known: TopA-node)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (289500) sentry:   user:     not logged in
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (289500) sentry:   time:     --:--:--, uptime 0h 04m 49s
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (289510) sentry:   valve:    closed
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (289510) sentry:   watch:    disarmed, CIC alerts unacked: 0
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (289520) sentry:   sonar:    no contact
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (289520) sentry:   carrier:  depth 41.8 m, hull 5.2 bar, water 8.0 C, battery 24.19 V (sim)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (289530) sentry:   heap:     254 KB free
+DEBUG    drivers.device_driver:device_driver.py:89 TX > reconnect
+DEBUG    drivers.device_driver:device_driver.py:89 RX < reconnect
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (289800) sentry: [LINK] raising buoy antenna, connecting to 'TopA-node'...
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (289920) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (289920) wifi:state: init -> auth (0xb0)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (289950) wifi:state: auth -> assoc (0x0)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (289950) wifi:state: assoc -> run (0x10)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (289970) wifi:connected with TopA-node, aid = 1, channel 1, BW20, bssid = 9e:b7:1c:5c:c0:b8
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (289970) wifi:security: WPA2-PSK, phy: bgn, rssi: -32, cipher(pairwise:0x3, group:0x3), pmf:1
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (289980) wifi:pm start, type: 1
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (289980) wifi:dp: 1, bi: 102400, li: 3, scale listen interval from 307200 us to 307200 us
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (289990) wifi:set rx beacon pti, rx_bcn_pti: 0, bcn_timeout: 25000, mt_pti: 0, mt_time: 10000
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (290040) wifi:dp: 2, bi: 102400, li: 4, scale listen interval from 307200 us to 409600 us
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (290040) wifi:AP's beacon interval = 102400 us, DTIM period = 2
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (291020) esp_netif_handlers: sta ip: 10.223.162.49, mask: 255.255.255.0, gw: 10.223.162.101
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (291020) sentry: [LINK] got ip
+DEBUG    drivers.device_driver:device_driver.py:89 RX < 10.223.162.49
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (291020) sentry: [LINK] connected to 'TopA-node', rssi -31 dBm (excellent)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (291140) wifi:<ba-add>idx:0 (ifx:0, 9e:b7:1c:5c:c0:b8), tid:0, ssn:3, winSize:64
+DEBUG    drivers.device_driver:device_driver.py:89 TX > [REDACTED]
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (291660) esp-x509-crt-bundle: Certificate validated
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (292440) sentry: [LINK] fleet network reachable (internet OK)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (297660) sentry: [LINK] time: synced via NTP, 23:49:32
+DEBUG    drivers.device_driver:device_driver.py:89 RX < [REDACTED]
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (297760) sentry: [AUTH] operator testUser on watch, console 2
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (297840) sentry: [TELEMETRY] auto report every 30 s ('health off' to stop)
+DEBUG    drivers.device_driver:device_driver.py:89 TX > whoami
+DEBUG    drivers.device_driver:device_driver.py:89 RX < whoami
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (298020) sentry: user: testUser, access: user
+DEBUG    drivers.device_driver:device_driver.py:89 TX > alert test info
+DEBUG    drivers.device_driver:device_driver.py:89 RX < alert test info
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (298230) sentry: [CIC #1 INFO] test: test alert
+DEBUG    drivers.device_driver:device_driver.py:89 TX > alert list
+DEBUG    drivers.device_driver:device_driver.py:89 RX < alert list
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (298840) sentry: [CIC] 1 alerts, 1 unacknowledged:
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (298840) sentry:   #1   23:49:33 INFO     * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 TX > alert list
+DEBUG    drivers.device_driver:device_driver.py:89 RX < alert list
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (299440) sentry: [CIC] 1 alerts, 1 unacknowledged:
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (299440) sentry:   #1   23:49:33 INFO     * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 TX > alert ack 1
+DEBUG    drivers.device_driver:device_driver.py:89 RX < alert ack 1
+DEBUG    drivers.device_driver:device_driver.py:89 RX < E (300050) sentry: E851 no alert #1
+INFO     conftest:conftest.py:317 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz17\logs\automated\alert\2.3.0\20261019-test_alert_test_generation_and_list_INFO.txt
+DEBUG    drivers.device_driver:device_driver.py:89 TX > version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (300750) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (300750) sentry:   partition: ota_0 @ 0x20000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:89 TX > whoami
+DEBUG    drivers.device_driver:device_driver.py:89 RX < whoami
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (301760) sentry: user: testUser, access: user
+DEBUG    drivers.device_driver:device_driver.py:89 TX > alert test warning
+DEBUG    drivers.device_driver:device_driver.py:89 RX < alert test warning
+DEBUG    drivers.device_driver:device_driver.py:89 RX < W (301970) sentry: [CIC #2 WARNING] test: test alert
+DEBUG    drivers.device_driver:device_driver.py:89 TX > alert list
+DEBUG    drivers.device_driver:device_driver.py:89 RX < alert list
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (302570) sentry: [CIC] 2 alerts, 2 unacknowledged:
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (302570) sentry:   #1   23:49:33 INFO     * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (302570) sentry:   #2   23:49:37 WARNING  * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 TX > alert list
+DEBUG    drivers.device_driver:device_driver.py:89 RX < alert list
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (303180) sentry: [CIC] 2 alerts, 2 unacknowledged:
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (303180) sentry:   #1   23:49:33 INFO     * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (303180) sentry:   #2   23:49:37 WARNING  * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 TX > alert ack 2
+DEBUG    drivers.device_driver:device_driver.py:89 RX < alert ack 2
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (303780) sentry: [CIC] #2 acknowledged
+DEBUG    drivers.device_driver:device_driver.py:89 TX > alert list
+DEBUG    drivers.device_driver:device_driver.py:89 RX < alert list
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (304390) sentry: [CIC] 2 alerts, 1 unacknowledged:
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (304390) sentry:   #1   23:49:33 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (304390) sentry:   #2   23:49:37 WARNING  * test    test alert
+INFO     conftest:conftest.py:317 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz17\logs\automated\alert\2.3.0\20261019-test_alert_test_generation_and_list_WARNING.txt
+DEBUG    drivers.device_driver:device_driver.py:89 TX > version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (305040) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (305040) sentry:   partition: ota_0 @ 0x20000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (306050) sentry: [BEACON] off, color (255,0,0), brightness 100%, mode solid, timer off
+DEBUG    drivers.device_driver:device_driver.py:89 TX > whoami
+DEBUG    drivers.device_driver:device_driver.py:89 RX < whoami
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (306650) sentry: user: testUser, access: user
+DEBUG    drivers.device_driver:device_driver.py:89 TX > alert list
+DEBUG    drivers.device_driver:device_driver.py:89 RX < alert list
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (306860) sentry: [CIC] 2 alerts, 1 unacknowledged:
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (306860) sentry:   #1   23:49:33 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (306860) sentry:   #2   23:49:37 WARNING  * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (307470) sentry: [BEACON] timer cancelled
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp color 255 0 0
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp color 255 0 0
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (307870) sentry: [BEACON] color: (255,0,0)
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp brightness 100
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp brightness 100
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (308280) sentry: [BEACON] brightness: 100%
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp mode solid
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp mode solid
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (308680) sentry: [BEACON] mode: solid
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp off
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp off
+DEBUG    drivers.device_driver:device_driver.py:89 RX < W (309090) sentry: W510 lamp already off
+INFO     conftest:conftest.py:317 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz17\logs\automated\alert\2.3.0\20261019-test_alert_list_or_planned_response.txt
+DEBUG    drivers.device_driver:device_driver.py:89 TX > version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (309540) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (309540) sentry:   partition: ota_0 @ 0x20000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:89 TX > whoami
+DEBUG    drivers.device_driver:device_driver.py:89 RX < whoami
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (310550) sentry: user: testUser, access: user
+DEBUG    drivers.device_driver:device_driver.py:89 TX > alert test info
+DEBUG    drivers.device_driver:device_driver.py:89 RX < alert test info
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (310760) sentry: [CIC #3 INFO] test: test alert
+DEBUG    drivers.device_driver:device_driver.py:89 TX > alert test warning
+DEBUG    drivers.device_driver:device_driver.py:89 RX < alert test warning
+DEBUG    drivers.device_driver:device_driver.py:89 RX < W (311360) sentry: [CIC #4 WARNING] test: test alert
+DEBUG    drivers.device_driver:device_driver.py:89 TX > alert list
+DEBUG    drivers.device_driver:device_driver.py:89 RX < alert list
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (311970) sentry: [CIC] 4 alerts, 3 unacknowledged:
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (311970) sentry:   #1   23:49:33 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (311970) sentry:   #2   23:49:37 WARNING  * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (311970) sentry:   #3   23:49:46 INFO     * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (311980) sentry:   #4   23:49:46 WARNING  * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 TX > alert ack
+DEBUG    drivers.device_driver:device_driver.py:89 RX < alert ack
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (312580) sentry: [CIC] #4 acknowledged (command). Unacked: 2
+DEBUG    drivers.device_driver:device_driver.py:89 TX > alert list
+DEBUG    drivers.device_driver:device_driver.py:89 RX < alert list
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (313190) sentry: [CIC] 4 alerts, 2 unacknowledged:
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (313190) sentry:   #1   23:49:33 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (313190) sentry:   #2   23:49:37 WARNING  * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (313190) sentry:   #3   23:49:46 INFO     * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (313200) sentry:   #4   23:49:46 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 TX > alert list
+DEBUG    drivers.device_driver:device_driver.py:89 RX < alert list
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (313790) sentry: [CIC] 4 alerts, 2 unacknowledged:
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (313790) sentry:   #1   23:49:33 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (313790) sentry:   #2   23:49:37 WARNING  * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (313790) sentry:   #3   23:49:46 INFO     * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (313800) sentry:   #4   23:49:46 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 TX > alert ack 3
+DEBUG    drivers.device_driver:device_driver.py:89 RX < alert ack 3
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (314400) sentry: [CIC] #3 acknowledged
+DEBUG    drivers.device_driver:device_driver.py:89 TX > alert list
+DEBUG    drivers.device_driver:device_driver.py:89 RX < alert list
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (315000) sentry: [CIC] 4 alerts, 1 unacknowledged:
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (315000) sentry:   #1   23:49:33 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (315000) sentry:   #2   23:49:37 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (315000) sentry:   #3   23:49:46 INFO     * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (315010) sentry:   #4   23:49:46 WARNING    test    test alert
+INFO     conftest:conftest.py:317 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz17\logs\automated\alert\2.3.0\20261019-test_alert_acknowledge_latest.txt
+DEBUG    drivers.device_driver:device_driver.py:89 TX > version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (315660) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (315660) sentry:   partition: ota_0 @ 0x20000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:89 TX > whoami
+DEBUG    drivers.device_driver:device_driver.py:89 RX < whoami
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (316670) sentry: user: testUser, access: user
+DEBUG    drivers.device_driver:device_driver.py:89 TX > alert test info
+DEBUG    drivers.device_driver:device_driver.py:89 RX < alert test info
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (316880) sentry: [CIC #5 INFO] test: test alert
+DEBUG    drivers.device_driver:device_driver.py:89 TX > alert test warning
+DEBUG    drivers.device_driver:device_driver.py:89 RX < alert test warning
+DEBUG    drivers.device_driver:device_driver.py:89 RX < W (317480) sentry: [CIC #6 WARNING] test: test alert
+DEBUG    drivers.device_driver:device_driver.py:89 TX > alert list
+DEBUG    drivers.device_driver:device_driver.py:89 RX < alert list
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (318090) sentry: [CIC] 6 alerts, 3 unacknowledged:
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (318090) sentry:   #1   23:49:33 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (318090) sentry:   #2   23:49:37 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (318090) sentry:   #3   23:49:46 INFO     * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (318100) sentry:   #4   23:49:46 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (318100) sentry:   #5   23:49:52 INFO     * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (318110) sentry:   #6   23:49:52 WARNING  * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 TX > alert ack 5
+DEBUG    drivers.device_driver:device_driver.py:89 RX < alert ack 5
+DEBUG    drivers.device_driver:device_driver.py:89 RX < W (318700) sentry: W852 alert #5 already acknowledged
+DEBUG    drivers.device_driver:device_driver.py:89 TX > alert list
+DEBUG    drivers.device_driver:device_driver.py:89 RX < alert list
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (319300) sentry: [CIC] 6 alerts, 3 unacknowledged:
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (319300) sentry:   #1   23:49:33 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (319300) sentry:   #2   23:49:37 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (319300) sentry:   #3   23:49:46 INFO     * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (319310) sentry:   #4   23:49:46 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (319310) sentry:   #5   23:49:52 INFO     * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (319320) sentry:   #6   23:49:52 WARNING  * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 TX > alert ack 6
+DEBUG    drivers.device_driver:device_driver.py:89 RX < alert ack 6
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (319910) sentry: [CIC] #6 acknowledged
+DEBUG    drivers.device_driver:device_driver.py:89 TX > alert ack 5
+DEBUG    drivers.device_driver:device_driver.py:89 RX < alert ack 5
+DEBUG    drivers.device_driver:device_driver.py:89 RX < W (320510) sentry: W852 alert #5 already acknowledged
+DEBUG    drivers.device_driver:device_driver.py:89 TX > alert list
+DEBUG    drivers.device_driver:device_driver.py:89 RX < alert list
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (321120) sentry: [CIC] 6 alerts, 2 unacknowledged:
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (321120) sentry:   #1   23:49:33 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (321120) sentry:   #2   23:49:37 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (321120) sentry:   #3   23:49:46 INFO     * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (321130) sentry:   #4   23:49:46 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (321130) sentry:   #5   23:49:52 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (321140) sentry:   #6   23:49:52 WARNING  * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 TX > alert list
+DEBUG    drivers.device_driver:device_driver.py:89 RX < alert list
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (321730) sentry: [CIC] 6 alerts, 2 unacknowledged:
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (321730) sentry:   #1   23:49:33 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (321730) sentry:   #2   23:49:37 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (321730) sentry:   #3   23:49:46 INFO     * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (321740) sentry:   #4   23:49:46 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (321740) sentry:   #5   23:49:52 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (321750) sentry:   #6   23:49:52 WARNING  * test    test alert
+INFO     conftest:conftest.py:317 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz17\logs\automated\alert\2.3.0\20261019-test_alert_acknowledge_exact_id.txt
+DEBUG    drivers.device_driver:device_driver.py:89 TX > version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (322390) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (322390) sentry:   partition: ota_0 @ 0x20000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (322660) sentry: [ACU] ambient noise 58 dB re 1uPa, sea state 2, water 8.2 C
+DEBUG    drivers.device_driver:device_driver.py:89 TX > whoami
+DEBUG    drivers.device_driver:device_driver.py:89 RX < whoami
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (323400) sentry: user: testUser, access: user
+DEBUG    drivers.device_driver:device_driver.py:89 TX > alert test info
+DEBUG    drivers.device_driver:device_driver.py:89 RX < alert test info
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (323610) sentry: [CIC #7 INFO] test: test alert
+DEBUG    drivers.device_driver:device_driver.py:89 TX > alert list
+DEBUG    drivers.device_driver:device_driver.py:89 RX < alert list
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (324210) sentry: [CIC] 7 alerts, 3 unacknowledged:
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (324210) sentry:   #1   23:49:33 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (324210) sentry:   #2   23:49:37 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (324210) sentry:   #3   23:49:46 INFO     * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (324220) sentry:   #4   23:49:46 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (324220) sentry:   #5   23:49:52 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (324230) sentry:   #6   23:49:52 WARNING  * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (324230) sentry:   #7   23:49:58 INFO     * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 TX > alert ack 7
+DEBUG    drivers.device_driver:device_driver.py:89 RX < alert ack 7
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (324820) sentry: [CIC] #7 acknowledged
+DEBUG    drivers.device_driver:device_driver.py:89 TX > alert list
+DEBUG    drivers.device_driver:device_driver.py:89 RX < alert list
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (325420) sentry: [CIC] 7 alerts, 2 unacknowledged:
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (325420) sentry:   #1   23:49:33 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (325420) sentry:   #2   23:49:37 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (325420) sentry:   #3   23:49:46 INFO     * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (325430) sentry:   #4   23:49:46 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (325430) sentry:   #5   23:49:52 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (325440) sentry:   #6   23:49:52 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (325440) sentry:   #7   23:49:58 INFO     * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 TX > alert list
+DEBUG    drivers.device_driver:device_driver.py:89 RX < alert list
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (326030) sentry: [CIC] 7 alerts, 2 unacknowledged:
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (326030) sentry:   #1   23:49:33 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (326030) sentry:   #2   23:49:37 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (326030) sentry:   #3   23:49:46 INFO     * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (326040) sentry:   #4   23:49:46 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (326040) sentry:   #5   23:49:52 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (326050) sentry:   #6   23:49:52 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (326050) sentry:   #7   23:49:58 INFO     * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 TX > alert ack 7
+DEBUG    drivers.device_driver:device_driver.py:89 RX < alert ack 7
+DEBUG    drivers.device_driver:device_driver.py:89 RX < W (326640) sentry: W852 alert #7 already acknowledged
+DEBUG    drivers.device_driver:device_driver.py:89 TX > alert list
+DEBUG    drivers.device_driver:device_driver.py:89 RX < alert list
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (327240) sentry: [CIC] 7 alerts, 2 unacknowledged:
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (327240) sentry:   #1   23:49:33 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (327240) sentry:   #2   23:49:37 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (327240) sentry:   #3   23:49:46 INFO     * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (327250) sentry:   #4   23:49:46 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (327250) sentry:   #5   23:49:52 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (327260) sentry:   #6   23:49:52 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (327260) sentry:   #7   23:49:58 INFO     * test    test alert
+INFO     conftest:conftest.py:317 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz17\logs\automated\alert\2.3.0\20261019-test_alert_duplicate_acknowledgement_returns_w852.txt
+DEBUG    drivers.device_driver:device_driver.py:89 TX > version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (327910) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (327910) sentry:   partition: ota_0 @ 0x20000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (328040) sentry: [TELEMETRY #1] 23:50:03 up 00:05:27 heap 251KB rssi -39 temp 29.4C depth 41.5m hull 5.2bar batt 24.2V valve closed sonar - watch disarmed alerts 2 state NORMAL
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (328920) sentry: [BEACON] off, color (255,0,0), brightness 100%, mode solid, timer off
+DEBUG    drivers.device_driver:device_driver.py:89 TX > whoami
+DEBUG    drivers.device_driver:device_driver.py:89 RX < whoami
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (329520) sentry: user: testUser, access: user
+DEBUG    drivers.device_driver:device_driver.py:89 TX > alert list
+DEBUG    drivers.device_driver:device_driver.py:89 RX < alert list
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (329730) sentry: [CIC] 7 alerts, 2 unacknowledged:
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (329730) sentry:   #1   23:49:33 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (329730) sentry:   #2   23:49:37 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (329730) sentry:   #3   23:49:46 INFO     * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (329740) sentry:   #4   23:49:46 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (329740) sentry:   #5   23:49:52 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (329750) sentry:   #6   23:49:52 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (329750) sentry:   #7   23:49:58 INFO     * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 TX > alert ack 999999999
+DEBUG    drivers.device_driver:device_driver.py:89 RX < alert ack 999999999
+DEBUG    drivers.device_driver:device_driver.py:89 RX < E (330340) sentry: E851 no alert #999999999
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (330950) sentry: [BEACON] timer cancelled
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp color 255 0 0
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp color 255 0 0
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (331360) sentry: [BEACON] color: (255,0,0)
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp brightness 100
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp brightness 100
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (331770) sentry: [BEACON] brightness: 100%
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp mode solid
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp mode solid
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (332180) sentry: [BEACON] mode: solid
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp off
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp off
+DEBUG    drivers.device_driver:device_driver.py:89 RX < W (332590) sentry: W510 lamp already off
+INFO     conftest:conftest.py:317 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz17\logs\automated\alert\2.3.0\20261019-test_alert_unknown_id_returns_e851.txt
+DEBUG    drivers.device_driver:device_driver.py:89 TX > version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (333050) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (333050) sentry:   partition: ota_0 @ 0x20000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:89 TX > whoami
+DEBUG    drivers.device_driver:device_driver.py:89 RX < whoami
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (334050) sentry: user: testUser, access: user
+DEBUG    drivers.device_driver:device_driver.py:89 TX > alert list
+DEBUG    drivers.device_driver:device_driver.py:89 RX < alert list
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (334260) sentry: [CIC] 7 alerts, 2 unacknowledged:
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (334260) sentry:   #1   23:49:33 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (334260) sentry:   #2   23:49:37 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (334260) sentry:   #3   23:49:46 INFO     * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (334270) sentry:   #4   23:49:46 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (334270) sentry:   #5   23:49:52 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (334280) sentry:   #6   23:49:52 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (334280) sentry:   #7   23:49:58 INFO     * test    test alert
+INFO     conftest:conftest.py:317 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz17\logs\automated\alert\2.3.0\20261019-test_alert_clear_requires_acknowledgement.txt
+DEBUG    drivers.device_driver:device_driver.py:89 TX > version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (334910) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (334910) sentry:   partition: ota_0 @ 0x20000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:89 TX > whoami
+DEBUG    drivers.device_driver:device_driver.py:89 RX < whoami
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (335920) sentry: user: testUser, access: user
+DEBUG    drivers.device_driver:device_driver.py:89 TX > relay status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < relay status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (336130) sentry: [VALVE] closed, auto off, cycles 136
+DEBUG    drivers.device_driver:device_driver.py:89 TX > state
+DEBUG    drivers.device_driver:device_driver.py:89 RX < state
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (336730) sentry: state: 1 NORMAL
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (336730) sentry:   1 normal (patrol) | 2 debug (maintenance) | 3 verbose (tactical) | 4 emergency (surfacing, only from 3)
+DEBUG    drivers.device_driver:device_driver.py:89 TX > state
+DEBUG    drivers.device_driver:device_driver.py:89 RX < state
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (337340) sentry: state: 1 NORMAL
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (337340) sentry:   1 normal (patrol) | 2 debug (maintenance) | 3 verbose (tactical) | 4 emergency (surfacing, only from 3)
+INFO     manual_checks:manual_checks.py:153 MANUAL PREPARE | Waiting for operator confirmation.
+DEBUG    drivers.device_driver:device_driver.py:89 TX > alert test critical
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (358040) sentry: [TELEMETRY #2] 23:50:33 up 00:05:57 heap 251KB rssi -30 temp 30.4C depth 41.5m hull 5.2bar batt 24.2V valve closed sonar - watch disarmed alerts 2 state NORMAL
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (388240) sentry: [TELEMETRY #3] 23:51:03 up 00:06:27 heap 251KB rssi -29 temp 30.4C depth 41.5m hull 5.2bar batt 24.2V valve closed sonar - watch disarmed alerts 2 state NORMAL
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (405660) sentry: [PWR] battery bus 24.19 V, load 1.6 A
+DEBUG    drivers.device_driver:device_driver.py:89 RX < alert test critical
+DEBUG    drivers.device_driver:device_driver.py:89 RX < E (411520) sentry: [CIC #8 CRITICAL] test: test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (411520) sentry: [VALVE] OPEN (critical alert)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < W (411520) sentry: [STATE] 1 NORMAL -> 3 VERBOSE (by critical alert)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (411520) sentry: [STATE] VERBOSE (tactical): extended logs, telemetry every 10 s, LED heartbeat
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (411530) sentry: [V] 'alert' done in 13 ms
+DEBUG    drivers.device_driver:device_driver.py:89 RX < W (411660) sentry: [HW] transducer #1 impedance drift +2.1% (compensated)
+INFO     manual_checks:manual_checks.py:118 MANUAL CHECK | Did you hear the relay open after the CRITICAL alert changed NORMAL to VERBOSE? | result=PASS | comment=-
+INFO     manual_checks:manual_checks.py:118 MANUAL CHECK | Additional observation only (not an AL-5 pass criterion): Did the Beacon lamp flash purple? | result=PASS | comment=-
+DEBUG    drivers.device_driver:device_driver.py:89 TX > alert list
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (418440) sentry: [TELEMETRY #4] 23:51:33 up 00:06:58 heap 251KB rssi -30 temp 30.4C depth 41.5m hull 5.2bar batt 24.2V valve open sonar - watch disarmed alerts 3 state VERBOSE
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (418440) sentry: [V] telemetry: min heap 201KB, beacon off, tasks 16, water 8.2C, source auto
+DEBUG    drivers.device_driver:device_driver.py:89 RX < alert list
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (422730) sentry: [CIC] 8 alerts, 3 unacknowledged:
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (422730) sentry:   #1   23:49:33 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (422730) sentry:   #2   23:49:37 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (422730) sentry:   #3   23:49:46 INFO     * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (422740) sentry:   #4   23:49:46 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (422740) sentry:   #5   23:49:52 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (422750) sentry:   #6   23:49:52 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (422750) sentry:   #7   23:49:58 INFO     * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (422760) sentry:   #8   23:51:26 CRITICAL * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (422760) sentry: [V] 'alert' done in 39 ms
+DEBUG    drivers.device_driver:device_driver.py:89 TX > relay status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < relay status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (423340) sentry: [VALVE] OPEN, auto off, cycles 137
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (423340) sentry: [V] 'relay' done in 0 ms
+DEBUG    drivers.device_driver:device_driver.py:89 TX > state
+DEBUG    drivers.device_driver:device_driver.py:89 RX < state
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (423950) sentry: state: 3 VERBOSE
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (423950) sentry:   1 normal (patrol) | 2 debug (maintenance) | 3 verbose (tactical) | 4 emergency (surfacing, only from 3)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (423950) sentry: [V] 'state' done in 3 ms
+DEBUG    drivers.device_driver:device_driver.py:89 TX > relay off
+DEBUG    drivers.device_driver:device_driver.py:89 RX < relay off
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (425120) sentry: [VALVE] CLOSED (command)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (425120) sentry: [V] valve driver GPIO8=0, cycles 138
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (425120) sentry: [V] 'relay' done in 11 ms
+DEBUG    drivers.device_driver:device_driver.py:89 TX > state
+DEBUG    drivers.device_driver:device_driver.py:89 RX < state
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (425710) sentry: state: 3 VERBOSE
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (425710) sentry:   1 normal (patrol) | 2 debug (maintenance) | 3 verbose (tactical) | 4 emergency (surfacing, only from 3)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (425710) sentry: [V] 'state' done in 3 ms
+DEBUG    drivers.device_driver:device_driver.py:89 TX > state 1
+DEBUG    drivers.device_driver:device_driver.py:89 RX < state 1
+DEBUG    drivers.device_driver:device_driver.py:89 RX < W (426320) sentry: [STATE] 3 VERBOSE -> 1 NORMAL (by command)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (426660) sentry: [NAV] depth 41.3 m, heading 276, speed 2.8 kn
+DEBUG    drivers.device_driver:device_driver.py:89 TX > state
+DEBUG    drivers.device_driver:device_driver.py:89 RX < state
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (426920) sentry: state: 1 NORMAL
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (426920) sentry:   1 normal (patrol) | 2 debug (maintenance) | 3 verbose (tactical) | 4 emergency (surfacing, only from 3)
+DEBUG    drivers.device_driver:device_driver.py:89 TX > alert list
+DEBUG    drivers.device_driver:device_driver.py:89 RX < alert list
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (427530) sentry: [CIC] 8 alerts, 3 unacknowledged:
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (427530) sentry:   #1   23:49:33 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (427530) sentry:   #2   23:49:37 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (427530) sentry:   #3   23:49:46 INFO     * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (427540) sentry:   #4   23:49:46 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (427540) sentry:   #5   23:49:52 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (427550) sentry:   #6   23:49:52 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (427550) sentry:   #7   23:49:58 INFO     * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (427560) sentry:   #8   23:51:26 CRITICAL * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 TX > alert ack 8
+DEBUG    drivers.device_driver:device_driver.py:89 RX < alert ack 8
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (428140) sentry: [CIC] #8 acknowledged
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (428450) sentry: [TELEMETRY #5] 23:51:43 up 00:07:08 heap 251KB rssi -36 temp 30.4C depth 41.3m hull 5.1bar batt 24.2V valve closed sonar - watch disarmed alerts 2 state NORMAL
+DEBUG    drivers.device_driver:device_driver.py:89 TX > alert list
+DEBUG    drivers.device_driver:device_driver.py:89 RX < alert list
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (428750) sentry: [CIC] 8 alerts, 2 unacknowledged:
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (428750) sentry:   #1   23:49:33 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (428750) sentry:   #2   23:49:37 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (428750) sentry:   #3   23:49:46 INFO     * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (428760) sentry:   #4   23:49:46 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (428760) sentry:   #5   23:49:52 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (428770) sentry:   #6   23:49:52 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (428770) sentry:   #7   23:49:58 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (428780) sentry:   #8   23:51:26 CRITICAL * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 TX > relay status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < relay status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (429350) sentry: [VALVE] closed, auto off, cycles 138
+DEBUG    drivers.device_driver:device_driver.py:89 TX > state
+DEBUG    drivers.device_driver:device_driver.py:89 RX < state
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (429960) sentry: state: 1 NORMAL
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (429960) sentry:   1 normal (patrol) | 2 debug (maintenance) | 3 verbose (tactical) | 4 emergency (surfacing, only from 3)
+INFO     conftest:conftest.py:317 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz17\logs\automated\alert\2.3.0\20261019-test_alert_critical_effects_from-normal.txt
+DEBUG    drivers.device_driver:device_driver.py:89 TX > version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (430620) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (430620) sentry:   partition: ota_0 @ 0x20000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:89 TX > whoami
+DEBUG    drivers.device_driver:device_driver.py:89 RX < whoami
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (431630) sentry: user: testUser, access: user
+DEBUG    drivers.device_driver:device_driver.py:89 TX > relay status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < relay status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (431840) sentry: [VALVE] closed, auto off, cycles 138
+DEBUG    drivers.device_driver:device_driver.py:89 TX > state
+DEBUG    drivers.device_driver:device_driver.py:89 RX < state
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (432450) sentry: state: 1 NORMAL
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (432450) sentry:   1 normal (patrol) | 2 debug (maintenance) | 3 verbose (tactical) | 4 emergency (surfacing, only from 3)
+DEBUG    drivers.device_driver:device_driver.py:89 TX > state 2
+DEBUG    drivers.device_driver:device_driver.py:89 RX < state 2
+DEBUG    drivers.device_driver:device_driver.py:89 RX < W (433050) sentry: [STATE] 1 NORMAL -> 2 DEBUG (by command)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (433050) sentry: [STATE] DEBUG (maintenance): raw transducer data, LED blink codes, parser diagnostics
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (433050) sentry: [V] 'state' done in 3 ms
+DEBUG    drivers.device_driver:device_driver.py:89 TX > state
+DEBUG    drivers.device_driver:device_driver.py:89 RX < state
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (433660) sentry: [DBG] cmd 'state' args '' need 2
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (433660) sentry: state: 2 DEBUG
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (433660) sentry:   1 normal (patrol) | 2 debug (maintenance) | 3 verbose (tactical) | 4 emergency (surfacing, only from 3)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (433660) sentry: [V] 'state' done in 7 ms
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (433670) sentry: [ACU] ambient noise 68 dB re 1uPa, sea state 2, water 8.1 C
+INFO     manual_checks:manual_checks.py:153 MANUAL PREPARE | Waiting for operator confirmation.
+DEBUG    drivers.device_driver:device_driver.py:89 TX > alert test critical
+DEBUG    drivers.device_driver:device_driver.py:89 RX < alert test critical
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (445440) sentry: [DBG] cmd 'alert' args 'test critical' need 2
+DEBUG    drivers.device_driver:device_driver.py:89 RX < E (445440) sentry: [CIC #9 CRITICAL] test: test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (445440) sentry: [VALVE] OPEN (critical alert)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (445440) sentry: [V] valve driver GPIO8=1, cycles 139
+DEBUG    drivers.device_driver:device_driver.py:89 RX < W (445440) sentry: [STATE] 2 DEBUG -> 3 VERBOSE (by critical alert)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (445450) sentry: [STATE] VERBOSE (tactical): extended logs, telemetry every 10 s, LED heartbeat
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (445460) sentry: [V] 'alert' done in 23 ms
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (445670) sentry: [PWR] battery bus 24.18 V, load 1.5 A
+INFO     manual_checks:manual_checks.py:118 MANUAL CHECK | Did you hear the relay open after the CRITICAL alert changed DEBUG to VERBOSE? | result=PASS | comment=-
+INFO     manual_checks:manual_checks.py:118 MANUAL CHECK | Additional observation only (not an AL-5 pass criterion): Did the Beacon lamp flash purple? | result=PASS | comment=-
+DEBUG    drivers.device_driver:device_driver.py:89 TX > alert list
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (455660) sentry: [TELEMETRY #6] 23:52:10 up 00:07:35 heap 251KB rssi -28 temp 30.4C depth 41.9m hull 5.2bar batt 24.2V valve open sonar - watch disarmed alerts 3 state VERBOSE
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (455660) sentry: [V] telemetry: min heap 201KB, beacon off, tasks 16, water 8.1C, source auto
+DEBUG    drivers.device_driver:device_driver.py:89 RX < alert list
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (465630) sentry: [CIC] 9 alerts, 3 unacknowledged:
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (465630) sentry:   #1   23:49:33 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (465630) sentry:   #2   23:49:37 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (465630) sentry:   #3   23:49:46 INFO     * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (465640) sentry:   #4   23:49:46 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (465640) sentry:   #5   23:49:52 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (465650) sentry:   #6   23:49:52 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (465650) sentry:   #7   23:49:58 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (465660) sentry:   #8   23:51:26 CRITICAL * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (465660) sentry:   #9   23:52:00 CRITICAL * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (465670) sentry: [V] 'alert' done in 45 ms
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (465680) sentry: [TELEMETRY #7] 23:52:20 up 00:07:45 heap 251KB rssi -25 temp 30.4C depth 41.9m hull 5.2bar batt 24.2V valve open sonar - watch disarmed alerts 3 state VERBOSE
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (465690) sentry: [V] telemetry: min heap 201KB, beacon off, tasks 16, water 8.1C, source auto
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (465700) sentry: [NAV] depth 41.9 m, heading 275, speed 2.7 kn
+DEBUG    drivers.device_driver:device_driver.py:89 TX > relay status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < relay status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (466240) sentry: [VALVE] OPEN, auto off, cycles 139
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (466240) sentry: [V] 'relay' done in 0 ms
+DEBUG    drivers.device_driver:device_driver.py:89 TX > state
+DEBUG    drivers.device_driver:device_driver.py:89 RX < state
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (466850) sentry: state: 3 VERBOSE
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (466850) sentry:   1 normal (patrol) | 2 debug (maintenance) | 3 verbose (tactical) | 4 emergency (surfacing, only from 3)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (466850) sentry: [V] 'state' done in 3 ms
+DEBUG    drivers.device_driver:device_driver.py:89 TX > relay off
+DEBUG    drivers.device_driver:device_driver.py:89 RX < relay off
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (468010) sentry: [VALVE] CLOSED (command)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (468010) sentry: [V] valve driver GPIO8=0, cycles 140
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (468010) sentry: [V] 'relay' done in 11 ms
+DEBUG    drivers.device_driver:device_driver.py:89 TX > state
+DEBUG    drivers.device_driver:device_driver.py:89 RX < state
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (468610) sentry: state: 3 VERBOSE
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (468610) sentry:   1 normal (patrol) | 2 debug (maintenance) | 3 verbose (tactical) | 4 emergency (surfacing, only from 3)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (468610) sentry: [V] 'state' done in 3 ms
+DEBUG    drivers.device_driver:device_driver.py:89 TX > state 1
+DEBUG    drivers.device_driver:device_driver.py:89 RX < state 1
+DEBUG    drivers.device_driver:device_driver.py:89 RX < W (469210) sentry: [STATE] 3 VERBOSE -> 1 NORMAL (by command)
+DEBUG    drivers.device_driver:device_driver.py:89 TX > state
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (469700) sentry: [ACU] ambient noise 71 dB re 1uPa, sea state 2, water 8.2 C
+DEBUG    drivers.device_driver:device_driver.py:89 RX < state
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (469820) sentry: state: 1 NORMAL
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (469820) sentry:   1 normal (patrol) | 2 debug (maintenance) | 3 verbose (tactical) | 4 emergency (surfacing, only from 3)
+DEBUG    drivers.device_driver:device_driver.py:89 TX > alert list
+DEBUG    drivers.device_driver:device_driver.py:89 RX < alert list
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (470420) sentry: [CIC] 9 alerts, 3 unacknowledged:
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (470420) sentry:   #1   23:49:33 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (470420) sentry:   #2   23:49:37 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (470420) sentry:   #3   23:49:46 INFO     * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (470430) sentry:   #4   23:49:46 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (470430) sentry:   #5   23:49:52 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (470440) sentry:   #6   23:49:52 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (470440) sentry:   #7   23:49:58 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (470450) sentry:   #8   23:51:26 CRITICAL * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (470450) sentry:   #9   23:52:00 CRITICAL * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 TX > alert ack 9
+DEBUG    drivers.device_driver:device_driver.py:89 RX < alert ack 9
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (471030) sentry: [CIC] #9 acknowledged
+DEBUG    drivers.device_driver:device_driver.py:89 TX > alert list
+DEBUG    drivers.device_driver:device_driver.py:89 RX < alert list
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (471640) sentry: [CIC] 9 alerts, 2 unacknowledged:
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (471640) sentry:   #1   23:49:33 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (471640) sentry:   #2   23:49:37 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (471640) sentry:   #3   23:49:46 INFO     * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (471650) sentry:   #4   23:49:46 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (471650) sentry:   #5   23:49:52 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (471660) sentry:   #6   23:49:52 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (471660) sentry:   #7   23:49:58 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (471670) sentry:   #8   23:51:26 CRITICAL   test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (471670) sentry:   #9   23:52:00 CRITICAL * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:89 TX > relay status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < relay status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (472250) sentry: [VALVE] closed, auto off, cycles 140
+DEBUG    drivers.device_driver:device_driver.py:89 TX > state
+DEBUG    drivers.device_driver:device_driver.py:89 RX < state
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (472850) sentry: state: 1 NORMAL
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (472850) sentry:   1 normal (patrol) | 2 debug (maintenance) | 3 verbose (tactical) | 4 emergency (surfacing, only from 3)
+INFO     conftest:conftest.py:317 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz17\logs\automated\alert\2.3.0\20261019-test_alert_critical_effects_from-debug.txt
