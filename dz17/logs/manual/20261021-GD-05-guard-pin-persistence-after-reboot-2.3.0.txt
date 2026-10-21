@@ -1,0 +1,25 @@
+Test: GD-05 changed Guard PIN acceptance after software reboot
+Requirement: GD-5
+Firmware: 2.3.0 (ota_0)
+Capture date: 2026-10-21
+Capture source: operator confirmation of sanitized UART result; PIN values and credential-bearing command omitted.
+
+Pre-reboot:
+- The changed Guard PIN had been used successfully to disarm Guard in a prior arm/disarm check.
+- Operator authorized one software reboot and a subsequent local PIN rotation as the persistence check.
+
+Reboot and pre-command status:
+- Device returned on firmware 2.3.0 / ota_0 in NORMAL.
+- Saved-profile Wi-Fi reconnect and local login were completed by the operator.
+- Read-only status confirmed Guard DISARMED, zone 20 cm, and valve CLOSED.
+
+Post-reboot PIN check:
+- The operator locally entered a `guard pin` command using the previously changed PIN as the old credential and a different new PIN.
+- Operator confirmed the UART success response: `[WATCH] PIN changed`.
+- The command's PIN arguments and raw UART echo are intentionally omitted.
+- The successful command also rotated the active PIN to another new value; the operator retained that value locally.
+
+Assessment:
+- PASS for the previously changed PIN being accepted as the old credential in a Guard PIN-change command after one software reboot.
+- This demonstrates PIN availability across this single software reboot; repeated-reboot and OTA persistence are not tested.
+- The newly rotated PIN was not exercised in an arm/disarm flow. No Guard arm/disarm or alert action was performed as part of this persistence check.

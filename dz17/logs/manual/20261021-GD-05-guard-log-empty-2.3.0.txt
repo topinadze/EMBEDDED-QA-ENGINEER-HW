@@ -1,0 +1,17 @@
+Test: GD-05 Guard event log empty-state response (read-only)
+Requirement: GD-5
+Firmware: 2.3.0 (ota_0)
+Capture date: 2026-10-21
+Capture source: operator-provided UART excerpt; account and network identifiers omitted.
+
+Pre-check:
+- The preceding read-only Guard status check reported DISARMED.
+- No Guard events were generated between the status check and this command.
+
+TX > guard log
+RX < [WATCH] log is empty
+
+Result:
+- The command returned the empty-log response.
+- No event retention limit was exercised because the log contained no entries.
+- No event was created or acknowledged; no state, relay, PIN, or persistent setting was changed.

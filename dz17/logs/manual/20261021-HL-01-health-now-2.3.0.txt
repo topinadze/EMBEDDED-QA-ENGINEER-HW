@@ -1,0 +1,13 @@
+Test: HL-01 immediate health report
+Requirement: HL-1
+Firmware: 2.3.0 (ota_0)
+Capture date: 2026-10-21
+Capture source: operator-provided UART excerpt; network and account identifiers omitted.
+
+TX > health now
+RX < [TELEMETRY #31] 17:34:35 up 00:10:08 heap 251KB rssi -53 temp 31.4C depth 41.9m hull 5.2bar batt 24.2V valve closed sonar - watch disarmed alerts 0 state NORMAL
+
+Result:
+- The command returned a telemetry report immediately.
+- The report included the 2.3.0 watch/alerts fields and current NORMAL/valve/sonar state.
+- This checks the immediate-report command only; it does not exercise HL-2 warning triggers.

@@ -1,0 +1,21 @@
+Test: GD-05 Guard PIN change command acknowledgement
+Requirement: GD-5
+Firmware: 2.3.0 (ota_0)
+Capture date: 2026-10-21
+Capture source: operator-provided UART acknowledgement; PIN values and credential-bearing command omitted.
+
+Pre-check:
+- Firmware 2.3.0 / ota_0; system state VERBOSE.
+- Authenticated session; Guard DISARMED; zone 50 cm; valve closed.
+- No alert acknowledgement or other Guard action was performed for this check.
+
+Action/result:
+- The operator entered the Guard PIN-change command locally using the existing and newly selected PIN values.
+- UART acknowledged: `[WATCH] PIN changed`.
+- PIN digits and the raw command are intentionally not captured.
+
+Assessment:
+- PASS for acceptance/acknowledgement of the PIN-change command on this firmware.
+- A later clean arm/disarm check successfully used the changed PIN; see [`20261021-GD-01-guard-new-pin-arm-disarm-2.3.0.txt`](20261021-GD-01-guard-new-pin-arm-disarm-2.3.0.txt). No claim of reboot persistence is made.
+- A later malformed `guard pin` attempt returned E804 “PIN must be 4 digits”; the input and which operand was malformed were not retained.
+- PIN-change rejection while armed (E807), lockout/attempt behavior, reboot persistence, and Guard-log retention remain untested.

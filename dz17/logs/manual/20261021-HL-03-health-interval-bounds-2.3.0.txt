@@ -1,0 +1,41 @@
+Test: HL-03 health interval boundaries
+Requirement: HL-3
+Firmware: 2.3.0 (ota_0)
+Capture date: 2026-10-21
+Capture source: operator-provided UART excerpts; account and network identifiers omitted.
+
+Pre-check:
+- status: firmware 2.3.0 / ota_0, state NORMAL, connected and logged in, valve closed
+- health: auto on, interval 30 s (now 30 s in NORMAL)
+- approved side effect: temporarily write valid interval values to NVS; restore original 30 s value at completion
+
+TX > health interval 10
+RX < [TELEMETRY] interval 10 s
+TX > health
+RX < [TELEMETRY] auto on, interval 10 s (now 10 s in NORMAL)
+
+TX > health interval 9
+RX < E902 interval must be 10-300 s
+TX > health
+RX < [TELEMETRY] auto on, interval 10 s (now 10 s in NORMAL)
+
+TX > health interval 300
+RX < [TELEMETRY] interval 300 s
+TX > health
+RX < [TELEMETRY] auto on, interval 300 s (now 300 s in NORMAL)
+
+TX > health interval 301
+RX < E902 interval must be 10-300 s
+TX > health
+RX < [TELEMETRY] auto on, interval 300 s (now 300 s in NORMAL)
+
+Restore:
+TX > health interval 30
+RX < [TELEMETRY] interval 30 s
+TX > health
+RX < [TELEMETRY] auto on, interval 30 s (now 30 s in NORMAL)
+
+Result:
+- Inclusive lower and upper boundaries (10 and 300) were accepted and read back.
+- Values outside the range (9 and 301) returned E902; readbacks retained the preceding valid setting.
+- Original interval 30 s was restored and read back. No reboot was performed; NVS persistence across reboot is unverified.

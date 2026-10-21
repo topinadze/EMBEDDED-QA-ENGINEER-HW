@@ -1,0 +1,21 @@
+Test: GD-01 Guard status and default zone (read-only)
+Requirement: GD-1
+Firmware: 2.3.0 (ota_0)
+Capture date: 2026-10-21
+Capture source: operator-provided UART excerpt; account and network identifiers omitted.
+
+Pre-check:
+TX > status
+RX < fw v2.3.0 (ota_0)
+RX < state 1 NORMAL
+RX < valve closed
+
+Guard status:
+TX > guard
+RX < [WATCH] disarmed, zone 50 cm, last distance -1.0 cm
+
+Result:
+- Guard reported DISARMED and the default 50 cm zone required by the PRD.
+- The reported last-distance value (-1.0 cm) is retained as displayed; it is not treated as a physical measurement.
+- This was a read-only status check only. Guard was not armed, and no alarm, relay action, PIN change, or persistent-setting change was triggered.
+- GD-01/GD-02 remain PARTIAL; arming, intrusion sensing, the disarm window, and zone boundary behavior are NOT RUN.

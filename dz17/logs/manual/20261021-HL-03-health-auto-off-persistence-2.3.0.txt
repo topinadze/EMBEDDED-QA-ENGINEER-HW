@@ -1,0 +1,33 @@
+Test: HL-03 automatic-reporting off-state NVS persistence
+Requirement: HL-3
+Firmware: 2.3.0 (ota_0)
+Capture date: 2026-10-21
+Capture source: operator-provided UART excerpts; credentials and account/network/device identifiers omitted.
+
+Pre-check:
+- Device reported firmware 2.3.0 / ota_0 and state NORMAL.
+- Initial health readback was auto on, interval 30 s.
+- The initial console had no Wi-Fi connection or login. Saved-profile reconnect and local authentication were completed before changing the setting; health then read back auto on/30 s.
+
+Disable and pre-reboot readback:
+TX > health off
+RX < [TELEMETRY] auto report off
+TX > health
+RX < [TELEMETRY] auto off, interval 30 s (now 30 s in NORMAL)
+
+Reboot and post-reboot readback:
+- One software reboot completed; device returned on 2.3.0 / ota_0 in NORMAL.
+- Wi-Fi reconnect and local authentication were completed after reboot.
+TX > health
+RX < [TELEMETRY] auto off, interval 30 s (now 30 s in NORMAL)
+
+Restore:
+TX > health on
+RX < [TELEMETRY] auto report on
+TX > health
+RX < [TELEMETRY] auto on, interval 30 s (now 30 s in NORMAL)
+
+Result:
+- The auto-off setting persisted across the tested software reboot at a 30 s interval.
+- Automatic reporting was restored and read back as on/30 s.
+- This result covers one software reboot only; it does not establish OTA persistence or repeated-reboot behavior.

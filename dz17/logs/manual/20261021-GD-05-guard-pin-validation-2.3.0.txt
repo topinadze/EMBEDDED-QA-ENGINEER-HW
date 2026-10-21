@@ -1,0 +1,18 @@
+Test: GD-05 Guard PIN validation and recovery sequence
+Requirement: GD-5 (PIN format/change); E803 wrong-PIN rejection behavior
+Firmware: 2.3.0 (ota_0)
+Capture date: 2026-10-21
+Capture source: operator-supplied UART excerpts; all PIN values and credential-bearing commands omitted. The supplied excerpt did not repeat the version banner; 2.3.0 attribution is from the surrounding device session.
+
+Observed sequence:
+1. A `guard pin` attempt using an incorrect old credential returned E803 “wrong PIN”.
+2. The next attempt used a different old credential, but a new PIN with invalid length; it returned E804 “PIN must be 4 digits”.
+3. A subsequent attempt using a four-digit new PIN returned `[WATCH] PIN changed`.
+
+Assessment:
+- PASS for rejection of the supplied incorrect old-PIN attempt with E803.
+- PASS for rejection of an invalid-length new PIN with E804.
+- PASS for acceptance acknowledgement of a subsequent PIN change.
+- The E803 response excerpt did not include the PRD's `Attempts: N/3` wording; the attempt counter is not verified by this record.
+- Exact PIN values and command arguments are intentionally omitted. The final successful operation changed the active PIN. PIN material was disclosed in chat; treat the active PIN as exposed and rotate it locally to a fresh value not shared in chat or retained logs.
+- This does not verify lockout after three wrong PINs, PIN persistence across additional reboots/OTA, E807 while armed, or the new PIN in a later arm/disarm flow.

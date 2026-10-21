@@ -1,0 +1,27 @@
+Test: GD-01 Guard zone value write and restoration
+Requirement: GD-1
+Firmware: 2.3.0 (ota_0)
+Capture date: 2026-10-21
+Capture source: operator-provided UART excerpts; account and network identifiers omitted.
+
+Pre-check:
+- Firmware 2.3.0 / ota_0, state NORMAL.
+- Guard DISARMED; original zone 50 cm.
+
+Set an in-range value:
+TX > guard zone 20
+RX < [WATCH] zone < 20 cm
+TX > guard
+RX < [WATCH] disarmed, zone 20 cm, last distance -1.0 cm
+
+Restore original value:
+TX > guard zone 50
+RX < [WATCH] zone < 50 cm
+TX > guard
+RX < [WATCH] disarmed, zone 50 cm, last distance -1.0 cm
+
+Result:
+- The in-range value 20 cm was accepted and read back.
+- The original 50 cm zone was restored and read back.
+- This does not test inclusive boundaries 10/200 cm or rejection of 9/201 cm.
+- Guard remained disarmed; no alarm, relay, PIN, or other setting change occurred.

@@ -1,0 +1,33 @@
+Test: GD-01/GD-02 arming, intrusion timeout, alarm effects and disarm observation
+Requirements: GD-1, GD-2; partial observations relevant to GD-3/GD-4
+Firmware: 2.3.0 (ota_0)
+Capture date: 2026-10-21
+Capture source: operator-provided UART excerpt; PIN, credentials, account/network identifiers, event IDs and raw log timestamps omitted.
+
+Precondition:
+- A finite `distance 3` check returned 28.0 cm for all three readings.
+- Guard was DISARMED; zone was changed from 50 cm to 20 cm with prior operator approval.
+- The target remained in place; subsequent sonar reading drifted to 19.2 cm.
+
+Arming and intrusion:
+- `guard arm` produced the 10-second arming countdown and reported ARMED.
+- A subsequent 19.2 cm sonar reading was below the configured 20 cm zone and triggered INTRUSION.
+- UART gave a 15-second disarm window.
+- A disarm attempt without the required PIN argument returned E800; no PIN value is retained in this evidence.
+- The countdown expired and the device entered GENERAL ALARM.
+
+Alarm effects and recovery:
+- UART reported a CRITICAL Guard alert, valve OPEN, and state transition NORMAL to VERBOSE.
+- Further ALARM-active reminders appeared about 10 seconds apart.
+- The incident also emitted CIC messages for: INFO/watch (arming), WARNING/sonar (collision risk), WARNING/watch (intrusion), CRITICAL/watch (general alarm), and WARNING/telemetry (watch alarm). Alert identifiers and timestamps are omitted.
+- A later disarm using the operator's local PIN succeeded. Guard reported DISARMED and the valve CLOSED.
+- Immediately after disarm, the supplied Guard readback was DISARMED with zone 20 cm.
+- Cleanup was subsequently completed: `guard zone 50` was accepted and a `guard` readback confirmed DISARMED, zone 50 cm.
+- The supplied sequence does not include a physical LED observation. Alerts were not acknowledged as part of this check.
+- The CIC alert messages are observed at generation time only. This sequence did not run `alert list`, verify pending markers/retention, or acknowledge alerts.
+
+Assessment:
+- The arming countdown/ARMED transition, threshold-triggered intrusion, 15-second response window, timeout-to-ALARM path, CRITICAL/valve/state effects, reminder cadence sample, and disarm-from-ALARM/valve-close behavior were observed.
+- The intended clean arm-then-disarm-before-timeout scenario did not pass because the target measurement crossed the threshold and the first disarm command omitted its required argument.
+- The observed subscenarios pass individually: GD-1 arm activation; GD-2 threshold intrusion and timeout-to-ALARM; GD-3 UART alarm response effects; GD-4 disarm from ALARM. Overall GD-01 through GD-04 coverage remains PARTIAL. Other alarm sources, wrong-PIN lockout/reset, physical LED behavior, and other GD-4 cases remain untested.
+- The original zone was restored and read back as 50 cm after this incident.

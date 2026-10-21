@@ -1,0 +1,27 @@
+Test: GD-01/GD-04/GD-05 clean arm/disarm using changed Guard PIN
+Requirements: GD-1, GD-4, GD-5
+Firmware: 2.3.0 (ota_0)
+Capture date: 2026-10-21
+Capture source: operator-provided UART excerpts; PIN values, account/network identifiers, alert IDs and timestamps omitted.
+
+Pre-check:
+- Firmware 2.3.0 / ota_0; system VERBOSE.
+- Guard DISARMED, zone 20 cm; valve CLOSED.
+- Five finite sonar measurements were 28.0 cm (5/5 valid). The internal displayed medians were 29.9–30.0 cm.
+- For a wider margin, the operator-authorized zone was temporarily set to 10 cm and read back.
+
+Arming and observation:
+- Before the arming countdown, sonar reported 20.0 cm and emitted a collision WARNING. Guard did not enter INTRUSION; valve remained closed.
+- `guard arm` emitted the 10-second countdown and reported ARMED.
+- Subsequent Guard sonar samples repeatedly reported 28.0 cm; no Guard INTRUSION or ALARM occurred.
+
+Disarm and cleanup:
+- The operator entered the changed PIN locally in the disarm command. UART reported Guard DISARMED; the valve remained CLOSED.
+- The original 20 cm zone was restored and read back. Final Guard state was DISARMED, zone 20 cm.
+- The supplied result does not include a new system-state readback after the test; no alert acknowledgement or physical LED observation is claimed.
+
+Assessment:
+- PASS for one arm activation and clean disarm cycle using the changed PIN on 2.3.0.
+- The pre-arm collision WARNING at a displayed 20.0 cm is recorded separately; it was not a Guard intrusion and did not open the valve.
+- This does not test PIN persistence across reboot, wrong-PIN handling, E807 while armed, alarm-source behavior, or physical indicators.
+- PIN values and the credential-bearing command are intentionally omitted.

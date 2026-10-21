@@ -1,0 +1,47 @@
+Test: HL-03 NVS persistence for automatic health and interval
+Requirement: HL-3
+Firmware: 2.3.0 (ota_0)
+Capture date: 2026-10-21
+Capture source: operator-provided UART excerpts; account, network, MAC, and opaque build-tag fields omitted.
+
+Pre-check:
+- status: firmware 2.3.0 / ota_0, NORMAL, connected/logged in, valve closed, sonar no contact
+- health: auto on, interval 30 s (now 30 s in NORMAL)
+- approved side effects: temporary interval 10 s write and one software reboot; restore interval 30 s after readback
+
+Set the value to be checked across reboot:
+TX > health interval 10
+RX < [TELEMETRY] interval 10 s
+TX > health
+RX < [TELEMETRY] auto on, interval 10 s (now 10 s in NORMAL)
+
+Reboot:
+TX > reboot
+RX < rebooting in 3...
+RX < rebooting in 2...
+RX < rebooting in 1...
+RX < ESP-ROM boot; rst: RTC_SW_CPU_RST
+RX < app version: 2.3.0
+RX < partition: ota_0
+RX < last reset: software reboot
+RX < running v2.3.0 from ota_0
+RX < ready. state 1 NORMAL (patrol)
+
+Post-boot:
+- `version`/`status` confirmed v2.3.0 / ota_0, valid, NORMAL, valve closed.
+- Saved-profile `reconnect` succeeded; local login was completed by the operator. Credentials and identity-bearing lines are intentionally omitted.
+TX > health
+RX < [TELEMETRY] auto on, interval 10 s (now 10 s in NORMAL)
+RX < [TELEMETRY #1] 17:26:54 up 00:02:27 heap 251KB rssi -54 temp 30.4C depth 41.8m hull 5.2bar batt 24.2V valve closed sonar - watch disarmed alerts 0 state NORMAL
+
+Restore:
+TX > health interval 30
+RX < [TELEMETRY] interval 30 s
+TX > health
+RX < [TELEMETRY] auto on, interval 30 s (now 30 s in NORMAL)
+
+Result:
+- The enabled state and 10 s interval survived software reboot on 2.3.0.
+- Interval 30 s was restored and read back after the test.
+- Persistence of the auto-off state across reboot was not tested.
+- No flash, erase, OTA, or account changes were performed.

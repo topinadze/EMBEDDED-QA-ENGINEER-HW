@@ -1,0 +1,44 @@
+Test: HL-01 automatic health telemetry cadence in VERBOSE
+Requirement: HL-1
+Firmware: 2.3.0 (ota_0)
+Capture date: 2026-10-21
+Capture source: operator-provided UART excerpt; account and network identifiers redacted.
+
+Pre-check:
+- status: firmware 2.3.0 / ota_0, state NORMAL, connected and logged in, valve closed, sonar no contact
+- relay status: [VALVE] closed, auto off, cycles 210
+- health: [TELEMETRY] auto on, interval 30 s (now 30 s in NORMAL)
+
+TX > state 3
+RX < [STATE] 1 NORMAL -> 3 VERBOSE (by command)
+RX < [STATE] VERBOSE (tactical): extended logs, telemetry every 10 s, LED heartbeat
+
+RX < [TELEMETRY #4] 16:54:07 up 01:43:39 heap 251KB rssi -39 temp 31.4C depth 41.7m hull 5.2bar batt 24.0V valve closed sonar - watch disarmed alerts 0 state VERBOSE
+RX < [V] telemetry: min heap 205KB, beacon off, tasks 16, water 8.2C, source auto
+RX < [TELEMETRY #5] 16:54:17 up 01:43:49 heap 251KB rssi -45 temp 31.4C depth 41.7m hull 5.2bar batt 24.0V valve closed sonar - watch disarmed alerts 0 state VERBOSE
+RX < [V] telemetry: min heap 205KB, beacon off, tasks 16, water 8.2C, source auto
+
+TX > state 1
+RX < [STATE] 3 VERBOSE -> 1 NORMAL (by command)
+RX < [TELEMETRY #6] 16:54:27 up 01:43:59 heap 251KB rssi -44 temp 31.4C depth 41.8m hull 5.2bar batt 24.0V valve closed sonar - watch disarmed alerts 0 state NORMAL
+
+Post-check:
+- status confirmed firmware 2.3.0 / ota_0, state NORMAL, valve closed, and sonar no contact
+- reports #4 and #5 were exactly 10 s apart and both reported VERBOSE
+- report #6 occurred 10 s after #5 while NORMAL; this transition-period event does not establish the steady NORMAL cadence or a defect
+- no health settings or persistent state were changed
+- Steady NORMAL 30 s cadence was observed in the continuation below; exact transition/reset timing remains inconclusive.
+- EMERGENCY 5 s cadence, HL-2 warnings, and HL-3 controls/bounds/NVS persistence were not tested.
+
+Continuation: steady NORMAL cadence observation
+- Operator continued passive UART observation without issuing commands or changing settings.
+- Reports #15–#20 all identified state NORMAL.
+- Displayed timestamps were 16:58:57, 16:59:27, 16:59:57, 17:00:27, 17:00:57, and 17:01:27; each consecutive interval was exactly 30 s.
+- This confirms the steady NORMAL cadence for this observation. The transition-period report #6 at 16:54:27, 10 s after report #5, remains insufficient to determine exact cadence-reset timing.
+
+RX < [TELEMETRY #15] 16:58:57 up 01:48:29 heap 251KB rssi -57 temp 31.4C depth 41.4m hull 5.1bar batt 24.0V valve closed sonar - watch disarmed alerts 0 state NORMAL
+RX < [TELEMETRY #16] 16:59:27 up 01:48:59 heap 251KB rssi -60 temp 31.4C depth 41.4m hull 5.1bar batt 24.0V valve closed sonar - watch disarmed alerts 0 state NORMAL
+RX < [TELEMETRY #17] 16:59:57 up 01:49:29 heap 251KB rssi -56 temp 31.4C depth 41.4m hull 5.1bar batt 24.0V valve closed sonar - watch disarmed alerts 0 state NORMAL
+RX < [TELEMETRY #18] 17:00:27 up 01:49:59 heap 251KB rssi -53 temp 32.4C depth 41.3m hull 5.1bar batt 24.0V valve closed sonar - watch disarmed alerts 0 state NORMAL
+RX < [TELEMETRY #19] 17:00:57 up 01:50:29 heap 251KB rssi -50 temp 32.4C depth 41.3m hull 5.1bar batt 24.0V valve closed sonar - watch disarmed alerts 0 state NORMAL
+RX < [TELEMETRY #20] 17:01:27 up 01:50:59 heap 251KB rssi -51 temp 30.4C depth 41.6m hull 5.2bar batt 24.0V valve closed sonar - watch disarmed alerts 0 state NORMAL

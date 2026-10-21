@@ -1,0 +1,34 @@
+Test: HL-03 automatic telemetry on/off and idempotent commands
+Requirement: HL-3
+Firmware: 2.3.0 (ota_0)
+Capture date: 2026-10-21
+Capture source: operator-provided UART excerpts; account and network identifiers omitted.
+
+Pre-check:
+- status: firmware 2.3.0 / ota_0, state NORMAL, connected and logged in, valve closed, sonar no contact
+- health: auto on, interval 30 s (now 30 s in NORMAL)
+
+TX > health on
+RX < W901 health check already on
+
+TX > health off
+RX < [TELEMETRY] auto report off
+Operator observed no periodic [TELEMETRY #N] report during the requested approximately 35 s window. Other informational logs were not treated as health reports.
+
+TX > health off
+RX < W901 health check already off
+TX > health
+RX < [TELEMETRY] auto off, interval 30 s (now 30 s in NORMAL)
+
+Restore:
+TX > health on
+RX < I (7560495) [TELEMETRY] auto report on
+TX > health
+RX < I (7565775) [TELEMETRY] auto on, interval 30 s (now 30 s in NORMAL)
+RX < I (7590685) [TELEMETRY #55] 17:16:58 up 02:06:30 heap 251KB rssi -66 temp 31.4C depth 42.3m hull 5.2bar batt 24.0V valve closed sonar - watch disarmed alerts 0 state NORMAL
+
+Result:
+- `health on` while already enabled and repeated `health off` returned W901 as expected.
+- Automatic telemetry was reported absent during the approximately 35 s off observation.
+- `health` read back auto off after disabling and auto on / interval 30 s after restoration.
+- The first captured report after re-enabling was about 30 s later (monotonic UART ticks 7560495→7590685); NVS persistence across reboot was not tested.

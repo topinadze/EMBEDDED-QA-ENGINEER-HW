@@ -1,0 +1,37 @@
+Test: GD-01 Guard zone boundary validation
+Requirement: GD-1
+Firmware: 2.3.0 (ota_0)
+Capture date: 2026-10-21
+Capture source: operator-provided UART excerpts; account and network identifiers omitted.
+
+Pre-check:
+- Firmware 2.3.0 / ota_0, state NORMAL.
+- Guard DISARMED; original zone 50 cm.
+
+Valid boundaries:
+TX > guard zone 10
+RX < [WATCH] zone < 10 cm
+TX > guard
+RX < disarmed, zone 10 cm
+TX > guard zone 200
+RX < [WATCH] zone < 200 cm
+TX > guard
+RX < disarmed, zone 200 cm
+
+Invalid boundaries and cleanup:
+- An initial `guard zone 9` returned E808, but the operator-provided readback fields conflicted; that attempt was not counted.
+- The zone was restored/read back as 50 cm.
+TX > guard zone 9
+RX < E808 zone must be 10-200 cm
+TX > guard
+RX < disarmed, zone 50 cm
+TX > guard zone 201
+RX < E808 zone must be 10-200 cm
+TX > guard
+RX < disarmed, zone 50 cm
+
+Result:
+- 10 cm and 200 cm were accepted and read back.
+- Repeated invalid 9 cm and invalid 201 cm were rejected with E808; readback remained 50 cm.
+- Final zone is 50 cm. Guard remained disarmed; no alarm, relay, PIN, or physical action occurred.
+- Arming, intrusion sensing, and the 15-second disarm window remain untested.
