@@ -1,0 +1,78 @@
+DEBUG    drivers.device_driver:device_driver.py:96 TX > version
+DEBUG    drivers.device_driver:device_driver.py:96 RX < version
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (866415) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (866415) sentry:   partition: ota_0 @ 0x20000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:96 TX > lamp status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < lamp status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < E (866615) sentry: E002 Wi-Fi required. Use 'reconnect' or 'connect'
+WARNING  conftest:conftest.py:310 Lamp state snapshot unavailable.
+DEBUG    drivers.device_driver:device_driver.py:96 TX > status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (867225) sentry: === SWM-2 status ===
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (867225) sentry:   fw:       v2.3.0 (ota_0)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (867225) sentry:   state:    1 NORMAL
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (867225) sentry:   link:     buoy link down (known: TopA-node)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (867225) sentry:   user:     not logged in
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (867235) sentry:   time:     04:35:34, uptime 0h 14m 26s
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (867235) sentry:   valve:    closed
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (867235) sentry:   watch:    disarmed, CIC alerts unacked: 0
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (867245) sentry:   sonar:    no contact
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (867245) sentry:   carrier:  depth 40.8 m, hull 5.1 bar, water 8.1 C, battery 24.18 V (sim)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (867255) sentry:   heap:     252 KB free
+DEBUG    drivers.device_driver:device_driver.py:96 TX > status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (867435) sentry: === SWM-2 status ===
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (867435) sentry:   fw:       v2.3.0 (ota_0)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (867435) sentry:   state:    1 NORMAL
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (867435) sentry:   link:     buoy link down (known: TopA-node)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (867435) sentry:   user:     not logged in
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (867445) sentry:   time:     04:35:35, uptime 0h 14m 27s
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (867445) sentry:   valve:    closed
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (867445) sentry:   watch:    disarmed, CIC alerts unacked: 0
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (867455) sentry:   sonar:    no contact
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (867455) sentry:   carrier:  depth 40.8 m, hull 5.1 bar, water 8.1 C, battery 24.18 V (sim)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (867465) sentry:   heap:     252 KB free
+DEBUG    drivers.device_driver:device_driver.py:96 TX > connect
+DEBUG    drivers.device_driver:device_driver.py:96 RX < connect
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (867645) sentry: [LINK] scanning...
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (870145) sentry:   [ 1] bambuh                            -55 dBm
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (870145) sentry:   [ 2] TopAs_2.4G                        -56 dBm
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (870145) sentry:   [ 3] AP_2987279135                     -67 dBm
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (870145) sentry:   [ 4] 376                               -71 dBm
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (870155) sentry:   [ 5] E_0184_2390_E                     -74 dBm
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (870165) sentry:   [ 6] bambuh                            -77 dBm
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (870165) sentry:   [ 7] c63f5354                          -79 dBm
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (870175) sentry:   [ 8] VR46                              -81 dBm
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (870175) sentry:   [ 9] NeD                               -83 dBm
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (870185) sentry:   [10] HiSmart-01-ca2c4fae593b           -84 dBm
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (870195) sentry:   [11] HiSmart-01-ca2c4fae5ef5           -85 dBm
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (870195
+DEBUG    drivers.device_driver:device_driver.py:96 RX < ) sentry:   [12] c687a67b                          -88 dBm
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (870205) sentry:   [13] Kvartira212                       -88 dBm
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (870205) sentry:   [14] c67272ed                          -89 dBm
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (870215) sentry:   [15] nest wifi                         -89 dBm
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (870225) sentry:   [16] rabbits                           -89 dBm
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (870225) sentry:   [17] 1ed4a802                          -90 dBm
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (870235) sentry:   [18] Sashka                            -90 dBm
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (870235) sentry:   [19] Home_sweet_home                   -90 dBm
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (870245) sentry:   [20] Q0045139631614                    -91 dBm
+DEBUG    drivers.device_driver:device_driver.py:96 RX < SSID or number:
+DEBUG    drivers.device_driver:device_driver.py:96 TX > 
+DEBUG    drivers.device_driver:device_driver.py:96 RX < E (870545) sentry: E111 SSID cannot be empty
+DEBUG    drivers.device_driver:device_driver.py:96 TX > status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (870755) sentry: === SWM-2 status ===
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (870755) sentry:   fw:       v2.3.0 (ota_0)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (870755) sentry:   state:    1 NORMAL
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (870755) sentry:   link:     buoy link down (known: TopA-node)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (870755) sentry:   user:     not logged in
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (870765) sentry:   time:     04:35:38, uptime 0h 14m 30s
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (870765) sentry:   valve:    closed
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (870765) sentry:   watch:    disarmed, CIC alerts unacked: 0
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (870775) sentry:   sonar:    no contact
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (870775) sentry:   carrier:  depth 40.8 m, hull 5.1 bar, water 8.1 C, battery 24.18 V (sim)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (870785) sentry:   heap:     252 KB free
+DEBUG    drivers.device_driver:device_driver.py:96 TX > lamp off
+DEBUG    drivers.device_driver:device_driver.py:96 RX < lamp off
+DEBUG    drivers.device_driver:device_driver.py:96 RX < E (870965) sentry: E002 Wi-Fi required. Use 'reconnect' or 'connect'
+INFO     conftest:conftest.py:422 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz17\logs\automated\wifi\2.3.0\20261021-test_wifi_connect_empty_ssid.txt

@@ -1,0 +1,13 @@
+Test: tests/test_wifi.py::TestWifi::test_wifi_persistence_after_reboot
+Firmware: unknown
+Captured: 2026-10-21T02:24:29.553731+03:00
+
+TX > version
+RX < I (1875460) esp_netif_handlers: sta ip: 10.223.162.49, mask: 255.255.255.0, gw: 10.223.162.101
+RX < I (1875460) sentry: [LINK] got ip 10.223.162.49
+RX < I (1875460) sentry: [LINK] connected to 'TopA-node', rssi -28 dBm (excellent)
+RX < I (1875540) sentry: [TELEMETRY] auto report every 30 s ('health off' to stop)
+RX < I (1882680) wifi:<ba-add>idx:0 (ifx:0, 3e:5a:6b:10:5f:b4), tid:0
+RX < , ssn:14, winSize:64
+RX < I (1882980) esp-x509-crt-bundle: Certificate validated
+RX < I (1883760) sentry: [LINK] fleet network reachable (internet OK)

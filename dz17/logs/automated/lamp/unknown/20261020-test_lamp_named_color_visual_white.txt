@@ -1,0 +1,6 @@
+Test: tests/test_lamp.py::TestLamp::test_lamp_named_color_visual[white]
+Firmware: unknown
+Captured: 2026-10-20T15:48:43.085959+03:00
+
+TX > version
+RX < I (4065) sentry: [LINK] fleet network reachable (internet OK)

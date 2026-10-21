@@ -444,7 +444,7 @@ python -m pytest -c pytest.ini -s -m "relay and persistent and interactive" --po
 | **BUG-002** | `state 4` accepted from DEBUG | Tested in `test_button_pair_k4_k1_rejected_from_normal` (button path returns E302) |
 | **BUG-003** | `lamp timer` start message reports `ms` instead of `s` | `test_lamp_timer_unit_text` marks xfail only on 2.1.0; the timer expiration is tested separately |
 | **BUG-004** | Relay cycle counter increments twice per actual state transition | `test_relay_commands_and_cycle_count` marks xfail on 2.1.0 |
-| **BUG-005** | GPIO4 relay indicator appears inverted | `test_relay_gpio4_indicator` marks xfail on 2.1.0 only when both observed states are inverted |
-| **BUG-006** | Relay accepts a 99 ms pulse below the documented 100 ms minimum | `test_relay_pulse_rejects_out_of_range_duration` marks xfail on 2.1.0 |
+| **BUG-005** | GPIO4 relay indicator does not consistently match the relay state | `test_relay_gpio4_indicator` marks xfail on 2.1.0/2.3.0 when either operator-confirmed state mismatches the PRD; UART state changes are still asserted |
+| **BUG-006** | Relay accepts a 99 ms pulse below the documented 100 ms minimum | `test_relay_pulse_rejects_out_of_range_duration` marks xfail on 2.1.0 and 2.3.0 only when UART confirms pulse actuation; E603 remains the passing result |
 | **BUG-008** | `distance 20` rejects maximum valid DS-1 sample count | `test_distance_averaging_max_boundary_20` marks xfail on 2.1.0 for E704 |
 | **BUG-009** | `distance stop` omits documented W710 response code | `test_distance_stream_and_stop` marks xfail on 2.1.0 for missing W710 |

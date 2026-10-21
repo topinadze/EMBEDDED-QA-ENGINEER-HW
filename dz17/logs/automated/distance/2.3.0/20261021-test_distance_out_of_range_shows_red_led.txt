@@ -1,0 +1,50 @@
+Test: tests/test_distance.py::TestDistance::test_distance_out_of_range_shows_red_led
+Firmware: 2.3.0
+Captured: 2026-10-21T00:12:41.133396+03:00
+
+TX > version
+RX < version
+RX < I (8475255) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+RX < I (8475255) sentry:   partition: ota_0 @ 0x20000, state: valid
+TX > lamp status
+RX < lamp status
+RX < I (8475465) sentry: [BEACON] off, color (160,0,255), brightness 75%, mode breathe, timer off
+TX > status
+RX < status
+RX < I (8476065) sentry: === SWM-2 status ===
+RX < I (8476065) sentry:   fw:       v2.3.0 (ota_0)
+RX < I (8476065) sentry:   state:    1 NORMAL
+RX < I (8476065) sentry:   link:     buoy link 'TopA-node', ip 10.223.162.49, rssi -37 dBm (excellent), ch 1
+RX < I (8476075) sentry:   internet: OK
+RX < I (8476075) sentry:   user:     testUser (user)
+RX < I (8476075) sentry:   time:     00:11:28, uptime 2h 21m 15s
+RX < I (8476085) sentry:   valve:    closed
+RX < I (8476085) sentry:   watch:    disarmed, CIC alerts unacked: 15
+RX < I (8476095) sentry:   sonar:    last echo 21.7 cm
+RX < I (8476095) sentry:   carrier:  depth 45.5 m, hull 5.6 bar, water 8.0 C, battery 23.97 V (sim)
+RX < I (8476105) sentry:   heap:     251 KB free
+TX > whoami
+RX < whoami
+RX < I (8476265) sentry: user: testUser, access: user
+TX > distance
+RX < W (8479675) sentry: [ACU] biologics detected (snapping shrimp), passive filter on
+RX < I (8488035) sentry: [TELEMETRY #276] 00:11:40 up 02:21:27 heap 251KB rssi -40 temp 30.4C depth 45.7m hull 5.6bar batt 24.0V valve closed sonar 21.7cm watch disarmed alerts 15 state NORMAL
+RX < I (8518235) sentry: [TELEMETRY #277] 00:12:10 up 02:21:57 heap 251KB rssi -39 temp 30.4C depth 45.7m hull 5.6bar batt 24.0V valve closed sonar 21.7cm watch disarmed alerts 15 state NORMAL
+RX < distance
+RX < I (8546215) sentry: [SONAR] ping: echo 29.0 cm
+TX > lamp timer 0
+RX < lamp timer 0
+RX < I (8547445) sentry: [BEACON] timer cancelled
+TX > lamp color 160 0 255
+RX < lamp color 160 0 255
+RX < I (8547845) sentry: [BEACON] color: (160,0,255)
+TX > lamp brightness 75
+RX < lamp brightness 75
+RX < I (8548235) sentry: [TELEMETRY #278] 00:12:40 up 02:22:27 heap 251KB rssi -41 temp 30.4C depth 45.7m hull 5.6bar batt 24.0V valve closed sonar 29.0cm watch disarmed alerts 15 state NORMAL
+RX < I (8548255) sentry: [BEACON] brightness: 75%
+TX > lamp mode breathe
+RX < lamp mode breathe
+RX < I (8548655) sentry: [BEACON] mode: breathe
+TX > lamp off
+RX < lamp off
+RX < W (8549075) sentry: W510 lamp already off

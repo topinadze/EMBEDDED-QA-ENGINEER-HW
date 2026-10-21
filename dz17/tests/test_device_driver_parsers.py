@@ -163,6 +163,8 @@ def test_wifi_status_waits_for_link_phrase_and_parses_response() -> None:
         b"I (1) sentry: firmware version: 2.3.0\n",
         b"I (1) sentry: sentry_fw7_2.3.0\n",
         b"I (1) sentry: fw: 2.3.0\n",
+        b"I (1) sentry: fw v2.3.0\n",
+        b"I (1) sentry: version 2.3.0\n",
     ],
 )
 def test_version_waits_for_supported_firmware_phrase(
@@ -183,7 +185,18 @@ def test_version_fails_when_firmware_phrase_never_arrives() -> None:
     driver = DeviceDriver(port="DUMMY")
     driver.serial = FakeSerial(b"I (1) sentry: ready\n")  # type: ignore[assignment]
 
-    with pytest.raises(TimeoutError, match="supported firmware version response"):
+    with pytest.raises(TimeoutError, match="firmware version response matching"):
+        driver.version(timeout=0.02)
+
+
+def test_version_does_not_accept_unrelated_version_text() -> None:
+    driver = DeviceDriver(port="DUMMY")
+    driver.serial = FakeSerial(
+        b"I (1) sentry: version command received\n"
+        b"I (2) sentry: ready\n"
+    )  # type: ignore[assignment]
+
+    with pytest.raises(TimeoutError, match="SENTRY version banner"):
         driver.version(timeout=0.02)
 
 
@@ -209,8 +222,62 @@ def test_wifi_status_fails_when_required_status_phrase_is_missing() -> None:
         b"I (2) sentry:   user: not logged in\n"
     )  # type: ignore[assignment]
 
-    with pytest.raises(TimeoutError, match="heap:"):
+    with pytest.raises(TimeoutError, match="after one retry"):
         driver.wifi_status(timeout=0.02)
+    assert driver.serial.writes == [b"status\r\n", b"status\r\n"]
+
+
+def test_wifi_status_retries_after_missing_terminal_uart_marker() -> None:
+    class RetryStatusSerial(FakeSerial):
+        def __init__(self) -> None:
+            super().__init__(b"")
+            self.status_attempts = 0
+
+        def write(self, data: bytes) -> int:
+            super().write(data)
+            if data != b"status\r\n":
+                return len(data)
+            self.status_attempts += 1
+            if self.status_attempts == 1:
+                self._data = b"I (1) sentry: [LINK] fleet network reachable\n"
+            else:
+                self._data = (
+                    b"I (2) sentry:   link: buoy link down (known: TestAP)\n"
+                    b"I (3) sentry:   user: not logged in\n"
+                    b"I (4) sentry:   heap: 251 KB free\n"
+                )
+            return len(data)
+
+    driver = DeviceDriver(port="DUMMY")
+    serial = RetryStatusSerial()
+    driver.serial = serial  # type: ignore[assignment]
+
+    status = driver.wifi_status(timeout=0.02)
+
+    assert status["connected"] is False
+    assert serial.writes == [b"status\r\n", b"status\r\n"]
+
+
+def test_wifi_status_fails_immediately_on_explicit_uart_error() -> None:
+    driver = DeviceDriver(port="DUMMY")
+    driver.serial = FakeSerial(
+        b"E (1) sentry: E003 login required\n"
+    )  # type: ignore[assignment]
+
+    with pytest.raises(RuntimeError, match="E003"):
+        driver.wifi_status(timeout=0.2)
+
+
+def test_wifi_status_rejects_incomplete_response_after_terminal_marker() -> None:
+    driver = DeviceDriver(port="DUMMY")
+    driver.serial = FakeSerial(
+        b"I (1) sentry:   user: not logged in\n"
+        b"I (2) sentry:   heap: 251 KB free\n"
+    )  # type: ignore[assignment]
+
+    with pytest.raises(AssertionError, match="omitted required fields.*link:"):
+        driver.wifi_status(timeout=0.2)
+    assert driver.serial.writes == [b"status\r\n"]
 
 
 def test_wifi_reconnect_waits_for_uart_connection_events() -> None:
@@ -223,6 +290,52 @@ def test_wifi_reconnect_waits_for_uart_connection_events() -> None:
 
     assert driver.wifi_reconnect(timeout=0.2) is True
     assert driver.uart_log[0] == "TX > reconnect"
+
+
+@pytest.mark.parametrize(
+    "error",
+    [
+        b"E101 wrong password\n",
+        b"E102 network not found\n",
+        b"E104 DHCP timeout\n",
+        b"E111 empty SSID\n",
+        b"E112 password too short\n",
+    ],
+)
+def test_wifi_reconnect_returns_false_on_explicit_uart_failure(error: bytes) -> None:
+    driver = DeviceDriver(port="DUMMY")
+    driver.serial = FakeSerial(error)  # type: ignore[assignment]
+
+    assert driver.wifi_reconnect(timeout=0.2) is False
+
+
+def test_wifi_reconnect_requires_both_association_and_ip_events() -> None:
+    driver = DeviceDriver(port="DUMMY")
+    driver.serial = FakeSerial(
+        b"I (1) wifi:connected with TestAP\n"
+    )  # type: ignore[assignment]
+
+    assert driver.wifi_reconnect(timeout=0.02) is False
+
+
+@pytest.mark.parametrize(
+    "response",
+    [
+        b"I (1) sentry: [LINK] disconnected\n",
+        b"W (1) sentry: W115 already disconnected\n",
+    ],
+)
+def test_wifi_disconnect_waits_for_explicit_uart_result(response: bytes) -> None:
+    driver = DeviceDriver(port="DUMMY")
+    driver.serial = FakeSerial(response)  # type: ignore[assignment]
+
+    result = driver.wifi_disconnect(timeout=0.2)
+
+    assert any(
+        marker.casefold() in line.casefold()
+        for marker in ("[LINK] disconnected", "W115")
+        for line in result
+    )
 
 
 def test_parse_firmware_version() -> None:
@@ -419,7 +532,6 @@ def test_guard_and_alert_helpers_build_commands() -> None:
     assert driver.guard_arm(timeout=0.8) == ["guard arm"]
     assert driver.guard_disarm("1234") == ["guard disarm 1234"]
     assert driver.guard_panic(timeout=1.0) == ["guard panic"]
-    assert driver.relay_schedule_stop() == ["relay schedule off"]
     assert driver.alert_list() == ["alert list"]
     assert driver.alert_test("critical") == ["alert test critical"]
     assert driver.alert_ack() == ["alert ack"]
@@ -432,7 +544,6 @@ def test_guard_and_alert_helpers_build_commands() -> None:
         ("guard arm", 0.8),
         ("guard disarm 1234", 0.6),
         ("guard panic", 1.0),
-        ("relay schedule off", 0.6),
         ("alert list", 0.6),
         ("alert test critical", 0.6),
         ("alert ack", 0.6),
@@ -448,24 +559,29 @@ def test_wifi_reconnect_accepts_station_ip_event(monkeypatch) -> None:
         "send_command_nowait",
         lambda command, sensitive=False: None,
     )
-    monkeypatch.setattr(
-        driver,
-        "_read_for",
-        lambda timeout: [
+    def read_wifi_events(timeout: float) -> list[str]:
+        lines = [
             "I (1) sentry: [LINK] connected to 'TestAP'",
             "I (2) esp_netif_handlers: sta ip: 192.0.2.10",
-        ],
-    )
+        ]
+        driver.uart_log.extend(f"RX < {line}" for line in lines)
+        return lines
+
+    monkeypatch.setattr(driver, "_read_for", read_wifi_events)
 
     assert driver.wifi_reconnect(timeout=0.1)
 
 
 def test_parse_relay_status() -> None:
-    lines = [
-        "I (6992779) sentry: [VALVE] OPEN, auto off, cycles 82",
-    ]
     driver = DeviceDriver(port="DUMMY")
-    driver.send_command = lambda cmd, timeout=0.6: lines  # type: ignore[assignment]
+
+    def send_status(command: str, sensitive: bool = False) -> None:
+        assert command == "relay status"
+        driver.uart_log.append(
+            "RX < I (6992779) sentry: [VALVE] OPEN, auto off, cycles 82"
+        )
+
+    driver.send_command_nowait = send_status  # type: ignore[method-assign]
     status = driver.relay_status()
     assert status["state"] == "OPEN"
     assert status["auto"] == "off"
@@ -474,10 +590,98 @@ def test_parse_relay_status() -> None:
 
 def test_relay_status_rejects_unparsed_uart_response() -> None:
     driver = DeviceDriver(port="DUMMY")
-    driver.send_command = lambda cmd, timeout=0.6: ["unexpected response"]  # type: ignore[assignment]
+
+    def send_malformed_status(command: str, sensitive: bool = False) -> None:
+        assert command == "relay status"
+        driver.uart_log.append(
+            "RX < I (6992779) sentry: [VALVE] OPEN, auto off, cycles unknown"
+        )
+
+    driver.send_command_nowait = send_malformed_status  # type: ignore[method-assign]
 
     with pytest.raises(AssertionError, match="No relay status found"):
         driver.relay_status()
+
+
+def test_relay_status_reports_uart_error_without_waiting_for_status_timeout() -> None:
+    driver = DeviceDriver(port="DUMMY")
+
+    def send_error(command: str, sensitive: bool = False) -> None:
+        assert command == "relay status"
+        driver.uart_log.append("RX < E003 authentication required")
+
+    driver.send_command_nowait = send_error  # type: ignore[method-assign]
+
+    with pytest.raises(RuntimeError, match="E003"):
+        driver.relay_status(timeout=0.1)
+
+
+def test_relay_on_waits_for_uart_acknowledgement() -> None:
+    driver = DeviceDriver(port="DUMMY")
+
+    def send_relay_on(command: str, sensitive: bool = False) -> None:
+        assert command == "relay on"
+        driver.uart_log.append("RX < I (1) sentry: [VALVE] OPEN")
+
+    driver.send_command_nowait = send_relay_on  # type: ignore[method-assign]
+
+    assert driver.relay_on(timeout=0.1) == ["I (1) sentry: [VALVE] OPEN"]
+
+
+def test_relay_sonar_commands_wait_for_uart_acknowledgements() -> None:
+    driver = DeviceDriver(port="DUMMY")
+    responses = {
+        "distance alarm 30": "I (1) sentry: [SONAR] alarm at 30 cm",
+        "relay auto on": "I (2) sentry: [VALVE] auto on",
+        "distance log 500": "I (3) sentry: [SONAR] continuous pinging every 500 ms",
+        "distance stop": "I (4) sentry: [SONAR] pinging stopped",
+        "relay auto off": "I (5) sentry: [VALVE] auto off",
+        "distance alarm off": "I (6) sentry: [SONAR] alarm off",
+    }
+
+    def send_and_respond(command: str, sensitive: bool = False) -> None:
+        driver.uart_log.append(f"RX < {responses[command]}")
+
+    driver.send_command_nowait = send_and_respond  # type: ignore[method-assign]
+
+    assert driver.distance_alarm(30) == [responses["distance alarm 30"]]
+    assert driver.relay_auto(True) == [responses["relay auto on"]]
+    assert driver.distance_log(500) == [responses["distance log 500"]]
+    assert driver.distance_stop() == [responses["distance stop"]]
+    assert driver.relay_auto(False) == [responses["relay auto off"]]
+    assert driver.distance_alarm("off") == [responses["distance alarm off"]]
+
+
+def test_relay_pulse_waits_for_uart_completion_event() -> None:
+    driver = DeviceDriver(port="DUMMY")
+
+    def send_pulse(command: str, sensitive: bool = False) -> None:
+        assert command == "relay pulse 100"
+        driver.uart_log.extend(
+            [
+                "RX < I (1) sentry: [VALVE] OPEN (pulse)",
+                "RX < I (101) sentry: [VALVE] CLOSED (pulse end)",
+            ]
+        )
+
+    driver.send_command_nowait = send_pulse  # type: ignore[method-assign]
+
+    assert driver.relay_pulse(100) == [
+        "I (1) sentry: [VALVE] OPEN (pulse)",
+        "I (101) sentry: [VALVE] CLOSED (pulse end)",
+    ]
+
+
+def test_relay_schedule_stop_waits_for_uart_warning() -> None:
+    driver = DeviceDriver(port="DUMMY")
+
+    def send_schedule_stop(command: str, sensitive: bool = False) -> None:
+        assert command == "relay schedule off"
+        driver.uart_log.append("RX < W605 schedule not running")
+
+    driver.send_command_nowait = send_schedule_stop  # type: ignore[method-assign]
+
+    assert driver.relay_schedule_stop() == ["W605 schedule not running"]
 
 
 def test_parse_whoami() -> None:

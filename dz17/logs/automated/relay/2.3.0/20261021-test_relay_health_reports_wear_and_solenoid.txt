@@ -1,0 +1,41 @@
+Test: tests/test_relay.py::TestRelay::test_relay_health_reports_wear_and_solenoid
+Firmware: 2.3.0
+Captured: 2026-10-21T05:37:06.500941+03:00
+
+TX > version
+RX < version
+RX < I (4557015) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+RX < I (4557015) sentry:   partition: ota_0 @ 0x20000, state: valid
+TX > status
+RX < status
+RX < I (4557225) sentry: === SWM-2 status ===
+RX < I (4557225) sentry:   fw:       v2.3.0 (ota_0)
+RX < I (4557225) sentry:   state:    1 NORMAL
+RX < I (4557225) sentry:   link:     buoy link 'TopA-node', ip 10.223.162.49, rssi -29 dBm (excellent), ch 1
+RX < I (4557235) sentry:   internet: OK
+RX < I (4557235) sentry:   user:     testUser (user)
+RX < I (4557235) sentry:   time:     05:37:03, uptime 1h 15m 56s
+RX < I (4557245) sentry:   valve:    closed
+RX < I (4557245) sentry:   watch:    disarmed, CIC alerts unacked: 1
+RX < I (4557255) sentry:   sonar:    no contact
+RX < I (4557255) sentry:   carrier:  depth 40.9 m, hull 5.1 bar, water 8.2 C, battery 24.08 V (sim)
+RX < I (4557265) sentry:   heap:     251 KB free
+TX > whoami
+RX < whoami
+RX < I (4557425) sentry: user: testUser, access: user
+TX > relay status
+RX < relay status
+RX < I (4557635) sentry: [VALVE] closed, auto off, cycles 208
+TX > relay health
+RX < relay health
+RX < I (4557845) sentry: [VALVE] seal: 208 / 100000 cycles, wear 0.21% (good)
+RX < I (4557845) sentry: [VALVE] solenoid: OK, contact resistance: 45 mOhm
+TX > relay schedule off
+RX < relay schedule off
+RX < W (4558055) sentry: W605 schedule is not running
+TX > relay status
+RX < relay status
+RX < I (4558265) sentry: [VALVE] closed, auto off, cycles 208
+TX > relay status
+RX < relay status
+RX < I (4558475) sentry: [VALVE] closed, auto off, cycles 208

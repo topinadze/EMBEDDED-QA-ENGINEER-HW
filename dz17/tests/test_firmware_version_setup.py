@@ -90,6 +90,31 @@ def test_device_driver_stores_actual_firmware_version() -> None:
     driver.version.assert_called_once_with()
 
 
+def test_device_driver_retries_firmware_version_after_timeout() -> None:
+    request = FakeRequest(expected_version="2.1.0")
+    driver = _driver_with_firmware("2.1.0")
+    driver.version.side_effect = [TimeoutError("no response"), "2.1.0"]
+
+    version = conftest._get_confirmed_firmware_version(driver, request)
+
+    assert version == "2.1.0"
+    assert driver.version.call_count == 2
+
+
+def test_device_driver_fails_after_firmware_version_attempts_are_exhausted() -> None:
+    request = FakeRequest(expected_version="2.1.0")
+    driver = _driver_with_firmware("2.1.0")
+    driver.version.side_effect = TimeoutError("no response")
+
+    with pytest.raises(
+        pytest.fail.Exception,
+        match=f"after {conftest.FIRMWARE_VERSION_ATTEMPTS} attempts",
+    ):
+        conftest._get_confirmed_firmware_version(driver, request)
+
+    assert driver.version.call_count == conftest.FIRMWARE_VERSION_ATTEMPTS
+
+
 def test_uart_log_keeps_only_latest_per_test_and_firmware(
     monkeypatch: pytest.MonkeyPatch, tmp_path: Path
 ) -> None:

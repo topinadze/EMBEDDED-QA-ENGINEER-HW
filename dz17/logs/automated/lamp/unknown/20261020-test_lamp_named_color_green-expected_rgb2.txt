@@ -1,0 +1,5 @@
+Test: tests/test_lamp.py::TestLamp::test_lamp_named_color[green-expected_rgb2]
+Firmware: unknown
+Captured: 2026-10-20T15:45:34.907768+03:00
+
+TX > version

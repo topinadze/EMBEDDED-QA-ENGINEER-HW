@@ -1,0 +1,49 @@
+Test: tests/test_relay.py::TestRelay::test_relay_auto_control
+Firmware: 2.3.0
+Captured: 2026-10-21T05:37:08.848647+03:00
+
+TX > version
+RX < version
+RX < I (4558735) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+RX < I (4558735) sentry:   partition: ota_0 @ 0x20000, state: valid
+TX > status
+RX < status
+RX < I (4558945) sentry: === SWM-2 status ===
+RX < I (4558945) sentry:   fw:       v2.3.0 (ota_0)
+RX < I (4558945) sentry:   state:    1 NORMAL
+RX < I (4558945) sentry:   link:     buoy link 'TopA-node', ip 10.223.162.49, rssi -29 dBm (excellent), ch 1
+RX < I (4558955) sentry:   internet: OK
+RX < I (4558955) sentry:   user:     testUser (user)
+RX < I (4558955) sentry:   time:     05:37:05, uptime 1h 15m 58s
+RX < I (4558965) sentry:   valve:    closed
+RX < I (4558965) sentry:   watch:    disarmed, CIC alerts unacked: 1
+RX < I (4558975) sentry:   sonar:    no contact
+RX < I (4558975) sentry:   carrier:  depth 40.9 m, hull 5.1 bar, water 8.2 C, battery 24.08 V (sim)
+RX < I (4558985) sentry:   heap:     251 KB free
+TX > whoami
+RX < whoami
+RX < I (4559145) sentry: user: testUser, access: user
+TX > relay status
+RX < relay status
+RX < I (4559355) sentry: [VALVE] closed, auto off, cycles 208
+TX > relay status
+RX < relay status
+RX < I (4559565) sentry: [VALVE] closed, auto off, cycles 208
+TX > relay auto on
+RX < relay auto on
+RX < I (4559785) sentry: [VALVE] auto on - valve opens on sonar proximity alarm
+TX > relay status
+RX < relay status
+RX < I (4559985) sentry: [VALVE] closed, auto on, cycles 208
+TX > relay schedule off
+RX < relay schedule off
+RX < W (4560195) sentry: W605 schedule is not running
+TX > relay status
+RX < relay status
+RX < I (4560405) sentry: [VALVE] closed, auto on, cycles 208
+TX > relay auto off
+RX < relay auto off
+RX < I (4560625) sentry: [VALVE] auto off - valve ignores on sonar proximity alarm
+TX > relay status
+RX < relay status
+RX < I (4560825) sentry: [VALVE] closed, auto off, cycles 208

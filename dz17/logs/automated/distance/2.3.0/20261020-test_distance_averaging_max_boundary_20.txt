@@ -1,46 +1,46 @@
 Test: tests/test_distance.py::TestDistance::test_distance_averaging_max_boundary_20
 Firmware: 2.3.0
-Captured: 2026-10-20T03:45:55.382227+03:00
+Captured: 2026-10-20T23:53:12.840234+03:00
 
 TX > version
 RX < version
-RX < I (2778445) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
-RX < I (2778445) sentry:   partition: ota_0 @ 0x20000, state: valid
+RX < I (7373775) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+RX < I (7373775) sentry:   partition: ota_0 @ 0x20000, state: valid
 TX > lamp status
 RX < lamp status
-RX < I (2779455) sentry: [BEACON] off, color (255,0,0), brightness 100%, mode solid, timer off
+RX < I (7373985) sentry: [BEACON] off, color (160,0,255), brightness 75%, mode breathe, timer off
 TX > status
 RX < status
-RX < I (2780065) sentry: === SWM-2 status ===
-RX < I (2780065) sentry:   fw:       v2.3.0 (ota_0)
-RX < I (2780065) sentry:   state:    1 NORMAL
-RX < I (2780065) sentry:   link:     buoy link 'TopA-node', ip 10.223.162.49, rssi -39 dBm (excellent), ch 1
-RX < I (2780075) sentry:   internet: OK
-RX < I (2780075) sentry:   user:     testUser (user)
-RX < I (2780075) sentry:   time:     03:45:48, uptime 0h 46m 19s
-RX < I (2780085) sentry:   valve:    closed
-RX < I (2780085) sentry:   watch:    disarmed, CIC alerts unacked: 2
-RX < I (2780095) sentry:   sonar:    last echo 12.2 cm
-RX < I (2780095) sentry:   carrier:  depth 41.0 m, hull 5.1 bar, water 8.2 C, battery 24.13 V (sim)
-RX < I (2780105) sentry:   heap:     251 KB free
+RX < I (7374595) sentry: === SWM-2 status ===
+RX < I (7374595) sentry:   fw:       v2.3.0 (ota_0)
+RX < I (7374595) sentry:   state:    1 NORMAL
+RX < I (7374595) sentry:   link:     buoy link 'TopA-node', ip 10.223.162.49, rssi -29 dBm (excellent), ch 1
+RX < I (7374605) sentry:   internet: OK
+RX < I (7374605) sentry:   user:     testUser (user)
+RX < I (7374605) sentry:   time:     23:53:07, uptime 2h 02m 54s
+RX < I (7374615) sentry:   valve:    closed
+RX < I (7374615) sentry:   watch:    disarmed, CIC alerts unacked: 12
+RX < I (7374625) sentry:   sonar:    last echo 20.8 cm
+RX < I (7374625) sentry:   carrier:  depth 44.8 m, hull 5.5 bar, water 8.0 C, battery 24.00 V (sim)
+RX < I (7374635) sentry:   heap:     251 KB free
 TX > whoami
 RX < whoami
-RX < I (2780275) sentry: user: testUser, access: user
+RX < I (7374795) sentry: user: testUser, access: user
 TX > distance 20
 RX < distance 20
-RX < E (2780485) sentry: E704 count must be 1-20
+RX < E (7375005) sentry: E704 count must be 1-20
 TX > lamp timer 0
 RX < lamp timer 0
-RX < I (2784545) sentry: [BEACON] timer cancelled
-TX > lamp color 255 0 0
-RX < lamp color 255 0 0
-RX < I (2784955) sentry: [BEACON] color: (255,0,0)
-TX > lamp brightness 100
-RX < lamp brightness 100
-RX < I (2785365) sentry: [BEACON] brightness: 100%
-TX > lamp mode solid
-RX < lamp mode solid
-RX < I (2785765) sentry: [BEACON] mode: solid
+RX < I (7379105) sentry: [BEACON] timer cancelled
+TX > lamp color 160 0 255
+RX < lamp color 160 0 255
+RX < I (7379515) sentry: [BEACON] color: (160,0,255)
+TX > lamp brightness 75
+RX < lamp brightness 75
+RX < I (7379925) sentry: [BEACON] brightness: 75%
+TX > lamp mode breathe
+RX < lamp mode breathe
+RX < I (7380335) sentry: [BEACON] mode: breathe
 TX > lamp off
 RX < lamp off
-RX < W (2786175) sentry: W510 lamp already off
+RX < W (7380745) sentry: W510 lamp already off

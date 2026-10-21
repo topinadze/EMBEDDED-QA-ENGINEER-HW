@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="1" time="186.807" timestamp="2026-10-21T01:59:47.395416+03:00" hostname="Prosha"><testcase classname="tests.test_distance.TestDistance" name="test_distance_proximity_indicator_tracks_target" time="186.661"><failure message="AssertionError: Expected at least 3 readings in the final stable near-target readings, got 0 matching readings from [14.3, 14.3, 14.3]&#10;assert 0 &gt;= 3&#10; +  where 0 = len([])">tests\test_distance.py:1146: in test_distance_proximity_indicator_tracks_target
+    _assert_proximity_reading_progression(captured_phases)
+tests\test_distance.py:369: in _assert_proximity_reading_progression
+    _assert_minimum_readings(
+tests\test_distance.py:334: in _assert_minimum_readings
+    assert len(matches) &gt;= MINIMUM_STABLE_READINGS, (
+E   AssertionError: Expected at least 3 readings in the final stable near-target readings, got 0 matching readings from [14.3, 14.3, 14.3]
+E   assert 0 &gt;= 3
+E    +  where 0 = len([])</failure></testcase></testsuite></testsuites>

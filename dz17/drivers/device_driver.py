@@ -15,6 +15,13 @@ ANSI_ESCAPE = re.compile(r"\x1B(?:[@-Z\\-_]|\[[0-?]*[ -/]*[@-~])")
 VERSION_PATTERN = re.compile(
     r"(?:fw\s*:?\s*v?|version\s*:?\s*v?|sentry_fw7_v?)(\d+\.\d+\.\d+)", re.IGNORECASE
 )
+VERSION_RESPONSE_PATTERN = re.compile(
+    r"(?:SENTRY SWM-2 sonar watch module,\s*fw\s*v|"
+    r"firmware version:\s*v?|sentry_fw7_v?|fw\s*:?\s*v?|version\s*:?\s*v?)"
+    r"(\d+\.\d+\.\d+)\b",
+    re.IGNORECASE,
+)
+VERSION_RESPONSE_TIMEOUT = 3.0
 STATE_PATTERN = re.compile(r"\bstate:\s*(\d+)\s+([A-Z]+)\b", re.IGNORECASE)
 BEACON_STATUS_PATTERN = re.compile(
     r"\[BEACON\]\s*(ON|off),\s*color\s*\((\d+)\s*,\s*(\d+)\s*,\s*(\d+)\),\s*brightness\s*(\d+)%,\s*mode\s*([a-zA-Z0-9_-]+),\s*timer\s*([^\r\n]+)",
@@ -182,6 +189,33 @@ class DeviceDriver:
         with allure.step(f"Send UART command and await event: {display_cmd}"):
             self._send_line(command, sensitive=sensitive)
 
+    def _send_command_wait_for_any(
+        self,
+        command: str,
+        markers: tuple[str, ...],
+        timeout: float,
+    ) -> list[str]:
+        start_idx = self.buffer_len()
+        self.send_command_nowait(command)
+        matched = self.wait_for_any(markers, timeout=timeout, since_index=start_idx)
+        response = [
+            entry[5:]
+            for entry in self.uart_log[start_idx:]
+            if entry.startswith("RX < ")
+        ]
+        if matched is None:
+            raise TimeoutError(
+                f"UART command {self._redact(command)!r} did not produce any of "
+                f"{markers!r} within {timeout} seconds; response: {response!r}"
+            )
+        if response:
+            allure.attach(
+                "\n".join(response),
+                name=f"UART response: {self._redact(command)}",
+                attachment_type=allure.attachment_type.TEXT,
+            )
+        return response
+
     def _send_line(self, line: str, sensitive: bool = False) -> None:
         connection = self._require_open_serial()
         if sensitive and line:
@@ -281,26 +315,25 @@ class DeviceDriver:
         return versions[-1]
 
     @allure.step("Read firmware version")
-    def version(self, timeout: float = 10.0) -> str:
+    def version(self, timeout: float = VERSION_RESPONSE_TIMEOUT) -> str:
         start_idx = len(self.uart_log)
         self.send_command_nowait("version")
-        version_phrases = ("fw v", "fw:", "version:", "version ", "sentry_fw7_")
-        version_response = self.wait_for_any(
-            version_phrases,
-            timeout=timeout,
-            since_index=start_idx,
-        )
-        if version_response is None:
-            raise TimeoutError(
-                "Timed out waiting for a supported firmware version response "
-                f"({', '.join(version_phrases)})."
-            )
-        lines = [
-            entry[5:]
-            for entry in self.uart_log[start_idx:]
-            if entry.startswith("RX < ")
-        ]
-        return self.get_firmware_version(lines)
+        deadline = time.monotonic() + timeout
+        while True:
+            for entry in self.uart_log[start_idx:]:
+                if not entry.startswith("RX < "):
+                    continue
+                match = VERSION_RESPONSE_PATTERN.search(entry[5:])
+                if match is not None:
+                    return match.group(1)
+
+            remaining = deadline - time.monotonic()
+            if remaining <= 0:
+                raise TimeoutError(
+                    "Timed out waiting for a firmware version response matching "
+                    "the SENTRY version banner or a supported firmware-version line."
+                )
+            self._read_for(min(0.2, remaining))
 
     @allure.step("Parse system state from UART response")
     def parse_state(self, lines: list[str]) -> tuple[int, str]:
@@ -511,6 +544,7 @@ class DeviceDriver:
         if prompt is None:
             return False
 
+        connection_start = len(self.uart_log)
         if "password:" in prompt.casefold():
             self._send_line(password, sensitive=True)
         else:
@@ -519,55 +553,119 @@ class DeviceDriver:
                 password_prompt = self.wait_for("password:", timeout=6.0)
                 if not password_prompt:
                     return False
+                connection_start = len(self.uart_log)
                 self._send_line(password, sensitive=True)
 
-        deadline = time.monotonic() + timeout
-        saw_ip = False
-        saw_connected = False
-        while time.monotonic() < deadline:
-            lines = self._read_for(min(0.2, deadline - time.monotonic()))
-            output = "\n".join(lines).casefold()
-            if "password too short" in output or "wrong password" in output or "e101" in output or "e112" in output:
-                return False
-            if "got ip" in output or "sta ip:" in output:
-                saw_ip = True
-            if "connected to '" in output or "wifi:connected" in output:
-                saw_connected = True
-            if saw_ip and saw_connected:
-                return True
-        return False
+        return self._wait_for_wifi_connection(
+            connection_start,
+            timeout,
+            operation="connect",
+        )
 
     @allure.step("Reconnect to saved Wi-Fi network")
     def wifi_reconnect(self, timeout: float = 12.0) -> bool:
         start_idx = len(self.uart_log)
         self.send_command_nowait("reconnect")
+        if self.wait_for_any(("already connected", "W114"), 0, since_index=start_idx):
+            return True
+        return self._wait_for_wifi_connection(
+            start_idx,
+            timeout,
+            operation="reconnect",
+            already_connected_is_success=True,
+        )
+
+    def _wait_for_wifi_connection(
+        self,
+        start_idx: int,
+        timeout: float,
+        *,
+        operation: str,
+        already_connected_is_success: bool = False,
+    ) -> bool:
+        positive_groups = {
+            "association": ("connected to '", "wifi:connected"),
+            "ip": ("got ip", "sta ip:"),
+        }
+        failure_markers = (
+            "E101",
+            "E102",
+            "E104",
+            "E111",
+            "E112",
+            "password too short",
+            "wrong password",
+            "dhcp timeout",
+            "connection failed",
+            "reconnect failed",
+        )
+        observed: set[str] = set()
         deadline = time.monotonic() + timeout
-        saw_ip = False
-        saw_connected = False
-        while time.monotonic() < deadline:
-            output = "\n".join(self.uart_log[start_idx:]).casefold()
-            if "already connected" in output or "w114" in output:
+
+        while True:
+            entries = self.uart_log[start_idx:]
+            output = "\n".join(entries).casefold()
+            if already_connected_is_success and (
+                "already connected" in output or "w114" in output
+            ):
                 return True
-            saw_ip = saw_ip or "got ip" in output or "sta ip:" in output
-            saw_connected = saw_connected or "connected to '" in output
-            if saw_ip and saw_connected:
+            failure = next(
+                (
+                    marker
+                    for marker in failure_markers
+                    if marker.casefold() in output
+                ),
+                None,
+            )
+            if failure is not None:
+                LOGGER.warning(
+                    "Wi-Fi %s failed after explicit UART response %r",
+                    operation,
+                    failure,
+                )
+                return False
+
+            for group, variants in positive_groups.items():
+                if any(variant in output for variant in variants):
+                    observed.add(group)
+            if observed == set(positive_groups):
                 return True
 
-            lines = self._read_for(min(0.2, deadline - time.monotonic()))
-            combined = "\n".join(lines).casefold()
-            if "got ip" in combined or "sta ip:" in combined:
-                saw_ip = True
-            if "connected to '" in combined:
-                saw_connected = True
-            if saw_ip and saw_connected:
-                return True
-            if "already connected" in combined or "w114" in combined:
-                return True
-        return saw_ip and saw_connected
+            remaining = deadline - time.monotonic()
+            if remaining <= 0:
+                missing = sorted(set(positive_groups) - observed)
+                LOGGER.warning(
+                    "Wi-Fi %s did not emit required UART success events; "
+                    "observed=%s, missing=%s, response=%s",
+                    operation,
+                    sorted(observed),
+                    missing,
+                    entries,
+                )
+                return False
+            self._read_for(min(0.2, remaining))
 
     @allure.step("Disconnect from Wi-Fi")
     def wifi_disconnect(self, timeout: float = 1.0) -> list[str]:
-        return self.send_command("disconnect", timeout=timeout)
+        start_idx = len(self.uart_log)
+        self.send_command_nowait("disconnect")
+        self.wait_for_any(
+            (
+                "[LINK] disconnected",
+                "W115",
+                "E001",
+                "E003",
+                "E005",
+                "E099",
+            ),
+            timeout=timeout,
+            since_index=start_idx,
+        )
+        return [
+            entry[5:]
+            for entry in self.uart_log[start_idx:]
+            if entry.startswith("RX < ")
+        ]
 
     @allure.step("Forget saved Wi-Fi network")
     def wifi_forget(self, timeout: float = 1.0) -> list[str]:
@@ -624,27 +722,53 @@ class DeviceDriver:
 
     @allure.step("Read Wi-Fi / system connection status")
     def wifi_status(self, timeout: float = 10.0) -> dict[str, Any]:
-        start_idx = len(self.uart_log)
-        self.send_command_nowait("status")
-        status_phrases = ("link:", "user:", "heap:")
-        received_phrases = self.wait_for_all(
-            status_phrases,
-            timeout=timeout,
-            since_index=start_idx,
-        )
-        missing_phrases = [
-            phrase for phrase, received in received_phrases.items() if not received
-        ]
-        if missing_phrases:
-            raise TimeoutError(
-                "Timed out waiting for complete Wi-Fi status fields: "
-                f"{', '.join(missing_phrases)}."
+        response_markers = ("heap:", "E001", "E002", "E003", "E005", "E099")
+        response_marker: str | None = None
+        response_lines: list[str] = []
+        for attempt in range(2):
+            start_idx = len(self.uart_log)
+            self.send_command_nowait("status")
+            response_marker = self.wait_for_any(
+                response_markers,
+                timeout=timeout,
+                since_index=start_idx,
             )
-        response_lines = [
-            entry[5:]
-            for entry in self.uart_log[start_idx:]
-            if entry.startswith("RX < ")
+            response_entries = self.uart_log[start_idx:]
+            response_lines = [
+                entry[5:]
+                for entry in response_entries
+                if entry.startswith("RX < ")
+            ]
+            if response_marker is not None:
+                break
+            if attempt == 0:
+                LOGGER.warning(
+                    "Status command emitted no terminal UART marker; retrying "
+                    "once. Captured response: %s",
+                    response_lines,
+                )
+        if response_marker is None:
+            raise TimeoutError(
+                "Status command emitted no terminal UART marker "
+                "('heap:' or an explicit command error) after one retry; "
+                f"response: {response_lines}"
+            )
+        if response_marker != "heap:":
+            raise RuntimeError(
+                "The status command returned an explicit UART error "
+                f"{response_marker!r}: {response_lines}"
+            )
+        status_fields = ("link:", "user:", "heap:")
+        missing_fields = [
+            field
+            for field in status_fields
+            if not any(field in line.casefold() for line in response_lines)
         ]
+        if missing_fields:
+            raise AssertionError(
+                "Status response ended with 'heap:' but omitted required fields "
+                f"{missing_fields}: {response_lines}"
+            )
         allure.attach(
             "\n".join(response_lines),
             name="UART response: status",
@@ -681,13 +805,45 @@ class DeviceDriver:
         return self.send_command(cmd, timeout=timeout or calc_timeout)
 
     @allure.step("Start continuous sonar stream with interval {interval_ms} ms")
-    def distance_log(self, interval_ms: int | None = None, timeout: float = 0.6) -> list[str]:
+    def distance_log(self, interval_ms: int | None = None, timeout: float = 3.0) -> list[str]:
         cmd = f"distance log {interval_ms}" if interval_ms is not None else "distance log"
-        return self.send_command(cmd, timeout=timeout)
+        return self._send_command_wait_for_any(
+            cmd,
+            (
+                "[SONAR] continuous pinging",
+                "E001",
+                "E003",
+                "E004",
+                "E005",
+                "E701",
+                "E702",
+                "E703",
+                "E704",
+                "E705",
+                "E711",
+                "E099",
+            ),
+            timeout,
+        )
 
     @allure.step("Stop continuous sonar stream")
-    def distance_stop(self, timeout: float = 1.0) -> list[str]:
-        return self.send_command("distance stop", timeout=timeout)
+    def distance_stop(self, timeout: float = 3.0) -> list[str]:
+        return self._send_command_wait_for_any(
+            "distance stop",
+            (
+                "[SONAR] pinging stopped",
+                "W710",
+                "E001",
+                "E003",
+                "E004",
+                "E005",
+                "E701",
+                "E702",
+                "E703",
+                "E099",
+            ),
+            timeout,
+        )
 
     @allure.step("Read sonar statistics")
     def distance_stats(self, timeout: float = 0.8) -> dict[str, Any]:
@@ -734,26 +890,86 @@ class DeviceDriver:
         return self.send_command("distance calibrate reset", timeout=timeout)
 
     @allure.step("Configure proximity alarm threshold ({threshold})")
-    def distance_alarm(self, threshold: int | str, timeout: float = 0.6) -> list[str]:
-        return self.send_command(f"distance alarm {threshold}", timeout=timeout)
+    def distance_alarm(self, threshold: int | str, timeout: float = 3.0) -> list[str]:
+        marker = "[SONAR] alarm off" if str(threshold).casefold() == "off" else "[SONAR] alarm at"
+        return self._send_command_wait_for_any(
+            f"distance alarm {threshold}",
+            (
+                marker,
+                "E001",
+                "E003",
+                "E004",
+                "E005",
+                "E701",
+                "E702",
+                "E703",
+                "E708",
+                "E099",
+            ),
+            timeout,
+        )
 
     # --- Relay (Valve) ---
 
     @allure.step("Turn Valve relay OPEN")
-    def relay_on(self, timeout: float = 0.6) -> list[str]:
-        return self.send_command("relay on", timeout=timeout)
+    def relay_on(self, timeout: float = 3.0) -> list[str]:
+        return self._send_command_wait_for_any(
+            "relay on",
+            ("[VALVE] OPEN", "W601", "E001", "E003", "E004", "E005", "E602", "E099"),
+            timeout,
+        )
 
     @allure.step("Turn Valve relay CLOSED")
-    def relay_off(self, timeout: float = 0.6) -> list[str]:
-        return self.send_command("relay off", timeout=timeout)
+    def relay_off(self, timeout: float = 3.0) -> list[str]:
+        return self._send_command_wait_for_any(
+            "relay off",
+            ("[VALVE] CLOSED", "W601", "E001", "E003", "E004", "E005", "E602", "E099"),
+            timeout,
+        )
 
     @allure.step("Toggle Valve relay")
-    def relay_toggle(self, timeout: float = 0.6) -> list[str]:
-        return self.send_command("relay toggle", timeout=timeout)
+    def relay_toggle(self, timeout: float = 3.0) -> list[str]:
+        return self._send_command_wait_for_any(
+            "relay toggle",
+            (
+                "[VALVE] OPEN",
+                "[VALVE] CLOSED",
+                "W601",
+                "E001",
+                "E003",
+                "E004",
+                "E005",
+                "E602",
+                "E099",
+            ),
+            timeout,
+        )
 
     @allure.step("Read Valve relay status")
-    def relay_status(self, timeout: float = 0.6) -> dict[str, Any]:
-        lines = self.send_command("relay status", timeout=timeout)
+    def relay_status(self, timeout: float = 3.0) -> dict[str, Any]:
+        start_idx = self.buffer_len()
+        self.send_command_nowait("relay status")
+        error_markers = ("E001", "E003", "E004", "E005", "E602", "E099")
+        status_markers = ("[VALVE] OPEN, auto", "[VALVE] closed, auto")
+        matched = self.wait_for_any(
+            (*status_markers, *error_markers),
+            timeout=timeout,
+            since_index=start_idx,
+        )
+        lines = [
+            entry[5:]
+            for entry in self.uart_log[start_idx:]
+            if entry.startswith("RX < ")
+        ]
+        if matched is None:
+            raise TimeoutError(
+                "No relay status UART marker received within "
+                f"{timeout} seconds; response: {lines!r}"
+            )
+        if matched in error_markers:
+            raise RuntimeError(
+                f"Relay status command returned {matched}; response: {lines!r}"
+            )
         for line in reversed(lines):
             match = VALVE_STATUS_PATTERN.search(line)
             if match:
@@ -768,25 +984,63 @@ class DeviceDriver:
     @allure.step("Pulse Valve relay for {duration_ms} ms")
     def relay_pulse(self, duration_ms: int, timeout: float | None = None) -> list[str]:
         calc_timeout = (duration_ms / 1000.0) + 1.0
-        return self.send_command(f"relay pulse {duration_ms}", timeout=timeout or calc_timeout)
+        return self._send_command_wait_for_any(
+            f"relay pulse {duration_ms}",
+            (
+                "[VALVE] CLOSED (pulse end)",
+                "E001",
+                "E003",
+                "E004",
+                "E005",
+                "E602",
+                "E603",
+                "E604",
+                "E099",
+            ),
+            timeout or calc_timeout,
+        )
 
     @allure.step("Configure Valve relay schedule: on {on_seconds}, off {off_seconds} seconds")
-    def relay_schedule(self, on_seconds: int, off_seconds: int, timeout: float = 0.6) -> list[str]:
-        return self.send_command(
-            f"relay schedule {on_seconds} {off_seconds}", timeout=timeout
+    def relay_schedule(
+        self, on_seconds: int, off_seconds: int, timeout: float = 3.0
+    ) -> list[str]:
+        return self._send_command_wait_for_any(
+            f"relay schedule {on_seconds} {off_seconds}",
+            ("[VALVE] schedule:", "E001", "E003", "E004", "E005", "E602", "E606", "E099"),
+            timeout,
         )
 
     @allure.step("Stop Valve relay schedule")
-    def relay_schedule_stop(self, timeout: float = 0.6) -> list[str]:
-        return self.send_command("relay schedule off", timeout=timeout)
+    def relay_schedule_stop(self, timeout: float = 3.0) -> list[str]:
+        return self._send_command_wait_for_any(
+            "relay schedule off",
+            ("[VALVE] schedule stopped", "W605", "E001", "E003", "E004", "E005", "E099"),
+            timeout,
+        )
 
     @allure.step("Enable automatic Valve relay control (enabled={enabled})")
-    def relay_auto(self, enabled: bool, timeout: float = 0.6) -> list[str]:
-        return self.send_command(f"relay auto {'on' if enabled else 'off'}", timeout=timeout)
+    def relay_auto(self, enabled: bool, timeout: float = 3.0) -> list[str]:
+        return self._send_command_wait_for_any(
+            f"relay auto {'on' if enabled else 'off'}",
+            (
+                f"[VALVE] auto {'on' if enabled else 'off'}",
+                "E001",
+                "E003",
+                "E004",
+                "E005",
+                "E602",
+                "E099",
+            ),
+            timeout,
+        )
 
     @allure.step("Read Valve relay health")
-    def relay_health(self, timeout: float = 0.6) -> list[str]:
-        return self.send_command("relay health", timeout=timeout)
+    def relay_health(self, timeout: float = 3.0) -> list[str]:
+        return self._send_command_wait_for_any(
+            "relay health",
+            ("seal:", "solenoid:", "E001", "E003", "E004", "E005", "E099"),
+            timeout,
+        )
 
     # --- Guard ---
 

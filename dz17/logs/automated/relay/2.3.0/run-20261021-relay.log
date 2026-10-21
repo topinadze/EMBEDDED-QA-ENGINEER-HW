@@ -1,0 +1,719 @@
+DEBUG    drivers.device_driver:device_driver.py:96 TX > version
+DEBUG    drivers.device_driver:device_driver.py:96 RX < version
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4515025) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4515025) sentry:   partition: ota_0 @ 0x20000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:96 TX > status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4515235) sentry: === SWM-2 status ===
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4515235) sentry:   fw:       v2.3.0 (ota_0)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4515235) sentry:   state:    1 NORMAL
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4515235) sentry:   link:     buoy link 'TopA-node', ip 10.223.162.49, rssi -43 dBm (excellent), ch 1
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4515245) sentry:   internet: OK
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4515245) sentry:   user:     testUser (user)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4515245) sentry:   time:     05:36:21, uptime 1h 15m 14s
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4515255) sentry:   valve:    closed
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4515255) sentry:   watch:    disarmed, CIC alerts unacked: 1
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4515265) sentry:   sonar:    no contact
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4515265) sentry:   carrier:  depth 40.9 m, hull 5.1 bar, water 8.2 C, battery 24.08 V (sim)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4515275) sentry:   heap:     251 KB free
+DEBUG    drivers.device_driver:device_driver.py:96 TX > whoami
+DEBUG    drivers.device_driver:device_driver.py:96 RX < whoami
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4515435) sentry: user: testUser, access: user
+DEBUG    drivers.device_driver:device_driver.py:96 TX > relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4515645) sentry: [VALVE] closed, auto off, cycles 194
+DEBUG    drivers.device_driver:device_driver.py:96 TX > relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4515855) sentry: [VALVE] closed, auto off, cycles 194
+DEBUG    drivers.device_driver:device_driver.py:96 TX > relay on
+DEBUG    drivers.device_driver:device_driver.py:96 RX < relay on
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4516065) sentry: [VALVE] OPEN (command)
+DEBUG    drivers.device_driver:device_driver.py:96 TX > relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4516275) sentry: [VALVE] OPEN, auto off, cycles 195
+DEBUG    drivers.device_driver:device_driver.py:96 TX > relay on
+DEBUG    drivers.device_driver:device_driver.py:96 RX < relay on
+DEBUG    drivers.device_driver:device_driver.py:96 RX < W (4516475) sentry: W601 relay already on
+DEBUG    drivers.device_driver:device_driver.py:96 TX > relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4516695) sentry: [VALVE] OPEN, auto off, cycles 195
+DEBUG    drivers.device_driver:device_driver.py:96 TX > relay off
+DEBUG    drivers.device_driver:device_driver.py:96 RX < relay off
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4517465) sentry: [VALVE] CLOSED (command)
+DEBUG    drivers.device_driver:device_driver.py:96 TX > relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4517665) sentry: [VALVE] closed, auto off, cycles 196
+DEBUG    drivers.device_driver:device_driver.py:96 TX > relay off
+DEBUG    drivers.device_driver:device_driver.py:96 RX < relay off
+DEBUG    drivers.device_driver:device_driver.py:96 RX < W (4517865) sentry: W601 relay already off
+DEBUG    drivers.device_driver:device_driver.py:96 TX > relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4518075) sentry: [VALVE] closed, auto off, cycles 196
+DEBUG    drivers.device_driver:device_driver.py:96 TX > relay toggle
+DEBUG    drivers.device_driver:device_driver.py:96 RX < relay toggle
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4518835) sentry: [VALVE] OPEN (command)
+DEBUG    drivers.device_driver:device_driver.py:96 TX > relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4519045) sentry: [VALVE] OPEN, auto off, cycles 197
+DEBUG    drivers.device_driver:device_driver.py:96 TX > relay schedule off
+DEBUG    drivers.device_driver:device_driver.py:96 RX < relay schedule off
+DEBUG    drivers.device_driver:device_driver.py:96 RX < W (4519265) sentry: W605 schedule is not running
+DEBUG    drivers.device_driver:device_driver.py:96 TX > relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4519475) sentry: [VALVE] OPEN, auto off, cycles 197
+DEBUG    drivers.device_driver:device_driver.py:96 TX > relay off
+DEBUG    drivers.device_driver:device_driver.py:96 RX < relay off
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4520245) sentry: [VALVE] CLOSED (command)
+DEBUG    drivers.device_driver:device_driver.py:96 TX > relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4520445) sentry: [VALVE] closed, auto off, cycles 198
+INFO     conftest:conftest.py:422 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz17\logs\automated\relay\2.3.0\20261021-test_relay_commands_and_cycle_count.txt
+DEBUG    drivers.device_driver:device_driver.py:96 TX > version
+DEBUG    drivers.device_driver:device_driver.py:96 RX < version
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4520685) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4520685) sentry:   partition: ota_0 @ 0x20000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:96 TX > status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4520895) sentry: === SWM-2 status ===
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4520895) sentry:   fw:       v2.3.0 (ota_0)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4520895) sentry:   state:    1 NORMAL
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4520895) sentry:   link:     buoy link 'TopA-node', ip 10.223.162.49, rssi -38 dBm (excellent), ch 1
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4520905) sentry:   internet: OK
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4520905) sentry:   user:     testUser (user)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4520905) sentry:   time:     05:36:27, uptime 1h 15m 20s
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4520915) sentry:   valve:    closed
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4520915) sentry:   watch:    disarmed, CIC alerts unacked: 1
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4520925) sentry:   sonar:    no contact
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4520925) sentry:   carrier:  depth 40.9 m, hull 5.1 bar, water 8.2 C, battery 24.08 V (sim)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4520935) sentry:   heap:     251 KB free
+DEBUG    drivers.device_driver:device_driver.py:96 TX > whoami
+DEBUG    drivers.device_driver:device_driver.py:96 RX < whoami
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4521105) sentry: user: testUser, access: user
+DEBUG    drivers.device_driver:device_driver.py:96 TX > relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4521315) sentry: [VALVE] closed, auto off, cycles 198
+DEBUG    drivers.device_driver:device_driver.py:96 TX > relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4521525) sentry: [VALVE] closed, auto off, cycles 198
+DEBUG    drivers.device_driver:device_driver.py:96 TX > relay pulse 100
+DEBUG    drivers.device_driver:device_driver.py:96 RX < relay pulse 100
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4521735) sentry: [VALVE] OPEN (pulse)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4521865) sentry: [VALVE] CLOSED (pulse end)
+DEBUG    drivers.device_driver:device_driver.py:96 TX > relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4522155) sentry: [VALVE] closed, auto off, cycles 200
+DEBUG    drivers.device_driver:device_driver.py:96 TX > relay schedule off
+DEBUG    drivers.device_driver:device_driver.py:96 RX < relay schedule off
+DEBUG    drivers.device_driver:device_driver.py:96 RX < W (4522375) sentry: W605 schedule is not running
+DEBUG    drivers.device_driver:device_driver.py:96 TX > relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4522585) sentry: [VALVE] closed, auto off, cycles 200
+DEBUG    drivers.device_driver:device_driver.py:96 TX > relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4522795) sentry: [VALVE] closed, auto off, cycles 200
+INFO     conftest:conftest.py:422 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz17\logs\automated\relay\2.3.0\20261021-test_relay_pulse_duration_boundaries_minimum.txt
+DEBUG    drivers.device_driver:device_driver.py:96 TX > version
+DEBUG    drivers.device_driver:device_driver.py:96 RX < version
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4523045) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4523045) sentry:   partition: ota_0 @ 0x20000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:96 TX > status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4523255) sentry: === SWM-2 status ===
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4523255) sentry:   fw:       v2.3.0 (ota_0)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4523255) sentry:   state:    1 NORMAL
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4523255) sentry:   link:     buoy link 'TopA-node', ip 10.223.162.49, rssi -38 dBm (excellent), ch 1
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4523265) sentry:   internet: OK
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4523265) sentry:   user:     testUser (user)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4523265) sentry:   time:     05:36:29, uptime 1h 15m 22s
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4523275) sentry:   valve:    closed
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4523275) sentry:   watch:    disarmed, CIC alerts unacked: 1
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4523285) sentry:   sonar:    no contact
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4523285) sentry:   carrier:  depth 40.9 m, hull 5.1 bar, water 8.2 C, battery 24.08 V (sim)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4523295) sentry:   heap:     251 KB free
+DEBUG    drivers.device_driver:device_driver.py:96 TX > whoami
+DEBUG    drivers.device_driver:device_driver.py:96 RX < whoami
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4523455) sentry: user: testUser, access: user
+DEBUG    drivers.device_driver:device_driver.py:96 TX > relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4523665) sentry: [VALVE] closed, auto off, cycles 200
+DEBUG    drivers.device_driver:device_driver.py:96 TX > relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4523875) sentry: [VALVE] closed, auto off, cycles 200
+DEBUG    drivers.device_driver:device_driver.py:96 TX > relay pulse 10000
+DEBUG    drivers.device_driver:device_driver.py:96 RX < relay pulse 10000
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4524085) sentry: [VALVE] OPEN (pulse)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4534115) sentry: [VALVE] CLOSED (pulse end)
+DEBUG    drivers.device_driver:device_driver.py:96 TX > relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4534245) sentry: [VALVE] closed, auto off, cycles 202
+DEBUG    drivers.device_driver:device_driver.py:96 TX > relay schedule off
+DEBUG    drivers.device_driver:device_driver.py:96 RX < relay schedule off
+DEBUG    drivers.device_driver:device_driver.py:96 RX < W (4534455) sentry: W605 schedule is not running
+DEBUG    drivers.device_driver:device_driver.py:96 TX > relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4534665) sentry: [VALVE] closed, auto off, cycles 202
+DEBUG    drivers.device_driver:device_driver.py:96 TX > relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4534875) sentry: [VALVE] closed, auto off, cycles 202
+INFO     conftest:conftest.py:422 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz17\logs\automated\relay\2.3.0\20261021-test_relay_pulse_duration_boundaries_maximum.txt
+DEBUG    drivers.device_driver:device_driver.py:96 TX > version
+DEBUG    drivers.device_driver:device_driver.py:96 RX < version
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4535115) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4535115) sentry:   partition: ota_0 @ 0x20000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:96 TX > status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4535325) sentry: === SWM-2 status ===
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4535325) sentry:   fw:       v2.3.0 (ota_0)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4535325) sentry:   state:    1 NORMAL
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4535325) sentry:   link:     buoy link 'TopA-node', ip 10.223.162.49, rssi -29 dBm (excellent), ch 1
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4535335) sentry:   internet: OK
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4535335) sentry:   user:     testUser (user)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4535335) sentry:   time:     05:36:41, uptime 1h 15m 34s
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4535345) sentry:   valve:    closed
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4535345) sentry:   watch:    disarmed, CIC alerts unacked: 1
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4535355) sentry:   sonar:    no contact
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4535355) sentry:   carrier:  depth 40.9 m, hull 5.1 bar, water 8.2 C, battery 24.08 V (sim)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4535365) sentry:   heap:     251 KB free
+DEBUG    drivers.device_driver:device_driver.py:96 TX > whoami
+DEBUG    drivers.device_driver:device_driver.py:96 RX < whoami
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4535535) sentry: user: testUser, access: user
+DEBUG    drivers.device_driver:device_driver.py:96 TX > relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4535745) sentry: [VALVE] closed, auto off, cycles 202
+DEBUG    drivers.device_driver:device_driver.py:96 TX > relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4535955) sentry: [VALVE] closed, auto off, cycles 202
+DEBUG    drivers.device_driver:device_driver.py:96 TX > relay pulse 99
+DEBUG    drivers.device_driver:device_driver.py:96 RX < relay pulse 99
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4536165) sentry: [VALVE] OPEN (pulse)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4536285) sentry: [VALVE] CLOSED (pulse end)
+DEBUG    drivers.device_driver:device_driver.py:96 TX > relay schedule off
+DEBUG    drivers.device_driver:device_driver.py:96 RX < relay schedule off
+DEBUG    drivers.device_driver:device_driver.py:96 RX < W (4536655) sentry: W605 schedule is not running
+DEBUG    drivers.device_driver:device_driver.py:96 TX > relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4536855) sentry: [VALVE] closed, auto off, cycles 204
+DEBUG    drivers.device_driver:device_driver.py:96 TX > relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4537065) sentry: [VALVE] closed, auto off, cycles 204
+INFO     conftest:conftest.py:422 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz17\logs\automated\relay\2.3.0\20261021-test_relay_pulse_rejects_out_of_range_duration_below-minimum.txt
+DEBUG    drivers.device_driver:device_driver.py:96 TX > version
+DEBUG    drivers.device_driver:device_driver.py:96 RX < version
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4537315) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4537315) sentry:   partition: ota_0 @ 0x20000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:96 TX > status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4537525) sentry: === SWM-2 status ===
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4537525) sentry:   fw:       v2.3.0 (ota_0)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4537525) sentry:   state:    1 NORMAL
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4537525) sentry:   link:     buoy link 'TopA-node', ip 10.223.162.49, rssi -29 dBm (excellent), ch 1
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4537535) sentry:   internet: OK
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4537535) sentry:   user:     testUser (user)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4537535) sentry:   time:     05:36:43, uptime 1h 15m 37s
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4537545) sentry:   valve:    closed
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4537545) sentry:   watch:    disarmed, CIC alerts unacked: 1
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4537555) sentry:   sonar:    no contact
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4537555) sentry:   carrier:  depth 40.9 m, hull 5.1 bar, water 8.2 C, battery 24.08 V (sim)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4537565) sentry:   heap:     251 KB free
+DEBUG    drivers.device_driver:device_driver.py:96 TX > whoami
+DEBUG    drivers.device_driver:device_driver.py:96 RX < whoami
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4537725) sentry: user: testUser, access: user
+DEBUG    drivers.device_driver:device_driver.py:96 TX > relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4537945) sentry: [VALVE] closed, auto off, cycles 204
+DEBUG    drivers.device_driver:device_driver.py:96 TX > relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4538145) sentry: [VALVE] closed, auto off, cycles 204
+DEBUG    drivers.device_driver:device_driver.py:96 TX > relay pulse 10001
+DEBUG    drivers.device_driver:device_driver.py:96 RX < relay pulse 10001
+DEBUG    drivers.device_driver:device_driver.py:96 RX < E (4538355) sentry: E603 pulse must be 100-10000 ms
+DEBUG    drivers.device_driver:device_driver.py:96 TX > relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4538565) sentry: [VALVE] closed, auto off, cycles 204
+DEBUG    drivers.device_driver:device_driver.py:96 TX > relay schedule off
+DEBUG    drivers.device_driver:device_driver.py:96 RX < relay schedule off
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4538765) sentry: [TELEMETRY #65] 05:36:45 up 01:15:38 heap 251KB rssi -29 temp 30.4C depth 40.9m hull 5.1bar batt 24.1V valve closed sonar - watch disarmed alerts 1 state NORMAL
+DEBUG    drivers.device_driver:device_driver.py:96 RX < W (4538785) sentry: W605 schedule is not running
+DEBUG    drivers.device_driver:device_driver.py:96 TX > relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4538995) sentry: [VALVE] closed, auto off, cycles 204
+DEBUG    drivers.device_driver:device_driver.py:96 TX > relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4539205) sentry: [VALVE] closed, auto off, cycles 204
+INFO     conftest:conftest.py:422 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz17\logs\automated\relay\2.3.0\20261021-test_relay_pulse_rejects_out_of_range_duration_above-maximum.txt
+DEBUG    drivers.device_driver:device_driver.py:96 TX > version
+DEBUG    drivers.device_driver:device_driver.py:96 RX < version
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4539465) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4539465) sentry:   partition: ota_0 @ 0x20000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:96 TX > status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4539675) sentry: === SWM-2 status ===
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4539675) sentry:   fw:       v2.3.0 (ota_0)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4539675) sentry:   state:    1 NORMAL
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4539675) sentry:   link:     buoy link 'TopA-node', ip 10.223.162.49, rssi -28 dBm (excellent), ch 1
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4539685) sentry:   internet: OK
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4539685) sentry:   user:     testUser (user)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4539685) sentry:   time:     05:36:46, uptime 1h 15m 39s
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4539695) sentry:   valve:    closed
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4539695) sentry:   watch:    disarmed, CIC alerts unacked: 1
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4539705) sentry:   sonar:    no contact
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4539705) sentry:   carrier:  depth 40.9 m, hull 5.1 bar, water 8.2 C, battery 24.08 V (sim)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4539715) sentry:   heap:     251 KB free
+DEBUG    drivers.device_driver:device_driver.py:96 TX > whoami
+DEBUG    drivers.device_driver:device_driver.py:96 RX < whoami
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4539875) sentry: user: testUser, access: user
+DEBUG    drivers.device_driver:device_driver.py:96 TX > relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4540085) sentry: [VALVE] closed, auto off, cycles 204
+DEBUG    drivers.device_driver:device_driver.py:96 TX > relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4540295) sentry: [VALVE] closed, auto off, cycles 204
+DEBUG    drivers.device_driver:device_driver.py:96 TX > relay on
+DEBUG    drivers.device_driver:device_driver.py:96 RX < relay on
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4540505) sentry: [VALVE] OPEN (command)
+DEBUG    drivers.device_driver:device_driver.py:96 TX > relay pulse 100
+DEBUG    drivers.device_driver:device_driver.py:96 RX < relay pulse 100
+DEBUG    drivers.device_driver:device_driver.py:96 RX < E (4540715) sentry: E604 relay is already on - pulse not possible
+DEBUG    drivers.device_driver:device_driver.py:96 TX > relay schedule off
+DEBUG    drivers.device_driver:device_driver.py:96 RX < relay schedule off
+DEBUG    drivers.device_driver:device_driver.py:96 RX < W (4540925) sentry: W605 schedule is not running
+DEBUG    drivers.device_driver:device_driver.py:96 TX > relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4541135) sentry: [VALVE] OPEN, auto off, cycles 205
+DEBUG    drivers.device_driver:device_driver.py:96 TX > relay off
+DEBUG    drivers.device_driver:device_driver.py:96 RX < relay off
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4541905) sentry: [VALVE] CLOSED (command)
+DEBUG    drivers.device_driver:device_driver.py:96 TX > relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4542105) sentry: [VALVE] closed, auto off, cycles 206
+INFO     conftest:conftest.py:422 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz17\logs\automated\relay\2.3.0\20261021-test_relay_pulse_rejected_when_already_open.txt
+DEBUG    drivers.device_driver:device_driver.py:96 TX > version
+DEBUG    drivers.device_driver:device_driver.py:96 RX < version
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4542355) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4542355) sentry:   partition: ota_0 @ 0x20000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:96 TX > status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4542565) sentry: === SWM-2 status ===
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4542565) sentry:   fw:       v2.3.0 (ota_0)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4542565) sentry:   state:    1 NORMAL
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4542565) sentry:   link:     buoy link 'TopA-node', ip 10.223.162.49, rssi -29 dBm (excellent), ch 1
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4542575) sentry:   internet: OK
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4542575) sentry:   user:     testUser (user)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4542575) sentry:   time:     05:36:48, uptime 1h 15m 42s
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4542585) sentry:   valve:    closed
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4542585) sentry:   watch:    disarmed, CIC alerts unacked: 1
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4542595) sentry:   sonar:    no contact
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4542595) sentry:   carrier:  depth 40.9 m, hull 5.1 bar, water 8.2 C, battery 24.08 V (sim)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4542605) sentry:   heap:     251 KB free
+DEBUG    drivers.device_driver:device_driver.py:96 TX > whoami
+DEBUG    drivers.device_driver:device_driver.py:96 RX < whoami
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4542765) sentry: user: testUser, access: user
+DEBUG    drivers.device_driver:device_driver.py:96 TX > relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4542975) sentry: [VALVE] closed, auto off, cycles 206
+DEBUG    drivers.device_driver:device_driver.py:96 TX > relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4543185) sentry: [VALVE] closed, auto off, cycles 206
+DEBUG    drivers.device_driver:device_driver.py:96 TX > relay schedule 1 2
+DEBUG    drivers.device_driver:device_driver.py:96 RX < relay schedule 1 2
+DEBUG    drivers.device_driver:device_driver.py:96 RX < E (4543395) sentry: E606 usage: relay schedule <on 2-3600 s> <off 2-3600 s> | off
+DEBUG    drivers.device_driver:device_driver.py:96 TX > relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4543615) sentry: [VALVE] closed, auto off, cycles 206
+DEBUG    drivers.device_driver:device_driver.py:96 TX > relay schedule off
+DEBUG    drivers.device_driver:device_driver.py:96 RX < relay schedule off
+DEBUG    drivers.device_driver:device_driver.py:96 RX < W (4543825) sentry: W605 schedule is not running
+DEBUG    drivers.device_driver:device_driver.py:96 TX > relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4544035) sentry: [VALVE] closed, auto off, cycles 206
+DEBUG    drivers.device_driver:device_driver.py:96 TX > relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4544235) sentry: [VALVE] closed, auto off, cycles 206
+INFO     conftest:conftest.py:422 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz17\logs\automated\relay\2.3.0\20261021-test_relay_schedule_rejects_out_of_range_durations_on-below-minimum.txt
+DEBUG    drivers.device_driver:device_driver.py:96 TX > version
+DEBUG    drivers.device_driver:device_driver.py:96 RX < version
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4544485) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4544485) sentry:   partition: ota_0 @ 0x20000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:96 TX > status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4544695) sentry: === SWM-2 status ===
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4544695) sentry:   fw:       v2.3.0 (ota_0)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4544695) sentry:   state:    1 NORMAL
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4544695) sentry:   link:     buoy link 'TopA-node', ip 10.223.162.49, rssi -29 dBm (excellent), ch 1
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4544705) sentry:   internet: OK
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4544705) sentry:   user:     testUser (user)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4544705) sentry:   time:     05:36:51, uptime 1h 15m 44s
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4544715) sentry:   valve:    closed
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4544715) sentry:   watch:    disarmed, CIC alerts unacked: 1
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4544725) sentry:   sonar:    no contact
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4544725) sentry:   carrier:  depth 40.9 m, hull 5.1 bar, water 8.2 C, battery 24.08 V (sim)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4544735) sentry:   heap:     251 KB free
+DEBUG    drivers.device_driver:device_driver.py:96 TX > whoami
+DEBUG    drivers.device_driver:device_driver.py:96 RX < whoami
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4544895) sentry: user: testUser, access: user
+DEBUG    drivers.device_driver:device_driver.py:96 TX > relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4545105) sentry: [VALVE] closed, auto off, cycles 206
+DEBUG    drivers.device_driver:device_driver.py:96 TX > relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4545315) sentry: [VALVE] closed, auto off, cycles 206
+DEBUG    drivers.device_driver:device_driver.py:96 TX > relay schedule 2 1
+DEBUG    drivers.device_driver:device_driver.py:96 RX < relay schedule 2 1
+DEBUG    drivers.device_driver:device_driver.py:96 RX < E (4545525) sentry: E606 usage: relay schedule <on 2-3600 s> <off 2-3600 s> | off
+DEBUG    drivers.device_driver:device_driver.py:96 TX > relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4545735) sentry: [VALVE] closed, auto off, cycles 206
+DEBUG    drivers.device_driver:device_driver.py:96 TX > relay schedule off
+DEBUG    drivers.device_driver:device_driver.py:96 RX < relay schedule off
+DEBUG    drivers.device_driver:device_driver.py:96 RX < W (4545945) sentry: W605 schedule is not running
+DEBUG    drivers.device_driver:device_driver.py:96 TX > relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4546155) sentry: [VALVE] closed, auto off, cycles 206
+DEBUG    drivers.device_driver:device_driver.py:96 TX > relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4546365) sentry: [VALVE] closed, auto off, cycles 206
+INFO     conftest:conftest.py:422 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz17\logs\automated\relay\2.3.0\20261021-test_relay_schedule_rejects_out_of_range_durations_off-below-minimum.txt
+DEBUG    drivers.device_driver:device_driver.py:96 TX > version
+DEBUG    drivers.device_driver:device_driver.py:96 RX < version
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4546605) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4546605) sentry:   partition: ota_0 @ 0x20000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:96 TX > status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4546815) sentry: === SWM-2 status ===
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4546815) sentry:   fw:       v2.3.0 (ota_0)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4546815) sentry:   state:    1 NORMAL
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4546815) sentry:   link:     buoy link 'TopA-node', ip 10.223.162.49, rssi -29 dBm (excellent), ch 1
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4546825) sentry:   internet: OK
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4546825) sentry:   user:     testUser (user)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4546825) sentry:   time:     05:36:53, uptime 1h 15m 46s
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4546835) sentry:   valve:    closed
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4546835) sentry:   watch:    disarmed, CIC alerts unacked: 1
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4546845) sentry:   sonar:    no contact
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4546845) sentry:   carrier:  depth 40.9 m, hull 5.1 bar, water 8.2 C, battery 24.08 V (sim)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4546855) sentry:   heap:     251 KB free
+DEBUG    drivers.device_driver:device_driver.py:96 TX > whoami
+DEBUG    drivers.device_driver:device_driver.py:96 RX < whoami
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4547025) sentry: user: testUser, access: user
+DEBUG    drivers.device_driver:device_driver.py:96 TX > relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4547235) sentry: [VALVE] closed, auto off, cycles 206
+DEBUG    drivers.device_driver:device_driver.py:96 TX > relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4547435) sentry: [VALVE] closed, auto off, cycles 206
+DEBUG    drivers.device_driver:device_driver.py:96 TX > relay schedule 3601 2
+DEBUG    drivers.device_driver:device_driver.py:96 RX < relay schedule 3601 2
+DEBUG    drivers.device_driver:device_driver.py:96 RX < E (4547645) sentry: E606 usage: relay schedule <on 2-3600 s> <off 2-3600 s> | off
+DEBUG    drivers.device_driver:device_driver.py:96 TX > relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4547855) sentry: [VALVE] closed, auto off, cycles 206
+DEBUG    drivers.device_driver:device_driver.py:96 TX > relay schedule off
+DEBUG    drivers.device_driver:device_driver.py:96 RX < relay schedule off
+DEBUG    drivers.device_driver:device_driver.py:96 RX < W (4548065) sentry: W605 schedule is not running
+DEBUG    drivers.device_driver:device_driver.py:96 TX > relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4548285) sentry: [VALVE] closed, auto off, cycles 206
+DEBUG    drivers.device_driver:device_driver.py:96 TX > relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4548495) sentry: [VALVE] closed, auto off, cycles 206
+INFO     conftest:conftest.py:422 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz17\logs\automated\relay\2.3.0\20261021-test_relay_schedule_rejects_out_of_range_durations_on-above-maximum.txt
+DEBUG    drivers.device_driver:device_driver.py:96 TX > version
+DEBUG    drivers.device_driver:device_driver.py:96 RX < version
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4548735) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4548735) sentry:   partition: ota_0 @ 0x20000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:96 TX > status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4548945) sentry: === SWM-2 status ===
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4548945) sentry:   fw:       v2.3.0 (ota_0)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4548945) sentry:   state:    1 NORMAL
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4548945) sentry:   link:     buoy link 'TopA-node', ip 10.223.162.49, rssi -29 dBm (excellent), ch 1
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4548955) sentry:   internet: OK
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4548955) sentry:   user:     testUser (user)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4548955) sentry:   time:     05:36:55, uptime 1h 15m 48s
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4548965) sentry:   valve:    closed
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4548965) sentry:   watch:    disarmed, CIC alerts unacked: 1
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4548975) sentry:   sonar:    no contact
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4548975) sentry:   carrier:  depth 40.9 m, hull 5.1 bar, water 8.2 C, battery 24.08 V (sim)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4548985) sentry:   heap:     251 KB free
+DEBUG    drivers.device_driver:device_driver.py:96 TX > whoami
+DEBUG    drivers.device_driver:device_driver.py:96 RX < whoami
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4549155) sentry: user: testUser, access: user
+DEBUG    drivers.device_driver:device_driver.py:96 TX > relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4549365) sentry: [VALVE] closed, auto off, cycles 206
+DEBUG    drivers.device_driver:device_driver.py:96 TX > relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4549575) sentry: [VALVE] closed, auto off, cycles 206
+DEBUG    drivers.device_driver:device_driver.py:96 TX > relay schedule 2 3601
+DEBUG    drivers.device_driver:device_driver.py:96 RX < relay schedule 2 3601
+DEBUG    drivers.device_driver:device_driver.py:96 RX < E (4549785) sentry: E606 usage: relay schedule <on 2-3600 s> <off 2-3600 s> | off
+DEBUG    drivers.device_driver:device_driver.py:96 TX > relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4549995) sentry: [VALVE] closed, auto off, cycles 206
+DEBUG    drivers.device_driver:device_driver.py:96 TX > relay schedule off
+DEBUG    drivers.device_driver:device_driver.py:96 RX < relay schedule off
+DEBUG    drivers.device_driver:device_driver.py:96 RX < W (4550205) sentry: W605 schedule is not running
+DEBUG    drivers.device_driver:device_driver.py:96 TX > relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4550425) sentry: [VALVE] closed, auto off, cycles 206
+DEBUG    drivers.device_driver:device_driver.py:96 TX > relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4550635) sentry: [VALVE] closed, auto off, cycles 206
+INFO     conftest:conftest.py:422 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz17\logs\automated\relay\2.3.0\20261021-test_relay_schedule_rejects_out_of_range_durations_off-above-maximum.txt
+DEBUG    drivers.device_driver:device_driver.py:96 TX > version
+DEBUG    drivers.device_driver:device_driver.py:96 RX < version
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4550865) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4550865) sentry:   partition: ota_0 @ 0x20000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:96 TX > status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4551065) sentry: === SWM-2 status ===
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4551065) sentry:   fw:       v2.3.0 (ota_0)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4551065) sentry:   state:    1 NORMAL
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4551065) sentry:   link:     buoy link 'TopA-node', ip 10.223.162.49, rssi -28 dBm (excellent), ch 1
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4551075) sentry:   internet: OK
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4551075) sentry:   user:     testUser (user)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4551075) sentry:   time:     05:36:57, uptime 1h 15m 50s
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4551085) sentry:   valve:    closed
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4551085) sentry:   watch:    disarmed, CIC alerts unacked: 1
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4551095) sentry:   sonar:    no contact
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4551095) sentry:   carrier:  depth 40.9 m, hull 5.1 bar, water 8.2 C, battery 24.08 V (sim)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4551105) sentry:   heap:     251 KB free
+DEBUG    drivers.device_driver:device_driver.py:96 TX > whoami
+DEBUG    drivers.device_driver:device_driver.py:96 RX < whoami
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4551275) sentry: user: testUser, access: user
+DEBUG    drivers.device_driver:device_driver.py:96 TX > relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4551485) sentry: [VALVE] closed, auto off, cycles 206
+DEBUG    drivers.device_driver:device_driver.py:96 TX > relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4551705) sentry: [VALVE] closed, auto off, cycles 206
+DEBUG    drivers.device_driver:device_driver.py:96 TX > relay schedule off
+DEBUG    drivers.device_driver:device_driver.py:96 RX < relay schedule off
+DEBUG    drivers.device_driver:device_driver.py:96 RX < W (4551905) sentry: W605 schedule is not running
+DEBUG    drivers.device_driver:device_driver.py:96 TX > relay schedule off
+DEBUG    drivers.device_driver:device_driver.py:96 RX < relay schedule off
+DEBUG    drivers.device_driver:device_driver.py:96 RX < W (4552105) sentry: W605 schedule is not running
+DEBUG    drivers.device_driver:device_driver.py:96 TX > relay schedule off
+DEBUG    drivers.device_driver:device_driver.py:96 RX < relay schedule off
+DEBUG    drivers.device_driver:device_driver.py:96 RX < W (4552325) sentry: W605 schedule is not running
+DEBUG    drivers.device_driver:device_driver.py:96 TX > relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4552535) sentry: [VALVE] closed, auto off, cycles 206
+DEBUG    drivers.device_driver:device_driver.py:96 TX > relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4552745) sentry: [VALVE] closed, auto off, cycles 206
+INFO     conftest:conftest.py:422 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz17\logs\automated\relay\2.3.0\20261021-test_relay_schedule_stop_when_inactive.txt
+DEBUG    drivers.device_driver:device_driver.py:96 TX > version
+DEBUG    drivers.device_driver:device_driver.py:96 RX < version
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4552995) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4552995) sentry:   partition: ota_0 @ 0x20000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:96 TX > status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4553205) sentry: === SWM-2 status ===
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4553205) sentry:   fw:       v2.3.0 (ota_0)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4553205) sentry:   state:    1 NORMAL
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4553205) sentry:   link:     buoy link 'TopA-node', ip 10.223.162.49, rssi -30 dBm (excellent), ch 1
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4553215) sentry:   internet: OK
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4553215) sentry:   user:     testUser (user)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4553215) sentry:   time:     05:36:59, uptime 1h 15m 52s
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4553225) sentry:   valve:    closed
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4553225) sentry:   watch:    disarmed, CIC alerts unacked: 1
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4553235) sentry:   sonar:    no contact
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4553235) sentry:   carrier:  depth 40.9 m, hull 5.1 bar, water 8.2 C, battery 24.08 V (sim)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4553245) sentry:   heap:     251 KB free
+DEBUG    drivers.device_driver:device_driver.py:96 TX > whoami
+DEBUG    drivers.device_driver:device_driver.py:96 RX < whoami
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4553415) sentry: user: testUser, access: user
+DEBUG    drivers.device_driver:device_driver.py:96 TX > relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4553625) sentry: [VALVE] closed, auto off, cycles 206
+DEBUG    drivers.device_driver:device_driver.py:96 TX > relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4553835) sentry: [VALVE] closed, auto off, cycles 206
+DEBUG    drivers.device_driver:device_driver.py:96 TX > relay schedule 2 2
+DEBUG    drivers.device_driver:device_driver.py:96 RX < relay schedule 2 2
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4554045) sentry: [VALVE] schedule: 2 s on / 2 s off
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4554045) sentry: [VALVE] OPEN (schedule)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4556075) sentry: [VALVE] CLOSED (schedule)
+DEBUG    drivers.device_driver:device_driver.py:96 TX > relay schedule off
+DEBUG    drivers.device_driver:device_driver.py:96 RX < relay schedule off
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4556335) sentry: [VALVE] schedule stopped
+DEBUG    drivers.device_driver:device_driver.py:96 TX > relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4556545) sentry: [VALVE] closed, auto off, cycles 208
+DEBUG    drivers.device_driver:device_driver.py:96 TX > relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4556755) sentry: [VALVE] closed, auto off, cycles 208
+INFO     conftest:conftest.py:422 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz17\logs\automated\relay\2.3.0\20261021-test_relay_schedule_minimum_durations.txt
+DEBUG    drivers.device_driver:device_driver.py:96 TX > version
+DEBUG    drivers.device_driver:device_driver.py:96 RX < version
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4557015) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4557015) sentry:   partition: ota_0 @ 0x20000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:96 TX > status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4557225) sentry: === SWM-2 status ===
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4557225) sentry:   fw:       v2.3.0 (ota_0)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4557225) sentry:   state:    1 NORMAL
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4557225) sentry:   link:     buoy link 'TopA-node', ip 10.223.162.49, rssi -29 dBm (excellent), ch 1
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4557235) sentry:   internet: OK
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4557235) sentry:   user:     testUser (user)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4557235) sentry:   time:     05:37:03, uptime 1h 15m 56s
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4557245) sentry:   valve:    closed
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4557245) sentry:   watch:    disarmed, CIC alerts unacked: 1
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4557255) sentry:   sonar:    no contact
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4557255) sentry:   carrier:  depth 40.9 m, hull 5.1 bar, water 8.2 C, battery 24.08 V (sim)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4557265) sentry:   heap:     251 KB free
+DEBUG    drivers.device_driver:device_driver.py:96 TX > whoami
+DEBUG    drivers.device_driver:device_driver.py:96 RX < whoami
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4557425) sentry: user: testUser, access: user
+DEBUG    drivers.device_driver:device_driver.py:96 TX > relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4557635) sentry: [VALVE] closed, auto off, cycles 208
+DEBUG    drivers.device_driver:device_driver.py:96 TX > relay health
+DEBUG    drivers.device_driver:device_driver.py:96 RX < relay health
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4557845) sentry: [VALVE] seal: 208 / 100000 cycles, wear 0.21% (good)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4557845) sentry: [VALVE] solenoid: OK, contact resistance: 45 mOhm
+DEBUG    drivers.device_driver:device_driver.py:96 TX > relay schedule off
+DEBUG    drivers.device_driver:device_driver.py:96 RX < relay schedule off
+DEBUG    drivers.device_driver:device_driver.py:96 RX < W (4558055) sentry: W605 schedule is not running
+DEBUG    drivers.device_driver:device_driver.py:96 TX > relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4558265) sentry: [VALVE] closed, auto off, cycles 208
+DEBUG    drivers.device_driver:device_driver.py:96 TX > relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4558475) sentry: [VALVE] closed, auto off, cycles 208
+INFO     conftest:conftest.py:422 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz17\logs\automated\relay\2.3.0\20261021-test_relay_health_reports_wear_and_solenoid.txt
+DEBUG    drivers.device_driver:device_driver.py:96 TX > version
+DEBUG    drivers.device_driver:device_driver.py:96 RX < version
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4558735) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4558735) sentry:   partition: ota_0 @ 0x20000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:96 TX > status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4558945) sentry: === SWM-2 status ===
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4558945) sentry:   fw:       v2.3.0 (ota_0)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4558945) sentry:   state:    1 NORMAL
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4558945) sentry:   link:     buoy link 'TopA-node', ip 10.223.162.49, rssi -29 dBm (excellent), ch 1
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4558955) sentry:   internet: OK
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4558955) sentry:   user:     testUser (user)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4558955) sentry:   time:     05:37:05, uptime 1h 15m 58s
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4558965) sentry:   valve:    closed
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4558965) sentry:   watch:    disarmed, CIC alerts unacked: 1
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4558975) sentry:   sonar:    no contact
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4558975) sentry:   carrier:  depth 40.9 m, hull 5.1 bar, water 8.2 C, battery 24.08 V (sim)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4558985) sentry:   heap:     251 KB free
+DEBUG    drivers.device_driver:device_driver.py:96 TX > whoami
+DEBUG    drivers.device_driver:device_driver.py:96 RX < whoami
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4559145) sentry: user: testUser, access: user
+DEBUG    drivers.device_driver:device_driver.py:96 TX > relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4559355) sentry: [VALVE] closed, auto off, cycles 208
+DEBUG    drivers.device_driver:device_driver.py:96 TX > relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4559565) sentry: [VALVE] closed, auto off, cycles 208
+DEBUG    drivers.device_driver:device_driver.py:96 TX > relay auto on
+DEBUG    drivers.device_driver:device_driver.py:96 RX < relay auto on
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4559785) sentry: [VALVE] auto on - valve opens on sonar proximity alarm
+DEBUG    drivers.device_driver:device_driver.py:96 TX > relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4559985) sentry: [VALVE] closed, auto on, cycles 208
+DEBUG    drivers.device_driver:device_driver.py:96 TX > relay schedule off
+DEBUG    drivers.device_driver:device_driver.py:96 RX < relay schedule off
+DEBUG    drivers.device_driver:device_driver.py:96 RX < W (4560195) sentry: W605 schedule is not running
+DEBUG    drivers.device_driver:device_driver.py:96 TX > relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4560405) sentry: [VALVE] closed, auto on, cycles 208
+DEBUG    drivers.device_driver:device_driver.py:96 TX > relay auto off
+DEBUG    drivers.device_driver:device_driver.py:96 RX < relay auto off
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4560625) sentry: [VALVE] auto off - valve ignores on sonar proximity alarm
+DEBUG    drivers.device_driver:device_driver.py:96 TX > relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4560825) sentry: [VALVE] closed, auto off, cycles 208
+INFO     conftest:conftest.py:422 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz17\logs\automated\relay\2.3.0\20261021-test_relay_auto_control.txt
+DEBUG    drivers.device_driver:device_driver.py:96 TX > version
+DEBUG    drivers.device_driver:device_driver.py:96 RX < version
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4561075) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4561075) sentry:   partition: ota_0 @ 0x20000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:96 TX > status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4561285) sentry: === SWM-2 status ===
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4561285) sentry:   fw:       v2.3.0 (ota_0)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4561285) sentry:   state:    1 NORMAL
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4561285) sentry:   link:     buoy link 'TopA-node', ip 10.223.162.49, rssi -28 dBm (excellent), ch 1
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4561295) sentry:   internet: OK
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4561295) sentry:   user:     testUser (user)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4561295) sentry:   time:     05:37:07, uptime 1h 16m 00s
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4561305) sentry:   valve:    closed
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4561305) sentry:   watch:    disarmed, CIC alerts unacked: 1
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4561315) sentry:   sonar:    no contact
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4561315) sentry:   carrier:  depth 40.9 m, hull 5.1 bar, water 8.2 C, battery 24.08 V (sim)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4561325) sentry:   heap:     251 KB free
+DEBUG    drivers.device_driver:device_driver.py:96 TX > whoami
+DEBUG    drivers.device_driver:device_driver.py:96 RX < whoami
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4561495) sentry: user: testUser, access: user
+DEBUG    drivers.device_driver:device_driver.py:96 TX > relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4561705) sentry: [VALVE] closed, auto off, cycles 208
+INFO     manual_checks:manual_checks.py:215 MANUAL PREPARE | Waiting for operator confirmation.
+DEBUG    drivers.device_driver:device_driver.py:96 TX > distance
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4566795) sentry: [ACU] ambient noise 74 dB re 1uPa, sea state 2, water 8.2 C
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4568865) sentry: [TELEMETRY #66] 05:37:15 up 01:16:08 heap 251KB rssi -30 temp 30.4C depth 40.7m hull 5.1bar batt 24.1V valve closed sonar - watch disarmed alerts 1 state NORMAL
+DEBUG    drivers.device_driver:device_driver.py:96 RX < distance
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4572085) sentry: [SONAR] ping: echo 16.9 cm
+DEBUG    drivers.device_driver:device_driver.py:96 TX > relay schedule off
+DEBUG    drivers.device_driver:device_driver.py:96 RX < relay schedule off
+DEBUG    drivers.device_driver:device_driver.py:96 RX < W (4573045) sentry: W605 schedule is not running
+DEBUG    drivers.device_driver:device_driver.py:96 TX > relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4573265) sentry: [VALVE] closed, auto off, cycles 208
+DEBUG    drivers.device_driver:device_driver.py:96 TX > relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4573475) sentry: [VALVE] closed, auto off, cycles 208
+INFO     conftest:conftest.py:422 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz17\logs\automated\relay\2.3.0\20261021-test_relay_auto_opens_on_sonar_alarm.txt
+DEBUG    drivers.device_driver:device_driver.py:96 TX > version
+DEBUG    drivers.device_driver:device_driver.py:96 RX < version
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4573715) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4573715) sentry:   partition: ota_0 @ 0x20000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:96 TX > status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4573925) sentry: === SWM-2 status ===
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4573925) sentry:   fw:       v2.3.0 (ota_0)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4573925) sentry:   state:    1 NORMAL
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4573925) sentry:   link:     buoy link 'TopA-node', ip 10.223.162.49, rssi -21 dBm (excellent), ch 1
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4573935) sentry:   internet: OK
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4573935) sentry:   user:     testUser (user)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4573935) sentry:   time:     05:37:20, uptime 1h 16m 13s
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4573945) sentry:   valve:    closed
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4573945) sentry:   watch:    disarmed, CIC alerts unacked: 1
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4573955) sentry:   sonar:    last echo 16.9 cm
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4573955) sentry:   carrier:  depth 40.7 m, hull 5.1 bar, water 8.2 C, battery 24.08 V (sim)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4573965) sentry:   heap:     251 KB free
+DEBUG    drivers.device_driver:device_driver.py:96 TX > whoami
+DEBUG    drivers.device_driver:device_driver.py:96 RX < whoami
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4574135) sentry: user: testUser, access: user
+DEBUG    drivers.device_driver:device_driver.py:96 TX > relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4574345) sentry: [VALVE] closed, auto off, cycles 208
+DEBUG    drivers.device_driver:device_driver.py:96 TX > relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4574555) sentry: [VALVE] closed, auto off, cycles 208
+INFO     manual_checks:manual_checks.py:215 MANUAL PREPARE | Waiting for operator confirmation.
+DEBUG    drivers.device_driver:device_driver.py:96 TX > relay on
+DEBUG    drivers.device_driver:device_driver.py:96 RX < relay on
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4578275) sentry: [VALVE] OPEN (command)
+INFO     manual_checks:manual_checks.py:169 MANUAL CHECK | Was the separate GPIO4 indicator LED lit while UART reported relay OPEN? | result=FAIL | comment=-
+ERROR    manual_checks:manual_checks.py:197 SOFT CHECK FAILED | GPIO4 relay-open indicator did not match the PRD
+INFO     manual_checks:manual_checks.py:215 MANUAL PREPARE | Waiting for operator confirmation.
+DEBUG    drivers.device_driver:device_driver.py:96 TX > relay off
+DEBUG    drivers.device_driver:device_driver.py:96 RX < relay off
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4582915) sentry: [VALVE] CLOSED (command)
+INFO     manual_checks:manual_checks.py:169 MANUAL CHECK | Was the separate GPIO4 indicator LED off while UART reported relay CLOSED? | result=FAIL | comment=-
+ERROR    manual_checks:manual_checks.py:197 SOFT CHECK FAILED | GPIO4 relay-closed indicator did not match the PRD
+DEBUG    drivers.device_driver:device_driver.py:96 TX > relay schedule off
+DEBUG    drivers.device_driver:device_driver.py:96 RX < relay schedule off
+DEBUG    drivers.device_driver:device_driver.py:96 RX < W (4584265) sentry: W605 schedule is not running
+DEBUG    drivers.device_driver:device_driver.py:96 TX > relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4584475) sentry: [VALVE] closed, auto off, cycles 210
+DEBUG    drivers.device_driver:device_driver.py:96 TX > relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (4584695) sentry: [VALVE] closed, auto off, cycles 210
+INFO     conftest:conftest.py:422 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz17\logs\automated\relay\2.3.0\20261021-test_relay_gpio4_indicator.txt

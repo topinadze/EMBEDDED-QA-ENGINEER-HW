@@ -1,0 +1,73 @@
+Test: tests/test_relay.py::TestRelay::test_relay_commands_and_cycle_count
+Firmware: 2.3.0
+Captured: 2026-10-21T05:36:28.464452+03:00
+
+TX > version
+RX < version
+RX < I (4515025) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+RX < I (4515025) sentry:   partition: ota_0 @ 0x20000, state: valid
+TX > status
+RX < status
+RX < I (4515235) sentry: === SWM-2 status ===
+RX < I (4515235) sentry:   fw:       v2.3.0 (ota_0)
+RX < I (4515235) sentry:   state:    1 NORMAL
+RX < I (4515235) sentry:   link:     buoy link 'TopA-node', ip 10.223.162.49, rssi -43 dBm (excellent), ch 1
+RX < I (4515245) sentry:   internet: OK
+RX < I (4515245) sentry:   user:     testUser (user)
+RX < I (4515245) sentry:   time:     05:36:21, uptime 1h 15m 14s
+RX < I (4515255) sentry:   valve:    closed
+RX < I (4515255) sentry:   watch:    disarmed, CIC alerts unacked: 1
+RX < I (4515265) sentry:   sonar:    no contact
+RX < I (4515265) sentry:   carrier:  depth 40.9 m, hull 5.1 bar, water 8.2 C, battery 24.08 V (sim)
+RX < I (4515275) sentry:   heap:     251 KB free
+TX > whoami
+RX < whoami
+RX < I (4515435) sentry: user: testUser, access: user
+TX > relay status
+RX < relay status
+RX < I (4515645) sentry: [VALVE] closed, auto off, cycles 194
+TX > relay status
+RX < relay status
+RX < I (4515855) sentry: [VALVE] closed, auto off, cycles 194
+TX > relay on
+RX < relay on
+RX < I (4516065) sentry: [VALVE] OPEN (command)
+TX > relay status
+RX < relay status
+RX < I (4516275) sentry: [VALVE] OPEN, auto off, cycles 195
+TX > relay on
+RX < relay on
+RX < W (4516475) sentry: W601 relay already on
+TX > relay status
+RX < relay status
+RX < I (4516695) sentry: [VALVE] OPEN, auto off, cycles 195
+TX > relay off
+RX < relay off
+RX < I (4517465) sentry: [VALVE] CLOSED (command)
+TX > relay status
+RX < relay status
+RX < I (4517665) sentry: [VALVE] closed, auto off, cycles 196
+TX > relay off
+RX < relay off
+RX < W (4517865) sentry: W601 relay already off
+TX > relay status
+RX < relay status
+RX < I (4518075) sentry: [VALVE] closed, auto off, cycles 196
+TX > relay toggle
+RX < relay toggle
+RX < I (4518835) sentry: [VALVE] OPEN (command)
+TX > relay status
+RX < relay status
+RX < I (4519045) sentry: [VALVE] OPEN, auto off, cycles 197
+TX > relay schedule off
+RX < relay schedule off
+RX < W (4519265) sentry: W605 schedule is not running
+TX > relay status
+RX < relay status
+RX < I (4519475) sentry: [VALVE] OPEN, auto off, cycles 197
+TX > relay off
+RX < relay off
+RX < I (4520245) sentry: [VALVE] CLOSED (command)
+TX > relay status
+RX < relay status
+RX < I (4520445) sentry: [VALVE] closed, auto off, cycles 198

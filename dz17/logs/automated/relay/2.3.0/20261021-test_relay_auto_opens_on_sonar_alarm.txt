@@ -1,0 +1,42 @@
+Test: tests/test_relay.py::TestRelay::test_relay_auto_opens_on_sonar_alarm
+Firmware: 2.3.0
+Captured: 2026-10-21T05:37:21.491953+03:00
+
+TX > version
+RX < version
+RX < I (4561075) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+RX < I (4561075) sentry:   partition: ota_0 @ 0x20000, state: valid
+TX > status
+RX < status
+RX < I (4561285) sentry: === SWM-2 status ===
+RX < I (4561285) sentry:   fw:       v2.3.0 (ota_0)
+RX < I (4561285) sentry:   state:    1 NORMAL
+RX < I (4561285) sentry:   link:     buoy link 'TopA-node', ip 10.223.162.49, rssi -28 dBm (excellent), ch 1
+RX < I (4561295) sentry:   internet: OK
+RX < I (4561295) sentry:   user:     testUser (user)
+RX < I (4561295) sentry:   time:     05:37:07, uptime 1h 16m 00s
+RX < I (4561305) sentry:   valve:    closed
+RX < I (4561305) sentry:   watch:    disarmed, CIC alerts unacked: 1
+RX < I (4561315) sentry:   sonar:    no contact
+RX < I (4561315) sentry:   carrier:  depth 40.9 m, hull 5.1 bar, water 8.2 C, battery 24.08 V (sim)
+RX < I (4561325) sentry:   heap:     251 KB free
+TX > whoami
+RX < whoami
+RX < I (4561495) sentry: user: testUser, access: user
+TX > relay status
+RX < relay status
+RX < I (4561705) sentry: [VALVE] closed, auto off, cycles 208
+TX > distance
+RX < I (4566795) sentry: [ACU] ambient noise 74 dB re 1uPa, sea state 2, water 8.2 C
+RX < I (4568865) sentry: [TELEMETRY #66] 05:37:15 up 01:16:08 heap 251KB rssi -30 temp 30.4C depth 40.7m hull 5.1bar batt 24.1V valve closed sonar - watch disarmed alerts 1 state NORMAL
+RX < distance
+RX < I (4572085) sentry: [SONAR] ping: echo 16.9 cm
+TX > relay schedule off
+RX < relay schedule off
+RX < W (4573045) sentry: W605 schedule is not running
+TX > relay status
+RX < relay status
+RX < I (4573265) sentry: [VALVE] closed, auto off, cycles 208
+TX > relay status
+RX < relay status
+RX < I (4573475) sentry: [VALVE] closed, auto off, cycles 208

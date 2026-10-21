@@ -1,64 +1,1225 @@
 DEBUG    drivers.device_driver:device_driver.py:89 TX > version
 DEBUG    drivers.device_driver:device_driver.py:89 RX < version
-DEBUG    drivers.device_driver:device_driver.py:89 RX < I (5151645) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
-DEBUG    drivers.device_driver:device_driver.py:89 RX < I (5151645) sentry:   partition: ota_0 @ 0x20000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7346885) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7346885) sentry:   partition: ota_0 @ 0x20000, state: valid
 DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp status
 DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp status
-DEBUG    drivers.device_driver:device_driver.py:89 RX < I (5152645) sentry: [BEACON] off, color (255,0,0), brightness 100%, mode solid, timer off
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7347085) sentry: [BEACON] off, color (160,0,255), brightness 75%, mode breathe, timer off
 DEBUG    drivers.device_driver:device_driver.py:89 TX > status
 DEBUG    drivers.device_driver:device_driver.py:89 RX < status
-DEBUG    drivers.device_driver:device_driver.py:89 RX < I (5153255) sentry: === SWM-2 status ===
-DEBUG    drivers.device_driver:device_driver.py:89 RX < I (5153255) sentry:   fw:       v2.3.0 (ota_0)
-DEBUG    drivers.device_driver:device_driver.py:89 RX < I (5153255) sentry:   state:    1 NORMAL
-DEBUG    drivers.device_driver:device_driver.py:89 RX < I (5153255) sentry:   link:     buoy link 'TopA-node', ip 10.223.162.49, rssi -26 dBm (excellent), ch 1
-DEBUG    drivers.device_driver:device_driver.py:89 RX < I (5153265) sentry:   internet: OK
-DEBUG    drivers.device_driver:device_driver.py:89 RX < I (5153265) sentry:   user:     testUser (user)
-DEBUG    drivers.device_driver:device_driver.py:89 RX < I (5153265) sentry:   time:     04:25:21, uptime 1h 25m 52s
-DEBUG    drivers.device_driver:device_driver.py:89 RX < I (5153275) sentry:   valve:    closed
-DEBUG    drivers.device_driver:device_driver.py:89 RX < I (5153275) sentry:   watch:    disarmed, CIC alerts unacked: 2
-DEBUG    drivers.device_driver:device_driver.py:89 RX < I (5153285) sentry:   sonar:    no contact
-DEBUG    drivers.device_driver:device_driver.py:89 RX < I (5153285) sentry:   carrier:  depth 43.3 m, hull 5.3 bar, water 8.0 C, battery 24.06 V (sim)
-DEBUG    drivers.device_driver:device_driver.py:89 RX < I (5153295) sentry:   heap:     251 KB free
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7347695) sentry: === SWM-2 status ===
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7347695) sentry:   fw:       v2.3.0 (ota_0)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7347695) sentry:   state:    1 NORMAL
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7347695) sentry:   link:     buoy link 'TopA-node', ip 10.223.162.49, rssi -30 dBm (excellent), ch 1
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7347705) sentry:   internet: OK
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7347705) sentry:   user:     testUser (user)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7347705) sentry:   time:     23:52:40, uptime 2h 02m 27s
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7347715) sentry:   valve:    closed
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7347715) sentry:   watch:    disarmed, CIC alerts unacked: 12
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7347725) sentry:   sonar:    no contact
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7347725) sentry:   carrier:  depth 44.8 m, hull 5.5 bar, water 8.0 C, battery 24.00 V (sim)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7347735) sentry:   heap:     251 KB free
 DEBUG    drivers.device_driver:device_driver.py:89 TX > whoami
 DEBUG    drivers.device_driver:device_driver.py:89 RX < whoami
-DEBUG    drivers.device_driver:device_driver.py:89 RX < I (5153455) sentry: user: testUser, access: user
-DEBUG    drivers.device_driver:device_driver.py:89 TX > relay status
-DEBUG    drivers.device_driver:device_driver.py:89 RX < relay status
-DEBUG    drivers.device_driver:device_driver.py:89 RX < I (5153675) sentry: [VALVE] closed, auto off, cycles 148
-DEBUG    drivers.device_driver:device_driver.py:89 TX > distance stats
-DEBUG    drivers.device_driver:device_driver.py:89 RX < distance stats
-DEBUG    drivers.device_driver:device_driver.py:89 RX < I (5154285) sentry: [SONAR] measurements 94, errors 0, min 2.0, max 23.8, avg 14.0 cm
-DEBUG    drivers.device_driver:device_driver.py:89 RX < I (5154285) sentry: [SONAR] calibration -2.0 cm, filter median 5, alarm off
-DEBUG    drivers.device_driver:device_driver.py:89 RX < I (5154775) sentry: [TELEMETRY #168] 04:25:22 up 01:25:54 heap 251KB rssi -27 temp 32.4C depth 43.3m hull 5.3bar batt 24.1V valve closed sonar - watch disarmed alerts 2 state NORMAL
-INFO     manual_checks:manual_checks.py:265 MANUAL INPUT | Continue distance measurements: yes
-INFO     manual_checks:manual_checks.py:237 MANUAL INPUT | Enter the ruler-measured gap from the sensor face to the target: 20.00 cm
-INFO     manual_checks:manual_checks.py:209 MANUAL PREPARE | Waiting for operator confirmation.
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7347895) sentry: user: testUser, access: user
 DEBUG    drivers.device_driver:device_driver.py:89 TX > distance
-DEBUG    drivers.device_driver:device_driver.py:89 RX < I (5182715) sentry: [ACU] ambient noise 74 dB re 1uPa, sea state 2, water 8.0 C
-DEBUG    drivers.device_driver:device_driver.py:89 RX < I (5184775) sentry: [TELEMETRY #169] 04:25:52 up 01:26:24 heap 251KB rssi -25 temp 32.4C depth 42.9m hull 5.3bar batt 24.1V valve closed sonar - watch disarmed alerts 2 state NORMAL
 DEBUG    drivers.device_driver:device_driver.py:89 RX < distance
-DEBUG    drivers.device_driver:device_driver.py:89 RX < I (5194735) sentry: [SONAR] ping: echo 20.1 cm
-DEBUG    drivers.device_driver:device_driver.py:89 TX > relay status
-DEBUG    drivers.device_driver:device_driver.py:89 RX < relay status
-DEBUG    drivers.device_driver:device_driver.py:89 RX < I (5195695) sentry: [VALVE] closed, auto off, cycles 148
-INFO     manual_checks:manual_checks.py:273 MANUAL INPUT | Continue distance measurements: no
-INFO     tests.test_distance:test_distance.py:696 DISTANCE SERIES SUMMARY
-Index | Reference (cm) | Reading (cm) | Error (cm) | Result
---- | ---: | ---: | ---: | ---
-1 | 20.00 | 20.10 | +0.10 | PASS
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7348155) sentry: [SONAR] ping: echo 20.8 cm
 DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp timer 0
 DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp timer 0
-DEBUG    drivers.device_driver:device_driver.py:89 RX < I (5198305) sentry: [BEACON] timer cancelled
-DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp color 255 0 0
-DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp color 255 0 0
-DEBUG    drivers.device_driver:device_driver.py:89 RX < I (5198725) sentry: [BEACON] color: (255,0,0)
-DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp brightness 100
-DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp brightness 100
-DEBUG    drivers.device_driver:device_driver.py:89 RX < I (5199135) sentry: [BEACON] brightness: 100%
-DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp mode solid
-DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp mode solid
-DEBUG    drivers.device_driver:device_driver.py:89 RX < I (5199535) sentry: [BEACON] mode: solid
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7349115) sentry: [BEACON] timer cancelled
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp color 160 0 255
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp color 160 0 255
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7349525) sentry: [BEACON] color: (160,0,255)
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp brightness 75
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp brightness 75
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7349935) sentry: [BEACON] brightness: 75%
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp mode breathe
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp mode breathe
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7350345) sentry: [BEACON] mode: breathe
 DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp off
 DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp off
-DEBUG    drivers.device_driver:device_driver.py:89 RX < W (5199945) sentry: W510 lamp already off
-INFO     conftest:conftest.py:366 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz17\logs\automated\distance\2.3.0\20261020-test_distance_interactive_measurement.txt
+DEBUG    drivers.device_driver:device_driver.py:89 RX < W (7350755) sentry: W510 lamp already off
+INFO     conftest:conftest.py:403 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz17\logs\automated\distance\2.3.0\20261020-test_distance_single.txt
+DEBUG    drivers.device_driver:device_driver.py:89 TX > version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7351195) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7351195) sentry:   partition: ota_0 @ 0x20000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7351405) sentry: [BEACON] off, color (160,0,255), brightness 75%, mode breathe, timer off
+DEBUG    drivers.device_driver:device_driver.py:89 TX > status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7352015) sentry: === SWM-2 status ===
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7352015) sentry:   fw:       v2.3.0 (ota_0)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7352015) sentry:   state:    1 NORMAL
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7352015) sentry:   link:     buoy link 'TopA-node', ip 10.223.162.49, rssi -29 dBm (excellent), ch 1
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7352025) sentry:   internet: OK
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7352025) sentry:   user:     testUser (user)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7352025) sentry:   time:     23:52:44, uptime 2h 02m 31s
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7352035) sentry:   valve:    closed
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7352035) sentry:   watch:    disarmed, CIC alerts unacked: 12
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7352045) sentry:   sonar:    last echo 20.8 cm
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7352045) sentry:   carrier:  depth 44.8 m, hull 5.5 bar, water 8.0 C, battery 24.00 V (sim)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7352055) sentry:   heap:     251 KB free
+DEBUG    drivers.device_driver:device_driver.py:89 TX > whoami
+DEBUG    drivers.device_driver:device_driver.py:89 RX < whoami
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7352215) sentry: user: testUser, access: user
+DEBUG    drivers.device_driver:device_driver.py:89 TX > distance 1
+DEBUG    drivers.device_driver:device_driver.py:89 RX < distance 1
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7352485) sentry: [SONAR] 1/1: 20.0 cm
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7352585) sentry: [SONAR] avg 20.0 cm (1/1 ok)
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7353595) sentry: [BEACON] timer cancelled
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp color 160 0 255
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp color 160 0 255
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7354005) sentry: [BEACON] color: (160,0,255)
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp brightness 75
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp brightness 75
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7354415) sentry: [BEACON] brightness: 75%
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp mode breathe
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp mode breathe
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7354815) sentry: [BEACON] mode: breathe
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp off
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp off
+DEBUG    drivers.device_driver:device_driver.py:89 RX < W (7355225) sentry: W510 lamp already off
+INFO     conftest:conftest.py:403 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz17\logs\automated\distance\2.3.0\20261020-test_distance_averaging_valid_1.txt
+DEBUG    drivers.device_driver:device_driver.py:89 TX > version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7355675) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7355675) sentry:   partition: ota_0 @ 0x20000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7355885) sentry: [BEACON] off, color (160,0,255), brightness 75%, mode breathe, timer off
+DEBUG    drivers.device_driver:device_driver.py:89 TX > status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7356495) sentry: === SWM-2 status ===
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7356495) sentry:   fw:       v2.3.0 (ota_0)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7356495) sentry:   state:    1 NORMAL
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7356495) sentry:   link:     buoy link 'TopA-node', ip 10.223.162.49, rssi -30 dBm (excellent), ch 1
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7356505) sentry:   internet: OK
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7356505) sentry:   user:     testUser (user)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7356505) sentry:   time:     23:52:48, uptime 2h 02m 36s
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7356515) sentry:   valve:    closed
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7356515) sentry:   watch:    disarmed, CIC alerts unacked: 12
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7356525) sentry:   sonar:    last echo 20.0 cm
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7356525) sentry:   carrier:  depth 44.8 m, hull 5.5 bar, water 8.0 C, battery 24.00 V (sim)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7356535) sentry:   heap:     251 KB free
+DEBUG    drivers.device_driver:device_driver.py:89 TX > whoami
+DEBUG    drivers.device_driver:device_driver.py:89 RX < whoami
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7356695) sentry: user: testUser, access: user
+DEBUG    drivers.device_driver:device_driver.py:89 TX > distance 5
+DEBUG    drivers.device_driver:device_driver.py:89 RX < distance 5
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7356955) sentry: [SONAR] 1/5: 20.8 cm
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7357105) sentry: [SONAR] 2/5: 20.8 cm
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7357255) sentry: [SONAR] 3/5: 20.8 cm
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7357405) sentry: [SONAR] 4/5: 20.8 cm
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7357555) sentry: [SONAR] 5/5: 20.8 cm
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7357655) sentry: [SONAR] avg 20.8 cm (5/5 ok)
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7358675) sentry: [BEACON] timer cancelled
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp color 160 0 255
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp color 160 0 255
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7359075) sentry: [BEACON] color: (160,0,255)
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp brightness 75
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp brightness 75
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7359495) sentry: [BEACON] brightness: 75%
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp mode breathe
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp mode breathe
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7359905) sentry: [BEACON] mode: breathe
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp off
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp off
+DEBUG    drivers.device_driver:device_driver.py:89 RX < W (7360315) sentry: W510 lamp already off
+INFO     conftest:conftest.py:403 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz17\logs\automated\distance\2.3.0\20261020-test_distance_averaging_valid_5.txt
+DEBUG    drivers.device_driver:device_driver.py:89 TX > version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7360765) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7360765) sentry:   partition: ota_0 @ 0x20000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7360975) sentry: [BEACON] off, color (160,0,255), brightness 75%, mode breathe, timer off
+DEBUG    drivers.device_driver:device_driver.py:89 TX > status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7361585) sentry: === SWM-2 status ===
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7361585) sentry:   fw:       v2.3.0 (ota_0)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7361585) sentry:   state:    1 NORMAL
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7361585) sentry:   link:     buoy link 'TopA-node', ip 10.223.162.49, rssi -29 dBm (excellent), ch 1
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7361595) sentry:   internet: OK
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7361595) sentry:   user:     testUser (user)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7361595) sentry:   time:     23:52:54, uptime 2h 02m 41s
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7361605) sentry:   valve:    closed
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7361605) sentry:   watch:    disarmed, CIC alerts unacked: 12
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7361615) sentry:   sonar:    last echo 20.8 cm
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7361615) sentry:   carrier:  depth 44.8 m, hull 5.5 bar, water 8.0 C, battery 24.00 V (sim)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7361625) sentry:   heap:     251 KB free
+DEBUG    drivers.device_driver:device_driver.py:89 TX > whoami
+DEBUG    drivers.device_driver:device_driver.py:89 RX < whoami
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7361795) sentry: user: testUser, access: user
+DEBUG    drivers.device_driver:device_driver.py:89 TX > distance 10
+DEBUG    drivers.device_driver:device_driver.py:89 RX < distance 10
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7362055) sentry: [SONAR] 1/10: 20.8 cm
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7362205) sentry: [SONAR] 2/10: 20.8 cm
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7362355) sentry: [SONAR] 3/10: 20.8 cm
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7362505) sentry: [SONAR] 4/10: 20.8 cm
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7362655) sentry: [SONAR] 5/10: 20.8 cm
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7362805) sentry: [SONAR] 6/10: 20.8 cm
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7362955) sentry: [SONAR] 7/10: 20.8 cm
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7363105) sentry: [SONAR] 8/10: 20.8 cm
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7363255) sentry: [SONAR] 9/10: 20.8 cm
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7363405) sentry: [SONAR] 10/10: 20.8 cm
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7363505) sentry: [SONAR] avg 20.8 cm (10/10 ok)
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7364515) sentry: [BEACON] timer cancelled
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp color 160 0 255
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp color 160 0 255
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7364925) sentry: [BEACON] color: (160,0,255)
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp brightness 75
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp brightness 75
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7365335) sentry: [BEACON] brightness: 75%
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp mode breathe
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp mode breathe
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7365745) sentry: [BEACON] mode: breathe
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp off
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp off
+DEBUG    drivers.device_driver:device_driver.py:89 RX < W (7366155) sentry: W510 lamp already off
+INFO     conftest:conftest.py:403 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz17\logs\automated\distance\2.3.0\20261020-test_distance_averaging_valid_10.txt
+DEBUG    drivers.device_driver:device_driver.py:89 TX > version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7366615) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7366615) sentry:   partition: ota_0 @ 0x20000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7366825) sentry: [BEACON] off, color (160,0,255), brightness 75%, mode breathe, timer off
+DEBUG    drivers.device_driver:device_driver.py:89 TX > status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7367425) sentry: === SWM-2 status ===
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7367425) sentry:   fw:       v2.3.0 (ota_0)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7367425) sentry:   state:    1 NORMAL
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7367425) sentry:   link:     buoy link 'TopA-node', ip 10.223.162.49, rssi -31 dBm (excellent), ch 1
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7367435) sentry:   internet: OK
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7367435) sentry:   user:     testUser (user)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7367435) sentry:   time:     23:52:59, uptime 2h 02m 47s
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7367445) sentry:   valve:    closed
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7367445) sentry:   watch:    disarmed, CIC alerts unacked: 12
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7367455) sentry:   sonar:    last echo 20.8 cm
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7367455) sentry:   carrier:  depth 44.8 m, hull 5.5 bar, water 8.0 C, battery 24.00 V (sim)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7367465) sentry:   heap:     251 KB free
+DEBUG    drivers.device_driver:device_driver.py:89 TX > whoami
+DEBUG    drivers.device_driver:device_driver.py:89 RX < whoami
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7367635) sentry: user: testUser, access: user
+DEBUG    drivers.device_driver:device_driver.py:89 TX > distance 19
+DEBUG    drivers.device_driver:device_driver.py:89 RX < distance 19
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7367895) sentry: [SONAR] 1/19: 20.8 cm
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7368045) sentry: [SONAR] 2/19: 20.8 cm
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7368195) sentry: [SONAR] 3/19: 20.8 cm
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7368345) sentry: [SONAR] 4/19: 20.8 cm
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7368495) sentry: [SONAR] 5/19: 20.8 cm
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7368535) sentry: [TELEMETRY #239] 23:53:00 up 02:02:48 heap 251KB rssi -28 temp 30.4C depth 44.8m hull 5.5bar batt 24.0V valve closed sonar 20.8cm watch disarmed alerts 12 state NORMAL
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7368645) sentry: [SONAR] 6/19: 20.8 cm
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7368795) sentry: [SONAR] 7/19: 20.8 cm
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7368945) sentry: [SONAR] 8/19: 20.8 cm
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7369095) sentry: [SONAR] 9/19: 20.8 cm
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7369245) sentry: [SONAR] 10/19: 20.8 cm
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7369395) sentry: [SONAR] 11/19: 20.8 cm
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7369545) sentry: [SONAR] 12/19: 20.8 cm
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7369695) sentry: [SONAR] 13/19: 20.8 cm
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7369845) sentry: [SONAR] 14/19: 20.8 cm
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7369995) sentry: [SONAR] 15/19: 20.8 cm
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7370145) sentry: [SONAR] 16/19: 20.8 cm
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7370295) sentry: [SONAR] 17/19: 20.8 cm
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7370445) sentry: [SONAR] 18/19: 20.8 cm
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7370595) sentry: [SONAR] 19/19: 20.8 cm
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7370695) sentry: [SONAR] avg 20.8 cm (19/19 ok)
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7371705) sentry: [BEACON] timer cancelled
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp color 160 0 255
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp color 160 0 255
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7372115) sentry: [BEACON] color: (160,0,255)
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp brightness 75
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp brightness 75
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7372515) sentry: [BEACON] brightness: 75%
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp mode breathe
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp mode breathe
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7372925) sentry: [BEACON] mode: breathe
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp off
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp off
+DEBUG    drivers.device_driver:device_driver.py:89 RX < W (7373335) sentry: W510 lamp already off
+INFO     conftest:conftest.py:403 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz17\logs\automated\distance\2.3.0\20261020-test_distance_averaging_valid_19.txt
+DEBUG    drivers.device_driver:device_driver.py:89 TX > version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7373775) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7373775) sentry:   partition: ota_0 @ 0x20000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7373985) sentry: [BEACON] off, color (160,0,255), brightness 75%, mode breathe, timer off
+DEBUG    drivers.device_driver:device_driver.py:89 TX > status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7374595) sentry: === SWM-2 status ===
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7374595) sentry:   fw:       v2.3.0 (ota_0)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7374595) sentry:   state:    1 NORMAL
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7374595) sentry:   link:     buoy link 'TopA-node', ip 10.223.162.49, rssi -29 dBm (excellent), ch 1
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7374605) sentry:   internet: OK
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7374605) sentry:   user:     testUser (user)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7374605) sentry:   time:     23:53:07, uptime 2h 02m 54s
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7374615) sentry:   valve:    closed
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7374615) sentry:   watch:    disarmed, CIC alerts unacked: 12
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7374625) sentry:   sonar:    last echo 20.8 cm
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7374625) sentry:   carrier:  depth 44.8 m, hull 5.5 bar, water 8.0 C, battery 24.00 V (sim)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7374635) sentry:   heap:     251 KB free
+DEBUG    drivers.device_driver:device_driver.py:89 TX > whoami
+DEBUG    drivers.device_driver:device_driver.py:89 RX < whoami
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7374795) sentry: user: testUser, access: user
+DEBUG    drivers.device_driver:device_driver.py:89 TX > distance 20
+DEBUG    drivers.device_driver:device_driver.py:89 RX < distance 20
+DEBUG    drivers.device_driver:device_driver.py:89 RX < E (7375005) sentry: E704 count must be 1-20
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7379105) sentry: [BEACON] timer cancelled
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp color 160 0 255
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp color 160 0 255
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7379515) sentry: [BEACON] color: (160,0,255)
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp brightness 75
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp brightness 75
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7379925) sentry: [BEACON] brightness: 75%
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp mode breathe
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp mode breathe
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7380335) sentry: [BEACON] mode: breathe
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp off
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp off
+DEBUG    drivers.device_driver:device_driver.py:89 RX < W (7380745) sentry: W510 lamp already off
+INFO     conftest:conftest.py:403 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz17\logs\automated\distance\2.3.0\20261020-test_distance_averaging_max_boundary_20.txt
+DEBUG    drivers.device_driver:device_driver.py:89 TX > version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7381185) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7381185) sentry:   partition: ota_0 @ 0x20000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7381385) sentry: [BEACON] off, color (160,0,255), brightness 75%, mode breathe, timer off
+DEBUG    drivers.device_driver:device_driver.py:89 TX > status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7381995) sentry: === SWM-2 status ===
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7381995) sentry:   fw:       v2.3.0 (ota_0)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7381995) sentry:   state:    1 NORMAL
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7381995) sentry:   link:     buoy link 'TopA-node', ip 10.223.162.49, rssi -30 dBm (excellent), ch 1
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7382005) sentry:   internet: OK
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7382005) sentry:   user:     testUser (user)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7382005) sentry:   time:     23:53:14, uptime 2h 03m 01s
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7382015) sentry:   valve:    closed
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7382015) sentry:   watch:    disarmed, CIC alerts unacked: 12
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7382025) sentry:   sonar:    last echo 20.8 cm
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7382025) sentry:   carrier:  depth 44.8 m, hull 5.5 bar, water 8.0 C, battery 24.00 V (sim)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7382035) sentry:   heap:     251 KB free
+DEBUG    drivers.device_driver:device_driver.py:89 TX > whoami
+DEBUG    drivers.device_driver:device_driver.py:89 RX < whoami
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7382195) sentry: user: testUser, access: user
+DEBUG    drivers.device_driver:device_driver.py:89 TX > distance 0
+DEBUG    drivers.device_driver:device_driver.py:89 RX < distance 0
+DEBUG    drivers.device_driver:device_driver.py:89 RX < E (7382405) sentry: E704 count must be 1-20
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7383425) sentry: [BEACON] timer cancelled
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp color 160 0 255
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp color 160 0 255
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7383825) sentry: [BEACON] color: (160,0,255)
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp brightness 75
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp brightness 75
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7384235) sentry: [BEACON] brightness: 75%
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp mode breathe
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp mode breathe
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7384645) sentry: [BEACON] mode: breathe
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp off
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp off
+DEBUG    drivers.device_driver:device_driver.py:89 RX < W (7385055) sentry: W510 lamp already off
+INFO     conftest:conftest.py:403 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz17\logs\automated\distance\2.3.0\20261020-test_distance_invalid_sample_counts_0.txt
+DEBUG    drivers.device_driver:device_driver.py:89 TX > version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7385495) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7385495) sentry:   partition: ota_0 @ 0x20000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7385705) sentry: [BEACON] off, color (160,0,255), brightness 75%, mode breathe, timer off
+DEBUG    drivers.device_driver:device_driver.py:89 TX > status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7386305) sentry: === SWM-2 status ===
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7386305) sentry:   fw:       v2.3.0 (ota_0)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7386305) sentry:   state:    1 NORMAL
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7386305) sentry:   link:     buoy link 'TopA-node', ip 10.223.162.49, rssi -30 dBm (excellent), ch 1
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7386315) sentry:   internet: OK
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7386315) sentry:   user:     testUser (user)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7386315) sentry:   time:     23:53:18, uptime 2h 03m 05s
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7386325) sentry:   valve:    closed
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7386325) sentry:   watch:    disarmed, CIC alerts unacked: 12
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7386335) sentry:   sonar:    last echo 20.8 cm
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7386335) sentry:   carrier:  depth 44.8 m, hull 5.5 bar, water 8.0 C, battery 24.00 V (sim)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7386345) sentry:   heap:     251 KB free
+DEBUG    drivers.device_driver:device_driver.py:89 TX > whoami
+DEBUG    drivers.device_driver:device_driver.py:89 RX < whoami
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7386515) sentry: user: testUser, access: user
+DEBUG    drivers.device_driver:device_driver.py:89 TX > distance 21
+DEBUG    drivers.device_driver:device_driver.py:89 RX < distance 21
+DEBUG    drivers.device_driver:device_driver.py:89 RX < E (7386725) sentry: E704 count must be 1-20
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7390885) sentry: [BEACON] timer cancelled
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp color 160 0 255
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp color 160 0 255
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7391295) sentry: [BEACON] color: (160,0,255)
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp brightness 75
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp brightness 75
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7391705) sentry: [BEACON] brightness: 75%
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp mode breathe
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp mode breathe
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7392115) sentry: [BEACON] mode: breathe
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp off
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp off
+DEBUG    drivers.device_driver:device_driver.py:89 RX < W (7392525) sentry: W510 lamp already off
+INFO     conftest:conftest.py:403 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz17\logs\automated\distance\2.3.0\20261020-test_distance_invalid_sample_counts_21.txt
+DEBUG    drivers.device_driver:device_driver.py:89 TX > version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7392975) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7392975) sentry:   partition: ota_0 @ 0x20000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7393175) sentry: [BEACON] off, color (160,0,255), brightness 75%, mode breathe, timer off
+DEBUG    drivers.device_driver:device_driver.py:89 TX > status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7393775) sentry: === SWM-2 status ===
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7393775) sentry:   fw:       v2.3.0 (ota_0)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7393775) sentry:   state:    1 NORMAL
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7393775) sentry:   link:     buoy link 'TopA-node', ip 10.223.162.49, rssi -30 dBm (excellent), ch 1
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7393785) sentry:   internet: OK
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7393785) sentry:   user:     testUser (user)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7393785) sentry:   time:     23:53:26, uptime 2h 03m 13s
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7393795) sentry:   valve:    closed
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7393795) sentry:   watch:    disarmed, CIC alerts unacked: 12
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7393805) sentry:   sonar:    last echo 20.8 cm
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7393805) sentry:   carrier:  depth 44.8 m, hull 5.5 bar, water 8.0 C, battery 24.00 V (sim)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7393815) sentry:   heap:     251 KB free
+DEBUG    drivers.device_driver:device_driver.py:89 TX > whoami
+DEBUG    drivers.device_driver:device_driver.py:89 RX < whoami
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7393985) sentry: user: testUser, access: user
+DEBUG    drivers.device_driver:device_driver.py:89 TX > distance 100
+DEBUG    drivers.device_driver:device_driver.py:89 RX < distance 100
+DEBUG    drivers.device_driver:device_driver.py:89 RX < E (7394195) sentry: E704 count must be 1-20
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7396645) sentry: [ACU] ambient noise 70 dB re 1uPa, sea state 2, water 7.9 C
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7398545) sentry: [TELEMETRY #240] 23:53:30 up 02:03:18 heap 251KB rssi -31 temp 30.4C depth 44.8m hull 5.5bar batt 24.0V valve closed sonar 20.8cm watch disarmed alerts 12 state NORMAL
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7410205) sentry: [BEACON] timer cancelled
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp color 160 0 255
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp color 160 0 255
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7410615) sentry: [BEACON] color: (160,0,255)
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp brightness 75
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp brightness 75
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7411025) sentry: [BEACON] brightness: 75%
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp mode breathe
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp mode breathe
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7411435) sentry: [BEACON] mode: breathe
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp off
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp off
+DEBUG    drivers.device_driver:device_driver.py:89 RX < W (7411845) sentry: W510 lamp already off
+INFO     conftest:conftest.py:403 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz17\logs\automated\distance\2.3.0\20261020-test_distance_invalid_sample_counts_100.txt
+DEBUG    drivers.device_driver:device_driver.py:89 TX > version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7412295) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7412295) sentry:   partition: ota_0 @ 0x20000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7412505) sentry: [BEACON] off, color (160,0,255), brightness 75%, mode breathe, timer off
+DEBUG    drivers.device_driver:device_driver.py:89 TX > status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7413115) sentry: === SWM-2 status ===
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7413115) sentry:   fw:       v2.3.0 (ota_0)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7413115) sentry:   state:    1 NORMAL
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7413115) sentry:   link:     buoy link 'TopA-node', ip 10.223.162.49, rssi -31 dBm (excellent), ch 1
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7413125) sentry:   internet: OK
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7413125) sentry:   user:     testUser (user)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7413125) sentry:   time:     23:53:45, uptime 2h 03m 32s
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7413135) sentry:   valve:    closed
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7413135) sentry:   watch:    disarmed, CIC alerts unacked: 12
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7413145) sentry:   sonar:    last echo 20.8 cm
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7413145) sentry:   carrier:  depth 44.8 m, hull 5.5 bar, water 7.9 C, battery 24.00 V (sim)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7413155) sentry:   heap:     251 KB free
+DEBUG    drivers.device_driver:device_driver.py:89 TX > whoami
+DEBUG    drivers.device_driver:device_driver.py:89 RX < whoami
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7413335) sentry: user: testUser, access: user
+DEBUG    drivers.device_driver:device_driver.py:89 TX > distance log 100
+DEBUG    drivers.device_driver:device_driver.py:89 RX < distance log 100
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7413535) sentry: [SONAR] continuous pinging every 100 ms (command). 'distance stop' to stop
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7413605) sentry: [SONAR] ping: echo 20.8 cm
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7413755) sentry: [SONAR] ping: echo 20.8 cm
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7413905) sentry: [SONAR] ping: echo 20.8 cm
+DEBUG    drivers.device_driver:device_driver.py:89 TX > distance
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7414055) sentry: [SONAR] ping: echo 20.8 cm
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7414205) sentry: [SONAR] ping: echo 20.8 cm
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7414355) sentry: [SONAR] ping: echo 20.8 cm
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7414505) sentry: [SONAR] ping: echo 20.8 cm
+DEBUG    drivers.device_driver:device_driver.py:89 RX < distance
+DEBUG    drivers.device_driver:device_driver.py:89 RX < E (7414645) sentry: E711 measuring is running. Use 'distance stop'
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7414655) sentry: [SONAR] ping: echo 20.8 cm
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7414805) sentry: [SONAR] ping: echo 20.8 cm
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7414955) sentry: [SONAR] ping: echo 20.8 cm
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7415105) sentry: [SONAR] ping: echo 20.8 cm
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7415255) sentry: [SONAR] ping: echo 20.8 cm
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7415405) sentry: [SONAR] ping: echo 20.8 cm
+DEBUG    drivers.device_driver:device_driver.py:89 TX > distance stop
+DEBUG    drivers.device_driver:device_driver.py:89 RX < distance stop
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7415555) sentry: [SONAR] ping: echo 20.8 cm
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7415655) sentry: [SONAR] pinging stopped (command)
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7416685) sentry: [BEACON] timer cancelled
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp color 160 0 255
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp color 160 0 255
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7417095) sentry: [BEACON] color: (160,0,255)
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp brightness 75
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp brightness 75
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7417495) sentry: [BEACON] brightness: 75%
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp mode breathe
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp mode breathe
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7417905) sentry: [BEACON] mode: breathe
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp off
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp off
+DEBUG    drivers.device_driver:device_driver.py:89 RX < W (7418325) sentry: W510 lamp already off
+INFO     conftest:conftest.py:403 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz17\logs\automated\distance\2.3.0\20261020-test_distance_stream_and_stop.txt
+DEBUG    drivers.device_driver:device_driver.py:89 TX > version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7418755) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7418755) sentry:   partition: ota_0 @ 0x20000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7418965) sentry: [BEACON] off, color (160,0,255), brightness 75%, mode breathe, timer off
+DEBUG    drivers.device_driver:device_driver.py:89 TX > status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7419575) sentry: === SWM-2 status ===
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7419575) sentry:   fw:       v2.3.0 (ota_0)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7419575) sentry:   state:    1 NORMAL
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7419575) sentry:   link:     buoy link 'TopA-node', ip 10.223.162.49, rssi -31 dBm (excellent), ch 1
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7419585) sentry:   internet: OK
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7419585) sentry:   user:     testUser (user)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7419585) sentry:   time:     23:53:52, uptime 2h 03m 39s
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7419595) sentry:   valve:    closed
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7419595) sentry:   watch:    disarmed, CIC alerts unacked: 12
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7419605) sentry:   sonar:    last echo 20.8 cm
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7419605) sentry:   carrier:  depth 44.8 m, hull 5.5 bar, water 7.9 C, battery 24.00 V (sim)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7419615) sentry:   heap:     251 KB free
+DEBUG    drivers.device_driver:device_driver.py:89 TX > whoami
+DEBUG    drivers.device_driver:device_driver.py:89 RX < whoami
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7419785) sentry: user: testUser, access: user
+DEBUG    drivers.device_driver:device_driver.py:89 TX > distance log 50
+DEBUG    drivers.device_driver:device_driver.py:89 RX < distance log 50
+DEBUG    drivers.device_driver:device_driver.py:89 RX < E (7419995) sentry: E705 interval must be 100-5000 ms
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7420605) sentry: [BEACON] timer cancelled
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp color 160 0 255
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp color 160 0 255
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7421015) sentry: [BEACON] color: (160,0,255)
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp brightness 75
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp brightness 75
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7421425) sentry: [BEACON] brightness: 75%
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp mode breathe
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp mode breathe
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7421835) sentry: [BEACON] mode: breathe
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp off
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp off
+DEBUG    drivers.device_driver:device_driver.py:89 RX < W (7422245) sentry: W510 lamp already off
+INFO     conftest:conftest.py:403 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz17\logs\automated\distance\2.3.0\20261020-test_distance_stream_invalid_interval_50.txt
+DEBUG    drivers.device_driver:device_driver.py:89 TX > version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7422685) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7422685) sentry:   partition: ota_0 @ 0x20000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7422895) sentry: [BEACON] off, color (160,0,255), brightness 75%, mode breathe, timer off
+DEBUG    drivers.device_driver:device_driver.py:89 TX > status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7423505) sentry: === SWM-2 status ===
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7423505) sentry:   fw:       v2.3.0 (ota_0)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7423505) sentry:   state:    1 NORMAL
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7423505) sentry:   link:     buoy link 'TopA-node', ip 10.223.162.49, rssi -36 dBm (excellent), ch 1
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7423515) sentry:   internet: OK
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7423515) sentry:   user:     testUser (user)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7423515) sentry:   time:     23:53:55, uptime 2h 03m 43s
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7423525) sentry:   valve:    closed
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7423525) sentry:   watch:    disarmed, CIC alerts unacked: 12
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7423535) sentry:   sonar:    last echo 20.8 cm
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7423535) sentry:   carrier:  depth 44.8 m, hull 5.5 bar, water 7.9 C, battery 24.00 V (sim)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7423545) sentry:   heap:     251 KB free
+DEBUG    drivers.device_driver:device_driver.py:89 TX > whoami
+DEBUG    drivers.device_driver:device_driver.py:89 RX < whoami
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7423715) sentry: user: testUser, access: user
+DEBUG    drivers.device_driver:device_driver.py:89 TX > distance log 99
+DEBUG    drivers.device_driver:device_driver.py:89 RX < distance log 99
+DEBUG    drivers.device_driver:device_driver.py:89 RX < E (7423925) sentry: E705 interval must be 100-5000 ms
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7424545) sentry: [BEACON] timer cancelled
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp color 160 0 255
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp color 160 0 255
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7424955) sentry: [BEACON] color: (160,0,255)
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp brightness 75
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp brightness 75
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7425365) sentry: [BEACON] brightness: 75%
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp mode breathe
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp mode breathe
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7425775) sentry: [BEACON] mode: breathe
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp off
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp off
+DEBUG    drivers.device_driver:device_driver.py:89 RX < W (7426195) sentry: W510 lamp already off
+INFO     conftest:conftest.py:403 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz17\logs\automated\distance\2.3.0\20261020-test_distance_stream_invalid_interval_99.txt
+DEBUG    drivers.device_driver:device_driver.py:89 TX > version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7426645) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7426645) sentry:   partition: ota_0 @ 0x20000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7426855) sentry: [BEACON] off, color (160,0,255), brightness 75%, mode breathe, timer off
+DEBUG    drivers.device_driver:device_driver.py:89 TX > status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7427475) sentry: === SWM-2 status ===
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7427475) sentry:   fw:       v2.3.0 (ota_0)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7427475) sentry:   state:    1 NORMAL
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7427475) sentry:   link:     buoy link 'TopA-node', ip 10.223.162.49, rssi -41 dBm (excellent), ch 1
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7427485) sentry:   internet: OK
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7427485) sentry:   user:     testUser (user)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7427485) sentry:   time:     23:53:59, uptime 2h 03m 47s
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7427495) sentry:   valve:    closed
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7427495) sentry:   watch:    disarmed, CIC alerts unacked: 12
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7427505) sentry:   sonar:    last echo 20.8 cm
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7427505) sentry:   carrier:  depth 44.8 m, hull 5.5 bar, water 7.9 C, battery 24.00 V (sim)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7427515) sentry:   heap:     251 KB free
+DEBUG    drivers.device_driver:device_driver.py:89 TX > whoami
+DEBUG    drivers.device_driver:device_driver.py:89 RX < whoami
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7427675) sentry: user: testUser, access: user
+DEBUG    drivers.device_driver:device_driver.py:89 TX > distance log 5001
+DEBUG    drivers.device_driver:device_driver.py:89 RX < distance log 5001
+DEBUG    drivers.device_driver:device_driver.py:89 RX < E (7427875) sentry: E705 interval must be 100-5000 ms
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7428495) sentry: [BEACON] timer cancelled
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7428555) sentry: [TELEMETRY #241] 23:54:00 up 02:03:48 heap 251KB rssi -52 temp 30.4C depth 44.8m hull 5.5bar batt 24.0V valve closed sonar 20.8cm watch disarmed alerts 12 state NORMAL
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp color 160 0 255
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp color 160 0 255
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7428905) sentry: [BEACON] color: (160,0,255)
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp brightness 75
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp brightness 75
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7429305) sentry: [BEACON] brightness: 75%
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp mode breathe
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp mode breathe
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7429715) sentry: [BEACON] mode: breathe
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp off
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp off
+DEBUG    drivers.device_driver:device_driver.py:89 RX < W (7430125) sentry: W510 lamp already off
+INFO     conftest:conftest.py:403 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz17\logs\automated\distance\2.3.0\20261020-test_distance_stream_invalid_interval_5001.txt
+DEBUG    drivers.device_driver:device_driver.py:89 TX > version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7430555) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7430555) sentry:   partition: ota_0 @ 0x20000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7430765) sentry: [BEACON] off, color (160,0,255), brightness 75%, mode breathe, timer off
+DEBUG    drivers.device_driver:device_driver.py:89 TX > status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7431375) sentry: === SWM-2 status ===
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7431375) sentry:   fw:       v2.3.0 (ota_0)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7431375) sentry:   state:    1 NORMAL
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7431375) sentry:   link:     buoy link 'TopA-node', ip 10.223.162.49, rssi -41 dBm (excellent), ch 1
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7431385) sentry:   internet: OK
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7431385) sentry:   user:     testUser (user)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7431385) sentry:   time:     23:54:03, uptime 2h 03m 50s
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7431395) sentry:   valve:    closed
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7431395) sentry:   watch:    disarmed, CIC alerts unacked: 12
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7431405) sentry:   sonar:    last echo 20.8 cm
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7431405) sentry:   carrier:  depth 44.8 m, hull 5.5 bar, water 7.9 C, battery 24.00 V (sim)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7431415) sentry:   heap:     251 KB free
+DEBUG    drivers.device_driver:device_driver.py:89 TX > whoami
+DEBUG    drivers.device_driver:device_driver.py:89 RX < whoami
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7431575) sentry: user: testUser, access: user
+DEBUG    drivers.device_driver:device_driver.py:89 TX > distance log 10000
+DEBUG    drivers.device_driver:device_driver.py:89 RX < distance log 10000
+DEBUG    drivers.device_driver:device_driver.py:89 RX < E (7431785) sentry: E705 interval must be 100-5000 ms
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7432405) sentry: [BEACON] timer cancelled
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp color 160 0 255
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp color 160 0 255
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7432815) sentry: [BEACON] color: (160,0,255)
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp brightness 75
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp brightness 75
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7433235) sentry: [BEACON] brightness: 75%
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp mode breathe
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp mode breathe
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7433645) sentry: [BEACON] mode: breathe
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp off
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp off
+DEBUG    drivers.device_driver:device_driver.py:89 RX < W (7434045) sentry: W510 lamp already off
+INFO     conftest:conftest.py:403 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz17\logs\automated\distance\2.3.0\20261020-test_distance_stream_invalid_interval_10000.txt
+DEBUG    drivers.device_driver:device_driver.py:89 TX > version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7434495) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7434495) sentry:   partition: ota_0 @ 0x20000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7434695) sentry: [BEACON] off, color (160,0,255), brightness 75%, mode breathe, timer off
+DEBUG    drivers.device_driver:device_driver.py:89 TX > status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7435305) sentry: === SWM-2 status ===
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7435305) sentry:   fw:       v2.3.0 (ota_0)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7435305) sentry:   state:    1 NORMAL
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7435305) sentry:   link:     buoy link 'TopA-node', ip 10.223.162.49, rssi -42 dBm (excellent), ch 1
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7435315) sentry:   internet: OK
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7435315) sentry:   user:     testUser (user)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7435315) sentry:   time:     23:54:07, uptime 2h 03m 54s
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7435325) sentry:   valve:    closed
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7435325) sentry:   watch:    disarmed, CIC alerts unacked: 12
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7435335) sentry:   sonar:    last echo 20.8 cm
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7435335) sentry:   carrier:  depth 44.8 m, hull 5.5 bar, water 7.9 C, battery 24.00 V (sim)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7435345) sentry:   heap:     251 KB free
+DEBUG    drivers.device_driver:device_driver.py:89 TX > whoami
+DEBUG    drivers.device_driver:device_driver.py:89 RX < whoami
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7435515) sentry: user: testUser, access: user
+DEBUG    drivers.device_driver:device_driver.py:89 TX > guard status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < guard status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7435725) sentry: [WATCH] disarmed, zone 50 cm, last distance 20.8 cm
+DEBUG    drivers.device_driver:device_driver.py:89 TX > relay status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < relay status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7436325) sentry: [VALVE] closed, auto off, cycles 152
+INFO     manual_checks:manual_checks.py:215 MANUAL PREPARE | Waiting for operator confirmation.
+DEBUG    drivers.device_driver:device_driver.py:89 TX > distance log 500
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7458755) sentry: [TELEMETRY #242] 23:54:31 up 02:04:18 heap 251KB rssi -37 temp 30.4C depth 44.8m hull 5.5bar batt 24.0V valve closed sonar 20.8cm watch disarmed alerts 12 state NORMAL
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7462645) sentry: [PWR] battery bus 24.00 V, load 1.8 A
+DEBUG    drivers.device_driver:device_driver.py:89 RX < distance log 500
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7464805) sentry: [SONAR] continuous pinging every 500 ms (command). 'distance stop' to stop
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7464895) sentry: [SONAR] ping: echo 28.2 cm
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7465445) sentry: [SONAR] ping: echo 28.2 cm
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7465995) sentry: [SONAR] ping: echo 28.2 cm
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7466545) sentry: [SONAR] ping: echo 29.5 cm
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7467095) sentry: [SONAR] ping: echo 29.0 cm
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7467645) sentry: [SONAR] ping: echo 27.7 cm
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7468195) sentry: [SONAR] ping: echo 26.8 cm
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7468745) sentry: [SONAR] ping: echo 24.4 cm
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7469295) sentry: [SONAR] ping: echo 23.6 cm
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7469845) sentry: [SONAR] ping: echo 21.7 cm
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7470395) sentry: [SONAR] ping: echo 21.4 cm
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7470945) sentry: [SONAR] ping: echo 20.5 cm
+DEBUG    drivers.device_driver:device_driver.py:89 TX > distance stop
+DEBUG    drivers.device_driver:device_driver.py:89 RX < distance stop
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7471465) sentry: [SONAR] pinging stopped (command)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7471495) sentry: [SONAR] ping: echo 20.5 cm
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7472475) sentry: [BEACON] timer cancelled
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp color 160 0 255
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp color 160 0 255
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7472885) sentry: [BEACON] color: (160,0,255)
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp brightness 75
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp brightness 75
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7473285) sentry: [BEACON] brightness: 75%
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp mode breathe
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp mode breathe
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7473705) sentry: [BEACON] mode: breathe
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp off
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp off
+DEBUG    drivers.device_driver:device_driver.py:89 RX < W (7474115) sentry: W510 lamp already off
+INFO     conftest:conftest.py:403 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz17\logs\automated\distance\2.3.0\20261020-test_distance_collision_rearms_after_target_retreats.txt
+DEBUG    drivers.device_driver:device_driver.py:89 TX > version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7474565) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7474565) sentry:   partition: ota_0 @ 0x20000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7474765) sentry: [BEACON] off, color (160,0,255), brightness 75%, mode breathe, timer off
+DEBUG    drivers.device_driver:device_driver.py:89 TX > status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7475375) sentry: === SWM-2 status ===
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7475375) sentry:   fw:       v2.3.0 (ota_0)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7475375) sentry:   state:    1 NORMAL
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7475375) sentry:   link:     buoy link 'TopA-node', ip 10.223.162.49, rssi -55 dBm (excellent), ch 1
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7475385) sentry:   internet: OK
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7475385) sentry:   user:     testUser (user)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7475385) sentry:   time:     23:54:47, uptime 2h 04m 34s
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7475395) sentry:   valve:    closed
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7475395) sentry:   watch:    disarmed, CIC alerts unacked: 12
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7475405) sentry:   sonar:    last echo 20.5 cm
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7475405) sentry:   carrier:  depth 45.1 m, hull 5.5 bar, water 8.0 C, battery 24.00 V (sim)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7475415) sentry:   heap:     251 KB free
+DEBUG    drivers.device_driver:device_driver.py:89 TX > whoami
+DEBUG    drivers.device_driver:device_driver.py:89 RX < whoami
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7475575) sentry: user: testUser, access: user
+INFO     manual_checks:manual_checks.py:215 MANUAL PREPARE | Waiting for operator confirmation.
+DEBUG    drivers.device_driver:device_driver.py:89 TX > distance
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7488755) sentry: [TELEMETRY #243] 23:55:01 up 02:04:48 heap 251KB rssi -30 temp 30.4C depth 45.1m hull 5.5bar batt 24.0V valve closed sonar 20.5cm watch disarmed alerts 12 state NORMAL
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7518755) sentry: [TELEMETRY #244] 23:55:31 up 02:05:18 heap 251KB rssi -27 temp 30.4C depth 45.1m hull 5.5bar batt 24.0V valve closed sonar 20.5cm watch disarmed alerts 12 state NORMAL
+DEBUG    drivers.device_driver:device_driver.py:89 RX < distance
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7538855) sentry: [SONAR] ping: echo 28.2 cm
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7539645) sentry: [NAV] depth 44.8 m, heading 272, speed 3.3 kn
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7540045) sentry: [BEACON] timer cancelled
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp color 160 0 255
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp color 160 0 255
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7540455) sentry: [BEACON] color: (160,0,255)
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp brightness 75
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp brightness 75
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7540855) sentry: [BEACON] brightness: 75%
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp mode breathe
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp mode breathe
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7541265) sentry: [BEACON] mode: breathe
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp off
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp off
+DEBUG    drivers.device_driver:device_driver.py:89 RX < W (7541675) sentry: W510 lamp already off
+INFO     conftest:conftest.py:403 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz17\logs\automated\distance\2.3.0\20261020-test_distance_out_of_range_shows_red_led.txt
+DEBUG    drivers.device_driver:device_driver.py:89 TX > version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7542115) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7542115) sentry:   partition: ota_0 @ 0x20000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7542325) sentry: [BEACON] off, color (160,0,255), brightness 75%, mode breathe, timer off
+DEBUG    drivers.device_driver:device_driver.py:89 TX > status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7542925) sentry: === SWM-2 status ===
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7542925) sentry:   fw:       v2.3.0 (ota_0)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7542925) sentry:   state:    1 NORMAL
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7542925) sentry:   link:     buoy link 'TopA-node', ip 10.223.162.49, rssi -27 dBm (excellent), ch 1
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7542935) sentry:   internet: OK
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7542935) sentry:   user:     testUser (user)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7542935) sentry:   time:     23:55:55, uptime 2h 05m 42s
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7542945) sentry:   valve:    closed
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7542945) sentry:   watch:    disarmed, CIC alerts unacked: 12
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7542955) sentry:   sonar:    last echo 28.2 cm
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7542955) sentry:   carrier:  depth 44.8 m, hull 5.5 bar, water 7.9 C, battery 24.00 V (sim)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7542965) sentry:   heap:     251 KB free
+DEBUG    drivers.device_driver:device_driver.py:89 TX > whoami
+DEBUG    drivers.device_driver:device_driver.py:89 RX < whoami
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7543135) sentry: user: testUser, access: user
+DEBUG    drivers.device_driver:device_driver.py:89 TX > guard status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < guard status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7543345) sentry: [WATCH] disarmed, zone 50 cm, last distance 28.2 cm
+DEBUG    drivers.device_driver:device_driver.py:89 TX > relay status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < relay status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7543965) sentry: [VALVE] closed, auto off, cycles 152
+INFO     manual_checks:manual_checks.py:215 MANUAL PREPARE | Waiting for operator confirmation.
+DEBUG    drivers.device_driver:device_driver.py:89 TX > relay on
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7548765) sentry: [TELEMETRY #245] 23:56:01 up 02:05:48 heap 251KB rssi -27 temp 30.4C depth 44.8m hull 5.5bar batt 24.0V valve closed sonar 28.2cm watch disarmed alerts 12 state NORMAL
+DEBUG    drivers.device_driver:device_driver.py:89 RX < relay on
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7566845) sentry: [VALVE] OPEN (command)
+DEBUG    drivers.device_driver:device_driver.py:89 TX > relay status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < relay status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7567445) sentry: [VALVE] OPEN, auto off, cycles 153
+INFO     manual_checks:manual_checks.py:169 MANUAL CHECK | Did you hear the relay click OPEN before sonar streaming started? | result=PASS | comment=-
+DEBUG    drivers.device_driver:device_driver.py:89 TX > distance log 500
+DEBUG    drivers.device_driver:device_driver.py:89 RX < distance log 500
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7574745) sentry: [SONAR] continuous pinging every 500 ms (command). 'distance stop' to stop
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7574745) sentry: [SONAR] valve OPEN - proximity indicator: diode blinks faster when contact is closer
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7574815) sentry: [SONAR] ping: echo 28.2 cm
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7575365) sentry: [SONAR] ping: echo 28.2 cm
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7575915) sentry: [SONAR] ping: echo 28.2 cm
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7576465) sentry: [SONAR] ping: echo 26.5 cm
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7577015) sentry: [SONAR] ping: echo 23.0 cm
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7577565) sentry: [SONAR] ping: echo 20.5 cm
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7578115) sentry: [SONAR] ping: echo 19.6 cm
+DEBUG    drivers.device_driver:device_driver.py:89 RX < E (7578115) sentry: [COLLISION] contact too close: 19.6 cm (< 20 cm)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < W (7578115) sentry: [CIC #13 WARNING] sonar: collision risk: contact at 19.6 cm
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7578665) sentry: [SONAR] ping: echo 18.0 cm
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7578965) sentry: [TELEMETRY #246] 23:56:31 up 02:06:18 heap 251KB rssi -51 temp 30.4C depth 44.8m hull 5.5bar batt 24.0V valve open sonar 18.0cm watch disarmed alerts 13 state NORMAL
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7579215) sentry: [SONAR] ping: echo 17.6 cm
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7579765) sentry: [SONAR] ping: echo 16.9 cm
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7580315) sentry: [SONAR] ping: echo 15.9 cm
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7580865) sentry: [SONAR] ping: echo 15.3 cm
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7581415) sentry: [SONAR] ping: echo 14.7 cm
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7581965) sentry: [SONAR] ping: echo 14.9 cm
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7582515) sentry: [SONAR] ping: echo 14.7 cm
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7583065) sentry: [SONAR] ping: echo 13.3 cm
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7583615) sentry: [SONAR] ping: echo 13.7 cm
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7584165) sentry: [SONAR] ping: echo 13.0 cm
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7584715) sentry: [SONAR] ping: echo 12.6 cm
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7585265) sentry: [SONAR] ping: echo 11.9 cm
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7585815) sentry: [SONAR] ping: echo 10.9 cm
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7586365) sentry: [SONAR] ping: echo 9.5 cm
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7586915) sentry: [SONAR] ping: echo 9.1 cm
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7587465) sentry: [SONAR] ping: echo 9.2 cm
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7588015) sentry: [SONAR] ping: echo 9.1 cm
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7588565) sentry: [SONAR] ping: echo 9.8 cm
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7589115) sentry: [SONAR] ping: echo 10.5 cm
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7589665) sentry: [SONAR] ping: echo 12.3 cm
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7590215) sentry: [SONAR] ping: echo 13.3 cm
+DEBUG    drivers.device_driver:device_driver.py:89 TX > distance stop
+DEBUG    drivers.device_driver:device_driver.py:89 RX < distance stop
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7590365) sentry: [SONAR] pinging stopped (command)
+DEBUG    drivers.device_driver:device_driver.py:89 TX > relay off
+DEBUG    drivers.device_driver:device_driver.py:89 RX < relay off
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7591425) sentry: [VALVE] CLOSED (command)
+DEBUG    drivers.device_driver:device_driver.py:89 TX > relay status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < relay status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7592015) sentry: [VALVE] closed, auto off, cycles 154
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7592635) sentry: [BEACON] timer cancelled
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp color 160 0 255
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp color 160 0 255
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7593045) sentry: [BEACON] color: (160,0,255)
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp brightness 75
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp brightness 75
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7593455) sentry: [BEACON] brightness: 75%
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp mode breathe
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp mode breathe
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7593865) sentry: [BEACON] mode: breathe
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp off
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp off
+DEBUG    drivers.device_driver:device_driver.py:89 RX < W (7594265) sentry: W510 lamp already off
+INFO     conftest:conftest.py:403 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz17\logs\automated\distance\2.3.0\20261020-test_distance_proximity_indicator_tracks_target.txt
+DEBUG    drivers.device_driver:device_driver.py:89 TX > version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7594705) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7594705) sentry:   partition: ota_0 @ 0x20000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7594915) sentry: [BEACON] off, color (160,0,255), brightness 75%, mode breathe, timer off
+DEBUG    drivers.device_driver:device_driver.py:89 TX > status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7595525) sentry: === SWM-2 status ===
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7595525) sentry:   fw:       v2.3.0 (ota_0)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7595525) sentry:   state:    1 NORMAL
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7595525) sentry:   link:     buoy link 'TopA-node', ip 10.223.162.49, rssi -26 dBm (excellent), ch 1
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7595535) sentry:   internet: OK
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7595535) sentry:   user:     testUser (user)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7595535) sentry:   time:     23:56:47, uptime 2h 06m 35s
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7595545) sentry:   valve:    closed
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7595545) sentry:   watch:    disarmed, CIC alerts unacked: 13
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7595555) sentry:   sonar:    last echo 13.3 cm
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7595555) sentry:   carrier:  depth 44.8 m, hull 5.5 bar, water 7.9 C, battery 24.00 V (sim)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7595565) sentry:   heap:     251 KB free
+DEBUG    drivers.device_driver:device_driver.py:89 TX > whoami
+DEBUG    drivers.device_driver:device_driver.py:89 RX < whoami
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7595735) sentry: user: testUser, access: user
+DEBUG    drivers.device_driver:device_driver.py:89 TX > distance stats
+DEBUG    drivers.device_driver:device_driver.py:89 RX < distance stats
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7595945) sentry: [SONAR] measurements 311, errors 0, min 8.5, max 31.2, avg 20.7 cm
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7595945) sentry: [SONAR] calibration -2.0 cm, filter median 5, alarm off
+DEBUG    drivers.device_driver:device_driver.py:89 TX > distance stats
+DEBUG    drivers.device_driver:device_driver.py:89 RX < distance stats
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7596755) sentry: [SONAR] measurements 311, errors 0, min 8.5, max 31.2, avg 20.7 cm
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7596755) sentry: [SONAR] calibration -2.0 cm, filter median 5, alarm off
+DEBUG    drivers.device_driver:device_driver.py:89 TX > distance filter off
+DEBUG    drivers.device_driver:device_driver.py:89 RX < distance filter off
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7597575) sentry: [SONAR] filter off
+DEBUG    drivers.device_driver:device_driver.py:89 TX > distance stats
+DEBUG    drivers.device_driver:device_driver.py:89 RX < distance stats
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7598175) sentry: [SONAR] measurements 311, errors 0, min 8.5, max 31.2, avg 20.7 cm
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7598175) sentry: [SONAR] calibration -2.0 cm, filter off, alarm off
+DEBUG    drivers.device_driver:device_driver.py:89 TX > distance filter on
+DEBUG    drivers.device_driver:device_driver.py:89 RX < distance filter on
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7599005) sentry: [SONAR] filter on (median of 5)
+DEBUG    drivers.device_driver:device_driver.py:89 TX > distance stats
+DEBUG    drivers.device_driver:device_driver.py:89 RX < distance stats
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7599595) sentry: [SONAR] measurements 311, errors 0, min 8.5, max 31.2, avg 20.7 cm
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7599595) sentry: [SONAR] calibration -2.0 cm, filter median 5, alarm off
+DEBUG    drivers.device_driver:device_driver.py:89 TX > distance filter on
+DEBUG    drivers.device_driver:device_driver.py:89 RX < distance filter on
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7600415) sentry: [SONAR] filter on (median of 5)
+DEBUG    drivers.device_driver:device_driver.py:89 TX > distance stats
+DEBUG    drivers.device_driver:device_driver.py:89 RX < distance stats
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7601025) sentry: [SONAR] measurements 311, errors 0, min 8.5, max 31.2, avg 20.7 cm
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7601025) sentry: [SONAR] calibration -2.0 cm, filter median 5, alarm off
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7601845) sentry: [BEACON] timer cancelled
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp color 160 0 255
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp color 160 0 255
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7602265) sentry: [BEACON] color: (160,0,255)
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp brightness 75
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp brightness 75
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7602675) sentry: [BEACON] brightness: 75%
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp mode breathe
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp mode breathe
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7603075) sentry: [BEACON] mode: breathe
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp off
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp off
+DEBUG    drivers.device_driver:device_driver.py:89 RX < W (7603485) sentry: W510 lamp already off
+INFO     conftest:conftest.py:403 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz17\logs\automated\distance\2.3.0\20261020-test_distance_stats_and_filter.txt
+DEBUG    drivers.device_driver:device_driver.py:89 TX > version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7603945) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7603945) sentry:   partition: ota_0 @ 0x20000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7604145) sentry: [BEACON] off, color (160,0,255), brightness 75%, mode breathe, timer off
+DEBUG    drivers.device_driver:device_driver.py:89 TX > status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7604765) sentry: === SWM-2 status ===
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7604765) sentry:   fw:       v2.3.0 (ota_0)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7604765) sentry:   state:    1 NORMAL
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7604765) sentry:   link:     buoy link 'TopA-node', ip 10.223.162.49, rssi -38 dBm (excellent), ch 1
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7604775) sentry:   internet: OK
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7604775) sentry:   user:     testUser (user)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7604775) sentry:   time:     23:56:57, uptime 2h 06m 44s
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7604785) sentry:   valve:    closed
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7604785) sentry:   watch:    disarmed, CIC alerts unacked: 13
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7604795) sentry:   sonar:    last echo 13.3 cm
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7604795) sentry:   carrier:  depth 44.8 m, hull 5.5 bar, water 7.9 C, battery 24.00 V (sim)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7604805) sentry:   heap:     251 KB free
+DEBUG    drivers.device_driver:device_driver.py:89 TX > whoami
+DEBUG    drivers.device_driver:device_driver.py:89 RX < whoami
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7604975) sentry: user: testUser, access: user
+DEBUG    drivers.device_driver:device_driver.py:89 TX > distance calibrate 4
+DEBUG    drivers.device_driver:device_driver.py:89 RX < distance calibrate 4
+DEBUG    drivers.device_driver:device_driver.py:89 RX < E (7605185) sentry: E706 usage: distance calibrate <ref 5-300 cm>
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7605795) sentry: [BEACON] timer cancelled
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp color 160 0 255
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp color 160 0 255
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7606205) sentry: [BEACON] color: (160,0,255)
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp brightness 75
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp brightness 75
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7606615) sentry: [BEACON] brightness: 75%
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp mode breathe
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp mode breathe
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7607025) sentry: [BEACON] mode: breathe
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp off
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp off
+DEBUG    drivers.device_driver:device_driver.py:89 RX < W (7607445) sentry: W510 lamp already off
+INFO     conftest:conftest.py:403 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz17\logs\automated\distance\2.3.0\20261020-test_distance_calibration_out_of_bounds_4.txt
+DEBUG    drivers.device_driver:device_driver.py:89 TX > version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7607895) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7607895) sentry:   partition: ota_0 @ 0x20000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7608105) sentry: [BEACON] off, color (160,0,255), brightness 75%, mode breathe, timer off
+DEBUG    drivers.device_driver:device_driver.py:89 TX > status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7608725) sentry: === SWM-2 status ===
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7608725) sentry:   fw:       v2.3.0 (ota_0)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7608725) sentry:   state:    1 NORMAL
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7608725) sentry:   link:     buoy link 'TopA-node', ip 10.223.162.49, rssi -38 dBm (excellent), ch 1
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7608735) sentry:   internet: OK
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7608735) sentry:   user:     testUser (user)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7608735) sentry:   time:     23:57:01, uptime 2h 06m 48s
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7608745) sentry:   valve:    closed
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7608745) sentry:   watch:    disarmed, CIC alerts unacked: 13
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7608755) sentry:   sonar:    last echo 13.3 cm
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7608755) sentry:   carrier:  depth 44.8 m, hull 5.5 bar, water 7.9 C, battery 24.00 V (sim)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7608765) sentry:   heap:     251 KB free
+DEBUG    drivers.device_driver:device_driver.py:89 TX > whoami
+DEBUG    drivers.device_driver:device_driver.py:89 RX < whoami
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7608925) sentry: user: testUser, access: user
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7609005) sentry: [TELEMETRY #247] 23:57:01 up 02:06:48 heap 251KB rssi -38 temp 30.4C depth 44.8m hull 5.5bar batt 24.0V valv
+DEBUG    drivers.device_driver:device_driver.py:89 TX > distance calibrate 301
+DEBUG    drivers.device_driver:device_driver.py:89 RX < e closed sonar 13.3cm watch disarmed alerts 13 state NORMAL
+DEBUG    drivers.device_driver:device_driver.py:89 RX < distance calibrate 301
+DEBUG    drivers.device_driver:device_driver.py:89 RX < E (7609135) sentry: E706 usage: distance calibrate <ref 5-300 cm>
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7609745) sentry: [BEACON] timer cancelled
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp color 160 0 255
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp color 160 0 255
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7610155) sentry: [BEACON] color: (160,0,255)
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp brightness 75
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp brightness 75
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7610565) sentry: [BEACON] brightness: 75%
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp mode breathe
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp mode breathe
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7610965) sentry: [BEACON] mode: breathe
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp off
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp off
+DEBUG    drivers.device_driver:device_driver.py:89 RX < W (7611375) sentry: W510 lamp already off
+INFO     conftest:conftest.py:403 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz17\logs\automated\distance\2.3.0\20261020-test_distance_calibration_out_of_bounds_301.txt
+DEBUG    drivers.device_driver:device_driver.py:89 TX > version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7611815) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7611815) sentry:   partition: ota_0 @ 0x20000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7612025) sentry: [BEACON] off, color (160,0,255), brightness 75%, mode breathe, timer off
+DEBUG    drivers.device_driver:device_driver.py:89 TX > status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7612635) sentry: === SWM-2 status ===
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7612635) sentry:   fw:       v2.3.0 (ota_0)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7612635) sentry:   state:    1 NORMAL
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7612635) sentry:   link:     buoy link 'TopA-node', ip 10.223.162.49, rssi -38 dBm (excellent), ch 1
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7612645) sentry:   internet: OK
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7612645) sentry:   user:     testUser (user)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7612645) sentry:   time:     23:57:05, uptime 2h 06m 52s
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7612655) sentry:   valve:    closed
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7612655) sentry:   watch:    disarmed, CIC alerts unacked: 13
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7612665) sentry:   sonar:    last echo 13.3 cm
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7612665) sentry:   carrier:  depth 44.8 m, hull 5.5 bar, water 7.9 C, battery 24.00 V (sim)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7612675) sentry:   heap:     251 KB free
+DEBUG    drivers.device_driver:device_driver.py:89 TX > whoami
+DEBUG    drivers.device_driver:device_driver.py:89 RX < whoami
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7612845) sentry: user: testUser, access: user
+DEBUG    drivers.device_driver:device_driver.py:89 TX > logout
+DEBUG    drivers.device_driver:device_driver.py:89 RX < logout
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7613055) sentry: [AUTH] operator testUser relieved from watch
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7613675) sentry: [ACU] ambient noise 75 dB re 1uPa, sea state 2, water 7.9 C
+DEBUG    drivers.device_driver:device_driver.py:89 TX > whoami
+DEBUG    drivers.device_driver:device_driver.py:89 RX < whoami
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7614065) sentry: not logged in
+DEBUG    drivers.device_driver:device_driver.py:89 TX > distance
+DEBUG    drivers.device_driver:device_driver.py:89 RX < distance
+DEBUG    drivers.device_driver:device_driver.py:89 RX < E (7614275) sentry: E003 login required. Use 'login <login> <pass>' or 'register'
+DEBUG    drivers.device_driver:device_driver.py:89 TX > status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7615275) sentry: === SWM-2 status ===
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7615275) sentry:   fw:       v2.3.0 (ota_0)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7615275) sentry:   state:    1 NORMAL
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7615275) sentry:   link:     buoy link 'TopA-node', ip 10.223.162.49, rssi -38 dBm (excellent), ch 1
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7615285) sentry:   internet: OK
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7615285) sentry:   user:     not logged in
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7615285) sentry:   time:     23:57:07, uptime 2h 06m 54s
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7615295) sentry:   valve:    closed
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7615295) sentry:   watch:    disarmed, CIC alerts unacked: 13
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7615305) sentry:   sonar:    last echo 13.3 cm
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7615305) sentry:   carrier:  depth 45.1 m, hull 5.5 bar, water 7.9 C, battery 23.99 V (sim)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7615315) sentry:   heap:     251 KB free
+DEBUG    drivers.device_driver:device_driver.py:89 TX > whoami
+DEBUG    drivers.device_driver:device_driver.py:89 RX < whoami
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7615475) sentry: not logged in
+DEBUG    drivers.device_driver:device_driver.py:89 TX > [REDACTED]
+DEBUG    drivers.device_driver:device_driver.py:89 RX < [REDACTED]
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7615695) sentry: [AUTH] operator testUser on watch, console 2
+DEBUG    drivers.device_driver:device_driver.py:89 TX > whoami
+DEBUG    drivers.device_driver:device_driver.py:89 RX < whoami
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7615805) sentry: [TELEMETRY] auto report every 30 s ('health off' to stop)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7615895) sentry: user: testUser, access: user
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7616105) sentry: [BEACON] timer cancelled
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp color 160 0 255
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp color 160 0 255
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7616515) sentry: [BEACON] color: (160,0,255)
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp brightness 75
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp brightness 75
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7616925) sentry: [BEACON] brightness: 75%
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp mode breathe
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp mode breathe
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7617335) sentry: [BEACON] mode: breathe
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp off
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp off
+DEBUG    drivers.device_driver:device_driver.py:89 RX < W (7617745) sentry: W510 lamp already off
+INFO     conftest:conftest.py:403 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz17\logs\automated\distance\2.3.0\20261020-test_distance_logged_out_blocked.txt
+DEBUG    drivers.device_driver:device_driver.py:89 TX > version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7618195) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7618195) sentry:   partition: ota_0 @ 0x20000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7618395) sentry: [BEACON] off, color (160,0,255), brightness 75%, mode breathe, timer off
+DEBUG    drivers.device_driver:device_driver.py:89 TX > status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7618995) sentry: === SWM-2 status ===
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7618995) sentry:   fw:       v2.3.0 (ota_0)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7618995) sentry:   state:    1 NORMAL
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7618995) sentry:   link:     buoy link 'TopA-node', ip 10.223.162.49, rssi -33 dBm (excellent), ch 1
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7619005) sentry:   internet: OK
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7619005) sentry:   user:     testUser (user)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7619005) sentry:   time:     23:57:11, uptime 2h 06m 58s
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7619015) sentry:   valve:    closed
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7619015) sentry:   watch:    disarmed, CIC alerts unacked: 13
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7619025) sentry:   sonar:    last echo 13.3 cm
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7619025) sentry:   carrier:  depth 45.1 m, hull 5.5 bar, water 7.9 C, battery 23.99 V (sim)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7619035) sentry:   heap:     251 KB free
+DEBUG    drivers.device_driver:device_driver.py:89 TX > whoami
+DEBUG    drivers.device_driver:device_driver.py:89 RX < whoami
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7619205) sentry: user: testUser, access: user
+DEBUG    drivers.device_driver:device_driver.py:89 TX > relay status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < relay status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7619415) sentry: [VALVE] closed, auto off, cycles 154
+DEBUG    drivers.device_driver:device_driver.py:89 TX > distance stats
+DEBUG    drivers.device_driver:device_driver.py:89 RX < distance stats
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7620025) sentry: [SONAR] measurements 311, errors 0, min 8.5, max 31.2, avg 20.7 cm
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7620025) sentry: [SONAR] calibration -2.0 cm, filter median 5, alarm off
+INFO     manual_checks:manual_checks.py:271 MANUAL INPUT | Continue distance measurements: yes
+INFO     manual_checks:manual_checks.py:243 MANUAL INPUT | Enter the ruler-measured gap from the sensor face to the target: 20.00 cm
+INFO     manual_checks:manual_checks.py:215 MANUAL PREPARE | Waiting for operator confirmation.
+DEBUG    drivers.device_driver:device_driver.py:89 TX > distance
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7645835) sentry: [TELEMETRY #248] 23:57:38 up 02:07:25 heap 251KB rssi -31 temp 30.4C depth 45.1m hull 5.5bar batt 24.0V valve closed sonar 13.3cm watch disarmed alerts 13 state NORMAL
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7676035) sentry: [TELEMETRY #249] 23:58:08 up 02:07:55 heap 251KB rssi -39 temp 30.4C depth 45.1m hull 5.5bar batt 24.0V valve closed sonar - watch disarmed alerts 13 state NORMAL
+DEBUG    drivers.device_driver:device_driver.py:89 RX < W (7696675) sentry: [LINK] buoy cable tension high, link quality may degrade
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7706035) sentry: [TELEMETRY #250] 23:58:38 up 02:08:25 heap 251KB rssi -34 temp 30.4C depth 45.3m hull 5.5bar batt 24.0V valve closed sonar - watch disarmed alerts 13 state NORMAL
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7736235) sentry: [TELEMETRY #251] 23:59:08 up 02:08:55 heap 251KB rssi -27 temp 30.4C depth 45.3m hull 5.5bar batt 24.0V valve closed sonar - watch disarmed alerts 13 state NORMAL
+DEBUG    drivers.device_driver:device_driver.py:89 RX < distance
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7754825) sentry: [SONAR] ping: echo 22.4 cm
+DEBUG    drivers.device_driver:device_driver.py:89 TX > relay status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < relay status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7755785) sentry: [VALVE] closed, auto off, cycles 154
+ERROR    manual_checks:manual_checks.py:197 SOFT CHECK FAILED | At ruler reference 20.00 cm, reading was 22.40 cm (difference +2.40 cm); target placement allowance is ±0.50 cm
+INFO     manual_checks:manual_checks.py:271 MANUAL INPUT | Continue distance measurements: yes
+INFO     manual_checks:manual_checks.py:243 MANUAL INPUT | Enter the ruler-measured gap from the sensor face to the target: 16.00 cm
+INFO     manual_checks:manual_checks.py:215 MANUAL PREPARE | Waiting for operator confirmation.
+DEBUG    drivers.device_driver:device_driver.py:89 TX > distance
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7763675) sentry: [PWR] battery bus 23.99 V, load 1.4 A
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7766235) sentry: [TELEMETRY #252] 23:59:38 up 02:09:25 heap 251KB rssi -30 temp 30.4C depth 45.2m hull 5.5bar batt 24.0V valve closed sonar 22.4cm watch disarmed alerts 13 state NORMAL
+DEBUG    drivers.device_driver:device_driver.py:89 RX < distance
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7770765) sentry: [SONAR] ping: echo 16.3 cm
+DEBUG    drivers.device_driver:device_driver.py:89 TX > relay status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < relay status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7771735) sentry: [VALVE] closed, auto off, cycles 154
+INFO     manual_checks:manual_checks.py:271 MANUAL INPUT | Continue distance measurements: yes
+INFO     manual_checks:manual_checks.py:243 MANUAL INPUT | Enter the ruler-measured gap from the sensor face to the target: 10.00 cm
+INFO     manual_checks:manual_checks.py:215 MANUAL PREPARE | Waiting for operator confirmation.
+DEBUG    drivers.device_driver:device_driver.py:89 TX > distance
+DEBUG    drivers.device_driver:device_driver.py:89 RX < distance
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7783215) sentry: [SONAR] ping: echo 9.5 cm
+DEBUG    drivers.device_driver:device_driver.py:89 TX > relay status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < relay status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7784175) sentry: [VALVE] closed, auto off, cycles 154
+INFO     manual_checks:manual_checks.py:279 MANUAL INPUT | Continue distance measurements: no
+INFO     tests.test_distance:test_distance.py:1373 DISTANCE SERIES SUMMARY
+Index | Reference (cm) | Reading (cm) | Signed difference (cm) | Placement allowance
+--- | ---: | ---: | ---: | ---
+1 | 20.00 | 22.40 | +2.40 | OUTSIDE ±0.50 cm
+2 | 16.00 | 16.30 | +0.30 | WITHIN ±0.50 cm
+3 | 10.00 | 9.50 | -0.50 | WITHIN ±0.50 cm
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7788955) sentry: [BEACON] timer cancelled
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp color 160 0 255
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp color 160 0 255
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7789375) sentry: [BEACON] color: (160,0,255)
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp brightness 75
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp brightness 75
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7789785) sentry: [BEACON] brightness: 75%
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp mode breathe
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp mode breathe
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7790195) sentry: [BEACON] mode: breathe
+DEBUG    drivers.device_driver:device_driver.py:89 TX > lamp off
+DEBUG    drivers.device_driver:device_driver.py:89 RX < lamp off
+DEBUG    drivers.device_driver:device_driver.py:89 RX < W (7790605) sentry: W510 lamp already off
+INFO     conftest:conftest.py:403 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz17\logs\automated\distance\2.3.0\20261021-test_distance_interactive_measurement.txt
+DEBUG    drivers.device_driver:device_driver.py:89 TX > version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < version
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7791045) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7791045) sentry:   partition: ota_0 @ 0x20000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:89 TX > status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7791255) sentry: === SWM-2 status ===
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7791255) sentry:   fw:       v2.3.0 (ota_0)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7791255) sentry:   state:    1 NORMAL
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7791255) sentry:   link:     buoy link 'TopA-node', ip 10.223.162.49, rssi -24 dBm (excellent), ch 1
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7791265) sentry:   internet: OK
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7791265) sentry:   user:     testUser (user)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7791265) sentry:   time:     00:00:03, uptime 2h 09m 50s
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7791275) sentry:   valve:    closed
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7791275) sentry:   watch:    disarmed, CIC alerts unacked: 13
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7791285) sentry:   sonar:    last echo 9.5 cm
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7791285) sentry:   carrier:  depth 45.2 m, hull 5.5 bar, water 8.0 C, battery 23.99 V (sim)
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7791295) sentry:   heap:     251 KB free
+DEBUG    drivers.device_driver:device_driver.py:89 TX > whoami
+DEBUG    drivers.device_driver:device_driver.py:89 RX < whoami
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7791455) sentry: user: testUser, access: user
+DEBUG    drivers.device_driver:device_driver.py:89 TX > relay status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < relay status
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7791665) sentry: [VALVE] closed, auto off, cycles 154
+DEBUG    drivers.device_driver:device_driver.py:89 TX > distance stats
+DEBUG    drivers.device_driver:device_driver.py:89 RX < distance stats
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7792275) sentry: [SONAR] measurements 314, errors 0, min 8.5, max 31.2, avg 20.6 cm
+DEBUG    drivers.device_driver:device_driver.py:89 RX < I (7792275) sentry: [SONAR] calibration -2.0 cm, filter median 5, alarm off
+INFO     conftest:conftest.py:403 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz17\logs\automated\distance\2.3.0\20261021-test_distance_persistence_after_reboot.txt

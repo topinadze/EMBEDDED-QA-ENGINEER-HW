@@ -1,0 +1,1 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="0" skipped="0" tests="1" time="5.047" timestamp="2026-10-21T04:35:34.271921+03:00" hostname="Prosha"><testcase classname="tests.test_wifi.TestWifi" name="test_wifi_connect_empty_ssid" time="4.980" /></testsuite></testsuites>

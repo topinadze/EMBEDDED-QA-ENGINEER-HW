@@ -1,0 +1,152 @@
+Test: tests/test_distance.py::TestDistance::test_distance_proximity_indicator_tracks_target
+Firmware: 2.3.0
+Captured: 2026-10-21T02:02:54.170213+03:00
+
+TX > version
+RX < version
+RX < I (402250) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+RX < I (402250) sentry:   partition: ota_0 @ 0x20000, state: valid
+TX > status
+RX < status
+RX < I (402450) sentry: === SWM-2 status ===
+RX < I (402450) sentry:   fw:       v2.3.0 (ota_0)
+RX < I (402450) sentry:   state:    1 NORMAL
+RX < I (402450) sentry:   link:     buoy link down (known: TopA-node)
+RX < I (402450) sentry:   user:     not logged in
+RX < I (402460) sentry:   time:     --:--:--, uptime 0h 06m 42s
+RX < I (402460) sentry:   valve:    closed
+RX < I (402460) sentry:   watch:    disarmed, CIC alerts unacked: 0
+RX < I (402470) sentry:   sonar:    no contact
+RX < I (402470) sentry:   carrier:  depth 41.7 m, hull 5.2 bar, water 8.0 C, battery 24.19 V (sim)
+RX < I (402480) sentry:   heap:     254 KB free
+TX > reconnect
+RX < reconnect
+RX < I (402760) sentry: [LINK] raising buoy antenna, connecting to 'TopA-node'...
+RX < I (402850) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0
+RX < I (402850) wifi:state: init -> auth (0xb0)
+RX < I (402860) wifi:state: auth -> assoc (0x0)
+RX < I (402860) wifi:state: assoc -> run (0x10)
+RX < I (402880) wifi:connected with TopA-node, aid = 1, channel 1, BW20, bssid = 3e:5a:6b:10:5f:b4
+RX < I (402880) wifi:security: WPA2-PSK, phy: bgn, rssi: -57, cipher(pairwise:0x3, group:0x3), pmf:1
+RX < I (402890) wifi:pm start, type: 1
+RX < I (402890) wifi:dp: 1, bi: 102400, li: 3, scale listen interval from 307200 us to 307200 us
+RX < I (402900) wifi:set rx beacon pti, rx_bcn_pti: 0, bcn_timeout: 25000, mt_pti: 0, mt_time: 10000
+RX < I (402910) wifi:dp: 2, bi: 102400, li: 4, scale listen interval from 307200 us to 409600 us
+RX < I (402920) wifi:AP's beacon interval = 102400 us, DTIM period = 2
+RX < W (403700) sentry: [HW] transducer #1 impedance drift +2.1% (compensated)
+RX < I (407730) esp_netif_handlers: sta ip: 10.223.162.49, mask: 255.255.255.0, gw: 10.223.162.101
+RX < I (407730) sentry: [LINK] got ip 10.223.162.49
+RX < I (407730) sentry: [LINK] connected to 'TopA-node', rssi -57 dBm (good)
+TX > status
+RX < I (410130) wifi:<ba-add>idx:0 (ifx:0, 3e:5a:6b:10:5f:b4), tid:0, ssn:6, winSize:64
+RX < I (410460) esp-x509-crt-bundle: Certificate validated
+RX < I (412540) sentry: [LINK] fleet network reachable (internet OK)
+RX < I (415760) wifi:<ba-add>idx:1 (ifx:0, 3e:5a:6b:10:5f:b4), tid:6, ssn:2, winSize:64
+RX < I (415770) sentry: [LINK] time: synced via NTP, 02:00:00
+RX < status
+RX < I (415870) sentry: === SWM-2 status ===
+RX < I (415870) sentry:   fw:       v2.3.0 (ota_0)
+RX < I (415870) sentry:   state:    1 NORMAL
+RX < I (415870) sentry:   link:     buoy link 'TopA-node', ip 10.223.162.49, rssi -56 dBm (good), ch 1
+RX < I (415870) sentry:   internet: OK
+RX < I (415880) sentry:   user:     not logged in
+RX < I (415880) sentry:   time:     02:00:00, uptime 0h 06m 55s
+RX < I (415890) sentry:   valve:    closed
+RX < I (415890) sentry:   watch:    disarmed, CIC alerts unacked: 0
+RX < I (415900) sentry:   sonar:    no contact
+RX < I (415900) sentry:   carrier:  depth 41.8 m, hull 5.2 bar, water 8.0 C, battery 24.19 V (sim)
+RX < I (415910) sentry:   heap:     251 KB free
+TX > whoami
+RX < whoami
+RX < I (416130) sentry: not logged in
+TX > [REDACTED]
+RX < [REDACTED]
+RX < I (416350) sentry: [AUTH] operator testUser on watch, console 2
+TX > whoami
+RX < whoami
+RX < I (416500) sentry: [TELEMETRY] auto report every 30 s ('health off' to stop)
+RX < I (416550) sentry: user: testUser, access: user
+TX > guard status
+RX < guard status
+RX < I (416750) sentry: [WATCH] disarmed, zone 50 cm, last distance -1.0 cm
+TX > relay status
+RX < relay status
+RX < I (417350) sentry: [VALVE] closed, auto off, cycles 158
+TX > relay on
+RX < I (446700) sentry: [TELEMETRY #1] 02:00:31 up 00:07:26 heap 251KB rssi -53 temp 30.4C depth 41.8m hull 5.2bar batt 24.2V valve closed sonar - watch disarmed alerts 0 state NORMAL
+RX < I (469930) sentry: [PWR] battery bus 24.19 V, load 1.4 A
+RX < I (476700) sentry: [TELEMETRY #2] 02:01:01 up 00:07:56 heap 251KB rssi -53 temp 31.4C depth 42.0m hull 5.2bar batt 24.2V valve closed sonar - watch disarmed alerts 0 state NORMAL
+RX < relay on
+RX < I (499170) sentry: [VALVE] OPEN (command)
+TX > relay status
+RX < relay status
+RX < I (499780) sentry: [VALVE] OPEN, auto off, cycles 159
+TX > distance log 500
+RX < distance log 500
+RX < I (505600) sentry: [SONAR] continuous pinging every 500 ms (command). 'distance stop' to stop
+RX < I (505600) sentry: [SONAR] valve OPEN - proximity indicator: diode blinks faster when contact is closer
+RX < I (505700) sentry: [SONAR] ping: echo 27.4 cm
+RX < I (506300) sentry: [SONAR] ping: echo 27.3 cm
+RX < I (506900) sentry: [TELEMETRY #3] 02:01:31 up 00:08:26 heap 251KB rssi -52 temp 31.4C depth 42.0m hull 5.2bar batt 24.2V valve open sonar 27.3cm watch disarmed alerts 0 state NORMAL
+RX < I (506900) sentry: [SONAR] ping: echo 27.3 cm
+RX < I (507510) sentry: [SONAR] ping: echo 26.8 cm
+RX < I (508110) sentry: [SONAR] ping: echo 26.3 cm
+RX < I (508710) sentry: [SONAR] ping: echo 24.4 cm
+RX < I (509310) sentry: [SONAR] ping: echo 23.2 cm
+RX < I (509910) sentry: [SONAR] ping: echo 22.4 cm
+TX > distance stop
+RX < distance stop
+RX < I (510210) sentry: [SONAR] pinging stopped (command)
+TX > distance log 500
+RX < distance log 500
+RX < I (532500) sentry: [SONAR] continuous pinging every 500 ms (command). 'distance stop' to stop
+RX < I (532500) sentry: [SONAR] valve OPEN - proximity indicator: diode blinks faster when contact is closer
+RX < I (532610) sentry: [SONAR] ping: echo 20.5 cm
+RX < I (533210) sentry: [SONAR] ping: echo 20.5 cm
+RX < I (533810) sentry: [SONAR] ping: echo 20.5 cm
+RX < I (534410) sentry: [SONAR] ping: echo 20.3 cm
+RX < I (535010) sentry: [SONAR] ping: echo 18.0 cm
+RX < E (535010) sentry: [COLLISION] contact too close: 18.0 cm (< 20 cm)
+RX < W (535010) sentry: [CIC #1 WARNING] sonar: collision risk: contact at 18.0 cm
+RX < I (535620) sentry: [SONAR] ping: echo 16.3 cm
+RX < I (536220) sentry: [SONAR] ping: echo 15.7 cm
+RX < I (536790) sentry: [SONAR] ping: echo 13.6 cm
+RX < I (536900) sentry: [TELEMETRY #4] 02:02:01 up 00:08:56 heap 251KB rssi -48 temp 31.4C depth 42.0m hull 5.2bar batt 24.2V valve open sonar 13.6cm watch disarmed alerts 1 state NORMAL
+RX < I (537340) sentry: [SONAR] ping: echo 12.2 cm
+RX < I (537900) sentry: [SONAR] ping: echo 11.6 cm
+RX < I (538450) sentry: [SONAR] ping: echo 11.6 cm
+RX < I (539030) sentry: [SONAR] ping: echo 20.0 cm
+RX < I (539580) sentry: [SONAR] ping: echo 11.6 cm
+TX > distance stop
+RX < distance stop
+RX < I (540120) sentry: [SONAR] pinging stopped (command)
+RX < I (540130) sentry: [SONAR] ping: echo 11.2 cm
+TX > distance log 500
+RX < distance log 500
+RX < I (549920) sentry: [SONAR] continuous pinging every 500 ms (command). 'distance stop' to stop
+RX < I (549920) sentry: [SONAR] valve OPEN - proximity indicator: diode blinks faster when contact is closer
+RX < I (549980) sentry: [SONAR] ping: echo 10.2 cm
+RX < I (550530) sentry: [SONAR] ping: echo 10.2 cm
+RX < I (551080) sentry: [SONAR] ping: echo 8.9 cm
+RX < I (551630) sentry: [SONAR] ping: echo 7.8 cm
+RX < I (552180) sentry: [SONAR] ping: echo 6.4 cm
+RX < I (552730) sentry: [SONAR] ping: echo 5.7 cm
+RX < I (553290) sentry: [SONAR] ping: echo 4.4 cm
+RX < I (553890) sentry: [SONAR] ping: echo 17.3 cm
+RX < I (554460) sentry: [SONAR] ping: echo 3.4 cm
+RX < I (555060) sentry: [SONAR] ping: echo 20.0 cm
+RX < I (555620) sentry: [SONAR] ping: echo 14.3 cm
+RX < I (556180) sentry: [SONAR] ping: echo 14.3 cm
+RX < I (556760) sentry: [SONAR] ping: echo 14.3 cm
+RX < I (556930) sentry: [NAV] depth 42.3 m, heading 277, speed 3.3 kn
+RX < I (557320) sentry: [SONAR] ping: echo 14.3 cm
+TX > distance stop
+RX < distance stop
+RX < I (557530) sentry: [SONAR] pinging stopped (command)
+TX > relay off
+RX < I (567100) sentry: [TELEMETRY #5] 02:02:32 up 00:09:26 heap 251KB rssi -51 temp 31.4C depth 42.3m hull 5.2bar batt 24.2V valve open sonar 14.3cm watch disarmed alerts 1 state NORMAL
+RX < relay off
+RX < I (587760) sentry: [VALVE] CLOSED (command)
+TX > relay status
+RX < relay status
+RX < I (588350) sentry: [VALVE] closed, auto off, cycles 160

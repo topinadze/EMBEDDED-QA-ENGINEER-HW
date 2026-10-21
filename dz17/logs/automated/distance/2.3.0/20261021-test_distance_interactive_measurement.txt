@@ -1,0 +1,93 @@
+Test: tests/test_distance.py::TestDistance::test_distance_interactive_measurement
+Firmware: 2.3.0
+Captured: 2026-10-21T00:14:48.185112+03:00
+
+TX > version
+RX < version
+RX < I (8613155) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+RX < I (8613155) sentry:   partition: ota_0 @ 0x20000, state: valid
+TX > lamp status
+RX < lamp status
+RX < I (8613365) sentry: [BEACON] off, color (160,0,255), brightness 75%, mode breathe, timer off
+TX > status
+RX < status
+RX < I (8613975) sentry: === SWM-2 status ===
+RX < I (8613975) sentry:   fw:       v2.3.0 (ota_0)
+RX < I (8613975) sentry:   state:    1 NORMAL
+RX < I (8613975) sentry:   link:     buoy link 'TopA-node', ip 10.223.162.49, rssi -37 dBm (excellent), ch 1
+RX < I (8613985) sentry:   internet: OK
+RX < I (8613985) sentry:   user:     testUser (user)
+RX < I (8613985) sentry:   time:     00:13:46, uptime 2h 23m 33s
+RX < I (8613995) sentry:   valve:    closed
+RX < I (8613995) sentry:   watch:    disarmed, CIC alerts unacked: 16
+RX < I (8614005) sentry:   sonar:    last echo 7.8 cm
+RX < I (8614005) sentry:   carrier:  depth 46.0 m, hull 5.6 bar, water 7.8 C, battery 23.97 V (sim)
+RX < I (8614015) sentry:   heap:     251 KB free
+TX > whoami
+RX < whoami
+RX < I (8614175) sentry: user: testUser, access: user
+TX > relay status
+RX < relay status
+RX < I (8614385) sentry: [VALVE] closed, auto off, cycles 156
+TX > distance stats
+RX < distance stats
+RX < I (8614995) sentry: [SONAR] measurements 434, errors 0, min 7.8, max 31.2, avg 20.6 cm
+RX < I (8614995) sentry: [SONAR] calibration -2.0 cm, filter median 5, alarm off
+TX > distance
+RX < distance
+RX < I (8631375) sentry: [SONAR] ping: echo 26.8 cm
+TX > relay status
+RX < relay status
+RX < I (8632325) sentry: [VALVE] closed, auto off, cycles 156
+TX > distance
+RX < I (8638435) sentry: [TELEMETRY #281] 00:14:10 up 02:23:58 heap 251KB rssi -31 temp 30.4C depth 46.0m hull 5.6bar batt 24.0V valve closed sonar 26.8cm watch disarmed alerts 16 state NORMAL
+RX < I (8650675) sentry: [PWR] battery bus 23.97 V, load 1.6 A
+RX < distance
+RX < I (8651245) sentry: [SONAR] ping: echo 28.2 cm
+TX > relay status
+RX < relay status
+RX < I (8652205) sentry: [VALVE] closed, auto off, cycles 156
+TX > distance
+RX < distance
+RX < I (8667755) sentry: [SONAR] ping: echo 13.3 cm
+RX < E (8667755) sentry: [COLLISION] contact too close: 13.3 cm (< 20 cm)
+RX < W (8667755) sentry: [CIC #17 WARNING] sonar: collision risk: contact at 13.3 cm
+RX < I (8668435) sentry: [TELEMETRY #282] 00:14:40 up 02:24:28 heap 251KB rssi -32 temp 30.4C depth 45.8m hull 5.6bar batt 24.0V valve closed sonar 13.3cm watch disarmed alerts 17 state NORMAL
+TX > relay status
+RX < relay status
+RX < I (8668715) sentry: [VALVE] closed, auto off, cycles 156
+TX > alert list
+RX < alert list
+RX < I (8669325) sentry: [CIC] 17 alerts, 17 unacknowledged:
+RX < I (8669325) sentry:   #1   22:04:25 WARNING  * telemetry WARN weak signal
+RX < I (8669325) sentry:   #2   22:19:27 WARNING  * telemetry WARN weak signal
+RX < I (8669325) sentry:   #3   22:31:35 WARNING  * sonar   collision risk: contact at 10.3 cm
+RX < I (8669335) sentry:   #4   22:48:51 WARNING  * telemetry WARN weak signal
+RX < I (8669345) sentry:   #5   22:50:21 WARNING  * telemetry WARN weak signal
+RX < I (8669345) sentry:   #6   22:56:45 WARNING  * sonar   collision risk: contact at 20.0 cm
+RX < I (8669355) sentry:   #7   22:57:23 WARNING  * sonar   collision risk: contact at 19.0 cm
+RX < I (8669365) sentry:   #8   22:59:52 WARNING  * sonar   collision risk: contact at 17.3 cm
+RX < I (8669375) sentry:   #9   23:19:04 WARNING  * sonar   collision risk: contact at 18.2 cm
+RX < I (8669375) sentry:   #10  23:23:56 WARNING  * telemetry WARN weak signal
+RX < I (8669385) sentry:   #11  23:25:14 WARNING  * sonar   collision risk: contact at 19.2 cm
+RX < I (8669395) sentry:   #12  23:25:25 WARNING  * sonar   collision risk: contact at 17.6 cm
+RX < I (8669405) sentry:   #13  23:56:30 WARNING  * sonar   collision risk: contact at 19.6 cm
+RX < I (8669405) sentry:   #14  00:10:38 WARNING  * sonar   collision risk: contact at 18.2 cm
+RX < I (8669415) sentry:   #15  00:11:22 WARNING  * sonar   collision risk: contact at 16.9 cm
+RX < I (8669425) sentry:   #16  00:13:29 WARNING  * sonar   collision risk: contact at 19.0 cm
+RX < I (8669435) sentry:   #17  00:14:40 WARNING  * sonar   collision risk: contact at 13.3 cm
+TX > lamp timer 0
+RX < lamp timer 0
+RX < I (8674495) sentry: [BEACON] timer cancelled
+TX > lamp color 160 0 255
+RX < lamp color 160 0 255
+RX < I (8674905) sentry: [BEACON] color: (160,0,255)
+TX > lamp brightness 75
+RX < lamp brightness 75
+RX < I (8675315) sentry: [BEACON] brightness: 75%
+TX > lamp mode breathe
+RX < lamp mode breathe
+RX < I (8675725) sentry: [BEACON] mode: breathe
+TX > lamp off
+RX < lamp off
+RX < W (8676135) sentry: W510 lamp already off

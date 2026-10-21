@@ -49,6 +49,7 @@ FIRMWARE_VERSION_KEY = pytest.StashKey[str]()
 LAMP_STATE_FIXTURE_ACTIVE = pytest.StashKey[bool]()
 WIFI_STATUS_ATTEMPTS = 3
 IDENTITY_ATTEMPTS = 3
+FIRMWARE_VERSION_ATTEMPTS = 3
 
 
 def _debug_logging_enabled(config: pytest.Config) -> bool:
@@ -344,7 +345,25 @@ def _restore_lamp(
 def _get_confirmed_firmware_version(
     driver: DeviceDriver, request: pytest.FixtureRequest
 ) -> str:
-    version = driver.version()
+    last_error: TimeoutError | None = None
+    for attempt in range(1, FIRMWARE_VERSION_ATTEMPTS + 1):
+        try:
+            version = driver.version()
+            break
+        except TimeoutError as exc:
+            last_error = exc
+            logging.getLogger(__name__).warning(
+                "No firmware version response (attempt %s/%s): %s",
+                attempt,
+                FIRMWARE_VERSION_ATTEMPTS,
+                exc,
+            )
+    else:
+        pytest.fail(
+            "Could not confirm firmware version after "
+            f"{FIRMWARE_VERSION_ATTEMPTS} attempts: {last_error}"
+        )
+
     request.node.stash[FIRMWARE_VERSION_KEY] = version
     expected = request.config.getoption("--expected-fw-version")
     if expected is not None and version != expected:
