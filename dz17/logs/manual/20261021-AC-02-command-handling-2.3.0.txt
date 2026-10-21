@@ -1,0 +1,52 @@
+AC-02 manual check — curated, redacted UART excerpt
+Date: 2026-10-21
+Device-reported firmware: v2.3.0, ota_0, valid
+Source: operator-provided UART output; this excerpt is not the raw complete capture.
+Redactions: network identifiers, IP/MAC, account identifier, and unrelated telemetry.
+
+Precondition: status confirmed v2.3.0 / NORMAL; Wi-Fi connected; logged out.
+
+---- Sent utf8 encoded message: "notacommand\n" ----
+notacommand
+E001 unknown command 'notacommand'. Type 'help'
+
+---- Sent utf8 encoded message: "STATUS\n" ----
+STATUS
+=== SWM-2 status ===
+fw: v2.3.0 (ota_0)
+state: 1 NORMAL
+link: buoy link connected (network and IP details redacted), internet OK
+user: not logged in
+time: 13:25:19, uptime 0h 06m 42s
+valve: closed
+watch: disarmed, CIC alerts unacked: 0
+sonar: no contact
+heap: 251 KB free
+
+---- Sent utf8 encoded message: "Статус\n" ----
+W006 non-latin characters ignored (use English layout)
+
+Login was performed locally to establish the documented precondition for VERBOSE.
+Credentials and the account identifier are intentionally omitted.
+
+---- Sent utf8 encoded message: "state 3\n" ----
+state 3
+[STATE] 1 NORMAL -> 3 VERBOSE (by command)
+[STATE] VERBOSE (tactical): extended logs, telemetry every 10 s, LED heartbeat
+
+---- Sent utf8 encoded message: "statis\n" ----
+statis
+E001 unknown command 'statis'. Did you mean 'status'?
+
+---- Sent utf8 encoded message: "state 1\n" ----
+[STATE] 3 VERBOSE -> 1 NORMAL (by command)
+
+---- Sent utf8 encoded message: "logout\n" ----
+logout
+[AUTH] operator [redacted] relieved from watch
+
+---- Sent utf8 encoded message: "whoami\n" ----
+whoami
+not logged in
+
+Result: AC-2 unknown-command text, uppercase dispatch, W006 handling, and VERBOSE typo suggestion were observed on v2.3.0. Device state and authentication were restored to NORMAL and logged out.

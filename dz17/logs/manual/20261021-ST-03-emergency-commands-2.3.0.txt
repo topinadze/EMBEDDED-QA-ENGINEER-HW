@@ -1,0 +1,47 @@
+Source: curated excerpts from operator-supplied UART output in chat
+Date: 2026-10-21
+Firmware: 2.3.0, ota_0
+Requirement: ST-3 — commands allowed in EMERGENCY, prohibited-command response,
+             temperature behavior, and reboot-only exit
+Redaction: Credentials, account/network identifiers, IP/MAC addresses, wall-clock
+           values, build metadata, and unrelated boot output are omitted.
+
+Precondition:
+- Read-only status confirmed 2.3.0/ota_0, NORMAL, logged-in, valve closed, and
+  zero unacknowledged alerts before entry. Wi-Fi was restored before the test.
+- No credentials were retained in this evidence.
+
+Observed result:
+- `state 3` changed NORMAL to VERBOSE. `state 4` then changed VERBOSE to
+  EMERGENCY by command; UART reported the module locked and listed the allowed
+  commands. The EMERGENCY-entry alert was visible as one unacknowledged CRITICAL
+  alert.
+- `help`, `status`, `whoami`, `version`, and `alert list` returned without
+  E005/E001. `status` confirmed EMERGENCY and valve closed.
+- `health now` was followed by immediate telemetry and the 5-second EMERGENCY
+  telemetry cadence. No distinct one-shot health summary was identifiable.
+- Bare `health` (without `now`) returned telemetry auto/interval information
+  rather than E005/E001. This input is not listed in the PRD's EMERGENCY
+  allow-list; whether it is an intended shorthand is unclear and is recorded as
+  an observed policy discrepancy, not a confirmed defect.
+- Before the prohibited-command check, telemetry temperature was 31.4 C and no
+  overheat warning was present. A single `lamp on` returned E005
+  (`blocked in EMERGENCY`) and reported transducer-driver temperature rising
+  from 31.4 C to 41.4 C (invalid count 1). Subsequent telemetry showed 41.4 C,
+  EMERGENCY, and valve closed. No overheat warning appeared.
+- The operator stopped after this one prohibited command. No other prohibited
+  command or button was tried, and the 95 C automatic-reboot threshold was not
+  deliberately approached.
+- The allowed `reboot` command produced a 3-2-1 countdown and software reboot.
+  Boot reported 2.3.0/ota_0 and ready in NORMAL. Post-reboot `status` confirmed
+  valve closed, Wi-Fi disconnected, logged out, and zero unacknowledged alerts.
+
+Assessment:
+- ST-3 remains PARTIAL on 2.3.0. The sampled allowed commands and reboot path
+  were observed; one representative prohibited command was rejected as required
+  but caused the documented temperature increase. Stop-at-first-increase was
+  followed. Prohibited-button behavior, other prohibited commands, E304 on a
+  non-reboot exit attempt, LED behavior, and automatic reboot at 95 C remain
+  unverified.
+- EMERGENCY telemetry showed the simulated surfacing/depth progression. No
+  physical surfacing or actuator movement is inferred.

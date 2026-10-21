@@ -1,0 +1,27 @@
+Source: curated excerpts from operator-supplied UART output in chat
+Date: 2026-10-21
+Firmware: 2.3.0, ota_0
+Requirement: WF-3 — reconnect to the saved profile
+Redaction: SSID, IP/BSSID, account identifiers, credentials, and wall-clock
+           values are omitted.
+
+Precondition:
+- Immediately before this recovery, WF-01 `connect` had associated to the
+  saved profile and obtained an IP, but the Internet/DNS check returned E105.
+- Device was NORMAL and logged out. The network profile remained saved.
+
+Selected redacted UART excerpts:
+```text
+reconnect
+[LINK] got ip [redacted]
+[LINK] connected to [network omitted], rssi -63 dBm (good)
+[LINK] fleet network reachable (internet OK)
+[LINK] time: synced via NTP
+```
+
+Assessment:
+- The saved-profile reconnect restored association, IP, Internet reachability,
+  and NTP synchronization on 2.3.0 after the preceding E105.
+- This later success does not explain the earlier DNS failure, nor does it
+  complete the other WF-3–WF-5 cases (for example no-profile, already
+  connected, or automatic recovery).

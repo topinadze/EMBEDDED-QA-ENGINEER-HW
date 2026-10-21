@@ -1,0 +1,106 @@
+SYS-01 manual check — curated, redacted UART excerpt
+Date: 2026-10-21
+Device-reported firmware: v2.3.0, ota_0, valid
+Scope: PRD OTA-1 and section 13. OTA status (`ota`) is OTA-2 and is not included here.
+Source: operator-provided UART output; this excerpt is not the raw complete capture.
+Redactions: network/account identifiers, MAC, and opaque credential-like build metadata omitted.
+
+---- Sent utf8 encoded message: "version\n" ----
+version
+SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+partition: ota_0 @ 0x20000, state: valid
+
+---- Sent utf8 encoded message: "status\n" ----
+status
+=== SWM-2 status ===
+fw: v2.3.0 (ota_0)
+state: 1 NORMAL
+link: buoy link down (known network redacted)
+user: not logged in
+valve: closed
+watch: disarmed, CIC alerts unacked: 0
+sonar: no contact
+heap: 254 KB free
+
+---- Sent utf8 encoded message: "help\n" ----
+help
+Commands ([wifi] - needs Wi-Fi, [login] - needs Wi-Fi + login, [debug] - debug access):
+System:
+  help - this help
+  status - full device status
+  version - firmware version and partition
+  sysinfo - chip, memory, uptime
+  temp - chip temperature
+  uptime - time since boot
+Buoy link (Wi-Fi):
+  net - IP, gateway, DNS, MAC [wifi]
+  ping [host] - ping host (default 8.8.8.8) [wifi]
+Account:
+  register <login> <pass> [wifi]
+  login <login> <pass> [wifi]
+  passwd <old> <new> [login]
+  sudo <password> [login]
+States:
+  state [1-4|name] [login]
+OTA:
+  ota [status] [login]
+  ota check [login]
+  ota update [beta] [login]
+  ota install <X.Y.Z> [force] [login]
+Beacon light, Trim valve, Active sonar, Telemetry, Perimeter watch, CIC alerts, and Buttons groups were listed.
+The help footer described K1-K4 actions and supported button pairs.
+
+---- Sent utf8 encoded message: "sysinfo\n" ----
+sysinfo
+chip: ESP32-S3 rev 2, 2 cores, 160 MHz
+flash: 4MB
+heap: 254 KB free, min 250 KB
+uptime: 0h 21m 51s
+chip temperature: 29.4 C
+
+---- Sent utf8 encoded message: "temp\n" ----
+temp
+chip temperature: 29.4 C
+
+---- Sent utf8 encoded message: "uptime\n" ----
+uptime
+uptime: 0h 21m 58s
+
+---- Sent utf8 encoded message: "reboot\n" ----
+reboot
+rebooting in 3...
+rebooting in 2...
+rebooting in 1...
+ESP-ROM:esp32s3-20210327
+rst:0xc (RTC_SW_CPU_RST)
+Partition table loaded ota_0 at 0x20000.
+App version: 2.3.0
+last reset: software reboot
+[NAV] depth sensor offline (lab mode) - using simulator
+[OTA] running v2.3.0 from ota_0
+ready. state 1 NORMAL (patrol). Type 'help'
+
+---- Sent utf8 encoded message: "version\n" ----
+version
+SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+partition: ota_0 @ 0x20000, state: valid
+
+---- Sent utf8 encoded message: "status\n" ----
+status
+=== SWM-2 status ===
+fw: v2.3.0 (ota_0)
+state: 1 NORMAL
+link: buoy link down (known network redacted)
+user: not logged in
+valve: closed
+watch: disarmed, CIC alerts unacked: 0
+sonar: no contact
+heap: 254 KB free
+
+Result: required SYS-01 observations captured. OTA-2 status command was not executed.
+
+Supplemental §13 status-field evidence: the uppercase `STATUS` command during
+the same-date AC-02 check confirmed connected link/internet, time/uptime,
+valve, watch/alert state, sonar distance state, and heap. Its curated,
+redacted output is retained in
+`20261021-AC-02-command-handling-2.3.0.txt`.

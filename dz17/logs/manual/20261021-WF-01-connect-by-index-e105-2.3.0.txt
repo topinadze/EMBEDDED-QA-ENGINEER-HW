@@ -1,0 +1,44 @@
+Source: curated excerpts from operator-supplied UART output in chat
+Date: 2026-10-21
+Firmware: 2.3.0, ota_0
+Requirements: WF-1 connect by list index; WF-2 E105 no internet
+Redaction: Passwords, SSIDs, IP addresses, network scan entries, account
+           identifiers, and wall-clock values are omitted.
+
+Precondition:
+- Read-only status confirmed NORMAL, Wi-Fi disconnected, logged out, valve
+  closed, zero unacknowledged alerts, and a saved profile was known.
+- The operator selected the saved profile by its numeric scan index and entered
+  the password locally. Neither value is retained here.
+
+Selected redacted UART excerpts:
+```text
+connect
+[LINK] scanning...
+[ 1] [network omitted]
+SSID or number:
+1
+Password: [entered locally; omitted]
+[LINK] got ip [redacted]
+[LINK] connected to [network omitted], rssi -40 dBm (excellent)
+E105 connected, but no internet (DNS failed)
+[LINK] network saved. Next time just type 'reconnect'
+
+status
+fw: v2.3.0 (ota_0)
+state: 1 NORMAL
+link: connected
+internet: NO
+user: not logged in
+valve: closed
+CIC alerts unacked: 0
+```
+
+Assessment:
+- Numeric-index selection, Wi-Fi association, IP acquisition, RSSI reporting,
+  and saved-profile confirmation were observed on 2.3.0.
+- The internet check returned the specified E105 because DNS failed. This is an
+  observed network condition, not evidence of a firmware defect. No NTP success
+  was observed, so the full positive connection path is not verified.
+- WF-01 remains PARTIAL on 2.3.0. Other planned negative cases and a successful
+  internet/NTP result on this firmware remain unverified.

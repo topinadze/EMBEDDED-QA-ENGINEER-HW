@@ -1,0 +1,77 @@
+ST-01 manual check — curated, redacted UART excerpt
+Date: 2026-10-21
+Device-reported firmware: v2.3.0, ota_0, valid
+Target: COM4; operator-confirmed device
+Source: operator-provided UART output and physical LED observations.
+Redactions: account and network identifiers; unrelated telemetry omitted.
+
+Precondition: NORMAL, Wi-Fi connected, operator logged in locally, valve closed,
+and no unacknowledged alerts. Credentials and account identifier were not retained.
+
+---- Sent utf8 encoded message: "state 2\n" ----
+state 2
+[STATE] 1 NORMAL -> 2 DEBUG (by command)
+[STATE] DEBUG (maintenance): raw transducer data, LED blink codes, parser diagnostics
+Physical observation: blue LED blinked three times, paused, then repeated.
+
+---- Sent utf8 encoded message: "distance\n" ----
+distance
+[DBG] cmd 'distance' args '' need 2
+[DBG] transducer echo 748 us -> raw 12.90 cm (no filter, no calibration)
+[SONAR] ping: echo 12.9 cm
+[COLLISION] contact too close: 12.9 cm (< 20 cm)
+[CIC #1 WARNING] sonar: collision risk: contact at 12.9 cm
+
+The proximity warning and alert were expected at <20 cm (PRD DS-6).
+---- Sent utf8 encoded message: "alert ack 1\n" ----
+alert ack 1
+E851 no alert #1
+
+---- Sent utf8 encoded message: "alert list\n" ----
+alert list
+[CIC] 1 alerts, 1 unacknowledged:
+#1 13:39:07 WARNING * sonar collision risk: contact at 12.9 cm
+
+---- Sent utf8 encoded message: "alert ack\n" ----
+alert ack
+[CIC] #1 acknowledged (command). Unacked: 0
+
+This exact-ID ACK observation is also recorded under BUG-016 / AL-3.
+
+---- Sent utf8 encoded message: K3+K4 held together for 2 seconds ----
+[BTN] K3+K4 held 2 s -> state 3
+[STATE] 2 DEBUG -> 3 VERBOSE (by buttons)
+[STATE] VERBOSE (tactical): extended logs, telemetry every 10 s, LED heartbeat
+[TELEMETRY #23] 13:43:27 up 00:24:50 heap 251KB rssi -21 temp 30.4C depth 41.8m hull 5.2bar batt 24.1V valve closed sonar - watch disarmed alerts 0 state VERBOSE
+[V] telemetry: min heap 205KB, beacon off, tasks 16, water 8.2C, source auto
+[TELEMETRY #24] 13:43:37 up 00:25:00 heap 251KB rssi -20 temp 31.4C depth 41.8m hull 5.2bar batt 24.1V valve closed sonar - watch disarmed alerts 0 state VERBOSE
+[V] telemetry: min heap 205KB, beacon off, tasks 16, water 8.2C, source auto
+Physical observation: green remained lit while purple blinked.
+
+---- Sent utf8 encoded message: K1+K2 held together for 2 seconds ----
+[BTN] K1+K2 held 2 s -> state 1
+[STATE] 3 VERBOSE -> 1 NORMAL (by buttons)
+Physical observation: LED became steady green; operator reported relay closed.
+
+---- Sent utf8 encoded message: K2+K3 held together for 2 seconds ----
+[BTN] K2+K3 held 2 s -> state 2
+[STATE] 1 NORMAL -> 2 DEBUG (by buttons)
+Physical observation: blue LED blinked three times, paused, then repeated.
+Post-pair status: state DEBUG; valve closed; sonar no contact; watch disarmed;
+unacknowledged alerts 0.
+
+---- Sent utf8 encoded message: "state 1\n" ----
+[STATE] 2 DEBUG -> 1 NORMAL (by command)
+
+---- Sent utf8 encoded message: "logout\n" ----
+[AUTH] operator [redacted] relieved from watch
+
+---- Sent utf8 encoded message: "whoami\n" ----
+whoami
+not logged in
+
+The `state 3` command path and its VERBOSE suggestion behavior are separately
+captured in `20261021-AC-02-command-handling-2.3.0.txt`.
+Result: ST-1 state, DEBUG raw-data/diagnostic, VERBOSE cadence, and physical
+LED observations were demonstrated on v2.3.0. PRD specifies blink/heartbeat
+behavior but not the observed colors.

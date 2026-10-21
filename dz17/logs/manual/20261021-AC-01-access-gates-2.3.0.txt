@@ -1,0 +1,39 @@
+AC-01 manual check — curated, redacted UART excerpt
+Date: 2026-10-21
+Device-reported firmware: v2.3.0, ota_0, valid
+Source: operator-provided UART output; this excerpt omits the full transcript.
+Redactions: network identifiers, IP, BSSID, and account identifiers.
+
+Initial precondition from the post-reboot SYS-01 status:
+link down; user not logged in.
+
+---- Sent utf8 encoded message: "net\n" ----
+net
+E002 Wi-Fi required. Use 'reconnect' or 'connect'
+
+---- Sent utf8 encoded message: "reconnect\n" ----
+reconnect
+[LINK] raising buoy antenna, connecting to saved network (identifier redacted)...
+[LINK] retry 1/3...
+[LINK] retry 2/3...
+[LINK] retry 3/3...
+E102 network not found
+
+---- Sent utf8 encoded message: "reconnect\n" ----
+reconnect
+[LINK] raising buoy antenna, connecting to saved network (identifier redacted)...
+[LINK] connected; IP assigned (address redacted)
+[LINK] fleet network reachable (internet OK)
+[LINK] time: synced via NTP
+
+---- Sent utf8 encoded message: "whoami\n" ----
+whoami
+not logged in
+
+---- Sent utf8 encoded message: "ota\n" ----
+ota
+E003 login required. Use 'login <login> <pass>' or 'register'
+
+Result: AC-1 Wi-Fi and login gates behaved as documented in these two tested states.
+The help output exposed no command marked [debug]; the E004 branch remains untested.
+The initial E102 was a missing-network precondition on the first attempt, not a classified defect.

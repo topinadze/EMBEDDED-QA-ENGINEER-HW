@@ -1,0 +1,110 @@
+Source: curated excerpts from operator-supplied UART output in chat
+Date: 2026-10-21
+Firmware: 2.3.0, ota_0
+Requirement: ST-4 — repeat-state warning, logout state transitions, and
+             post-reboot state
+Redaction: Credentials, account/network identifiers, IP/MAC addresses, wall-clock
+           values, build metadata, and unrelated UART output are omitted.
+
+Precondition:
+- Read-only status confirmed 2.3.0/ota_0, NORMAL, Wi-Fi connected, logged-in,
+  valve closed, and zero unacknowledged alerts before the ST-4 checks.
+- No credentials were retained in this evidence.
+
+Observed result:
+- Repeating `state 1` while already in NORMAL returned W303
+  (`already in 1 NORMAL`).
+- `state 2` changed NORMAL to DEBUG. `logout` from DEBUG reported logout and
+  changed DEBUG to NORMAL. A following `status` confirmed NORMAL, logged out,
+  Wi-Fi/internet connected, valve closed, and zero unacknowledged alerts.
+- An initial `state 3` attempt while logged out returned E003 and did not change
+  state. After private local authentication, `state 3` changed NORMAL to
+  VERBOSE.
+- `logout` from VERBOSE changed VERBOSE to NORMAL. A following `status`
+  confirmed NORMAL, logged out, Wi-Fi/internet connected, valve closed, and
+  zero unacknowledged alerts.
+- A software reboot initiated from DEBUG produced the expected countdown and
+  booted 2.3.0/ota_0 into NORMAL. Post-reboot status confirmed valve closed,
+  Wi-Fi disconnected, logged out, and zero unacknowledged alerts.
+- A software reboot initiated from VERBOSE also produced the expected
+  countdown and booted 2.3.0/ota_0 into NORMAL. Post-reboot status confirmed
+  valve closed, Wi-Fi disconnected, logged out, and zero unacknowledged alerts.
+- Reboot-to-NORMAL from EMERGENCY on 2.3.0 is separately evidenced in the
+  ST-02 and ST-03 records.
+
+Selected redacted UART excerpts (timestamps omitted):
+```text
+state 1
+W303 already in 1 NORMAL
+
+state 2
+[STATE] 1 NORMAL -> 2 DEBUG (by command)
+
+logout
+[AUTH] operator [redacted] relieved from watch
+[STATE] 2 DEBUG -> 1 NORMAL (by logout)
+
+status
+fw: v2.3.0 (ota_0)
+state: 1 NORMAL
+link: connected; internet: OK
+user: not logged in
+valve: closed
+CIC alerts unacked: 0
+
+state 3 (first attempt while logged out)
+E003 login required
+
+state 3 (after private local authentication)
+[STATE] 1 NORMAL -> 3 VERBOSE (by command)
+
+logout
+[AUTH] operator [redacted] relieved from watch
+[STATE] 3 VERBOSE -> 1 NORMAL (by logout)
+
+status
+state: 1 NORMAL
+link: connected; internet: OK
+user: not logged in
+valve: closed
+CIC alerts unacked: 0
+
+reboot from DEBUG
+rebooting in 3...
+rebooting in 2...
+rebooting in 1...
+last reset: software reboot
+[OTA] running v2.3.0 from ota_0
+ready. state 1 NORMAL (patrol)
+
+post-DEBUG-reboot status
+fw: v2.3.0 (ota_0)
+state: 1 NORMAL
+link: down
+user: not logged in
+valve: closed
+CIC alerts unacked: 0
+
+reboot from VERBOSE
+rebooting in 3...
+rebooting in 2...
+rebooting in 1...
+last reset: software reboot
+[OTA] running v2.3.0 from ota_0
+ready. state 1 NORMAL (patrol)
+
+post-VERBOSE-reboot status
+fw: v2.3.0 (ota_0)
+state: 1 NORMAL
+link: down
+user: not logged in
+valve: closed
+CIC alerts unacked: 0
+```
+
+Assessment:
+- W303 and logout-to-NORMAL from both DEBUG and VERBOSE were observed on
+  2.3.0. Wi-Fi remained connected after logout.
+- ST-4 passed the planned 2.3.0 checks: repeat-state warning, both logout
+  transitions, and reboot-to-NORMAL from DEBUG/VERBOSE. No physical buttons
+  were used.

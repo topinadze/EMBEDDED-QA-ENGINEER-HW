@@ -1,0 +1,43 @@
+Source: curated excerpts from operator-supplied UART output in chat
+Date: 2026-10-21
+Firmware: 2.3.0, ota_0
+Requirements: WF-1 — empty SSID returns E111; WF-3 — reconnect to saved profile
+Redaction: Network names, scan results, IP/BSSID, account identifiers, and
+           wall-clock values are omitted.
+
+Precondition:
+- Device was confirmed as 2.3.0/ota_0, NORMAL, Wi-Fi/internet connected,
+  logged out, valve closed, with a saved profile.
+
+Selected redacted UART excerpts:
+```text
+disconnect
+[LINK] disconnected
+
+connect
+[LINK] scanning...
+SSID or number:
+[blank input]
+E111 SSID cannot be empty
+
+reconnect
+[LINK] got ip [redacted]
+[LINK] connected to [network omitted]
+[LINK] fleet network reachable (internet OK)
+
+status
+fw: v2.3.0 (ota_0)
+state: NORMAL
+link: connected
+internet: OK
+user: not logged in
+valve: closed
+```
+
+Assessment:
+- Empty SSID returned the specified E111 on 2.3.0.
+- Saved-profile reconnect restored association, IP, and Internet access.
+- The readback confirmed NORMAL, logged-out, valve-closed state.
+- No explicit NTP synchronization message was included; NTP is not claimed.
+- WF-01's E111 subcase is PASS. WF-01 overall remains PARTIAL because other
+  connection paths are still unverified.

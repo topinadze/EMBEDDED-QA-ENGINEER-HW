@@ -1,0 +1,76 @@
+ST-02 manual check — curated, redacted UART excerpt
+Date: 2026-10-21
+Device-reported firmware: v2.3.0, ota_0, valid
+Target: COM4; operator-confirmed device
+Source: operator-provided UART output and physical observations.
+Redactions: account/network identifiers and full boot logs omitted.
+
+Precondition: NORMAL, Wi-Fi connected, valve closed, Guard disarmed,
+no unacknowledged alerts. Login was performed locally; credentials and
+account identifier were not retained.
+
+Command gate from NORMAL:
+state 4
+E302 EMERGENCY can be entered only from 3 VERBOSE (now 1 NORMAL)
+Readback: state 1 NORMAL; valve closed; Guard disarmed; alerts unacked 0.
+
+Command gate from DEBUG:
+state 2
+[STATE] 1 NORMAL -> 2 DEBUG (by command)
+state 4
+E302 EMERGENCY can be entered only from 3 VERBOSE (now 2 DEBUG)
+Readback: state 2 DEBUG; valve closed; Guard disarmed; alerts unacked 0.
+
+Button gate from DEBUG:
+K4+K1 held together for 2 seconds
+[BTN] K4+K1 held 2 s -> state 4
+E302 EMERGENCY can be entered only from 3 VERBOSE (now 2 DEBUG)
+Telemetry remained state DEBUG, valve closed, Guard disarmed, alerts unacked 0.
+Physical observation: blue LED blinked three times, paused, then repeated.
+
+Button gate from NORMAL:
+state 1
+[STATE] 2 DEBUG -> 1 NORMAL (by command)
+K4+K1 held together for 2 seconds
+[BTN] K4+K1 held 2 s -> state 4
+E302 EMERGENCY can be entered only from 3 VERBOSE (now 1 NORMAL)
+Readback: state 1 NORMAL; valve closed; Guard disarmed; alerts unacked 0.
+Physical observation: LED green; relay/valve remained closed.
+
+Positive command entry from VERBOSE:
+state 3
+[STATE] 1 NORMAL -> 3 VERBOSE (by command)
+state 4
+[STATE] 3 VERBOSE -> 4 EMERGENCY (by command)
+[EMERGENCY] EMERGENCY SURFACING. Module locked. Allowed: help, status,
+whoami, version, health now, alert list, reboot. Exit: reboot only
+[CIC CRITICAL] state: EMERGENCY mode entered (by command)
+Readback: state 4 EMERGENCY; valve closed; Guard disarmed; one alert unacked.
+Only the allowed `status` and `reboot` commands were used.
+Reboot: countdown 3-2-1; reset cause software reboot; v2.3.0 loaded from
+ota_0; ready state 1 NORMAL.
+Post-reboot status: NORMAL; link down; logged out; valve closed; Guard
+disarmed; alerts unacked 0.
+
+Positive button entry from VERBOSE:
+After saved-profile reconnect and local login:
+state 3
+[STATE] 1 NORMAL -> 3 VERBOSE (by command)
+K4+K1 held together for 2 seconds
+[BTN] K4+K1 held 2 s -> state 4
+[STATE] 3 VERBOSE -> 4 EMERGENCY (by buttons)
+[EMERGENCY] EMERGENCY SURFACING. Module locked. Exit: reboot only
+[CIC CRITICAL] state: EMERGENCY mode entered (by buttons)
+Readback: state 4 EMERGENCY; valve closed; Guard disarmed; one alert unacked.
+Physical observation: LED blinked red uniformly.
+Only the allowed `status` and `reboot` commands were used.
+Reboot: countdown 3-2-1; reset cause software reboot; v2.3.0 loaded from
+ota_0; ready state 1 NORMAL.
+Post-reboot status: NORMAL; link down; logged out; valve closed; Guard
+disarmed; alerts unacked 0.
+
+Result: all ST-2 command and button entry paths were exercised on v2.3.0.
+Both invalid-entry paths returned E302 and preserved state; both supported
+VERBOSE entry paths entered EMERGENCY. Reboots restored NORMAL and cleared
+the test-generated unacknowledged-alert count. No prohibited command or
+temperature-stress action was performed.
