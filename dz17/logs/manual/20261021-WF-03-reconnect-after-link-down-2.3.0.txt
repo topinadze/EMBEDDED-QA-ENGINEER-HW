@@ -1,0 +1,20 @@
+Test: WF-03 manual reconnect after link-down state
+Requirement: WF-3 saved-network reconnect; WF-5 recovery distinction
+Firmware: 2.3.0 (ota_0)
+Capture date: 2026-10-21
+Capture source: operator-supplied UART excerpts; SSID, IP, MAC, and account identifiers omitted.
+
+Precondition:
+- `version` reported 2.3.0 on valid `ota_0`.
+- `status` reported NORMAL, Wi-Fi link down with a saved profile, valve closed, and Guard disarmed.
+
+Observed:
+- While Wi-Fi was down, `alert list` returned E002 (Wi-Fi required); no alert state changed.
+- `reconnect` associated with the saved profile, obtained an IP, reported internet OK, and synchronized time via NTP.
+- After later logout, `status` showed Wi-Fi and internet still available; the user was logged out and the valve was closed.
+- With the link still up, a subsequent `reconnect` returned W114 `already connected`.
+
+Assessment:
+- PASS for manual saved-profile reconnect, the observed IP/internet/NTP results, and W114 when reconnect was requested while already connected on this 2.3.0 session.
+- This operator-issued reconnect does not verify WF-5 automatic recovery after the three retry attempts.
+- The E002 result is also evidence for the Wi-Fi access gate on `alert list`; it is not an Alert Center failure.

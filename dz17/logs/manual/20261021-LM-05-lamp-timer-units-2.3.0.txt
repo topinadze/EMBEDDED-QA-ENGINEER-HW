@@ -1,0 +1,20 @@
+Test: LM-05 timer unit and automatic expiry
+Requirement: LM-5
+Firmware: 2.3.0 (ota_0), confirmed earlier in the same device session
+Capture date: 2026-10-21
+Capture source: operator-supplied UART excerpts and physical LED observation; account credentials omitted.
+
+Precondition:
+- Wi-Fi connected, ordinary user logged in, lamp off.
+- Lamp settings before test: color (160,0,255), brightness 75%, mode breathe, timer off.
+- Operator confirmed the RGB LED was visible.
+
+Observed:
+- `lamp on` returned `[BEACON] on`; operator reported the LED visibly illuminated.
+- `lamp timer 5` returned `[BEACON] auto-off in 5 s`.
+- Approximately 5 seconds later, UART reported `[BEACON] off (timer expired)`; operator confirmed the LED went out.
+- `lamp status` read back lamp off and timer off.
+
+Assessment:
+- PASS for the tested five-second timer response unit and automatic expiry on this 2.3.0 run.
+- The seconds unit defect reported on 2.1.0 (BUG-003) was not reproduced in this sample; this is not a full LM-5 boundary/cancellation/persistence retest.

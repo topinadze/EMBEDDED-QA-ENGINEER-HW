@@ -1,0 +1,24 @@
+Test: AU-03 logout stops active lamp, relay, and sonar stream
+Requirement: AU-3
+Firmware: 2.3.0 (ota_0)
+Capture date: 2026-10-21
+Capture source: operator-supplied UART excerpts and physical observations; credentials and identifiers omitted.
+
+Precondition:
+- 2.3.0 on `ota_0`, NORMAL, Wi-Fi connected, user logged in, Guard disarmed.
+- Lamp off, relay closed, relay automation off, and no stream active.
+- A stationary target was placed approximately 30 cm from the sonar; operator confirmed relay actuation was safe.
+
+Observed:
+- `lamp on` returned `[BEACON] on`; operator reported the lamp visibly illuminated.
+- `relay on` returned `[VALVE] OPEN`; operator reported physical relay/valve actuation.
+- `distance log 1000` ran for approximately 10 seconds and emitted repeated 28.0 cm readings.
+- `logout` reported the session ended, lamp off, valve closed, and sonar pinging stopped.
+- No further sonar readings appeared after logout during the operator's subsequent observation window (the next supplied line was an unrelated ACU message about 29 seconds after the final ping).
+- Operator reported the lamp went out and the relay/valve closed.
+- `status` confirmed NORMAL, Wi-Fi/internet still up, user not logged in, valve closed, and Guard disarmed. `whoami` returned `not logged in`.
+- A second `logout` returned W211 `not logged in`.
+
+Assessment:
+- PASS for the observed AU-3 output/stream cleanup and repeated-logout W211 behavior in NORMAL.
+- Logout from DEBUG/VERBOSE was not part of this run; those state-transition cases are covered separately under ST-4.

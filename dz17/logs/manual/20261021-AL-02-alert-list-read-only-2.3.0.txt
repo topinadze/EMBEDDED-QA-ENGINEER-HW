@@ -1,0 +1,15 @@
+Test: AL-02 read-only Alert Center list
+Requirement: AL-2
+Firmware: 2.3.0 (ota_0)
+Capture date: 2026-10-21
+Capture source: operator-supplied UART excerpts; no alert was acknowledged or cleared.
+
+Observed:
+- Initial `alert list` while Wi-Fi was down returned E002; this was an access precondition response, not an Alert Center result.
+- After saved-profile reconnect, `alert list` returned two WARNING alerts in displayed ID order (#1, #2).
+- Both entries were marked unacknowledged with `*`. Their text reported telemetry warnings for no internet and weak signal/no internet.
+- No ACK or clear command was issued; both alerts remained pending in the subsequent `status` readback.
+
+Assessment:
+- PASS for this read-only two-entry list rendering and pending-marker observation.
+- This does not verify generation across all AL-1 sources, ordering of newly generated alerts, or retention capped at 20.

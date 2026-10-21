@@ -1,0 +1,15 @@
+Test: AC-01 command access labels and representative access gates
+Requirement: AC-1
+Firmware: 2.3.0 (ota_0)
+Capture date: 2026-10-21
+Capture source: operator-supplied UART excerpts; user, network, and device identifiers omitted.
+
+Observed:
+- `help` printed access annotations for listed commands, but no listed command carried a `[debug]` annotation.
+- With the Wi-Fi link down, `alert list` returned E002 Wi-Fi required.
+- With Wi-Fi up and the user logged out, `lamp status` returned E003 login required.
+
+Assessment:
+- PASS for the observed Wi-Fi and login gates on these representative commands.
+- E004 for a non-debug user could not be exercised: the current `help` output lists no `[debug]`-restricted command to use as a safe representative.
+- The absence of a listed debug-only command is recorded as a coverage limitation, not a firmware defect.

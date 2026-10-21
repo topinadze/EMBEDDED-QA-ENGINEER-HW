@@ -1,0 +1,25 @@
+Test: RL-01 relay transitions, cycle counter, and rate-limit attempt
+Requirement: RL-1–RL-2
+Firmware: 2.3.0 (ota_0), confirmed earlier in the same device session
+Capture date: 2026-10-21
+Capture source: operator-supplied UART excerpts and physical observations; no sensitive values retained.
+
+Precondition:
+- Relay was CLOSED, auto off, cycles 214; the operator had confirmed relay actuation was safe.
+
+Observed command sequence:
+- `relay on` returned `[VALVE] OPEN (command)`.
+- `relay off` returned `[VALVE] CLOSED (command)`.
+- `relay on` returned `[VALVE] OPEN (command)`.
+- The operator reported three physical relay transitions/clicks.
+- `relay status` returned OPEN, auto off, cycles 217.
+
+Assessment:
+- PASS for one cycle-counter increment per accepted transition in this sample: 214 to 217 for three accepted transitions.
+- The intended E602 rate-limit test was NOT RUN: UART timestamps show several seconds between accepted commands, not more than two transitions within one second. No rate-limit conclusion is drawn.
+
+Cleanup:
+- One `relay off` returned `[VALVE] CLOSED (command)`.
+- The operator confirmed physical closure.
+- Final `relay status`: CLOSED, auto off, cycles 218.
+- No further relay command was issued.
