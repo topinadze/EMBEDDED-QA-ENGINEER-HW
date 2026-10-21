@@ -9,6 +9,7 @@ description: "Implement and execute pytest scenarios requiring physical buttons,
 
 - Mark operator-dependent cases `@pytest.mark.interactive`; preserve the repository's default exclusion of interactive cases from unattended test runs.
 - Use the established manual-check fixture and require uncaptured console input (`-s`). Do not emulate a physical button by sending a console command unless the requirement explicitly calls for that.
+- Define the connectivity and authentication preconditions for each interactive case. Use fixtures to establish and verify the exact Wi-Fi and login state before prompting the operator; never assume the previous test, operator, or reboot left the device connected or authenticated. Do not expose credentials in prompts, logs, or evidence.
 - **Operator Preparation Protocol (`manual_prepare`)**:
   - Before asking the operator to act or triggering a physical observation, present a clear preparation prompt (`manual_prepare`):
     1. **What to do**: which exact button to press (e.g. K1/K2/K3/K4), where to place an obstacle, or what physical state to configure.
@@ -26,8 +27,9 @@ description: "Implement and execute pytest scenarios requiring physical buttons,
 - Capture machine-verifiable UART evidence separately from physical observations. Record pass/fail and optional operator comments through the established helper.
 - Keep test steps and prompts self-explanatory; use Allure steps around phases, action prompts, UART waits, and visual checks.
 - Design each case to run independently, including opening/closing its own UART fixture. Never assume a prior test has left the device in a suitable state.
+- After issuing a command or physical action, wait for its expected UART phrase/state event and assert it. Do not use fixed sleeps or timeout expiration as completion evidence; any timeout is only a maximum wait and absence of the expected phrase must fail with captured UART context. Use bounded quiet windows only for requirements that assert an event does not happen.
 - Consider failure recovery and teardown ordering. If a test reboots on failure, do not issue later commands against a rebooting device.
-- For DZ16 firmware-specific examples (including physical LED color defects), consult [DZ16 gotchas](./references/dz16-gotchas.md); do not generalize those defects to other firmware or boards.
+- Consult project-specific hardware gotchas when applicable; do not generalize board- or firmware-specific defects to other setups.
 
 ## Execution safeguards
 
