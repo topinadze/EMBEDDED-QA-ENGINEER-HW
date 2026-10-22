@@ -3,6 +3,7 @@ param(
     [string]$Markers = "",
     [string]$TestName = "",
     [string]$Port = "COM4",
+    [ValidateSet("console", "telegram")][string]$InteractionMode = "console",
     [switch]$Interactive,
     [switch]$All,
     [switch]$Persistent,
@@ -80,8 +81,19 @@ function Invoke-AlertPytest {
         $pytestArgs += @("-k", $SelectedTestName)
     }
 
-    & $python @pytestArgs
-    return $LASTEXITCODE
+    $previousInteractionMode = [Environment]::GetEnvironmentVariable("INTERACTION_MODE", "Process")
+    try {
+        $env:INTERACTION_MODE = $InteractionMode
+        & $python @pytestArgs
+        $pytestExitCode = $LASTEXITCODE
+    } finally {
+        if ($null -eq $previousInteractionMode) {
+            Remove-Item Env:INTERACTION_MODE -ErrorAction SilentlyContinue
+        } else {
+            $env:INTERACTION_MODE = $previousInteractionMode
+        }
+    }
+    return $pytestExitCode
 }
 
 function Get-AlertCleanupSkip {

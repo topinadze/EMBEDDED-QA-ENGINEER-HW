@@ -3,6 +3,7 @@ param(
     [string]$Markers = "",
     [string]$TestName = "",
     [string]$Port = "COM4",
+    [ValidateSet("console", "telegram")][string]$InteractionMode = "console",
     [Alias("Interactive")][switch]$ManualChecks,
     [switch]$All,
     [switch]$Persistent
@@ -59,4 +60,16 @@ if ($TestName) {
 }
 
 Write-Host "Running Lamp tests with markers: '$Markers' against FW $Fw on $Port (manual checks: $($ManualChecks -or $All))..." -ForegroundColor Cyan
-& $python @pytestArgs
+$previousInteractionMode = [Environment]::GetEnvironmentVariable("INTERACTION_MODE", "Process")
+try {
+    $env:INTERACTION_MODE = $InteractionMode
+    & $python @pytestArgs
+    $pytestExitCode = $LASTEXITCODE
+} finally {
+    if ($null -eq $previousInteractionMode) {
+        Remove-Item Env:INTERACTION_MODE -ErrorAction SilentlyContinue
+    } else {
+        $env:INTERACTION_MODE = $previousInteractionMode
+    }
+}
+exit $pytestExitCode

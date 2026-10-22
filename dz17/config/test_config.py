@@ -19,22 +19,26 @@ APP_PASSWORD_ENV = "HW17_PASSWORD"
 ALT_APP_USER_ENV = "TEST_USER"
 ALT_APP_PASSWORD_ENV = "TEST_PASSWORD"
 GUARD_PIN_ENV = "HW17_GUARD_PIN"
+TELEGRAM_BOT_TOKEN_ENV = "TELEGRAM_BOT_TOKEN"
+TELEGRAM_CHAT_ID_ENV = "TELEGRAM_CHAT_ID"
 
 try:
-    from config import wifi_secrets
+    from config import secrets
 except ModuleNotFoundError as error:
-    if error.name not in {"config.wifi_secrets", "wifi_secrets"}:
+    if error.name not in {"config.secrets", "secrets"}:
         raise
-    wifi_secrets = None
+    secrets = None
 
-DEFAULT_WIFI_SSID = getattr(wifi_secrets, "DEFAULT_WIFI_SSID", "")
-DEFAULT_WIFI_PASSWORD = getattr(wifi_secrets, "DEFAULT_WIFI_PASSWORD", "")
+DEFAULT_WIFI_SSID = getattr(secrets, "DEFAULT_WIFI_SSID", "")
+DEFAULT_WIFI_PASSWORD = getattr(secrets, "DEFAULT_WIFI_PASSWORD", "")
 DEFAULT_WIFI_WRONG_PASSWORD = "WrongPassword123"
 DEFAULT_WIFI_MISSING_SSID = "HW17-NONEXISTENT-NETWORK"
 
-DEFAULT_APP_USER = getattr(wifi_secrets, "DEFAULT_APP_USER", "sentry_op")
-DEFAULT_APP_PASSWORD = getattr(wifi_secrets, "DEFAULT_APP_PASSWORD", "")
-DEFAULT_GUARD_PIN = getattr(wifi_secrets, "DEFAULT_GUARD_PIN", "")
+DEFAULT_APP_USER = getattr(secrets, "DEFAULT_APP_USER", "sentry_op")
+DEFAULT_APP_PASSWORD = getattr(secrets, "DEFAULT_APP_PASSWORD", "")
+DEFAULT_GUARD_PIN = getattr(secrets, "DEFAULT_GUARD_PIN", "")
+DEFAULT_TELEGRAM_BOT_TOKEN = getattr(secrets, "TELEGRAM_BOT_TOKEN", "")
+DEFAULT_TELEGRAM_CHAT_ID = getattr(secrets, "TELEGRAM_CHAT_ID", "")
 
 
 def _configured_value(
@@ -97,6 +101,14 @@ def resolve_account_credentials(
 def resolve_guard_pin() -> str:
     """Resolve the Guard PIN from the environment, falling back to local secrets."""
     return os.environ.get(GUARD_PIN_ENV) or DEFAULT_GUARD_PIN
+
+
+def resolve_telegram_credentials() -> tuple[str, str]:
+    """Resolve Telegram bot token and private-chat ID from env or local secrets."""
+    return (
+        os.environ.get(TELEGRAM_BOT_TOKEN_ENV) or DEFAULT_TELEGRAM_BOT_TOKEN,
+        os.environ.get(TELEGRAM_CHAT_ID_ENV) or DEFAULT_TELEGRAM_CHAT_ID,
+    )
 
 
 WIFI_SSID, WIFI_PASSWORD = resolve_wifi_credentials()

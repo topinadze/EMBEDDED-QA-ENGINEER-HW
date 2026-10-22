@@ -66,7 +66,7 @@ def _restore_saved_wifi(
     if not ssid or not password:
         raise AssertionError(
             "Saved-profile Wi-Fi reconnect failed and configured SSID/password are "
-            "unavailable for the connect fallback. Configure config/wifi_secrets.py, "
+            "unavailable for the connect fallback. Configure config/secrets.py, "
             "HW17_WIFI_SSID/HW17_WIFI_PASSWORD, TEST_WIFI_SSID/TEST_WIFI_PASSWORD, "
             "or --wifi-ssid/--wifi-password."
         )

@@ -2,6 +2,7 @@ param(
     [Parameter(Mandatory=$false)][string]$Fw = "2.1.0",
     [string]$Markers = "",
     [string]$Port = "COM4",
+    [ValidateSet("console", "telegram")][string]$InteractionMode = "console",
     [switch]$Interactive,
     [switch]$All,
     [switch]$Persistent,
@@ -67,4 +68,16 @@ $pytestArgs += @(
 )
 
 Write-Host "Running Sonar Distance tests with markers: '$Markers' against FW $Fw on $Port..." -ForegroundColor Cyan
-& $python @pytestArgs
+$previousInteractionMode = [Environment]::GetEnvironmentVariable("INTERACTION_MODE", "Process")
+try {
+    $env:INTERACTION_MODE = $InteractionMode
+    & $python @pytestArgs
+    $pytestExitCode = $LASTEXITCODE
+} finally {
+    if ($null -eq $previousInteractionMode) {
+        Remove-Item Env:INTERACTION_MODE -ErrorAction SilentlyContinue
+    } else {
+        $env:INTERACTION_MODE = $previousInteractionMode
+    }
+}
+exit $pytestExitCode

@@ -3,6 +3,7 @@ param(
     [string]$Markers = "",
     [string]$TestName = "",
     [string]$Port = "COM4",
+    [ValidateSet("console", "telegram")][string]$InteractionMode = "console",
     [switch]$Interactive,
     [switch]$All,
     [switch]$Persistent
@@ -54,5 +55,16 @@ if ($TestName) {
 }
 
 Write-Host "Running Guard tests with markers: '$Markers' against FW $Fw on $Port..." -ForegroundColor Cyan
-& $python @pytestArgs
-exit $LASTEXITCODE
+$previousInteractionMode = [Environment]::GetEnvironmentVariable("INTERACTION_MODE", "Process")
+try {
+    $env:INTERACTION_MODE = $InteractionMode
+    & $python @pytestArgs
+    $pytestExitCode = $LASTEXITCODE
+} finally {
+    if ($null -eq $previousInteractionMode) {
+        Remove-Item Env:INTERACTION_MODE -ErrorAction SilentlyContinue
+    } else {
+        $env:INTERACTION_MODE = $previousInteractionMode
+    }
+}
+exit $pytestExitCode

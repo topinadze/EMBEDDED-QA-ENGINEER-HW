@@ -9,6 +9,12 @@ from collections.abc import Callable
 
 import allure
 import pytest
+from utils.telegram_helper import (
+    lamp_color_marker,
+    telegram_choice,
+    telegram_notify,
+    telegram_text,
+)
 
 LOGGER = logging.getLogger(__name__)
 
@@ -26,6 +32,31 @@ PREPARE_COLOR = "1;36"
 CHECK_COLOR = "1;33"
 PASS_COLOR = "1;32"
 FAIL_COLOR = "1;31"
+TELEGRAM_TIMEOUT_SECONDS = 300
+
+
+def interaction_mode() -> str:
+    mode = os.environ.get("INTERACTION_MODE", "console").strip().casefold()
+    if mode not in {"console", "telegram"}:
+        raise pytest.UsageError(
+            "INTERACTION_MODE must be either 'console' or 'telegram'."
+        )
+    return mode
+
+
+def _telegram_mode() -> bool:
+    return interaction_mode() == "telegram"
+
+
+def _telegram_timeout() -> int:
+    raw_timeout = os.environ.get("TELEGRAM_TIMEOUT", str(TELEGRAM_TIMEOUT_SECONDS))
+    try:
+        timeout = int(raw_timeout)
+    except ValueError as error:
+        raise pytest.UsageError("TELEGRAM_TIMEOUT must be an integer.") from error
+    if timeout <= 0:
+        raise pytest.UsageError("TELEGRAM_TIMEOUT must be positive.")
+    return timeout
 
 
 def _supports_color() -> bool:
@@ -72,10 +103,21 @@ def _add_lamp_color_indicators(text: str) -> str:
     return pattern.sub(apply_color, text)
 
 
+def _rgb_color_chip(rgb: tuple[int, int, int]) -> str:
+    red, green, blue = rgb
+    if not _supports_color():
+        return "[RGB sample]"
+    return f"\033[48;2;{red};{green};{blue}m  \033[0m [sample]"
+
+
 def _highlight_instruction(instruction: str, color_code: str) -> str:
     highlighted: list[str] = []
     for line in instruction.splitlines():
-        match = re.match(r"^(What to do:|What to observe:|Duration:)(.*)$", line)
+        match = re.match(
+            r"^(➡️ ACTION:|👀 OBSERVE:|⏱ DURATION:|"
+            r"What to do:|What to observe:|Duration:)(.*)$",
+            line,
+        )
         if match:
             label = _style(match.group(1), color_code)
             highlighted.append(f"  {label}{match.group(2)}")
@@ -211,7 +253,38 @@ class SoftChecks:
 @allure.step("Manual preparation: {instruction}")
 def prepare_manually(instruction: str) -> None:
     """Pause so the operator can prepare and watch the device before the next action."""
-    _print_manual_prompt("GET READY - MANUAL PREPARE", instruction, PREPARE_COLOR)
+    if _telegram_mode():
+        try:
+            telegram_instruction = f"🧰 GET READY\n\n{instruction}"
+            telegram_instruction = telegram_instruction.replace(
+                "What to do:", "➡️ ACTION:"
+            ).replace("What to observe:", "👀 OBSERVE:").replace(
+                "Duration:", "⏱ DURATION:"
+            )
+            telegram_choice(
+                telegram_instruction,
+                [("ready", "Ready")],
+                _telegram_timeout(),
+            )
+        except TimeoutError:
+            _attach_manual_feedback(
+                instruction, "NOT RECORDED (Telegram preparation timeout)"
+            )
+            pytest.fail("Operator did not confirm preparation in Telegram before timeout.")
+        LOGGER.info("MANUAL PREPARE | Operator confirmed readiness via Telegram.")
+        allure.attach(
+            f"Operator confirmed readiness.\n{instruction}",
+            name="Telegram preparation confirmation",
+            attachment_type=allure.attachment_type.TEXT,
+        )
+        return
+
+    console_instruction = instruction.replace(
+        "What to do:", "➡️ ACTION:"
+    ).replace("What to observe:", "👀 OBSERVE:").replace(
+        "Duration:", "⏱ DURATION:"
+    )
+    _print_manual_prompt("🧰 GET READY", console_instruction, PREPARE_COLOR)
     LOGGER.info("MANUAL PREPARE | Waiting for operator confirmation.")
     try:
         input(_input_prompt("Press Enter when ready:", PREPARE_COLOR))
@@ -223,20 +296,40 @@ def prepare_manually(instruction: str) -> None:
 def enter_reference_distance(label: str) -> float:
     """Collect and record the operator-measured target distance in centimeters."""
     while True:
-        try:
-            response = input(_input_prompt(f"{label} (cm):", PREPARE_COLOR)).strip()
-        except EOFError:
-            _attach_manual_feedback(label, "NOT RECORDED (no interactive input)")
-            pytest.fail("Manual input is unavailable; run pytest with -s in a terminal.")
+        if _telegram_mode():
+            try:
+                response = telegram_text(
+                    f"Enter the ruler-measured distance for {label} in centimeters.",
+                    _telegram_timeout(),
+                )
+            except TimeoutError:
+                _attach_manual_feedback(label, "NOT RECORDED (Telegram input timeout)")
+                pytest.fail("Operator did not enter a distance in Telegram before timeout.")
+        else:
+            try:
+                response = input(_input_prompt(f"{label} (cm):", PREPARE_COLOR)).strip()
+            except EOFError:
+                _attach_manual_feedback(label, "NOT RECORDED (no interactive input)")
+                pytest.fail(
+                    "Manual input is unavailable; run pytest with -s in a terminal."
+                )
 
         try:
             distance_cm = float(response.replace(",", "."))
         except ValueError:
-            _print_manual_notice("Enter a numeric distance in centimeters, for example 20 or 20.5.")
+            notice = "Enter a numeric distance in centimeters, for example 20 or 20.5."
+            if _telegram_mode():
+                telegram_notify(notice)
+            else:
+                _print_manual_notice(notice)
             continue
 
         if not math.isfinite(distance_cm) or distance_cm <= 0:
-            _print_manual_notice("Distance must be a finite value greater than 0 cm.")
+            notice = "Distance must be a finite value greater than 0 cm."
+            if _telegram_mode():
+                telegram_notify(notice)
+            else:
+                _print_manual_notice(notice)
             continue
 
         recorded = f"{label}: {distance_cm:.2f} cm"
@@ -253,19 +346,36 @@ def enter_reference_distance(label: str) -> float:
 def ask_to_continue_measurements() -> bool:
     """Ask the operator whether another physical target position should be measured."""
     while True:
-        try:
-            response = input(
-                _input_prompt(
-                    "Measure another target position? [y] yes / [n] finish:",
-                    PREPARE_COLOR,
+        if _telegram_mode():
+            try:
+                answer = telegram_choice(
+                    "Measure another target position?",
+                    [("yes", "Yes"), ("no", "Finish")],
+                    _telegram_timeout(),
                 )
-            ).strip().casefold()
-        except EOFError:
-            _attach_manual_feedback(
-                "Continue the distance measurement series",
-                "NOT RECORDED (no interactive input)",
-            )
-            pytest.fail("Manual input is unavailable; run pytest with -s in a terminal.")
+            except TimeoutError:
+                _attach_manual_feedback(
+                    "Continue the distance measurement series",
+                    "NOT RECORDED (Telegram response timeout)",
+                )
+                pytest.fail("Operator did not respond in Telegram before timeout.")
+            response = "yes" if answer == "yes" else "no"
+        else:
+            try:
+                response = input(
+                    _input_prompt(
+                        "Measure another target position? [y] yes / [n] finish:",
+                        PREPARE_COLOR,
+                    )
+                ).strip().casefold()
+            except EOFError:
+                _attach_manual_feedback(
+                    "Continue the distance measurement series",
+                    "NOT RECORDED (no interactive input)",
+                )
+                pytest.fail(
+                    "Manual input is unavailable; run pytest with -s in a terminal."
+                )
 
         if response in {"y", "yes"}:
             LOGGER.info("MANUAL INPUT | Continue distance measurements: yes")
@@ -288,9 +398,78 @@ def ask_to_continue_measurements() -> bool:
 
 
 @allure.step("Manual verification: {instruction}")
-def verify_manually(instruction: str) -> bool:
+def verify_manually(
+    instruction: str,
+    *,
+    expected_rgb: tuple[int, int, int] | None = None,
+    expected_color: str | None = None,
+) -> bool:
     """Ask for an observed physical result; return False (not raise) on 'n'."""
-    _print_manual_prompt("MANUAL CHECK", instruction, CHECK_COLOR)
+    if _telegram_mode():
+        try:
+            choices = [
+                ("pass", "Pass"),
+                ("fail", "Fail"),
+                ("comment", "Add comment"),
+            ]
+            if expected_rgb is None:
+                prompt = f"👀 MANUAL CHECK\n\n{instruction}"
+            else:
+                marker = lamp_color_marker(expected_color)
+                color_name = expected_color.upper() if expected_color else "CUSTOM COLOR"
+                prompt = (
+                    f"{marker} LAMP COLOR CHECK — {color_name}\n\n"
+                    f"Does the lit Beacon look {color_name}?\n"
+                    f"Expected RGB: {expected_rgb[0]}, {expected_rgb[1]}, "
+                    f"{expected_rgb[2]}"
+                )
+            if expected_rgb is None:
+                response = telegram_choice(prompt, choices, _telegram_timeout())
+            else:
+                response = telegram_choice(
+                    prompt,
+                    choices,
+                    _telegram_timeout(),
+                    expected_rgb=expected_rgb,
+                    expected_color=expected_color,
+                )
+            comment: str | None = None
+            if response == "comment":
+                comment = telegram_text(
+                    "Add a non-sensitive observation. Do not enter passwords, "
+                    "tokens, or secrets.",
+                    _telegram_timeout(),
+                )
+                response = telegram_choice(
+                    f"👀 MANUAL CHECK\n\n{instruction}\n\n"
+                    f"Comment: {_redact_sensitive_comment(comment)}",
+                    [("pass", "Pass"), ("fail", "Fail")],
+                    _telegram_timeout(),
+                )
+        except TimeoutError:
+            _attach_manual_feedback(
+                instruction, "NOT RECORDED (Telegram response timeout)"
+            )
+            pytest.fail("Operator did not complete the Telegram check before timeout.")
+
+        passed = response == "pass"
+        result = "PASS" if passed else "FAIL"
+        _attach_manual_feedback(instruction, result, comment)
+        LOGGER.info("MANUAL RESULT | %s via Telegram", result)
+        return passed
+
+    display_instruction = instruction
+    heading = "👀 MANUAL CHECK"
+    if expected_rgb is not None:
+        marker = lamp_color_marker(expected_color)
+        color_name = expected_color.upper() if expected_color else "CUSTOM COLOR"
+        heading = f"{marker} LAMP COLOR CHECK — {color_name}"
+        display_instruction = (
+            f"Does the lit Beacon look {color_name}?\n"
+            f"Reference: {_rgb_color_chip(expected_rgb)}\n"
+            f"Expected RGB: {expected_rgb[0]}, {expected_rgb[1]}, {expected_rgb[2]}"
+        )
+    _print_manual_prompt(heading, display_instruction, CHECK_COLOR)
 
     comment: str | None = None
     while True:
@@ -310,7 +489,7 @@ def verify_manually(instruction: str) -> bool:
             passed = response == "y"
             result = "PASS" if passed else "FAIL"
             _attach_manual_feedback(instruction, result, comment)
-            _print_manual_result(result, instruction, comment)
+            _print_manual_result(result, display_instruction, comment)
             return passed
         if response == "c":
             try:

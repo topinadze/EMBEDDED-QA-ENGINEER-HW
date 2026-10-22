@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import builtins
 import io
+import re
 import pytest
 import manual_checks
 
@@ -24,6 +25,126 @@ def test_manual_check_records_pass(monkeypatch: pytest.MonkeyPatch) -> None:
 def test_manual_check_records_failure(monkeypatch: pytest.MonkeyPatch) -> None:
     _provide_responses(monkeypatch, "n")
     assert manual_checks.verify_manually("LED shows red.") is False
+
+
+def test_manual_prepare_routes_to_telegram(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    calls: list[tuple[str, list[tuple[str, str]], int]] = []
+
+    def choose(instruction: str, choices: list[tuple[str, str]], timeout: int) -> str:
+        calls.append((instruction, choices, timeout))
+        return "ready"
+
+    monkeypatch.setenv("INTERACTION_MODE", "telegram")
+    monkeypatch.setenv("TELEGRAM_TIMEOUT", "25")
+    monkeypatch.setattr(manual_checks, "telegram_choice", choose)
+
+    manual_checks.prepare_manually("What to do: Watch the LED.")
+
+    assert calls == [
+        (
+            "🧰 GET READY\n\n➡️ ACTION: Watch the LED.",
+            [("ready", "Ready")],
+            25,
+        )
+    ]
+
+
+def test_manual_check_routes_pass_and_comment_to_telegram(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    choices = iter(["comment", "pass"])
+    prompts: list[str] = []
+    texts: list[str] = []
+
+    def choose(
+        instruction: str, buttons: list[tuple[str, str]], timeout: int
+    ) -> str:
+        prompts.append(instruction)
+        return next(choices)
+
+    monkeypatch.setenv("INTERACTION_MODE", "telegram")
+    monkeypatch.setattr(manual_checks, "telegram_choice", choose)
+    monkeypatch.setattr(
+        manual_checks,
+        "telegram_text",
+        lambda prompt, timeout: texts.append(prompt) or "Observed green.",
+    )
+
+    assert manual_checks.verify_manually("The status LED is green.") is True
+    assert texts == [
+        "Add a non-sensitive observation. Do not enter passwords, tokens, or secrets."
+    ]
+    assert "Comment: Observed green." in prompts[1]
+
+
+def test_manual_check_sends_expected_rgb_to_telegram(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    calls: list[
+        tuple[
+            str,
+            list[tuple[str, str]],
+            int,
+            tuple[int, int, int] | None,
+            str | None,
+        ]
+    ] = []
+
+    def choose(
+        instruction: str,
+        buttons: list[tuple[str, str]],
+        timeout: int,
+        *,
+        expected_rgb: tuple[int, int, int] | None = None,
+        expected_color: str | None = None,
+    ) -> str:
+        calls.append((instruction, buttons, timeout, expected_rgb, expected_color))
+        return "pass"
+
+    monkeypatch.setenv("INTERACTION_MODE", "telegram")
+    monkeypatch.setattr(manual_checks, "telegram_choice", choose)
+
+    assert manual_checks.verify_manually(
+        "Does the lamp match yellow?",
+        expected_rgb=(255, 180, 0),
+        expected_color="yellow",
+    )
+    assert calls == [
+        (
+            "🟡 LAMP COLOR CHECK — YELLOW\n\n"
+            "Does the lit Beacon look YELLOW?\nExpected RGB: 255, 180, 0",
+            [("pass", "Pass"), ("fail", "Fail"), ("comment", "Add comment")],
+            300,
+            (255, 180, 0),
+            "yellow",
+        )
+    ]
+    assert "🟡 LAMP COLOR CHECK — YELLOW" in calls[0][0]
+    assert "Expected RGB: 255, 180, 0" in calls[0][0]
+
+
+def test_manual_distance_routes_text_to_telegram(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    monkeypatch.setenv("INTERACTION_MODE", "telegram")
+    monkeypatch.setattr(manual_checks, "telegram_text", lambda prompt, timeout: "20,5")
+
+    assert manual_checks.enter_reference_distance("Measured target") == 20.5
+
+
+def test_manual_continue_routes_choice_to_telegram(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    monkeypatch.setenv("INTERACTION_MODE", "telegram")
+    monkeypatch.setattr(
+        manual_checks,
+        "telegram_choice",
+        lambda instruction, choices, timeout: "no",
+    )
+
+    assert manual_checks.ask_to_continue_measurements() is False
 
 
 def test_manual_check_records_comment_then_result(
@@ -71,7 +192,7 @@ def test_prepare_waits_for_enter_and_displays_clear_phase(
     assert "=" * 70 in output
     assert "+" not in output
     assert "|" not in output
-    assert "GET READY - MANUAL PREPARE" in output
+    assert "🧰 GET READY" in output
     assert "  Watch the LED." in output
     assert "\033[" not in output
     assert "MANUAL PREPARE | Waiting for operator confirmation." in caplog.text
@@ -100,12 +221,12 @@ def test_prepare_uses_color_on_interactive_terminal(
     prompt = output.getvalue()
     assert "\033[1;36m" + "=" * 70 + "\033[0m" in prompt
     assert "+-" not in prompt
-    assert "GET READY - MANUAL PREPARE" in prompt
+    assert "🧰 GET READY" in prompt
     assert "\033[94m●\033[0m Blue lamp" in prompt
     assert "\033[1;38;2;0;128;255m●\033[0m RGB (0, 128, 255)" in prompt
-    assert "\033[1;36mWhat to observe:\033[0m" in prompt
-    assert "\033[1;36mWhat to do:\033[0m" in prompt
-    assert "\033[1;36mDuration:\033[0m" in prompt
+    assert "\033[1;36m👀 OBSERVE:\033[0m" in prompt
+    assert "\033[1;36m➡️ ACTION:\033[0m" in prompt
+    assert "\033[1;36m⏱ DURATION:\033[0m" in prompt
     assert "invalid RGB (300, 0, 0)" in prompt
     assert "\033[38;2;300;0;0m" not in prompt
 
@@ -169,6 +290,58 @@ def test_manual_check_colorizes_input_and_result_notifications(
     manual_checks._print_manual_result("PASS", "Relay opens.")
     assert "\033[1;32mMANUAL RESULT - PASS\033[0m" in output.getvalue()
     assert "MANUAL RESULT - PASS" in output.getvalue()
+
+
+def test_manual_lamp_check_shows_rgb_color_sample_in_terminal(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    class TTYOutput(io.StringIO):
+        def isatty(self) -> bool:
+            return True
+
+    output = TTYOutput()
+    monkeypatch.setattr(manual_checks.sys, "stdout", output)
+    monkeypatch.delenv("NO_COLOR", raising=False)
+    monkeypatch.delenv("TERM", raising=False)
+    _provide_responses(monkeypatch, "y")
+
+    assert manual_checks.verify_manually(
+        "Long legacy prompt should not be shown.",
+        expected_rgb=(255, 80, 0),
+        expected_color="orange",
+    )
+
+    rendered = output.getvalue()
+    plain_text = re.sub(r"\033\[[0-9;]*m", "", rendered)
+    assert "🟠 LAMP COLOR CHECK — ORANGE" in plain_text
+    assert "Does the lit Beacon look" in plain_text
+    assert "ORANGE?" in plain_text
+    assert "[sample]" in plain_text
+    assert "\033[48;2;255;80;0m  \033[0m" in rendered
+    assert "Expected RGB: 255, 80, 0" in plain_text
+    assert "Long legacy prompt should not be shown." not in plain_text
+
+
+def test_manual_lamp_check_remains_clear_without_terminal_color(
+    monkeypatch: pytest.MonkeyPatch,
+    capsys: pytest.CaptureFixture[str],
+) -> None:
+    monkeypatch.setenv("NO_COLOR", "1")
+    _provide_responses(monkeypatch, "y")
+
+    assert manual_checks.verify_manually(
+        "Long legacy prompt should not be shown.",
+        expected_rgb=(255, 80, 0),
+        expected_color="orange",
+    )
+
+    rendered = capsys.readouterr().out
+    assert "🟠 LAMP COLOR CHECK — ORANGE" in rendered
+    assert "[RGB sample]" in rendered
+    assert "Expected RGB: 255, 80, 0" in rendered
+    assert "\033[" not in rendered
+    assert "Long legacy prompt should not be shown." not in rendered
+
 
 def test_prepare_observation_formats_action_expectation_and_duration() -> None:
     prompts: list[str] = []

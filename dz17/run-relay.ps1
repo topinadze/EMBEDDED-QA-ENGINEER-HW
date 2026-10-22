@@ -3,6 +3,7 @@ param(
     [string]$Markers = "",
     [string]$TestName = "",
     [string]$Port = "COM4",
+    [ValidateSet("console", "telegram")][string]$InteractionMode = "console",
     [switch]$Interactive,
     [switch]$All,
     [switch]$Persistent
@@ -74,5 +75,16 @@ if ($runManualChecks) {
     Write-Warning "This selection includes operator interaction. Prepare to observe the relay and/or GPIO4 indicator and respond to the test prompts."
 }
 Write-Host "Running Relay tests with markers: '$Markers' against FW $Fw on $Port (manual checks: $runManualChecks)..." -ForegroundColor Cyan
-& $python @pytestArgs
-exit $LASTEXITCODE
+$previousInteractionMode = [Environment]::GetEnvironmentVariable("INTERACTION_MODE", "Process")
+try {
+    $env:INTERACTION_MODE = $InteractionMode
+    & $python @pytestArgs
+    $pytestExitCode = $LASTEXITCODE
+} finally {
+    if ($null -eq $previousInteractionMode) {
+        Remove-Item Env:INTERACTION_MODE -ErrorAction SilentlyContinue
+    } else {
+        $env:INTERACTION_MODE = $previousInteractionMode
+    }
+}
+exit $pytestExitCode

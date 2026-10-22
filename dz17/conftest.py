@@ -8,10 +8,11 @@ import time
 from collections.abc import Callable, Generator
 from datetime import datetime
 from pathlib import Path
-from typing import Any
+from typing import Any, Protocol
 
 import allure
 import pytest
+from allure_pytest.utils import allure_name
 import serial.tools.list_ports
 
 DZ17_DIR = Path(__file__).resolve().parent
@@ -39,9 +40,11 @@ from manual_checks import (
     SoftChecks,
     ask_to_continue_measurements,
     enter_reference_distance,
+    interaction_mode,
     prepare_manually,
     verify_manually,
 )
+from utils.telegram_helper import telegram_client
 from tests.lamp_test_helpers import LampState, cleanup_lamp_test_state
 
 ESP32_VIDS = {0x10C4, 0x1A86, 0x0403, 0x303A}
@@ -49,9 +52,20 @@ ESP32_DESCRIPTORS = ("cp210", "ch340", "ch343", "ft232", "esp32", "usb-to-uart",
 SUPPORTED_VERSIONS = {"2.1.0", "2.3.0"}
 FIRMWARE_VERSION_KEY = pytest.StashKey[str]()
 LAMP_STATE_FIXTURE_ACTIVE = pytest.StashKey[bool]()
+TELEGRAM_STATUS_MESSAGE_KEY = pytest.StashKey[int]()
 WIFI_STATUS_ATTEMPTS = 3
 IDENTITY_ATTEMPTS = 3
 FIRMWARE_VERSION_ATTEMPTS = 3
+
+
+class ManualCheck(Protocol):
+    def __call__(
+        self,
+        instruction: str,
+        *,
+        expected_rgb: tuple[int, int, int] | None = None,
+        expected_color: str | None = None,
+    ) -> bool | None: ...
 
 
 def _debug_logging_enabled(config: pytest.Config) -> bool:
@@ -67,6 +81,51 @@ def _debug_logging_enabled(config: pytest.Config) -> bool:
             else getattr(logging, normalized_level, None)
         )
     return isinstance(level, int) and level <= logging.DEBUG
+
+
+def _update_telegram_test_status(config: pytest.Config, text: str) -> None:
+    if interaction_mode() != "telegram":
+        return
+
+    client = telegram_client()
+    message_id = config.stash.get(TELEGRAM_STATUS_MESSAGE_KEY, None)
+    if message_id is None:
+        config.stash[TELEGRAM_STATUS_MESSAGE_KEY] = client.send_message(text)
+    else:
+        client.edit_message(message_id, text)
+
+
+def _display_test_name(item: pytest.Item) -> str:
+    if getattr(getattr(item, "obj", None), "__allure_display_name__", None) is None:
+        return item.nodeid
+    callspec = getattr(item, "callspec", None)
+    parameters = getattr(callspec, "params", {})
+    param_id = getattr(callspec, "id", None)
+    return allure_name(item, parameters, param_id)
+
+
+def _test_result_status(item: pytest.Item) -> str:
+    reports = [
+        getattr(item, f"rep_{phase}", None)
+        for phase in ("setup", "call", "teardown")
+    ]
+    reports = [report for report in reports if report is not None]
+
+    if any(
+        getattr(report, "when", None) == "call"
+        and report.failed
+        and "[XPASS(strict)]" in str(report.longrepr)
+        for report in reports
+    ):
+        return "XPASS"
+    if any(report.failed for report in reports):
+        return "FAILED"
+    for report in reports:
+        if getattr(report, "wasxfail", None):
+            return "XFAIL" if report.skipped else "XPASS"
+    if any(report.skipped for report in reports):
+        return "SKIPPED"
+    return "PASSED"
 
 
 def _save_automated_uart_log(
@@ -216,16 +275,32 @@ def _find_esp32_port() -> str:
 
 
 def pytest_runtest_setup(item: pytest.Item) -> None:
+    is_interactive = item.get_closest_marker("interactive") is not None
+    mode = interaction_mode()
+    if is_interactive and mode == "telegram":
+        try:
+            telegram_client()
+        except ValueError as error:
+            raise pytest.UsageError(str(error)) from error
+
     requires_console = item.get_closest_marker("lamp") is None or item.config.getoption(
         "manual_checks"
     )
     if (
-        item.get_closest_marker("interactive") is not None
+        is_interactive
         and requires_console
+        and mode == "console"
         and item.config.getoption("capture") != "no"
     ):
         pytest.fail(
             "Interactive checks require console input; run with '-s'."
+        )
+
+    if mode == "telegram":
+        display_name = _display_test_name(item)
+        _update_telegram_test_status(
+            item.config,
+            f"▶️ {display_name}",
         )
 
 
@@ -236,9 +311,23 @@ def pytest_runtest_makereport(
     outcome = yield
     report = outcome.get_result()
     setattr(item, f"rep_{report.when}", report)
+    if (
+        report.when == "teardown"
+        and item.config.stash.get(TELEGRAM_STATUS_MESSAGE_KEY, None) is not None
+    ):
+        _update_telegram_test_status(
+            item.config,
+            f"{_test_result_status(item)} | {_display_test_name(item)}",
+        )
 
 
-def _require_console(pytestconfig: pytest.Config) -> None:
+def _require_operator_channel(pytestconfig: pytest.Config) -> None:
+    if interaction_mode() == "telegram":
+        try:
+            telegram_client()
+        except ValueError as error:
+            raise pytest.UsageError(str(error)) from error
+        return
     if pytestconfig.getoption("capture") != "no":
         pytest.fail(
             "Interactive checks require console input; run with '-s'."
@@ -248,14 +337,15 @@ def _require_console(pytestconfig: pytest.Config) -> None:
 @pytest.fixture
 def manual_check(
     pytestconfig: pytest.Config, request: pytest.FixtureRequest
-) -> Callable[[str], bool | None]:
+) -> ManualCheck:
     if (
         request.node.get_closest_marker("lamp") is not None
         and not pytestconfig.getoption("manual_checks")
+        and interaction_mode() == "console"
     ):
-        return lambda instruction: None
+        return lambda instruction, *, expected_rgb=None, expected_color=None: None
 
-    _require_console(pytestconfig)
+    _require_operator_channel(pytestconfig)
     return verify_manually
 
 
@@ -266,6 +356,7 @@ def manual_prepare(
     if (
         request.node.get_closest_marker("lamp") is not None
         and not pytestconfig.getoption("manual_checks")
+        and interaction_mode() == "console"
     ):
         def skip_manual_preparation(instruction: str) -> None:
             with allure.step("Manual preparation not run (UART-only mode)"):
@@ -280,7 +371,7 @@ def manual_prepare(
 
         return skip_manual_preparation
 
-    _require_console(pytestconfig)
+    _require_operator_channel(pytestconfig)
     return prepare_manually
 
 
@@ -288,7 +379,7 @@ def manual_prepare(
 def manual_distance(
     pytestconfig: pytest.Config,
 ) -> Callable[[str], float]:
-    _require_console(pytestconfig)
+    _require_operator_channel(pytestconfig)
     return enter_reference_distance
 
 
@@ -296,7 +387,7 @@ def manual_distance(
 def manual_continue(
     pytestconfig: pytest.Config,
 ) -> Callable[[], bool]:
-    _require_console(pytestconfig)
+    _require_operator_channel(pytestconfig)
     return ask_to_continue_measurements
 
 
@@ -443,7 +534,7 @@ def wifi_ssid(request: pytest.FixtureRequest) -> str:
     )
     if not ssid:
         pytest.skip(
-            f"Configure config/wifi_secrets.py or {WIFI_SSID_ENV}, "
+            f"Configure config/secrets.py or {WIFI_SSID_ENV}, "
             "TEST_WIFI_SSID, or --wifi-ssid to run Wi-Fi tests."
         )
     return ssid
@@ -460,7 +551,7 @@ def wifi_credentials(
     )
     if not password:
         pytest.skip(
-            f"Configure config/wifi_secrets.py or {WIFI_PASSWORD_ENV}, "
+            f"Configure config/secrets.py or {WIFI_PASSWORD_ENV}, "
             "TEST_WIFI_PASSWORD, or --wifi-password to run credential-based Wi-Fi tests."
         )
     if len(password) < 8:
@@ -506,7 +597,7 @@ def guard_pin() -> str:
     pin = resolve_guard_pin()
     if not pin:
         pytest.skip(
-            f"Set DEFAULT_GUARD_PIN in config/wifi_secrets.py or {GUARD_PIN_ENV} "
+            f"Set DEFAULT_GUARD_PIN in config/secrets.py or {GUARD_PIN_ENV} "
             "in the local environment to run Guard alarm tests."
         )
     if not re.fullmatch(r"\d{4}", pin):

@@ -2,6 +2,7 @@ param(
     [Parameter(Mandatory=$false)][string]$Fw = "2.1.0",
     [string]$Markers = "",
     [string]$Port = "COM4",
+    [ValidateSet("console", "telegram")][string]$InteractionMode = "console",
     [string]$WifiSsid,
     [securestring]$WifiPassword,
     [switch]$Interactive,
@@ -70,5 +71,16 @@ if ($PSBoundParameters.ContainsKey("WifiPassword")) {
 }
 
 Write-Host "Running DZ17 tests with markers: '$Markers' against FW $Fw on $Port..." -ForegroundColor Cyan
-& $python @pytestArgs
-exit $LASTEXITCODE
+$previousInteractionMode = [Environment]::GetEnvironmentVariable("INTERACTION_MODE", "Process")
+try {
+    $env:INTERACTION_MODE = $InteractionMode
+    & $python @pytestArgs
+    $pytestExitCode = $LASTEXITCODE
+} finally {
+    if ($null -eq $previousInteractionMode) {
+        Remove-Item Env:INTERACTION_MODE -ErrorAction SilentlyContinue
+    } else {
+        $env:INTERACTION_MODE = $previousInteractionMode
+    }
+}
+exit $pytestExitCode

@@ -9,11 +9,13 @@ dz17/
 ├── config/
 │   ├── test_config.py          # Credential resolution (env vars, secrets, CLI overrides)
 │   ├── wifi_config.py          # Wi-Fi and UART configuration compatibility facade
-│   ├── wifi_secrets.example.py # Template for local credentials
-│   └── wifi_secrets.py         # Local credentials (git-ignored)
+│   ├── secrets.example.py      # Template for local credentials
+│   └── secrets.py              # Local credentials (git-ignored)
 ├── drivers/
 │   └── device_driver.py        # SENTRY SWM-2 UART driver (parsers for [BEACON], [LINK], [SONAR], [VALVE], etc.)
 ├── manual_checks.py            # Operator preparation prompts (manual_prepare) and verification (manual_check)
+├── utils/
+│   └── telegram_helper.py      # Synchronous Telegram Bot API interaction client
 ├── pytest.ini                  # Pytest markers and default exclusion of interactive & persistent tests
 ├── conftest.py                 # Fixtures: firmware/UART lifecycle and Beacon state teardown
 ├── tests/
@@ -27,7 +29,8 @@ dz17/
 │   ├── test_guard.py           # Partial GD-1 to GD-3 coverage: status/zones, arming and panic
 │   ├── test_alert.py           # Partial AL-1 to AL-5 coverage: generation, listing, acknowledgement, critical effects
 │   ├── test_device_driver_parsers.py # Unit tests for driver UART parsers (no hardware required)
-│   └── test_manual_checks.py   # Unit tests for manual check protocol (no hardware required)
+│   ├── test_manual_checks.py   # Unit tests for console/Telegram manual-check routing
+│   └── test_telegram_helper.py # Offline tests for Telegram API filtering and failures
 ├── run.ps1                     # Main test launcher
 ├── run-lamp.ps1                # Lamp test launcher
 ├── run-wifi.ps1                # Wi-Fi test launcher
@@ -45,7 +48,7 @@ dz17/
   2. **What to observe**: LED color, relay click, measurement stream.
   3. **Duration / time limit**: specified time (e.g. ~5-10 s).
   4. **Confirmation**: waits for Enter before proceeding (`Press Enter when ready:`).
-  Every operator-facing notification (preparation, manual check, result, and invalid response) is separated by simple `=` divider lines, without a box or fixed-width wrapping. Preparation is cyan, checks are yellow, PASS is green, and FAIL/invalid input is red when the terminal supports ANSI color; headings, field labels, and input prompts are highlighted. Recognized lamp/LED color names (for example, “Blue lamp”) and valid RGB triplets also receive color-matched indicator dots. Captured output, `NO_COLOR`, and `TERM=dumb` remain plain text but retain the divider lines. The action, observation, and duration fields are separated by blank lines for readability.
+  Console prompts use concise `GET READY`, `ACTION`, `OBSERVE`, and `DURATION` labels matching the Telegram operator flow. Lamp color checks show the named color, an ANSI RGB sample when supported, and the exact RGB values; `NO_COLOR`, `TERM=dumb`, and captured output retain a readable text label and RGB values without escape codes. Every operator-facing notification is separated by simple `=` dividers, with action, observation, and duration fields separated by blank lines.
 - **Streaming Discipline**:
   Continuous streams (e.g. `distance log 100`, K3 sonar stream) are cleanly stopped (`distance stop` / second K3 tap) and confirmed stopped *before* prompting for manual verification.
 - **Lamp RGB LED and status indication**:
@@ -55,13 +58,33 @@ dz17/
 - **UART Transcript Retention**:
   With DEBUG logging enabled, one latest transcript is kept for each test within each firmware-version folder under `logs/automated/<category>/<firmware>/`. A newer run replaces the previous transcript for that same test and firmware; logs for other tests and firmware versions are retained.
 - **Credentials**:
-  Passwords and tokens are redacted from UART transcripts and Allure attachments; `wifi_secrets.py` is excluded by `.gitignore`.
+  Passwords and tokens are redacted from UART transcripts, Allure attachments, and urllib3 DEBUG request URLs;
+  `secrets.py` is excluded by `.gitignore`.
   Free-text manual comments are sanitized for common password/token/secret key-value formats before
   logging and display; operators should still never enter credentials or secrets in a comment.
-  Copy `config/wifi_secrets.example.py` to `config/wifi_secrets.py` and set the local Wi-Fi and
+  Copy `config/secrets.example.py` to `config/secrets.py` and set the local Wi-Fi and
   device account credentials there. Alternatively, provide account values with `HW17_USER` /
   `HW17_PASSWORD` or `TEST_USER` / `TEST_PASSWORD`; environment values override the local file.
   Do not commit or share the local secrets file.
+- **Telegram operator interaction (optional)**:
+  Console interaction remains the default. Create a bot with Telegram's `@BotFather`, open its private chat,
+  and send `/start`; copy [`config/secrets.example.py`](config/secrets.example.py) to the ignored
+  `config/secrets.py` and set `TELEGRAM_BOT_TOKEN` and numeric private-chat `TELEGRAM_CHAT_ID` there.
+  Optionally override these with same-named environment variables. Never put the bot token in tracked source,
+  test output, or command history. The bot accepts
+  button callbacks and text input only from the configured private chat/user; text input may be a normal message
+  or a reply to the prompt. Replies to a different bot prompt are ignored. `TELEGRAM_TIMEOUT` sets the per-response timeout in seconds (default 300). Run only one pytest process
+  with a given bot token at a time because Telegram `getUpdates` polling is exclusive to one consumer. In Telegram
+  mode, one status message in the private chat is updated with the running test's node ID and its final result,
+  avoiding a separate notification for every test. Use `-m interactive` to select operator-dependent cases;
+  Telegram mode does not require `-s`, though it remains compatible with the existing hardware launchers.
+  All DZ17 PowerShell launchers accept `-InteractionMode console` (default) or
+  `-InteractionMode telegram`; for example,
+  `.\run-lamp.ps1 -InteractionMode telegram -Markers "lamp and interactive and persistent" -Interactive -TestName "test_lamp_named_color_visual"`.
+  The launcher temporarily sets `INTERACTION_MODE` for pytest and restores the caller's previous value afterward.
+  Lamp named-color checks also send a PNG reference swatch generated from the test's expected RGB tuple;
+  the operator still confirms the physical LED by eye. HTTP/network failures and missing configuration
+  fail explicitly.
 
 ## Test Execution
 
@@ -72,13 +95,14 @@ dz17/
 | Test selection defaults and marker definitions | [`pytest.ini`](pytest.ini). By default, pytest excludes tests marked `interactive` or `persistent`. |
 | UART port, baud rate, expected firmware | [`conftest.py`](conftest.py): `--port`, `--baudrate`, `--expected-fw-version`. Hardware launchers default to `COM4`; pass `-Port` and `-Fw` to set the target explicitly. Direct pytest defaults to 115200 baud and detects a unique ESP32 port if `--port` is omitted. |
 | Launcher defaults and run options | The relevant [`run-*.ps1`](.) script. Main/lamp/Wi-Fi/buttons/distance launchers default to firmware 2.1.0; Guard and Alert default to 2.3.0. |
-| Wi-Fi, device-account defaults, and Guard PIN | Copy [`config/wifi_secrets.example.py`](config/wifi_secrets.example.py) to the git-ignored `config/wifi_secrets.py` and set `DEFAULT_WIFI_SSID`, `DEFAULT_WIFI_PASSWORD`, `DEFAULT_APP_USER`, `DEFAULT_APP_PASSWORD`, and (for Guard alarm tests) `DEFAULT_GUARD_PIN`. Environment alternatives are `HW17_WIFI_SSID` / `HW17_WIFI_PASSWORD` or `TEST_WIFI_SSID` / `TEST_WIFI_PASSWORD`, `HW17_USER` / `HW17_PASSWORD` or `TEST_USER` / `TEST_PASSWORD`, and `HW17_GUARD_PIN`. Per-run pytest options are `--wifi-ssid`, `--wifi-password`, `--app-user`, and `--app-password`. Environment values override local-file values. |
+| Wi-Fi, device-account defaults, and Guard PIN | Copy [`config/secrets.example.py`](config/secrets.example.py) to the git-ignored `config/secrets.py` and set `DEFAULT_WIFI_SSID`, `DEFAULT_WIFI_PASSWORD`, `DEFAULT_APP_USER`, `DEFAULT_APP_PASSWORD`, and (for Guard alarm tests) `DEFAULT_GUARD_PIN`. Environment alternatives are `HW17_WIFI_SSID` / `HW17_WIFI_PASSWORD` or `TEST_WIFI_SSID` / `TEST_WIFI_PASSWORD`, `HW17_USER` / `HW17_PASSWORD` or `TEST_USER` / `TEST_PASSWORD`, and `HW17_GUARD_PIN`. Per-run pytest options are `--wifi-ssid`, `--wifi-password`, `--app-user`, and `--app-password`. Environment values override local-file values. |
 | Invalid Wi-Fi scenario inputs | Set `HW17_WIFI_WRONG_PASSWORD` (or `TEST_WIFI_WRONG_PASSWORD`) and `HW17_WIFI_MISSING_SSID` (or `TEST_WIFI_MISSING_SSID`) in the local environment. |
-| Guard PIN | Set `DEFAULT_GUARD_PIN` in the git-ignored `config/wifi_secrets.py`, or override it with `HW17_GUARD_PIN`. It must be four digits; do not put it in tracked source or share it. |
+| Guard PIN | Set `DEFAULT_GUARD_PIN` in the git-ignored `config/secrets.py`, or override it with `HW17_GUARD_PIN`. It must be four digits; do not put it in tracked source or share it. |
+| Operator interaction channel | Direct pytest uses `INTERACTION_MODE=console` (default) or `telegram`; all DZ17 launchers accept `-InteractionMode console|telegram`. Telegram requires `TELEGRAM_BOT_TOKEN` and numeric private-chat `TELEGRAM_CHAT_ID` in ignored `config/secrets.py` (or same-named environment overrides). Optional `TELEGRAM_TIMEOUT` defaults to 300 seconds. |
 | Generated logs and test results | `logs/automated/<category>/<firmware>/`; launchers also save dated run logs and JUnit XML. Per-test UART transcripts are written when DEBUG logging is enabled. |
 
 For credentials, precedence is per-run CLI override, then `HW17_*`, then the corresponding
-`TEST_*` variable, then `config/wifi_secrets.py` or the code default. Never commit or share
+`TEST_*` variable, then `config/secrets.py` or the code default. Never commit or share
 credentials.
 
 Before every authenticated test, the fixture verifies a valid Wi-Fi connection and IP even when
@@ -355,7 +379,7 @@ non-zero exit when cleanup is skipped or otherwise not completed. Do not approve
 pending alert or history entry must be preserved. Full-history cleanup is never run by distance,
 lamp, or other non-Alert launchers; those tests check/clean only their own alerts.
 
-Guard arming/disarming and panic tests require `DEFAULT_GUARD_PIN` in the local `config/wifi_secrets.py`
+Guard arming/disarming and panic tests require `DEFAULT_GUARD_PIN` in the local `config/secrets.py`
 or `HW17_GUARD_PIN` in the local environment; the environment variable takes precedence. The PIN
 is redacted from UART and Allure evidence. Configure it locally without sharing it in chat or
 committing it. These tests also require `-s`, an unobstructed sensor path for arming, and operator

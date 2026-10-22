@@ -767,7 +767,7 @@ class TestLamp:
         soft.assert_all()
 
     @allure.story("LM-2 Physical named-color verification")
-    @allure.title("Physically verify Beacon color: {color_name}")
+    @allure.title("Beacon lamp displays {color_name}")
     @pytest.mark.interactive
     @pytest.mark.persistent
     @pytest.mark.parametrize(
@@ -809,7 +809,9 @@ class TestLamp:
         soft.check(
             manual_check(
                 f"Does the main Beacon lamp look steadily {color_name.upper()} "
-                f"(expected RGB {expected_rgb})?"
+                f"(expected RGB {expected_rgb})?",
+                expected_rgb=expected_rgb,
+                expected_color=color_name,
             ),
             f"Physical Beacon color did not visually match {color_name.upper()} "
             f"(UART expected RGB {expected_rgb})",

@@ -97,6 +97,31 @@ def test_account_credentials_use_local_secrets_defaults(
     )
 
 
+def test_telegram_credentials_use_local_secrets_defaults(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    monkeypatch.setattr(test_config, "DEFAULT_TELEGRAM_BOT_TOKEN", "local-token")
+    monkeypatch.setattr(test_config, "DEFAULT_TELEGRAM_CHAT_ID", "123456")
+    monkeypatch.delenv(test_config.TELEGRAM_BOT_TOKEN_ENV, raising=False)
+    monkeypatch.delenv(test_config.TELEGRAM_CHAT_ID_ENV, raising=False)
+
+    assert test_config.resolve_telegram_credentials() == ("local-token", "123456")
+
+
+def test_telegram_environment_credentials_override_local_secrets(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    monkeypatch.setattr(test_config, "DEFAULT_TELEGRAM_BOT_TOKEN", "local-token")
+    monkeypatch.setattr(test_config, "DEFAULT_TELEGRAM_CHAT_ID", "123456")
+    monkeypatch.setenv(test_config.TELEGRAM_BOT_TOKEN_ENV, "environment-token")
+    monkeypatch.setenv(test_config.TELEGRAM_CHAT_ID_ENV, "789012")
+
+    assert test_config.resolve_telegram_credentials() == (
+        "environment-token",
+        "789012",
+    )
+
+
 def test_environment_account_credentials_override_local_defaults(
     monkeypatch: pytest.MonkeyPatch,
 ) -> None:
