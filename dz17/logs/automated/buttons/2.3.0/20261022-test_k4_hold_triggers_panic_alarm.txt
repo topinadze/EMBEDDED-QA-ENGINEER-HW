@@ -1,0 +1,114 @@
+Test: tests/test_guard.py::TestGuard::test_k4_hold_triggers_panic_alarm
+Firmware: 2.3.0
+Captured: 2026-10-22T03:27:29.700990+03:00
+
+TX > version
+RX < version
+RX < I (8310460) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+RX < I (8310460) sentry:   partition: ota_0 @ 0x20000, state: valid
+TX > status
+RX < status
+RX < I (8310670) sentry: === SWM-2 status ===
+RX < I (8310670) sentry:   fw:       v2.3.0 (ota_0)
+RX < I (8310670) sentry:   state:    1 NORMAL
+RX < I (8310670) sentry:   link:     buoy link 'TopA-node', ip 10.223.162.49, rssi -42 dBm (excellent), ch 1
+RX < I (8310680) sentry:   internet: OK
+RX < I (8310680) sentry:   user:     testUser (user)
+RX < I (8310680) sentry:   time:     03:27:11, uptime 2h 18m 30s
+RX < I (8310690) sentry:   valve:    closed
+RX < I (8310690) sentry:   watch:    disarmed, CIC alerts unacked: 16
+RX < I (8310700) sentry:   sonar:    last echo 21.2 cm
+RX < I (8310700) sentry:   carrier:  depth 42.2 m, hull 5.2 bar, water 8.2 C, battery 23.95 V (sim)
+RX < I (8310710) sentry:   heap:     251 KB free
+TX > whoami
+RX < whoami
+RX < I (8310880) sentry: user: testUser, access: user
+TX > guard status
+RX < guard status
+RX < I (8311090) sentry: [WATCH] disarmed, zone 20 cm, last distance 21.2 cm
+TX > relay status
+RX < relay status
+RX < I (8311690) sentry: [VALVE] closed, auto off, cycles 232
+TX > state
+RX < state
+RX < I (8311900) sentry: state: 1 NORMAL
+RX < I (8311900) sentry:   1 normal (patrol) | 2 debug (maintenance) | 3 verbose (tactical) | 4 emergency (surfacing, only from 3)
+RX < I (8318550) sentry: [TELEMETRY #188] 03:27:19 up 02:18:38 heap 251KB rssi -34 temp 32.4C depth 42.2m hull 5.2bar batt 23.9V valve closed sonar 21.2cm watch disarmed alerts 16 state NORMAL
+RX < I (8319530) sentry: [BTN] K4 long press
+RX < E (8319530) sentry: [WATCH] PANIC button (K4)
+RX < E (8319530) sentry: [WATCH] !!! GENERAL ALARM: PANIC button !!! Disarm: 'guard disarm <pin>'
+RX < E (8319530) sentry: [CIC #18 CRITICAL] watch: GENERAL ALARM: PANIC button
+RX < I (8319540) sentry: [VALVE] OPEN (critical alert)
+RX < W (8319540) sentry: [STATE] 1 NORMAL -> 3 VERBOSE (by critical alert)
+RX < I (8319550) sentry: [STATE] VERBOSE (tactical): extended logs, telemetry every 10 s, LED heartbeat
+TX > guard status
+RX < guard status
+RX < I (8319720) sentry: [WATCH] ALARM, zone 20 cm, last distance 21.2 cm
+RX < I (8319720) sentry: [V] 'guard' done in 0 ms
+RX < I (8319940) sentry: [ACU] ambient noise 59 dB re 1uPa, sea state 2, water 8.2 C
+TX > relay status
+RX < relay status
+RX < I (8320330) sentry: [VALVE] OPEN, auto off, cycles 233
+RX < I (8320330) sentry: [V] 'relay' done in 0 ms
+TX > state
+RX < state
+RX < I (8320530) sentry: state: 3 VERBOSE
+RX < I (8320530) sentry:   1 normal (patrol) | 2 debug (maintenance) | 3 verbose (tactical) | 4 emergency (surfacing, only from 3)
+RX < I (8320530) sentry: [V] 'state' done in 3 ms
+TX > alert list
+RX < alert list
+RX < I (8321140) sentry: [CIC] 18 alerts, 17 unacknowledged:
+RX < I (8321140) sentry:   #1   02:08:38 CRITICAL * watch   GENERAL ALARM: PANIC command
+RX < I (8321140) sentry:   #2   02:08:44 WARNING    telemetry WARN watch alarm
+RX < I (8321140) sentry:   #3   02:09:12 CRITICAL * watch   GENERAL ALARM: PANIC button
+RX < I (8321150) sentry:   #4   02:09:22 WARNING  * telemetry WARN watch alarm
+RX < I (8321160) sentry:   #5   02:36:04 WARNING  * telemetry WARN weak signal
+RX < I (8321160) sentry:   #6   02:38:51 INFO     * watch   perimeter watch armed, zone 20 cm
+RX < I (8321170) sentry:   #7   02:39:00 CRITICAL * watch   GENERAL ALARM: PANIC command
+RX < I (8321180) sentry:   #8   02:39:05 WARNING  * telemetry WARN watch alarm
+RX < I (8321190) sentry:   #9   02:39:32 CRITICAL * watch   GENERAL ALARM: PANIC button
+RX < I (8321190) sentry:   #10  02:57:38 WARNING  * sonar   collision risk: contact at 13.7 cm
+RX < I (8321200) sentry:   #11  02:57:48 INFO     * watch   perimeter watch armed, zone 20 cm
+RX < I (8321210) sentry:   #12  02:57:49 WARNING  * watch   intrusion: contact at 13.7 cm
+RX < I (8321220) sentry:   #13  03:14:07 CRITICAL * watch   GENERAL ALARM: PANIC command
+RX < I (8321220) sentry:   #14  03:14:17 WARNING  * telemetry WARN watch alarm
+RX < I (8321230) sentry:   #15  03:14:29 CRITICAL * watch   GENERAL ALARM: PANIC button
+RX < I (8321240) sentry:   #16  03:26:44 INFO     * watch   perimeter watch armed, zone 20 cm
+RX < I (8321240) sentry:   #17  03:26:59 CRITICAL * watch   GENERAL ALARM: PANIC command
+RX < I (8321250) sentry:   #18  03:27:20 CRITICAL * watch   GENERAL ALARM: PANIC button
+RX < I (8321260) sentry: [V] 'alert' done in 124 ms
+TX > guard status
+RX < guard status
+RX < I (8323650) sentry: [WATCH] ALARM, zone 20 cm, last distance 21.2 cm
+RX < I (8323650) sentry: [V] 'guard' done in 0 ms
+TX > guard disarm [REDACTED]
+RX < guard disarm [REDACTED]
+RX < I (8324260) sentry: [WATCH] disarmed (was ALARM)
+RX < I (8324270) sentry: [VALVE] CLOSED (guard disarm)
+RX < I (8324270) sentry: [V] valve driver GPIO8=0, cycles 234
+RX < I (8324270) sentry: [V] 'guard' done in 11 ms
+TX > guard status
+RX < guard status
+RX < I (8324870) sentry: [WATCH] disarmed, zone 20 cm, last distance 21.2 cm
+RX < I (8324870) sentry: [V] 'guard' done in 0 ms
+TX > relay status
+RX < relay status
+RX < I (8325470) sentry: [VALVE] closed, auto off, cycles 234
+RX < I (8325470) sentry: [V] 'relay' done in 0 ms
+TX > relay status
+RX < relay status
+RX < I (8325680) sentry: [VALVE] closed, auto off, cycles 234
+RX < I (8325680) sentry: [V] 'relay' done in 0 ms
+TX > state
+RX < state
+RX < I (8325890) sentry: state: 3 VERBOSE
+RX < I (8325890) sentry:   1 normal (patrol) | 2 debug (maintenance) | 3 verbose (tactical) | 4 emergency (surfacing, only from 3)
+RX < I (8325890) sentry: [V] 'state' done in 3 ms
+TX > state 1
+RX < state 1
+RX < W (8326500) sentry: [STATE] 3 VERBOSE -> 1 NORMAL (by command)
+RX < I (8326940) sentry: [PWR] battery bus 23.95 V, load 1.7 A
+TX > state
+RX < state
+RX < I (8327110) sentry: state: 1 NORMAL
+RX < I (8327110) sentry:   1 normal (patrol) | 2 debug (maintenance) | 3 verbose (tactical) | 4 emergency (surfacing, only from 3)

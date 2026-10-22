@@ -1,0 +1,43 @@
+Test: tests/test_guard.py::TestGuard::test_guard_accepts_zone_boundaries[maximum]
+Firmware: 2.3.0
+Captured: 2026-10-22T03:26:26.500277+03:00
+
+TX > version
+RX < version
+RX < I (8260240) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+RX < I (8260240) sentry:   partition: ota_0 @ 0x20000, state: valid
+TX > status
+RX < status
+RX < I (8260450) sentry: === SWM-2 status ===
+RX < I (8260450) sentry:   fw:       v2.3.0 (ota_0)
+RX < I (8260450) sentry:   state:    1 NORMAL
+RX < I (8260450) sentry:   link:     buoy link 'TopA-node', ip 10.223.162.49, rssi -36 dBm (excellent), ch 1
+RX < I (8260460) sentry:   internet: OK
+RX < I (8260460) sentry:   user:     testUser (user)
+RX < I (8260460) sentry:   time:     03:26:21, uptime 2h 17m 40s
+RX < I (8260470) sentry:   valve:    closed
+RX < I (8260470) sentry:   watch:    disarmed, CIC alerts unacked: 14
+RX < I (8260480) sentry:   sonar:    no contact
+RX < I (8260480) sentry:   carrier:  depth 42.0 m, hull 5.2 bar, water 8.1 C, battery 23.95 V (sim)
+RX < I (8260490) sentry:   heap:     251 KB free
+TX > whoami
+RX < whoami
+RX < I (8260650) sentry: user: testUser, access: user
+TX > guard status
+RX < guard status
+RX < I (8260860) sentry: [WATCH] disarmed, zone 20 cm, last distance -1.0 cm
+TX > guard zone 200
+RX < guard zone 200
+RX < I (8261480) sentry: [WATCH] zone < 200 cm
+TX > guard status
+RX < guard status
+RX < I (8262080) sentry: [WATCH] disarmed, zone 200 cm, last distance -1.0 cm
+TX > guard status
+RX < guard status
+RX < I (8262690) sentry: [WATCH] disarmed, zone 200 cm, last distance -1.0 cm
+TX > guard zone 20
+RX < guard zone 20
+RX < I (8263310) sentry: [WATCH] zone < 20 cm
+TX > guard status
+RX < guard status
+RX < I (8263910) sentry: [WATCH] disarmed, zone 20 cm, last distance -1.0 cm

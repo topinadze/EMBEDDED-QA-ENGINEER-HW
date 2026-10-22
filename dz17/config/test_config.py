@@ -18,6 +18,7 @@ APP_USER_ENV = "HW17_USER"
 APP_PASSWORD_ENV = "HW17_PASSWORD"
 ALT_APP_USER_ENV = "TEST_USER"
 ALT_APP_PASSWORD_ENV = "TEST_PASSWORD"
+GUARD_PIN_ENV = "HW17_GUARD_PIN"
 
 try:
     from config import wifi_secrets
@@ -33,6 +34,7 @@ DEFAULT_WIFI_MISSING_SSID = "HW17-NONEXISTENT-NETWORK"
 
 DEFAULT_APP_USER = getattr(wifi_secrets, "DEFAULT_APP_USER", "sentry_op")
 DEFAULT_APP_PASSWORD = getattr(wifi_secrets, "DEFAULT_APP_PASSWORD", "")
+DEFAULT_GUARD_PIN = getattr(wifi_secrets, "DEFAULT_GUARD_PIN", "")
 
 
 def _configured_value(
@@ -90,6 +92,11 @@ def resolve_account_credentials(
             password_override,
         ),
     )
+
+
+def resolve_guard_pin() -> str:
+    """Resolve the Guard PIN from the environment, falling back to local secrets."""
+    return os.environ.get(GUARD_PIN_ENV) or DEFAULT_GUARD_PIN
 
 
 WIFI_SSID, WIFI_PASSWORD = resolve_wifi_credentials()

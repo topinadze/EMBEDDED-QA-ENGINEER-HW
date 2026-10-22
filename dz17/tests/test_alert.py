@@ -385,8 +385,9 @@ class TestAlertCenter:
     @pytest.mark.persistent
     @pytest.mark.xfail(
         reason=(
-            "BUG-016: firmware 2.3.0 acknowledges the preceding displayed alert "
-            "for numeric alert ack <id>; see REPORT.md"
+            "BUG-016 confirmed on firmware 2.3.0: numeric alert ack <id> returns "
+            "E851 for a listed alert or acknowledges the preceding ID; see "
+            "REPORT.md BUG-016 and the 2026-10-22 Guard transcripts."
         ),
         strict=True,
     )

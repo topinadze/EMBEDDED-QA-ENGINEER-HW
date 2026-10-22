@@ -72,9 +72,9 @@ dz17/
 | Test selection defaults and marker definitions | [`pytest.ini`](pytest.ini). By default, pytest excludes tests marked `interactive` or `persistent`. |
 | UART port, baud rate, expected firmware | [`conftest.py`](conftest.py): `--port`, `--baudrate`, `--expected-fw-version`. Hardware launchers default to `COM4`; pass `-Port` and `-Fw` to set the target explicitly. Direct pytest defaults to 115200 baud and detects a unique ESP32 port if `--port` is omitted. |
 | Launcher defaults and run options | The relevant [`run-*.ps1`](.) script. Main/lamp/Wi-Fi/buttons/distance launchers default to firmware 2.1.0; Guard and Alert default to 2.3.0. |
-| Wi-Fi and device-account defaults | Copy [`config/wifi_secrets.example.py`](config/wifi_secrets.example.py) to the git-ignored `config/wifi_secrets.py` and set `DEFAULT_WIFI_SSID`, `DEFAULT_WIFI_PASSWORD`, `DEFAULT_APP_USER`, and `DEFAULT_APP_PASSWORD`. Environment alternatives are `HW17_WIFI_SSID` / `HW17_WIFI_PASSWORD` or `TEST_WIFI_SSID` / `TEST_WIFI_PASSWORD`, and `HW17_USER` / `HW17_PASSWORD` or `TEST_USER` / `TEST_PASSWORD`. Per-run pytest options are `--wifi-ssid`, `--wifi-password`, `--app-user`, and `--app-password`. |
+| Wi-Fi, device-account defaults, and Guard PIN | Copy [`config/wifi_secrets.example.py`](config/wifi_secrets.example.py) to the git-ignored `config/wifi_secrets.py` and set `DEFAULT_WIFI_SSID`, `DEFAULT_WIFI_PASSWORD`, `DEFAULT_APP_USER`, `DEFAULT_APP_PASSWORD`, and (for Guard alarm tests) `DEFAULT_GUARD_PIN`. Environment alternatives are `HW17_WIFI_SSID` / `HW17_WIFI_PASSWORD` or `TEST_WIFI_SSID` / `TEST_WIFI_PASSWORD`, `HW17_USER` / `HW17_PASSWORD` or `TEST_USER` / `TEST_PASSWORD`, and `HW17_GUARD_PIN`. Per-run pytest options are `--wifi-ssid`, `--wifi-password`, `--app-user`, and `--app-password`. Environment values override local-file values. |
 | Invalid Wi-Fi scenario inputs | Set `HW17_WIFI_WRONG_PASSWORD` (or `TEST_WIFI_WRONG_PASSWORD`) and `HW17_WIFI_MISSING_SSID` (or `TEST_WIFI_MISSING_SSID`) in the local environment. |
-| Guard PIN | Set `HW17_GUARD_PIN` in the local environment. It must be four digits; do not put it in source or share it. |
+| Guard PIN | Set `DEFAULT_GUARD_PIN` in the git-ignored `config/wifi_secrets.py`, or override it with `HW17_GUARD_PIN`. It must be four digits; do not put it in tracked source or share it. |
 | Generated logs and test results | `logs/automated/<category>/<firmware>/`; launchers also save dated run logs and JUnit XML. Per-test UART transcripts are written when DEBUG logging is enabled. |
 
 For credentials, precedence is per-run CLI override, then `HW17_*`, then the corresponding
@@ -355,7 +355,8 @@ non-zero exit when cleanup is skipped or otherwise not completed. Do not approve
 pending alert or history entry must be preserved. Full-history cleanup is never run by distance,
 lamp, or other non-Alert launchers; those tests check/clean only their own alerts.
 
-Guard arming/disarming and panic tests require `HW17_GUARD_PIN` in the local environment; the PIN
+Guard arming/disarming and panic tests require `DEFAULT_GUARD_PIN` in the local `config/wifi_secrets.py`
+or `HW17_GUARD_PIN` in the local environment; the environment variable takes precedence. The PIN
 is redacted from UART and Allure evidence. Configure it locally without sharing it in chat or
 committing it. These tests also require `-s`, an unobstructed sensor path for arming, and operator
 observation of the relay/LED:

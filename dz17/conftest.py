@@ -24,6 +24,7 @@ from config.test_config import (
     DEFAULT_WIFI_WRONG_PASSWORD,
     APP_PASSWORD_ENV,
     APP_USER_ENV,
+    GUARD_PIN_ENV,
     WIFI_MISSING_SSID,
     WIFI_MISSING_SSID_ENV,
     WIFI_PASSWORD_ENV,
@@ -31,6 +32,7 @@ from config.test_config import (
     WIFI_WRONG_PASSWORD,
     WIFI_WRONG_PASSWORD_ENV,
     resolve_account_credentials,
+    resolve_guard_pin,
     resolve_wifi_credentials,
 )
 from manual_checks import (
@@ -501,9 +503,12 @@ def app_credentials(request: pytest.FixtureRequest) -> tuple[str, str]:
 
 @pytest.fixture
 def guard_pin() -> str:
-    pin = os.environ.get("HW17_GUARD_PIN", "")
+    pin = resolve_guard_pin()
     if not pin:
-        pytest.skip("Set HW17_GUARD_PIN in the local environment to run Guard alarm tests.")
+        pytest.skip(
+            f"Set DEFAULT_GUARD_PIN in config/wifi_secrets.py or {GUARD_PIN_ENV} "
+            "in the local environment to run Guard alarm tests."
+        )
     if not re.fullmatch(r"\d{4}", pin):
         pytest.fail("HW17_GUARD_PIN must be exactly four digits.")
     return pin

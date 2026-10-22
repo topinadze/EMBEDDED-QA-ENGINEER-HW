@@ -1,0 +1,147 @@
+Test: tests/test_guard.py::TestGuard::test_guard_arm_exit_delay_and_disarm
+Firmware: 2.3.0
+Captured: 2026-10-22T03:26:50.610246+03:00
+
+TX > version
+RX < version
+RX < I (8264560) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+RX < I (8264560) sentry:   partition: ota_0 @ 0x20000, state: valid
+TX > status
+RX < status
+RX < I (8264770) sentry: === SWM-2 status ===
+RX < I (8264770) sentry:   fw:       v2.3.0 (ota_0)
+RX < I (8264770) sentry:   state:    1 NORMAL
+RX < I (8264770) sentry:   link:     buoy link 'TopA-node', ip 10.223.162.49, rssi -32 dBm (excellent), ch 1
+RX < I (8264780) sentry:   internet: OK
+RX < I (8264780) sentry:   user:     testUser (user)
+RX < I (8264780) sentry:   time:     03:26:25, uptime 2h 17m 44s
+RX < I (8264790) sentry:   valve:    closed
+RX < I (8264790) sentry:   watch:    disarmed, CIC alerts unacked: 14
+RX < I (8264800) sentry:   sonar:    no contact
+RX < I (8264800) sentry:   carrier:  depth 42.0 m, hull 5.2 bar, water 8.1 C, battery 23.95 V (sim)
+RX < I (8264810) sentry:   heap:     251 KB free
+TX > whoami
+RX < whoami
+RX < I (8264970) sentry: user: testUser, access: user
+TX > guard status
+RX < guard status
+RX < I (8265180) sentry: [WATCH] disarmed, zone 20 cm, last distance -1.0 cm
+TX > relay status
+RX < relay status
+RX < I (8265790) sentry: [VALVE] closed, auto off, cycles 230
+TX > state
+RX < state
+RX < I (8266000) sentry: state: 1 NORMAL
+RX < I (8266000) sentry:   1 normal (patrol) | 2 debug (maintenance) | 3 verbose (tactical) | 4 emergency (surfacing, only from 3)
+TX > guard status
+RX < guard status
+RX < I (8266610) sentry: [WATCH] disarmed, zone 20 cm, last distance -1.0 cm
+TX > distance
+RX < distance
+RX < I (8272430) sentry: [SONAR] ping: echo 22.1 cm
+TX > guard arm
+RX < guard arm
+RX < I (8273440) sentry: [WATCH] arming: clear the zone (< 20 cm) within 10 s
+RX < I (8273530) sentry: [WATCH] arming in 10 s...
+TX > guard status
+RX < guard status
+RX < I (8274190) sentry: [WATCH] arming, zone 20 cm, last distance 21.3 cm
+RX < I (8274190) sentry: [WATCH] 9 s left
+TX > guard status
+RX < guard status
+RX < I (8274800) sentry: [WATCH] arming, zone 20 cm, last distance 21.3 cm
+RX < I (8274800) sentry: [WATCH] 8 s left
+TX > guard status
+RX < guard status
+RX < I (8275410) sentry: [WATCH] arming, zone 20 cm, last distance 21.3 cm
+RX < I (8275410) sentry: [WATCH] 8 s left
+RX < I (8275530) sentry: [WATCH] arming in 8 s...
+TX > guard status
+RX < guard status
+RX < I (8276020) sentry: [WATCH] arming, zone 20 cm, last distance 21.3 cm
+RX < I (8276020) sentry: [WATCH] 7 s left
+TX > guard status
+RX < guard status
+RX < I (8276630) sentry: [WATCH] arming, zone 20 cm, last distance 21.3 cm
+RX < I (8276630) sentry: [WATCH] 6 s left
+TX > guard status
+RX < guard status
+RX < I (8277240) sentry: [WATCH] arming, zone 20 cm, last distance 21.3 cm
+RX < I (8277240) sentry: [WATCH] 6 s left
+RX < I (8277530) sentry: [WATCH] arming in 6 s...
+TX > guard status
+RX < guard status
+RX < I (8277850) sentry: [WATCH] arming, zone 20 cm, last distance 21.3 cm
+RX < I (8277850) sentry: [WATCH] 5 s left
+TX > guard status
+RX < guard status
+RX < I (8278450) sentry: [WATCH] arming, zone 20 cm, last distance 21.3 cm
+RX < I (8278450) sentry: [WATCH] 4 s left
+TX > guard status
+RX < guard status
+RX < I (8279060) sentry: [WATCH] arming, zone 20 cm, last distance 21.3 cm
+RX < I (8279060) sentry: [WATCH] 4 s left
+RX < I (8279530) sentry: [WATCH] arming in 4 s...
+TX > guard status
+RX < guard status
+RX < I (8279670) sentry: [WATCH] arming, zone 20 cm, last distance 21.3 cm
+RX < I (8279670) sentry: [WATCH] 3 s left
+TX > guard status
+RX < guard status
+RX < I (8280280) sentry: [WATCH] arming, zone 20 cm, last distance 21.3 cm
+RX < I (8280280) sentry: [WATCH] 3 s left
+RX < I (8280530) sentry: [WATCH] arming in 3 s...
+TX > guard status
+RX < guard status
+RX < I (8280890) sentry: [WATCH] arming, zone 20 cm, last distance 21.3 cm
+RX < I (8280890) sentry: [WATCH] 2 s left
+RX < I (8281310) sentry: [TELEMETRY #186] 03:26:41 up 02:18:00 heap 251KB rssi -34 temp 32.4C depth 42.0m hull 5.2bar batt 24.0V valve closed sonar 21.3cm watch arming alerts 14 state NORMAL
+TX > guard status
+RX < guard status
+RX < I (8281500) sentry: [WATCH] arming, zone 20 cm, last distance 21.3 cm
+RX < I (8281500) sentry: [WATCH] 1 s left
+RX < I (8281530) sentry: [WATCH] arming in 2 s...
+TX > guard status
+RX < guard status
+RX < I (8282110) sentry: [WATCH] arming, zone 20 cm, last distance 21.3 cm
+RX < I (8282110) sentry: [WATCH] 1 s left
+RX < I (8282530) sentry: [WATCH] arming in 1 s...
+TX > guard status
+RX < guard status
+RX < I (8282720) sentry: [WATCH] arming, zone 20 cm, last distance 21.3 cm
+RX < I (8282720) sentry: [WATCH] 0 s left
+TX > guard status
+RX < guard status
+RX < I (8283320) sentry: [WATCH] arming, zone 20 cm, last distance 21.3 cm
+RX < I (8283320) sentry: [WATCH] 0 s left
+RX < W (8283530) sentry: [WATCH] ARMED. Perimeter zone < 20 cm, sonar sweeping
+RX < I (8283530) sentry: [CIC #16 INFO] watch: perimeter watch armed, zone 20 cm
+TX > guard status
+RX < guard status
+RX < I (8283930) sentry: [WATCH] ARMED, zone 20 cm, last distance 21.2 cm
+TX > guard disarm [REDACTED]
+RX < guard disarm [REDACTED]
+RX < I (8284540) sentry: [WATCH] disarmed (was ARMED)
+TX > guard status
+RX < guard status
+RX < I (8285150) sentry: [WATCH] disarmed, zone 20 cm, last distance 21.2 cm
+TX > guard status
+RX < guard status
+RX < I (8285770) sentry: [WATCH] disarmed, zone 20 cm, last distance 21.2 cm
+TX > guard status
+RX < guard status
+RX < I (8286380) sentry: [WATCH] disarmed, zone 20 cm, last distance 21.2 cm
+TX > relay status
+RX < relay status
+RX < I (8286990) sentry: [VALVE] closed, auto off, cycles 230
+TX > relay status
+RX < relay status
+RX < I (8287200) sentry: [VALVE] closed, auto off, cycles 230
+TX > state
+RX < state
+RX < I (8287400) sentry: state: 1 NORMAL
+RX < I (8287400) sentry:   1 normal (patrol) | 2 debug (maintenance) | 3 verbose (tactical) | 4 emergency (surfacing, only from 3)
+TX > state
+RX < state
+RX < I (8288010) sentry: state: 1 NORMAL
+RX < I (8288010) sentry:   1 normal (patrol) | 2 debug (maintenance) | 3 verbose (tactical) | 4 emergency (surfacing, only from 3)
