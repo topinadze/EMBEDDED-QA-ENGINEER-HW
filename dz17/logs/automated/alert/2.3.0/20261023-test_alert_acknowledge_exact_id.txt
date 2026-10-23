@@ -1,0 +1,82 @@
+Test: tests/test_alert.py::TestAlertCenter::test_alert_acknowledge_exact_id
+Firmware: 2.3.0
+Captured: 2026-10-23T03:44:49.158228+03:00
+
+TX > version
+RX < version
+RX < I (390735) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+RX < I (390735) sentry:   partition: ota_0 @ 0x20000, state: valid
+TX > status
+RX < status
+RX < I (390945) sentry: === SWM-2 status ===
+RX < I (390945) sentry:   fw:       v2.3.0 (ota_0)
+RX < I (390945) sentry:   state:    1 NORMAL
+RX < I (390945) sentry:   link:     buoy link '[SSID REDACTED]', ip [PRIVATE IP REDACTED], rssi -38 dBm (excellent), ch 1
+RX < I (390945) sentry:   internet: OK
+RX < I (390955) sentry:   user:     testUser (user)
+RX < I (390955) sentry:   time:     03:44:42, uptime 0h 06m 30s
+RX < I (390965) sentry:   valve:    closed
+RX < I (390965) sentry:   watch:    disarmed, CIC alerts unacked: 0
+RX < I (390975) sentry:   sonar:    no contact
+RX < I (390975) sentry:   carrier:  depth 41.6 m, hull 5.2 bar, water 8.0 C, battery 24.19 V (sim)
+RX < I (390985) sentry:   heap:     251 KB free
+TX > whoami
+RX < whoami
+RX < I (391165) sentry: user: testUser, access: user
+TX > alert test info
+RX < alert test info
+RX < I (391375) sentry: [CIC #5 INFO] test: test alert
+TX > alert test warning
+RX < alert test warning
+RX < W (391975) sentry: [CIC #6 WARNING] test: test alert
+TX > alert list
+RX < alert list
+RX < I (392585) sentry: [CIC] 6 alerts, 2 unacknowledged:
+RX < I (392585) sentry:   #1   03:44:23 INFO       test    test alert
+RX < I (392585) sentry:   #2   03:44:28 WARNING    test    test alert
+RX < I (392585) sentry:   #3   03:44:36 INFO       test    test alert
+RX < I (392595) sentry:   #4   03:44:37 WARNING    test    test alert
+RX < I (392595) sentry:   #5   03:44:43 INFO     * test    test alert
+RX < I (392605) sentry:   #6   03:44:43 WARNING  * test    test alert
+TX > alert ack 6
+RX < alert ack 6
+RX < I (393195) sentry: [CIC] #6 acknowledged
+TX > alert list
+RX < alert list
+RX < I (393805) sentry: [CIC] 6 alerts, 1 unacknowledged:
+RX < I (393805) sentry:   #1   03:44:23 INFO       test    test alert
+RX < I (393805) sentry:   #2   03:44:28 WARNING    test    test alert
+RX < I (393805) sentry:   #3   03:44:36 INFO       test    test alert
+RX < I (393815) sentry:   #4   03:44:37 WARNING    test    test alert
+RX < I (393815) sentry:   #5   03:44:43 INFO       test    test alert
+RX < I (393825) sentry:   #6   03:44:43 WARNING  * test    test alert
+TX > alert list
+RX < alert list
+RX < I (394405) sentry: [CIC] 6 alerts, 1 unacknowledged:
+RX < I (394405) sentry:   #1   03:44:23 INFO       test    test alert
+RX < I (394405) sentry:   #2   03:44:28 WARNING    test    test alert
+RX < I (394405) sentry:   #3   03:44:36 INFO       test    test alert
+RX < I (394415) sentry:   #4   03:44:37 WARNING    test    test alert
+RX < I (394415) sentry:   #5   03:44:43 INFO       test    test alert
+RX < I (394425) sentry:   #6   03:44:43 WARNING  * test    test alert
+TX > alert ack
+RX < alert ack
+RX < I (395015) sentry: [CIC] #6 acknowledged (command). Unacked: 0
+TX > alert list
+RX < alert list
+RX < I (395615) sentry: [CIC] 6 alerts, 0 unacknowledged:
+RX < I (395615) sentry:   #1   03:44:23 INFO       test    test alert
+RX < I (395615) sentry:   #2   03:44:28 WARNING    test    test alert
+RX < I (395615) sentry:   #3   03:44:36 INFO       test    test alert
+RX < I (395625) sentry:   #4   03:44:37 WARNING    test    test alert
+RX < I (395625) sentry:   #5   03:44:43 INFO       test    test alert
+RX < I (395635) sentry:   #6   03:44:43 WARNING    test    test alert
+TX > alert list
+RX < alert list
+RX < I (396235) sentry: [CIC] 6 alerts, 0 unacknowledged:
+RX < I (396235) sentry:   #1   03:44:23 INFO       test    test alert
+RX < I (396235) sentry:   #2   03:44:28 WARNING    test    test alert
+RX < I (396235) sentry:   #3   03:44:36 INFO       test    test alert
+RX < I (396245) sentry:   #4   03:44:37 WARNING    test    test alert
+RX < I (396245) sentry:   #5   03:44:43 INFO       test    test alert
+RX < I (396255) sentry:   #6   03:44:43 WARNING    test    test alert

@@ -1,0 +1,58 @@
+Test: tests/test_guard.py::TestGuard::test_guard_rejects_out_of_range_zone[below-minimum]
+Firmware: 2.3.0
+Captured: 2026-10-23T04:34:55.085773+03:00
+
+TX > version
+RX < version
+RX < I (3396625) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+RX < I (3396625) sentry:   partition: ota_0 @ 0x20000, state: valid
+TX > lamp status
+RX < lamp status
+RX < I (3396835) sentry: [BEACON] off, color (255,255,255), brightness 100%, mode solid, timer off
+TX > status
+RX < status
+RX < I (3397445) sentry: === SWM-2 status ===
+RX < I (3397445) sentry:   fw:       v2.3.0 (ota_0)
+RX < I (3397445) sentry:   state:    1 NORMAL
+RX < I (3397445) sentry:   link:     buoy link '[SSID REDACTED]', ip [PRIVATE IP REDACTED], rssi -40 dBm (excellent), ch 1
+RX < I (3397455) sentry:   internet: OK
+RX < I (3397455) sentry:   user:     testUser (user)
+RX < I (3397455) sentry:   time:     04:34:49, uptime 0h 56m 37s
+RX < I (3397465) sentry:   valve:    closed
+RX < I (3397465) sentry:   watch:    disarmed, CIC alerts unacked: 3
+RX < I (3397475) sentry:   sonar:    no contact
+RX < I (3397475) sentry:   carrier:  depth 41.8 m, hull 5.2 bar, water 8.1 C, battery 24.09 V (sim)
+RX < I (3397485) sentry:   heap:     251 KB free
+TX > whoami
+RX < whoami
+RX < I (3397645) sentry: user: testUser, access: user
+TX > guard status
+RX < guard status
+RX < I (3397855) sentry: [WATCH] disarmed, zone 20 cm, last distance -1.0 cm
+TX > guard zone 9
+RX < guard zone 9
+RX < E (3398465) sentry: E808 zone must be 10-200 cm
+TX > guard status
+RX < guard status
+RX < I (3399075) sentry: [WATCH] disarmed, zone 20 cm, last distance -1.0 cm
+TX > guard status
+RX < guard status
+RX < I (3399675) sentry: [WATCH] disarmed, zone 20 cm, last distance -1.0 cm
+TX > guard status
+RX < guard status
+RX < I (3400285) sentry: [WATCH] disarmed, zone 20 cm, last distance -1.0 cm
+TX > lamp timer 0
+RX < lamp timer 0
+RX < I (3400895) sentry: [BEACON] timer cancelled
+TX > lamp color 255 255 255
+RX < lamp color 255 255 255
+RX < I (3401295) sentry: [BEACON] color: (255,255,255)
+TX > lamp brightness 100
+RX < lamp brightness 100
+RX < I (3401705) sentry: [BEACON] brightness: 100%
+TX > lamp mode solid
+RX < lamp mode solid
+RX < I (3402115) sentry: [BEACON] mode: solid
+TX > lamp off
+RX < lamp off
+RX < W (3402525) sentry: W510 lamp already off

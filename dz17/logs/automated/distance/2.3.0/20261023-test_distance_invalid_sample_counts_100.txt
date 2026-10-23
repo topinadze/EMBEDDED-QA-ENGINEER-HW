@@ -1,0 +1,47 @@
+Test: tests/test_distance.py::TestDistance::test_distance_invalid_sample_counts[100]
+Firmware: 2.3.0
+Captured: 2026-10-23T04:51:44.443331+03:00
+
+TX > version
+RX < version
+RX < I (4393025) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+RX < I (4393025) sentry:   partition: ota_0 @ 0x20000, state: valid
+TX > lamp status
+RX < lamp status
+RX < I (4393225) sentry: [BEACON] off, color (255,255,255), brightness 100%, mode solid, timer off
+TX > status
+RX < status
+RX < I (4393845) sentry: === SWM-2 status ===
+RX < I (4393845) sentry:   fw:       v2.3.0 (ota_0)
+RX < I (4393845) sentry:   state:    1 NORMAL
+RX < I (4393845) sentry:   link:     buoy link '[SSID REDACTED]', ip [PRIVATE IP REDACTED], rssi -36 dBm (excellent), ch 1
+RX < I (4393855) sentry:   internet: OK
+RX < I (4393855) sentry:   user:     testUser (user)
+RX < I (4393855) sentry:   time:     04:51:25, uptime 1h 13m 13s
+RX < I (4393865) sentry:   valve:    closed
+RX < I (4393865) sentry:   watch:    disarmed, CIC alerts unacked: 5
+RX < I (4393875) sentry:   sonar:    last echo 20.6 cm
+RX < I (4393875) sentry:   carrier:  depth 41.4 m, hull 5.1 bar, water 8.1 C, battery 24.06 V (sim)
+RX < I (4393885) sentry:   heap:     251 KB free
+TX > whoami
+RX < whoami
+RX < I (4394045) sentry: user: testUser, access: user
+TX > distance 100
+RX < distance 100
+RX < E (4394255) sentry: E704 count must be 1-20
+RX < I (4394305) sentry: [TELEMETRY #129] 04:51:25 up 01:13:13 heap 251KB rssi -36 temp 32.4C depth 41.4m hull 5.1bar batt 24.1V valve closed sonar 20.6cm watch disarmed alerts 5 state NORMAL
+TX > lamp timer 0
+RX < lamp timer 0
+RX < I (4410275) sentry: [BEACON] timer cancelled
+TX > lamp color 255 255 255
+RX < lamp color 255 255 255
+RX < I (4410675) sentry: [BEACON] color: (255,255,255)
+TX > lamp brightness 100
+RX < lamp brightness 100
+RX < I (4411085) sentry: [BEACON] brightness: 100%
+TX > lamp mode solid
+RX < lamp mode solid
+RX < I (4411495) sentry: [BEACON] mode: solid
+TX > lamp off
+RX < lamp off
+RX < W (4411915) sentry: W510 lamp already off

@@ -31,6 +31,13 @@ DISTANCE_ALERT_PATTERN = re.compile(
     re.IGNORECASE,
 )
 
+pytestmark = [
+    allure.parent_suite("DZ17"),
+    allure.suite("Active Sonar"),
+    allure.epic("SENTRY SWM-2"),
+    allure.feature("Active Sonar HC-SR04"),
+]
+
 
 @dataclass
 class SonarTestResources:
@@ -407,7 +414,11 @@ def _assert_generated_alerts_listed(
         (["[SONAR] avg 19.0 cm (4/5 ok)"], None),
         (["E (123) sentry: E702 out of range"], None),
     ],
+    ids=["all-samples-valid", "incomplete-sample-set", "out-of-range"],
 )
+@allure.sub_suite("Offline helper checks")
+@allure.story("Sonar response parsing")
+@allure.title("Accept an averaged reading only when all samples are valid")
 def test_valid_average_cm_requires_all_samples(
     lines: list[str], expected: float | None
 ) -> None:
@@ -421,7 +432,11 @@ def test_valid_average_cm_requires_all_samples(
         (["E (123) sentry: E702 sonar: out of range"], None),
         (["[SONAR] avg 19.5 cm (5/5 ok)"], None),
     ],
+    ids=["single-echo-reading", "out-of-range", "average-is-not-single-echo"],
 )
+@allure.sub_suite("Offline helper checks")
+@allure.story("Sonar response parsing")
+@allure.title("Parse a single sonar echo: {param_id}")
 def test_distance_reading_cm_requires_single_echo(
     lines: list[str], expected: float | None
 ) -> None:
@@ -435,7 +450,11 @@ def test_distance_reading_cm_requires_single_echo(
         (["[COLLISION] contact too close: 18.0 cm"] * 2, 1, False),
         (["[SONAR] ping: echo 30.0 cm"], 0, True),
     ],
+    ids=["one-expected-event", "duplicate-event-rejected", "no-event-expected"],
 )
+@allure.sub_suite("Offline helper checks")
+@allure.story("Collision event validation")
+@allure.title("Validate collision event count: {param_id}")
 def test_collision_phase_checks_exact_event_count(
     lines: list[str], expected_events: int, valid: bool
 ) -> None:
@@ -515,7 +534,16 @@ def test_collision_phase_checks_exact_event_count(
             True,
         ),
     ],
+    ids=[
+        "ordered-zones-and-stable-near-readings",
+        "zone-order-reset-rejected",
+        "insufficient-near-readings",
+        "farther-target-resets-near-reading-count",
+    ],
 )
+@allure.sub_suite("Offline helper checks")
+@allure.story("Proximity reading validation")
+@allure.title("Validate proximity-zone progression: {param_id}")
 def test_proximity_readings_require_ordered_zones_and_three_near_readings(
     lines: list[str], valid: bool
 ) -> None:
@@ -566,7 +594,15 @@ def test_proximity_readings_require_ordered_zones_and_three_near_readings(
             False,
         ),
     ],
+    ids=[
+        "clear-readings-before-collision",
+        "collision-before-approach-rejected",
+        "missing-clear-readings-rejected",
+    ],
 )
+@allure.sub_suite("Offline helper checks")
+@allure.story("Collision approach validation")
+@allure.title("Validate collision approach sequence: {param_id}")
 def test_collision_approach_requires_clear_reading_before_event(
     lines: list[str], valid: bool
 ) -> None:
@@ -577,6 +613,9 @@ def test_collision_approach_requires_clear_reading_before_event(
             _assert_collision_approach(lines, "test approach")
 
 
+@allure.sub_suite("Offline helper checks")
+@allure.story("Sonar alert verification")
+@allure.title("Match only sonar-generated alert IDs present in alert history")
 def test_alert_id_parsers_scope_to_sonar_source_and_listed_ids() -> None:
     generated = [
         "I (100) sentry: [CIC #5 WARNING] sonar: collision risk",
@@ -593,6 +632,9 @@ def test_alert_id_parsers_scope_to_sonar_source_and_listed_ids() -> None:
     assert _listed_alert_ids(listed) == {"4", "5", "6"}
 
 
+@allure.sub_suite("Offline helper checks")
+@allure.story("Sonar alert verification")
+@allure.title("Ignore unrelated alert history when verifying sonar-generated alerts")
 def test_generated_alert_verification_ignores_unrelated_history() -> None:
     driver = Mock()
     driver.alert_list.return_value = [
@@ -607,6 +649,9 @@ def test_generated_alert_verification_ignores_unrelated_history() -> None:
     driver.alert_ack.assert_not_called()
 
 
+@allure.sub_suite("Offline helper checks")
+@allure.story("Sonar alert verification")
+@allure.title("Fail verification when a generated sonar alert is missing")
 def test_generated_alert_verification_fails_when_own_id_is_missing() -> None:
     driver = Mock()
     driver.alert_list.return_value = [
@@ -620,6 +665,9 @@ def test_generated_alert_verification_fails_when_own_id_is_missing() -> None:
     driver.alert_ack.assert_not_called()
 
 
+@allure.sub_suite("Offline helper checks")
+@allure.story("Sonar configuration safety")
+@allure.title("Prime missing sonar settings only with automation disabled and relay closed")
 def test_distance_stats_primes_missing_config_only_with_safe_relay_state() -> None:
     driver = Mock()
     driver.distance_stats.side_effect = [
@@ -640,6 +688,9 @@ def test_distance_stats_primes_missing_config_only_with_safe_relay_state() -> No
     assert driver.relay_status.call_count == 2
 
 
+@allure.sub_suite("Offline helper checks")
+@allure.story("Sonar configuration safety")
+@allure.title("Do not prime sonar settings while relay automation is enabled")
 def test_distance_stats_does_not_prime_when_relay_automation_is_on() -> None:
     driver = Mock()
     driver.distance_stats.return_value = {
@@ -655,8 +706,7 @@ def test_distance_stats_does_not_prime_when_relay_automation_is_on() -> None:
     driver.distance.assert_not_called()
 
 
-@allure.epic("SENTRY SWM-2")
-@allure.feature("Active Sonar HC-SR04")
+@allure.sub_suite("Device sonar scenarios")
 @pytest.mark.distance
 class TestDistance:
 

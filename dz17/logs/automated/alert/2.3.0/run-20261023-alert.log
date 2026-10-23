@@ -1,0 +1,937 @@
+DEBUG    urllib3.connectionpool:connectionpool.py:1081 Starting new HTTPS connection (1): api.telegram.org:443
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/sendMessage HTTP/1.1" 200 346
+DEBUG    drivers.device_driver:device_driver.py:96 TX > version
+DEBUG    drivers.device_driver:device_driver.py:96 RX < version
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (371105) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (371105) sentry:   partition: ota_0 @ 0x20000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:96 TX > status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (371315) sentry: === SWM-2 status ===
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (371315) sentry:   fw:       v2.3.0 (ota_0)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (371315) sentry:   state:    1 NORMAL
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (371315) sentry:   link:     buoy link '[SSID REDACTED]', ip [PRIVATE IP REDACTED], rssi -34 dBm (excellent), ch 1
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (371315) sentry:   internet: OK
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (371325) sentry:   user:     not logged in
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (371325) sentry:   time:     03:44:22, uptime 0h 06m 10s
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (371335) sentry:   valve:    closed
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (371335) sentry:   watch:    disarmed, CIC alerts unacked: 0
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (371345) sentry:   sonar:    no contact
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (371345) sentry:   carrier:  depth 41.6 m, hull 5.2 bar, water 8.0 C, battery 24.19 V (sim)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (371355) sentry:   heap:     251 KB free
+DEBUG    drivers.device_driver:device_driver.py:96 TX > whoami
+DEBUG    drivers.device_driver:device_driver.py:96 RX < whoami
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (371525) sentry: not logged in
+DEBUG    drivers.device_driver:device_driver.py:96 TX > [REDACTED]
+DEBUG    drivers.device_driver:device_driver.py:96 RX < [REDACTED]
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (371735) sentry: [AUTH] operator testUser on watch, console 2
+DEBUG    drivers.device_driver:device_driver.py:96 TX > whoami
+DEBUG    drivers.device_driver:device_driver.py:96 RX < whoami
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (371845) sentry: [TELEMETRY] auto report every 30 s ('health off' to stop)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (371935) sentry: user: testUser, access: user
+DEBUG    drivers.device_driver:device_driver.py:96 TX > alert test info
+DEBUG    drivers.device_driver:device_driver.py:96 RX < alert test info
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (372145) sentry: [CIC #1 INFO] test: test alert
+DEBUG    drivers.device_driver:device_driver.py:96 TX > alert list
+DEBUG    drivers.device_driver:device_driver.py:96 RX < alert list
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (372755) sentry: [CIC] 1 alerts, 1 unacknowledged:
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (372755) sentry:   #1   03:44:23 INFO     * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 TX > alert list
+DEBUG    drivers.device_driver:device_driver.py:96 RX < alert list
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (373375) sentry: [CIC] 1 alerts, 1 unacknowledged:
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (373375) sentry:   #1   03:44:23 INFO     * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 TX > alert ack
+DEBUG    drivers.device_driver:device_driver.py:96 RX < alert ack
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (373975) sentry: [CIC] #1 acknowledged (command). Unacked: 0
+DEBUG    drivers.device_driver:device_driver.py:96 TX > alert list
+DEBUG    drivers.device_driver:device_driver.py:96 RX < alert list
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (374585) sentry: [CIC] 1 alerts, 0 unacknowledged:
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (374585) sentry:   #1   03:44:23 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 TX > alert list
+DEBUG    drivers.device_driver:device_driver.py:96 RX < alert list
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (375195) sentry: [CIC] 1 alerts, 0 unacknowledged:
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (375195) sentry:   #1   03:44:23 INFO       test    test alert
+INFO     conftest:conftest.py:531 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz17\logs\automated\alert\2.3.0\20261023-test_alert_test_generation_and_list_INFO.txt
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 353
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 372
+DEBUG    drivers.device_driver:device_driver.py:96 TX > version
+DEBUG    drivers.device_driver:device_driver.py:96 RX < version
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (375975) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (375975) sentry:   partition: ota_0 @ 0x20000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:96 TX > status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (376185) sentry: === SWM-2 status ===
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (376185) sentry:   fw:       v2.3.0 (ota_0)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (376185) sentry:   state:    1 NORMAL
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (376185) sentry:   link:     buoy link '[SSID REDACTED]', ip [PRIVATE IP REDACTED], rssi -40 dBm (excellent), ch 1
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (376185) sentry:   internet: OK
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (376195) sentry:   user:     testUser (user)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (376195) sentry:   time:     03:44:27, uptime 0h 06m 15s
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (376205) sentry:   valve:    closed
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (376205) sentry:   watch:    disarmed, CIC alerts unacked: 0
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (376215) sentry:   sonar:    no contact
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (376215) sentry:   carrier:  depth 41.6 m, hull 5.2 bar, water 8.0 C, battery 24.19 V (sim)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (376225) sentry:   heap:     251 KB free
+DEBUG    drivers.device_driver:device_driver.py:96 TX > whoami
+DEBUG    drivers.device_driver:device_driver.py:96 RX < whoami
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (376395) sentry: user: testUser, access: user
+DEBUG    drivers.device_driver:device_driver.py:96 TX > alert test warning
+DEBUG    drivers.device_driver:device_driver.py:96 RX < alert test warning
+DEBUG    drivers.device_driver:device_driver.py:96 RX < W (376605) sentry: [CIC #2 WARNING] test: test alert
+DEBUG    drivers.device_driver:device_driver.py:96 TX > alert list
+DEBUG    drivers.device_driver:device_driver.py:96 RX < alert list
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (377215) sentry: [CIC] 2 alerts, 1 unacknowledged:
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (377215) sentry:   #1   03:44:23 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (377215) sentry:   #2   03:44:28 WARNING  * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 TX > alert list
+DEBUG    drivers.device_driver:device_driver.py:96 RX < alert list
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (377825) sentry: [CIC] 2 alerts, 1 unacknowledged:
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (377825) sentry:   #1   03:44:23 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (377825) sentry:   #2   03:44:28 WARNING  * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 TX > alert ack
+DEBUG    drivers.device_driver:device_driver.py:96 RX < alert ack
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (378425) sentry: [CIC] #2 acknowledged (command). Unacked: 0
+DEBUG    drivers.device_driver:device_driver.py:96 TX > alert list
+DEBUG    drivers.device_driver:device_driver.py:96 RX < alert list
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (379035) sentry: [CIC] 2 alerts, 0 unacknowledged:
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (379035) sentry:   #1   03:44:23 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (379035) sentry:   #2   03:44:28 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 TX > alert list
+DEBUG    drivers.device_driver:device_driver.py:96 RX < alert list
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (379635) sentry: [CIC] 2 alerts, 0 unacknowledged:
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (379635) sentry:   #1   03:44:23 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (379635) sentry:   #2   03:44:28 WARNING    test    test alert
+INFO     conftest:conftest.py:531 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz17\logs\automated\alert\2.3.0\20261023-test_alert_test_generation_and_list_WARNING.txt
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 356
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 398
+DEBUG    drivers.device_driver:device_driver.py:96 TX > version
+DEBUG    drivers.device_driver:device_driver.py:96 RX < version
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (380415) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (380415) sentry:   partition: ota_0 @ 0x20000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:96 TX > lamp status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < lamp status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (380625) sentry: [BEACON] off, color (255,255,255), brightness 100%, mode solid, timer off
+DEBUG    drivers.device_driver:device_driver.py:96 TX > status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (381235) sentry: === SWM-2 status ===
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (381235) sentry:   fw:       v2.3.0 (ota_0)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (381235) sentry:   state:    1 NORMAL
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (381235) sentry:   link:     buoy link '[SSID REDACTED]', ip [PRIVATE IP REDACTED], rssi -31 dBm (excellent), ch 1
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (381235) sentry:   internet: OK
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (381245) sentry:   user:     testUser (user)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (381245) sentry:   time:     03:44:32, uptime 0h 06m 20s
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (381255) sentry:   valve:    closed
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (381255) sentry:   watch:    disarmed, CIC alerts unacked: 0
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (381265) sentry:   sonar:    no contact
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (381265) sentry:   carrier:  depth 41.6 m, hull 5.2 bar, water 8.0 C, battery 24.19 V (sim)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (381275) sentry:   heap:     251 KB free
+DEBUG    drivers.device_driver:device_driver.py:96 TX > whoami
+DEBUG    drivers.device_driver:device_driver.py:96 RX < whoami
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (381445) sentry: user: testUser, access: user
+DEBUG    drivers.device_driver:device_driver.py:96 TX > alert list
+DEBUG    drivers.device_driver:device_driver.py:96 RX < alert list
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (381655) sentry: [CIC] 2 alerts, 0 unacknowledged:
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (381655) sentry:   #1   03:44:23 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (381655) sentry:   #2   03:44:28 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 TX > lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:96 RX < lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (382265) sentry: [BEACON] timer cancelled
+DEBUG    drivers.device_driver:device_driver.py:96 TX > lamp color 255 255 255
+DEBUG    drivers.device_driver:device_driver.py:96 RX < lamp color 255 255 255
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (382675) sentry: [BEACON] color: (255,255,255)
+DEBUG    drivers.device_driver:device_driver.py:96 TX > lamp brightness 100
+DEBUG    drivers.device_driver:device_driver.py:96 RX < lamp brightness 100
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (383085) sentry: [BEACON] brightness: 100%
+DEBUG    drivers.device_driver:device_driver.py:96 TX > lamp mode solid
+DEBUG    drivers.device_driver:device_driver.py:96 RX < lamp mode solid
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (383495) sentry: [BEACON] mode: solid
+DEBUG    drivers.device_driver:device_driver.py:96 TX > lamp off
+DEBUG    drivers.device_driver:device_driver.py:96 RX < lamp off
+DEBUG    drivers.device_driver:device_driver.py:96 RX < W (383895) sentry: W510 lamp already off
+INFO     conftest:conftest.py:531 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz17\logs\automated\alert\2.3.0\20261023-test_alert_list_or_planned_response.txt
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 382
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 374
+DEBUG    drivers.device_driver:device_driver.py:96 TX > version
+DEBUG    drivers.device_driver:device_driver.py:96 RX < version
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (384475) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (384475) sentry:   partition: ota_0 @ 0x20000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:96 TX > status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (384685) sentry: === SWM-2 status ===
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (384685) sentry:   fw:       v2.3.0 (ota_0)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (384685) sentry:   state:    1 NORMAL
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (384685) sentry:   link:     buoy link '[SSID REDACTED]', ip [PRIVATE IP REDACTED], rssi -37 dBm (excellent), ch 1
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (384685) sentry:   internet: OK
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (384695) sentry:   user:     testUser (user)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (384695) sentry:   time:     03:44:36, uptime 0h 06m 24s
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (384705) sentry:   valve:    closed
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (384705) sentry:   watch:    disarmed, CIC alerts unacked: 0
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (384715) sentry:   sonar:    no contact
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (384715) sentry:   carrier:  depth 41.6 m, hull 5.2 bar, water 8.0 C, battery 24.19 V (sim)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (384725) sentry:   heap:     251 KB free
+DEBUG    drivers.device_driver:device_driver.py:96 TX > whoami
+DEBUG    drivers.device_driver:device_driver.py:96 RX < whoami
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (384895) sentry: user: testUser, access: user
+DEBUG    drivers.device_driver:device_driver.py:96 TX > alert test info
+DEBUG    drivers.device_driver:device_driver.py:96 RX < alert test info
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (385095) sentry: [CIC #3 INFO] test: test alert
+DEBUG    drivers.device_driver:device_driver.py:96 TX > alert test warning
+DEBUG    drivers.device_driver:device_driver.py:96 RX < alert test warning
+DEBUG    drivers.device_driver:device_driver.py:96 RX < W (385705) sentry: [CIC #4 WARNING] test: test alert
+DEBUG    drivers.device_driver:device_driver.py:96 TX > alert list
+DEBUG    drivers.device_driver:device_driver.py:96 RX < alert list
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (386315) sentry: [CIC] 4 alerts, 2 unacknowledged:
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (386315) sentry:   #1   03:44:23 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (386315) sentry:   #2   03:44:28 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (386315) sentry:   #3   03:44:36 INFO     * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (386325) sentry:   #4   03:44:37 WARNING  * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 TX > alert ack
+DEBUG    drivers.device_driver:device_driver.py:96 RX < alert ack
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (386915) sentry: [CIC] #4 acknowledged (command). Unacked: 1
+DEBUG    drivers.device_driver:device_driver.py:96 TX > alert list
+DEBUG    drivers.device_driver:device_driver.py:96 RX < alert list
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (387525) sentry: [CIC] 4 alerts, 1 unacknowledged:
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (387525) sentry:   #1   03:44:23 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (387525) sentry:   #2   03:44:28 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (387525) sentry:   #3   03:44:36 INFO     * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (387535) sentry:   #4   03:44:37 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 TX > alert list
+DEBUG    drivers.device_driver:device_driver.py:96 RX < alert list
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (388135) sentry: [CIC] 4 alerts, 1 unacknowledged:
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (388135) sentry:   #1   03:44:23 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (388135) sentry:   #2   03:44:28 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (388135) sentry:   #3   03:44:36 INFO     * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (388145) sentry:   #4   03:44:37 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 TX > alert ack
+DEBUG    drivers.device_driver:device_driver.py:96 RX < alert ack
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (388735) sentry: [CIC] #3 acknowledged (command). Unacked: 0
+DEBUG    drivers.device_driver:device_driver.py:96 TX > alert list
+DEBUG    drivers.device_driver:device_driver.py:96 RX < alert list
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (389345) sentry: [CIC] 4 alerts, 0 unacknowledged:
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (389345) sentry:   #1   03:44:23 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (389345) sentry:   #2   03:44:28 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (389345) sentry:   #3   03:44:36 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (389355) sentry:   #4   03:44:37 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 TX > alert list
+DEBUG    drivers.device_driver:device_driver.py:96 RX < alert list
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (389955) sentry: [CIC] 4 alerts, 0 unacknowledged:
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (389955) sentry:   #1   03:44:23 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (389955) sentry:   #2   03:44:28 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (389955) sentry:   #3   03:44:36 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (389965) sentry:   #4   03:44:37 WARNING    test    test alert
+INFO     conftest:conftest.py:531 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz17\logs\automated\alert\2.3.0\20261023-test_alert_acknowledge_latest.txt
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 358
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 406
+DEBUG    drivers.device_driver:device_driver.py:96 TX > version
+DEBUG    drivers.device_driver:device_driver.py:96 RX < version
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (390735) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (390735) sentry:   partition: ota_0 @ 0x20000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:96 TX > status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (390945) sentry: === SWM-2 status ===
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (390945) sentry:   fw:       v2.3.0 (ota_0)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (390945) sentry:   state:    1 NORMAL
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (390945) sentry:   link:     buoy link '[SSID REDACTED]', ip [PRIVATE IP REDACTED], rssi -38 dBm (excellent), ch 1
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (390945) sentry:   internet: OK
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (390955) sentry:   user:     testUser (user)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (390955) sentry:   time:     03:44:42, uptime 0h 06m 30s
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (390965) sentry:   valve:    closed
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (390965) sentry:   watch:    disarmed, CIC alerts unacked: 0
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (390975) sentry:   sonar:    no contact
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (390975) sentry:   carrier:  depth 41.6 m, hull 5.2 bar, water 8.0 C, battery 24.19 V (sim)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (390985) sentry:   heap:     251 KB free
+DEBUG    drivers.device_driver:device_driver.py:96 TX > whoami
+DEBUG    drivers.device_driver:device_driver.py:96 RX < whoami
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (391165) sentry: user: testUser, access: user
+DEBUG    drivers.device_driver:device_driver.py:96 TX > alert test info
+DEBUG    drivers.device_driver:device_driver.py:96 RX < alert test info
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (391375) sentry: [CIC #5 INFO] test: test alert
+DEBUG    drivers.device_driver:device_driver.py:96 TX > alert test warning
+DEBUG    drivers.device_driver:device_driver.py:96 RX < alert test warning
+DEBUG    drivers.device_driver:device_driver.py:96 RX < W (391975) sentry: [CIC #6 WARNING] test: test alert
+DEBUG    drivers.device_driver:device_driver.py:96 TX > alert list
+DEBUG    drivers.device_driver:device_driver.py:96 RX < alert list
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (392585) sentry: [CIC] 6 alerts, 2 unacknowledged:
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (392585) sentry:   #1   03:44:23 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (392585) sentry:   #2   03:44:28 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (392585) sentry:   #3   03:44:36 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (392595) sentry:   #4   03:44:37 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (392595) sentry:   #5   03:44:43 INFO     * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (392605) sentry:   #6   03:44:43 WARNING  * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 TX > alert ack 6
+DEBUG    drivers.device_driver:device_driver.py:96 RX < alert ack 6
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (393195) sentry: [CIC] #6 acknowledged
+DEBUG    drivers.device_driver:device_driver.py:96 TX > alert list
+DEBUG    drivers.device_driver:device_driver.py:96 RX < alert list
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (393805) sentry: [CIC] 6 alerts, 1 unacknowledged:
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (393805) sentry:   #1   03:44:23 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (393805) sentry:   #2   03:44:28 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (393805) sentry:   #3   03:44:36 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (393815) sentry:   #4   03:44:37 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (393815) sentry:   #5   03:44:43 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (393825) sentry:   #6   03:44:43 WARNING  * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 TX > alert list
+DEBUG    drivers.device_driver:device_driver.py:96 RX < alert list
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (394405) sentry: [CIC] 6 alerts, 1 unacknowledged:
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (394405) sentry:   #1   03:44:23 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (394405) sentry:   #2   03:44:28 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (394405) sentry:   #3   03:44:36 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (394415) sentry:   #4   03:44:37 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (394415) sentry:   #5   03:44:43 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (394425) sentry:   #6   03:44:43 WARNING  * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 TX > alert ack
+DEBUG    drivers.device_driver:device_driver.py:96 RX < alert ack
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (395015) sentry: [CIC] #6 acknowledged (command). Unacked: 0
+DEBUG    drivers.device_driver:device_driver.py:96 TX > alert list
+DEBUG    drivers.device_driver:device_driver.py:96 RX < alert list
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (395615) sentry: [CIC] 6 alerts, 0 unacknowledged:
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (395615) sentry:   #1   03:44:23 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (395615) sentry:   #2   03:44:28 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (395615) sentry:   #3   03:44:36 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (395625) sentry:   #4   03:44:37 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (395625) sentry:   #5   03:44:43 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (395635) sentry:   #6   03:44:43 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 TX > alert list
+DEBUG    drivers.device_driver:device_driver.py:96 RX < alert list
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (396235) sentry: [CIC] 6 alerts, 0 unacknowledged:
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (396235) sentry:   #1   03:44:23 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (396235) sentry:   #2   03:44:28 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (396235) sentry:   #3   03:44:36 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (396245) sentry:   #4   03:44:37 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (396245) sentry:   #5   03:44:43 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (396255) sentry:   #6   03:44:43 WARNING    test    test alert
+INFO     conftest:conftest.py:531 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz17\logs\automated\alert\2.3.0\20261023-test_alert_acknowledge_exact_id.txt
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 395
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 401
+DEBUG    drivers.device_driver:device_driver.py:96 TX > version
+DEBUG    drivers.device_driver:device_driver.py:96 RX < version
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (397115) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (397115) sentry:   partition: ota_0 @ 0x20000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:96 TX > status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (397325) sentry: === SWM-2 status ===
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (397325) sentry:   fw:       v2.3.0 (ota_0)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (397325) sentry:   state:    1 NORMAL
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (397325) sentry:   link:     buoy link '[SSID REDACTED]', ip [PRIVATE IP REDACTED], rssi -34 dBm (excellent), ch 1
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (397325) sentry:   internet: OK
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (397335) sentry:   user:     testUser (user)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (397335) sentry:   time:     03:44:48, uptime 0h 06m 36s
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (397345) sentry:   valve:    closed
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (397345) sentry:   watch:    disarmed, CIC alerts unacked: 0
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (397355) sentry:   sonar:    no contact
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (397355) sentry:   carrier:  depth 41.6 m, hull 5.2 bar, water 8.0 C, battery 24.19 V (sim)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (397365) sentry:   heap:     251 KB free
+DEBUG    drivers.device_driver:device_driver.py:96 TX > whoami
+DEBUG    drivers.device_driver:device_driver.py:96 RX < whoami
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (397535) sentry: user: testUser, access: user
+DEBUG    drivers.device_driver:device_driver.py:96 TX > alert test info
+DEBUG    drivers.device_driver:device_driver.py:96 RX < alert test info
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (397745) sentry: [CIC #7 INFO] test: test alert
+DEBUG    drivers.device_driver:device_driver.py:96 TX > alert test warning
+DEBUG    drivers.device_driver:device_driver.py:96 RX < alert test warning
+DEBUG    drivers.device_driver:device_driver.py:96 RX < W (398355) sentry: [CIC #8 WARNING] test: test alert
+DEBUG    drivers.device_driver:device_driver.py:96 TX > alert test info
+DEBUG    drivers.device_driver:device_driver.py:96 RX < alert test info
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (398965) sentry: [CIC #9 INFO] test: test alert
+DEBUG    drivers.device_driver:device_driver.py:96 TX > alert list
+DEBUG    drivers.device_driver:device_driver.py:96 RX < alert list
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (399565) sentry: [CIC] 9 alerts, 3 unacknowledged:
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (399565) sentry:   #1   03:44:23 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (399565) sentry:   #2   03:44:28 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (399565) sentry:   #3   03:44:36 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (399575) sentry:   #4   03:44:37 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (399575) sentry:   #5   03:44:43 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (399585) sentry:   #6   03:44:43 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (399585) sentry:   #7   03:44:49 INFO     * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (399595) sentry:   #8   03:44:49 WARNING  * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (399595) sentry:   #9   03:44:50 INFO     * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 TX > alert ack 8
+DEBUG    drivers.device_driver:device_driver.py:96 RX < alert ack 8
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (400175) sentry: [CIC] #8 acknowledged
+DEBUG    drivers.device_driver:device_driver.py:96 TX > alert list
+DEBUG    drivers.device_driver:device_driver.py:96 RX < alert list
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (400785) sentry: [CIC] 9 alerts, 2 unacknowledged:
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (400785) sentry:   #1   03:44:23 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (400785) sentry:   #2   03:44:28 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (400785) sentry:   #3   03:44:36 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (400795) sentry:   #4   03:44:37 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (400795) sentry:   #5   03:44:43 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (400805) sentry:   #6   03:44:43 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (400805) sentry:   #7   03:44:49 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (400815) sentry:   #8   03:44:49 WARNING  * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (400815) sentry:   #9   03:44:50 INFO     * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 TX > alert ack 9
+DEBUG    drivers.device_driver:device_driver.py:96 RX < alert ack 9
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (401395) sentry: [CIC] #9 acknowledged
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (401845) sentry: [TELEMETRY #1] 03:44:53 up 00:06:41 heap 251KB rssi -33 temp 32.4C depth 41.6m hull 5.2bar batt 24.2V valve closed sonar - watch disarmed alerts 1 state NORMAL
+DEBUG    drivers.device_driver:device_driver.py:96 TX > alert list
+DEBUG    drivers.device_driver:device_driver.py:96 RX < alert list
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (402005) sentry: [CIC] 9 alerts, 1 unacknowledged:
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (402005) sentry:   #1   03:44:23 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (402005) sentry:   #2   03:44:28 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (402005) sentry:   #3   03:44:36 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (402015) sentry:   #4   03:44:37 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (402015) sentry:   #5   03:44:43 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (402025) sentry:   #6   03:44:43 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (402025) sentry:   #7   03:44:49 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (402035) sentry:   #8   03:44:49 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (402035) sentry:   #9   03:44:50 INFO     * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 TX > alert ack 9
+DEBUG    drivers.device_driver:device_driver.py:96 RX < alert ack 9
+DEBUG    drivers.device_driver:device_driver.py:96 RX < W (402615) sentry: W852 alert #9 already acknowledged
+DEBUG    drivers.device_driver:device_driver.py:96 TX > alert list
+DEBUG    drivers.device_driver:device_driver.py:96 RX < alert list
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (403225) sentry: [CIC] 9 alerts, 1 unacknowledged:
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (403225) sentry:   #1   03:44:23 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (403225) sentry:   #2   03:44:28 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (403225) sentry:   #3   03:44:36 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (403235) sentry:   #4   03:44:37 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (403235) sentry:   #5   03:44:43 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (403245) sentry:   #6   03:44:43 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (403245) sentry:   #7   03:44:49 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (403255) sentry:   #8   03:44:49 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (403255) sentry:   #9   03:44:50 INFO     * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 TX > alert list
+DEBUG    drivers.device_driver:device_driver.py:96 RX < alert list
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (403835) sentry: [CIC] 9 alerts, 1 unacknowledged:
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (403835) sentry:   #1   03:44:23 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (403835) sentry:   #2   03:44:28 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (403835) sentry:   #3   03:44:36 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (403845) sentry:   #4   03:44:37 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (403845) sentry:   #5   03:44:43 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (403855) sentry:   #6   03:44:43 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (403855) sentry:   #7   03:44:49 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (403865) sentry:   #8   03:44:49 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (403865) sentry:   #9   03:44:50 INFO     * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 TX > alert ack
+DEBUG    drivers.device_driver:device_driver.py:96 RX < alert ack
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (404445) sentry: [CIC] #9 acknowledged (command). Unacked: 0
+DEBUG    drivers.device_driver:device_driver.py:96 TX > alert list
+DEBUG    drivers.device_driver:device_driver.py:96 RX < alert list
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (405045) sentry: [CIC] 9 alerts, 0 unacknowledged:
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (405045) sentry:   #1   03:44:23 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (405045) sentry:   #2   03:44:28 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (405045) sentry:   #3   03:44:36 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (405055) sentry:   #4   03:44:37 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (405055) sentry:   #5   03:44:43 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (405065) sentry:   #6   03:44:43 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (405065) sentry:   #7   03:44:49 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (405075) sentry:   #8   03:44:49 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (405075) sentry:   #9   03:44:50 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 TX > alert list
+DEBUG    drivers.device_driver:device_driver.py:96 RX < alert list
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (405655) sentry: [CIC] 9 alerts, 0 unacknowledged:
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (405655) sentry:   #1   03:44:23 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (405655) sentry:   #2   03:44:28 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (405655) sentry:   #3   03:44:36 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (405665) sentry:   #4   03:44:37 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (405665) sentry:   #5   03:44:43 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (405675) sentry:   #6   03:44:43 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (405675) sentry:   #7   03:44:49 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (405685) sentry:   #8   03:44:49 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (405685) sentry:   #9   03:44:50 INFO       test    test alert
+INFO     conftest:conftest.py:531 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz17\logs\automated\alert\2.3.0\20261023-test_alert_duplicate_acknowledgement_returns_w852.txt
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 385
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 385
+DEBUG    drivers.device_driver:device_driver.py:96 TX > version
+DEBUG    drivers.device_driver:device_driver.py:96 RX < version
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (406435) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (406435) sentry:   partition: ota_0 @ 0x20000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:96 TX > lamp status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < lamp status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (406645) sentry: [BEACON] off, color (255,255,255), brightness 100%, mode solid, timer off
+DEBUG    drivers.device_driver:device_driver.py:96 TX > status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (407245) sentry: === SWM-2 status ===
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (407245) sentry:   fw:       v2.3.0 (ota_0)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (407245) sentry:   state:    1 NORMAL
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (407245) sentry:   link:     buoy link '[SSID REDACTED]', ip [PRIVATE IP REDACTED], rssi -37 dBm (excellent), ch 1
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (407245) sentry:   internet: OK
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (407255) sentry:   user:     testUser (user)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (407255) sentry:   time:     03:44:58, uptime 0h 06m 46s
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (407265) sentry:   valve:    closed
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (407265) sentry:   watch:    disarmed, CIC alerts unacked: 0
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (407275) sentry:   sonar:    no contact
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (407275) sentry:   carrier:  depth 41.6 m, hull 5.2 bar, water 8.0 C, battery 24.19 V (sim)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (407285) sentry:   heap:     251 KB free
+DEBUG    drivers.device_driver:device_driver.py:96 TX > whoami
+DEBUG    drivers.device_driver:device_driver.py:96 RX < whoami
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (407465) sentry: user: testUser, access: user
+DEBUG    drivers.device_driver:device_driver.py:96 TX > alert list
+DEBUG    drivers.device_driver:device_driver.py:96 RX < alert list
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (407675) sentry: [CIC] 9 alerts, 0 unacknowledged:
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (407675) sentry:   #1   03:44:23 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (407675) sentry:   #2   03:44:28 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (407675) sentry:   #3   03:44:36 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (407685) sentry:   #4   03:44:37 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (407685) sentry:   #5   03:44:43 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (407695) sentry:   #6   03:44:43 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (407695) sentry:   #7   03:44:49 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (407705) sentry:   #8   03:44:49 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (407705) sentry:   #9   03:44:50 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 TX > alert ack 999999999
+DEBUG    drivers.device_driver:device_driver.py:96 RX < alert ack 999999999
+DEBUG    drivers.device_driver:device_driver.py:96 RX < E (408275) sentry: E851 no alert #999999999
+DEBUG    drivers.device_driver:device_driver.py:96 TX > lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:96 RX < lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (408895) sentry: [BEACON] timer cancelled
+DEBUG    drivers.device_driver:device_driver.py:96 TX > lamp color 255 255 255
+DEBUG    drivers.device_driver:device_driver.py:96 RX < lamp color 255 255 255
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (409295) sentry: [BEACON] color: (255,255,255)
+DEBUG    drivers.device_driver:device_driver.py:96 TX > lamp brightness 100
+DEBUG    drivers.device_driver:device_driver.py:96 RX < lamp brightness 100
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (409705) sentry: [BEACON] brightness: 100%
+DEBUG    drivers.device_driver:device_driver.py:96 TX > lamp mode solid
+DEBUG    drivers.device_driver:device_driver.py:96 RX < lamp mode solid
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (410115) sentry: [BEACON] mode: solid
+DEBUG    drivers.device_driver:device_driver.py:96 TX > lamp off
+DEBUG    drivers.device_driver:device_driver.py:96 RX < lamp off
+DEBUG    drivers.device_driver:device_driver.py:96 RX < W (410525) sentry: W510 lamp already off
+INFO     conftest:conftest.py:531 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz17\logs\automated\alert\2.3.0\20261023-test_alert_unknown_id_returns_e851.txt
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 369
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 384
+DEBUG    drivers.device_driver:device_driver.py:96 TX > version
+DEBUG    drivers.device_driver:device_driver.py:96 RX < version
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (411245) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (411245) sentry:   partition: ota_0 @ 0x20000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:96 TX > status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (411455) sentry: === SWM-2 status ===
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (411455) sentry:   fw:       v2.3.0 (ota_0)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (411455) sentry:   state:    1 NORMAL
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (411455) sentry:   link:     buoy link '[SSID REDACTED]', ip [PRIVATE IP REDACTED], rssi -31 dBm (excellent), ch 1
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (411455) sentry:   internet: OK
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (411465) sentry:   user:     testUser (user)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (411465) sentry:   time:     03:45:03, uptime 0h 06m 51s
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (411475) sentry:   valve:    closed
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (411475) sentry:   watch:    disarmed, CIC alerts unacked: 0
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (411485) sentry:   sonar:    no contact
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (411485) sentry:   carrier:  depth 41.6 m, hull 5.2 bar, water 8.0 C, battery 24.19 V (sim)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (411495) sentry:   heap:     251 KB free
+DEBUG    drivers.device_driver:device_driver.py:96 TX > whoami
+DEBUG    drivers.device_driver:device_driver.py:96 RX < whoami
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (411655) sentry: user: testUser, access: user
+DEBUG    drivers.device_driver:device_driver.py:96 TX > alert list
+DEBUG    drivers.device_driver:device_driver.py:96 RX < alert list
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (411865) sentry: [CIC] 9 alerts, 0 unacknowledged:
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (411865) sentry:   #1   03:44:23 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (411865) sentry:   #2   03:44:28 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (411865) sentry:   #3   03:44:36 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (411875) sentry:   #4   03:44:37 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (411875) sentry:   #5   03:44:43 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (411885) sentry:   #6   03:44:43 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (411885) sentry:   #7   03:44:49 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (411895) sentry:   #8   03:44:49 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (411895) sentry:   #9   03:44:50 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 TX > alert test info
+DEBUG    drivers.device_driver:device_driver.py:96 RX < alert test info
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (412475) sentry: [CIC #10 INFO] test: test alert
+DEBUG    drivers.device_driver:device_driver.py:96 TX > alert list
+DEBUG    drivers.device_driver:device_driver.py:96 RX < alert list
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (413085) sentry: [CIC] 10 alerts, 1 unacknowledged:
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (413085) sentry:   #1   03:44:23 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (413085) sentry:   #2   03:44:28 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (413085) sentry:   #3   03:44:36 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (413095) sentry:   #4   03:44:37 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (413095) sentry:   #5   03:44:43 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (413105) sentry:   #6   03:44:43 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (413105) sentry:   #7   03:44:49 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (413115) sentry:   #8   03:44:49 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (413115) sentry:   #9   03:44:50 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (413125) sentry:   #10  03:45:04 INFO     * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 TX > alert clear
+DEBUG    drivers.device_driver:device_driver.py:96 RX < alert clear
+DEBUG    drivers.device_driver:device_driver.py:96 RX < E (413695) sentry: E855 1 alerts not acknowledged. Use 'alert ack all' first
+DEBUG    drivers.device_driver:device_driver.py:96 TX > alert list
+DEBUG    drivers.device_driver:device_driver.py:96 RX < alert list
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (414305) sentry: [CIC] 10 alerts, 1 unacknowledged:
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (414305) sentry:   #1   03:44:23 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (414305) sentry:   #2   03:44:28 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (414305) sentry:   #3   03:44:36 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (414315) sentry:   #4   03:44:37 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (414315) sentry:   #5   03:44:43 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (414325) sentry:   #6   03:44:43 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (414325) sentry:   #7   03:44:49 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (414335) sentry:   #8   03:44:49 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (414335) sentry:   #9   03:44:50 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (414345) sentry:   #10  03:45:04 INFO     * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (414645) sentry: [PWR] battery bus 24.19 V, load 1.5 A
+DEBUG    drivers.device_driver:device_driver.py:96 TX > alert list
+DEBUG    drivers.device_driver:device_driver.py:96 RX < alert list
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (414915) sentry: [CIC] 10 alerts, 1 unacknowledged:
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (414915) sentry:   #1   03:44:23 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (414915) sentry:   #2   03:44:28 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (414915) sentry:   #3   03:44:36 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (414925) sentry:   #4   03:44:37 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (414925) sentry:   #5   03:44:43 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (414935) sentry:   #6   03:44:43 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (414935) sentry:   #7   03:44:49 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (414945) sentry:   #8   03:44:49 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (414945) sentry:   #9   03:44:50 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (414955) sentry:   #10  03:45:04 INFO     * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 TX > alert ack
+DEBUG    drivers.device_driver:device_driver.py:96 RX < alert ack
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (415525) sentry: [CIC] #10 acknowledged (command). Unacked: 0
+DEBUG    drivers.device_driver:device_driver.py:96 TX > alert list
+DEBUG    drivers.device_driver:device_driver.py:96 RX < alert list
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (416125) sentry: [CIC] 10 alerts, 0 unacknowledged:
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (416125) sentry:   #1   03:44:23 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (416125) sentry:   #2   03:44:28 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (416125) sentry:   #3   03:44:36 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (416135) sentry:   #4   03:44:37 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (416135) sentry:   #5   03:44:43 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (416145) sentry:   #6   03:44:43 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (416145) sentry:   #7   03:44:49 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (416155) sentry:   #8   03:44:49 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (416155) sentry:   #9   03:44:50 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (416165) sentry:   #10  03:45:04 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 TX > alert list
+DEBUG    drivers.device_driver:device_driver.py:96 RX < alert list
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (416745) sentry: [CIC] 10 alerts, 0 unacknowledged:
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (416745) sentry:   #1   03:44:23 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (416745) sentry:   #2   03:44:28 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (416745) sentry:   #3   03:44:36 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (416755) sentry:   #4   03:44:37 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (416755) sentry:   #5   03:44:43 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (416765) sentry:   #6   03:44:43 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (416765) sentry:   #7   03:44:49 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (416775) sentry:   #8   03:44:49 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (416775) sentry:   #9   03:44:50 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (416785) sentry:   #10  03:45:04 INFO       test    test alert
+INFO     conftest:conftest.py:531 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz17\logs\automated\alert\2.3.0\20261023-test_alert_clear_requires_acknowledgement.txt
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 368
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 395
+DEBUG    drivers.device_driver:device_driver.py:96 TX > version
+DEBUG    drivers.device_driver:device_driver.py:96 RX < version
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (417525) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (417525) sentry:   partition: ota_0 @ 0x20000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:96 TX > status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (417735) sentry: === SWM-2 status ===
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (417735) sentry:   fw:       v2.3.0 (ota_0)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (417735) sentry:   state:    1 NORMAL
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (417735) sentry:   link:     buoy link '[SSID REDACTED]', ip [PRIVATE IP REDACTED], rssi -38 dBm (excellent), ch 1
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (417735) sentry:   internet: OK
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (417745) sentry:   user:     testUser (user)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (417745) sentry:   time:     03:45:09, uptime 0h 06m 57s
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (417755) sentry:   valve:    closed
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (417755) sentry:   watch:    disarmed, CIC alerts unacked: 0
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (417765) sentry:   sonar:    no contact
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (417765) sentry:   carrier:  depth 41.4 m, hull 5.1 bar, water 8.1 C, battery 24.19 V (sim)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (417775) sentry:   heap:     251 KB free
+DEBUG    drivers.device_driver:device_driver.py:96 TX > whoami
+DEBUG    drivers.device_driver:device_driver.py:96 RX < whoami
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (417945) sentry: user: testUser, access: user
+DEBUG    drivers.device_driver:device_driver.py:96 TX > relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (418155) sentry: [VALVE] closed, auto off, cycles 234
+DEBUG    drivers.device_driver:device_driver.py:96 TX > state
+DEBUG    drivers.device_driver:device_driver.py:96 RX < state
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (418365) sentry: state: 1 NORMAL
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (418365) sentry:   1 normal (patrol) | 2 debug (maintenance) | 3 verbose (tactical) | 4 emergency (surfacing, only from 3)
+DEBUG    drivers.device_driver:device_driver.py:96 TX > state
+DEBUG    drivers.device_driver:device_driver.py:96 RX < state
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (418975) sentry: state: 1 NORMAL
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (418975) sentry:   1 normal (patrol) | 2 debug (maintenance) | 3 verbose (tactical) | 4 emergency (surfacing, only from 3)
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/sendMessage HTTP/1.1" 200 928
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/getUpdates HTTP/1.1" 200 23
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/getUpdates HTTP/1.1" 200 23
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/getUpdates HTTP/1.1" 200 23
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/getUpdates HTTP/1.1" 200 23
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/getUpdates HTTP/1.1" 200 23
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/getUpdates HTTP/1.1" 200 1195
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/answerCallbackQuery HTTP/1.1" 200 25
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 918
+INFO     manual_checks:manual_checks.py:357 MANUAL PREPARE | Operator confirmed readiness via Telegram.
+DEBUG    drivers.device_driver:device_driver.py:96 TX > alert test critical
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (431995) sentry: [TELEMETRY #2] 03:45:23 up 00:07:11 heap 251KB rssi -41 temp 32.4C depth 41.4m hull 5.1bar batt 24.2V valve closed sonar - watch disarmed alerts 0 state NORMAL
+DEBUG    drivers.device_driver:device_driver.py:96 RX < alert test critical
+DEBUG    drivers.device_driver:device_driver.py:96 RX < E (445135) sentry: [CIC #11 CRITICAL] test: test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (445135) sentry: [VALVE] OPEN (critical alert)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < W (445135) sentry: [STATE] 1 NORMAL -> 3 VERBOSE (by critical alert)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (445135) sentry: [STATE] VERBOSE (tactical): extended logs, telemetry every 10 s, LED heartbeat
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (445145) sentry: [V] 'alert' done in 13 ms
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (445645) sentry: [NAV] depth 41.6 m, heading 269, speed 2.9 kn
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/sendMessage HTTP/1.1" 200 760
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/getUpdates HTTP/1.1" 200 23
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/getUpdates HTTP/1.1" 200 1026
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/answerCallbackQuery HTTP/1.1" 200 25
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 646
+INFO     manual_checks:manual_checks.py:299 MANUAL CHECK | Did you hear the relay open after the CRITICAL alert changed NORMAL to VERBOSE? | result=PASS | comment=-
+INFO     manual_checks:manual_checks.py:550 MANUAL RESULT | PASS via Telegram
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/sendMessage HTTP/1.1" 200 786
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/getUpdates HTTP/1.1" 200 1052
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/answerCallbackQuery HTTP/1.1" 200 25
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 672
+INFO     manual_checks:manual_checks.py:299 MANUAL CHECK | Additional observation only (not an AL-5 pass criterion): Did the Beacon lamp flash purple? | result=PASS | comment=-
+INFO     manual_checks:manual_checks.py:550 MANUAL RESULT | PASS via Telegram
+DEBUG    drivers.device_driver:device_driver.py:96 TX > alert list
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (455395) sentry: [TELEMETRY #3] 03:45:47 up 00:07:35 heap 251KB rssi -23 temp 32.4C depth 41.6m hull 5.2bar batt 24.2V valve open sonar - watch disarmed alerts 1 state VERBOSE
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (455395) sentry: [V] telemetry: min heap 205KB, beacon off, tasks 16, water 8.0C, source auto
+DEBUG    drivers.device_driver:device_driver.py:96 RX < alert list
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (458495) sentry: [CIC] 11 alerts, 1 unacknowledged:
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (458495) sentry:   #1   03:44:23 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (458495) sentry:   #2   03:44:28 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (458495) sentry:   #3   03:44:36 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (458505) sentry:   #4   03:44:37 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (458505) sentry:   #5   03:44:43 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (458515) sentry:   #6   03:44:43 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (458515) sentry:   #7   03:44:49 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (458525) sentry:   #8   03:44:49 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (458525) sentry:   #9   03:44:50 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (458535) sentry:   #10  03:45:04 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (458545) sentry:   #11  03:45:36 CRITICAL * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (458545) sentry: [V] 'alert' done in 57 ms
+DEBUG    drivers.device_driver:device_driver.py:96 TX > relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (459105) sentry: [VALVE] OPEN, auto off, cycles 235
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (459105) sentry: [V] 'relay' done in 0 ms
+DEBUG    drivers.device_driver:device_driver.py:96 TX > state
+DEBUG    drivers.device_driver:device_driver.py:96 RX < state
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (459315) sentry: state: 3 VERBOSE
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (459315) sentry:   1 normal (patrol) | 2 debug (maintenance) | 3 verbose (tactical) | 4 emergency (surfacing, only from 3)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (459315) sentry: [V] 'state' done in 3 ms
+DEBUG    drivers.device_driver:device_driver.py:96 TX > relay off
+DEBUG    drivers.device_driver:device_driver.py:96 RX < relay off
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (460485) sentry: [VALVE] CLOSED (command)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (460485) sentry: [V] valve driver GPIO8=0, cycles 236
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (460485) sentry: [V] 'relay' done in 11 ms
+DEBUG    drivers.device_driver:device_driver.py:96 TX > state
+DEBUG    drivers.device_driver:device_driver.py:96 RX < state
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (460685) sentry: state: 3 VERBOSE
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (460685) sentry:   1 normal (patrol) | 2 debug (maintenance) | 3 verbose (tactical) | 4 emergency (surfacing, only from 3)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (460685) sentry: [V] 'state' done in 3 ms
+DEBUG    drivers.device_driver:device_driver.py:96 TX > state 1
+DEBUG    drivers.device_driver:device_driver.py:96 RX < state 1
+DEBUG    drivers.device_driver:device_driver.py:96 RX < W (461295) sentry: [STATE] 3 VERBOSE -> 1 NORMAL (by command)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (461645) sentry: [ACU] ambient noise 69 dB re 1uPa, sea state 2, water 8.2 C
+DEBUG    drivers.device_driver:device_driver.py:96 TX > state
+DEBUG    drivers.device_driver:device_driver.py:96 RX < state
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (461905) sentry: state: 1 NORMAL
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (461905) sentry:   1 normal (patrol) | 2 debug (maintenance) | 3 verbose (tactical) | 4 emergency (surfacing, only from 3)
+DEBUG    drivers.device_driver:device_driver.py:96 TX > alert list
+DEBUG    drivers.device_driver:device_driver.py:96 RX < alert list
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (462505) sentry: [CIC] 11 alerts, 1 unacknowledged:
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (462505) sentry:   #1   03:44:23 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (462505) sentry:   #2   03:44:28 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (462505) sentry:   #3   03:44:36 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (462515) sentry:   #4   03:44:37 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (462515) sentry:   #5   03:44:43 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (462525) sentry:   #6   03:44:43 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (462525) sentry:   #7   03:44:49 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (462535) sentry:   #8   03:44:49 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (462535) sentry:   #9   03:44:50 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (462545) sentry:   #10  03:45:04 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (462555) sentry:   #11  03:45:36 CRITICAL * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 TX > alert ack
+DEBUG    drivers.device_driver:device_driver.py:96 RX < alert ack
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (463115) sentry: [CIC] #11 acknowledged (command). Unacked: 0
+DEBUG    drivers.device_driver:device_driver.py:96 TX > alert list
+DEBUG    drivers.device_driver:device_driver.py:96 RX < alert list
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (463725) sentry: [CIC] 11 alerts, 0 unacknowledged:
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (463725) sentry:   #1   03:44:23 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (463725) sentry:   #2   03:44:28 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (463725) sentry:   #3   03:44:36 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (463735) sentry:   #4   03:44:37 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (463735) sentry:   #5   03:44:43 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (463745) sentry:   #6   03:44:43 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (463745) sentry:   #7   03:44:49 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (463755) sentry:   #8   03:44:49 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (463755) sentry:   #9   03:44:50 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (463765) sentry:   #10  03:45:04 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (463775) sentry:   #11  03:45:36 CRITICAL   test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 TX > alert list
+DEBUG    drivers.device_driver:device_driver.py:96 RX < alert list
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (464325) sentry: [CIC] 11 alerts, 0 unacknowledged:
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (464325) sentry:   #1   03:44:23 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (464325) sentry:   #2   03:44:28 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (464325) sentry:   #3   03:44:36 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (464335) sentry:   #4   03:44:37 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (464335) sentry:   #5   03:44:43 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (464345) sentry:   #6   03:44:43 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (464345) sentry:   #7   03:44:49 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (464355) sentry:   #8   03:44:49 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (464355) sentry:   #9   03:44:50 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (464365) sentry:   #10  03:45:04 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (464375) sentry:   #11  03:45:36 CRITICAL   test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 TX > relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (464935) sentry: [VALVE] closed, auto off, cycles 236
+DEBUG    drivers.device_driver:device_driver.py:96 TX > state
+DEBUG    drivers.device_driver:device_driver.py:96 RX < state
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (465145) sentry: state: 1 NORMAL
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (465145) sentry:   1 normal (patrol) | 2 debug (maintenance) | 3 verbose (tactical) | 4 emergency (surfacing, only from 3)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (465405) sentry: [TELEMETRY #4] 03:45:57 up 00:07:45 heap 251KB rssi -25 temp 32.4C depth 42.0m hull 5.2bar batt 24.2V valve closed sonar - watch disarmed alerts 0 state NORMAL
+INFO     conftest:conftest.py:531 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz17\logs\automated\alert\2.3.0\20261023-test_alert_critical_effects_from-normal.txt
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 379
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 394
+DEBUG    drivers.device_driver:device_driver.py:96 TX > version
+DEBUG    drivers.device_driver:device_driver.py:96 RX < version
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (465965) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (465965) sentry:   partition: ota_0 @ 0x20000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:96 TX > status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (466175) sentry: === SWM-2 status ===
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (466175) sentry:   fw:       v2.3.0 (ota_0)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (466175) sentry:   state:    1 NORMAL
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (466175) sentry:   link:     buoy link '[SSID REDACTED]', ip [PRIVATE IP REDACTED], rssi -27 dBm (excellent), ch 1
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (466175) sentry:   internet: OK
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (466185) sentry:   user:     testUser (user)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (466185) sentry:   time:     03:45:57, uptime 0h 07m 45s
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (466195) sentry:   valve:    closed
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (466195) sentry:   watch:    disarmed, CIC alerts unacked: 0
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (466205) sentry:   sonar:    no contact
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (466205) sentry:   carrier:  depth 42.0 m, hull 5.2 bar, water 8.2 C, battery 24.18 V (sim)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (466215) sentry:   heap:     251 KB free
+DEBUG    drivers.device_driver:device_driver.py:96 TX > whoami
+DEBUG    drivers.device_driver:device_driver.py:96 RX < whoami
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (466395) sentry: user: testUser, access: user
+DEBUG    drivers.device_driver:device_driver.py:96 TX > relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (466605) sentry: [VALVE] closed, auto off, cycles 236
+DEBUG    drivers.device_driver:device_driver.py:96 TX > state
+DEBUG    drivers.device_driver:device_driver.py:96 RX < state
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (466815) sentry: state: 1 NORMAL
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (466815) sentry:   1 normal (patrol) | 2 debug (maintenance) | 3 verbose (tactical) | 4 emergency (surfacing, only from 3)
+DEBUG    drivers.device_driver:device_driver.py:96 TX > state 2
+DEBUG    drivers.device_driver:device_driver.py:96 RX < state 2
+DEBUG    drivers.device_driver:device_driver.py:96 RX < W (467415) sentry: [STATE] 1 NORMAL -> 2 DEBUG (by command)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (467415) sentry: [STATE] DEBUG (maintenance): raw transducer data, LED blink codes, parser diagnostics
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (467415) sentry: [V] 'state' done in 3 ms
+DEBUG    drivers.device_driver:device_driver.py:96 RX < W (467645) sentry: [PWR] battery bus ripple 140 mV (limit 250 mV)
+DEBUG    drivers.device_driver:device_driver.py:96 TX > state
+DEBUG    drivers.device_driver:device_driver.py:96 RX < state
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (468025) sentry: [DBG] cmd 'state' args '' need 2
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (468025) sentry: state: 2 DEBUG
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (468025) sentry:   1 normal (patrol) | 2 debug (maintenance) | 3 verbose (tactical) | 4 emergency (surfacing, only from 3)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (468025) sentry: [V] 'state' done in 7 ms
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/sendMessage HTTP/1.1" 200 927
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/getUpdates HTTP/1.1" 200 23
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/getUpdates HTTP/1.1" 200 1194
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/answerCallbackQuery HTTP/1.1" 200 25
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 917
+INFO     manual_checks:manual_checks.py:357 MANUAL PREPARE | Operator confirmed readiness via Telegram.
+DEBUG    drivers.device_driver:device_driver.py:96 TX > alert test critical
+DEBUG    drivers.device_driver:device_driver.py:96 RX < alert test critical
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (475615) sentry: [DBG] cmd 'alert' args 'test critical' need 2
+DEBUG    drivers.device_driver:device_driver.py:96 RX < E (475615) sentry: [CIC #12 CRITICAL] test: test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (475615) sentry: [VALVE] OPEN (critical alert)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (475615) sentry: [V] valve driver GPIO8=1, cycles 237
+DEBUG    drivers.device_driver:device_driver.py:96 RX < W (475615) sentry: [STATE] 2 DEBUG -> 3 VERBOSE (by critical alert)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (475625) sentry: [STATE] VERBOSE (tactical): extended logs, telemetry every 10 s, LED heartbeat
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (475635) sentry: [V] 'alert' done in 23 ms
+DEBUG    drivers.device_driver:device_driver.py:96 RX < W (475645) sentry: [ACU] own-ship noise: pump #2 cavitation suspected
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/sendMessage HTTP/1.1" 200 759
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/getUpdates HTTP/1.1" 200 1025
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/answerCallbackQuery HTTP/1.1" 200 25
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 645
+INFO     manual_checks:manual_checks.py:299 MANUAL CHECK | Did you hear the relay open after the CRITICAL alert changed DEBUG to VERBOSE? | result=PASS | comment=-
+INFO     manual_checks:manual_checks.py:550 MANUAL RESULT | PASS via Telegram
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/sendMessage HTTP/1.1" 200 786
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/getUpdates HTTP/1.1" 200 23
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/getUpdates HTTP/1.1" 200 1052
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/answerCallbackQuery HTTP/1.1" 200 25
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 672
+INFO     manual_checks:manual_checks.py:299 MANUAL CHECK | Additional observation only (not an AL-5 pass criterion): Did the Beacon lamp flash purple? | result=PASS | comment=-
+INFO     manual_checks:manual_checks.py:550 MANUAL RESULT | PASS via Telegram
+DEBUG    drivers.device_driver:device_driver.py:96 TX > alert list
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (485835) sentry: [TELEMETRY #5] 03:46:17 up 00:08:05 heap 251KB rssi -24 temp 32.4C depth 41.3m hull 5.1bar batt 24.2V valve open sonar - watch disarmed alerts 1 state VERBOSE
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (485835) sentry: [V] telemetry: min heap 205KB, beacon off, tasks 16, water 8.1C, source auto
+DEBUG    drivers.device_driver:device_driver.py:96 RX < alert list
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (487145) sentry: [CIC] 12 alerts, 1 unacknowledged:
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (487145) sentry:   #1   03:44:23 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (487145) sentry:   #2   03:44:28 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (487145) sentry:   #3   03:44:36 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (487155) sentry:   #4   03:44:37 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (487155) sentry:   #5   03:44:43 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (487165) sentry:   #6   03:44:43 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (487165) sentry:   #7   03:44:49 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (487175) sentry:   #8   03:44:49 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (487175) sentry:   #9   03:44:50 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (487185) sentry:   #10  03:45:04 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (487195) sentry:   #11  03:45:36 CRITICAL   test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (487195) sentry:   #12  03:46:07 CRITICAL * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (487205) sentry: [V] 'alert' done in 62 ms
+DEBUG    drivers.device_driver:device_driver.py:96 TX > relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (487755) sentry: [VALVE] OPEN, auto off, cycles 237
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (487755) sentry: [V] 'relay' done in 0 ms
+DEBUG    drivers.device_driver:device_driver.py:96 TX > state
+DEBUG    drivers.device_driver:device_driver.py:96 RX < state
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (487965) sentry: state: 3 VERBOSE
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (487965) sentry:   1 normal (patrol) | 2 debug (maintenance) | 3 verbose (tactical) | 4 emergency (surfacing, only from 3)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (487965) sentry: [V] 'state' done in 3 ms
+DEBUG    drivers.device_driver:device_driver.py:96 TX > relay off
+DEBUG    drivers.device_driver:device_driver.py:96 RX < relay off
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (489135) sentry: [VALVE] CLOSED (command)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (489135) sentry: [V] valve driver GPIO8=0, cycles 238
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (489135) sentry: [V] 'relay' done in 11 ms
+DEBUG    drivers.device_driver:device_driver.py:96 TX > state
+DEBUG    drivers.device_driver:device_driver.py:96 RX < state
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (489335) sentry: state: 3 VERBOSE
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (489335) sentry:   1 normal (patrol) | 2 debug (maintenance) | 3 verbose (tactical) | 4 emergency (surfacing, only from 3)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (489335) sentry: [V] 'state' done in 3 ms
+DEBUG    drivers.device_driver:device_driver.py:96 TX > state 1
+DEBUG    drivers.device_driver:device_driver.py:96 RX < state 1
+DEBUG    drivers.device_driver:device_driver.py:96 RX < W (489945) sentry: [STATE] 3 VERBOSE -> 1 NORMAL (by command)
+DEBUG    drivers.device_driver:device_driver.py:96 TX > state
+DEBUG    drivers.device_driver:device_driver.py:96 RX < state
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (490545) sentry: state: 1 NORMAL
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (490545) sentry:   1 normal (patrol) | 2 debug (maintenance) | 3 verbose (tactical) | 4 emergency (surfacing, only from 3)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (490645) sentry: [PWR] battery bus 24.18 V, load 1.9 A
+DEBUG    drivers.device_driver:device_driver.py:96 TX > alert list
+DEBUG    drivers.device_driver:device_driver.py:96 RX < alert list
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (491155) sentry: [CIC] 12 alerts, 1 unacknowledged:
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (491155) sentry:   #1   03:44:23 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (491155) sentry:   #2   03:44:28 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (491155) sentry:   #3   03:44:36 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (491165) sentry:   #4   03:44:37 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (491165) sentry:   #5   03:44:43 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (491175) sentry:   #6   03:44:43 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (491175) sentry:   #7   03:44:49 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (491185) sentry:   #8   03:44:49 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (491185) sentry:   #9   03:44:50 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (491195) sentry:   #10  03:45:04 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (491205) sentry:   #11  03:45:36 CRITICAL   test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (491205) sentry:   #12  03:46:07 CRITICAL * test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 TX > alert ack
+DEBUG    drivers.device_driver:device_driver.py:96 RX < alert ack
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (491765) sentry: [CIC] #12 acknowledged (command). Unacked: 0
+DEBUG    drivers.device_driver:device_driver.py:96 TX > alert list
+DEBUG    drivers.device_driver:device_driver.py:96 RX < alert list
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (492365) sentry: [CIC] 12 alerts, 0 unacknowledged:
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (492365) sentry:   #1   03:44:23 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (492365) sentry:   #2   03:44:28 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (492365) sentry:   #3   03:44:36 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (492375) sentry:   #4   03:44:37 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (492375) sentry:   #5   03:44:43 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (492385) sentry:   #6   03:44:43 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (492385) sentry:   #7   03:44:49 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (492395) sentry:   #8   03:44:49 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (492395) sentry:   #9   03:44:50 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (492405) sentry:   #10  03:45:04 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (492415) sentry:   #11  03:45:36 CRITICAL   test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (492415) sentry:   #12  03:46:07 CRITICAL   test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 TX > alert list
+DEBUG    drivers.device_driver:device_driver.py:96 RX < alert list
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (492975) sentry: [CIC] 12 alerts, 0 unacknowledged:
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (492975) sentry:   #1   03:44:23 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (492975) sentry:   #2   03:44:28 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (492975) sentry:   #3   03:44:36 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (492985) sentry:   #4   03:44:37 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (492985) sentry:   #5   03:44:43 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (492995) sentry:   #6   03:44:43 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (492995) sentry:   #7   03:44:49 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (493005) sentry:   #8   03:44:49 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (493005) sentry:   #9   03:44:50 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (493015) sentry:   #10  03:45:04 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (493025) sentry:   #11  03:45:36 CRITICAL   test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (493025) sentry:   #12  03:46:07 CRITICAL   test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 TX > relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (493585) sentry: [VALVE] closed, auto off, cycles 238
+DEBUG    drivers.device_driver:device_driver.py:96 TX > state
+DEBUG    drivers.device_driver:device_driver.py:96 RX < state
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (493795) sentry: state: 1 NORMAL
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (493795) sentry:   1 normal (patrol) | 2 debug (maintenance) | 3 verbose (tactical) | 4 emergency (surfacing, only from 3)
+INFO     conftest:conftest.py:531 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz17\logs\automated\alert\2.3.0\20261023-test_alert_critical_effects_from-debug.txt
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 378

@@ -11,6 +11,13 @@ import pytest
 from drivers.device_driver import DeviceDriver
 from manual_checks import SoftChecks, prepare_observation
 
+pytestmark = [
+    allure.parent_suite("DZ17"),
+    allure.suite("CIC Alert Center"),
+    allure.epic("SENTRY SWM-2"),
+    allure.feature("CIC Alert Center"),
+]
+
 
 ALERT_PATTERN = re.compile(
     r"\[CIC\s+#(\d+)\s+(INFO|WARNING|CRITICAL)\]",
@@ -28,6 +35,9 @@ ALERT_LIST_SUMMARY_PATTERN = re.compile(
 )
 
 
+@allure.sub_suite("Offline helper checks")
+@allure.story("Alert list parsing")
+@allure.title("Match complete alert IDs without accepting partial matches")
 def test_alert_list_parser_matches_complete_id() -> None:
     lines = [
         "[CIC] 10 alerts, 1 unacknowledged:",
@@ -41,6 +51,9 @@ def test_alert_list_parser_matches_complete_id() -> None:
     )
 
 
+@allure.sub_suite("Offline helper checks")
+@allure.story("Alert list parsing")
+@allure.title("Read pending status from the alert-list marker")
 def test_alert_list_parser_reads_pending_marker_column() -> None:
     pending = "I (6935570) sentry:   #13 20:25:00 INFO * test test alert"
     acknowledged = "I (6935580) sentry:   #12 20:24:56 INFO test test alert"
@@ -52,6 +65,9 @@ def test_alert_list_parser_reads_pending_marker_column() -> None:
     )
 
 
+@allure.sub_suite("Offline helper checks")
+@allure.story("Alert list parsing")
+@allure.title("Parse alert totals and pending IDs from UART output")
 def test_alert_list_parser_extracts_summary_and_pending_ids_from_uart_lines() -> None:
     lines = [
         "I (6935520) sentry: [CIC] 20 alerts, 2 unacknowledged:",
@@ -63,6 +79,9 @@ def test_alert_list_parser_extracts_summary_and_pending_ids_from_uart_lines() ->
     assert TestAlertCenter._pending_alert_ids(lines) == ["19", "20"]
 
 
+@allure.sub_suite("Offline helper checks")
+@allure.story("Alert list parsing")
+@allure.title("Capture each alert's acknowledgement state from the list")
 def test_alert_list_parser_snapshots_acknowledgement_state() -> None:
     lines = [
         "I (6935520) sentry: [CIC] 2 alerts, 1 unacknowledged:",
@@ -85,8 +104,11 @@ def test_alert_list_parser_snapshots_acknowledgement_state() -> None:
             "20": (False, "acknowledged #20"),
         },
     ],
-    ids=["removed-entry", "changed-pending-state"],
+    ids=["entry-removed", "acknowledgement-state-changed"],
 )
+@allure.sub_suite("Offline safety checks")
+@allure.story("Alert history preservation")
+@allure.title("Reject cleanup when an existing alert is {param_id}")
 def test_alert_clear_guard_rejects_changed_history_entries(
     after: dict[str, tuple[bool, str]],
 ) -> None:
@@ -99,6 +121,9 @@ def test_alert_clear_guard_rejects_changed_history_entries(
         TestAlertCenter._assert_alert_entries_preserved(before, after)
 
 
+@allure.sub_suite("Offline safety checks")
+@allure.story("Alert history cleanup")
+@allure.title("Show alert history before requesting approval to clear it")
 def test_full_history_clear_prompt_shows_list_before_operator_approval() -> None:
     initial_list = [
         "I (6935520) sentry: [CIC] 2 alerts, 1 unacknowledged:",
@@ -138,8 +163,7 @@ def test_full_history_clear_prompt_shows_list_before_operator_approval() -> None
     driver.alert_clear.assert_called_once_with()
 
 
-@allure.epic("SENTRY SWM-2")
-@allure.feature("CIC Alert Center")
+@allure.sub_suite("Device alert scenarios")
 @pytest.mark.alert
 class TestAlertCenter:
     @staticmethod
@@ -906,6 +930,9 @@ class TestAlertCenter:
                     )
 
 
+@allure.sub_suite("Offline cleanup safeguards")
+@allure.story("Test-owned alert cleanup")
+@allure.title("Acknowledge the latest owned test alert without a numeric ID")
 def test_alert_cleanup_uses_latest_ack_without_numeric_id() -> None:
     header_pending = "I (6935520) sentry: [CIC] 2 alerts, 2 unacknowledged:"
     older_pending = "I (6935530) sentry: #13 20:25:00 INFO * test test alert"
@@ -926,6 +953,9 @@ def test_alert_cleanup_uses_latest_ack_without_numeric_id() -> None:
     assert driver.alert_list.call_count == 2
 
 
+@allure.sub_suite("Offline cleanup safeguards")
+@allure.story("Test-owned alert cleanup")
+@allure.title("Refuse cleanup when the latest pending alert is not test-owned")
 def test_alert_cleanup_refuses_to_acknowledge_an_unowned_latest_alert() -> None:
     header = "I (6935520) sentry: [CIC] 1 alerts, 1 unacknowledged:"
     other_pending = "I (6935530) sentry: #13 20:25:00 INFO * user alert"
@@ -940,6 +970,9 @@ def test_alert_cleanup_refuses_to_acknowledge_an_unowned_latest_alert() -> None:
     assert driver.alert_list.call_count == 1
 
 
+@allure.sub_suite("Offline cleanup safeguards")
+@allure.story("Test-owned alert cleanup")
+@allure.title("Fail cleanup when acknowledgement leaves the generated alert pending")
 def test_alert_cleanup_rejects_latest_ack_that_leaves_generated_alert_pending() -> None:
     header = "I (6935520) sentry: [CIC] 1 alerts, 1 unacknowledged:"
     pending = "I (6935530) sentry: #13 20:25:00 INFO * test test alert"

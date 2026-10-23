@@ -1,0 +1,113 @@
+Test: tests/test_guard.py::TestGuard::test_guard_panic_raises_alarm_and_critical_effects
+Firmware: 2.3.0
+Captured: 2026-10-23T04:35:35.348782+03:00
+
+TX > version
+RX < version
+RX < I (3428115) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+RX < I (3428115) sentry:   partition: ota_0 @ 0x20000, state: valid
+TX > status
+RX < status
+RX < I (3428325) sentry: === SWM-2 status ===
+RX < I (3428325) sentry:   fw:       v2.3.0 (ota_0)
+RX < I (3428325) sentry:   state:    1 NORMAL
+RX < I (3428325) sentry:   link:     buoy link '[SSID REDACTED]', ip [PRIVATE IP REDACTED], rssi -29 dBm (excellent), ch 1
+RX < I (3428335) sentry:   internet: OK
+RX < I (3428335) sentry:   user:     testUser (user)
+RX < I (3428335) sentry:   time:     04:35:19, uptime 0h 57m 07s
+RX < I (3428345) sentry:   valve:    closed
+RX < I (3428345) sentry:   watch:    disarmed, CIC alerts unacked: 3
+RX < I (3428355) sentry:   sonar:    last echo 15.7 cm
+RX < I (3428355) sentry:   carrier:  depth 42.0 m, hull 5.2 bar, water 8.2 C, battery 24.09 V (sim)
+RX < I (3428365) sentry:   heap:     251 KB free
+TX > whoami
+RX < whoami
+RX < I (3428535) sentry: user: testUser, access: user
+TX > guard status
+RX < guard status
+RX < I (3428745) sentry: [WATCH] disarmed, zone 20 cm, last distance 15.7 cm
+TX > relay status
+RX < relay status
+RX < I (3429345) sentry: [VALVE] closed, auto off, cycles 264
+TX > state
+RX < state
+RX < I (3429555) sentry: state: 1 NORMAL
+RX < I (3429555) sentry:   1 normal (patrol) | 2 debug (maintenance) | 3 verbose (tactical) | 4 emergency (surfacing, only from 3)
+TX > guard panic
+RX < guard panic
+RX < E (3433775) sentry: [WATCH] !!! GENERAL ALARM: PANIC command !!! Disarm: 'guard disarm <pin>'
+RX < E (3433775) sentry: [CIC #17 CRITICAL] watch: GENERAL ALARM: PANIC command
+RX < I (3433775) sentry: [VALVE] OPEN (critical alert)
+RX < W (3433775) sentry: [STATE] 1 NORMAL -> 3 VERBOSE (by critical alert)
+RX < I (3433785) sentry: [STATE] VERBOSE (tactical): extended logs, telemetry every 10 s, LED heartbeat
+RX < I (3433795) sentry: [V] 'guard' done in 23 ms
+RX < I (3434645) sentry: [PWR] battery bus 24.09 V, load 1.8 A
+TX > guard status
+RX < guard status
+RX < I (3434795) sentry: [WATCH] ALARM, zone 20 cm, last distance 15.7 cm
+RX < I (3434795) sentry: [V] 'guard' done in 0 ms
+TX > relay status
+RX < relay status
+RX < I (3435405) sentry: [VALVE] OPEN, auto off, cycles 265
+RX < I (3435405) sentry: [V] 'relay' done in 0 ms
+TX > state
+RX < state
+RX < I (3435615) sentry: state: 3 VERBOSE
+RX < I (3435615) sentry:   1 normal (patrol) | 2 debug (maintenance) | 3 verbose (tactical) | 4 emergency (surfacing, only from 3)
+RX < I (3435615) sentry: [V] 'state' done in 3 ms
+TX > alert list
+RX < alert list
+RX < I (3436225) sentry: [CIC] 17 alerts, 4 unacknowledged:
+RX < I (3436225) sentry:   #1   03:44:23 INFO       test    test alert
+RX < I (3436225) sentry:   #2   03:44:28 WARNING    test    test alert
+RX < I (3436225) sentry:   #3   03:44:36 INFO       test    test alert
+RX < I (3436235) sentry:   #4   03:44:37 WARNING    test    test alert
+RX < I (3436235) sentry:   #5   03:44:43 INFO       test    test alert
+RX < I (3436245) sentry:   #6   03:44:43 WARNING    test    test alert
+RX < I (3436245) sentry:   #7   03:44:49 INFO       test    test alert
+RX < I (3436255) sentry:   #8   03:44:49 WARNING    test    test alert
+RX < I (3436265) sentry:   #9   03:44:50 INFO       test    test alert
+RX < I (3436265) sentry:   #10  03:45:04 INFO       test    test alert
+RX < I (3436275) sentry:   #11  03:45:36 CRITICAL   test    test alert
+RX < I (3436275) sentry:   #12  03:46:07 CRITICAL   test    test alert
+RX < I (3436285) sentry:   #13  04:13:53 WARNING  * sonar   collision risk: contact at 14.0 cm
+RX < I (3436295) sentry:   #14  04:14:00 INFO       test    test alert
+RX < I (3436295) sentry:   #15  04:33:31 CRITICAL * watch   GENERAL ALARM: PANIC command
+RX < I (3436305) sentry:   #16  04:33:58 CRITICAL * watch   GENERAL ALARM: PANIC button
+RX < I (3436315) sentry:   #17  04:35:25 CRITICAL * watch   GENERAL ALARM: PANIC command
+RX < I (3436315) sentry: [V] 'alert' done in 99 ms
+TX > guard status
+RX < guard status
+RX < I (3439115) sentry: [WATCH] ALARM, zone 20 cm, last distance 15.7 cm
+RX < I (3439115) sentry: [V] 'guard' done in 0 ms
+TX > guard disarm [REDACTED]
+RX < guard disarm [REDACTED]
+RX < I (3439725) sentry: [WATCH] disarmed (was ALARM)
+RX < I (3439735) sentry: [VALVE] CLOSED (guard disarm)
+RX < I (3439735) sentry: [V] valve driver GPIO8=0, cycles 266
+RX < I (3439735) sentry: [V] 'guard' done in 11 ms
+TX > guard status
+RX < guard status
+RX < I (3440335) sentry: [WATCH] disarmed, zone 20 cm, last distance 15.7 cm
+RX < I (3440335) sentry: [V] 'guard' done in 0 ms
+TX > relay status
+RX < relay status
+RX < I (3440945) sentry: [VALVE] closed, auto off, cycles 266
+RX < I (3440945) sentry: [V] 'relay' done in 0 ms
+TX > relay status
+RX < relay status
+RX < I (3441155) sentry: [VALVE] closed, auto off, cycles 266
+RX < I (3441155) sentry: [V] 'relay' done in 0 ms
+TX > state
+RX < state
+RX < I (3441365) sentry: state: 3 VERBOSE
+RX < I (3441365) sentry:   1 normal (patrol) | 2 debug (maintenance) | 3 verbose (tactical) | 4 emergency (surfacing, only from 3)
+RX < I (3441365) sentry: [V] 'state' done in 3 ms
+TX > state 1
+RX < state 1
+RX < W (3441975) sentry: [STATE] 3 VERBOSE -> 1 NORMAL (by command)
+TX > state
+RX < state
+RX < I (3442585) sentry: state: 1 NORMAL
+RX < I (3442585) sentry:   1 normal (patrol) | 2 debug (maintenance) | 3 verbose (tactical) | 4 emergency (surfacing, only from 3)
+RX < I (3442645) sentry: [NAV] depth 42.1 m, heading 274, speed 2.6 kn

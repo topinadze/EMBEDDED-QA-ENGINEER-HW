@@ -1,0 +1,60 @@
+Test: tests/test_buttons.py::TestButtons::test_button_k3_sonar_stream
+Firmware: 2.3.0
+Captured: 2026-10-23T04:14:00.137463+03:00
+
+TX > version
+RX < version
+RX < I (2109285) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+RX < I (2109285) sentry:   partition: ota_0 @ 0x20000, state: valid
+TX > lamp status
+RX < lamp status
+RX < I (2109485) sentry: [BEACON] off, color (255,255,255), brightness 100%, mode solid, timer off
+TX > status
+RX < status
+RX < I (2110095) sentry: === SWM-2 status ===
+RX < I (2110095) sentry:   fw:       v2.3.0 (ota_0)
+RX < I (2110095) sentry:   state:    1 NORMAL
+RX < I (2110095) sentry:   link:     buoy link '[SSID REDACTED]', ip [PRIVATE IP REDACTED], rssi -26 dBm (excellent), ch 1
+RX < I (2110105) sentry:   internet: OK
+RX < I (2110105) sentry:   user:     testUser (user)
+RX < I (2110105) sentry:   time:     04:13:21, uptime 0h 35m 09s
+RX < I (2110115) sentry:   valve:    closed
+RX < I (2110115) sentry:   watch:    disarmed, CIC alerts unacked: 0
+RX < I (2110125) sentry:   sonar:    no contact
+RX < I (2110125) sentry:   carrier:  depth 42.3 m, hull 5.2 bar, water 8.0 C, battery 24.14 V (sim)
+RX < I (2110135) sentry:   heap:     251 KB free
+TX > whoami
+RX < whoami
+RX < I (2110295) sentry: user: testUser, access: user
+RX < I (2111395) sentry: [TELEMETRY #53] 04:13:23 up 00:35:11 heap 251KB rssi -21 temp 32.4C depth 42.3m hull 5.2bar batt 24.1V valve closed sonar - watch disarmed alerts 0 state NORMAL
+RX < I (2135645) sentry: [PWR] battery bus 24.13 V, load 1.4 A
+RX < I (2141395) sentry: [TELEMETRY #54] 04:13:53 up 00:35:41 heap 251KB rssi -23 temp 32.4C depth 42.1m hull 5.2bar batt 24.1V valve closed sonar - watch disarmed alerts 0 state NORMAL
+RX < I (2141445) sentry: [BTN] K3 pressed
+RX < I (2141445) sentry: [SONAR] active pinging for 30 s, every 500 ms (K3)
+RX < I (2141545) sentry: [SONAR] ping: echo 14.0 cm
+RX < E (2141545) sentry: [COLLISION] contact too close: 14.0 cm (< 20 cm)
+RX < W (2141545) sentry: [CIC #13 WARNING] sonar: collision risk: contact at 14.0 cm
+RX < I (2142095) sentry: [SONAR] ping: echo 14.0 cm
+RX < I (2142645) sentry: [SONAR] ping: echo 14.0 cm
+RX < I (2143195) sentry: [SONAR] ping: echo 14.0 cm
+RX < I (2143745) sentry: [SONAR] ping: echo 14.0 cm
+RX < I (2144295) sentry: [SONAR] ping: echo 14.0 cm
+RX < I (2144845) sentry: [SONAR] ping: echo 14.0 cm
+RX < I (2145395) sentry: [SONAR] ping: echo 14.0 cm
+RX < I (2145675) sentry: [BTN] K3 pressed
+RX < I (2145675) sentry: [SONAR] pinging stopped (K3)
+TX > lamp timer 0
+RX < lamp timer 0
+RX < I (2145905) sentry: [BEACON] timer cancelled
+TX > lamp color 255 255 255
+RX < lamp color 255 255 255
+RX < I (2146305) sentry: [BEACON] color: (255,255,255)
+TX > lamp brightness 100
+RX < lamp brightness 100
+RX < I (2146715) sentry: [BEACON] brightness: 100%
+TX > lamp mode solid
+RX < lamp mode solid
+RX < I (2147125) sentry: [BEACON] mode: solid
+TX > lamp off
+RX < lamp off
+RX < W (2147535) sentry: W510 lamp already off

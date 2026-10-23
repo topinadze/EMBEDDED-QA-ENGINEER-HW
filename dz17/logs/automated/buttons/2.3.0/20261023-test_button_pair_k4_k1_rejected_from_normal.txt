@@ -1,0 +1,54 @@
+Test: tests/test_buttons.py::TestButtons::test_button_pair_k4_k1_rejected_from_normal
+Firmware: 2.3.0
+Captured: 2026-10-23T04:15:04.879153+03:00
+
+TX > version
+RX < version
+RX < I (2198285) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+RX < I (2198285) sentry:   partition: ota_0 @ 0x20000, state: valid
+TX > lamp status
+RX < lamp status
+RX < I (2198495) sentry: [BEACON] off, color (255,255,255), brightness 100%, mode solid, timer off
+TX > status
+RX < status
+RX < I (2199105) sentry: === SWM-2 status ===
+RX < I (2199105) sentry:   fw:       v2.3.0 (ota_0)
+RX < I (2199105) sentry:   state:    1 NORMAL
+RX < I (2199105) sentry:   link:     buoy link '[SSID REDACTED]', ip [PRIVATE IP REDACTED], rssi -25 dBm (excellent), ch 1
+RX < I (2199115) sentry:   internet: OK
+RX < I (2199115) sentry:   user:     testUser (user)
+RX < I (2199115) sentry:   time:     04:14:50, uptime 0h 36m 38s
+RX < I (2199125) sentry:   valve:    closed
+RX < I (2199125) sentry:   watch:    disarmed, CIC alerts unacked: 1
+RX < I (2199135) sentry:   sonar:    last echo 14.0 cm
+RX < I (2199135) sentry:   carrier:  depth 41.9 m, hull 5.2 bar, water 8.0 C, battery 24.13 V (sim)
+RX < I (2199145) sentry:   heap:     251 KB free
+TX > whoami
+RX < whoami
+RX < I (2199305) sentry: user: testUser, access: user
+TX > state
+RX < state
+RX < I (2199515) sentry: state: 1 NORMAL
+RX < I (2199515) sentry:   1 normal (patrol) | 2 debug (maintenance) | 3 verbose (tactical) | 4 emergency (surfacing, only from 3)
+RX < I (2201445) sentry: [TELEMETRY #56] 04:14:53 up 00:36:41 heap 251KB rssi -24 temp 33.4C depth 41.9m hull 5.2bar batt 24.1V valve closed sonar 14.0cm watch disarmed alerts 1 state NORMAL
+RX < I (2209755) sentry: [BTN] K4+K1 held 2 s -> state 4
+RX < E (2209755) sentry: E302 EMERGENCY can be entered only from 3 VERBOSE (now 1 NORMAL)
+TX > state
+RX < state
+RX < I (2210045) sentry: state: 1 NORMAL
+RX < I (2210045) sentry:   1 normal (patrol) | 2 debug (maintenance) | 3 verbose (tactical) | 4 emergency (surfacing, only from 3)
+TX > lamp timer 0
+RX < lamp timer 0
+RX < I (2210655) sentry: [BEACON] timer cancelled
+TX > lamp color 255 255 255
+RX < lamp color 255 255 255
+RX < I (2211065) sentry: [BEACON] color: (255,255,255)
+TX > lamp brightness 100
+RX < lamp brightness 100
+RX < I (2211465) sentry: [BEACON] brightness: 100%
+TX > lamp mode solid
+RX < lamp mode solid
+RX < I (2211875) sentry: [BEACON] mode: solid
+TX > lamp off
+RX < lamp off
+RX < W (2212285) sentry: W510 lamp already off

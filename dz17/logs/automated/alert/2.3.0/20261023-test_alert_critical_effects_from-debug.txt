@@ -1,0 +1,154 @@
+Test: tests/test_alert.py::TestAlertCenter::test_alert_critical_effects[from-debug]
+Firmware: 2.3.0
+Captured: 2026-10-23T03:46:26.658672+03:00
+
+TX > version
+RX < version
+RX < I (465965) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+RX < I (465965) sentry:   partition: ota_0 @ 0x20000, state: valid
+TX > status
+RX < status
+RX < I (466175) sentry: === SWM-2 status ===
+RX < I (466175) sentry:   fw:       v2.3.0 (ota_0)
+RX < I (466175) sentry:   state:    1 NORMAL
+RX < I (466175) sentry:   link:     buoy link '[SSID REDACTED]', ip [PRIVATE IP REDACTED], rssi -27 dBm (excellent), ch 1
+RX < I (466175) sentry:   internet: OK
+RX < I (466185) sentry:   user:     testUser (user)
+RX < I (466185) sentry:   time:     03:45:57, uptime 0h 07m 45s
+RX < I (466195) sentry:   valve:    closed
+RX < I (466195) sentry:   watch:    disarmed, CIC alerts unacked: 0
+RX < I (466205) sentry:   sonar:    no contact
+RX < I (466205) sentry:   carrier:  depth 42.0 m, hull 5.2 bar, water 8.2 C, battery 24.18 V (sim)
+RX < I (466215) sentry:   heap:     251 KB free
+TX > whoami
+RX < whoami
+RX < I (466395) sentry: user: testUser, access: user
+TX > relay status
+RX < relay status
+RX < I (466605) sentry: [VALVE] closed, auto off, cycles 236
+TX > state
+RX < state
+RX < I (466815) sentry: state: 1 NORMAL
+RX < I (466815) sentry:   1 normal (patrol) | 2 debug (maintenance) | 3 verbose (tactical) | 4 emergency (surfacing, only from 3)
+TX > state 2
+RX < state 2
+RX < W (467415) sentry: [STATE] 1 NORMAL -> 2 DEBUG (by command)
+RX < I (467415) sentry: [STATE] DEBUG (maintenance): raw transducer data, LED blink codes, parser diagnostics
+RX < I (467415) sentry: [V] 'state' done in 3 ms
+RX < W (467645) sentry: [PWR] battery bus ripple 140 mV (limit 250 mV)
+TX > state
+RX < state
+RX < I (468025) sentry: [DBG] cmd 'state' args '' need 2
+RX < I (468025) sentry: state: 2 DEBUG
+RX < I (468025) sentry:   1 normal (patrol) | 2 debug (maintenance) | 3 verbose (tactical) | 4 emergency (surfacing, only from 3)
+RX < I (468025) sentry: [V] 'state' done in 7 ms
+TX > alert test critical
+RX < alert test critical
+RX < I (475615) sentry: [DBG] cmd 'alert' args 'test critical' need 2
+RX < E (475615) sentry: [CIC #12 CRITICAL] test: test alert
+RX < I (475615) sentry: [VALVE] OPEN (critical alert)
+RX < I (475615) sentry: [V] valve driver GPIO8=1, cycles 237
+RX < W (475615) sentry: [STATE] 2 DEBUG -> 3 VERBOSE (by critical alert)
+RX < I (475625) sentry: [STATE] VERBOSE (tactical): extended logs, telemetry every 10 s, LED heartbeat
+RX < I (475635) sentry: [V] 'alert' done in 23 ms
+RX < W (475645) sentry: [ACU] own-ship noise: pump #2 cavitation suspected
+TX > alert list
+RX < I (485835) sentry: [TELEMETRY #5] 03:46:17 up 00:08:05 heap 251KB rssi -24 temp 32.4C depth 41.3m hull 5.1bar batt 24.2V valve open sonar - watch disarmed alerts 1 state VERBOSE
+RX < I (485835) sentry: [V] telemetry: min heap 205KB, beacon off, tasks 16, water 8.1C, source auto
+RX < alert list
+RX < I (487145) sentry: [CIC] 12 alerts, 1 unacknowledged:
+RX < I (487145) sentry:   #1   03:44:23 INFO       test    test alert
+RX < I (487145) sentry:   #2   03:44:28 WARNING    test    test alert
+RX < I (487145) sentry:   #3   03:44:36 INFO       test    test alert
+RX < I (487155) sentry:   #4   03:44:37 WARNING    test    test alert
+RX < I (487155) sentry:   #5   03:44:43 INFO       test    test alert
+RX < I (487165) sentry:   #6   03:44:43 WARNING    test    test alert
+RX < I (487165) sentry:   #7   03:44:49 INFO       test    test alert
+RX < I (487175) sentry:   #8   03:44:49 WARNING    test    test alert
+RX < I (487175) sentry:   #9   03:44:50 INFO       test    test alert
+RX < I (487185) sentry:   #10  03:45:04 INFO       test    test alert
+RX < I (487195) sentry:   #11  03:45:36 CRITICAL   test    test alert
+RX < I (487195) sentry:   #12  03:46:07 CRITICAL * test    test alert
+RX < I (487205) sentry: [V] 'alert' done in 62 ms
+TX > relay status
+RX < relay status
+RX < I (487755) sentry: [VALVE] OPEN, auto off, cycles 237
+RX < I (487755) sentry: [V] 'relay' done in 0 ms
+TX > state
+RX < state
+RX < I (487965) sentry: state: 3 VERBOSE
+RX < I (487965) sentry:   1 normal (patrol) | 2 debug (maintenance) | 3 verbose (tactical) | 4 emergency (surfacing, only from 3)
+RX < I (487965) sentry: [V] 'state' done in 3 ms
+TX > relay off
+RX < relay off
+RX < I (489135) sentry: [VALVE] CLOSED (command)
+RX < I (489135) sentry: [V] valve driver GPIO8=0, cycles 238
+RX < I (489135) sentry: [V] 'relay' done in 11 ms
+TX > state
+RX < state
+RX < I (489335) sentry: state: 3 VERBOSE
+RX < I (489335) sentry:   1 normal (patrol) | 2 debug (maintenance) | 3 verbose (tactical) | 4 emergency (surfacing, only from 3)
+RX < I (489335) sentry: [V] 'state' done in 3 ms
+TX > state 1
+RX < state 1
+RX < W (489945) sentry: [STATE] 3 VERBOSE -> 1 NORMAL (by command)
+TX > state
+RX < state
+RX < I (490545) sentry: state: 1 NORMAL
+RX < I (490545) sentry:   1 normal (patrol) | 2 debug (maintenance) | 3 verbose (tactical) | 4 emergency (surfacing, only from 3)
+RX < I (490645) sentry: [PWR] battery bus 24.18 V, load 1.9 A
+TX > alert list
+RX < alert list
+RX < I (491155) sentry: [CIC] 12 alerts, 1 unacknowledged:
+RX < I (491155) sentry:   #1   03:44:23 INFO       test    test alert
+RX < I (491155) sentry:   #2   03:44:28 WARNING    test    test alert
+RX < I (491155) sentry:   #3   03:44:36 INFO       test    test alert
+RX < I (491165) sentry:   #4   03:44:37 WARNING    test    test alert
+RX < I (491165) sentry:   #5   03:44:43 INFO       test    test alert
+RX < I (491175) sentry:   #6   03:44:43 WARNING    test    test alert
+RX < I (491175) sentry:   #7   03:44:49 INFO       test    test alert
+RX < I (491185) sentry:   #8   03:44:49 WARNING    test    test alert
+RX < I (491185) sentry:   #9   03:44:50 INFO       test    test alert
+RX < I (491195) sentry:   #10  03:45:04 INFO       test    test alert
+RX < I (491205) sentry:   #11  03:45:36 CRITICAL   test    test alert
+RX < I (491205) sentry:   #12  03:46:07 CRITICAL * test    test alert
+TX > alert ack
+RX < alert ack
+RX < I (491765) sentry: [CIC] #12 acknowledged (command). Unacked: 0
+TX > alert list
+RX < alert list
+RX < I (492365) sentry: [CIC] 12 alerts, 0 unacknowledged:
+RX < I (492365) sentry:   #1   03:44:23 INFO       test    test alert
+RX < I (492365) sentry:   #2   03:44:28 WARNING    test    test alert
+RX < I (492365) sentry:   #3   03:44:36 INFO       test    test alert
+RX < I (492375) sentry:   #4   03:44:37 WARNING    test    test alert
+RX < I (492375) sentry:   #5   03:44:43 INFO       test    test alert
+RX < I (492385) sentry:   #6   03:44:43 WARNING    test    test alert
+RX < I (492385) sentry:   #7   03:44:49 INFO       test    test alert
+RX < I (492395) sentry:   #8   03:44:49 WARNING    test    test alert
+RX < I (492395) sentry:   #9   03:44:50 INFO       test    test alert
+RX < I (492405) sentry:   #10  03:45:04 INFO       test    test alert
+RX < I (492415) sentry:   #11  03:45:36 CRITICAL   test    test alert
+RX < I (492415) sentry:   #12  03:46:07 CRITICAL   test    test alert
+TX > alert list
+RX < alert list
+RX < I (492975) sentry: [CIC] 12 alerts, 0 unacknowledged:
+RX < I (492975) sentry:   #1   03:44:23 INFO       test    test alert
+RX < I (492975) sentry:   #2   03:44:28 WARNING    test    test alert
+RX < I (492975) sentry:   #3   03:44:36 INFO       test    test alert
+RX < I (492985) sentry:   #4   03:44:37 WARNING    test    test alert
+RX < I (492985) sentry:   #5   03:44:43 INFO       test    test alert
+RX < I (492995) sentry:   #6   03:44:43 WARNING    test    test alert
+RX < I (492995) sentry:   #7   03:44:49 INFO       test    test alert
+RX < I (493005) sentry:   #8   03:44:49 WARNING    test    test alert
+RX < I (493005) sentry:   #9   03:44:50 INFO       test    test alert
+RX < I (493015) sentry:   #10  03:45:04 INFO       test    test alert
+RX < I (493025) sentry:   #11  03:45:36 CRITICAL   test    test alert
+RX < I (493025) sentry:   #12  03:46:07 CRITICAL   test    test alert
+TX > relay status
+RX < relay status
+RX < I (493585) sentry: [VALVE] closed, auto off, cycles 238
+TX > state
+RX < state
+RX < I (493795) sentry: state: 1 NORMAL
+RX < I (493795) sentry:   1 normal (patrol) | 2 debug (maintenance) | 3 verbose (tactical) | 4 emergency (surfacing, only from 3)

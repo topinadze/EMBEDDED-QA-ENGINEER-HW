@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import logging
 from dataclasses import dataclass
-from typing import Any, Generator
+from typing import Any, Callable, Generator
 from unittest.mock import Mock
 
 import allure
@@ -17,11 +17,19 @@ from manual_checks import (
 )
 
 LOGGER = logging.getLogger(__name__)
+pytestmark = [
+    allure.parent_suite("DZ17"),
+    allure.suite("Wi-Fi Communication"),
+]
+
 STATUS_LED_VISIBILITY_PRECONDITION = (
-    "Before pressing Enter, verify the Beacon lamp is off and no higher-priority "
-    "LED state is active (emergency, Guard alarm/intrusion/arming, OTA, or sensor "
-    "error). If you cannot verify these conditions, do not continue. Do not change "
-    "Wi-Fi or login state."
+    "The test setup verifies the configured login, checks Beacon status over UART, "
+    "and turns the lamp output off after you confirm readiness if needed; its "
+    "original state is restored afterward. Follow the scenario prompt for any "
+    "intentional login-state change; fixture teardown restores the configured "
+    "login. Before pressing Enter, verify no higher-priority LED state is active "
+    "(emergency, Guard alarm/intrusion/arming, OTA, or sensor error). If you "
+    "cannot verify these conditions, do not continue."
 )
 
 
@@ -255,6 +263,7 @@ def wifi_link_loss_restore(
 
 @allure.epic("SENTRY SWM-2")
 @allure.feature("Wi-Fi Communication")
+@allure.sub_suite("Device Wi-Fi scenarios")
 @pytest.mark.wifi
 class TestWifi:
 
@@ -286,7 +295,9 @@ class TestWifi:
         self,
         device_driver: DeviceDriver,
         wifi_credentials: tuple[str, str],
-        wifi_disconnected_state: dict[str, Any],
+        wifi_connected_state: dict[str, Any],
+        wifi_status_led_lamp_off: Callable[[], None],
+        ensure_authenticated_device: Callable[[DeviceDriver], None],
         manual_prepare: Any,
         manual_check: Any,
         soft: SoftChecks,
@@ -302,11 +313,26 @@ class TestWifi:
                     "RGB status LED while this test connects the device to Wi-Fi."
                 ),
                 expected=(
-                    f"{STATUS_INDICATOR_LEGEND} After UART confirms connection, "
-                    "the LED should show ORANGE if the device is logged out or "
-                    "GREEN if it is logged in."
+                    f"{STATUS_INDICATOR_LEGEND} After UART confirms connection "
+                    "and login, the LED should show GREEN."
                 ),
                 duration="~15 seconds",
+            )
+        wifi_status_led_lamp_off()
+
+        with allure.step("Disconnect Wi-Fi to establish the connection-test precondition"):
+            disconnect_lines = driver.wifi_disconnect()
+            assert any(
+                "[LINK] disconnected" in line or "W115" in line
+                for line in disconnect_lines
+            ), (
+                "Could not establish the disconnected Wi-Fi precondition: "
+                f"{disconnect_lines}"
+            )
+            disconnected_status = _confirmed_wifi_status(driver)
+            assert not disconnected_status["connected"], (
+                "Wi-Fi must be disconnected before testing connection with "
+                f"valid credentials: {disconnected_status}"
             )
 
         with allure.step(f"Connect to Wi-Fi SSID '{ssid}'"):
@@ -340,7 +366,12 @@ class TestWifi:
             assert DeviceDriver.wifi_connection_is_valid(status), (
                 f"Wi-Fi status does not have a valid IP or RSSI: {status}"
             )
+
+        with allure.step("Ensure logged-in state for the GREEN connection indication"):
+            ensure_authenticated_device(driver)
+            status = _confirmed_wifi_status(driver)
             login_state = _confirmed_login_state(driver)
+            assert login_state, "Device must be logged in for the expected GREEN indication"
 
         with allure.step("Physically verify the connected-state status LED color"):
             soft.check(
@@ -357,6 +388,7 @@ class TestWifi:
         self,
         device_driver: DeviceDriver,
         wifi_connected_state: dict[str, Any],
+        wifi_status_led_lamp_off: Callable[[], None],
         manual_prepare: Any,
         manual_check: Any,
         soft: SoftChecks,
@@ -374,6 +406,7 @@ class TestWifi:
             ),
             duration="~5 seconds",
         )
+        wifi_status_led_lamp_off()
 
         with allure.step("Issue 'disconnect' command"):
             lines = driver.wifi_disconnect(timeout=1.0)
@@ -493,6 +526,7 @@ class TestWifi:
         self,
         device_driver: DeviceDriver,
         wifi_connected_state: dict[str, Any],
+        wifi_status_led_lamp_off: Callable[[], None],
         wifi_ssid: str,
         manual_prepare: Any,
         manual_check: Any,
@@ -519,6 +553,7 @@ class TestWifi:
             ),
             duration="~20 seconds",
         )
+        wifi_status_led_lamp_off()
 
         with allure.step("Disconnect before testing reconnect"):
             driver.wifi_disconnect()
@@ -757,19 +792,22 @@ class TestWifi:
 
 
 @pytest.mark.parametrize(
-    ("connected", "logged_in", "expected_color"),
+    ("connected", "logged_in", "expected_color", "state_description"),
     [
-        (False, False, "RED"),
-        (False, True, "RED"),
-        (True, False, "ORANGE"),
-        (True, True, "GREEN"),
+        (False, False, "RED", "Wi-Fi disconnected and user logged out"),
+        (False, True, "RED", "Wi-Fi disconnected and user logged in"),
+        (True, False, "ORANGE", "Wi-Fi connected and user logged out"),
+        (True, True, "GREEN", "Wi-Fi connected and user logged in"),
     ],
 )
+@allure.sub_suite("Status LED prompt logic")
+@allure.title("Status LED prompt: {expected_color} for {state_description}")
 @pytest.mark.wifi
 def test_status_led_prompt_uses_confirmed_link_and_login_state(
     connected: bool,
     logged_in: bool,
     expected_color: str,
+    state_description: str,
 ) -> None:
     prompt = _status_led_prompt(
         {"connected": connected},
@@ -792,6 +830,7 @@ def _connected_wifi_status(ssid: str = "TestAP") -> dict[str, Any]:
     }
 
 
+@allure.sub_suite("Wi-Fi fixture restoration")
 @allure.story("Wi-Fi fixture restoration")
 @allure.title("Keep a valid saved-profile reconnect without changing credentials")
 @pytest.mark.wifi
@@ -808,6 +847,7 @@ def test_restore_wifi_skips_connect_fallback_after_valid_reconnect() -> None:
     driver.wifi_connect.assert_not_called()
 
 
+@allure.sub_suite("Wi-Fi fixture restoration")
 @allure.story("Wi-Fi fixture restoration")
 @allure.title("Fall back to configured credentials when saved-profile reconnect fails")
 @pytest.mark.wifi
@@ -829,6 +869,7 @@ def test_restore_wifi_connects_with_configured_credentials_after_reconnect_failu
     )
 
 
+@allure.sub_suite("Wi-Fi fixture restoration")
 @allure.story("Wi-Fi fixture restoration")
 @allure.title("Fall back when reconnect reports success without a valid IP")
 @pytest.mark.wifi
@@ -855,6 +896,7 @@ def test_restore_wifi_falls_back_when_reconnect_has_no_valid_ip() -> None:
     )
 
 
+@allure.sub_suite("Wi-Fi fixture restoration")
 @allure.story("Wi-Fi fixture restoration")
 @allure.title("Report both failed Wi-Fi restoration attempts")
 @pytest.mark.wifi

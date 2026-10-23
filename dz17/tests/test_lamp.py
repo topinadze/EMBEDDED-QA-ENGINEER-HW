@@ -36,8 +36,14 @@ NAMED_COLORS = [
     ("orange", (255, 80, 0)),
 ]
 
+pytestmark = [
+    allure.parent_suite("DZ17"),
+    allure.suite("Beacon Lamp"),
+]
+
 @allure.epic("SENTRY SWM-2")
 @allure.feature("Beacon Lamp")
+@allure.sub_suite("Beacon scenarios")
 @pytest.mark.lamp
 @pytest.mark.usefixtures("lamp_state")
 class TestLamp:

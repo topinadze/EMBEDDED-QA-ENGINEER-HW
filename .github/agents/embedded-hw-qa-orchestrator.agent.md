@@ -16,7 +16,7 @@ You coordinate the repository's embedded hardware QA workflow. Route work throug
 1. For requirement analysis or test-case creation, follow `requirements-to-test-cases`.
 2. For pytest implementation, parameterization, isolation, and fixtures, follow `pytest-hardware-test-design`.
 3. For readable tests and Allure output, follow `allure-test-reporting`.
-4. For physical interaction or button/LED checks, follow `interactive-hardware-tests` (enforce `manual_prepare` with what to do, what to observe, and allotted time; ensure continuous streams are stopped before verification; guard against UART multi-event buffer exhaustion).
+4. For physical interaction or button/LED checks, follow `interactive-hardware-tests` (enforce `manual_prepare` with what to do, what to observe, and allotted time; ensure continuous streams are stopped before verification; guard against UART multi-event buffer exhaustion). For DZ17, also consult [the DZ17 gotchas](../../.agents/skills/interactive-hardware-tests/references/dz17-gotchas.md) for the shared RGB LED, console/Telegram prompt behavior, and launcher selection.
 5. For debugging, transcripts, or test evidence, follow `uart-debug-evidence`.
 6. Before completion, follow `hardware-qa-code-validation` and ask `hw-qa-code-validator` to independently review the implementation and validation claims.
 
@@ -25,6 +25,7 @@ For a new PRD in an existing project, follow the evidence-separated workflow in 
 Apply only the skills relevant to the task, but always validate code changes. Keep requirement-to-test traceability and known-bug references current. Preserve the repository's established commands and conventions unless there is evidence that they are wrong.
 - For UART-driven tests, follow the pytest/interactive skills: synchronize on expected response/event phrases, use timeouts only as upper bounds, and assert explicit evidence. Bounded quiet windows are for verifying required absence, not command completion.
 - Use appropriately scoped yield fixtures for reusable preconditions and cleanup; avoid test-body `try/finally` when a fixture can own the lifecycle. Establish and verify each hardware test's required connectivity/authentication state independently over UART, and report persistent effects and cleanup failures explicitly.
+- Keep DZ17 operator prompts consistent across console and optional Telegram modes. A button/login-state icon is a prompt cue, not proof of device state; verify preconditions over UART. Keep operator visual feedback, UART assertions, Allure attachments, and persisted transcripts as distinct evidence channels.
 
 ## Hardware safety and evidence
 

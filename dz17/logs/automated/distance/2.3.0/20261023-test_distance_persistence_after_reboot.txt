@@ -1,0 +1,32 @@
+Test: tests/test_distance.py::TestDistance::test_distance_persistence_after_reboot
+Firmware: 2.3.0
+Captured: 2026-10-23T04:56:00.073472+03:00
+
+TX > version
+RX < version
+RX < I (4666315) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+RX < I (4666315) sentry:   partition: ota_0 @ 0x20000, state: valid
+TX > status
+RX < status
+RX < I (4666525) sentry: === SWM-2 status ===
+RX < I (4666525) sentry:   fw:       v2.3.0 (ota_0)
+RX < I (4666525) sentry:   state:    1 NORMAL
+RX < I (4666525) sentry:   link:     buoy link '[SSID REDACTED]', ip [PRIVATE IP REDACTED], rssi -25 dBm (excellent), ch 1
+RX < I (4666535) sentry:   internet: OK
+RX < I (4666535) sentry:   user:     testUser (user)
+RX < I (4666535) sentry:   time:     04:55:57, uptime 1h 17m 46s
+RX < I (4666545) sentry:   valve:    closed
+RX < I (4666545) sentry:   watch:    disarmed, CIC alerts unacked: 8
+RX < I (4666555) sentry:   sonar:    last echo 19.6 cm
+RX < I (4666555) sentry:   carrier:  depth 41.9 m, hull 5.2 bar, water 8.1 C, battery 24.05 V (sim)
+RX < I (4666565) sentry:   heap:     251 KB free
+TX > whoami
+RX < whoami
+RX < I (4666725) sentry: user: testUser, access: user
+TX > relay status
+RX < relay status
+RX < I (4666935) sentry: [VALVE] closed, auto off, cycles 272
+TX > distance stats
+RX < distance stats
+RX < I (4667145) sentry: [SONAR] measurements 223, errors 0, min 3.7, max 29.6, avg 17.9 cm
+RX < I (4667145) sentry: [SONAR] calibration -2.0 cm, filter median 5, alarm off

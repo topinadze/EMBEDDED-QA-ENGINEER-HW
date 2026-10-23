@@ -1,0 +1,46 @@
+Test: tests/test_distance.py::TestDistance::test_distance_calibration_out_of_bounds[301]
+Firmware: 2.3.0
+Captured: 2026-10-23T04:55:18.992602+03:00
+
+TX > version
+RX < version
+RX < I (4622975) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+RX < I (4622975) sentry:   partition: ota_0 @ 0x20000, state: valid
+TX > lamp status
+RX < lamp status
+RX < I (4623185) sentry: [BEACON] off, color (255,255,255), brightness 100%, mode solid, timer off
+TX > status
+RX < status
+RX < I (4623805) sentry: === SWM-2 status ===
+RX < I (4623805) sentry:   fw:       v2.3.0 (ota_0)
+RX < I (4623805) sentry:   state:    1 NORMAL
+RX < I (4623805) sentry:   link:     buoy link '[SSID REDACTED]', ip [PRIVATE IP REDACTED], rssi -30 dBm (excellent), ch 1
+RX < I (4623815) sentry:   internet: OK
+RX < I (4623815) sentry:   user:     testUser (user)
+RX < I (4623815) sentry:   time:     04:55:15, uptime 1h 17m 03s
+RX < I (4623825) sentry:   valve:    closed
+RX < I (4623825) sentry:   watch:    disarmed, CIC alerts unacked: 8
+RX < I (4623835) sentry:   sonar:    last echo 3.7 cm
+RX < I (4623835) sentry:   carrier:  depth 42.1 m, hull 5.2 bar, water 8.1 C, battery 24.05 V (sim)
+RX < I (4623845) sentry:   heap:     251 KB free
+TX > whoami
+RX < whoami
+RX < I (4624005) sentry: user: testUser, access: user
+TX > distance calibrate 301
+RX < distance calibrate 301
+RX < E (4624215) sentry: E706 usage: distance calibrate <ref 5-300 cm>
+TX > lamp timer 0
+RX < lamp timer 0
+RX < I (4624835) sentry: [BEACON] timer cancelled
+TX > lamp color 255 255 255
+RX < lamp color 255 255 255
+RX < I (4625235) sentry: [BEACON] color: (255,255,255)
+TX > lamp brightness 100
+RX < lamp brightness 100
+RX < I (4625645) sentry: [BEACON] brightness: 100%
+TX > lamp mode solid
+RX < lamp mode solid
+RX < I (4626055) sentry: [BEACON] mode: solid
+TX > lamp off
+RX < lamp off
+RX < W (4626465) sentry: W510 lamp already off

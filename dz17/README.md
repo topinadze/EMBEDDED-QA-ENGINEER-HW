@@ -53,6 +53,7 @@ dz17/
   Continuous streams (e.g. `distance log 100`, K3 sonar stream) are cleanly stopped (`distance stop` / second K3 tap) and confirmed stopped *before* prompting for manual verification.
 - **Lamp RGB LED and status indication**:
   There is one RGB LED, not a separate Beacon emitter and board status LED. When lamp output is ON it shows the configured lamp color; when lamp output is OFF, the same LED shows connection/login status: RED means Wi-Fi disconnected, ORANGE means Wi-Fi connected but logged out, and GREEN means Wi-Fi connected and logged in. UART-reported state and the operator's physical observation are checked separately.
+  Wi-Fi tests that inspect this status indication verify firmware and establish the configured authenticated account before Beacon inspection. After the operator confirms readiness, they query Beacon state over UART and turn it off when needed; the original lamp settings are restored afterward. Tests that require GREEN re-establish login after Wi-Fi actions if needed, and fixture teardown restores the configured login after scenarios that deliberately log out.
 - **Multi-Line UART Captures**:
   UART log indexes (`mark = len(device_driver.uart_log)`) are recorded prior to prompts to avoid race conditions.
 - **UART Transcript Retention**:
@@ -75,7 +76,10 @@ dz17/
   button callbacks and text input only from the configured private chat/user; text input may be a normal message
   or a reply to the prompt. Replies to a different bot prompt are ignored. `TELEGRAM_TIMEOUT` sets the per-response timeout in seconds (default 300). Run only one pytest process
   with a given bot token at a time because Telegram `getUpdates` polling is exclusive to one consumer. In Telegram
-  mode, one status message in the private chat is updated with the running test's node ID and its final result,
+  mode, preparation and observation prompts use consistent section labels and functional-category icons
+  (lamp, Wi-Fi, buttons, sonar, relay, Guard, and Alerts); lamp colors and PASS/FAIL/status results use
+  distinct visual indicators. Alert-history deletion requires an explicit warning and operator confirmation.
+  One status message in the private chat is updated with the running test's node ID and its final result,
   avoiding a separate notification for every test. Use `-m interactive` to select operator-dependent cases;
   Telegram mode does not require `-s`, though it remains compatible with the existing hardware launchers.
   All DZ17 PowerShell launchers accept `-InteractionMode console` (default) or
@@ -85,6 +89,9 @@ dz17/
   Lamp named-color checks also send a PNG reference swatch generated from the test's expected RGB tuple;
   the operator still confirms the physical LED by eye. HTTP/network failures and missing configuration
   fail explicitly.
+- For DZ17-specific pitfalls and evidence boundaries—including the shared RGB LED, prompt cues, Telegram
+  response matching, and `-All` selection—see the
+  [DZ17 gotchas](../.agents/skills/interactive-hardware-tests/references/dz17-gotchas.md).
 
 ## Test Execution
 
@@ -208,10 +215,20 @@ Wi-Fi configuration, and add alert-history entries. It does not flash firmware.
 # include every attempted position. The ±0.5 cm threshold is exploratory only.
 .\run-distance.ps1 -Port COM4 -Fw 2.1.0 -Interactive
 
-# Run every Distance test, including interactive and persistent cases.
-# Requires operator interaction and may change persistent device state.
+# Run every test in the Distance module, including helper, interactive,
+# persistent, and long-range cases.
+# Requires operator interaction, a clear path >4 m for the long-range case,
+# and may change persistent device state.
 .\run-distance.ps1 -Port COM4 -All -Fw 2.3.0
 ```
+
+For Distance, `-All` selects every test in `tests/test_distance.py`, including unmarked offline
+helper tests as well as `interactive`, `persistent`, and `long_range` cases. It overrides the
+global pytest default that excludes interactive/persistent tests and does not apply a marker
+filter. Interactive tests call the `manual_prepare` and `manual_check` helpers to prompt the
+operator; these helpers are not separate pytest markers. The regular interactive subset
+(`-Interactive`) excludes persistent and long-range cases by default. Use `-LongRangeOnly` to
+select the test requiring a clear path over 4 m.
 
 Lamp Beacon scenarios each contain UART response/readback assertions plus optional
 physical observations. Run them without prompts for UART-only validation, or pass

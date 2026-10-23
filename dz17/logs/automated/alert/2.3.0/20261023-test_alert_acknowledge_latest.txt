@@ -1,0 +1,72 @@
+Test: tests/test_alert.py::TestAlertCenter::test_alert_acknowledge_latest
+Firmware: 2.3.0
+Captured: 2026-10-23T03:44:42.804105+03:00
+
+TX > version
+RX < version
+RX < I (384475) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+RX < I (384475) sentry:   partition: ota_0 @ 0x20000, state: valid
+TX > status
+RX < status
+RX < I (384685) sentry: === SWM-2 status ===
+RX < I (384685) sentry:   fw:       v2.3.0 (ota_0)
+RX < I (384685) sentry:   state:    1 NORMAL
+RX < I (384685) sentry:   link:     buoy link '[SSID REDACTED]', ip [PRIVATE IP REDACTED], rssi -37 dBm (excellent), ch 1
+RX < I (384685) sentry:   internet: OK
+RX < I (384695) sentry:   user:     testUser (user)
+RX < I (384695) sentry:   time:     03:44:36, uptime 0h 06m 24s
+RX < I (384705) sentry:   valve:    closed
+RX < I (384705) sentry:   watch:    disarmed, CIC alerts unacked: 0
+RX < I (384715) sentry:   sonar:    no contact
+RX < I (384715) sentry:   carrier:  depth 41.6 m, hull 5.2 bar, water 8.0 C, battery 24.19 V (sim)
+RX < I (384725) sentry:   heap:     251 KB free
+TX > whoami
+RX < whoami
+RX < I (384895) sentry: user: testUser, access: user
+TX > alert test info
+RX < alert test info
+RX < I (385095) sentry: [CIC #3 INFO] test: test alert
+TX > alert test warning
+RX < alert test warning
+RX < W (385705) sentry: [CIC #4 WARNING] test: test alert
+TX > alert list
+RX < alert list
+RX < I (386315) sentry: [CIC] 4 alerts, 2 unacknowledged:
+RX < I (386315) sentry:   #1   03:44:23 INFO       test    test alert
+RX < I (386315) sentry:   #2   03:44:28 WARNING    test    test alert
+RX < I (386315) sentry:   #3   03:44:36 INFO     * test    test alert
+RX < I (386325) sentry:   #4   03:44:37 WARNING  * test    test alert
+TX > alert ack
+RX < alert ack
+RX < I (386915) sentry: [CIC] #4 acknowledged (command). Unacked: 1
+TX > alert list
+RX < alert list
+RX < I (387525) sentry: [CIC] 4 alerts, 1 unacknowledged:
+RX < I (387525) sentry:   #1   03:44:23 INFO       test    test alert
+RX < I (387525) sentry:   #2   03:44:28 WARNING    test    test alert
+RX < I (387525) sentry:   #3   03:44:36 INFO     * test    test alert
+RX < I (387535) sentry:   #4   03:44:37 WARNING    test    test alert
+TX > alert list
+RX < alert list
+RX < I (388135) sentry: [CIC] 4 alerts, 1 unacknowledged:
+RX < I (388135) sentry:   #1   03:44:23 INFO       test    test alert
+RX < I (388135) sentry:   #2   03:44:28 WARNING    test    test alert
+RX < I (388135) sentry:   #3   03:44:36 INFO     * test    test alert
+RX < I (388145) sentry:   #4   03:44:37 WARNING    test    test alert
+TX > alert ack
+RX < alert ack
+RX < I (388735) sentry: [CIC] #3 acknowledged (command). Unacked: 0
+TX > alert list
+RX < alert list
+RX < I (389345) sentry: [CIC] 4 alerts, 0 unacknowledged:
+RX < I (389345) sentry:   #1   03:44:23 INFO       test    test alert
+RX < I (389345) sentry:   #2   03:44:28 WARNING    test    test alert
+RX < I (389345) sentry:   #3   03:44:36 INFO       test    test alert
+RX < I (389355) sentry:   #4   03:44:37 WARNING    test    test alert
+TX > alert list
+RX < alert list
+RX < I (389955) sentry: [CIC] 4 alerts, 0 unacknowledged:
+RX < I (389955) sentry:   #1   03:44:23 INFO       test    test alert
+RX < I (389955) sentry:   #2   03:44:28 WARNING    test    test alert
+RX < I (389955) sentry:   #3   03:44:36 INFO       test    test alert
+RX < I (389965) sentry:   #4   03:44:37 WARNING    test    test alert

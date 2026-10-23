@@ -1,0 +1,37 @@
+Test: tests/test_wifi.py::TestWifi::test_wifi_scan
+Firmware: 2.3.0
+Captured: 2026-10-23T03:34:53.881460+03:00
+
+TX > version
+RX < version
+RX < I (105425) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+RX < I (105425) sentry:   partition: ota_0 @ 0x20000, state: valid
+TX > lamp status
+RX < lamp status
+RX < E (105635) sentry: E002 Wi-Fi required. Use 'reconnect' or 'connect'
+TX > scan
+RX < scan
+RX < I (106245) sentry: [LINK] scanning...
+RX < I (108745) sentry:   [ 1] [SSID REDACTED]                         -33 dBm  ch  1  secured
+RX < I (108745) sentry:   [ 2] [SSID REDACTED]                            -54 dBm  ch 10  secured
+RX < I (108745) sentry:   [ 3] [SSID REDACTED]                        -58 dBm  ch  1  secured
+RX < I (108755) sentry:   [ 4] [SSID REDACTED]                               -73 dBm  ch  3  secured
+RX < I (108755) sentry:   [ 5] [SSID REDACTED]                     -76 dBm  ch  1  secured
+RX < I (108765) sentry:   [ 6] [SSID REDACTED]                     -81 dBm  ch  9  secured
+RX < I (108775) sentry:   [ 7] [SSID REDACTED]           -82 dBm  ch  3  open
+RX < I (108785) sentry:   [ 8] [SSID REDACTED]                              -82 dBm  ch  8  secured
+RX < I (108785) sentry:   [ 9] [SSID REDACTED]                            -83 dBm  ch 10  secured
+RX < I (108795) sentry:   [10] [SSID REDACTED]                       -84 dBm  ch 11  secured
+RX < I (108805) sentry:   [11] [SSID REDACTED]           -86 dBm  ch  3  open
+RX < I (108815) sentry:   [12] [SSID REDACTED]                      -87 dBm  ch  8  secured
+RX < I (108815) sentry:   [13] [SSID REDACTED]                       -87 dBm  ch 10  secured
+RX < I (108825) sentry:   [14] [SSID REDACTED]                          -88 dBm  ch  1  secured
+RX < I (108835) sentry:   [15] [SSID REDACTED]                          -89 dBm  ch  1  secured
+RX < I (108845) sentry:   [16] [SSID REDACTED]                     -89 dBm  ch  6  secured
+RX < I (108845) sentry:   [17] [SSID REDACTED]                            -89 dBm  ch  8  secured
+RX < I (108855) sentry:   [18] [SSID REDACTED]                          -90 dBm  ch  1  secured
+RX < I (108865) sentry:   [19] [SSID REDACTED]                   -90 dBm  ch  4  secured
+RX < I (108865) sentry:   [20] [SSID REDACTED]                            -90 dBm  ch  6  secured
+TX > lamp off
+RX < lamp off
+RX < E (116275) sentry: E002 Wi-Fi required. Use 'reconnect' or 'connect'

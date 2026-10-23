@@ -1,0 +1,109 @@
+Test: tests/test_distance.py::TestDistance::test_distance_proximity_indicator_tracks_target
+Firmware: 2.3.0
+Captured: 2026-10-23T04:55:01.544343+03:00
+
+TX > version
+RX < version
+RX < I (4537085) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+RX < I (4537085) sentry:   partition: ota_0 @ 0x20000, state: valid
+TX > status
+RX < status
+RX < I (4537295) sentry: === SWM-2 status ===
+RX < I (4537295) sentry:   fw:       v2.3.0 (ota_0)
+RX < I (4537295) sentry:   state:    1 NORMAL
+RX < I (4537295) sentry:   link:     buoy link '[SSID REDACTED]', ip [PRIVATE IP REDACTED], rssi -26 dBm (excellent), ch 1
+RX < I (4537305) sentry:   internet: OK
+RX < I (4537305) sentry:   user:     testUser (user)
+RX < I (4537305) sentry:   time:     04:53:48, uptime 1h 15m 36s
+RX < I (4537315) sentry:   valve:    closed
+RX < I (4537315) sentry:   watch:    disarmed, CIC alerts unacked: 7
+RX < I (4537325) sentry:   sonar:    last echo 28.3 cm
+RX < I (4537325) sentry:   carrier:  depth 41.7 m, hull 5.2 bar, water 8.2 C, battery 24.06 V (sim)
+RX < I (4537335) sentry:   heap:     251 KB free
+TX > whoami
+RX < whoami
+RX < I (4537495) sentry: user: testUser, access: user
+TX > guard status
+RX < guard status
+RX < I (4537705) sentry: [WATCH] disarmed, zone 20 cm, last distance 28.3 cm
+TX > relay status
+RX < relay status
+RX < I (4538315) sentry: [VALVE] closed, auto off, cycles 270
+TX > relay on
+RX < I (4544595) sentry: [TELEMETRY #134] 04:53:56 up 01:15:44 heap 251KB rssi -39 temp 32.4C depth 41.7m hull 5.2bar batt 24.1V valve closed sonar 28.3cm watch disarmed alerts 7 state NORMAL
+RX < relay on
+RX < I (4550785) sentry: [VALVE] OPEN (command)
+TX > relay status
+RX < relay status
+RX < I (4550995) sentry: [VALVE] OPEN, auto off, cycles 271
+TX > distance log 500
+RX < distance log 500
+RX < I (4555275) sentry: [SONAR] continuous pinging every 500 ms (command). 'distance stop' to stop
+RX < I (4555275) sentry: [SONAR] valve OPEN - proximity indicator: diode blinks faster when contact is closer
+RX < I (4555335) sentry: [SONAR] ping: echo 28.3 cm
+RX < I (4555655) sentry: [NAV] depth 42.1 m, heading 271, speed 3.2 kn
+RX < I (4555885) sentry: [SONAR] ping: echo 28.3 cm
+RX < I (4556435) sentry: [SONAR] ping: echo 28.3 cm
+RX < I (4556985) sentry: [SONAR] ping: echo 28.3 cm
+RX < I (4557535) sentry: [SONAR] ping: echo 28.3 cm
+RX < I (4558085) sentry: [SONAR] ping: echo 28.3 cm
+RX < I (4558635) sentry: [SONAR] ping: echo 28.3 cm
+RX < I (4559185) sentry: [SONAR] ping: echo 28.3 cm
+TX > distance stop
+RX < distance stop
+RX < I (4559485) sentry: [SONAR] pinging stopped (command)
+TX > distance log 500
+RX < I (4574595) sentry: [TELEMETRY #135] 04:54:26 up 01:16:14 heap 251KB rssi -39 temp 32.4C depth 42.1m hull 5.2bar batt 24.1V valve open sonar 28.3cm watch disarmed alerts 7 state NORMAL
+RX < distance log 500
+RX < I (4581955) sentry: [SONAR] continuous pinging every 500 ms (command). 'distance stop' to stop
+RX < I (4581955) sentry: [SONAR] valve OPEN - proximity indicator: diode blinks faster when contact is closer
+RX < I (4582035) sentry: [SONAR] ping: echo 28.3 cm
+RX < I (4582585) sentry: [SONAR] ping: echo 28.3 cm
+RX < I (4583135) sentry: [SONAR] ping: echo 28.3 cm
+RX < I (4583685) sentry: [SONAR] ping: echo 28.3 cm
+RX < I (4584235) sentry: [SONAR] ping: echo 27.5 cm
+RX < I (4584785) sentry: [SONAR] ping: echo 20.9 cm
+RX < I (4585335) sentry: [SONAR] ping: echo 16.3 cm
+RX < E (4585335) sentry: [COLLISION] contact too close: 16.3 cm (< 20 cm)
+RX < W (4585335) sentry: [CIC #21 WARNING] sonar: collision risk: contact at 16.3 cm
+RX < I (4585885) sentry: [SONAR] ping: echo 13.4 cm
+RX < I (4586435) sentry: [SONAR] ping: echo 11.3 cm
+RX < I (4586985) sentry: [SONAR] ping: echo 13.0 cm
+RX < I (4587535) sentry: [SONAR] ping: echo 13.0 cm
+RX < I (4588085) sentry: [SONAR] ping: echo 11.6 cm
+RX < I (4588635) sentry: [SONAR] ping: echo 13.4 cm
+TX > distance stop
+RX < distance stop
+RX < I (4589165) sentry: [SONAR] pinging stopped (command)
+RX < I (4589185) sentry: [SONAR] ping: echo 14.0 cm
+TX > distance log 500
+RX < distance log 500
+RX < I (4598785) sentry: [SONAR] continuous pinging every 500 ms (command). 'distance stop' to stop
+RX < I (4598785) sentry: [SONAR] valve OPEN - proximity indicator: diode blinks faster when contact is closer
+RX < I (4598845) sentry: [SONAR] ping: echo 14.0 cm
+RX < I (4599395) sentry: [SONAR] ping: echo 13.0 cm
+RX < I (4599945) sentry: [SONAR] ping: echo 14.0 cm
+RX < I (4600495) sentry: [SONAR] ping: echo 9.5 cm
+RX < I (4601045) sentry: [SONAR] ping: echo 6.8 cm
+RX < I (4601595) sentry: [SONAR] ping: echo 3.7 cm
+RX < I (4602145) sentry: [SONAR] ping: echo 3.7 cm
+RX < I (4602695) sentry: [SONAR] ping: echo 3.7 cm
+RX < I (4603245) sentry: [SONAR] ping: echo 3.7 cm
+RX < I (4603795) sentry: [SONAR] ping: echo 3.7 cm
+RX < I (4604345) sentry: [SONAR] ping: echo 3.7 cm
+RX < I (4604795) sentry: [TELEMETRY #136] 04:54:56 up 01:16:44 heap 251KB rssi -28 temp 32.4C depth 42.1m hull 5.2bar batt 24.1V valve open sonar 3.7cm watch disarmed alerts 8 state NORMAL
+RX < I (4604895) sentry: [SONAR] ping: echo 3.7 cm
+RX < I (4605445) sentry: [SONAR] ping: echo 3.7 cm
+TX > distance stop
+RX < distance stop
+RX < I (4605995) sentry: [SONAR] ping: echo 3.7 cm
+RX < I (4606005) sentry: [SONAR] pinging stopped (command)
+TX > relay status
+RX < relay status
+RX < I (4608755) sentry: [VALVE] OPEN, auto off, cycles 271
+TX > relay off
+RX < relay off
+RX < I (4609005) sentry: [VALVE] CLOSED (command)
+TX > relay status
+RX < relay status
+RX < I (4609215) sentry: [VALVE] closed, auto off, cycles 272

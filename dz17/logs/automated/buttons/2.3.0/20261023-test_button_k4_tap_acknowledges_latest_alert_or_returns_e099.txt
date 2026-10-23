@@ -1,0 +1,81 @@
+Test: tests/test_buttons.py::TestButtons::test_button_k4_tap_acknowledges_latest_alert_or_returns_e099
+Firmware: 2.3.0
+Captured: 2026-10-23T04:14:11.574469+03:00
+
+TX > version
+RX < version
+RX < I (2148115) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+RX < I (2148115) sentry:   partition: ota_0 @ 0x20000, state: valid
+TX > status
+RX < status
+RX < I (2148325) sentry: === SWM-2 status ===
+RX < I (2148325) sentry:   fw:       v2.3.0 (ota_0)
+RX < I (2148325) sentry:   state:    1 NORMAL
+RX < I (2148325) sentry:   link:     buoy link '[SSID REDACTED]', ip [PRIVATE IP REDACTED], rssi -27 dBm (excellent), ch 1
+RX < I (2148335) sentry:   internet: OK
+RX < I (2148335) sentry:   user:     testUser (user)
+RX < I (2148335) sentry:   time:     04:13:59, uptime 0h 35m 47s
+RX < I (2148345) sentry:   valve:    closed
+RX < I (2148345) sentry:   watch:    disarmed, CIC alerts unacked: 1
+RX < I (2148355) sentry:   sonar:    last echo 14.0 cm
+RX < I (2148355) sentry:   carrier:  depth 42.1 m, hull 5.2 bar, water 8.0 C, battery 24.13 V (sim)
+RX < I (2148365) sentry:   heap:     251 KB free
+TX > whoami
+RX < whoami
+RX < I (2148535) sentry: user: testUser, access: user
+TX > alert test info
+RX < alert test info
+RX < I (2148735) sentry: [CIC #14 INFO] test: test alert
+TX > alert list
+RX < alert list
+RX < I (2149345) sentry: [CIC] 14 alerts, 2 unacknowledged:
+RX < I (2149345) sentry:   #1   03:44:23 INFO       test    test alert
+RX < I (2149345) sentry:   #2   03:44:28 WARNING    test    test alert
+RX < I (2149345) sentry:   #3   03:44:36 INFO       test    test alert
+RX < I (2149355) sentry:   #4   03:44:37 WARNING    test    test alert
+RX < I (2149355) sentry:   #5   03:44:43 INFO       test    test alert
+RX < I (2149365) sentry:   #6   03:44:43 WARNING    test    test alert
+RX < I (2149365) sentry:   #7   03:44:49 INFO       test    test alert
+RX < I (2149375) sentry:   #8   03:44:49 WARNING    test    test alert
+RX < I (2149385) sentry:   #9   03:44:50 INFO       test    test alert
+RX < I (2149385) sentry:   #10  03:45:04 INFO       test    test alert
+RX < I (2149395) sentry:   #11  03:45:36 CRITICAL   test    test alert
+RX < I (2149395) sentry:   #12  03:46:07 CRITICAL   test    test alert
+RX < I (2149405) sentry:   #13  04:13:53 WARNING  * sonar   collision risk: contact at 14.0 cm
+RX < I (2149415) sentry:   #14  04:14:00 INFO     * test    test alert
+RX < I (2157885) sentry: [BTN] K4 pressed
+RX < I (2157885) sentry: [CIC] #14 acknowledged (K4). Unacked: 1
+TX > alert list
+RX < alert list
+RX < I (2158165) sentry: [CIC] 14 alerts, 1 unacknowledged:
+RX < I (2158165) sentry:   #1   03:44:23 INFO       test    test alert
+RX < I (2158165) sentry:   #2   03:44:28 WARNING    test    test alert
+RX < I (2158165) sentry:   #3   03:44:36 INFO       test    test alert
+RX < I (2158175) sentry:   #4   03:44:37 WARNING    test    test alert
+RX < I (2158175) sentry:   #5   03:44:43 INFO       test    test alert
+RX < I (2158185) sentry:   #6   03:44:43 WARNING    test    test alert
+RX < I (2158185) sentry:   #7   03:44:49 INFO       test    test alert
+RX < I (2158195) sentry:   #8   03:44:49 WARNING    test    test alert
+RX < I (2158205) sentry:   #9   03:44:50 INFO       test    test alert
+RX < I (2158205) sentry:   #10  03:45:04 INFO       test    test alert
+RX < I (2158215) sentry:   #11  03:45:36 CRITICAL   test    test alert
+RX < I (2158215) sentry:   #12  03:46:07 CRITICAL   test    test alert
+RX < I (2158225) sentry:   #13  04:13:53 WARNING  * sonar   collision risk: contact at 14.0 cm
+RX < I (2158235) sentry:   #14  04:14:00 INFO       test    test alert
+TX > alert list
+RX < alert list
+RX < I (2158775) sentry: [CIC] 14 alerts, 1 unacknowledged:
+RX < I (2158775) sentry:   #1   03:44:23 INFO       test    test alert
+RX < I (2158775) sentry:   #2   03:44:28 WARNING    test    test alert
+RX < I (2158775) sentry:   #3   03:44:36 INFO       test    test alert
+RX < I (2158785) sentry:   #4   03:44:37 WARNING    test    test alert
+RX < I (2158785) sentry:   #5   03:44:43 INFO       test    test alert
+RX < I (2158795) sentry:   #6   03:44:43 WARNING    test    test alert
+RX < I (2158795) sentry:   #7   03:44:49 INFO       test    test alert
+RX < I (2158805) sentry:   #8   03:44:49 WARNING    test    test alert
+RX < I (2158815) sentry:   #9   03:44:50 INFO       test    test alert
+RX < I (2158815) sentry:   #10  03:45:04 INFO       test    test alert
+RX < I (2158825) sentry:   #11  03:45:36 CRITICAL   test    test alert
+RX < I (2158825) sentry:   #12  03:46:07 CRITICAL   test    test alert
+RX < I (2158835) sentry:   #13  04:13:53 WARNING  * sonar   collision risk: contact at 14.0 cm
+RX < I (2158845) sentry:   #14  04:14:00 INFO       test    test alert

@@ -10,6 +10,13 @@ import pytest
 from drivers.device_driver import DeviceDriver
 from manual_checks import SoftChecks, prepare_observation
 
+pytestmark = [
+    allure.parent_suite("DZ17"),
+    allure.suite("SENTRY Guard"),
+    allure.epic("SENTRY SWM-2"),
+    allure.feature("SENTRY Guard"),
+]
+
 
 class GuardStatusReader(Protocol):
     uart_log: list[str]
@@ -52,6 +59,9 @@ def _distance_reading_cm(lines: list[str]) -> float | None:
     ],
     ids=("valid-echo", "no-echo"),
 )
+@allure.sub_suite("Offline helper checks")
+@allure.story("Guard sonar reading")
+@allure.title("Parse Guard sonar echo: {param_id}")
 def test_guard_sonar_distance_parser(
     lines: list[str], expected: float | None
 ) -> None:
@@ -81,6 +91,9 @@ def _wait_for_guard_armed(
 
 
 @pytest.mark.guard
+@allure.sub_suite("Offline helper checks")
+@allure.story("Guard arming state validation")
+@allure.title("Wait through the exit delay until Guard reports ARMED")
 def test_wait_for_guard_armed_reads_until_exact_armed_state() -> None:
     class StatusDriver:
         uart_log: list[str] = []
@@ -101,6 +114,9 @@ def test_wait_for_guard_armed_reads_until_exact_armed_state() -> None:
 
 
 @pytest.mark.guard
+@allure.sub_suite("Offline helper checks")
+@allure.story("Guard arming state validation")
+@allure.title("Reject an alarm transition while waiting for Guard to arm")
 def test_wait_for_guard_armed_rejects_alarm_transition() -> None:
     class StatusDriver:
         uart_log: list[str] = []
@@ -272,8 +288,7 @@ def guard_safety_session(
     return driver
 
 
-@allure.epic("SENTRY SWM-2")
-@allure.feature("SENTRY Guard")
+@allure.sub_suite("Device Guard scenarios")
 @pytest.mark.guard
 class TestGuard:
     @staticmethod

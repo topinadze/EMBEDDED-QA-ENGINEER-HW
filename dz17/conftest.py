@@ -128,6 +128,17 @@ def _test_result_status(item: pytest.Item) -> str:
     return "PASSED"
 
 
+def _telegram_test_status_label(status: str) -> str:
+    icons = {
+        "PASSED": "✅",
+        "FAILED": "❌",
+        "SKIPPED": "⚪",
+        "XFAIL": "🟠",
+        "XPASS": "⚠️",
+    }
+    return f"{icons.get(status, '🧪')} {status}"
+
+
 def _save_automated_uart_log(
     driver: DeviceDriver, item: pytest.Item, firmware_version: str
 ) -> Path:
@@ -300,7 +311,7 @@ def pytest_runtest_setup(item: pytest.Item) -> None:
         display_name = _display_test_name(item)
         _update_telegram_test_status(
             item.config,
-            f"▶️ {display_name}",
+            f"🧪 TEST IN PROGRESS\n{display_name}",
         )
 
 
@@ -317,7 +328,8 @@ def pytest_runtest_makereport(
     ):
         _update_telegram_test_status(
             item.config,
-            f"{_test_result_status(item)} | {_display_test_name(item)}",
+            f"{_telegram_test_status_label(_test_result_status(item))}\n"
+            f"{_display_test_name(item)}",
         )
 
 
@@ -408,14 +420,14 @@ def _restore_lamp(
     driver: DeviceDriver,
     snapshot: dict[str, Any] | None,
     elapsed_s: float,
-) -> None:
+) -> tuple[int, float] | None:
     """Return the lamp to the state found at test start."""
     if snapshot is None:
         try:
             driver.lamp_off(timeout=0.4)
         except Exception:
             pass
-        return
+        return None
 
     try:
         driver.lamp_set_timer(0, timeout=0.4)
@@ -429,10 +441,14 @@ def _restore_lamp(
             driver.lamp_on(timeout=0.4)
         else:
             driver.lamp_off(timeout=0.4)
+        timer_restoration = None
         if remaining_timer_s > 0:
             driver.lamp_set_timer(remaining_timer_s, timeout=0.4)
+            timer_restoration = (remaining_timer_s, time.monotonic())
+        return timer_restoration
     except Exception as exc:
         logging.getLogger(__name__).warning("Failed to restore lamp state: %s", exc)
+        return None
 
 
 def _get_confirmed_firmware_version(
@@ -538,6 +554,149 @@ def wifi_ssid(request: pytest.FixtureRequest) -> str:
             "TEST_WIFI_SSID, or --wifi-ssid to run Wi-Fi tests."
         )
     return ssid
+
+
+@pytest.fixture
+def wifi_status_led_lamp_off(
+    device_driver: DeviceDriver,
+    request: pytest.FixtureRequest,
+    ensure_authenticated_device: Callable[[DeviceDriver], None],
+) -> Generator[Callable[[], None], None, None]:
+    """Prepare authentication and Beacon access for Wi-Fi status-LED checks."""
+    initial_status: dict[str, Any] | None = None
+    lamp_snapshot_time: float | None = None
+    checked = False
+    lamp_changed = False
+
+    with allure.step(
+        "Ensure Wi-Fi and configured login for Beacon status and GREEN indication"
+    ):
+        ensure_authenticated_device(device_driver)
+
+    def ensure_lamp_off() -> None:
+        nonlocal checked, initial_status, lamp_snapshot_time, lamp_changed
+        if checked:
+            return
+        checked = True
+
+        with allure.step("Check Beacon power before Wi-Fi status-LED observation"):
+            initial_status = device_driver.lamp_status()
+        if initial_status["lamp"] != "on":
+            return
+
+        identity = device_driver.whoami()
+        assert identity["logged_in"], (
+            "The configured account is not authenticated; Beacon must be "
+            "controlled only after the login precondition succeeds."
+        )
+
+        lamp_snapshot_time = time.monotonic()
+        lamp_changed = True
+        request.node.stash[LAMP_STATE_FIXTURE_ACTIVE] = True
+        with allure.step("Turn Beacon OFF so the Wi-Fi status indication is visible"):
+            lines = device_driver.lamp_off()
+            assert any("[BEACON] off" in line for line in lines), (
+                f"Could not turn Beacon off for the Wi-Fi status-LED check: {lines}"
+            )
+            status = device_driver.lamp_status()
+            assert status["lamp"] == "off", (
+                f"Beacon remained on before the Wi-Fi status-LED check: {status}"
+            )
+
+    try:
+        yield ensure_lamp_off
+    finally:
+        cleanup_errors: list[str] = []
+        try:
+            with allure.step(
+                "Restore configured login after Wi-Fi status-LED scenario"
+            ):
+                ensure_authenticated_device(device_driver)
+        except Exception as exc:
+            cleanup_errors.append(f"Configured login restoration failed: {exc}")
+
+        if lamp_changed and initial_status is not None:
+            try:
+                assert lamp_snapshot_time is not None
+                with allure.step("Restore Beacon power and settings after Wi-Fi observation"):
+                    elapsed_s = time.monotonic() - lamp_snapshot_time
+                    remaining_timer_s = max(
+                        0, initial_status["timer_s"] - int(elapsed_s)
+                    )
+                    timer_restoration = _restore_lamp(
+                        device_driver, initial_status, elapsed_s
+                    )
+                    restored_status = device_driver.lamp_status()
+                    if initial_status["timer_s"] == 0:
+                        assert restored_status["timer_s"] == 0, (
+                            "Beacon timer should remain off after restoration, "
+                            f"got {restored_status}"
+                        )
+                        expected_lamp = "on"
+                    elif remaining_timer_s == 0:
+                        assert restored_status["timer_s"] == 0, (
+                            "Expired Beacon timer should remain off after "
+                            f"restoration, got {restored_status}"
+                        )
+                        expected_lamp = "off"
+                    else:
+                        assert timer_restoration is not None, (
+                            "Restoration did not report resetting the active "
+                            f"Beacon timer: {restored_status}"
+                        )
+                        restored_timer_s, timer_restored_at = timer_restoration
+                        elapsed_after_timer_restore = (
+                            time.monotonic() - timer_restored_at
+                        )
+                        expected_timer_s = max(
+                            0, restored_timer_s - int(elapsed_after_timer_restore)
+                        )
+                        assert abs(
+                            restored_status["timer_s"] - expected_timer_s
+                        ) <= 2, (
+                            "Beacon timer restoration differs from the expected "
+                            f"remaining duration ({expected_timer_s}s +/- 2s): "
+                            f"{restored_status}"
+                        )
+                        expected_lamp = (
+                            "on" if restored_status["timer_s"] > 0 else "off"
+                        )
+                    assert restored_status["lamp"] == expected_lamp, (
+                        "Beacon power was not restored after the Wi-Fi status-LED "
+                        f"check: expected {expected_lamp}, got {restored_status}"
+                    )
+                    for field in ("color", "brightness", "mode"):
+                        assert restored_status[field] == initial_status[field], (
+                            "Beacon settings were not restored after the Wi-Fi "
+                            f"status-LED check: expected {field}="
+                            f"{initial_status[field]!r}, got {restored_status}"
+                        )
+            except Exception as exc:
+                allure.attach(
+                    str(exc),
+                    name="Wi-Fi status-LED Beacon restoration failure",
+                    attachment_type=allure.attachment_type.TEXT,
+                )
+                cleanup_errors.append(f"Beacon restoration failed: {exc}")
+
+        if cleanup_errors:
+            cleanup_error = "; ".join(cleanup_errors)
+            allure.attach(
+                cleanup_error,
+                name="Wi-Fi status-LED fixture cleanup failures",
+                attachment_type=allure.attachment_type.TEXT,
+            )
+            call_report = getattr(request.node, "rep_call", None)
+            if call_report is not None and call_report.failed:
+                logging.getLogger(__name__).error(
+                    "Wi-Fi status-LED fixture cleanup also failed: %s",
+                    cleanup_error,
+                )
+            else:
+                pytest.fail(
+                    f"Wi-Fi status-LED fixture cleanup failed: {cleanup_error}",
+                    pytrace=False,
+                )
 
 
 @pytest.fixture

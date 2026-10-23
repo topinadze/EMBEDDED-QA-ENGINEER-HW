@@ -15,9 +15,15 @@ from manual_checks import (
     status_indicator_description,
 )
 
+pytestmark = [
+    allure.parent_suite("DZ17"),
+    allure.suite("Operator Panel Buttons"),
+    allure.epic("SENTRY SWM-2"),
+    allure.feature("Operator Panel Buttons"),
+]
 
-@allure.epic("SENTRY SWM-2")
-@allure.feature("Operator Panel Buttons")
+
+@allure.sub_suite("Button interaction scenarios")
 @pytest.mark.buttons
 @pytest.mark.interactive
 class TestButtons:
@@ -244,7 +250,9 @@ class TestButtons:
         soft.check(
             manual_check(
                 "Did the Beacon lamp physically turn ON and show blue "
-                "(RGB 0, 0, 255)?"
+                "(RGB 0, 0, 255)?",
+                expected_rgb=(0, 0, 255),
+                expected_color="blue",
             ),
             "Beacon lamp did not physically turn on blue after the brief K1 press",
         )
@@ -310,7 +318,8 @@ class TestButtons:
             soft.check(
                 manual_check(
                     "Did the Beacon lamp physically change to its reported next "
-                    f"color (RGB {expected_rgb}) after K1 hold {press_number}?"
+                    f"color (RGB {expected_rgb}) after K1 hold {press_number}?",
+                    expected_rgb=expected_rgb,
                 ),
                 f"Physical Beacon lamp did not change color on K1 hold {press_number}",
             )

@@ -38,6 +38,7 @@ description: "Design and implement reliable embedded pytest cases using data-dri
 ## Validation
 
 - Run pytest collection and focused non-hardware checks first.
+- Confirm the exact launcher and pytest marker options before claiming a pack is fully selected. DZ17's default `pytest.ini` excludes `interactive` and `persistent`; verify that the pack's `-All` option overrides those exclusions and any package marker filter. Use collection-only output to confirm scope (not as execution evidence), and treat `-All` as opt-in to all physical/persistent side effects in that pack. See [DZ17 gotchas](../interactive-hardware-tests/references/dz17-gotchas.md).
 - Never run serial, interactive, destructive, or persistent tests unless the user explicitly asked for hardware execution.
 - Use the project configuration and supported firmware checks rather than bypassing fixtures to force a result.
 - Consult project-specific hardware gotchas when applicable; do not generalize them to other firmware, boards, or assignments.

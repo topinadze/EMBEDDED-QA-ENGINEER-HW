@@ -1,0 +1,64 @@
+Test: tests/test_distance.py::TestDistance::test_distance_stream_and_stop
+Firmware: 2.3.0
+Captured: 2026-10-23T04:51:49.856276+03:00
+
+TX > version
+RX < version
+RX < I (4412495) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+RX < I (4412495) sentry:   partition: ota_0 @ 0x20000, state: valid
+TX > lamp status
+RX < lamp status
+RX < I (4412705) sentry: [BEACON] off, color (255,255,255), brightness 100%, mode solid, timer off
+TX > status
+RX < status
+RX < I (4413305) sentry: === SWM-2 status ===
+RX < I (4413305) sentry:   fw:       v2.3.0 (ota_0)
+RX < I (4413305) sentry:   state:    1 NORMAL
+RX < I (4413305) sentry:   link:     buoy link '[SSID REDACTED]', ip [PRIVATE IP REDACTED], rssi -41 dBm (excellent), ch 1
+RX < I (4413315) sentry:   internet: OK
+RX < I (4413315) sentry:   user:     testUser (user)
+RX < I (4413315) sentry:   time:     04:51:44, uptime 1h 13m 32s
+RX < I (4413325) sentry:   valve:    closed
+RX < I (4413325) sentry:   watch:    disarmed, CIC alerts unacked: 5
+RX < I (4413335) sentry:   sonar:    last echo 20.6 cm
+RX < I (4413335) sentry:   carrier:  depth 41.4 m, hull 5.1 bar, water 8.1 C, battery 24.06 V (sim)
+RX < I (4413345) sentry:   heap:     251 KB free
+TX > whoami
+RX < whoami
+RX < I (4413515) sentry: user: testUser, access: user
+TX > distance log 100
+RX < distance log 100
+RX < I (4413725) sentry: [SONAR] continuous pinging every 100 ms (command). 'distance stop' to stop
+RX < I (4413795) sentry: [SONAR] ping: echo 23.9 cm
+TX > distance
+RX < I (4413945) sentry: [SONAR] ping: echo 20.3 cm
+RX < I (4414095) sentry: [SONAR] ping: echo 20.3 cm
+RX < I (4414245) sentry: [SONAR] ping: echo 20.3 cm
+RX < distance
+RX < I (4414395) sentry: [SONAR] ping: echo 20.3 cm
+RX < E (4414445) sentry: E711 measuring is running. Use 'distance stop'
+RX < I (4414545) sentry: [SONAR] ping: echo 19.0 cm
+RX < I (4414695) sentry: [SONAR] ping: echo 19.0 cm
+RX < I (4414845) sentry: [SONAR] ping: echo 19.0 cm
+RX < I (4414995) sentry: [SONAR] ping: echo 19.0 cm
+RX < I (4415145) sentry: [SONAR] ping: echo 19.0 cm
+RX < I (4415295) sentry: [SONAR] ping: echo 19.0 cm
+TX > distance stop
+RX < distance stop
+RX < I (4415445) sentry: [SONAR] pinging stopped (command)
+RX < I (4415445) sentry: [SONAR] ping: echo 19.0 cm
+TX > lamp timer 0
+RX < lamp timer 0
+RX < I (4415685) sentry: [BEACON] timer cancelled
+TX > lamp color 255 255 255
+RX < lamp color 255 255 255
+RX < I (4416095) sentry: [BEACON] color: (255,255,255)
+TX > lamp brightness 100
+RX < lamp brightness 100
+RX < I (4416505) sentry: [BEACON] brightness: 100%
+TX > lamp mode solid
+RX < lamp mode solid
+RX < I (4416915) sentry: [BEACON] mode: solid
+TX > lamp off
+RX < lamp off
+RX < W (4417325) sentry: W510 lamp already off

@@ -1,0 +1,49 @@
+Test: tests/test_relay.py::TestRelay::test_relay_gpio4_indicator
+Firmware: 2.3.0
+Captured: 2026-10-23T04:26:36.514334+03:00
+
+TX > version
+RX < version
+RX < I (2851565) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+RX < I (2851565) sentry:   partition: ota_0 @ 0x20000, state: valid
+TX > status
+RX < status
+RX < I (2851775) sentry: === SWM-2 status ===
+RX < I (2851775) sentry:   fw:       v2.3.0 (ota_0)
+RX < I (2851775) sentry:   state:    1 NORMAL
+RX < I (2851775) sentry:   link:     buoy link '[SSID REDACTED]', ip [PRIVATE IP REDACTED], rssi -21 dBm (excellent), ch 1
+RX < I (2851785) sentry:   internet: OK
+RX < I (2851785) sentry:   user:     testUser (user)
+RX < I (2851785) sentry:   time:     04:25:43, uptime 0h 47m 31s
+RX < I (2851795) sentry:   valve:    closed
+RX < I (2851795) sentry:   watch:    disarmed, CIC alerts unacked: 1
+RX < I (2851805) sentry:   sonar:    last echo 23.3 cm
+RX < I (2851805) sentry:   carrier:  depth 41.2 m, hull 5.1 bar, water 8.2 C, battery 24.11 V (sim)
+RX < I (2851815) sentry:   heap:     251 KB free
+TX > whoami
+RX < whoami
+RX < I (2851975) sentry: user: testUser, access: user
+TX > relay status
+RX < relay status
+RX < I (2852185) sentry: [VALVE] closed, auto off, cycles 258
+TX > relay status
+RX < relay status
+RX < I (2852395) sentry: [VALVE] closed, auto off, cycles 258
+TX > relay on
+RX < I (2852645) sentry: [NAV] depth 41.3 m, heading 280, speed 2.9 kn
+RX < relay on
+RX < I (2863205) sentry: [VALVE] OPEN (command)
+TX > relay off
+RX < I (2863365) sentry: [TELEMETRY #78] 04:25:54 up 00:47:42 heap 251KB rssi -25 temp 32.4C depth 41.3m hull 5.1bar batt 24.1V valve open sonar 23.3cm watch disarmed alerts 1 state NORMAL
+RX < I (2893365) sentry: [TELEMETRY #79] 04:26:24 up 00:48:12 heap 251KB rssi -24 temp 32.4C depth 41.3m hull 5.1bar batt 24.1V valve open sonar 23.3cm watch disarmed alerts 1 state NORMAL
+RX < relay off
+RX < I (2894015) sentry: [VALVE] CLOSED (command)
+TX > relay schedule off
+RX < relay schedule off
+RX < W (2903705) sentry: W605 schedule is not running
+TX > relay status
+RX < relay status
+RX < I (2903925) sentry: [VALVE] closed, auto off, cycles 260
+TX > relay status
+RX < relay status
+RX < I (2904135) sentry: [VALVE] closed, auto off, cycles 260

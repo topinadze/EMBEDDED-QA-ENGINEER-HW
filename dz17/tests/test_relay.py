@@ -11,6 +11,13 @@ import pytest
 from drivers.device_driver import DeviceDriver
 from manual_checks import SoftChecks, prepare_observation
 
+pytestmark = [
+    allure.parent_suite("DZ17"),
+    allure.suite("Valve Relay"),
+    allure.epic("SENTRY SWM-2"),
+    allure.feature("Valve Relay"),
+]
+
 
 def _relay_status(driver: DeviceDriver) -> dict[str, Any]:
     status = driver.relay_status()
@@ -187,8 +194,7 @@ def relay_sonar_alarm_state(
             raise AssertionError("Sonar relay cleanup failed:\n- " + "\n- ".join(failures))
 
 
-@allure.epic("SENTRY SWM-2")
-@allure.feature("Valve Relay")
+@allure.sub_suite("Device relay scenarios")
 @pytest.mark.relay
 @pytest.mark.persistent
 class TestRelay:

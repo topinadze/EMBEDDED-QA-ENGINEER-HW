@@ -1,0 +1,115 @@
+Test: tests/test_distance.py::TestDistance::test_distance_collision_rearms_after_target_retreats
+Firmware: 2.3.0
+Captured: 2026-10-23T04:53:31.907917+03:00
+
+TX > version
+RX < version
+RX < I (4432625) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+RX < I (4432625) sentry:   partition: ota_0 @ 0x20000, state: valid
+TX > lamp status
+RX < lamp status
+RX < I (4432835) sentry: [BEACON] off, color (255,255,255), brightness 100%, mode solid, timer off
+TX > status
+RX < status
+RX < I (4433445) sentry: === SWM-2 status ===
+RX < I (4433445) sentry:   fw:       v2.3.0 (ota_0)
+RX < I (4433445) sentry:   state:    1 NORMAL
+RX < I (4433445) sentry:   link:     buoy link '[SSID REDACTED]', ip [PRIVATE IP REDACTED], rssi -42 dBm (excellent), ch 1
+RX < I (4433455) sentry:   internet: OK
+RX < I (4433455) sentry:   user:     testUser (user)
+RX < I (4433455) sentry:   time:     04:52:04, uptime 1h 13m 53s
+RX < I (4433465) sentry:   valve:    closed
+RX < I (4433465) sentry:   watch:    disarmed, CIC alerts unacked: 5
+RX < I (4433475) sentry:   sonar:    last echo 19.0 cm
+RX < I (4433475) sentry:   carrier:  depth 41.4 m, hull 5.1 bar, water 8.1 C, battery 24.06 V (sim)
+RX < I (4433485) sentry:   heap:     251 KB free
+TX > whoami
+RX < whoami
+RX < I (4433645) sentry: user: testUser, access: user
+TX > guard status
+RX < guard status
+RX < I (4433855) sentry: [WATCH] disarmed, zone 20 cm, last distance 19.0 cm
+TX > relay status
+RX < relay status
+RX < I (4434465) sentry: [VALVE] closed, auto off, cycles 270
+TX > distance log 500
+RX < I (4454365) sentry: [TELEMETRY #131] 04:52:25 up 01:14:13 heap 251KB rssi -40 temp 32.4C depth 41.4m hull 5.1bar batt 24.1V valve closed sonar 19.0cm watch disarmed alerts 5 state NORMAL
+RX < I (4476655) sentry: [PWR] battery bus 24.06 V, load 1.4 A
+RX < I (4484565) sentry: [TELEMETRY #132] 04:52:56 up 01:14:44 heap 251KB rssi -29 temp 32.4C depth 41.7m hull 5.2bar batt 24.1V valve closed sonar - watch disarmed alerts 5 state NORMAL
+RX < distance log 500
+RX < I (4488925) sentry: [SONAR] continuous pinging every 500 ms (command). 'distance stop' to stop
+RX < I (4488985) sentry: [SONAR] ping: echo 28.3 cm
+RX < I (4489535) sentry: [SONAR] ping: echo 28.3 cm
+RX < I (4490085) sentry: [SONAR] ping: echo 28.3 cm
+RX < I (4490635) sentry: [SONAR] ping: echo 28.3 cm
+RX < I (4491185) sentry: [SONAR] ping: echo 28.3 cm
+RX < I (4491735) sentry: [SONAR] ping: echo 28.3 cm
+RX < I (4492285) sentry: [SONAR] ping: echo 29.1 cm
+RX < I (4492835) sentry: [SONAR] ping: echo 26.3 cm
+RX < I (4493385) sentry: [SONAR] ping: echo 21.2 cm
+RX < I (4493935) sentry: [SONAR] ping: echo 19.3 cm
+RX < E (4493935) sentry: [COLLISION] contact too close: 19.3 cm (< 20 cm)
+RX < W (4493935) sentry: [CIC #19 WARNING] sonar: collision risk: contact at 19.3 cm
+RX < I (4494485) sentry: [SONAR] ping: echo 16.3 cm
+RX < I (4495035) sentry: [SONAR] ping: echo 16.7 cm
+RX < I (4495585) sentry: [SONAR] ping: echo 15.0 cm
+RX < I (4496135) sentry: [SONAR] ping: echo 16.9 cm
+RX < I (4496685) sentry: [SONAR] ping: echo 13.7 cm
+RX < I (4497235) sentry: [SONAR] ping: echo 14.0 cm
+RX < I (4497785) sentry: [SONAR] ping: echo 21.3 cm
+RX < I (4498335) sentry: [SONAR] ping: echo 8.9 cm
+RX < I (4498885) sentry: [SONAR] ping: echo 14.0 cm
+RX < I (4499435) sentry: [SONAR] ping: echo 28.3 cm
+RX < I (4499985) sentry: [SONAR] ping: echo 27.5 cm
+RX < I (4500535) sentry: [SONAR] ping: echo 26.9 cm
+RX < I (4501085) sentry: [SONAR] ping: echo 14.3 cm
+RX < E (4501085) sentry: [COLLISION] contact too close: 14.3 cm (< 20 cm)
+RX < W (4501085) sentry: [CIC #20 WARNING] sonar: collision risk: contact at 14.3 cm
+RX < I (4501635) sentry: [SONAR] ping: echo 10.9 cm
+RX < I (4502185) sentry: [SONAR] ping: echo 9.2 cm
+RX < I (4502735) sentry: [SONAR] ping: echo 8.2 cm
+RX < I (4503285) sentry: [SONAR] ping: echo 8.2 cm
+RX < I (4503835) sentry: [SONAR] ping: echo 8.5 cm
+RX < I (4504385) sentry: [SONAR] ping: echo 8.5 cm
+RX < I (4504935) sentry: [SONAR] ping: echo 8.5 cm
+RX < I (4505485) sentry: [SONAR] ping: echo 8.5 cm
+RX < I (4506035) sentry: [SONAR] ping: echo 8.5 cm
+RX < I (4506585) sentry: [SONAR] ping: echo 20.3 cm
+RX < I (4507135) sentry: [SONAR] ping: echo 8.5 cm
+RX < I (4507685) sentry: [SONAR] ping: echo 8.5 cm
+RX < I (4508235) sentry: [SONAR] ping: echo 8.5 cm
+RX < I (4508785) sentry: [SONAR] ping: echo 8.5 cm
+RX < I (4509335) sentry: [SONAR] ping: echo 8.5 cm
+RX < I (4509885) sentry: [SONAR] ping: echo 8.2 cm
+RX < I (4510435) sentry: [SONAR] ping: echo 8.9 cm
+RX < I (4510985) sentry: [SONAR] ping: echo 10.6 cm
+RX < I (4511535) sentry: [SONAR] ping: echo 13.4 cm
+RX < I (4512085) sentry: [SONAR] ping: echo 17.3 cm
+RX < I (4512635) sentry: [SONAR] ping: echo 21.3 cm
+RX < I (4513185) sentry: [SONAR] ping: echo 26.3 cm
+RX < I (4513735) sentry: [SONAR] ping: echo 28.1 cm
+RX < I (4514285) sentry: [SONAR] ping: echo 28.3 cm
+RX < I (4514565) sentry: [TELEMETRY #133] 04:53:26 up 01:15:14 heap 251KB rssi -33 temp 32.4C depth 41.7m hull 5.2bar batt 24.1V valve closed sonar 28.3cm watch disarmed alerts 7 state NORMAL
+RX < I (4514835) sentry: [SONAR] ping: echo 28.3 cm
+RX < I (4515385) sentry: [SONAR] ping: echo 29.6 cm
+RX < I (4515935) sentry: [SONAR] ping: echo 28.3 cm
+RX < I (4516485) sentry: [SONAR] ping: echo 28.3 cm
+RX < I (4517035) sentry: [SONAR] ping: echo 28.3 cm
+TX > distance stop
+RX < distance stop
+RX < I (4517525) sentry: [SONAR] pinging stopped (command)
+TX > lamp timer 0
+RX < lamp timer 0
+RX < I (4517735) sentry: [BEACON] timer cancelled
+TX > lamp color 255 255 255
+RX < lamp color 255 255 255
+RX < I (4518145) sentry: [BEACON] color: (255,255,255)
+TX > lamp brightness 100
+RX < lamp brightness 100
+RX < I (4518555) sentry: [BEACON] brightness: 100%
+TX > lamp mode solid
+RX < lamp mode solid
+RX < I (4518965) sentry: [BEACON] mode: solid
+TX > lamp off
+RX < lamp off
+RX < W (4519375) sentry: W510 lamp already off

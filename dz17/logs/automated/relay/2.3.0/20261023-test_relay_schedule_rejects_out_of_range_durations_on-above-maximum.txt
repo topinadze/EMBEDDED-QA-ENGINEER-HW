@@ -1,0 +1,46 @@
+Test: tests/test_relay.py::TestRelay::test_relay_schedule_rejects_out_of_range_durations[on-above-maximum]
+Firmware: 2.3.0
+Captured: 2026-10-23T04:25:01.928227+03:00
+
+TX > version
+RX < version
+RX < I (2807655) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+RX < I (2807655) sentry:   partition: ota_0 @ 0x20000, state: valid
+TX > status
+RX < status
+RX < I (2807865) sentry: === SWM-2 status ===
+RX < I (2807865) sentry:   fw:       v2.3.0 (ota_0)
+RX < I (2807865) sentry:   state:    1 NORMAL
+RX < I (2807865) sentry:   link:     buoy link '[SSID REDACTED]', ip [PRIVATE IP REDACTED], rssi -28 dBm (excellent), ch 1
+RX < I (2807875) sentry:   internet: OK
+RX < I (2807875) sentry:   user:     testUser (user)
+RX < I (2807875) sentry:   time:     04:24:59, uptime 0h 46m 47s
+RX < I (2807885) sentry:   valve:    closed
+RX < I (2807885) sentry:   watch:    disarmed, CIC alerts unacked: 1
+RX < I (2807895) sentry:   sonar:    no contact
+RX < I (2807895) sentry:   carrier:  depth 41.2 m, hull 5.1 bar, water 8.2 C, battery 24.11 V (sim)
+RX < I (2807905) sentry:   heap:     251 KB free
+TX > whoami
+RX < whoami
+RX < I (2808075) sentry: user: testUser, access: user
+TX > relay status
+RX < relay status
+RX < I (2808285) sentry: [VALVE] closed, auto off, cycles 256
+TX > relay status
+RX < relay status
+RX < I (2808495) sentry: [VALVE] closed, auto off, cycles 256
+TX > relay schedule 3601 2
+RX < relay schedule 3601 2
+RX < E (2808705) sentry: E606 usage: relay schedule <on 2-3600 s> <off 2-3600 s> | off
+TX > relay status
+RX < relay status
+RX < I (2808905) sentry: [VALVE] closed, auto off, cycles 256
+TX > relay schedule off
+RX < relay schedule off
+RX < W (2809125) sentry: W605 schedule is not running
+TX > relay status
+RX < relay status
+RX < I (2809335) sentry: [VALVE] closed, auto off, cycles 256
+TX > relay status
+RX < relay status
+RX < I (2809545) sentry: [VALVE] closed, auto off, cycles 256

@@ -12,7 +12,9 @@ description: "Create self-explanatory embedded pytest tests and readable Allure 
 3. Wrap meaningful scenario phases in `with allure.step(...)` or reusable driver actions in `@allure.step(...)`. Name steps as observable actions/checks, not implementation trivia.
 4. Keep assertions near the step that establishes their evidence. Use useful failure messages that state expected and actual outcomes.
 5. Attach relevant command responses, manual observations, and complete UART transcripts using the existing driver/fixture lifecycle. Avoid redundant attachments for every trivial local value.
-6. Ensure fixture teardown steps (for example recovery reboot) are included in Allure when they affect device state.
+6. Keep the evidence channel explicit: operator feedback (including console/Telegram manual checks), UART assertions, Allure attachments, and persisted per-test transcripts are related but not interchangeable. A displayed or acknowledged prompt is not a physical PASS.
+7. For DZ17 lamp checks, identify the expected color and RGB reference in the step/attachment; a sample image or RGB number helps the operator but does not prove the LED's physical output.
+8. Ensure fixture teardown steps (for example recovery reboot) are included in Allure when they affect device state.
 
 ## Quality checks
 

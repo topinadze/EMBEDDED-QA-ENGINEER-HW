@@ -16,15 +16,19 @@ if (-not (Test-Path $python)) {
     throw "DZ17 virtual environment not found. Create it with: python -m venv .venv; .\.venv\Scripts\python.exe -m pip install -r requirements.txt"
 }
 
+if ($All -and ($Markers -or $LongRangeOnly)) {
+    throw "Do not combine -All with -Markers or -LongRangeOnly; -All selects every test in tests\test_distance.py."
+}
+
 if ($LongRangeOnly) {
     if ($Markers) {
         throw "Do not combine -LongRangeOnly with -Markers; select the long-range case using one option."
     }
     $Markers = "distance and long_range"
+} elseif ($All) {
+    # Select the whole module below without a pytest marker expression.
 } elseif (-not $Markers) {
-    if ($All) {
-        $Markers = "distance and not long_range"
-    } elseif ($Interactive) {
+    if ($Interactive) {
         $markerParts = @("distance and interactive")
         if (-not $Persistent) {
             $markerParts += "not persistent"
@@ -55,7 +59,6 @@ if ($Interactive -or $All -or $LongRangeOnly) {
 
 $pytestArgs += @(
     "-c", "pytest.ini",
-    "-m", $Markers,
     "--port", $Port,
     "--expected-fw-version", $Fw,
     "-o", "log_cli=true",
@@ -67,7 +70,17 @@ $pytestArgs += @(
     "tests\test_distance.py"
 )
 
-Write-Host "Running Sonar Distance tests with markers: '$Markers' against FW $Fw on $Port..." -ForegroundColor Cyan
+if ($All) {
+    $pytestArgs += @("-o", "addopts=-v --tb=short --alluredir=allure-results")
+} else {
+    $pytestArgs += @("-m", $Markers)
+}
+
+if ($All) {
+    Write-Host "Running all Sonar Distance tests against FW $Fw on $Port..." -ForegroundColor Cyan
+} else {
+    Write-Host "Running Sonar Distance tests with markers: '$Markers' against FW $Fw on $Port..." -ForegroundColor Cyan
+}
 $previousInteractionMode = [Environment]::GetEnvironmentVariable("INTERACTION_MODE", "Process")
 try {
     $env:INTERACTION_MODE = $InteractionMode

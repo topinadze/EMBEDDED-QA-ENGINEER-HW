@@ -1,0 +1,89 @@
+Test: tests/test_lamp.py::TestLamp::test_lamp_mode_visual[breathe]
+Firmware: 2.3.0
+Captured: 2026-10-23T03:04:52.519806+03:00
+
+TX > version
+RX < version
+RX < I (377695) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+RX < I (377695) sentry:   partition: ota_0 @ 0x20000, state: valid
+TX > status
+RX < status
+RX < I (377905) sentry: === SWM-2 status ===
+RX < I (377905) sentry:   fw:       v2.3.0 (ota_0)
+RX < I (377905) sentry:   state:    1 NORMAL
+RX < I (377905) sentry:   link:     buoy link '[SSID REDACTED]', ip [PRIVATE IP REDACTED], rssi -26 dBm (excellent), ch 1
+RX < I (377905) sentry:   internet: OK
+RX < I (377915) sentry:   user:     testUser (user)
+RX < I (377915) sentry:   time:     03:04:32, uptime 0h 06m 17s
+RX < I (377925) sentry:   valve:    closed
+RX < I (377925) sentry:   watch:    disarmed, CIC alerts unacked: 0
+RX < I (377935) sentry:   sonar:    no contact
+RX < I (377935) sentry:   carrier:  depth 41.3 m, hull 5.1 bar, water 8.1 C, battery 24.19 V (sim)
+RX < I (377945) sentry:   heap:     251 KB free
+TX > whoami
+RX < whoami
+RX < I (378105) sentry: user: testUser, access: user
+TX > lamp status
+RX < lamp status
+RX < I (378315) sentry: [BEACON] off, color (255,255,255), brightness 100%, mode solid, timer off
+TX > lamp status
+RX < lamp status
+RX < I (381165) sentry: [BEACON] off, color (255,255,255), brightness 100%, mode solid, timer off
+TX > lamp on
+RX < lamp on
+RX < I (381775) sentry: [BEACON] on (command) solid, 100%, color (255,255,255)
+TX > lamp status
+RX < lamp status
+RX < I (382375) sentry: [BEACON] ON, color (255,255,255), brightness 100%, mode solid, timer off
+TX > lamp color blue
+RX < lamp color blue
+RX < I (382995) sentry: [BEACON] color: blue (0,0,255)
+TX > lamp brightness 100
+RX < lamp brightness 100
+RX < I (383595) sentry: [BEACON] brightness: 100%
+TX > lamp mode breathe
+RX < lamp mode breathe
+RX < I (384205) sentry: [BEACON] mode: breathe
+TX > lamp status
+RX < lamp status
+RX < I (384805) sentry: [BEACON] ON, color (0,0,255), brightness 100%, mode breathe, timer off
+TX > status
+RX < I (390665) sentry: [ACU] ambient noise 64 dB re 1uPa, sea state 2, water 8.1 C
+RX < status
+RX < I (392925) sentry: === SWM-2 status ===
+RX < I (392925) sentry:   fw:       v2.3.0 (ota_0)
+RX < I (392925) sentry:   state:    1 NORMAL
+RX < I (392925) sentry:   link:     buoy link '[SSID REDACTED]', ip [PRIVATE IP REDACTED], rssi -25 dBm (excellent), ch 1
+RX < I (392925) sentry:   internet: OK
+RX < I (392935) sentry:   user:     testUser (user)
+RX < I (392935) sentry:   time:     03:04:47, uptime 0h 06m 32s
+RX < I (392945) sentry:   valve:    closed
+RX < I (392945) sentry:   watch:    disarmed, CIC alerts unacked: 0
+RX < I (392955) sentry:   sonar:    no contact
+RX < I (392955) sentry:   carrier:  depth 41.4 m, hull 5.1 bar, water 8.1 C, battery 24.19 V (sim)
+RX < I (392965) sentry:   heap:     251 KB free
+TX > whoami
+RX < whoami
+RX < I (393125) sentry: user: testUser, access: user
+TX > lamp timer 0
+RX < lamp timer 0
+RX < I (393335) sentry: [BEACON] timer cancelled
+TX > lamp status
+RX < lamp status
+RX < I (393945) sentry: [BEACON] ON, color (0,0,255), brightness 100%, mode breathe, timer off
+TX > lamp color 255 255 255
+RX < lamp color 255 255 255
+RX < I (394555) sentry: [BEACON] color: (255,255,255)
+TX > lamp brightness 100
+RX < lamp brightness 100
+RX < I (395155) sentry: [BEACON] brightness: 100%
+RX < I (395575) sentry: [TELEMETRY #13] 03:04:49 up 00:06:35 heap 251KB rssi -27 temp 32.4C depth 41.4m hull 5.1bar batt 24.2V valve closed sonar - watch disarmed alerts 0 state NORMAL
+TX > lamp mode solid
+RX < lamp mode solid
+RX < I (395775) sentry: [BEACON] mode: solid
+TX > lamp off
+RX < lamp off
+RX < I (396365) sentry: [BEACON] off (command)
+TX > lamp status
+RX < lamp status
+RX < I (396975) sentry: [BEACON] off, color (255,255,255), brightness 100%, mode solid, timer off

@@ -8,7 +8,7 @@ description: "Implement and execute pytest scenarios requiring physical buttons,
 ## Design
 
 - Mark operator-dependent cases `@pytest.mark.interactive`; preserve the repository's default exclusion of interactive cases from unattended test runs.
-- Use the established manual-check fixture and require uncaptured console input (`-s`). Do not emulate a physical button by sending a console command unless the requirement explicitly calls for that.
+- Use the established manual-check fixture. Require uncaptured console input (`-s`) in console mode; Telegram mode accepts the configured remote response without requiring `-s`. Do not emulate a physical button by sending a console command unless the requirement explicitly calls for that.
 - Define the connectivity and authentication preconditions for each interactive case. Use fixtures to establish and verify the exact Wi-Fi and login state before prompting the operator; never assume the previous test, operator, or reboot left the device connected or authenticated. Do not expose credentials in prompts, logs, or evidence.
 - **Operator Preparation Protocol (`manual_prepare`)**:
   - Before asking the operator to act or triggering a physical observation, present a clear preparation prompt (`manual_prepare`):
@@ -45,3 +45,11 @@ description: "Implement and execute pytest scenarios requiring physical buttons,
 - Do not ask users to paste credentials into chat or allow secrets into UART logs.
 - Do not flash firmware, perform OTA, erase storage, or alter persistent settings unless explicitly in scope and approved.
 - Warn when a failure recovery action will reboot or otherwise change the board's state.
+
+## DZ17 operator interaction
+
+- Console is the default interaction channel; Telegram is optional. Follow the DZ17 [README interaction protocol](../../../dz17/README.md#safety--interactive-protocol-agentsmd) and [DZ17 gotchas](./references/dz17-gotchas.md).
+- Keep preparation prompts explicit in both channels: action, observation, duration, and readiness confirmation. A K1–K4 login-state cue is only a prompt aid; fixture setup and UART must establish the actual state.
+- For lamp color checks, show the expected named color and RGB values, with a terminal color sample or Telegram image where supported. The sample is a reference only; the operator must judge the physical LED. When Beacon is off, the shared LED instead indicates Wi-Fi/login state.
+- Record operator feedback as manual evidence and keep it separate from UART assertions and persisted UART transcripts. A displayed or acknowledged prompt is not a passed physical check.
+- DZ17 Telegram interactions are limited to the configured private chat and the current prompt. Do not run competing pytest pollers for the same bot; treat API errors and timeouts explicitly.

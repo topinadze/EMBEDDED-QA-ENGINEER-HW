@@ -1,0 +1,91 @@
+Test: tests/test_lamp.py::TestLamp::test_lamp_timer_rejects_out_of_range
+Firmware: 2.3.0
+Captured: 2026-10-23T02:55:39.396704+03:00
+
+TX > version
+RX < version
+RX < I (1240965) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+RX < I (1240965) sentry:   partition: ota_0 @ 0x20000, state: valid
+TX > status
+RX < status
+RX < I (1241175) sentry: === SWM-2 status ===
+RX < I (1241175) sentry:   fw:       v2.3.0 (ota_0)
+RX < I (1241175) sentry:   state:    1 NORMAL
+RX < I (1241175) sentry:   link:     buoy link '[SSID REDACTED]', ip [PRIVATE IP REDACTED], rssi -28 dBm (excellent), ch 1
+RX < I (1241185) sentry:   internet: OK
+RX < I (1241185) sentry:   user:     testUser (user)
+RX < I (1241185) sentry:   time:     02:55:17, uptime 0h 20m 40s
+RX < I (1241195) sentry:   valve:    closed
+RX < I (1241195) sentry:   watch:    disarmed, CIC alerts unacked: 0
+RX < I (1241205) sentry:   sonar:    no contact
+RX < I (1241205) sentry:   carrier:  depth 41.9 m, hull 5.2 bar, water 8.0 C, battery 24.17 V (sim)
+RX < I (1241215) sentry:   heap:     251 KB free
+TX > whoami
+RX < whoami
+RX < I (1241385) sentry: user: testUser, access: user
+TX > lamp status
+RX < lamp status
+RX < I (1241595) sentry: [BEACON] off, color (255,255,255), brightness 100%, mode solid, timer off
+TX > lamp status
+RX < lamp status
+RX < I (1245345) sentry: [BEACON] off, color (255,255,255), brightness 100%, mode solid, timer off
+TX > lamp on
+RX < lamp on
+RX < I (1245955) sentry: [BEACON] on (command) solid, 100%, color (255,255,255)
+TX > lamp status
+RX < lamp status
+RX < I (1246565) sentry: [BEACON] ON, color (255,255,255), brightness 100%, mode solid, timer off
+TX > lamp status
+RX < lamp status
+RX < I (1247175) sentry: [BEACON] ON, color (255,255,255), brightness 100%, mode solid, timer off
+TX > lamp timer -1
+RX < lamp timer -1
+RX < E (1251405) sentry: E506 timer must be 1-3600 s (0 - cancel)
+TX > lamp status
+RX < lamp status
+RX < I (1252015) sentry: [BEACON] ON, color (255,255,255), brightness 100%, mode solid, timer off
+RX < I (1252465) sentry: [TELEMETRY #6] 02:55:29 up 00:20:52 heap 251KB rssi -24 temp 32.4C depth 41.9m hull 5.2bar batt 24.2V valve closed sonar - watch disarmed alerts 0 state NORMAL
+TX > lamp timer 3601
+RX < lamp timer 3601
+RX < E (1252615) sentry: E506 timer must be 1-3600 s (0 - cancel)
+TX > lamp status
+RX < lamp status
+RX < I (1253225) sentry: [BEACON] ON, color (255,255,255), brightness 100%, mode solid, timer off
+TX > status
+RX < status
+RX < I (1257465) sentry: === SWM-2 status ===
+RX < I (1257465) sentry:   fw:       v2.3.0 (ota_0)
+RX < I (1257465) sentry:   state:    1 NORMAL
+RX < I (1257465) sentry:   link:     buoy link '[SSID REDACTED]', ip [PRIVATE IP REDACTED], rssi -23 dBm (excellent), ch 1
+RX < I (1257475) sentry:   internet: OK
+RX < I (1257475) sentry:   user:     testUser (user)
+RX < I (1257475) sentry:   time:     02:55:34, uptime 0h 20m 57s
+RX < I (1257485) sentry:   valve:    closed
+RX < I (1257485) sentry:   watch:    disarmed, CIC alerts unacked: 0
+RX < I (1257495) sentry:   sonar:    no contact
+RX < I (1257495) sentry:   carrier:  depth 41.9 m, hull 5.2 bar, water 8.0 C, battery 24.17 V (sim)
+RX < I (1257505) sentry:   heap:     251 KB free
+TX > whoami
+RX < whoami
+RX < I (1257665) sentry: user: testUser, access: user
+TX > lamp timer 0
+RX < lamp timer 0
+RX < I (1257875) sentry: [BEACON] timer cancelled
+TX > lamp status
+RX < lamp status
+RX < I (1258485) sentry: [BEACON] ON, color (255,255,255), brightness 100%, mode solid, timer off
+TX > lamp color 255 255 255
+RX < lamp color 255 255 255
+RX < I (1259095) sentry: [BEACON] color: (255,255,255)
+TX > lamp brightness 100
+RX < lamp brightness 100
+RX < I (1259695) sentry: [BEACON] brightness: 100%
+TX > lamp mode solid
+RX < lamp mode solid
+RX < I (1260305) sentry: [BEACON] mode: solid
+TX > lamp off
+RX < lamp off
+RX < I (1260915) sentry: [BEACON] off (command)
+TX > lamp status
+RX < lamp status
+RX < I (1261525) sentry: [BEACON] off, color (255,255,255), brightness 100%, mode solid, timer off

@@ -12,6 +12,8 @@ import zlib
 import allure
 import requests
 
+LOGGER = logging.getLogger(__name__)
+
 
 class _TelegramUrlRedactionFilter(logging.Filter):
     _token_path = re.compile(r"(/bot)[^/\s\"']+(/)")
@@ -171,16 +173,24 @@ class TelegramInteraction:
                 callback = update.get("callback_query")
                 if not isinstance(callback, dict):
                     continue
-                callback_id = callback.get("id")
-                self._answer_callback(callback_id)
                 if not self._authorized_callback(callback, message_id):
                     continue
+                callback_id = callback.get("id")
+                self._answer_callback(callback_id)
                 value = callback.get("data")
                 if isinstance(value, str) and value in choices:
+                    response_labels = {
+                        "yes": "✅ YES",
+                        "no": "↪️ FINISH",
+                        "pass": "✅ PASS",
+                        "fail": "❌ FAIL",
+                        "ready": "✅ READY",
+                    }
                     self._edit_message(
                         message_id,
                         f"{callback.get('message', {}).get('text', '')}\n\n"
-                        f"Response received: {value}",
+                        f"🗳️ OPERATOR RESPONSE\n"
+                        f"{response_labels.get(value, value)}",
                     )
                     return value
         raise TimeoutError("No authorized Telegram button response before timeout.")
@@ -202,6 +212,13 @@ class TelegramInteraction:
                     continue
                 text = message.get("text")
                 if not isinstance(text, str):
+                    continue
+                response_message_id = message.get("message_id")
+                if (
+                    not isinstance(response_message_id, int)
+                    or isinstance(response_message_id, bool)
+                    or response_message_id <= message_id
+                ):
                     continue
                 reply = message.get("reply_to_message")
                 if isinstance(reply, dict):
@@ -263,7 +280,22 @@ class TelegramInteraction:
 
     def _answer_callback(self, callback_id: object) -> None:
         if isinstance(callback_id, str) and callback_id:
-            self._api("answerCallbackQuery", {"callback_query_id": callback_id})
+            try:
+                self._api("answerCallbackQuery", {"callback_query_id": callback_id})
+            except RuntimeError as error:
+                error_text = str(error)
+                expired_callback = (
+                    "HTTP 400 (answerCallbackQuery)" in error_text
+                    and (
+                        "query is too old" in error_text
+                        or "query ID is invalid" in error_text
+                    )
+                )
+                if not expired_callback:
+                    raise
+                LOGGER.debug(
+                    "Telegram callback acknowledgement expired before it could be answered."
+                )
 
     def _edit_message(self, message_id: int, text: str) -> None:
         self._api(
@@ -366,9 +398,9 @@ def telegram_choice(
         marker = lamp_color_marker(expected_color)
         client.send_color_swatch(
             expected_rgb,
-            f"{marker} {color_name}\n"
-            f"RGB {expected_rgb[0]}, {expected_rgb[1]}, {expected_rgb[2]}\n"
-            "Compare with the lit Beacon.",
+            f"{marker} REFERENCE COLOR — {color_name}\n"
+            f"🎨 RGB {expected_rgb[0]}, {expected_rgb[1]}, {expected_rgb[2]}\n"
+            "👀 Compare with the lit Beacon.",
         )
     message_id = client.send_message(instruction, keyboard)
     try:
@@ -376,7 +408,10 @@ def telegram_choice(
             message_id, {key for key, _ in choices}, timeout=timeout
         )
     except TimeoutError:
-        client.edit_message(message_id, f"{instruction}\n\nTimed out after {timeout}s.")
+        client.edit_message(
+            message_id,
+            f"{instruction}\n\n⌛ NO RESPONSE\nTimed out after {timeout}s.",
+        )
         raise
 
 
@@ -385,7 +420,8 @@ def telegram_text(prompt: str, timeout: int) -> str:
     client = telegram_client()
     prompt_time = int(time.time())
     message_id = client.send_message(
-        f"{prompt}\n\nSend your answer as a message. Replying to this prompt also works."
+        f"{prompt}\n\n"
+        "📝 Reply to this prompt or send your answer as a new message."
     )
     return client.wait_for_text(
         message_id, timeout=timeout, sent_after=prompt_time

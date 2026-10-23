@@ -474,6 +474,216 @@ def test_lamp_state_fixture_skips_commands_when_reboot_recovery_is_unconfirmed(
     )
 
 
+def test_wifi_status_led_fixture_turns_off_and_restores_beacon(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    request = FakeRequest(expected_version=None)
+    driver = Mock(spec=DeviceDriver)
+    initial_status = {
+        "lamp": "on",
+        "color": (12, 34, 56),
+        "brightness": 70,
+        "mode": "solid",
+        "timer_s": 0,
+    }
+    off_status = {**initial_status, "lamp": "off"}
+    driver.lamp_status.side_effect = [initial_status, off_status, initial_status]
+    driver.whoami.return_value = {"logged_in": True}
+    driver.lamp_off.return_value = ["[BEACON] off (command)"]
+    restore_lamp = Mock()
+    monkeypatch.setattr(conftest, "_restore_lamp", restore_lamp)
+
+    ensure_authenticated = Mock()
+    fixture = conftest.wifi_status_led_lamp_off.__wrapped__(
+        driver, request, ensure_authenticated
+    )
+    ensure_lamp_off = next(fixture)
+    assert callable(ensure_lamp_off)
+    ensure_lamp_off()
+    assert request.node.stash[conftest.LAMP_STATE_FIXTURE_ACTIVE] is True
+    driver.lamp_off.assert_called_once_with()
+
+    with pytest.raises(StopIteration):
+        next(fixture)
+
+    assert ensure_authenticated.call_count == 2
+    restore_lamp.assert_called_once()
+    assert restore_lamp.call_args.args[:2] == (driver, initial_status)
+
+
+def test_wifi_status_led_fixture_attempts_beacon_restore_if_login_restore_fails(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    request = FakeRequest(expected_version=None)
+    driver = Mock(spec=DeviceDriver)
+    initial_status = {
+        "lamp": "on",
+        "color": (12, 34, 56),
+        "brightness": 70,
+        "mode": "solid",
+        "timer_s": 0,
+    }
+    off_status = {**initial_status, "lamp": "off"}
+    driver.lamp_status.side_effect = [initial_status, off_status, initial_status]
+    driver.whoami.return_value = {"logged_in": True}
+    driver.lamp_off.return_value = ["[BEACON] off (command)"]
+    restore_lamp = Mock()
+    monkeypatch.setattr(conftest, "_restore_lamp", restore_lamp)
+    ensure_authenticated = Mock(
+        side_effect=[None, RuntimeError("login recovery failed")]
+    )
+
+    fixture = conftest.wifi_status_led_lamp_off.__wrapped__(
+        driver, request, ensure_authenticated
+    )
+    ensure_lamp_off = next(fixture)
+    ensure_lamp_off()
+
+    with pytest.raises(
+        pytest.fail.Exception,
+        match="Configured login restoration failed",
+    ):
+        next(fixture)
+
+    restore_lamp.assert_called_once_with(driver, initial_status, pytest.approx(0, abs=1))
+
+
+def test_wifi_status_led_fixture_restores_remaining_beacon_timer(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    request = FakeRequest(expected_version=None)
+    driver = Mock(spec=DeviceDriver)
+    initial_status = {
+        "lamp": "on",
+        "color": (12, 34, 56),
+        "brightness": 70,
+        "mode": "solid",
+        "timer_s": 60,
+    }
+    off_status = {**initial_status, "lamp": "off", "timer_s": 0}
+    restored_status = {**initial_status, "timer_s": 54}
+    driver.lamp_status.side_effect = [initial_status, off_status, restored_status]
+    driver.whoami.return_value = {"logged_in": True}
+    driver.lamp_off.return_value = ["[BEACON] off (command)"]
+    restore_lamp = Mock()
+    restore_lamp.return_value = (55, 105.0)
+    monkeypatch.setattr(conftest, "_restore_lamp", restore_lamp)
+    monkeypatch.setattr(
+        conftest.time,
+        "monotonic",
+        Mock(side_effect=[100.0, 105.0, 106.0]),
+    )
+
+    fixture = conftest.wifi_status_led_lamp_off.__wrapped__(
+        driver, request, Mock()
+    )
+    ensure_lamp_off = next(fixture)
+    ensure_lamp_off()
+    with pytest.raises(StopIteration):
+        next(fixture)
+
+    restore_lamp.assert_called_once_with(driver, initial_status, 5.0)
+
+
+@pytest.mark.parametrize("reported_timer_s", [0, 1])
+def test_wifi_status_led_fixture_fails_if_active_beacon_timer_is_shortened(
+    monkeypatch: pytest.MonkeyPatch,
+    reported_timer_s: int,
+) -> None:
+    request = FakeRequest(expected_version=None)
+    driver = Mock(spec=DeviceDriver)
+    initial_status = {
+        "lamp": "on",
+        "color": (12, 34, 56),
+        "brightness": 70,
+        "mode": "solid",
+        "timer_s": 60,
+    }
+    off_status = {**initial_status, "lamp": "off", "timer_s": 0}
+    shortened_timer_status = {**initial_status, "timer_s": reported_timer_s}
+    driver.lamp_status.side_effect = [
+        initial_status,
+        off_status,
+        shortened_timer_status,
+    ]
+    driver.whoami.return_value = {"logged_in": True}
+    driver.lamp_off.return_value = ["[BEACON] off (command)"]
+    restore_lamp = Mock(return_value=(55, 105.0))
+    monkeypatch.setattr(conftest, "_restore_lamp", restore_lamp)
+    monkeypatch.setattr(
+        conftest.time,
+        "monotonic",
+        Mock(side_effect=[100.0, 105.0, 106.0]),
+    )
+
+    fixture = conftest.wifi_status_led_lamp_off.__wrapped__(
+        driver, request, Mock()
+    )
+    ensure_lamp_off = next(fixture)
+    ensure_lamp_off()
+    with pytest.raises(
+        pytest.fail.Exception,
+        match="Beacon timer restoration differs from the expected",
+    ):
+        next(fixture)
+
+
+def test_wifi_status_led_fixture_does_not_change_an_already_off_beacon() -> None:
+    request = FakeRequest(expected_version=None)
+    driver = Mock(spec=DeviceDriver)
+    driver.lamp_status.return_value = {
+        "lamp": "off",
+        "color": (12, 34, 56),
+        "brightness": 70,
+        "mode": "solid",
+        "timer_s": 0,
+    }
+
+    ensure_authenticated = Mock()
+    fixture = conftest.wifi_status_led_lamp_off.__wrapped__(
+        driver, request, ensure_authenticated
+    )
+    ensure_lamp_off = next(fixture)
+    assert callable(ensure_lamp_off)
+    ensure_lamp_off()
+    with pytest.raises(StopIteration):
+        next(fixture)
+
+    assert ensure_authenticated.call_count == 2
+    driver.lamp_off.assert_not_called()
+    driver.whoami.assert_not_called()
+    assert conftest.LAMP_STATE_FIXTURE_ACTIVE not in request.node.stash
+
+
+def test_wifi_status_led_fixture_requires_authentication_before_beacon_control() -> None:
+    request = FakeRequest(expected_version=None)
+    driver = Mock(spec=DeviceDriver)
+    driver.lamp_status.return_value = {
+        "lamp": "on",
+        "color": (12, 34, 56),
+        "brightness": 70,
+        "mode": "solid",
+        "timer_s": 0,
+    }
+    driver.whoami.return_value = {"logged_in": False}
+
+    ensure_authenticated = Mock()
+    fixture = conftest.wifi_status_led_lamp_off.__wrapped__(
+        driver, request, ensure_authenticated
+    )
+    ensure_lamp_off = next(fixture)
+    with pytest.raises(
+        AssertionError,
+        match="configured account is not authenticated",
+    ):
+        ensure_lamp_off()
+    fixture.close()
+
+    assert ensure_authenticated.call_count == 2
+    driver.lamp_off.assert_not_called()
+    assert conftest.LAMP_STATE_FIXTURE_ACTIVE not in request.node.stash
+
+
 def test_device_driver_does_not_duplicate_lamp_state_fixture_cleanup(
     monkeypatch: pytest.MonkeyPatch,
 ) -> None:
@@ -529,3 +739,19 @@ def test_lamp_cleanup_attempts_beacon_restore_after_pytest_recovery_failure(
         )
 
     restore_lamp.assert_called_once_with(driver, initial_status)
+
+
+@pytest.mark.parametrize(
+    ("status", "expected"),
+    [
+        ("PASSED", "✅ PASSED"),
+        ("FAILED", "❌ FAILED"),
+        ("SKIPPED", "⚪ SKIPPED"),
+        ("XFAIL", "🟠 XFAIL"),
+        ("XPASS", "⚠️ XPASS"),
+    ],
+)
+def test_telegram_test_status_uses_clear_result_indicator(
+    status: str, expected: str
+) -> None:
+    assert conftest._telegram_test_status_label(status) == expected

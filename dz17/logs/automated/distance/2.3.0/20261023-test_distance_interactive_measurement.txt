@@ -1,0 +1,58 @@
+Test: tests/test_distance.py::TestDistance::test_distance_interactive_measurement
+Firmware: 2.3.0
+Captured: 2026-10-23T04:55:58.272405+03:00
+
+TX > version
+RX < version
+RX < I (4633565) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+RX < I (4633565) sentry:   partition: ota_0 @ 0x20000, state: valid
+TX > lamp status
+RX < lamp status
+RX < I (4633775) sentry: [BEACON] off, color (255,255,255), brightness 100%, mode solid, timer off
+TX > status
+RX < status
+RX < I (4634385) sentry: === SWM-2 status ===
+RX < I (4634385) sentry:   fw:       v2.3.0 (ota_0)
+RX < I (4634385) sentry:   state:    1 NORMAL
+RX < I (4634385) sentry:   link:     buoy link '[SSID REDACTED]', ip [PRIVATE IP REDACTED], rssi -27 dBm (excellent), ch 1
+RX < I (4634395) sentry:   internet: OK
+RX < I (4634395) sentry:   user:     testUser (user)
+RX < I (4634395) sentry:   time:     04:55:25, uptime 1h 17m 14s
+RX < I (4634405) sentry:   valve:    closed
+RX < I (4634405) sentry:   watch:    disarmed, CIC alerts unacked: 8
+RX < I (4634415) sentry:   sonar:    last echo 3.7 cm
+RX < I (4634415) sentry:   carrier:  depth 42.1 m, hull 5.2 bar, water 8.1 C, battery 24.05 V (sim)
+RX < I (4634425) sentry:   heap:     251 KB free
+TX > whoami
+RX < whoami
+RX < I (4634595) sentry: user: testUser, access: user
+TX > relay status
+RX < relay status
+RX < I (4634805) sentry: [VALVE] closed, auto off, cycles 272
+TX > distance stats
+RX < distance stats
+RX < I (4635005) sentry: [SONAR] measurements 222, errors 0, min 3.7, max 29.6, avg 17.9 cm
+RX < I (4635005) sentry: [SONAR] calibration -2.0 cm, filter median 5, alarm off
+TX > distance
+RX < I (4642655) sentry: [ACU] ambient noise 66 dB re 1uPa, sea state 2, water 8.1 C
+RX < distance
+RX < I (4657095) sentry: [SONAR] ping: echo 19.6 cm
+TX > relay status
+RX < relay status
+RX < I (4658055) sentry: [VALVE] closed, auto off, cycles 272
+TX > lamp timer 0
+RX < I (4661025) sentry: [TELEMETRY #137] 04:55:52 up 01:17:40 heap 251KB rssi -27 temp 32.4C depth 41.9m hull 5.2bar batt 24.1V valve closed sonar 19.6cm watch disarmed alerts 8 state NORMAL
+RX < lamp timer 0
+RX < I (4664115) sentry: [BEACON] timer cancelled
+TX > lamp color 255 255 255
+RX < lamp color 255 255 255
+RX < I (4664525) sentry: [BEACON] color: (255,255,255)
+TX > lamp brightness 100
+RX < lamp brightness 100
+RX < I (4664935) sentry: [BEACON] brightness: 100%
+TX > lamp mode solid
+RX < lamp mode solid
+RX < I (4665345) sentry: [BEACON] mode: solid
+TX > lamp off
+RX < lamp off
+RX < W (4665755) sentry: W510 lamp already off

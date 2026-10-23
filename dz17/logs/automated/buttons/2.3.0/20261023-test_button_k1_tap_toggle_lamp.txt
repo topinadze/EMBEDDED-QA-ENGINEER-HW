@@ -1,0 +1,51 @@
+Test: tests/test_buttons.py::TestButtons::test_button_k1_tap_toggle_lamp
+Firmware: 2.3.0
+Captured: 2026-10-23T04:11:44.316698+03:00
+
+TX > version
+RX < version
+RX < I (1993495) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+RX < I (1993495) sentry:   partition: ota_0 @ 0x20000, state: valid
+TX > lamp status
+RX < lamp status
+RX < I (1993705) sentry: [BEACON] off, color (255,255,255), brightness 100%, mode solid, timer off
+TX > status
+RX < status
+RX < I (1994315) sentry: === SWM-2 status ===
+RX < I (1994315) sentry:   fw:       v2.3.0 (ota_0)
+RX < I (1994315) sentry:   state:    1 NORMAL
+RX < I (1994315) sentry:   link:     buoy link '[SSID REDACTED]', ip [PRIVATE IP REDACTED], rssi -26 dBm (excellent), ch 1
+RX < I (1994325) sentry:   internet: OK
+RX < I (1994325) sentry:   user:     testUser (user)
+RX < I (1994325) sentry:   time:     04:11:25, uptime 0h 33m 13s
+RX < I (1994335) sentry:   valve:    closed
+RX < I (1994335) sentry:   watch:    disarmed, CIC alerts unacked: 0
+RX < I (1994345) sentry:   sonar:    no contact
+RX < I (1994345) sentry:   carrier:  depth 42.6 m, hull 5.3 bar, water 8.2 C, battery 24.14 V (sim)
+RX < I (1994355) sentry:   heap:     251 KB free
+TX > whoami
+RX < whoami
+RX < I (1994515) sentry: user: testUser, access: user
+TX > lamp status
+RX < lamp status
+RX < I (1994725) sentry: [BEACON] off, color (255,255,255), brightness 100%, mode solid, timer off
+RX < I (2002935) sentry: [BTN] K1 pressed
+RX < I (2002935) sentry: [BEACON] on (K1) solid, 100%, color (255,255,255)
+TX > lamp status
+RX < lamp status
+RX < I (2003095) sentry: [BEACON] ON, color (255,255,255), brightness 100%, mode solid, timer off
+TX > lamp timer 0
+RX < lamp timer 0
+RX < I (2010075) sentry: [BEACON] timer cancelled
+TX > lamp color 255 255 255
+RX < lamp color 255 255 255
+RX < I (2010485) sentry: [BEACON] color: (255,255,255)
+TX > lamp brightness 100
+RX < lamp brightness 100
+RX < I (2010895) sentry: [BEACON] brightness: 100%
+TX > lamp mode solid
+RX < lamp mode solid
+RX < I (2011305) sentry: [BEACON] mode: solid
+TX > lamp off
+RX < lamp off
+RX < I (2011715) sentry: [BEACON] off (command)

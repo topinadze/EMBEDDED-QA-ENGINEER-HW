@@ -170,6 +170,14 @@ def prepare_observation(
     duration: str,
 ) -> None:
     """Present a consistent operator-ready prompt before a physical observation."""
+    if re.search(r"\bK[1-4]\b", action, re.IGNORECASE):
+        if re.search(r"\bwhile logged out\b", action, re.IGNORECASE):
+            session_status = "🔓 LOGGED OUT"
+        elif re.search(r"\blogs out\b", action, re.IGNORECASE):
+            session_status = "🔐 LOGGED IN AT START"
+        else:
+            session_status = "🔐 LOGIN VERIFIED"
+        action = f"👆 {session_status} — {action}"
     prepare(
         f"What to do: {action}\n\n"
         f"What to observe: {expected}\n\n"
@@ -199,6 +207,94 @@ STATUS_INDICATOR_LEGEND = (
     "GREEN = Wi-Fi connected, logged in."
 )
 
+
+
+def _telegram_topic(text: str) -> str:
+    normalized = text.casefold()
+    if re.search(r"clear(?:ing)? (?:the entire )?alert history|ack all", normalized):
+        return "⚠️ ALERT HISTORY CLEANUP"
+    if "alert" in normalized or "acknowledge" in normalized:
+        return "🔔 ALERT CENTER"
+    if any(word in normalized for word in ("guard", "panic", "intrusion", "alarm")):
+        return "🚨 GUARD / ALARM"
+    if any(word in normalized for word in ("wi-fi", "wifi", "access point", "router")):
+        return "📶 WI-FI"
+    if any(word in normalized for word in ("distance", "sonar", "target", "hc-sr04")):
+        return "📏 DISTANCE / SONAR"
+    if re.search(r"\bk[1-4]\b|button", normalized):
+        return "🔘 BUTTONS"
+    if any(word in normalized for word in ("relay", "valve", "gpio4")):
+        return "🔌 RELAY"
+    if any(word in normalized for word in ("lamp", "beacon", "rgb")):
+        return "💡 LAMP / BEACON"
+    if any(word in normalized for word in ("led", "status indicator")):
+        return "💡 STATUS INDICATOR"
+    return "🧪 DEVICE CHECK"
+
+
+def _telegram_color_marker(text: str) -> str | None:
+    matches = re.findall(
+        r"\b(red|green|blue|yellow|purple|cyan|orange|white)\b",
+        text,
+        re.IGNORECASE,
+    )
+    return lamp_color_marker(matches[-1]) if matches else None
+
+
+def _telegram_prepare_message(instruction: str) -> str:
+    topic = _telegram_topic(instruction)
+    labels = (
+        ("What to do:", "➡️ ACTION:"),
+        ("What to observe:", "👀 OBSERVE:"),
+        ("Duration:", "⏱ DURATION:"),
+    )
+    formatted = instruction
+    for source, replacement in labels:
+        formatted = re.sub(source, replacement, formatted, flags=re.IGNORECASE)
+    if not re.search(r"➡️ ACTION:|👀 OBSERVE:|⏱ DURATION:", formatted):
+        formatted = f"➡️ ACTION:\n{formatted}"
+    return (
+        f"{topic}\n"
+        "━━━━━━━━━━━━━━━━━━\n"
+        "🧰 GET READY\n\n"
+        f"{formatted.strip()}\n\n"
+        "Confirm with ✅ READY when prepared."
+    )
+
+
+def _telegram_manual_check_message(
+    instruction: str,
+    *,
+    expected_rgb: tuple[int, int, int] | None = None,
+    expected_color: str | None = None,
+) -> str:
+    if expected_rgb is not None:
+        marker = lamp_color_marker(expected_color)
+        color_name = expected_color.upper() if expected_color else "CUSTOM COLOR"
+        return (
+            f"{marker} LAMP COLOR CHECK — {color_name}\n"
+            "━━━━━━━━━━━━━━━━━━\n"
+            "👀 OBSERVE\n"
+            f"Does the lit Beacon look {color_name}?\n"
+            f"🎨 Expected RGB: {expected_rgb[0]}, "
+            f"{expected_rgb[1]}, {expected_rgb[2]}\n\n"
+            "Choose the result that matches what you saw."
+        )
+
+    topic = _telegram_topic(instruction)
+    marker = _telegram_color_marker(instruction)
+    color_label = f" {marker}" if marker else ""
+    warning = (
+        "\n⚠️ This action permanently deletes alert history."
+        if topic == "⚠️ ALERT HISTORY CLEANUP"
+        else ""
+    )
+    return (
+        f"{topic}{color_label}\n"
+        "━━━━━━━━━━━━━━━━━━\n"
+        f"👀 OBSERVE\n{instruction.strip()}{warning}\n\n"
+        "Choose the result that matches what you saw."
+    )
 
 
 def _attach_manual_feedback(
@@ -255,15 +351,10 @@ def prepare_manually(instruction: str) -> None:
     """Pause so the operator can prepare and watch the device before the next action."""
     if _telegram_mode():
         try:
-            telegram_instruction = f"🧰 GET READY\n\n{instruction}"
-            telegram_instruction = telegram_instruction.replace(
-                "What to do:", "➡️ ACTION:"
-            ).replace("What to observe:", "👀 OBSERVE:").replace(
-                "Duration:", "⏱ DURATION:"
-            )
+            telegram_instruction = _telegram_prepare_message(instruction)
             telegram_choice(
                 telegram_instruction,
-                [("ready", "Ready")],
+                [("ready", "✅ READY")],
                 _telegram_timeout(),
             )
         except TimeoutError:
@@ -299,7 +390,10 @@ def enter_reference_distance(label: str) -> float:
         if _telegram_mode():
             try:
                 response = telegram_text(
-                    f"Enter the ruler-measured distance for {label} in centimeters.",
+                    "📏 DISTANCE / SONAR\n"
+                    "━━━━━━━━━━━━━━━━━━\n"
+                    f"📐 Enter the ruler-measured distance for {label} "
+                    "in centimeters.",
                     _telegram_timeout(),
                 )
             except TimeoutError:
@@ -319,7 +413,7 @@ def enter_reference_distance(label: str) -> float:
         except ValueError:
             notice = "Enter a numeric distance in centimeters, for example 20 or 20.5."
             if _telegram_mode():
-                telegram_notify(notice)
+                telegram_notify(f"⚠️ INVALID DISTANCE\n\n{notice}")
             else:
                 _print_manual_notice(notice)
             continue
@@ -327,7 +421,7 @@ def enter_reference_distance(label: str) -> float:
         if not math.isfinite(distance_cm) or distance_cm <= 0:
             notice = "Distance must be a finite value greater than 0 cm."
             if _telegram_mode():
-                telegram_notify(notice)
+                telegram_notify(f"⚠️ INVALID DISTANCE\n\n{notice}")
             else:
                 _print_manual_notice(notice)
             continue
@@ -349,8 +443,10 @@ def ask_to_continue_measurements() -> bool:
         if _telegram_mode():
             try:
                 answer = telegram_choice(
+                    "📏 DISTANCE / SONAR\n"
+                    "━━━━━━━━━━━━━━━━━━\n"
                     "Measure another target position?",
-                    [("yes", "Yes"), ("no", "Finish")],
+                    [("yes", "➕ Measure again"), ("no", "✅ Finish")],
                     _telegram_timeout(),
                 )
             except TimeoutError:
@@ -394,7 +490,11 @@ def ask_to_continue_measurements() -> bool:
             )
             return False
 
-        _print_manual_notice("Enter y to measure another position or n to finish.")
+        notice = "Enter y to measure another position or n to finish."
+        if _telegram_mode():
+            telegram_notify(f"⚠️ INVALID RESPONSE\n\n{notice}")
+        else:
+            _print_manual_notice(notice)
 
 
 @allure.step("Manual verification: {instruction}")
@@ -408,21 +508,15 @@ def verify_manually(
     if _telegram_mode():
         try:
             choices = [
-                ("pass", "Pass"),
-                ("fail", "Fail"),
-                ("comment", "Add comment"),
+                ("pass", "✅ PASS"),
+                ("fail", "❌ FAIL"),
+                ("comment", "📝 ADD NOTE"),
             ]
-            if expected_rgb is None:
-                prompt = f"👀 MANUAL CHECK\n\n{instruction}"
-            else:
-                marker = lamp_color_marker(expected_color)
-                color_name = expected_color.upper() if expected_color else "CUSTOM COLOR"
-                prompt = (
-                    f"{marker} LAMP COLOR CHECK — {color_name}\n\n"
-                    f"Does the lit Beacon look {color_name}?\n"
-                    f"Expected RGB: {expected_rgb[0]}, {expected_rgb[1]}, "
-                    f"{expected_rgb[2]}"
-                )
+            prompt = _telegram_manual_check_message(
+                instruction,
+                expected_rgb=expected_rgb,
+                expected_color=expected_color,
+            )
             if expected_rgb is None:
                 response = telegram_choice(prompt, choices, _telegram_timeout())
             else:
@@ -436,14 +530,20 @@ def verify_manually(
             comment: str | None = None
             if response == "comment":
                 comment = telegram_text(
-                    "Add a non-sensitive observation. Do not enter passwords, "
-                    "tokens, or secrets.",
+                    "📝 ADD AN OBSERVATION\n"
+                    "━━━━━━━━━━━━━━━━━━\n"
+                    "Describe what you saw. Do not enter passwords, tokens, or secrets.",
                     _telegram_timeout(),
                 )
+                comment_prompt = _telegram_manual_check_message(
+                    instruction,
+                    expected_rgb=expected_rgb,
+                    expected_color=expected_color,
+                )
                 response = telegram_choice(
-                    f"👀 MANUAL CHECK\n\n{instruction}\n\n"
-                    f"Comment: {_redact_sensitive_comment(comment)}",
-                    [("pass", "Pass"), ("fail", "Fail")],
+                    f"{comment_prompt}\n\n"
+                    f"📝 NOTE: {_redact_sensitive_comment(comment)}",
+                    [("pass", "✅ PASS"), ("fail", "❌ FAIL")],
                     _telegram_timeout(),
                 )
         except TimeoutError:

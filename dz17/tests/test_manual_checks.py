@@ -44,8 +44,12 @@ def test_manual_prepare_routes_to_telegram(
 
     assert calls == [
         (
-            "🧰 GET READY\n\n➡️ ACTION: Watch the LED.",
-            [("ready", "Ready")],
+            "💡 STATUS INDICATOR\n"
+            "━━━━━━━━━━━━━━━━━━\n"
+            "🧰 GET READY\n\n"
+            "➡️ ACTION: Watch the LED.\n\n"
+            "Confirm with ✅ READY when prepared.",
+            [("ready", "✅ READY")],
             25,
         )
     ]
@@ -74,9 +78,12 @@ def test_manual_check_routes_pass_and_comment_to_telegram(
 
     assert manual_checks.verify_manually("The status LED is green.") is True
     assert texts == [
-        "Add a non-sensitive observation. Do not enter passwords, tokens, or secrets."
+        "📝 ADD AN OBSERVATION\n"
+        "━━━━━━━━━━━━━━━━━━\n"
+        "Describe what you saw. Do not enter passwords, tokens, or secrets."
     ]
-    assert "Comment: Observed green." in prompts[1]
+    assert "💡 STATUS INDICATOR 🟢" in prompts[0]
+    assert "📝 NOTE: Observed green." in prompts[1]
 
 
 def test_manual_check_sends_expected_rgb_to_telegram(
@@ -113,9 +120,17 @@ def test_manual_check_sends_expected_rgb_to_telegram(
     )
     assert calls == [
         (
-            "🟡 LAMP COLOR CHECK — YELLOW\n\n"
-            "Does the lit Beacon look YELLOW?\nExpected RGB: 255, 180, 0",
-            [("pass", "Pass"), ("fail", "Fail"), ("comment", "Add comment")],
+            "🟡 LAMP COLOR CHECK — YELLOW\n"
+            "━━━━━━━━━━━━━━━━━━\n"
+            "👀 OBSERVE\n"
+            "Does the lit Beacon look YELLOW?\n"
+            "🎨 Expected RGB: 255, 180, 0\n\n"
+            "Choose the result that matches what you saw.",
+            [
+                ("pass", "✅ PASS"),
+                ("fail", "❌ FAIL"),
+                ("comment", "📝 ADD NOTE"),
+            ],
             300,
             (255, 180, 0),
             "yellow",
@@ -123,6 +138,42 @@ def test_manual_check_sends_expected_rgb_to_telegram(
     ]
     assert "🟡 LAMP COLOR CHECK — YELLOW" in calls[0][0]
     assert "Expected RGB: 255, 180, 0" in calls[0][0]
+
+
+@pytest.mark.parametrize(
+    ("instruction", "expected_topic"),
+    [
+        ("Press button K2 once and listen for the relay.", "🔘 BUTTONS"),
+        ("Observe the relay switch OPEN.", "🔌 RELAY"),
+        ("Observe Wi-Fi reconnect and status LED.", "📶 WI-FI"),
+        ("Move the target to 20 cm from the sonar.", "📏 DISTANCE / SONAR"),
+        ("Hold K4 to trigger Guard panic alarm.", "🚨 GUARD / ALARM"),
+        ("Review and permanently clear the entire alert history.", "⚠️ ALERT HISTORY CLEANUP"),
+        ("Did the Beacon lamp turn orange?", "💡 LAMP / BEACON"),
+    ],
+)
+def test_telegram_manual_prompt_identifies_test_category(
+    instruction: str, expected_topic: str
+) -> None:
+    prompt = manual_checks._telegram_manual_check_message(instruction)
+
+    assert expected_topic in prompt
+    assert "👀 OBSERVE" in prompt
+    assert "Choose the result that matches what you saw." in prompt
+
+
+def test_telegram_preparation_keeps_action_observation_and_duration() -> None:
+    message = manual_checks._telegram_prepare_message(
+        "What to do: Press K1 once.\n"
+        "What to observe: The Beacon turns blue.\n"
+        "Duration: ~5 seconds."
+    )
+
+    assert "🔘 BUTTONS" in message
+    assert "➡️ ACTION: Press K1 once." in message
+    assert "👀 OBSERVE: The Beacon turns blue." in message
+    assert "⏱ DURATION: ~5 seconds." in message
+    assert message.endswith("Confirm with ✅ READY when prepared.")
 
 
 def test_manual_distance_routes_text_to_telegram(
@@ -352,10 +403,51 @@ def test_prepare_observation_formats_action_expectation_and_duration() -> None:
         duration="5 seconds",
     )
     assert prompts == [
-        "What to do: press K1 once\n\n"
+        "What to do: 👆 🔐 LOGIN VERIFIED — press K1 once\n\n"
         "What to observe: the Beacon lamp turns on\n\n"
         "Duration: 5 seconds."
     ]
+
+
+def test_prepare_observation_does_not_add_button_icon_to_non_button_action() -> None:
+    prompts: list[str] = []
+    manual_checks.prepare_observation(
+        prompts.append,
+        action="Watch the status LED",
+        expected="The LED stays orange",
+        duration="5 seconds",
+    )
+
+    assert prompts == [
+        "What to do: Watch the status LED\n\n"
+        "What to observe: The LED stays orange\n\n"
+        "Duration: 5 seconds."
+    ]
+
+
+@pytest.mark.parametrize(
+    ("action", "expected_status"),
+    [
+        ("Press button K1 once", "🔐 LOGIN VERIFIED"),
+        ("This test logs out, then asks you to press K1", "🔐 LOGGED IN AT START"),
+        ("Press button K1 once while logged out", "🔓 LOGGED OUT"),
+    ],
+)
+def test_button_action_shows_required_session_in_telegram_preparation_message(
+    action: str, expected_status: str
+) -> None:
+    prompts: list[str] = []
+    manual_checks.prepare_observation(
+        prompts.append,
+        action=action,
+        expected="The Beacon lamp turns on",
+        duration="5 seconds",
+    )
+
+    message = manual_checks._telegram_prepare_message(prompts[0])
+
+    assert "🔘 BUTTONS" in message
+    assert f"➡️ ACTION: 👆 {expected_status} — {action}" in message
 
 
 @pytest.mark.parametrize(

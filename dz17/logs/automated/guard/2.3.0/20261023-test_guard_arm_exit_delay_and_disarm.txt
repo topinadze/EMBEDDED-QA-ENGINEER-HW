@@ -1,0 +1,61 @@
+Test: tests/test_guard.py::TestGuard::test_guard_arm_exit_delay_and_disarm
+Firmware: 2.3.0
+Captured: 2026-10-23T04:35:20.108403+03:00
+
+TX > version
+RX < version
+RX < I (3418545) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+RX < I (3418545) sentry:   partition: ota_0 @ 0x20000, state: valid
+TX > status
+RX < status
+RX < I (3418755) sentry: === SWM-2 status ===
+RX < I (3418755) sentry:   fw:       v2.3.0 (ota_0)
+RX < I (3418755) sentry:   state:    1 NORMAL
+RX < I (3418755) sentry:   link:     buoy link '[SSID REDACTED]', ip [PRIVATE IP REDACTED], rssi -29 dBm (excellent), ch 1
+RX < I (3418765) sentry:   internet: OK
+RX < I (3418765) sentry:   user:     testUser (user)
+RX < I (3418765) sentry:   time:     04:35:10, uptime 0h 56m 58s
+RX < I (3418775) sentry:   valve:    closed
+RX < I (3418775) sentry:   watch:    disarmed, CIC alerts unacked: 3
+RX < I (3418785) sentry:   sonar:    no contact
+RX < I (3418785) sentry:   carrier:  depth 42.0 m, hull 5.2 bar, water 8.2 C, battery 24.09 V (sim)
+RX < I (3418795) sentry:   heap:     251 KB free
+TX > whoami
+RX < whoami
+RX < I (3418955) sentry: user: testUser, access: user
+TX > guard status
+RX < guard status
+RX < I (3419165) sentry: [WATCH] disarmed, zone 20 cm, last distance -1.0 cm
+TX > relay status
+RX < relay status
+RX < I (3419775) sentry: [VALVE] closed, auto off, cycles 264
+TX > state
+RX < state
+RX < I (3419985) sentry: state: 1 NORMAL
+RX < I (3419985) sentry:   1 normal (patrol) | 2 debug (maintenance) | 3 verbose (tactical) | 4 emergency (surfacing, only from 3)
+TX > guard status
+RX < guard status
+RX < I (3420595) sentry: [WATCH] disarmed, zone 20 cm, last distance -1.0 cm
+TX > distance
+RX < distance
+RX < I (3424145) sentry: [SONAR] ping: echo 15.7 cm
+TX > guard status
+RX < guard status
+RX < I (3425105) sentry: [WATCH] disarmed, zone 20 cm, last distance 15.7 cm
+TX > guard status
+RX < guard status
+RX < I (3425715) sentry: [WATCH] disarmed, zone 20 cm, last distance 15.7 cm
+TX > relay status
+RX < relay status
+RX < I (3426315) sentry: [VALVE] closed, auto off, cycles 264
+TX > relay status
+RX < relay status
+RX < I (3426525) sentry: [VALVE] closed, auto off, cycles 264
+TX > state
+RX < state
+RX < I (3426735) sentry: state: 1 NORMAL
+RX < I (3426735) sentry:   1 normal (patrol) | 2 debug (maintenance) | 3 verbose (tactical) | 4 emergency (surfacing, only from 3)
+TX > state
+RX < state
+RX < I (3427335) sentry: state: 1 NORMAL
+RX < I (3427335) sentry:   1 normal (patrol) | 2 debug (maintenance) | 3 verbose (tactical) | 4 emergency (surfacing, only from 3)

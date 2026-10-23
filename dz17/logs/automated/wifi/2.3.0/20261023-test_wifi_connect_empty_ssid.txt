@@ -1,0 +1,80 @@
+Test: tests/test_wifi.py::TestWifi::test_wifi_connect_empty_ssid
+Firmware: 2.3.0
+Captured: 2026-10-23T03:37:40.896245+03:00
+
+TX > version
+RX < version
+RX < I (278765) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+RX < I (278765) sentry:   partition: ota_0 @ 0x20000, state: valid
+TX > lamp status
+RX < lamp status
+RX < E (278975) sentry: E002 Wi-Fi required. Use 'reconnect' or 'connect'
+TX > status
+RX < status
+RX < I (279585) sentry: === SWM-2 status ===
+RX < I (279585) sentry:   fw:       v2.3.0 (ota_0)
+RX < I (279585) sentry:   state:    1 NORMAL
+RX < I (279585) sentry:   link:     buoy link down (known: [SSID REDACTED])
+RX < I (279585) sentry:   user:     testUser (user)
+RX < I (279595) sentry:   time:     03:37:35, uptime 0h 04m 39s
+RX < I (279595) sentry:   valve:    closed
+RX < I (279595) sentry:   watch:    disarmed, CIC alerts unacked: 0
+RX < I (279605) sentry:   sonar:    no contact
+RX < I (279605) sentry:   carrier:  depth 41.5 m, hull 5.1 bar, water 8.2 C, battery 24.19 V (sim)
+RX < I (279615) sentry:   heap:     251 KB free
+TX > status
+RX < status
+RX < I (279785) sentry: === SWM-2 status ===
+RX < I (279785) sentry:   fw:       v2.3.0 (ota_0)
+RX < I (279785) sentry:   state:    1 NORMAL
+RX < I (279785) sentry:   link:     buoy link down (known: [SSID REDACTED])
+RX < I (279785) sentry:   user:     testUser (user)
+RX < I (279795) sentry:   time:     03:37:36, uptime 0h 04m 39s
+RX < I (279795) sentry:   valve:    closed
+RX < I (279795) sentry:   watch:    disarmed, CIC alerts unacked: 0
+RX < I (279805) sentry:   sonar:    no contact
+RX < I (279805) sentry:   carrier:  depth 41.5 m, hull 5.1 bar, water 8.2 C, battery 24.19 V (sim)
+RX < I (279815) sentry:   heap:     251 KB free
+TX > connect
+RX < connect
+RX < I (279985) sentry: [LINK] scanning...
+RX < I (282485) sentry:   [ 1] [SSID REDACTED]                         -27 dBm
+RX < I (282485) sentry:   [ 2] [SSID REDACTED]                        -54 dBm
+RX < I (282485) sentry:   [ 3] [SSID REDACTED]                            -55 dBm
+RX < I (282485) sentry:   [ 4] [SSID REDACTED]                     -67 dBm
+RX < I (282495) sentry:   [ 5] [SSID REDACTED]                               -76 dBm
+RX < I (282505) sentry:   [ 6] [SSID REDACTED]           -82 dBm
+RX < I (282505) sentry:   [ 7] [SSID REDACTED]                              -83 dBm
+RX < I (282515) sentry:   [ 8] [SSID REDACTED]                            -83 dBm
+RX < I (282515) sentry:   [ 9] [SSID REDACTED]                       -83 dBm
+RX < I (282525) sentry:   [10] [SSID REDACTED]                          -86 dBm
+RX < I (282535) sentry:   [11] [SSID REDACTED]                          -87 dBm
+RX < I (282535
+RX < ) sentry:   [12] [SSID REDACTED]                       -87 dBm
+RX < I (282545) sentry:   [13] [SSID REDACTED]                    -88 dBm
+RX < I (282545) sentry:   [14] [SSID REDACTED]                          -88 dBm
+RX < I (282555) sentry:   [15] [SSID REDACTED]                   -88 dBm
+RX < I (282565) sentry:   [16] [SSID REDACTED]                            -88 dBm
+RX < I (282565) sentry:   [17] [SSID REDACTED]                          -89 dBm
+RX < I (282575) sentry:   [18] [SSID REDACTED]                     -89 dBm
+RX < I (282575) sentry:   [19] [SSID REDACTED]                            -89 dBm
+RX < I (282585) sentry:   [20] [SSID REDACTED]                         -90 dBm
+RX < SSID or number:
+TX > 
+RX < E (282875) sentry: E111 SSID cannot be empty
+TX > status
+RX < status
+RX < I (283085) sentry: === SWM-2 status ===
+RX < I (283085) sentry:   fw:       v2.3.0 (ota_0)
+RX < I (283085) sentry:   state:    1 NORMAL
+RX < I (283085) sentry:   link:     buoy link down (known: [SSID REDACTED])
+RX < I (283085) sentry:   user:     testUser (user)
+RX < I (283095) sentry:   time:     03:37:39, uptime 0h 04m 42s
+RX < I (283095) sentry:   valve:    closed
+RX < I (283095) sentry:   watch:    disarmed, CIC alerts unacked: 0
+RX < I (283105) sentry:   sonar:    no contact
+RX < I (283105) sentry:   carrier:  depth 41.5 m, hull 5.1 bar, water 8.2 C, battery 24.19 V (sim)
+RX < I (283115) sentry:   heap:     251 KB free
+TX > lamp off
+RX < lamp off
+RX < E (283285) sentry: E002 Wi-Fi required. Use 'reconnect' or 'connect'

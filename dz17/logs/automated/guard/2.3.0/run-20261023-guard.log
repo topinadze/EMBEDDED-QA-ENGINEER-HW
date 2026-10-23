@@ -1,0 +1,571 @@
+DEBUG    urllib3.connectionpool:connectionpool.py:1081 Starting new HTTPS connection (1): api.telegram.org:443
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/sendMessage HTTP/1.1" 200 349
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 356
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 369
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 353
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 391
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 375
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 395
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 379
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 385
+DEBUG    drivers.device_driver:device_driver.py:96 TX > version
+DEBUG    drivers.device_driver:device_driver.py:96 RX < version
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3391965) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3391965) sentry:   partition: ota_0 @ 0x20000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:96 TX > lamp status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < lamp status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3392175) sentry: [BEACON] off, color (255,255,255), brightness 100%, mode solid, timer off
+DEBUG    drivers.device_driver:device_driver.py:96 TX > status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3392785) sentry: === SWM-2 status ===
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3392785) sentry:   fw:       v2.3.0 (ota_0)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3392785) sentry:   state:    1 NORMAL
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3392785) sentry:   link:     buoy link '[SSID REDACTED]', ip [PRIVATE IP REDACTED], rssi -31 dBm (excellent), ch 1
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3392795) sentry:   internet: OK
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3392795) sentry:   user:     testUser (user)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3392795) sentry:   time:     04:34:44, uptime 0h 56m 32s
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3392805) sentry:   valve:    closed
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3392805) sentry:   watch:    disarmed, CIC alerts unacked: 3
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3392815) sentry:   sonar:    no contact
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3392815) sentry:   carrier:  depth 41.8 m, hull 5.2 bar, water 8.1 C, battery 24.09 V (sim)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3392825) sentry:   heap:     251 KB free
+DEBUG    drivers.device_driver:device_driver.py:96 TX > whoami
+DEBUG    drivers.device_driver:device_driver.py:96 RX < whoami
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3392995) sentry: user: testUser, access: user
+DEBUG    drivers.device_driver:device_driver.py:96 TX > guard status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < guard status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3393205) sentry: [WATCH] disarmed, zone 20 cm, last distance -1.0 cm
+DEBUG    drivers.device_driver:device_driver.py:96 TX > guard status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < guard status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3393815) sentry: [WATCH] disarmed, zone 20 cm, last distance -1.0 cm
+DEBUG    drivers.device_driver:device_driver.py:96 TX > lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:96 RX < lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3394415) sentry: [BEACON] timer cancelled
+DEBUG    drivers.device_driver:device_driver.py:96 TX > lamp color 255 255 255
+DEBUG    drivers.device_driver:device_driver.py:96 RX < lamp color 255 255 255
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3394825) sentry: [BEACON] color: (255,255,255)
+DEBUG    drivers.device_driver:device_driver.py:96 TX > lamp brightness 100
+DEBUG    drivers.device_driver:device_driver.py:96 RX < lamp brightness 100
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3395235) sentry: [BEACON] brightness: 100%
+DEBUG    drivers.device_driver:device_driver.py:96 TX > lamp mode solid
+DEBUG    drivers.device_driver:device_driver.py:96 RX < lamp mode solid
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3395645) sentry: [BEACON] mode: solid
+DEBUG    drivers.device_driver:device_driver.py:96 TX > lamp off
+DEBUG    drivers.device_driver:device_driver.py:96 RX < lamp off
+DEBUG    drivers.device_driver:device_driver.py:96 RX < W (3396055) sentry: W510 lamp already off
+INFO     conftest:conftest.py:531 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz17\logs\automated\guard\2.3.0\20261023-test_guard_status_or_planned_response.txt
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 369
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 380
+DEBUG    drivers.device_driver:device_driver.py:96 TX > version
+DEBUG    drivers.device_driver:device_driver.py:96 RX < version
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3396625) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3396625) sentry:   partition: ota_0 @ 0x20000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:96 TX > lamp status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < lamp status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3396835) sentry: [BEACON] off, color (255,255,255), brightness 100%, mode solid, timer off
+DEBUG    drivers.device_driver:device_driver.py:96 TX > status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3397445) sentry: === SWM-2 status ===
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3397445) sentry:   fw:       v2.3.0 (ota_0)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3397445) sentry:   state:    1 NORMAL
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3397445) sentry:   link:     buoy link '[SSID REDACTED]', ip [PRIVATE IP REDACTED], rssi -40 dBm (excellent), ch 1
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3397455) sentry:   internet: OK
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3397455) sentry:   user:     testUser (user)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3397455) sentry:   time:     04:34:49, uptime 0h 56m 37s
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3397465) sentry:   valve:    closed
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3397465) sentry:   watch:    disarmed, CIC alerts unacked: 3
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3397475) sentry:   sonar:    no contact
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3397475) sentry:   carrier:  depth 41.8 m, hull 5.2 bar, water 8.1 C, battery 24.09 V (sim)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3397485) sentry:   heap:     251 KB free
+DEBUG    drivers.device_driver:device_driver.py:96 TX > whoami
+DEBUG    drivers.device_driver:device_driver.py:96 RX < whoami
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3397645) sentry: user: testUser, access: user
+DEBUG    drivers.device_driver:device_driver.py:96 TX > guard status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < guard status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3397855) sentry: [WATCH] disarmed, zone 20 cm, last distance -1.0 cm
+DEBUG    drivers.device_driver:device_driver.py:96 TX > guard zone 9
+DEBUG    drivers.device_driver:device_driver.py:96 RX < guard zone 9
+DEBUG    drivers.device_driver:device_driver.py:96 RX < E (3398465) sentry: E808 zone must be 10-200 cm
+DEBUG    drivers.device_driver:device_driver.py:96 TX > guard status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < guard status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3399075) sentry: [WATCH] disarmed, zone 20 cm, last distance -1.0 cm
+DEBUG    drivers.device_driver:device_driver.py:96 TX > guard status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < guard status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3399675) sentry: [WATCH] disarmed, zone 20 cm, last distance -1.0 cm
+DEBUG    drivers.device_driver:device_driver.py:96 TX > guard status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < guard status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3400285) sentry: [WATCH] disarmed, zone 20 cm, last distance -1.0 cm
+DEBUG    drivers.device_driver:device_driver.py:96 TX > lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:96 RX < lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3400895) sentry: [BEACON] timer cancelled
+DEBUG    drivers.device_driver:device_driver.py:96 TX > lamp color 255 255 255
+DEBUG    drivers.device_driver:device_driver.py:96 RX < lamp color 255 255 255
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3401295) sentry: [BEACON] color: (255,255,255)
+DEBUG    drivers.device_driver:device_driver.py:96 TX > lamp brightness 100
+DEBUG    drivers.device_driver:device_driver.py:96 RX < lamp brightness 100
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3401705) sentry: [BEACON] brightness: 100%
+DEBUG    drivers.device_driver:device_driver.py:96 TX > lamp mode solid
+DEBUG    drivers.device_driver:device_driver.py:96 RX < lamp mode solid
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3402115) sentry: [BEACON] mode: solid
+DEBUG    drivers.device_driver:device_driver.py:96 TX > lamp off
+DEBUG    drivers.device_driver:device_driver.py:96 RX < lamp off
+DEBUG    drivers.device_driver:device_driver.py:96 RX < W (3402525) sentry: W510 lamp already off
+INFO     conftest:conftest.py:531 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz17\logs\automated\guard\2.3.0\20261023-test_guard_rejects_out_of_range_zone_below-minimum.txt
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 364
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 382
+DEBUG    drivers.device_driver:device_driver.py:96 TX > version
+DEBUG    drivers.device_driver:device_driver.py:96 RX < version
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3403135) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3403135) sentry:   partition: ota_0 @ 0x20000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:96 TX > lamp status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < lamp status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3403345) sentry: [BEACON] off, color (255,255,255), brightness 100%, mode solid, timer off
+DEBUG    drivers.device_driver:device_driver.py:96 TX > status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3403955) sentry: === SWM-2 status ===
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3403955) sentry:   fw:       v2.3.0 (ota_0)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3403955) sentry:   state:    1 NORMAL
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3403955) sentry:   link:     buoy link '[SSID REDACTED]', ip [PRIVATE IP REDACTED], rssi -37 dBm (excellent), ch 1
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3403965) sentry:   internet: OK
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3403965) sentry:   user:     testUser (user)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3403965) sentry:   time:     04:34:55, uptime 0h 56m 43s
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3403975) sentry:   valve:    closed
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3403975) sentry:   watch:    disarmed, CIC alerts unacked: 3
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3403985) sentry:   sonar:    no contact
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3403985) sentry:   carrier:  depth 41.8 m, hull 5.2 bar, water 8.1 C, battery 24.09 V (sim)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3403995) sentry:   heap:     251 KB free
+DEBUG    drivers.device_driver:device_driver.py:96 TX > whoami
+DEBUG    drivers.device_driver:device_driver.py:96 RX < whoami
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3404165) sentry: user: testUser, access: user
+DEBUG    drivers.device_driver:device_driver.py:96 TX > guard status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < guard status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3404375) sentry: [WATCH] disarmed, zone 20 cm, last distance -1.0 cm
+DEBUG    drivers.device_driver:device_driver.py:96 TX > guard zone 201
+DEBUG    drivers.device_driver:device_driver.py:96 RX < guard zone 201
+DEBUG    drivers.device_driver:device_driver.py:96 RX < E (3404975) sentry: E808 zone must be 10-200 cm
+DEBUG    drivers.device_driver:device_driver.py:96 TX > guard status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < guard status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3405595) sentry: [WATCH] disarmed, zone 20 cm, last distance -1.0 cm
+DEBUG    drivers.device_driver:device_driver.py:96 TX > guard status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < guard status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3406205) sentry: [WATCH] disarmed, zone 20 cm, last distance -1.0 cm
+DEBUG    drivers.device_driver:device_driver.py:96 TX > guard status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < guard status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3406805) sentry: [WATCH] disarmed, zone 20 cm, last distance -1.0 cm
+DEBUG    drivers.device_driver:device_driver.py:96 TX > lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:96 RX < lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3407425) sentry: [BEACON] timer cancelled
+DEBUG    drivers.device_driver:device_driver.py:96 TX > lamp color 255 255 255
+DEBUG    drivers.device_driver:device_driver.py:96 RX < lamp color 255 255 255
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3407835) sentry: [BEACON] color: (255,255,255)
+DEBUG    drivers.device_driver:device_driver.py:96 TX > lamp brightness 100
+DEBUG    drivers.device_driver:device_driver.py:96 RX < lamp brightness 100
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3408245) sentry: [BEACON] brightness: 100%
+DEBUG    drivers.device_driver:device_driver.py:96 TX > lamp mode solid
+DEBUG    drivers.device_driver:device_driver.py:96 RX < lamp mode solid
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3408655) sentry: [BEACON] mode: solid
+DEBUG    drivers.device_driver:device_driver.py:96 TX > lamp off
+DEBUG    drivers.device_driver:device_driver.py:96 RX < lamp off
+DEBUG    drivers.device_driver:device_driver.py:96 RX < W (3409065) sentry: W510 lamp already off
+INFO     conftest:conftest.py:531 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz17\logs\automated\guard\2.3.0\20261023-test_guard_rejects_out_of_range_zone_above-maximum.txt
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 366
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 393
+DEBUG    drivers.device_driver:device_driver.py:96 TX > version
+DEBUG    drivers.device_driver:device_driver.py:96 RX < version
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3409635) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3409635) sentry:   partition: ota_0 @ 0x20000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:96 TX > status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3409845) sentry: === SWM-2 status ===
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3409845) sentry:   fw:       v2.3.0 (ota_0)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3409845) sentry:   state:    1 NORMAL
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3409845) sentry:   link:     buoy link '[SSID REDACTED]', ip [PRIVATE IP REDACTED], rssi -25 dBm (excellent), ch 1
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3409855) sentry:   internet: OK
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3409855) sentry:   user:     testUser (user)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3409855) sentry:   time:     04:35:01, uptime 0h 56m 49s
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3409865) sentry:   valve:    closed
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3409865) sentry:   watch:    disarmed, CIC alerts unacked: 3
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3409875) sentry:   sonar:    no contact
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3409875) sentry:   carrier:  depth 41.8 m, hull 5.2 bar, water 8.1 C, battery 24.09 V (sim)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3409885) sentry:   heap:     251 KB free
+DEBUG    drivers.device_driver:device_driver.py:96 TX > whoami
+DEBUG    drivers.device_driver:device_driver.py:96 RX < whoami
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3410045) sentry: user: testUser, access: user
+DEBUG    drivers.device_driver:device_driver.py:96 TX > guard status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < guard status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3410255) sentry: [WATCH] disarmed, zone 20 cm, last distance -1.0 cm
+DEBUG    drivers.device_driver:device_driver.py:96 TX > guard zone 10
+DEBUG    drivers.device_driver:device_driver.py:96 RX < guard zone 10
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3410875) sentry: [WATCH] zone < 10 cm
+DEBUG    drivers.device_driver:device_driver.py:96 TX > guard status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < guard status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3411475) sentry: [WATCH] disarmed, zone 10 cm, last distance -1.0 cm
+DEBUG    drivers.device_driver:device_driver.py:96 TX > guard status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < guard status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3412085) sentry: [WATCH] disarmed, zone 10 cm, last distance -1.0 cm
+DEBUG    drivers.device_driver:device_driver.py:96 TX > guard zone 20
+DEBUG    drivers.device_driver:device_driver.py:96 RX < guard zone 20
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3412705) sentry: [WATCH] zone < 20 cm
+DEBUG    drivers.device_driver:device_driver.py:96 TX > guard status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < guard status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3413315) sentry: [WATCH] disarmed, zone 20 cm, last distance -1.0 cm
+DEBUG    drivers.device_driver:device_driver.py:96 RX < W (3413645) sentry: [ACU] biologics detected (snapping shrimp), passive filter on
+INFO     conftest:conftest.py:531 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz17\logs\automated\guard\2.3.0\20261023-test_guard_accepts_zone_boundaries_minimum.txt
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 377
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 394
+DEBUG    drivers.device_driver:device_driver.py:96 TX > version
+DEBUG    drivers.device_driver:device_driver.py:96 RX < version
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3414085) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3414085) sentry:   partition: ota_0 @ 0x20000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:96 TX > status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3414295) sentry: === SWM-2 status ===
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3414295) sentry:   fw:       v2.3.0 (ota_0)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3414295) sentry:   state:    1 NORMAL
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3414295) sentry:   link:     buoy link '[SSID REDACTED]', ip [PRIVATE IP REDACTED], rssi -27 dBm (excellent), ch 1
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3414305) sentry:   internet: OK
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3414305) sentry:   user:     testUser (user)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3414305) sentry:   time:     04:35:05, uptime 0h 56m 53s
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3414315) sentry:   valve:    closed
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3414315) sentry:   watch:    disarmed, CIC alerts unacked: 3
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3414325) sentry:   sonar:    no contact
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3414325) sentry:   carrier:  depth 42.0 m, hull 5.2 bar, water 8.2 C, battery 24.09 V (sim)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3414335) sentry:   heap:     251 KB free
+DEBUG    drivers.device_driver:device_driver.py:96 TX > whoami
+DEBUG    drivers.device_driver:device_driver.py:96 RX < whoami
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3414505) sentry: user: testUser, access: user
+DEBUG    drivers.device_driver:device_driver.py:96 TX > guard status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < guard status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3414725) sentry: [WATCH] disarmed, zone 20 cm, last distance -1.0 cm
+DEBUG    drivers.device_driver:device_driver.py:96 TX > guard zone 200
+DEBUG    drivers.device_driver:device_driver.py:96 RX < guard zone 200
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3415345) sentry: [WATCH] zone < 200 cm
+DEBUG    drivers.device_driver:device_driver.py:96 TX > guard status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < guard status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3415935) sentry: [WATCH] disarmed, zone 200 cm, last distance -1.0 cm
+DEBUG    drivers.device_driver:device_driver.py:96 TX > guard status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < guard status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3416555) sentry: [WATCH] disarmed, zone 200 cm, last distance -1.0 cm
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3416995) sentry: [TELEMETRY #97] 04:35:08 up 00:56:56 heap 251KB rssi -28 temp 32.4C depth 42.0m hull 5.2bar batt 24.1V valve closed sonar - watch disarmed alerts 3 state NORMAL
+DEBUG    drivers.device_driver:device_driver.py:96 TX > guard zone 20
+DEBUG    drivers.device_driver:device_driver.py:96 RX < guard zone 20
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3417175) sentry: [WATCH] zone < 20 cm
+DEBUG    drivers.device_driver:device_driver.py:96 TX > guard status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < guard status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3417765) sentry: [WATCH] disarmed, zone 20 cm, last distance -1.0 cm
+INFO     conftest:conftest.py:531 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz17\logs\automated\guard\2.3.0\20261023-test_guard_accepts_zone_boundaries_maximum.txt
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 378
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 399
+DEBUG    drivers.device_driver:device_driver.py:96 TX > version
+DEBUG    drivers.device_driver:device_driver.py:96 RX < version
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3418545) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3418545) sentry:   partition: ota_0 @ 0x20000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:96 TX > status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3418755) sentry: === SWM-2 status ===
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3418755) sentry:   fw:       v2.3.0 (ota_0)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3418755) sentry:   state:    1 NORMAL
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3418755) sentry:   link:     buoy link '[SSID REDACTED]', ip [PRIVATE IP REDACTED], rssi -29 dBm (excellent), ch 1
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3418765) sentry:   internet: OK
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3418765) sentry:   user:     testUser (user)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3418765) sentry:   time:     04:35:10, uptime 0h 56m 58s
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3418775) sentry:   valve:    closed
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3418775) sentry:   watch:    disarmed, CIC alerts unacked: 3
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3418785) sentry:   sonar:    no contact
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3418785) sentry:   carrier:  depth 42.0 m, hull 5.2 bar, water 8.2 C, battery 24.09 V (sim)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3418795) sentry:   heap:     251 KB free
+DEBUG    drivers.device_driver:device_driver.py:96 TX > whoami
+DEBUG    drivers.device_driver:device_driver.py:96 RX < whoami
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3418955) sentry: user: testUser, access: user
+DEBUG    drivers.device_driver:device_driver.py:96 TX > guard status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < guard status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3419165) sentry: [WATCH] disarmed, zone 20 cm, last distance -1.0 cm
+DEBUG    drivers.device_driver:device_driver.py:96 TX > relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3419775) sentry: [VALVE] closed, auto off, cycles 264
+DEBUG    drivers.device_driver:device_driver.py:96 TX > state
+DEBUG    drivers.device_driver:device_driver.py:96 RX < state
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3419985) sentry: state: 1 NORMAL
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3419985) sentry:   1 normal (patrol) | 2 debug (maintenance) | 3 verbose (tactical) | 4 emergency (surfacing, only from 3)
+DEBUG    drivers.device_driver:device_driver.py:96 TX > guard status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < guard status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3420595) sentry: [WATCH] disarmed, zone 20 cm, last distance -1.0 cm
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/sendMessage HTTP/1.1" 200 900
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/getUpdates HTTP/1.1" 200 1046
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/getUpdates HTTP/1.1" 200 1167
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/answerCallbackQuery HTTP/1.1" 200 25
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 890
+INFO     manual_checks:manual_checks.py:365 MANUAL PREPARE | Operator confirmed readiness via Telegram.
+DEBUG    drivers.device_driver:device_driver.py:96 TX > distance
+DEBUG    drivers.device_driver:device_driver.py:96 RX < distance
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3424145) sentry: [SONAR] ping: echo 15.7 cm
+DEBUG    drivers.device_driver:device_driver.py:96 TX > guard status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < guard status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3425105) sentry: [WATCH] disarmed, zone 20 cm, last distance 15.7 cm
+DEBUG    drivers.device_driver:device_driver.py:96 TX > guard status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < guard status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3425715) sentry: [WATCH] disarmed, zone 20 cm, last distance 15.7 cm
+DEBUG    drivers.device_driver:device_driver.py:96 TX > relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3426315) sentry: [VALVE] closed, auto off, cycles 264
+DEBUG    drivers.device_driver:device_driver.py:96 TX > relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3426525) sentry: [VALVE] closed, auto off, cycles 264
+DEBUG    drivers.device_driver:device_driver.py:96 TX > state
+DEBUG    drivers.device_driver:device_driver.py:96 RX < state
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3426735) sentry: state: 1 NORMAL
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3426735) sentry:   1 normal (patrol) | 2 debug (maintenance) | 3 verbose (tactical) | 4 emergency (surfacing, only from 3)
+DEBUG    drivers.device_driver:device_driver.py:96 TX > state
+DEBUG    drivers.device_driver:device_driver.py:96 RX < state
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3427335) sentry: state: 1 NORMAL
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3427335) sentry:   1 normal (patrol) | 2 debug (maintenance) | 3 verbose (tactical) | 4 emergency (surfacing, only from 3)
+INFO     conftest:conftest.py:531 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz17\logs\automated\guard\2.3.0\20261023-test_guard_arm_exit_delay_and_disarm.txt
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 384
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 393
+DEBUG    drivers.device_driver:device_driver.py:96 TX > version
+DEBUG    drivers.device_driver:device_driver.py:96 RX < version
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3428115) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3428115) sentry:   partition: ota_0 @ 0x20000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:96 TX > status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3428325) sentry: === SWM-2 status ===
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3428325) sentry:   fw:       v2.3.0 (ota_0)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3428325) sentry:   state:    1 NORMAL
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3428325) sentry:   link:     buoy link '[SSID REDACTED]', ip [PRIVATE IP REDACTED], rssi -29 dBm (excellent), ch 1
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3428335) sentry:   internet: OK
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3428335) sentry:   user:     testUser (user)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3428335) sentry:   time:     04:35:19, uptime 0h 57m 07s
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3428345) sentry:   valve:    closed
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3428345) sentry:   watch:    disarmed, CIC alerts unacked: 3
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3428355) sentry:   sonar:    last echo 15.7 cm
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3428355) sentry:   carrier:  depth 42.0 m, hull 5.2 bar, water 8.2 C, battery 24.09 V (sim)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3428365) sentry:   heap:     251 KB free
+DEBUG    drivers.device_driver:device_driver.py:96 TX > whoami
+DEBUG    drivers.device_driver:device_driver.py:96 RX < whoami
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3428535) sentry: user: testUser, access: user
+DEBUG    drivers.device_driver:device_driver.py:96 TX > guard status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < guard status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3428745) sentry: [WATCH] disarmed, zone 20 cm, last distance 15.7 cm
+DEBUG    drivers.device_driver:device_driver.py:96 TX > relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3429345) sentry: [VALVE] closed, auto off, cycles 264
+DEBUG    drivers.device_driver:device_driver.py:96 TX > state
+DEBUG    drivers.device_driver:device_driver.py:96 RX < state
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3429555) sentry: state: 1 NORMAL
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3429555) sentry:   1 normal (patrol) | 2 debug (maintenance) | 3 verbose (tactical) | 4 emergency (surfacing, only from 3)
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/sendMessage HTTP/1.1" 200 862
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/getUpdates HTTP/1.1" 200 1129
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/answerCallbackQuery HTTP/1.1" 200 25
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 852
+INFO     manual_checks:manual_checks.py:365 MANUAL PREPARE | Operator confirmed readiness via Telegram.
+DEBUG    drivers.device_driver:device_driver.py:96 TX > guard panic
+DEBUG    drivers.device_driver:device_driver.py:96 RX < guard panic
+DEBUG    drivers.device_driver:device_driver.py:96 RX < E (3433775) sentry: [WATCH] !!! GENERAL ALARM: PANIC command !!! Disarm: 'guard disarm <pin>'
+DEBUG    drivers.device_driver:device_driver.py:96 RX < E (3433775) sentry: [CIC #17 CRITICAL] watch: GENERAL ALARM: PANIC command
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3433775) sentry: [VALVE] OPEN (critical alert)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < W (3433775) sentry: [STATE] 1 NORMAL -> 3 VERBOSE (by critical alert)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3433785) sentry: [STATE] VERBOSE (tactical): extended logs, telemetry every 10 s, LED heartbeat
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3433795) sentry: [V] 'guard' done in 23 ms
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3434645) sentry: [PWR] battery bus 24.09 V, load 1.8 A
+DEBUG    drivers.device_driver:device_driver.py:96 TX > guard status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < guard status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3434795) sentry: [WATCH] ALARM, zone 20 cm, last distance 15.7 cm
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3434795) sentry: [V] 'guard' done in 0 ms
+DEBUG    drivers.device_driver:device_driver.py:96 TX > relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3435405) sentry: [VALVE] OPEN, auto off, cycles 265
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3435405) sentry: [V] 'relay' done in 0 ms
+DEBUG    drivers.device_driver:device_driver.py:96 TX > state
+DEBUG    drivers.device_driver:device_driver.py:96 RX < state
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3435615) sentry: state: 3 VERBOSE
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3435615) sentry:   1 normal (patrol) | 2 debug (maintenance) | 3 verbose (tactical) | 4 emergency (surfacing, only from 3)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3435615) sentry: [V] 'state' done in 3 ms
+DEBUG    drivers.device_driver:device_driver.py:96 TX > alert list
+DEBUG    drivers.device_driver:device_driver.py:96 RX < alert list
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3436225) sentry: [CIC] 17 alerts, 4 unacknowledged:
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3436225) sentry:   #1   03:44:23 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3436225) sentry:   #2   03:44:28 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3436225) sentry:   #3   03:44:36 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3436235) sentry:   #4   03:44:37 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3436235) sentry:   #5   03:44:43 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3436245) sentry:   #6   03:44:43 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3436245) sentry:   #7   03:44:49 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3436255) sentry:   #8   03:44:49 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3436265) sentry:   #9   03:44:50 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3436265) sentry:   #10  03:45:04 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3436275) sentry:   #11  03:45:36 CRITICAL   test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3436275) sentry:   #12  03:46:07 CRITICAL   test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3436285) sentry:   #13  04:13:53 WARNING  * sonar   collision risk: contact at 14.0 cm
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3436295) sentry:   #14  04:14:00 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3436295) sentry:   #15  04:33:31 CRITICAL * watch   GENERAL ALARM: PANIC command
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3436305) sentry:   #16  04:33:58 CRITICAL * watch   GENERAL ALARM: PANIC button
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3436315) sentry:   #17  04:35:25 CRITICAL * watch   GENERAL ALARM: PANIC command
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3436315) sentry: [V] 'alert' done in 99 ms
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/sendMessage HTTP/1.1" 200 780
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/getUpdates HTTP/1.1" 200 1046
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/answerCallbackQuery HTTP/1.1" 200 25
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 666
+INFO     manual_checks:manual_checks.py:307 MANUAL CHECK | Did you hear the relay open and observe the built-in LED's red/blue alarm indication? | result=PASS | comment=-
+INFO     manual_checks:manual_checks.py:558 MANUAL RESULT | PASS via Telegram
+DEBUG    drivers.device_driver:device_driver.py:96 TX > guard status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < guard status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3439115) sentry: [WATCH] ALARM, zone 20 cm, last distance 15.7 cm
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3439115) sentry: [V] 'guard' done in 0 ms
+DEBUG    drivers.device_driver:device_driver.py:96 TX > guard disarm [REDACTED]
+DEBUG    drivers.device_driver:device_driver.py:96 RX < guard disarm [REDACTED]
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3439725) sentry: [WATCH] disarmed (was ALARM)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3439735) sentry: [VALVE] CLOSED (guard disarm)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3439735) sentry: [V] valve driver GPIO8=0, cycles 266
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3439735) sentry: [V] 'guard' done in 11 ms
+DEBUG    drivers.device_driver:device_driver.py:96 TX > guard status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < guard status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3440335) sentry: [WATCH] disarmed, zone 20 cm, last distance 15.7 cm
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3440335) sentry: [V] 'guard' done in 0 ms
+DEBUG    drivers.device_driver:device_driver.py:96 TX > relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3440945) sentry: [VALVE] closed, auto off, cycles 266
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3440945) sentry: [V] 'relay' done in 0 ms
+DEBUG    drivers.device_driver:device_driver.py:96 TX > relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3441155) sentry: [VALVE] closed, auto off, cycles 266
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3441155) sentry: [V] 'relay' done in 0 ms
+DEBUG    drivers.device_driver:device_driver.py:96 TX > state
+DEBUG    drivers.device_driver:device_driver.py:96 RX < state
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3441365) sentry: state: 3 VERBOSE
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3441365) sentry:   1 normal (patrol) | 2 debug (maintenance) | 3 verbose (tactical) | 4 emergency (surfacing, only from 3)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3441365) sentry: [V] 'state' done in 3 ms
+DEBUG    drivers.device_driver:device_driver.py:96 TX > state 1
+DEBUG    drivers.device_driver:device_driver.py:96 RX < state 1
+DEBUG    drivers.device_driver:device_driver.py:96 RX < W (3441975) sentry: [STATE] 3 VERBOSE -> 1 NORMAL (by command)
+DEBUG    drivers.device_driver:device_driver.py:96 TX > state
+DEBUG    drivers.device_driver:device_driver.py:96 RX < state
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3442585) sentry: state: 1 NORMAL
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3442585) sentry:   1 normal (patrol) | 2 debug (maintenance) | 3 verbose (tactical) | 4 emergency (surfacing, only from 3)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3442645) sentry: [NAV] depth 42.1 m, heading 274, speed 2.6 kn
+INFO     conftest:conftest.py:531 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz17\logs\automated\guard\2.3.0\20261023-test_guard_panic_raises_alarm_and_critical_effects.txt
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 377
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 384
+DEBUG    drivers.device_driver:device_driver.py:96 TX > version
+DEBUG    drivers.device_driver:device_driver.py:96 RX < version
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3443355) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3443355) sentry:   partition: ota_0 @ 0x20000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:96 TX > status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3443565) sentry: === SWM-2 status ===
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3443565) sentry:   fw:       v2.3.0 (ota_0)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3443565) sentry:   state:    1 NORMAL
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3443565) sentry:   link:     buoy link '[SSID REDACTED]', ip [PRIVATE IP REDACTED], rssi -30 dBm (excellent), ch 1
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3443575) sentry:   internet: OK
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3443575) sentry:   user:     testUser (user)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3443575) sentry:   time:     04:35:35, uptime 0h 57m 23s
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3443585) sentry:   valve:    closed
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3443585) sentry:   watch:    disarmed, CIC alerts unacked: 4
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3443595) sentry:   sonar:    last echo 15.7 cm
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3443595) sentry:   carrier:  depth 42.1 m, hull 5.2 bar, water 8.1 C, battery 24.09 V (sim)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3443605) sentry:   heap:     251 KB free
+DEBUG    drivers.device_driver:device_driver.py:96 TX > whoami
+DEBUG    drivers.device_driver:device_driver.py:96 RX < whoami
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3443765) sentry: user: testUser, access: user
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3443805) sentry: [TELEMETRY #98] 04:35:35 up 00:57:23 heap 251KB rssi -28 temp 32.4C depth 42.1m hull 5.2bar batt 24.1V valve closed sonar 15.7cm watch disarmed alerts 4 state NORMAL
+DEBUG    drivers.device_driver:device_driver.py:96 TX > guard status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < guard status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3443975) sentry: [WATCH] disarmed, zone 20 cm, last distance 15.7 cm
+DEBUG    drivers.device_driver:device_driver.py:96 TX > relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3444585) sentry: [VALVE] closed, auto off, cycles 266
+DEBUG    drivers.device_driver:device_driver.py:96 TX > state
+DEBUG    drivers.device_driver:device_driver.py:96 RX < state
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3444795) sentry: state: 1 NORMAL
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3444795) sentry:   1 normal (patrol) | 2 debug (maintenance) | 3 verbose (tactical) | 4 emergency (surfacing, only from 3)
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/sendMessage HTTP/1.1" 200 1025
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/getUpdates HTTP/1.1" 200 23
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/getUpdates HTTP/1.1" 200 1292
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/answerCallbackQuery HTTP/1.1" 200 25
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 1015
+INFO     manual_checks:manual_checks.py:365 MANUAL PREPARE | Operator confirmed readiness via Telegram.
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3453045) sentry: [BTN] K4 long press
+DEBUG    drivers.device_driver:device_driver.py:96 RX < E (3453045) sentry: [WATCH] PANIC button (K4)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < E (3453045) sentry: [WATCH] !!! GENERAL ALARM: PANIC button !!! Disarm: 'guard disarm <pin>'
+DEBUG    drivers.device_driver:device_driver.py:96 RX < E (3453045) sentry: [CIC #18 CRITICAL] watch: GENERAL ALARM: PANIC button
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3453055) sentry: [VALVE] OPEN (critical alert)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < W (3453055) sentry: [STATE] 1 NORMAL -> 3 VERBOSE (by critical alert)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3453065) sentry: [STATE] VERBOSE (tactical): extended logs, telemetry every 10 s, LED heartbeat
+DEBUG    drivers.device_driver:device_driver.py:96 TX > guard status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < guard status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3453345) sentry: [WATCH] ALARM, zone 20 cm, last distance 15.7 cm
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3453345) sentry: [V] 'guard' done in 0 ms
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3453645) sentry: [ACU] ambient noise 61 dB re 1uPa, sea state 2, water 8.1 C
+DEBUG    drivers.device_driver:device_driver.py:96 TX > relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3453945) sentry: [VALVE] OPEN, auto off, cycles 267
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3453945) sentry: [V] 'relay' done in 0 ms
+DEBUG    drivers.device_driver:device_driver.py:96 TX > state
+DEBUG    drivers.device_driver:device_driver.py:96 RX < state
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3454155) sentry: state: 3 VERBOSE
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3454155) sentry:   1 normal (patrol) | 2 debug (maintenance) | 3 verbose (tactical) | 4 emergency (surfacing, only from 3)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3454155) sentry: [V] 'state' done in 3 ms
+DEBUG    drivers.device_driver:device_driver.py:96 TX > alert list
+DEBUG    drivers.device_driver:device_driver.py:96 RX < alert list
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3454775) sentry: [CIC] 18 alerts, 5 unacknowledged:
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3454775) sentry:   #1   03:44:23 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3454775) sentry:   #2   03:44:28 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3454775) sentry:   #3   03:44:36 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3454785) sentry:   #4   03:44:37 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3454785) sentry:   #5   03:44:43 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3454795) sentry:   #6   03:44:43 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3454795) sentry:   #7   03:44:49 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3454805) sentry:   #8   03:44:49 WARNING    test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3454815) sentry:   #9   03:44:50 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3454815) sentry:   #10  03:45:04 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3454825) sentry:   #11  03:45:36 CRITICAL   test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3454825) sentry:   #12  03:46:07 CRITICAL   test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3454835) sentry:   #13  04:13:53 WARNING  * sonar   collision risk: contact at 14.0 cm
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3454845) sentry:   #14  04:14:00 INFO       test    test alert
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3454845) sentry:   #15  04:33:31 CRITICAL * watch   GENERAL ALARM: PANIC command
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3454855) sentry:   #16  04:33:58 CRITICAL * watch   GENERAL ALARM: PANIC button
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3454865) sentry:   #17  04:35:25 CRITICAL * watch   GENERAL ALARM: PANIC command
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3454865) sentry:   #18  04:35:44 CRITICAL * watch   GENERAL ALARM: PANIC button
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3454875) sentry: [V] 'alert' done in 106 ms
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/sendMessage HTTP/1.1" 200 780
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/getUpdates HTTP/1.1" 200 1046
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/answerCallbackQuery HTTP/1.1" 200 25
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 666
+INFO     manual_checks:manual_checks.py:307 MANUAL CHECK | Did you hear the relay open and observe the built-in LED's red/blue alarm indication? | result=PASS | comment=-
+INFO     manual_checks:manual_checks.py:558 MANUAL RESULT | PASS via Telegram
+DEBUG    drivers.device_driver:device_driver.py:96 TX > guard status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < guard status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3457205) sentry: [WATCH] ALARM, zone 20 cm, last distance 15.7 cm
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3457205) sentry: [V] 'guard' done in 0 ms
+DEBUG    drivers.device_driver:device_driver.py:96 TX > guard disarm [REDACTED]
+DEBUG    drivers.device_driver:device_driver.py:96 RX < guard disarm [REDACTED]
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3457815) sentry: [WATCH] disarmed (was ALARM)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3457825) sentry: [VALVE] CLOSED (guard disarm)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3457825) sentry: [V] valve driver GPIO8=0, cycles 268
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3457825) sentry: [V] 'guard' done in 11 ms
+DEBUG    drivers.device_driver:device_driver.py:96 TX > guard status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < guard status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3458425) sentry: [WATCH] disarmed, zone 20 cm, last distance 15.7 cm
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3458425) sentry: [V] 'guard' done in 0 ms
+DEBUG    drivers.device_driver:device_driver.py:96 TX > relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3459025) sentry: [VALVE] closed, auto off, cycles 268
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3459025) sentry: [V] 'relay' done in 0 ms
+DEBUG    drivers.device_driver:device_driver.py:96 TX > relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < relay status
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3459235) sentry: [VALVE] closed, auto off, cycles 268
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3459235) sentry: [V] 'relay' done in 0 ms
+DEBUG    drivers.device_driver:device_driver.py:96 TX > state
+DEBUG    drivers.device_driver:device_driver.py:96 RX < state
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3459445) sentry: state: 3 VERBOSE
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3459445) sentry:   1 normal (patrol) | 2 debug (maintenance) | 3 verbose (tactical) | 4 emergency (surfacing, only from 3)
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3459445) sentry: [V] 'state' done in 3 ms
+DEBUG    drivers.device_driver:device_driver.py:96 TX > state 1
+DEBUG    drivers.device_driver:device_driver.py:96 RX < state 1
+DEBUG    drivers.device_driver:device_driver.py:96 RX < W (3460055) sentry: [STATE] 3 VERBOSE -> 1 NORMAL (by command)
+DEBUG    drivers.device_driver:device_driver.py:96 TX > state
+DEBUG    drivers.device_driver:device_driver.py:96 RX < state
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3460645) sentry: [PWR] battery bus 24.08 V, load 1.9 A
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3460655) sentry: state: 1 NORMAL
+DEBUG    drivers.device_driver:device_driver.py:96 RX < I (3460655) sentry:   1 normal (patrol) | 2 debug (maintenance) | 3 verbose (tactical) | 4 emergency (surfacing, only from 3)
+INFO     conftest:conftest.py:531 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz17\logs\automated\buttons\2.3.0\20261023-test_k4_hold_triggers_panic_alarm.txt
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 368

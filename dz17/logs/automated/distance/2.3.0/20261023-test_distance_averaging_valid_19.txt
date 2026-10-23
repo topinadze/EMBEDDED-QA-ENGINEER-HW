@@ -1,0 +1,65 @@
+Test: tests/test_distance.py::TestDistance::test_distance_averaging_valid[19]
+Firmware: 2.3.0
+Captured: 2026-10-23T04:51:05.326572+03:00
+
+TX > version
+RX < version
+RX < I (4366055) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+RX < I (4366055) sentry:   partition: ota_0 @ 0x20000, state: valid
+TX > lamp status
+RX < lamp status
+RX < I (4366265) sentry: [BEACON] off, color (255,255,255), brightness 100%, mode solid, timer off
+TX > status
+RX < status
+RX < I (4366865) sentry: === SWM-2 status ===
+RX < I (4366865) sentry:   fw:       v2.3.0 (ota_0)
+RX < I (4366865) sentry:   state:    1 NORMAL
+RX < I (4366865) sentry:   link:     buoy link '[SSID REDACTED]', ip [PRIVATE IP REDACTED], rssi -39 dBm (excellent), ch 1
+RX < I (4366875) sentry:   internet: OK
+RX < I (4366875) sentry:   user:     testUser (user)
+RX < I (4366875) sentry:   time:     04:50:58, uptime 1h 12m 46s
+RX < I (4366885) sentry:   valve:    closed
+RX < I (4366885) sentry:   watch:    disarmed, CIC alerts unacked: 5
+RX < I (4366895) sentry:   sonar:    last echo 20.6 cm
+RX < I (4366895) sentry:   carrier:  depth 41.3 m, hull 5.1 bar, water 8.2 C, battery 24.06 V (sim)
+RX < I (4366905) sentry:   heap:     251 KB free
+TX > whoami
+RX < whoami
+RX < I (4367085) sentry: user: testUser, access: user
+TX > distance 19
+RX < distance 19
+RX < I (4367345) sentry: [SONAR] 1/19: 20.6 cm
+RX < I (4367495) sentry: [SONAR] 2/19: 20.6 cm
+RX < I (4367645) sentry: [SONAR] 3/19: 20.6 cm
+RX < I (4367795) sentry: [SONAR] 4/19: 20.6 cm
+RX < I (4367945) sentry: [SONAR] 5/19: 20.6 cm
+RX < I (4368095) sentry: [SONAR] 6/19: 20.6 cm
+RX < I (4368245) sentry: [SONAR] 7/19: 20.6 cm
+RX < I (4368395) sentry: [SONAR] 8/19: 20.6 cm
+RX < I (4368545) sentry: [SONAR] 9/19: 20.6 cm
+RX < I (4368695) sentry: [SONAR] 10/19: 20.6 cm
+RX < I (4368845) sentry: [SONAR] 11/19: 20.6 cm
+RX < I (4368995) sentry: [SONAR] 12/19: 20.6 cm
+RX < I (4369145) sentry: [SONAR] 13/19: 20.6 cm
+RX < I (4369295) sentry: [SONAR] 14/19: 20.6 cm
+RX < I (4369445) sentry: [SONAR] 15/19: 20.6 cm
+RX < I (4369595) sentry: [SONAR] 16/19: 20.6 cm
+RX < I (4369745) sentry: [SONAR] 17/19: 20.6 cm
+RX < I (4369895) sentry: [SONAR] 18/19: 20.6 cm
+RX < I (4370045) sentry: [SONAR] 19/19: 20.6 cm
+RX < I (4370145) sentry: [SONAR] avg 20.6 cm (19/19 ok)
+TX > lamp timer 0
+RX < lamp timer 0
+RX < I (4371165) sentry: [BEACON] timer cancelled
+TX > lamp color 255 255 255
+RX < lamp color 255 255 255
+RX < I (4371565) sentry: [BEACON] color: (255,255,255)
+TX > lamp brightness 100
+RX < lamp brightness 100
+RX < I (4371975) sentry: [BEACON] brightness: 100%
+TX > lamp mode solid
+RX < lamp mode solid
+RX < I (4372385) sentry: [BEACON] mode: solid
+TX > lamp off
+RX < lamp off
+RX < W (4372795) sentry: W510 lamp already off

@@ -1,0 +1,40 @@
+Test: tests/test_buttons.py::TestButtons::test_button_k2_tap_toggle_relay
+Firmware: 2.3.0
+Captured: 2026-10-23T04:12:59.119805+03:00
+
+TX > version
+RX < version
+RX < I (2071705) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+RX < I (2071705) sentry:   partition: ota_0 @ 0x20000, state: valid
+TX > status
+RX < status
+RX < I (2071915) sentry: === SWM-2 status ===
+RX < I (2071915) sentry:   fw:       v2.3.0 (ota_0)
+RX < I (2071915) sentry:   state:    1 NORMAL
+RX < I (2071915) sentry:   link:     buoy link '[SSID REDACTED]', ip [PRIVATE IP REDACTED], rssi -29 dBm (excellent), ch 1
+RX < I (2071925) sentry:   internet: OK
+RX < I (2071925) sentry:   user:     testUser (user)
+RX < I (2071925) sentry:   time:     04:12:43, uptime 0h 34m 31s
+RX < I (2071935) sentry:   valve:    closed
+RX < I (2071935) sentry:   watch:    disarmed, CIC alerts unacked: 0
+RX < I (2071945) sentry:   sonar:    no contact
+RX < I (2071945) sentry:   carrier:  depth 42.3 m, hull 5.2 bar, water 8.0 C, battery 24.14 V (sim)
+RX < I (2071955) sentry:   heap:     251 KB free
+TX > whoami
+RX < whoami
+RX < I (2072125) sentry: user: testUser, access: user
+TX > relay status
+RX < relay status
+RX < I (2072335) sentry: [VALVE] closed, auto off, cycles 240
+RX < I (2081195) sentry: [TELEMETRY #52] 04:12:52 up 00:34:40 heap 251KB rssi -22 temp 32.4C depth 42.3m hull 5.2bar batt 24.1V valve closed sonar - watch disarmed alerts 0 state NORMAL
+RX < I (2081685) sentry: [BTN] K2 pressed
+RX < I (2081685) sentry: [VALVE] OPEN (K2)
+TX > relay status
+RX < relay status
+RX < I (2086305) sentry: [VALVE] OPEN, auto off, cycles 241
+TX > relay off
+RX < relay off
+RX < I (2086525) sentry: [VALVE] CLOSED (command)
+TX > relay status
+RX < relay status
+RX < I (2086725) sentry: [VALVE] closed, auto off, cycles 242

@@ -1,0 +1,142 @@
+Test: tests/test_alert.py::TestAlertCenter::test_alert_critical_effects[from-normal]
+Firmware: 2.3.0
+Captured: 2026-10-23T03:45:58.004784+03:00
+
+TX > version
+RX < version
+RX < I (417525) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+RX < I (417525) sentry:   partition: ota_0 @ 0x20000, state: valid
+TX > status
+RX < status
+RX < I (417735) sentry: === SWM-2 status ===
+RX < I (417735) sentry:   fw:       v2.3.0 (ota_0)
+RX < I (417735) sentry:   state:    1 NORMAL
+RX < I (417735) sentry:   link:     buoy link '[SSID REDACTED]', ip [PRIVATE IP REDACTED], rssi -38 dBm (excellent), ch 1
+RX < I (417735) sentry:   internet: OK
+RX < I (417745) sentry:   user:     testUser (user)
+RX < I (417745) sentry:   time:     03:45:09, uptime 0h 06m 57s
+RX < I (417755) sentry:   valve:    closed
+RX < I (417755) sentry:   watch:    disarmed, CIC alerts unacked: 0
+RX < I (417765) sentry:   sonar:    no contact
+RX < I (417765) sentry:   carrier:  depth 41.4 m, hull 5.1 bar, water 8.1 C, battery 24.19 V (sim)
+RX < I (417775) sentry:   heap:     251 KB free
+TX > whoami
+RX < whoami
+RX < I (417945) sentry: user: testUser, access: user
+TX > relay status
+RX < relay status
+RX < I (418155) sentry: [VALVE] closed, auto off, cycles 234
+TX > state
+RX < state
+RX < I (418365) sentry: state: 1 NORMAL
+RX < I (418365) sentry:   1 normal (patrol) | 2 debug (maintenance) | 3 verbose (tactical) | 4 emergency (surfacing, only from 3)
+TX > state
+RX < state
+RX < I (418975) sentry: state: 1 NORMAL
+RX < I (418975) sentry:   1 normal (patrol) | 2 debug (maintenance) | 3 verbose (tactical) | 4 emergency (surfacing, only from 3)
+TX > alert test critical
+RX < I (431995) sentry: [TELEMETRY #2] 03:45:23 up 00:07:11 heap 251KB rssi -41 temp 32.4C depth 41.4m hull 5.1bar batt 24.2V valve closed sonar - watch disarmed alerts 0 state NORMAL
+RX < alert test critical
+RX < E (445135) sentry: [CIC #11 CRITICAL] test: test alert
+RX < I (445135) sentry: [VALVE] OPEN (critical alert)
+RX < W (445135) sentry: [STATE] 1 NORMAL -> 3 VERBOSE (by critical alert)
+RX < I (445135) sentry: [STATE] VERBOSE (tactical): extended logs, telemetry every 10 s, LED heartbeat
+RX < I (445145) sentry: [V] 'alert' done in 13 ms
+RX < I (445645) sentry: [NAV] depth 41.6 m, heading 269, speed 2.9 kn
+TX > alert list
+RX < I (455395) sentry: [TELEMETRY #3] 03:45:47 up 00:07:35 heap 251KB rssi -23 temp 32.4C depth 41.6m hull 5.2bar batt 24.2V valve open sonar - watch disarmed alerts 1 state VERBOSE
+RX < I (455395) sentry: [V] telemetry: min heap 205KB, beacon off, tasks 16, water 8.0C, source auto
+RX < alert list
+RX < I (458495) sentry: [CIC] 11 alerts, 1 unacknowledged:
+RX < I (458495) sentry:   #1   03:44:23 INFO       test    test alert
+RX < I (458495) sentry:   #2   03:44:28 WARNING    test    test alert
+RX < I (458495) sentry:   #3   03:44:36 INFO       test    test alert
+RX < I (458505) sentry:   #4   03:44:37 WARNING    test    test alert
+RX < I (458505) sentry:   #5   03:44:43 INFO       test    test alert
+RX < I (458515) sentry:   #6   03:44:43 WARNING    test    test alert
+RX < I (458515) sentry:   #7   03:44:49 INFO       test    test alert
+RX < I (458525) sentry:   #8   03:44:49 WARNING    test    test alert
+RX < I (458525) sentry:   #9   03:44:50 INFO       test    test alert
+RX < I (458535) sentry:   #10  03:45:04 INFO       test    test alert
+RX < I (458545) sentry:   #11  03:45:36 CRITICAL * test    test alert
+RX < I (458545) sentry: [V] 'alert' done in 57 ms
+TX > relay status
+RX < relay status
+RX < I (459105) sentry: [VALVE] OPEN, auto off, cycles 235
+RX < I (459105) sentry: [V] 'relay' done in 0 ms
+TX > state
+RX < state
+RX < I (459315) sentry: state: 3 VERBOSE
+RX < I (459315) sentry:   1 normal (patrol) | 2 debug (maintenance) | 3 verbose (tactical) | 4 emergency (surfacing, only from 3)
+RX < I (459315) sentry: [V] 'state' done in 3 ms
+TX > relay off
+RX < relay off
+RX < I (460485) sentry: [VALVE] CLOSED (command)
+RX < I (460485) sentry: [V] valve driver GPIO8=0, cycles 236
+RX < I (460485) sentry: [V] 'relay' done in 11 ms
+TX > state
+RX < state
+RX < I (460685) sentry: state: 3 VERBOSE
+RX < I (460685) sentry:   1 normal (patrol) | 2 debug (maintenance) | 3 verbose (tactical) | 4 emergency (surfacing, only from 3)
+RX < I (460685) sentry: [V] 'state' done in 3 ms
+TX > state 1
+RX < state 1
+RX < W (461295) sentry: [STATE] 3 VERBOSE -> 1 NORMAL (by command)
+RX < I (461645) sentry: [ACU] ambient noise 69 dB re 1uPa, sea state 2, water 8.2 C
+TX > state
+RX < state
+RX < I (461905) sentry: state: 1 NORMAL
+RX < I (461905) sentry:   1 normal (patrol) | 2 debug (maintenance) | 3 verbose (tactical) | 4 emergency (surfacing, only from 3)
+TX > alert list
+RX < alert list
+RX < I (462505) sentry: [CIC] 11 alerts, 1 unacknowledged:
+RX < I (462505) sentry:   #1   03:44:23 INFO       test    test alert
+RX < I (462505) sentry:   #2   03:44:28 WARNING    test    test alert
+RX < I (462505) sentry:   #3   03:44:36 INFO       test    test alert
+RX < I (462515) sentry:   #4   03:44:37 WARNING    test    test alert
+RX < I (462515) sentry:   #5   03:44:43 INFO       test    test alert
+RX < I (462525) sentry:   #6   03:44:43 WARNING    test    test alert
+RX < I (462525) sentry:   #7   03:44:49 INFO       test    test alert
+RX < I (462535) sentry:   #8   03:44:49 WARNING    test    test alert
+RX < I (462535) sentry:   #9   03:44:50 INFO       test    test alert
+RX < I (462545) sentry:   #10  03:45:04 INFO       test    test alert
+RX < I (462555) sentry:   #11  03:45:36 CRITICAL * test    test alert
+TX > alert ack
+RX < alert ack
+RX < I (463115) sentry: [CIC] #11 acknowledged (command). Unacked: 0
+TX > alert list
+RX < alert list
+RX < I (463725) sentry: [CIC] 11 alerts, 0 unacknowledged:
+RX < I (463725) sentry:   #1   03:44:23 INFO       test    test alert
+RX < I (463725) sentry:   #2   03:44:28 WARNING    test    test alert
+RX < I (463725) sentry:   #3   03:44:36 INFO       test    test alert
+RX < I (463735) sentry:   #4   03:44:37 WARNING    test    test alert
+RX < I (463735) sentry:   #5   03:44:43 INFO       test    test alert
+RX < I (463745) sentry:   #6   03:44:43 WARNING    test    test alert
+RX < I (463745) sentry:   #7   03:44:49 INFO       test    test alert
+RX < I (463755) sentry:   #8   03:44:49 WARNING    test    test alert
+RX < I (463755) sentry:   #9   03:44:50 INFO       test    test alert
+RX < I (463765) sentry:   #10  03:45:04 INFO       test    test alert
+RX < I (463775) sentry:   #11  03:45:36 CRITICAL   test    test alert
+TX > alert list
+RX < alert list
+RX < I (464325) sentry: [CIC] 11 alerts, 0 unacknowledged:
+RX < I (464325) sentry:   #1   03:44:23 INFO       test    test alert
+RX < I (464325) sentry:   #2   03:44:28 WARNING    test    test alert
+RX < I (464325) sentry:   #3   03:44:36 INFO       test    test alert
+RX < I (464335) sentry:   #4   03:44:37 WARNING    test    test alert
+RX < I (464335) sentry:   #5   03:44:43 INFO       test    test alert
+RX < I (464345) sentry:   #6   03:44:43 WARNING    test    test alert
+RX < I (464345) sentry:   #7   03:44:49 INFO       test    test alert
+RX < I (464355) sentry:   #8   03:44:49 WARNING    test    test alert
+RX < I (464355) sentry:   #9   03:44:50 INFO       test    test alert
+RX < I (464365) sentry:   #10  03:45:04 INFO       test    test alert
+RX < I (464375) sentry:   #11  03:45:36 CRITICAL   test    test alert
+TX > relay status
+RX < relay status
+RX < I (464935) sentry: [VALVE] closed, auto off, cycles 236
+TX > state
+RX < state
+RX < I (465145) sentry: state: 1 NORMAL
+RX < I (465145) sentry:   1 normal (patrol) | 2 debug (maintenance) | 3 verbose (tactical) | 4 emergency (surfacing, only from 3)
+RX < I (465405) sentry: [TELEMETRY #4] 03:45:57 up 00:07:45 heap 251KB rssi -25 temp 32.4C depth 42.0m hull 5.2bar batt 24.2V valve closed sonar - watch disarmed alerts 0 state NORMAL
