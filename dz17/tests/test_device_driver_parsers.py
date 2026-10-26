@@ -695,3 +695,41 @@ def test_parse_whoami() -> None:
     driver.send_command = lambda cmd, timeout=0.6: ["I (2) sentry: user: not logged in"]  # type: ignore[assignment]
     who_logged_out = driver.whoami()
     assert who_logged_out["logged_in"] is False
+
+
+def test_parse_ota_status() -> None:
+    driver = DeviceDriver(port="DUMMY")
+    driver.send_command = lambda cmd, timeout=3.0: [
+        "I (100) sentry: [OTA] running: v2.1.0 in ota_0 (valid)",
+        "I (100) sentry: [OTA] previous: none (ota_1 is empty)",
+    ]  # type: ignore[assignment]
+    st = driver.ota_status()
+    assert st["running_version"] == "2.1.0"
+    assert st["running_partition"] == "ota_0"
+    assert st["running_state"] == "valid"
+    assert st["previous_version"] is None
+
+    driver.send_command = lambda cmd, timeout=3.0: [
+        "I (200) sentry: [OTA] running: v2.3.0 in ota_1 (valid)",
+        "I (200) sentry: [OTA] previous: v2.1.0 in ota_0",
+    ]  # type: ignore[assignment]
+    st2 = driver.ota_status()
+    assert st2["running_version"] == "2.3.0"
+    assert st2["running_partition"] == "ota_1"
+    assert st2["previous_version"] == "2.1.0"
+    assert st2["previous_partition"] == "ota_0"
+
+
+def test_parse_ota_check() -> None:
+    driver = DeviceDriver(port="DUMMY")
+    driver.send_command = lambda cmd, timeout=8.0: [
+        "I (100) sentry: [OTA] current: v2.1.0",
+        "I (100) sentry: [OTA] stable: v2.1.0",
+        "I (100) sentry: [OTA] beta: v2.3.0",
+        "I (100) sentry: [OTA] update available: v2.3.0 (beta)",
+    ]  # type: ignore[assignment]
+    chk = driver.ota_check()
+    assert chk["current"] == "2.1.0"
+    assert chk["stable"] == "2.1.0"
+    assert chk["beta"] == "2.3.0"
+    assert chk["status"] is not None and "update available" in chk["status"]

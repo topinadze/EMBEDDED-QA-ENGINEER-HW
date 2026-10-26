@@ -39,6 +39,35 @@ SONAR_CONFIG_PATTERN = re.compile(
     r"calibration\s*([-+]?\d*(?:\.\d+|\d+))\s*cm,\s*filter\s*(?:median\s*(\d+)|(off|on)),\s*alarm\s*(on|off)",
     re.IGNORECASE,
 )
+OTA_TERMINAL_MARKERS = (
+    "[OTA] self-check passed",
+    "[OTA] self-check FAILED",
+    "[OTA] check failed:",
+    "[OTA] failed:",
+    "[OTA] error:",
+    "[OTA] already up to date",
+    "[OTA] up to date",
+    "[OTA] downgrade blocked:",
+    "E408 downgrade blocked:",
+    "E414 bad version",
+    "E415 version",
+    "E418 url must start with",
+    "E406",
+    "E412",
+    "E410",
+    "E402",
+    "E403",
+    "E401",
+    "E405",
+    "E407",
+    "E411",
+    "E003",
+    "E002",
+    "W409 same version",
+    "Rolling back...",
+    "=== OTA Update Complete. Restarting",
+    "Rebooting...",
+)
 
 
 class DeviceDriver:
@@ -83,6 +112,18 @@ class DeviceDriver:
         )
         text = re.sub(
             r"^((?:login|register)\s+\S+\s+)(\S+)",
+            r"\1[REDACTED]",
+            text,
+            flags=re.IGNORECASE,
+        )
+        text = re.sub(
+            r"((?:^|:\s*)passwd\s+)\S+\s+\S+",
+            r"\1[REDACTED] [REDACTED]",
+            text,
+            flags=re.IGNORECASE,
+        )
+        text = re.sub(
+            r"((?:^|:\s*)sudo\s+)\S+",
             r"\1[REDACTED]",
             text,
             flags=re.IGNORECASE,
@@ -424,6 +465,177 @@ class DeviceDriver:
                 logged_in = True
                 break
         return {"user": user, "access": access, "logged_in": logged_in, "raw": lines}
+
+    @allure.step("Change user password (passwords redacted)")
+    def passwd(
+        self, old_password: str, new_password: str, timeout: float = 3.0
+    ) -> list[str]:
+        if old_password:
+            self._sensitive_uart_values.add(old_password)
+        if new_password:
+            self._sensitive_uart_values.add(new_password)
+        return self.send_command(f"passwd {old_password} {new_password}", timeout=timeout)
+
+    @allure.step("Elevate user to debug mode via sudo (password redacted)")
+    def sudo(self, password: str, timeout: float = 3.0) -> list[str]:
+        if password:
+            self._sensitive_uart_values.add(password)
+        return self.send_command(f"sudo {password}", timeout=timeout)
+
+    # --- Over-the-Air Updates (OTA) ---
+
+    @allure.step("Read OTA status")
+    def ota_status(self, timeout: float = 3.0) -> dict[str, Any]:
+        lines = self.send_command("ota status", timeout=timeout)
+        running_ver = None
+        running_part = None
+        running_state = None
+        prev_ver = None
+        prev_part = None
+        for line in lines:
+            m_run = re.search(r"\[OTA\]\s*running:\s*(?:v?(\d+\.\d+\.\d+))\s*in\s*(ota_\d+)\s*(?:\(([^)]+)\))?", line, re.I)
+            if m_run:
+                running_ver = m_run.group(1)
+                running_part = m_run.group(2)
+                running_state = m_run.group(3)
+            m_prev = re.search(r"\[OTA\]\s*previous:\s*(?:v?(\d+\.\d+\.\d+)|none)\s*(?:in\s*(ota_\d+)|(?:\(([^)]+)\)))?", line, re.I)
+            if m_prev:
+                prev_ver = m_prev.group(1)
+                prev_part = m_prev.group(2)
+        return {
+            "running_version": running_ver,
+            "running_partition": running_part,
+            "running_state": running_state,
+            "previous_version": prev_ver,
+            "previous_partition": prev_part,
+            "raw": lines,
+        }
+
+    @allure.step("Check OTA channels (ota check)")
+    def ota_check(self, timeout: float = 8.0) -> dict[str, Any]:
+        lines = self.send_command("ota check", timeout=timeout)
+        current = None
+        stable = None
+        beta = None
+        channel_status = None
+        for line in lines:
+            m_cur = re.search(r"\[OTA\]\s*current:\s*v?(\d+\.\d+\.\d+)", line, re.I)
+            if m_cur:
+                current = m_cur.group(1)
+            m_sta = re.search(r"\[OTA\]\s*stable:\s*v?(\d+\.\d+\.\d+)", line, re.I)
+            if m_sta:
+                stable = m_sta.group(1)
+            m_bet = re.search(r"\[OTA\]\s*beta:\s*v?(\d+\.\d+\.\d+)", line, re.I)
+            if m_bet:
+                beta = m_bet.group(1)
+            if any(term in line.casefold() for term in ("up to date", "update available", "running newer than stable")):
+                channel_status = line.strip()
+        return {
+            "current": current,
+            "stable": stable,
+            "beta": beta,
+            "status": channel_status,
+            "raw": lines,
+        }
+
+    @allure.step("Show or configure OTA server ({server})")
+    def ota_server(self, server: str | None = None, timeout: float = 3.0) -> list[str]:
+        cmd = f"ota server {server}" if server is not None else "ota server"
+        return self.send_command(cmd, timeout=timeout)
+
+    @allure.step("Run OTA command '{command}' and wait for a terminal result")
+    def run_ota(self, command: str, timeout: float = 180.0) -> list[str]:
+        if timeout <= 0:
+            raise ValueError("OTA timeout must be greater than zero.")
+        lines = self.send_command(command, timeout=min(0.5, timeout))
+        deadline = time.monotonic() + timeout
+
+        def has_terminal_result() -> bool:
+            output = "\n".join(lines).casefold()
+            return any(marker.casefold() in output for marker in OTA_TERMINAL_MARKERS)
+
+        while not has_terminal_result() and time.monotonic() < deadline:
+            lines.extend(self._read_for(min(0.2, deadline - time.monotonic())))
+
+        if not has_terminal_result():
+            response = "\n".join(lines)
+            allure.attach(
+                response or "No OTA output was captured.",
+                name=f"OTA response: {command}",
+                attachment_type=allure.attachment_type.TEXT,
+            )
+            raise TimeoutError(
+                f"OTA command {command!r} did not report a terminal result "
+                f"within {timeout:.1f} seconds.\n{response}"
+            )
+
+        allure.attach(
+            "\n".join(lines),
+            name=f"OTA response: {command}",
+            attachment_type=allure.attachment_type.TEXT,
+        )
+        return lines
+
+    @staticmethod
+    def _is_retryable_ota_connectivity_failure(lines: list[str]) -> bool:
+        output = "\n".join(lines).casefold()
+        return any(
+            marker in output
+            for marker in (
+                "couldn't get hostname",
+                "getaddrinfo()",
+                "failed to open a new connection",
+                "connection failed, sock",
+                "cannot read stable.txt",
+                "cannot read beta.txt",
+                "e402",
+            )
+        )
+
+    @allure.step("Run OTA command '{command}' with bounded connectivity retries")
+    def run_ota_with_connectivity_retry(
+        self,
+        command: str,
+        timeout: float = 180.0,
+        attempts: int = 3,
+        retry_delay: float = 3.0,
+    ) -> list[str]:
+        if attempts < 1:
+            raise ValueError("OTA connectivity retry attempts must be at least one.")
+        if retry_delay < 0:
+            raise ValueError("OTA connectivity retry delay cannot be negative.")
+
+        for attempt in range(1, attempts + 1):
+            lines = self.run_ota(command, timeout=timeout)
+            if not self._is_retryable_ota_connectivity_failure(lines):
+                return lines
+            if attempt == attempts:
+                break
+
+            status = self.wifi_status()
+            if not self.wifi_connection_is_valid(status):
+                if not self.wifi_reconnect():
+                    raise ConnectionError(
+                        "OTA encountered a DNS/connection failure and the device "
+                        f"could not restore Wi-Fi connectivity: {status!r}"
+                    )
+
+            LOGGER.warning(
+                "OTA command %r hit a transient connectivity error "
+                "(attempt %d/%d); retrying in %.1f seconds.",
+                command,
+                attempt,
+                attempts,
+                retry_delay,
+            )
+            time.sleep(retry_delay)
+
+        response = "\n".join(lines)
+        raise ConnectionError(
+            f"OTA command {command!r} failed with a DNS/connection error after "
+            f"{attempts} attempts. Check internet/DNS access to the OTA host and "
+            f"rerun the phase.\nLast device response:\n{response}"
+        )
 
     # --- Beacon Lamp ---
 

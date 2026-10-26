@@ -383,6 +383,46 @@ def prepare_manually(instruction: str) -> None:
         pytest.fail("Manual input is unavailable; run pytest with -s in a terminal.")
 
 
+@allure.step("Confirm destructive action: {action}")
+def confirm_destructive_action(action: str, confirmation_phrase: str) -> bool:
+    prompt = (
+        f"{action}\n\n"
+        "This action changes persistent device state. To authorize it, reply with "
+        f"exactly: {confirmation_phrase}\n"
+        "Any other response cancels the action; no change will be made."
+    )
+
+    if _telegram_mode():
+        try:
+            response = telegram_text(prompt, _telegram_timeout())
+        except TimeoutError:
+            _attach_manual_feedback(action, "NOT RECORDED (Telegram consent timeout)")
+            pytest.fail(
+                "Operator did not explicitly authorize the destructive action "
+                "before timeout."
+            )
+    else:
+        _print_manual_prompt("DESTRUCTIVE ACTION CONSENT", prompt, FAIL_COLOR)
+        try:
+            response = input(
+                _input_prompt(
+                    f"Type exactly {confirmation_phrase!r} to authorize:",
+                    FAIL_COLOR,
+                )
+            )
+        except EOFError:
+            _attach_manual_feedback(action, "NOT RECORDED (no consent input)")
+            pytest.fail(
+                "Manual input is unavailable; run pytest with -s in a terminal."
+            )
+
+    authorized = response.strip() == confirmation_phrase
+    result = "CONSENT GIVEN" if authorized else "DECLINED; NO ACTION PERFORMED"
+    _attach_manual_feedback(action, result)
+    LOGGER.info("MANUAL CONSENT | %s", result)
+    return authorized
+
+
 @allure.step("Record measured reference distance: {label}")
 def enter_reference_distance(label: str) -> float:
     """Collect and record the operator-measured target distance in centimeters."""

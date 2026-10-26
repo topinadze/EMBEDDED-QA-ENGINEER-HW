@@ -2,3 +2,4 @@ pytest>=8.0.0
 pyserial>=3.5
 allure-pytest>=2.13.0
 requests>=2.31.0
+esptool>=5.0,<6.0

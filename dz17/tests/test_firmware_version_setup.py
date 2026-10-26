@@ -59,6 +59,73 @@ def _setup_item(
     )
 
 
+@pytest.mark.parametrize("marker", ["auth", "ota"])
+def test_auth_and_ota_uart_logs_are_saved_under_their_pack(
+    monkeypatch: pytest.MonkeyPatch,
+    tmp_path: Path,
+    marker: str,
+) -> None:
+    monkeypatch.setattr(conftest, "DZ17_DIR", tmp_path)
+    item = SimpleNamespace(
+        name=f"test_{marker}_case",
+        nodeid=f"tests/test_{marker}.py::test_{marker}_case",
+        get_closest_marker=lambda name: object() if name == marker else None,
+    )
+    driver = SimpleNamespace(uart_log=["TX > status", "RX < status: ready"])
+
+    log_path = conftest._save_automated_uart_log(driver, item, "2.3.0")
+
+    assert log_path.parent == tmp_path / "logs" / "automated" / marker / "2.3.0"
+    assert "Test: " + item.nodeid in log_path.read_text(encoding="utf-8")
+
+
+@pytest.mark.parametrize("marker", ["auth", "ota"])
+def test_auth_and_ota_uart_logs_are_saved_without_debug_logging(marker: str) -> None:
+    request = FakeRequest(expected_version=None)
+    item = SimpleNamespace(
+        get_closest_marker=lambda name: object() if name == marker else None
+    )
+
+    assert conftest._should_save_automated_uart_log(request.config, item)
+
+
+@pytest.mark.parametrize("marker", ["auth", "ota"])
+def test_device_driver_fixture_persists_auth_and_ota_logs_at_info_level(
+    monkeypatch: pytest.MonkeyPatch,
+    tmp_path: Path,
+    marker: str,
+) -> None:
+    request = FakeRequest(expected_version="2.1.0")
+    request.node.name = f"test_{marker}_fixture_log"
+    request.node.nodeid = f"tests/test_{marker}.py::{request.node.name}"
+    request.node.get_closest_marker = (
+        lambda name: object() if name == marker else None
+    )
+    driver = _driver_with_firmware("2.1.0")
+    driver.lamp_status.side_effect = TimeoutError("lamp snapshot unavailable")
+    monkeypatch.setattr(conftest, "DZ17_DIR", tmp_path)
+    monkeypatch.setattr(conftest, "DeviceDriver", lambda **_: driver)
+
+    fixture = conftest.device_driver.__wrapped__(request)
+    next(fixture)
+    with pytest.raises(StopIteration):
+        next(fixture)
+
+    log_dir = tmp_path / "logs" / "automated" / marker / "2.1.0"
+    log_path = next(log_dir.glob(f"*-{request.node.name}.txt"))
+    assert log_path.is_file()
+    contents = log_path.read_text(encoding="utf-8")
+    assert request.node.nodeid in contents
+    assert "Firmware: 2.1.0" in contents
+
+
+def test_other_uart_logs_still_require_debug_logging() -> None:
+    request = FakeRequest(expected_version=None)
+    item = SimpleNamespace(get_closest_marker=lambda name: None)
+
+    assert not conftest._should_save_automated_uart_log(request.config, item)
+
+
 def test_lamp_interactive_setup_allows_uart_only_without_console() -> None:
     conftest.pytest_runtest_setup(
         _setup_item(lamp=True, manual_checks=False)
@@ -349,6 +416,66 @@ def test_authenticated_device_reconnects_after_transient_login_wifi_error(
         call(driver, request),
     ]
     assert driver.login_nowait.call_count == 2
+
+
+def test_authenticated_device_waits_for_reported_login_lockout(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    request = FakeRequest(expected_version=None)
+    driver = Mock(spec=DeviceDriver)
+    driver.uart_log = []
+
+    def send_command_nowait(command: str) -> None:
+        if command == "whoami":
+            identity = (
+                "RX < I (1) sentry: not logged in"
+                if len(driver.login_nowait.call_args_list) == 0
+                else "RX < I (2) sentry: user: testUser, access: user"
+            )
+            driver.uart_log.append(identity)
+
+    def wait_for_any(
+        patterns: tuple[str, ...],
+        timeout: float,
+        since_index: int | None = None,
+    ) -> str | None:
+        if "E207" in patterns and driver.login_nowait.call_count == 1:
+            driver.uart_log.append(
+                "RX < E (2) sentry: E207 account locked. Try again in 2 s"
+            )
+            return "E207"
+        if any(pattern.startswith("[AUTH] operator") for pattern in patterns):
+            return "[AUTH] operator testUser on watch"
+        return "not logged in" if not driver.login_nowait.call_args_list else ", access:"
+
+    driver.send_command_nowait.side_effect = send_command_nowait
+    driver.wait_for_any.side_effect = wait_for_any
+    ensure_wifi = Mock()
+    sleep = Mock()
+    monkeypatch.setattr(
+        conftest,
+        "resolve_account_credentials",
+        lambda **_: ("testUser", "secret"),
+    )
+    monkeypatch.setattr(conftest, "_ensure_wifi_connected", ensure_wifi)
+    monkeypatch.setattr(conftest.time, "sleep", sleep)
+
+    conftest._ensure_authenticated_device(driver, request)
+
+    assert driver.login_nowait.call_count == 2
+    sleep.assert_called_once_with(3)
+    driver.wait_for_any.assert_any_call(
+        (
+            "[AUTH] operator testUser on watch",
+            "wrong login or password",
+            "E209",
+            "E210",
+            "E207",
+            "E002",
+        ),
+        timeout=15.0,
+        since_index=1,
+    )
 
 
 def test_authenticated_device_replaces_a_different_logged_in_user(

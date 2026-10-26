@@ -142,20 +142,23 @@ def _telegram_test_status_label(status: str) -> str:
 def _save_automated_uart_log(
     driver: DeviceDriver, item: pytest.Item, firmware_version: str
 ) -> Path:
-    category = (
-        "buttons"
-        if item.get_closest_marker("buttons") is not None
-        else "distance"
-        if item.get_closest_marker("distance") is not None
-        else "wifi"
-        if item.get_closest_marker("wifi") is not None
-        else "relay"
-        if item.get_closest_marker("relay") is not None
-        else "guard"
-        if item.get_closest_marker("guard") is not None
-        else "alert"
-        if item.get_closest_marker("alert") is not None
-        else "lamp"
+    category = next(
+        (
+            marker
+            for marker in (
+                "auth",
+                "ota",
+                "buttons",
+                "distance",
+                "wifi",
+                "relay",
+                "guard",
+                "alert",
+                "lamp",
+            )
+            if item.get_closest_marker(marker) is not None
+        ),
+        "lamp",
     )
     log_dir = DZ17_DIR / "logs" / "automated" / category / firmware_version
     log_dir.mkdir(parents=True, exist_ok=True)
@@ -182,6 +185,14 @@ def _save_automated_uart_log(
         encoding="utf-8",
     )
     return log_path
+
+
+def _should_save_automated_uart_log(
+    config: pytest.Config, item: pytest.Item
+) -> bool:
+    return _debug_logging_enabled(config) or any(
+        item.get_closest_marker(marker) is not None for marker in ("auth", "ota")
+    )
 
 
 def pytest_addoption(parser: pytest.Parser) -> None:
@@ -521,7 +532,7 @@ def device_driver(request: pytest.FixtureRequest) -> Generator[DeviceDriver, Non
                 driver.attach_uart_log()
             finally:
                 try:
-                    if _debug_logging_enabled(request.config):
+                    if _should_save_automated_uart_log(request.config, request.node):
                         firmware_version = request.node.stash.get(
                             FIRMWARE_VERSION_KEY, "unknown"
                         )
@@ -882,25 +893,10 @@ def _ensure_authenticated_device(
                 f"in as configured user '{user}'."
             )
 
-    login_mark = len(device_driver.uart_log)
-    device_driver.login_nowait(user, password)
-    login_result = device_driver.wait_for_any(
-        (
-            f"[AUTH] operator {user} on watch",
-            "wrong login or password",
-            "E209",
-            "E210",
-            "E207",
-            "E002",
-        ),
-        timeout=15.0,
-        since_index=login_mark,
-    )
-    if login_result == "E002":
-        _ensure_wifi_connected(device_driver, request)
-        login_mark = len(device_driver.uart_log)
+    def submit_login() -> tuple[str | None, int]:
+        login_start = len(device_driver.uart_log)
         device_driver.login_nowait(user, password)
-        login_result = device_driver.wait_for_any(
+        result = device_driver.wait_for_any(
             (
                 f"[AUTH] operator {user} on watch",
                 "wrong login or password",
@@ -910,8 +906,42 @@ def _ensure_authenticated_device(
                 "E002",
             ),
             timeout=15.0,
-            since_index=login_mark,
+            since_index=login_start,
         )
+        return result, login_start
+
+    login_result, login_mark = submit_login()
+    if login_result == "E002":
+        _ensure_wifi_connected(device_driver, request)
+        login_result, login_mark = submit_login()
+    if login_result == "E207":
+        login_response = "\n".join(device_driver.uart_log[login_mark:])
+        lockout_match = re.search(
+            r"account locked\.\s*Try again in\s+(\d+)\s*s",
+            login_response,
+            re.IGNORECASE,
+        )
+        if lockout_match is None:
+            pytest.fail(
+                "Login was rate-limited with E207, but the UART response did not "
+                f"include a parseable cooldown: {login_response!r}"
+            )
+        remaining_seconds = int(lockout_match.group(1))
+        if remaining_seconds > 30:
+            pytest.fail(
+                "Login reported an unexpected lockout duration of "
+                f"{remaining_seconds} seconds; expected at most 30 seconds."
+            )
+        with allure.step(
+            f"Wait for the reported account lockout to expire ({remaining_seconds} s)"
+        ):
+            logging.getLogger(__name__).warning(
+                "Configured account is temporarily locked; waiting %s seconds "
+                "before retrying authentication.",
+                remaining_seconds + 1,
+            )
+            time.sleep(remaining_seconds + 1)
+        login_result, _ = submit_login()
     if login_result in {"wrong login or password", "E209", "E210", "E207"}:
         pytest.fail(
             "Configured SENTRY SWM-2 login was rejected or temporarily locked. "
@@ -940,6 +970,16 @@ def ensure_wifi_connected(
 
 
 @pytest.fixture
+def wifi_connected(
+    device_driver: DeviceDriver,
+    ensure_wifi_connected: Callable[[DeviceDriver], None],
+) -> Generator[DeviceDriver, None, None]:
+    """Ensure Wi-Fi connection is established before test."""
+    ensure_wifi_connected(device_driver)
+    yield device_driver
+
+
+@pytest.fixture
 def ensure_authenticated_device(
     request: pytest.FixtureRequest,
 ) -> Callable[[DeviceDriver], None]:
@@ -955,6 +995,9 @@ def authenticated_device(
     """Ensure Wi-Fi and the configured login before [login] tests."""
     ensure_authenticated_device(device_driver)
     yield device_driver
+
+
+authenticated = authenticated_device
 
 
 @pytest.fixture

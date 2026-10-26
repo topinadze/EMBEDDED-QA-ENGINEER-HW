@@ -28,6 +28,7 @@ dz17/
 │   ├── test_relay.py           # RL-1 to RL-7: valve control, cycle accounting, schedule, auto, health
 │   ├── test_guard.py           # Partial GD-1 to GD-3 coverage: status/zones, arming and panic
 │   ├── test_alert.py           # Partial AL-1 to AL-5 coverage: generation, listing, acknowledgement, critical effects
+│   ├── test_auth_registration.py # AU-1 clean-NVS registration validation and valid-profile setup
 │   ├── test_device_driver_parsers.py # Unit tests for driver UART parsers (no hardware required)
 │   ├── test_manual_checks.py   # Unit tests for console/Telegram manual-check routing
 │   └── test_telegram_helper.py # Offline tests for Telegram API filtering and failures
@@ -37,7 +38,8 @@ dz17/
 ├── run-buttons.ps1             # Buttons test launcher (runs with -s)
 ├── run-distance.ps1            # Distance test launcher
 ├── run-guard.ps1               # Guard test launcher (2.3.0, -s)
-└── run-alert.ps1               # Alert Center test launcher (2.3.0, -s)
+├── run-alert.ps1               # Alert Center test launcher (2.3.0, -s)
+└── run-auth-registration.ps1   # AU-1 provisioning pack (interactive, persistent, -s)
 ```
 
 ## Safety & Interactive Protocol (`AGENTS.md`)
@@ -67,6 +69,28 @@ dz17/
   device account credentials there. Alternatively, provide account values with `HW17_USER` /
   `HW17_PASSWORD` or `TEST_USER` / `TEST_PASSWORD`; environment values override the local file.
   Do not commit or share the local secrets file.
+- **AU-1 registration pack**:
+  `run-auth-registration.ps1` is deliberately separate from `run-auth.ps1`. By default it uses
+  COM4 and firmware 2.3.0; pass `-Port` and `-Fw` to override them when they do not match the
+  bench. Before any erase, it reads the running firmware over UART and requires an exact
+  typed operator authorization for the
+  displayed target and command. It then runs `esptool erase-region 0x9000 0x6000`, which clears
+  the complete NVS partition (including the saved account, Wi-Fi profile, and settings) while
+  leaving firmware installed. Declining authorization skips the pack without erasing anything;
+  after success, each test's UART fixture verifies the expected firmware.
+  AU-1 negative checks are separate pytest cases, parameterized by invalid input. Each case gets
+  its own UART lifecycle and verifies Wi-Fi/logged-out preconditions. A module-scoped fixture
+  validates configuration, obtains consent, and erases NVS exactly once before the cases start.
+  Negative cases run first and never attempt registration; the final positive case creates the
+  configured profile and confirms login. The created account remains persistent after the run.
+  It may save the configured Wi-Fi profile and always
+  leaves a successfully created account persistent (typically logged in). Provide the configured
+  Wi-Fi and account credentials through the local secrets file or environment; never enter them
+  in the operator prompt. The password length must be 6-32 characters. If firmware unexpectedly
+  accepts an invalid registration, that case fails and later registration checks may also fail
+  because the device permits only one profile; no cleanup erase is performed. Rerun the pack and
+  explicitly authorize a fresh NVS erase before retrying. Whitespace-containing usernames are not included because the CLI's token parser
+  returns E201 usage and the PRD does not define a quoting/escaping syntax.
 - **Telegram operator interaction (optional)**:
   Console interaction remains the default. Create a bot with Telegram's `@BotFather`, open its private chat,
   and send `/start`; copy [`config/secrets.example.py`](config/secrets.example.py) to the ignored
@@ -174,10 +198,20 @@ The full-suite `run.ps1 -All` command runs every discovered test, including case
 operator interaction and cases marked persistent. It passes `-s` so interactive prompts work and
 checks that the connected device reports firmware 2.3.0. Review the interactive and persistent-state
 effects described below before running it; it may actuate the relay, change device settings, save
-Wi-Fi configuration, and add alert-history entries. It does not flash firmware.
+Wi-Fi configuration, and add alert-history entries. It also discovers the AU-1 registration pack:
+its module fixture verifies firmware and requests one explicit authorization to erase NVS once.
+Negative registration checks run before the final case creates a persistent account. Declining
+authorization skips the registration pack without an erase. Prefer `run-auth-registration.ps1`
+when intentionally running that pack by itself. The suite does not flash firmware.
 
 ### 3. Run Interactive Hardware Tests (Requires operator action, uncaptured console `-s`)
 ```powershell
+# Run AU-1 registration checks. The module fixture requests consent and erases NVS once;
+# the separate negative checks run before the final positive registration test.
+# It never flashes firmware.
+# This creates a persistent configured profile and may save Wi-Fi credentials.
+.\run-auth-registration.ps1 -Port COM4 -Fw 2.3.0
+
 # Run interactive operator buttons tests (the K2 relay test actuates the relay)
 .\run-buttons.ps1 -Port COM4 -Fw 2.1.0
 

@@ -27,6 +27,53 @@ def test_manual_check_records_failure(monkeypatch: pytest.MonkeyPatch) -> None:
     assert manual_checks.verify_manually("LED shows red.") is False
 
 
+def test_destructive_action_requires_exact_console_confirmation(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    _provide_responses(monkeypatch, "ERASE NVS ON COM4")
+
+    assert manual_checks.confirm_destructive_action(
+        "Erase NVS on COM4.", "ERASE NVS ON COM4"
+    )
+
+
+def test_destructive_action_rejects_nonmatching_console_confirmation(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    _provide_responses(monkeypatch, "y")
+
+    assert not manual_checks.confirm_destructive_action(
+        "Erase NVS on COM4.", "ERASE NVS ON COM4"
+    )
+
+
+def test_destructive_action_requires_exact_telegram_confirmation(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    prompts: list[tuple[str, int]] = []
+
+    def reply(prompt: str, timeout: int) -> str:
+        prompts.append((prompt, timeout))
+        return "ERASE NVS ON COM4"
+
+    monkeypatch.setenv("INTERACTION_MODE", "telegram")
+    monkeypatch.setenv("TELEGRAM_TIMEOUT", "25")
+    monkeypatch.setattr(manual_checks, "telegram_text", reply)
+
+    assert manual_checks.confirm_destructive_action(
+        "Erase NVS on COM4.", "ERASE NVS ON COM4"
+    )
+    assert prompts == [
+        (
+            "Erase NVS on COM4.\n\n"
+            "This action changes persistent device state. To authorize it, reply with "
+            "exactly: ERASE NVS ON COM4\n"
+            "Any other response cancels the action; no change will be made.",
+            25,
+        )
+    ]
+
+
 def test_manual_prepare_routes_to_telegram(
     monkeypatch: pytest.MonkeyPatch,
 ) -> None:
