@@ -1,0 +1,18 @@
+Test: tests/test_ota.py::TestOta::test_version_reports_active_partition
+Firmware: 2.3.0
+Captured: 2026-10-27T01:30:17.374088+02:00
+
+TX > version
+RX < version
+RX < I (182756) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+RX < I (182756) sentry:   partition: ota_0 @ 0x20000, state: valid
+TX > lamp status
+RX < lamp status
+RX < E (182956) sentry: E003 login required. [REDACTED] 'login <login> [REDACTED] or 'register'
+TX > version
+RX < version
+RX < I (183556) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+RX < I (183556) sentry:   partition: ota_0 @ 0x20000, state: valid
+TX > lamp off
+RX < lamp off
+RX < E (184176) sentry: E003 login required. [REDACTED] 'login <login> [REDACTED] or 'register'

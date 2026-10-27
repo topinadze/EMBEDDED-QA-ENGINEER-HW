@@ -1,0 +1,44 @@
+Test: tests/test_auth_registration.py::test_registration_creates_configured_profile_and_allows_login
+Firmware: 2.3.0
+Captured: 2026-10-26T19:31:37.528888+02:00
+
+TX > version
+RX < version
+RX < I (59990) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+RX < I (59990) sentry:   partition: ota_0 @ 0x20000, state: valid
+TX > status
+RX < status
+RX < I (60200) sentry: === SWM-2 status ===
+RX < I (60200) sentry:   fw:       v2.3.0 (ota_0)
+RX < I (60200) sentry:   state:    1 NORMAL
+RX < I (60200) sentry:   link:     buoy link 'TopA-node', ip 10.223.162.49, rssi -21 dBm (excellent), ch 1
+RX < I (60200) sentry:   internet: OK
+RX < I (60210) sentry:   user:     not logged in
+RX < I (60210) sentry:   time:     19:31:21, uptime 0h 00m 59s
+RX < I (60220) sentry:   valve:    closed
+RX < I (60220) sentry:   watch:    disarmed, CIC alerts unacked: 0
+RX < I (60230) sentry:   sonar:    no contact
+RX < I (60230) sentry:   carrier:  depth 41.6 m, hull 5.2 bar, water 8.2 C, battery 24.20 V (sim)
+RX < I (60240) sentry:   heap:     252 KB free
+TX > whoami
+RX < whoami
+RX < I (60420) sentry: not logged in
+TX > register testUser [REDACTED]
+RX < register testUser [REDACTED]
+RX < I (61020) sentry: [AUTH] profile 'testUser' registered. Now 'login testUser [REDACTED]
+TX > login testUser [REDACTED]
+RX < login testUser [REDACTED]
+RX < I (63040) sentry: [AUTH] operator testUser on watch, console 2
+RX < I (63060) sentry: [TELEMETRY] auto report every 30 s ('health off' to stop)
+TX > whoami
+RX < whoami
+RX < I (66040) sentry: user: testUser, access: user
+TX > whoami
+RX < whoami
+RX < I (66660) sentry: user: testUser, access: user
+TX > logout
+RX < logout
+RX < I (67270) sentry: [AUTH] operator testUser relieved from watch
+TX > whoami
+RX < whoami
+RX < I (68280) sentry: not logged in

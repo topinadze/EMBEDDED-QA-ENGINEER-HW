@@ -1,0 +1,50 @@
+Test: tests/test_ota.py::TestOta::test_ota_check_reports_channel_versions
+Firmware: 2.1.0
+Captured: 2026-10-27T01:34:42.261996+02:00
+
+TX > version
+RX < version
+RX < I (24335) sentry: SENTRY SWM-2 sonar watch module, fw v2.1.0 (build Oct  6 2026 02:14:57)
+RX < I (24335) sentry:   partition: ota_0 @ 0x20000, state: valid
+TX > lamp status
+RX < lamp status
+RX < I (24545) sentry: [BEACON] off, color (255,255,255), brightness 50%, mode solid, timer off
+TX > status
+RX < status
+RX < I (25145) sentry: === SWM-2 status ===
+RX < I (25145) sentry:   fw:       v2.1.0 (ota_0)
+RX < I (25145) sentry:   state:    1 NORMAL
+RX < I (25145) sentry:   link:     buoy link 'TopA-node', ip 10.223.162.49, rssi -23 dBm (excellent), ch 1
+RX < I (25145) sentry:   internet: OK
+RX < I (25155) sentry:   user:     testUser (user)
+RX < I (25155) sentry:   time:     01:34:30, uptime 0h 00m 24s
+RX < I (25165) sentry:   valve:    closed
+RX < I (25165) sentry:   sonar:    no contact
+RX < I (25165) sentry:   carrier:  depth 41.7 m, hull 5.2 bar, water 8.1 C, battery 24.20 V (sim)
+RX < I (25175) sentry:   heap:     258 KB free
+TX > whoami
+RX < whoami
+RX < I (25355) sentry: user: testUser, access: user
+TX > ota check
+RX < ota check
+RX < I (26625) esp-x509-crt-bundle: Certificate validated
+RX < I (27665) esp-x509-crt-bundle: Certificate validated
+RX < I (28845) sentry: [OTA] current: v2.1.0
+RX < I (28845) sentry: [OTA] stable:  v2.1.0
+RX < I (28845) sentry: [OTA] beta:    v2.3.0
+RX < I (28845) sentry: [OTA] up to date (stable)
+TX > lamp timer 0
+RX < lamp timer 0
+RX < I (33585) sentry: [BEACON] timer cancelled
+TX > lamp color 255 255 255
+RX < lamp color 255 255 255
+RX < I (33995) sentry: [BEACON] color: (255,255,255)
+TX > lamp brightness 50
+RX < lamp brightness 50
+RX < I (34405) sentry: [BEACON] brightness: 50%
+TX > lamp mode solid
+RX < lamp mode solid
+RX < I (34815) sentry: [BEACON] mode: solid
+TX > lamp off
+RX < lamp off
+RX < W (35235) sentry: W510 lamp already off

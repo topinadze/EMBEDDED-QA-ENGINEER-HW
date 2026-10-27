@@ -1,0 +1,54 @@
+Test: tests/test_ota.py::TestOta::test_ota_install_nonexistent_version
+Firmware: 2.1.0
+Captured: 2026-10-27T01:35:40.414402+02:00
+
+TX > version
+RX < version
+RX < I (21880) sentry: SENTRY SWM-2 sonar watch module, fw v2.1.0 (build Oct  6 2026 02:14:57)
+RX < I (21880) sentry:   partition: ota_1 @ 0x1a0000, state: valid
+TX > lamp status
+RX < lamp status
+RX < I (22090) sentry: [BEACON] off, color (255,255,255), brightness 50%, mode solid, timer off
+TX > status
+RX < status
+RX < I (22700) sentry: === SWM-2 status ===
+RX < I (22700) sentry:   fw:       v2.1.0 (ota_1)
+RX < I (22700) sentry:   state:    1 NORMAL
+RX < I (22700) sentry:   link:     buoy link 'TopA-node', ip 10.223.162.49, rssi -22 dBm (excellent), ch 1
+RX < I (22700) sentry:   internet: OK
+RX < I (22710) sentry:   user:     testUser (user)
+RX < I (22710) sentry:   time:     01:35:34, uptime 0h 00m 22s
+RX < I (22720) sentry:   valve:    closed
+RX < I (22720) sentry:   sonar:    no contact
+RX < I (22720) sentry:   carrier:  depth 41.8 m, hull 5.2 bar, water 8.2 C, battery 24.20 V (sim)
+RX < I (22730) sentry:   heap:     258 KB free
+TX > whoami
+RX < whoami
+RX < I (22900) sentry: user: testUser, access: user
+TX > version
+RX < version
+RX < I (23110) sentry: SENTRY SWM-2 sonar watch module, fw v2.1.0 (build Oct  6 2026 02:14:57)
+RX < I (23110) sentry:   partition: ota_1 @ 0x1a0000, state: valid
+TX > ota install 999.999.999
+RX < ota install 999.999.999
+RX < I (24270) esp-x509-crt-bundle: Certificate validated
+RX < E (25420) sentry: E415 version v999.999.999 not found on server
+TX > version
+RX < version
+RX < I (25670) sentry: SENTRY SWM-2 sonar watch module, fw v2.1.0 (build Oct  6 2026 02:14:57)
+RX < I (25670) sentry:   partition: ota_1 @ 0x1a0000, state: valid
+TX > lamp timer 0
+RX < lamp timer 0
+RX < I (26280) sentry: [BEACON] timer cancelled
+TX > lamp color 255 255 255
+RX < lamp color 255 255 255
+RX < I (26690) sentry: [BEACON] color: (255,255,255)
+TX > lamp brightness 50
+RX < lamp brightness 50
+RX < I (27100) sentry: [BEACON] brightness: 50%
+TX > lamp mode solid
+RX < lamp mode solid
+RX < I (27510) sentry: [BEACON] mode: solid
+TX > lamp off
+RX < lamp off
+RX < W (27910) sentry: W510 lamp already off

@@ -1,0 +1,12 @@
+Test: tests/test_ota.py::TestOta::test_ota_install_invalid_version_format[2.1]
+Firmware: unknown
+Captured: 2026-10-26T20:04:28.039172+02:00
+
+TX > version
+RX < I (1102905) sentry: [OTA]  20%
+TX > version
+RX < I (1104395) sentry: [TELEMETRY #1] 20:04:22 up 00:18:23 heap 221KB rssi -30 temp 33.4C depth 40.6m hull 5.1bar batt 24.2V valve closed sonar - state NORMAL
+RX < I (1105255) sentry: [OTA]  30%
+TX > version
+RX < I (1107375) sentry: [OTA]  40%
+RX < I (1109495) sentry: [OTA]  50%

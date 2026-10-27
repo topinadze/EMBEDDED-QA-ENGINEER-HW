@@ -1,0 +1,18 @@
+Test: tests/test_ota.py::TestOta::test_version_reports_active_partition
+Firmware: 2.1.0
+Captured: 2026-10-27T01:34:16.811581+02:00
+
+TX > version
+RX < version
+RX < I (8355) sentry: SENTRY SWM-2 sonar watch module, fw v2.1.0 (build Oct  6 2026 02:14:57)
+RX < I (8355) sentry:   partition: ota_0 @ 0x20000, state: valid
+TX > lamp status
+RX < lamp status
+RX < E (8565) sentry: E002 Wi-Fi required. Use 'reconnect' or 'connect'
+TX > version
+RX < version
+RX < I (9175) sentry: SENTRY SWM-2 sonar watch module, fw v2.1.0 (build Oct  6 2026 02:14:57)
+RX < I (9175) sentry:   partition: ota_0 @ 0x20000, state: valid
+TX > lamp off
+RX < lamp off
+RX < E (9785) sentry: E002 Wi-Fi required. Use 'reconnect' or 'connect'

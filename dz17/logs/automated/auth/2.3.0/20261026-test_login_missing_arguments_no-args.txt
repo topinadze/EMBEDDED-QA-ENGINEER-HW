@@ -1,0 +1,29 @@
+Test: tests/test_auth.py::TestAuth::test_login_missing_arguments[no-args]
+Firmware: 2.3.0
+Captured: 2026-10-26T17:53:54.392402+02:00
+
+TX > version
+RX < version
+RX < I (1522270) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+RX < I (1522270) sentry:   partition: ota_0 @ 0x20000, state: valid
+TX > lamp status
+RX < lamp status
+RX < I (1522480) sentry: [BEACON] off, color (255,255,255), brightness 100%, mode solid, timer off
+TX > login
+RX < login
+RX < E (1523090) sentry: E201 usage: login <login> [REDACTED]
+[REDACTED]TX > lamp timer 0
+RX < lamp timer 0
+RX < I (1525100) sentry: [BEACON] timer cancelled
+TX > lamp color 255 255 255
+RX < lamp color 255 255 255
+RX < I (1525510) sentry: [BEACON] color: (255,255,255)
+TX > lamp brightness 100
+RX < lamp brightness 100
+RX < I (1525920) sentry: [BEACON] brightness: 100%
+TX > lamp mode solid
+RX < lamp mode solid
+RX < I (1526330) sentry: [BEACON] mode: solid
+TX > lamp off
+RX < lamp off
+RX < W (1526740) sentry: W510 lamp already off

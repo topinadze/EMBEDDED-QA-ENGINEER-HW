@@ -1,0 +1,78 @@
+Test: tests/test_auth.py::TestAuth::test_login_lockout_and_recovery
+Firmware: 2.3.0
+Captured: 2026-10-26T17:55:13.599029+02:00
+
+TX > version
+RX < version
+RX < I (1561810) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+RX < I (1561810) sentry:   partition: ota_0 @ 0x20000, state: valid
+TX > lamp status
+RX < lamp status
+RX < I (1562020) sentry: [BEACON] off, color (255,255,255), brightness 100%, mode solid, timer off
+TX > status
+RX < status
+RX < I (1562630) sentry: === SWM-2 status ===
+RX < I (1562630) sentry:   fw:       v2.3.0 (ota_0)
+RX < I (1562630) sentry:   state:    1 NORMAL
+RX < I (1562630) sentry:   link:     buoy link 'TopA-node', ip 10.223.162.49, rssi -51 dBm (excellent), ch 1
+RX < I (1562640) sentry:   internet: OK
+RX < I (1562640) sentry:   user:     testUser (user)
+RX < I (1562640) sentry:   time:     17:54:22, uptime 0h 26m 02s
+RX < I (1562650) sentry:   valve:    closed
+RX < I (1562650) sentry:   watch:    disarmed, CIC alerts unacked: 1
+RX < I (1562660) sentry:   sonar:    no contact
+RX < I (1562660) sentry:   carrier:  depth 44.2 m, hull 5.4 bar, water 7.9 C, battery 24.16 V (sim)
+RX < I (1562670) sentry:   heap:     251 KB free
+TX > logout
+RX < logout
+RX < I (1562830) sentry: [AUTH] operator testUser relieved from watch
+TX > login testUser [REDACTED]
+RX < login testUser [REDACTED]
+RX < E (1563840) sentry: E209 wrong login or [REDACTED] Attempts: 1/3
+TX > login testUser [REDACTED]
+RX < login testUser [REDACTED]
+RX < E (1565850) sentry: E209 wrong login or [REDACTED] Attempts: 2/3
+TX > login testUser [REDACTED]
+RX < login testUser [REDACTED]
+RX < E (1567860) sentry: E209 wrong login or [REDACTED] Attempts: 3/3
+RX < E (1567860) sentry: E210 too many attempts, account locked for 30 s
+TX > login testUser [REDACTED]
+RX < login testUser [REDACTED]
+RX < E (1569870) sentry: E207 account locked. Try again in 28 s
+TX > login testUser [REDACTED]
+RX < I (1595280) sentry: [NAV] depth 44.0 m, heading 270, speed 2.8 kn
+RX < login testUser [REDACTED]
+RX < I (1600890) sentry: [AUTH] operator testUser on watch, console 2
+RX < I (1600920) sentry: [TELEMETRY] auto report every 30 s ('health off' to stop)
+TX > status
+RX < status
+RX < I (1603890) sentry: === SWM-2 status ===
+RX < I (1603890) sentry:   fw:       v2.3.0 (ota_0)
+RX < I (1603890) sentry:   state:    1 NORMAL
+RX < I (1603890) sentry:   link:     buoy link 'TopA-node', ip 10.223.162.49, rssi -17 dBm (excellent), ch 1
+RX < I (1603900) sentry:   internet: OK
+RX < I (1603900) sentry:   user:     testUser (user)
+RX < I (1603900) sentry:   time:     17:55:04, uptime 0h 26m 43s
+RX < I (1603910) sentry:   valve:    closed
+RX < I (1603910) sentry:   watch:    disarmed, CIC alerts unacked: 1
+RX < I (1603920) sentry:   sonar:    no contact
+RX < I (1603920) sentry:   carrier:  depth 44.0 m, hull 5.4 bar, water 7.9 C, battery 24.15 V (sim)
+RX < I (1603930) sentry:   heap:     251 KB free
+TX > whoami
+RX < whoami
+RX < I (1604090) sentry: user: testUser, access: user
+TX > lamp timer 0
+RX < lamp timer 0
+RX < I (1604310) sentry: [BEACON] timer cancelled
+TX > lamp color 255 255 255
+RX < lamp color 255 255 255
+RX < I (1604720) sentry: [BEACON] color: (255,255,255)
+TX > lamp brightness 100
+RX < lamp brightness 100
+RX < I (1605130) sentry: [BEACON] brightness: 100%
+TX > lamp mode solid
+RX < lamp mode solid
+RX < I (1605540) sentry: [BEACON] mode: solid
+TX > lamp off
+RX < lamp off
+RX < W (1605960) sentry: W510 lamp already off

@@ -12,7 +12,7 @@ import pytest
 
 from detect_firmware import parse_firmware_version
 from config.test_config import resolve_wifi_credentials
-from drivers.device_driver import DeviceDriver
+from drivers.device_driver import OTA_BOOT_READY_MARKER, DeviceDriver
 from manual_checks import prepare_observation
 
 
@@ -174,6 +174,35 @@ def test_detect_firmware_parser_rejects_missing_or_unsupported_version() -> None
 
 
 @pytest.mark.ota
+def test_ota_success_stages_must_be_observed_in_order() -> None:
+    output = "\n".join(
+        (
+            "[OTA] 100%",
+            "[OTA] success: v2.1.0 -> v2.3.0 in 18 s. Rebooting...",
+            "[OTA] new firmware, PENDING_VERIFY - self-check...",
+            "[OTA] self-check passed, firmware marked VALID",
+            "ready. state 1 NORMAL (patrol). Type 'help'",
+        )
+    )
+
+    _assert_ota_success_stages_in_order(output, "2.1.0", "2.3.0")
+
+    out_of_order_output = output.replace(
+        "[OTA] success: v2.1.0 -> v2.3.0 in 18 s. Rebooting...\n",
+        "",
+    ).replace(
+        "[OTA] 100%\n",
+        "[OTA] success: v2.1.0 -> v2.3.0 in 18 s. Rebooting...\n[OTA] 100%\n",
+    )
+    with pytest.raises(AssertionError, match="installation success"):
+        _assert_ota_success_stages_in_order(
+            out_of_order_output,
+            "2.1.0",
+            "2.3.0",
+        )
+
+
+@pytest.mark.ota
 def test_run_ota_returns_on_check_failure_without_waiting_for_timeout(
     monkeypatch: pytest.MonkeyPatch,
 ) -> None:
@@ -191,6 +220,35 @@ def test_run_ota_returns_on_check_failure_without_waiting_for_timeout(
 
     result = driver.run_ota("ota update", timeout=180.0)
     assert result == failure
+
+
+@pytest.mark.ota
+def test_run_ota_waits_for_device_ready_after_same_version_reinstall(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    driver = DeviceDriver("unused")
+    reads = iter(
+        (
+            ["I sentry: [OTA] success: v2.1.0 -> v2.1.0. Rebooting..."],
+            ["I sentry: [OTA] self-check passed, firmware marked VALID"],
+            ["I sentry: ready. state 1 NORMAL (patrol). Type 'help'"],
+        )
+    )
+    monkeypatch.setattr(
+        driver,
+        "send_command",
+        lambda command, timeout: ["W sentry: W409 same version v2.1.0 - reinstalling"],
+    )
+    monkeypatch.setattr(driver, "_read_for", lambda timeout: next(reads))
+
+    result = driver.run_ota("ota update", timeout=180.0)
+
+    assert any("W409 same version" in line for line in result)
+    assert any("success: v2.1.0 -> v2.1.0" in line for line in result)
+    assert any("self-check passed" in line for line in result)
+    assert any(
+        "ready. state 1 NORMAL (patrol). Type 'help'" in line for line in result
+    )
 
 
 @pytest.mark.ota
@@ -307,6 +365,37 @@ def test_ota_connectivity_retry_fails_fast_after_bounded_attempts(
 # ---------------------------------------------------------------------------
 
 
+def _assert_ota_success_stages_in_order(
+    output: str,
+    old_version: str,
+    new_version: str,
+) -> None:
+    stages = (
+        ("download completion", r"\[OTA\]\s*100%"),
+        (
+            "installation success",
+            rf"\[OTA\]\s*success:\s*v?{re.escape(old_version)}\s*->\s*"
+            rf"v?{re.escape(new_version)}",
+        ),
+        (
+            "self-check start",
+            r"\[OTA\]\s*new firmware,\s*PENDING_VERIFY\s*-\s*self-check\.\.\.",
+        ),
+        (
+            "self-check success",
+            r"\[OTA\]\s*self-check passed,\s*firmware marked VALID",
+        ),
+        ("device ready", re.escape(OTA_BOOT_READY_MARKER)),
+    )
+    search_from = 0
+    for stage, pattern in stages:
+        match = re.search(pattern, output[search_from:], re.IGNORECASE)
+        assert match is not None, (
+            f"OTA output did not report {stage} after the preceding stage:\n{output}"
+        )
+        search_from += match.end()
+
+
 def _assert_successful_update(
     driver: DeviceDriver,
     lines: list[str],
@@ -343,6 +432,10 @@ def _assert_successful_update(
     assert "self-check passed" in output.casefold(), (
         "The new firmware did not report a successful self-check."
     )
+    assert OTA_BOOT_READY_MARKER.casefold() in output.casefold(), (
+        "The new firmware did not report its complete ready state."
+    )
+    _assert_ota_success_stages_in_order(output, old_version, new_version)
 
     with allure.step("Verify the reported firmware and active partition after OTA"):
         version_lines = driver.send_command("version")
@@ -427,7 +520,7 @@ def restore_wifi_after_interrupted_ota(
     ensure_authenticated_device: Callable[[DeviceDriver], None],
     request: pytest.FixtureRequest,
 ) -> Iterator[tuple[Callable[[], None], Callable[[], None]]]:
-    """Restore the operator-disabled AP if the interruption case exits early."""
+    """Restore connectivity and authentication after the AP is disabled."""
     _ensure_saved_wifi_connected(device_driver, request)
     ensure_authenticated_device(device_driver)
     ap_was_disabled = False
@@ -443,16 +536,18 @@ def restore_wifi_after_interrupted_ota(
 
     yield mark_ap_disabled, mark_ap_restored
 
-    if ap_was_disabled and not ap_restored:
-        with allure.step("Restore the test Wi-Fi access point during teardown"):
-            prepare_observation(
-                manual_prepare,
-                action=(
-                    "turn the test Wi-Fi access point back on; keep the board powered"
-                ),
-                expected="device reconnects and reports valid Wi-Fi connection",
-                duration="allow up to 20 seconds",
-            )
+    if ap_was_disabled:
+        with allure.step("Restore Wi-Fi access and authenticated session during teardown"):
+            if not ap_restored:
+                prepare_observation(
+                    manual_prepare,
+                    action=(
+                        "turn the test Wi-Fi access point back on; "
+                        "keep the board powered"
+                    ),
+                    expected="device reconnects and reports valid Wi-Fi connection",
+                    duration="allow up to 20 seconds",
+                )
             _ensure_saved_wifi_connected(device_driver, request)
             ensure_authenticated_device(device_driver)
 
@@ -540,8 +635,10 @@ class TestOta:
     @allure.story("OTA-4: Current channel requires no download")
     @allure.title("Stable update on 2.1.0 is already up to date without downloading")
     @pytest.mark.xfail(
-        reason="BUG-015: ota update on 2.1.0 reinstalls current version instead of no-op"
+        reason="BUG-015: ota update on 2.1.0 reinstalls current version instead of no-op",
+        strict=True,
     )
+    @pytest.mark.persistent
     def test_stable_update_on_current_stable_is_noop(
         self,
         authenticated_device: DeviceDriver,
@@ -552,7 +649,7 @@ class TestOta:
 
         driver = authenticated_device
         before = _partition_state(driver.send_command("version"))
-        lines = driver.run_ota("ota update", timeout=8.0)
+        lines = driver.run_ota("ota update", timeout=180.0)
         output = _response(lines).casefold()
 
         assert "[ota] already up to date" in output or "up to date (stable)" in output, (
@@ -750,8 +847,10 @@ class TestOta:
     # Interactive OTA Interruption and Recovery Tests
     # -----------------------------------------------------------------------
 
-    @allure.story("OTA-6: Retry after Wi-Fi interruption")
-    @allure.title("OTA succeeds on retry after an interrupted download without reboot")
+    @allure.story("OTA-9: Retry after OTA download failure")
+    @allure.title(
+        "Interrupted OTA download can be retried after network recovery"
+    )
     @pytest.mark.interactive
     @pytest.mark.persistent
     def test_interrupted_download_can_be_retried(
@@ -759,6 +858,7 @@ class TestOta:
         device_driver: DeviceDriver,
         firmware_version: str,
         manual_prepare: Any,
+        manual_check: Any,
         restore_wifi_after_interrupted_ota: tuple[
             Callable[[], None], Callable[[], None]
         ],
@@ -820,13 +920,66 @@ class TestOta:
         with allure.step("Restore Wi-Fi access point and reconnect"):
             prepare_observation(
                 manual_prepare,
-                action="turn the test Wi-Fi access point back on; wait until ready",
-                expected="device reconnects and reports valid Wi-Fi connection",
+                action="turn the test Wi-Fi access point back on; keep the board powered",
+                expected="the test access point is available to clients",
                 duration="allow up to 20 seconds",
             )
-            _ensure_saved_wifi_connected(driver, request)
-            ensure_authenticated_device(driver)
+            prepare_observation(
+                manual_prepare,
+                action=(
+                    "if needed, restore the upstream internet connection for "
+                    "the test access point"
+                ),
+                expected=(
+                    "a separate client using this access point (not cellular "
+                    "data) can reach the internet"
+                ),
+                duration=(
+                    "allow up to 60 seconds; if unavailable, report FAIL and "
+                    "stop before the OTA retry"
+                ),
+            )
+            if not manual_check(
+                "Is a separate client connected to the restored test access "
+                "point (not cellular data) able to reach the internet?"
+            ):
+                pytest.skip(
+                    "The operator did not confirm upstream internet on the "
+                    "restored test access point; OTA recovery is inconclusive."
+                )
             mark_ap_restored()
+
+            if firmware_version == "2.3.0":
+                with allure.step(
+                    "Force saved-profile reconnect and verify internet on 2.3.0"
+                ):
+                    disconnect_lines = driver.wifi_disconnect(timeout=10.0)
+                    assert any(
+                        marker in line.casefold()
+                        for line in disconnect_lines
+                        for marker in ("[link] disconnected", "w115")
+                    ), (
+                        "Wi-Fi disconnect did not return the expected UART "
+                        f"confirmation: {disconnect_lines!r}"
+                    )
+
+                    assert driver.wifi_reconnect(timeout=20.0), (
+                        "Saved-profile reconnect did not restore Wi-Fi "
+                        "association and IP."
+                    )
+                    _ensure_saved_wifi_connected(driver, request)
+                    internet_status = driver.wifi_status()
+                    assert internet_status.get("internet") is True, (
+                        "Wi-Fi association/IP returned after reconnect, but "
+                        "internet readiness did not. The AP's upstream "
+                        "internet was confirmed by the operator. Candidate "
+                        "finding: BUG-018. "
+                        f"Status: {internet_status!r}"
+                    )
+            else:
+                _ensure_saved_wifi_connected(driver, request)
+
+            ensure_authenticated_device(driver)
 
         with allure.step("Verify firmware version and partition remained unchanged after error"):
             ver_lines = driver.send_command("version")

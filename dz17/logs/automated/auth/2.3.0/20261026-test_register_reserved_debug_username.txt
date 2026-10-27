@@ -1,0 +1,29 @@
+Test: tests/test_auth.py::TestAuth::test_register_reserved_debug_username
+Firmware: 2.3.0
+Captured: 2026-10-26T15:58:58.620844+02:00
+
+TX > version
+RX < version
+RX < I (2886070) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+RX < I (2886070) sentry:   partition: ota_0 @ 0x20000, state: valid
+TX > lamp status
+RX < lamp status
+RX < I (2886280) sentry: [BEACON] off, color (255,255,255), brightness 100%, mode solid, timer off
+TX > register debug [REDACTED]
+RX < register debug [REDACTED]
+RX < E (2886890) sentry: E202 profile 'testUser' already exists (one per device)
+TX > lamp timer 0
+RX < lamp timer 0
+RX < I (2888990) sentry: [BEACON] timer cancelled
+TX > lamp color 255 255 255
+RX < lamp color 255 255 255
+RX < I (2889400) sentry: [BEACON] color: (255,255,255)
+TX > lamp brightness 100
+RX < lamp brightness 100
+RX < I (2889810) sentry: [BEACON] brightness: 100%
+TX > lamp mode solid
+RX < lamp mode solid
+RX < I (2890220) sentry: [BEACON] mode: solid
+TX > lamp off
+RX < lamp off
+RX < W (2890630) sentry: W510 lamp already off

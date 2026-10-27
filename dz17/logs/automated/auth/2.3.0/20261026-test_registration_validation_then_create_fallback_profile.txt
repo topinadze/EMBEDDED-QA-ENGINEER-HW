@@ -1,0 +1,229 @@
+Test: tests/test_auth_registration.py::test_registration_validation_then_create_fallback_profile
+Firmware: 2.3.0
+Captured: 2026-10-26T18:22:41.092786+02:00
+
+TX > version
+RX < : 4MB
+RX < I (43) boot: Enabling RNG early entropy source...
+RX < I (47) boot: Partition Table:
+RX < I (50) boot: ## Label            Usage          Type ST Offset   Length
+RX < I (56) boot:  0 nvs              WiFi data        01 02 00009000 00006000
+RX < I (63) boot:  1 otadata          OTA data         01 00 0000f000 00002000
+RX < I (69) boot:  2 ota_0            OTA app          00 10 00020000 00180000
+RX < I (76) boot:  3 ota_1            OTA app          00 11 001a0000 00180000
+RX < I (82) boot: End of partition table
+RX < I (86) esp_image: segment 0: paddr=00020020 vaddr=3c0a0020 size=38158h (229720) map
+RX < I (134) esp_image: segment 1: paddr=00058180 vaddr=3fc97200 size=05198h ( 20888) load
+RX < I (139) esp_image: segment 2: paddr=0005d320 vaddr=40374000 size=02cf8h ( 11512) load
+RX < I (141) esp_image: segment 3: paddr=00060020 vaddr=42000020 size=9c08ch (639116) map
+RX < I (260) esp_image: segment 4: paddr=000fc0b4 vaddr=40376cf8 size=10418h ( 66584) load
+RX < I (275) esp_image: segment 5: paddr=0010c4d4 vaddr=50000000 size=00024h (    36) load
+RX < I (284) boot: Loaded app from partition at offset 0x20000
+RX < I (284) boot: Disabling RNG early entropy source...
+RX < I (294) cpu_start: Multicore app
+RX < I (302) cpu_start: GPIO 44 and 43 are used as console UART I/O pins
+RX < I (303) cpu_start: Pro cpu start user code
+RX < I (303) cpu_start: cpu freq: 160000000 Hz
+RX < I (305) app_init: Application information:
+RX < I (308) app_init: Project name:     sentry_fw7
+RX < I (313) app_init: App version:      2.3.0
+RX < I (316) app_init: Compile time:     Oct  6 2026 02:15:26
+RX < I (321) app_init: ELF file SHA256:  ab377c338...
+RX < I (326) app_init: ESP-IDF:          v6.0.1
+RX < I (330) efuse_init: Min chip rev:     v0.0
+RX < I (333) efuse_init: Max chip rev:     v0.99
+RX < I (337) efuse_init: Chip rev:         v0.2
+RX < I (341) heap_init: Initializing. RAM available for dynamic allocation:
+RX < I (348) heap_init: At 3FCA1360 len 000483B0 (288 KiB): RAM
+RX < I (353) heap_init: At 3FCE9710 len 00005724 (21 KiB): RAM
+RX < I (358) heap_init: At 3FCF0000 len 00008000 (32 KiB): DRAM
+RX < I (363) heap_init: At 600FE000 len 00001FE8 (7 KiB): RTCRAM
+RX < I (369) spi_flash: detected chip: boya
+RX < I (372) spi_flash: flash io: dio
+RX < W (375) spi_flash: Detected size(16384k) larger than the size in the binary image header(4096k). Using the size in the binary image header.
+RX < I (388) sleep_gpio: Configure to isolate all GPIO pins in sleep state
+RX < I (393) sleep_gpio: Enable automatic switching of GPIO sleep configuration
+RX < I (400) main_task: Started on CPU0
+RX < I (420) main_task: Calling app_main()
+RX < I (430) temperature_sensor: Range [-10°C ~ 80°C], error < 1°C
+RX < I (430) sentry: ==============================================
+RX < I (430) sentry:   SENTRY SWM-2  sonar watch module  fw v2.3.0
+RX < I (440) sentry:   bow sonar array / perimeter watch / CIC link
+TX > status
+RX < I (440) sentry: ==============================================
+RX < I (450) pp: pp rom version: e7ae62f
+RX < I (450) net80211: net80211 rom version: e7ae62f
+RX < I (470) wifi:wifi driver task: 3fca5d90, prio:23, stack:6656, core=0
+RX < I (470) wifi:wifi firmware version: b37c951
+RX < I (470) wifi:wifi certification version: v7.0
+RX < I (470) wifi:config NVS flash: enabled
+RX < I (470) wifi:config nano formatting: disabled
+RX < I (480) wifi:Init data frame dynamic rx buffer num: 32
+RX < I (480) wifi:Init static rx mgmt buffer num: 5
+RX < I (480) wifi:Init management short buffer num: 32
+RX < I (490) wifi:Init dynamic tx buffer num: 32
+RX < I (490) wifi:Init static tx FG buffer num: 2
+RX < I (500) wifi:Init static rx buffer size: 1600
+RX < I (500) wifi:Init static rx buffer num: 10
+RX < I (510) wifi:Init dynamic rx buffer num: 32
+RX < I (510) wifi_init: rx ba win: 6
+RX < I (510) wifi_init: accept mbox: 6
+RX < I (510) wifi_init: tcpip mbox: 32
+RX < I (520) wifi_init: udp mbox: 6
+RX < I (520) wifi_init: tcp mbox: 6
+RX < I (520) wifi_init: tcp tx win: 5760
+RX < I (530) wifi_init: tcp rx win: 5760
+RX < I (530) wifi_init: tcp mss: 1440
+RX < I (530) wifi_init: WiFi IRAM OP enabled
+RX < I (540) wifi_init: WiFi RX IRAM OP enabled
+RX < I (540) phy_init: phy_version 711,97bcf0a2,Aug 25 2025,19:04:10
+RX < W (550) phy_init: failed to load RF calibration data (0x1102), falling back to full calibration
+RX < I (590) phy_init: Saving new calibration data due to checksum failure or outdated calibration data, mode(2)
+RX < I (600) wifi:mode : sta (c0:4e:30:04:83:6c)
+RX < I (600) wifi:enable tsf
+RX < I (600) sentry: [LINK] no known network. Type 'connect'
+RX < I (600) sentry: [AUTH] no profile. Use 'register <login> [REDACTED]
+RX < I (600) sentry: last reset: power on
+RX < I (610) sentry: build tag: c3VkbyBzM250cnktcjAwdA==
+RX < I (610) sentry: [HW] transducer array: 1 ch, 40 kHz, driver OK
+RX < I (620) sentry: [HW] hull penetrator seal: OK, pressure sensor: OK
+RX < W (620) sentry: [NAV] depth sensor offline (lab mode) - using simulator
+RX < I (630) sentry: [NAV] carrier: SSK 'Skat', bow sonar bay #2, depth 41.8 m
+RX < I (640) sentry: [OTA] running v2.3.0 from ota_0
+RX < version
+RX < I (640) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+RX < I (650)
+RX < sentry:   partition: ota_0 @ 0x20000, state: valid
+RX < status
+RX < I (650) sentry: ready. state 1 NORMAL (patrol). Type 'help'
+RX < I (660) main_task: Returned from app_main()
+RX < I (750) sentry: === SWM-2 status ===
+RX < I (750) sentry:   fw:       v2.3.0 (ota_0)
+RX < I (750) sentry:   state:    1 NORMAL
+RX < I (750) sentry:   link:     buoy link down (known: none)
+RX < I (750) sentry:   user:     not logged in
+RX < I (750) sentry:   time:     --:--:--, uptime 0h 00m 00s
+RX < I (760) sentry:   valve:    closed
+RX < I (760) sentry:   watch:    disarmed, CIC alerts unacked: 0
+RX < I (770) sentry:   sonar:    no contact
+RX < I (770) sentry:   carrier:  depth 41.8 m, hull 5.2 bar, water 8.1 C, battery 24.20 V (sim)
+RX < I (780) sentry:   heap:     255 KB free
+TX > reconnect
+RX < reconnect
+RX < E (990) sentry: E113 no known network. Use 'connect' first
+RX < I (20650) sentry: [NAV] depth 41.9 m, heading 274, speed 2.9 kn
+TX > status
+RX < status
+RX < I (21000) sentry: === SWM-2 status ===
+RX < I (21000) sentry:   fw:       v2.3.0 (ota_0)
+RX < I (21000) sentry:   state:    1 NORMAL
+RX < I (21000) sentry:   link:     buoy link down (known: none)
+RX < I (21000) sentry:   user:     not logged in
+RX < I (21000) sentry:   time:     --:--:--, uptime 0h 00m 20s
+RX < I (21010) sentry:   valve:    closed
+RX < I (21010) sentry:   watch:    disarmed, CIC alerts unacked: 0
+RX < I (21020) sentry:   sonar:    no contact
+RX < I (21020) sentry:   carrier:  depth 41.9 m, hull 5.2 bar, water 8.0 C, battery 24.20 V (sim)
+RX < I (21030) sentry:   heap:     255 KB free
+TX > connect
+RX < connect
+RX < I (21200) sentry: [LINK] scanning...
+RX < I (23700) sentry:   [ 1] TopA-node                         -16 dBm
+RX < I (23700) sentry:   [ 2] TopAs_2.4G                        -60 dBm
+RX < I (23700) sentry:   [ 3] AP_2987279135                     -60 dBm
+RX < I (23700) sentry:   [ 4] bambuh                            -67 dBm
+RX < I (23710) sentry:   [ 5] 376                               -71 dBm
+RX < I (23710) sentry:   [ 6] bambuh                            -74 dBm
+RX < I (23720) sentry:   [ 7] HiSmart-01-ca2c4fae593b           -75 dBm
+RX < I (23730) sentry:   [ 8] HiSmart-01-ca2c4fae5ef5           -78 dBm
+RX < I (23730) sentry:   [ 9] NeD                               -79 dBm
+RX < I (23740) sentry:   [10] c63f5354                          -81 dBm
+RX < I (23740) sentry:   [11] Kvartira212                       -84 dBm
+RX < I (23750) sentry:   [12] nest wifi                         -85 dBm
+RX < I (23760) sentry:   [13] oooaaa_Guest24                    -85 dBm
+RX < I (23760) sentry:   [14] GreenMint                         -86 dBm
+RX < I (23770) sentry:   [15] Sashka                            -87 dBm
+RX < I (23770) sentry:   [16] c6861204                          -88 dBm
+RX < I (23780) sentry:   [17] Xiaomi_625B                       -88 dBm
+RX < I (23790) sentry:   [18] VR46                              -88 dBm
+RX < I (23790) sentry:   [19] c67272ed                          -90 dBm
+RX < I (23800) sentry:   [20] Keenetic-0122                     -90 dBm
+RX < SSID or number:
+TX > TopA-node
+RX < TopA-node
+RX < Password:
+[REDACTED]TX > [REDACTED]
+RX < **********
+RX < I (24250) sentry: [LINK] raising buoy antenna, connecting to 'TopA-node'...
+RX < I (24340) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0
+RX < I (24340) wifi:state: init -> auth (0xb0)
+RX < I (24360) wifi:state: auth -> assoc (0x0)
+RX < I (24370) wifi:state: assoc -> run (0x10)
+RX < I (24380) wifi:connected with TopA-node, aid = 1, channel 1, BW20, bssid = 76:f3:6c:ca:03:5f
+RX < I (24380) wifi:security: WPA2-PSK, phy: bgn, rssi: -16, cipher(pairwise:0x3, group:0x3), pmf:1
+RX < I (24390) wifi:pm start, type: 1
+RX < I (24390) wifi:dp: 1, bi: 102400, li: 3, scale listen interval from 307200 us to 307200 us
+RX < I (24400) wifi:set rx beacon pti, rx_bcn_pti: 0, bcn_timeout: 25000, mt_pti: 0, mt_time: 10000
+RX < I (24410) wifi:dp: 2, bi: 102400, li: 4, scale listen interval from 307200 us to 409600 us
+RX < I (24420) wifi:AP's beacon interval = 102400 us, DTIM period = 2
+RX < I (25460) esp_netif_handlers: sta ip: 10.223.162.49, mask: 255.255.255.0, gw: 10.223.162.101
+RX < I (25460) sentry: [LINK] got ip 10.223.162.49
+RX < I (25460) sentry: [LINK] connected to 'TopA-node', rssi -15 dBm (excellent)
+TX > status
+RX < I (28900) wifi:<ba-add>idx:0 (ifx:0, 76:f3:6c:ca:03:5f), tid:0, ssn:5, winSize:64
+RX < I (29670) esp-x509-crt-bundle: Certificate validated
+RX < I (30140) wifi:[ADDBA]RX DELBA, reason:39, delete tid:0, initiator:0(recipient)
+RX < I (30870) sentry: [LINK] fleet network reachable (internet OK)
+RX < I (31030) sentry: [LINK] time: synced via NTP, 18:22:11
+RX < I (31040) wifi:<ba-add>idx:1 (ifx:0, 76:f3:6c:ca:03:5f), tid:6, ssn:2, winSize:64
+RX < I (31040) sentry: [LINK] network saved. Next time just type 'reconnect'
+RX < status
+RX < I (31140) sentry: === SWM-2 status ===
+RX < I (31140) sentry:   fw:       v2.3.0 (ota_0)
+RX < I (31140) sentry:   state:    1 NORMAL
+RX < I (31140) sentry:   link:     buoy link 'TopA-node', ip 10.223.162.49, rssi -13 dBm (excellent), ch 1
+RX < I (31140) sentry:   internet: OK
+RX < I (31150) sentry:   user:     not logged in
+RX < I (31150) sentry:   time:     18:22:11, uptime 0h 00m 30s
+RX < I (31160) sentry:   valve:    closed
+RX < I (31160) sentry:   watch:    disarmed, CIC alerts unacked: 0
+RX < I (31170) sentry:   sonar:    no contact
+RX < I (31170) sentry:   carrier:  depth 41.9 m, hull 5.2 bar, water 8.0 C, battery 24.20 V (sim)
+RX < I (31180) sentry:   heap:     252 KB free
+TX > whoami
+RX < whoami
+RX < I (31460) sentry: not logged in
+TX > register
+RX < register
+RX < E (32070) sentry: E201 usage: register <login> [REDACTED]
+[REDACTED]TX > register onlyuser
+RX < register onlyuser
+RX < E (34080) sentry: E201 usage: register <login> [REDACTED]
+[REDACTED]TX > register debug [REDACTED]
+RX < register debug [REDACTED]
+RX < E (36090) sentry: E203 login 'debug' [REDACTED] reserved
+TX > register ab [REDACTED]
+RX < register ab [REDACTED]
+RX < E (38100) sentry: E204 login must [REDACTED] 3-16 chars: a-z A-Z 0-9 _
+TX > register aaaaaaaaaaaaaaaaa [REDACTED]
+RX < register aaaaaaaaaaaaaaaaa [REDACTED]
+RX < E (40110) sentry: E204 login must [REDACTED] 3-16 chars: a-z A-Z 0-9 _
+TX > register bad@user [REDACTED]
+RX < register bad@user [REDACTED]
+RX < E (42120) sentry: E204 login must [REDACTED] 3-16 chars: a-z A-Z 0-9 _
+TX > register validUser [REDACTED]
+RX < register validUser [REDACTED]
+RX < E (44130) sentry: E205 password must be 6-32 chars
+TX > register validUser [REDACTED]
+RX < register validUser [REDACTED]
+RX < E (46130) sentry: E205 password must be 6-32 chars
+TX > register testUser [REDACTED]
+RX < register testUser [REDACTED]
+RX < I (48140) sentry: [AUTH] profile 'testUser' registered. Now 'login testUser [REDACTED]
+TX > login testUser [REDACTED]
+RX < login testUser [REDACTED]
+RX < I (50150) sentry: [AUTH] operator testUser on watch, console 2
+RX < I (50250) sentry: [TELEMETRY] auto report every 30 s ('health off' to stop)
+TX > whoami
+RX < whoami
+RX < I (53170) sentry: user: testUser, access: user

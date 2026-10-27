@@ -1,0 +1,1 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="0" skipped="0" tests="1" time="72.954" timestamp="2026-10-26T18:21:28.168544+02:00" hostname="Prosha"><testcase classname="tests.test_auth_registration" name="test_registration_validation_then_create_fallback_profile" time="72.923" /></testsuite></testsuites>

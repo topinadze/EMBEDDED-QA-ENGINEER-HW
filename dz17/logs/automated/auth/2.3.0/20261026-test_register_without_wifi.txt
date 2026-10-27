@@ -1,0 +1,100 @@
+Test: tests/test_auth.py::TestAuth::test_register_without_wifi
+Firmware: 2.3.0
+Captured: 2026-10-26T17:53:49.472128+02:00
+
+TX > version
+RX < version
+RX < I (1499350) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+RX < I (1499350) sentry:   partition: ota_0 @ 0x20000, state: valid
+TX > lamp status
+RX < lamp status
+RX < I (1499550) sentry: [BEACON] off, color (255,255,255), brightness 100%, mode solid, timer off
+TX > disconnect
+RX < disconnect
+RX < I (1500170) wifi:state: run -> init (0x0)
+RX < I (1500170) wifi:pm stop, total sleep time: 368084160 us / 413612502 us
+RX < I (1500170) wifi:<ba-del>idx:0, tid:0
+RX < I (1500170) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0
+RX < I (1500180) sentry: [LINK] disconnected
+TX > status
+RX < status
+RX < I (1500380) sentry: === SWM-2 status ===
+RX < I (1500380) sentry:   fw:       v2.3.0 (ota_0)
+RX < I (1500380) sentry:   state:    1 NORMAL
+RX < I (1500380) sentry:   link:     buoy link down (known: TopA-node)
+RX < I (1500380) sentry:   user:     testUser (user)
+RX < I (1500390) sentry:   time:     17:53:20, uptime 0h 25m 00s
+RX < I (1500390) sentry:   valve:    closed
+RX < I (1500390) sentry:   watch:    disarmed, CIC alerts unacked: 1
+RX < I (1500400) sentry:   sonar:    no contact
+RX < I (1500400) sentry:   carrier:  depth 44.2 m, hull 5.4 bar, water 8.0 C, battery 24.16 V (sim)
+RX < I (1500410) sentry:   heap:     251 KB free
+TX > register someUser [REDACTED]
+RX < register someUser [REDACTED]
+RX < E (1500580) sentry: E002 Wi-Fi required. Use 'reconnect' or 'connect'
+TX > status
+RX < status
+RX < I (1502590) sentry: === SWM-2 status ===
+RX < I (1502590) sentry:   fw:       v2.3.0 (ota_0)
+RX < I (1502590) sentry:   state:    1 NORMAL
+RX < I (1502590) sentry:   link:     buoy link down (known: TopA-node)
+RX < I (1502590) sentry:   user:     testUser (user)
+RX < I (1502600) sentry:   time:     17:53:22, uptime 0h 25m 02s
+RX < I (1502600) sentry:   valve:    closed
+RX < I (1502600) sentry:   watch:    disarmed, CIC alerts unacked: 1
+RX < I (1502610) sentry:   sonar:    no contact
+RX < I (1502610) sentry:   carrier:  depth 44.2 m, hull 5.4 bar, water 8.0 C, battery 24.16 V (sim)
+RX < I (1502620) sentry:   heap:     251 KB free
+TX > reconnect
+RX < reconnect
+RX < I (1502900) sentry: [LINK] raising buoy antenna, connecting to 'TopA-node'...
+RX < I (1502900) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0
+RX < I (1502900) wifi:state: init -> auth (0xb0)
+RX < I (1502910) wifi:state: auth -> assoc (0x0)
+RX < I (1502920) wifi:state: assoc -> run (0x10)
+RX < I (1502940) wifi:connected with TopA-node, aid = 1, channel 1, BW20, bssid = 76:f3:6c:ca:03:5f
+RX < I (1502940) wifi:security: WPA2-PSK, phy: bgn, rssi: -57, cipher(pairwise:0x3, group:0x3), pmf:1
+RX < I (1502940) wifi:pm start, type: 1
+RX < I (1502950) wifi:dp: 1, bi: 102400, li: 3, scale listen interval from 307200 us to 307200 us
+RX < I (1502950) wifi:set rx beacon pti, rx_bcn_pti: 0, bcn_timeout: 25000, mt_pti: 0, mt_time: 10000
+RX < I (1503040) wifi:dp: 2, bi: 102400, li: 4, scale listen interval from 307200 us to 409600 us
+RX < I (1503040) wifi:AP's beacon interval = 102400 us, DTIM period = 2
+RX < I (1511480) esp_netif_handlers: sta ip: 10.223.162.49, mask: 255.255.255.0, gw: 10.223.162.101
+RX < I (1511480) sentry: [LINK] got ip 10.223.162.49
+RX < I (1511480) sentry: [LINK] connected to 'TopA-node', rssi -46 dBm (excellent)
+TX > status
+RX < I (1511630) sentry: [TELEMETRY] auto report every 30 s ('health off' to stop)
+RX < I (1512160) wifi:<ba-add>idx:0 (ifx:0, 76:f3:6c:ca:03:5f), tid:0, ssn:6, winSize:64
+RX < I (1512710) esp-x509-crt-bundle: Certificate validated
+RX < I (1513700) sentry: [LINK] fleet network reachable (internet OK)
+RX < I (1514170) sentry: [PWR] battery bus 24.16 V, load 1.7 A
+RX < W (1519700) sentry: W106 [LINK] time: NTP sync failed, timestamps disabled
+RX < status
+RX < I (1519800) sentry: === SWM-2 status ===
+RX < I (1519800) sentry:   fw:       v2.3.0 (ota_0)
+RX < I (1519800) sentry:   state:    1 NORMAL
+RX < I (1519800) sentry:   link:     buoy link 'TopA-node', ip 10.223.162.49, rssi -31 dBm (excellent), ch 1
+RX < I (1519810) sentry:   internet: OK
+RX < I (1519810) sentry:   user:     testUser (user)
+RX < I (1519810) sentry:   time:     17:53:39, uptime 0h 25m 19s
+RX < I (1519820) sentry:   valve:    closed
+RX < I (1519820) sentry:   watch:    disarmed, CIC alerts unacked: 1
+RX < I (1519830) sentry:   sonar:    no contact
+RX < I (1519830) sentry:   carrier:  depth 44.2 m, hull 5.4 bar, water 7.9 C, battery 24.16 V (sim)
+RX < I (1519840)
+RX < sentry:   heap:     251 KB free
+TX > lamp timer 0
+RX < lamp timer 0
+RX < I (1520180) sentry: [BEACON] timer cancelled
+TX > lamp color 255 255 255
+RX < lamp color 255 255 255
+RX < I (1520600) sentry: [BEACON] color: (255,255,255)
+TX > lamp brightness 100
+RX < lamp brightness 100
+RX < I (1521010) sentry: [BEACON] brightness: 100%
+TX > lamp mode solid
+RX < lamp mode solid
+RX < I (1521420) sentry: [BEACON] mode: solid
+TX > lamp off
+RX < lamp off
+RX < W (1521830) sentry: W510 lamp already off

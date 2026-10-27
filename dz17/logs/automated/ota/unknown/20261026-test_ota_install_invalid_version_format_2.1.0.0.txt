@@ -1,0 +1,26 @@
+Test: tests/test_ota.py::TestOta::test_ota_install_invalid_version_format[2.1.0.0]
+Firmware: unknown
+Captured: 2026-10-26T20:04:37.142385+02:00
+
+TX > version
+RX < I (1111005) sentry: [OTA]  60%
+TX > version
+RX < I (1113345) sentry: [OTA]  70%
+RX < I (1115265) sentry: [OTA]  80%
+TX > version
+RX < I (1117075) sentry: [OTA]  90%
+RX < I (1118795) sentry: [OTA] 100%
+RX < I (1118795) esp_image: segment 0: paddr=00020020 vaddr=3c0a0020 size=378a8h (227496) map
+RX < I (1118825) esp_image: segment 1: paddr=000578d0 vaddr=3fc97200 size=05188h ( 20872)
+RX < I (1118825) esp_image: segment 2: paddr=0005ca60 vaddr=40374000 size=035b8h ( 13752)
+RX < I (1118825) esp_image: segment 3: paddr=00060020 vaddr=42000020 size=9b1c0h (635328) map
+RX < I (1118915) esp_image: segment 4: paddr=000fb1e8 vaddr=403775b8 size=0fb58h ( 64344)
+RX < I (1118925) esp_image: segment 5: paddr=0010ad48 vaddr=50000000 size=00024h (    36)
+RX < I (1118935) esp_image: segment 0: paddr=00020020 vaddr=3c0a0020 size=378a8h (227496) map
+RX < I (1118965) esp_image: segment 1: paddr=000578d0 vaddr=3fc97200 size=05188h ( 20872)
+RX < I (1118965) esp_image: segment 2: paddr=0005ca60 vaddr=40374000 size=035b8h ( 13752)
+RX < I (1118965) esp_image: segment 3: paddr=00060020 vaddr=42000020 size=9b1c0h (635328) map
+RX < I (1119065) esp_image: segment 4: paddr=000fb1e8 vaddr=403775b8 size=0fb58h ( 64344)
+RX < I (1119075) esp_image: segment 5: paddr=0010ad48 vaddr=50000000 size=00024h (    36)
+RX < I (1119085) sentry: [OTA] success: v2.1.0 -> v2.1.0 in 20 s. Rebooting...
+RX < I (1119085) wifi:[ADDBA]RX DELBA, reason:39, delete tid:0, initiator:0(recipient)

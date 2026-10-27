@@ -1,0 +1,148 @@
+DEBUG    urllib3.connectionpool:connectionpool.py:1081 Starting new HTTPS connection (1): api.telegram.org:443
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/sendMessage HTTP/1.1" 200 369
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 376
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 389
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 373
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 391
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 375
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 390
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 374
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 393
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 377
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 389
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 373
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 385
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 369
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 388
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 372
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 403
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 387
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 403
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 387
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 401
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 385
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 401
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 385
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 423
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 407
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 406
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 390
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 422
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 406
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 421
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 405
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 411
+WARNING  drivers.device_driver:device_driver.py:622 OTA command 'ota update beta' hit a transient connectivity error (attempt 1/2); retrying in 0.0 seconds.
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 395
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 411
+WARNING  drivers.device_driver:device_driver.py:622 OTA command 'ota update beta' hit a transient connectivity error (attempt 1/2); retrying in 0.0 seconds.
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 395
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 418
+WARNING  drivers.device_driver:device_driver.py:622 OTA command 'ota update beta' hit a transient connectivity error (attempt 1/2); retrying in 0.0 seconds.
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 402
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 400
+DEBUG    drivers.device_driver:device_driver.py:136 TX > version
+DEBUG    drivers.device_driver:device_driver.py:136 RX < version
+DEBUG    drivers.device_driver:device_driver.py:136 RX < I (876021) sentry: SENTRY SWM-2 sonar watch module, fw v2.1.0 (build Oct  6 2026 02:14:57)
+DEBUG    drivers.device_driver:device_driver.py:136 RX < I (876021) sentry:   partition: ota_0 @ 0x20000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:136 TX > lamp status
+DEBUG    drivers.device_driver:device_driver.py:136 RX < lamp status
+DEBUG    drivers.device_driver:device_driver.py:136 RX < E (876231) sentry: E002 Wi-Fi required. Use 'reconnect' or 'connect'
+WARNING  conftest:conftest.py:426 Lamp state snapshot unavailable.
+DEBUG    drivers.device_driver:device_driver.py:136 TX > version
+DEBUG    drivers.device_driver:device_driver.py:136 RX < version
+DEBUG    drivers.device_driver:device_driver.py:136 RX < I (876841) sentry: SENTRY SWM-2 sonar watch module, fw v2.1.0 (build Oct  6 2026 02:14:57)
+DEBUG    drivers.device_driver:device_driver.py:136 RX < I (876841) sentry:   partition: ota_0 @ 0x20000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:136 TX > lamp off
+DEBUG    drivers.device_driver:device_driver.py:136 RX < lamp off
+DEBUG    drivers.device_driver:device_driver.py:136 RX < E (877451) sentry: E002 Wi-Fi required. Use 'reconnect' or 'connect'
+INFO     conftest:conftest.py:542 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz17\logs\automated\ota\2.1.0\20261026-test_version_reports_active_partition.txt
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 384
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 397
+DEBUG    drivers.device_driver:device_driver.py:136 TX > version
+DEBUG    drivers.device_driver:device_driver.py:136 RX < version
+DEBUG    drivers.device_driver:device_driver.py:136 RX < I (878091) sentry: SENTRY SWM-2 sonar watch module, fw v2.1.0 (build Oct  6 2026 02:14:57)
+DEBUG    drivers.device_driver:device_driver.py:136 RX < I (878091) sentry:   partition: ota_0 @ 0x20000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:136 TX > lamp status
+DEBUG    drivers.device_driver:device_driver.py:136 RX < lamp status
+DEBUG    drivers.device_driver:device_driver.py:136 RX < E (878291) sentry: E002 Wi-Fi required. Use 'reconnect' or 'connect'
+WARNING  conftest:conftest.py:426 Lamp state snapshot unavailable.
+DEBUG    drivers.device_driver:device_driver.py:136 TX > status
+DEBUG    drivers.device_driver:device_driver.py:136 RX < status
+DEBUG    drivers.device_driver:device_driver.py:136 RX < I (878901) sentry: === SWM-2 status ===
+DEBUG    drivers.device_driver:device_driver.py:136 RX < I (878901) sentry:   fw:       v2.1.0 (ota_0)
+DEBUG    drivers.device_driver:device_driver.py:136 RX < I (878901) sentry:   state:    1 NORMAL
+DEBUG    drivers.device_driver:device_driver.py:136 RX < I (878901) sentry:   link:     buoy link down (known: TopA-node)
+DEBUG    drivers.device_driver:device_driver.py:136 RX < I (878901) sentry:   user:     not logged in
+DEBUG    drivers.device_driver:device_driver.py:136 RX < I (878901) sentry:   time:     --:--:--, uptime 0h 14m 38s
+DEBUG    drivers.device_driver:device_driver.py:136 RX < I (878911) sentry:   valve:    closed
+DEBUG    drivers.device_driver:device_driver.py:136 RX < I (878911) sentry:   sonar:    no contact
+DEBUG    drivers.device_driver:device_driver.py:136 RX < I (878921) sentry:   carrier:  depth 41.2 m, hull 5.1 bar, water 8.2 C, battery 24.17 V (sim)
+DEBUG    drivers.device_driver:device_driver.py:136 RX < I (878931) sentry:   heap:     261 KB free
+DEBUG    drivers.device_driver:device_driver.py:136 TX > reconnect
+DEBUG    drivers.device_driver:device_driver.py:136 RX < reconnect
+DEBUG    drivers.device_driver:device_driver.py:136 RX < I (879211) sentry: [LINK] raising buoy antenna, connecting to 'TopA-node'...
+DEBUG    drivers.device_driver:device_driver.py:136 RX < I (881621) sentry: [LINK] retry 1/3...
+DEBUG    drivers.device_driver:device_driver.py:136 RX < I (884031) sentry: [LINK] retry 2/3...
+DEBUG    drivers.device_driver:device_driver.py:136 RX < I (886451) sentry: [LINK] retry 3/3...
+DEBUG    drivers.device_driver:device_driver.py:136 RX < E (888861) sentry: E102 network 'TopA-node' not found
+WARNING  drivers.device_driver:device_driver.py:832 Wi-Fi reconnect failed after explicit UART response 'E102'
+DEBUG    drivers.device_driver:device_driver.py:136 TX > status
+DEBUG    drivers.device_driver:device_driver.py:136 RX < status
+DEBUG    drivers.device_driver:device_driver.py:136 RX < I (889101) sentry: === SWM-2 status ===
+DEBUG    drivers.device_driver:device_driver.py:136 RX < I (889101) sentry:   fw:       v2.1.0 (ota_0)
+DEBUG    drivers.device_driver:device_driver.py:136 RX < I (889101) sentry:   state:    1 NORMAL
+DEBUG    drivers.device_driver:device_driver.py:136 RX < I (889101) sentry:   link:     buoy link down (known: TopA-node)
+DEBUG    drivers.device_driver:device_driver.py:136 RX < I (889101) sentry:   user:     not logged in
+DEBUG    drivers.device_driver:device_driver.py:136 RX < I (889101) sentry:   time:     --:--:--, uptime 0h 14m 48s
+DEBUG    drivers.device_driver:device_driver.py:136 RX < I (889111) sentry:   valve:    closed
+DEBUG    drivers.device_driver:device_driver.py:136 RX < I (889111) sentry:   sonar:    no contact
+DEBUG    drivers.device_driver:device_driver.py:136 RX < I (889121) sentry:   carrier:  depth 41.2 m, hull 5.1 bar, water 8.2 C, battery 24.17 V (sim)
+DEBUG    drivers.device_driver:device_driver.py:136 RX < I (889131) sentry:   heap:     260 KB free
+DEBUG    drivers.device_driver:device_driver.py:136 TX > connect
+DEBUG    drivers.device_driver:device_driver.py:136 RX < connect
+DEBUG    drivers.device_driver:device_driver.py:136 RX < I (889301) sentry: [LINK] scanning...
+DEBUG    drivers.device_driver:device_driver.py:136 RX < I (891801) sentry:   [ 1] TopAs_2.4G                        -58 dBm
+DEBUG    drivers.device_driver:device_driver.py:136 RX < I (891801) sentry:   [ 2] AP_2987279135                     -62 dBm
+DEBUG    drivers.device_driver:device_driver.py:136 RX < I (891801) sentry:   [ 3] bambuh                            -79 dBm
+DEBUG    drivers.device_driver:device_driver.py:136 RX < I (891801) sentry:   [ 4] E_0184_2390_E                     -79 dBm
+DEBUG    drivers.device_driver:device_driver.py:136 RX < I (891811) sentry:   [ 5] Sashka                            -85 dBm
+DEBUG    drivers.device_driver:device_driver.py:136 RX < I (891821) sentry:   [ 6] NeD                               -87 dBm
+DEBUG    drivers.device_driver:device_driver.py:136 RX < I (891821) sentry:   [ 7] rabbits                           -88 dBm
+DEBUG    drivers.device_driver:device_driver.py:136 RX < I (891831) sentry:   [ 8] Degoostancia                      -89 dBm
+DEBUG    drivers.device_driver:device_driver.py:136 RX < I (891831) sentry:   [ 9] GreenMint                         -90 dBm
+DEBUG    drivers.device_driver:device_driver.py:136 RX < I (891841) sentry:   [10] Sunflower_2g                      -90 dBm
+DEBUG    drivers.device_driver:device_driver.py:136 RX < I (891841) sentry:   [11] Solia                             -91 dBm
+DEBUG    drivers.device_driver:device_driver.py:136 RX < I (891851) sentry:   [12] oooaaa                            -92 dBm
+DEBUG    drivers.device_driver:device_driver.py:136 RX < I (891861) sentry:   [13] SmileV                            -92 dBm
+DEBUG    drivers.device_driver:device_driver.py:136 RX < I (891861) sentry:   [14] c67c1415                          -93 dBm
+DEBUG    drivers.device_driver:device_driver.py:136 RX < I (891871) sentry:   [15] D262100562C0                      -93 dBm
+DEBUG    drivers.device_driver:device_driver.py:136 RX < I (891871) sentry:   [16] Sunflower                         -94 dBm
+DEBUG    drivers.device_driver:device_driver.py:136 RX < SSID or number:
+DEBUG    drivers.device_driver:device_driver.py:136 TX > TopA-node
+DEBUG    drivers.device_driver:device_driver.py:136 RX < TopA-node
+DEBUG    drivers.device_driver:device_driver.py:136 RX < Password:
+[REDACTED]DEBUG    drivers.device_driver:device_driver.py:136 TX > [REDACTED]
+DEBUG    drivers.device_driver:device_driver.py:136 RX < **********
+DEBUG    drivers.device_driver:device_driver.py:136 RX < I (892411) sentry: [LINK] raising buoy antenna, connecting to 'TopA-node'...
+DEBUG    drivers.device_driver:device_driver.py:136 RX < I (894821) sentry: [LINK] retry 1/3...
+DEBUG    drivers.device_driver:device_driver.py:136 RX < I (895001) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0
+DEBUG    drivers.device_driver:device_driver.py:136 RX < I (895001) wifi:state: init -> auth (0xb0)
+DEBUG    drivers.device_driver:device_driver.py:136 RX < I (895011) wifi:state: auth -> assoc (0x0)
+DEBUG    drivers.device_driver:device_driver.py:136 RX < I (895011) wifi:state: assoc -> run (0x10)
+DEBUG    drivers.device_driver:device_driver.py:136 RX < I (895031) wifi:connected with TopA-node, aid = 1, channel 1, BW20, bssid = 3e:0f:b8:7f:32:62
+DEBUG    drivers.device_driver:device_driver.py:136 RX < I (895031) wifi:security: WPA2-PSK, phy: bgn, rssi: -20, cipher(pairwise:0x3, group:0x3), pmf:1
+DEBUG    drivers.device_driver:device_driver.py:136 RX < I (895041) wifi:pm start, type: 1
+DEBUG    drivers.device_driver:device_driver.py:136 RX < I (895041) wifi:dp: 1, bi: 102400, li: 3, scale listen interval from 307200 us to 307200 us
+DEBUG    drivers.device_driver:device_driver.py:136 RX < I (895051) wifi:set rx beacon pti, rx_bcn_pti: 0, bcn_timeout: 25000, mt_pti: 0, mt_time: 10000
+DEBUG    drivers.device_driver:device_driver.py:136 RX < I (895121) wifi:dp: 2, bi: 102400, li: 4, scale listen interval from 307200 us to 409600 us
+DEBUG    drivers.device_driver:device_driver.py:136 RX < I (895121) wifi:AP's beacon interval = 102400 us, DTIM period = 2
+DEBUG    drivers.device_driver:device_driver.py:136 RX < I (896081) esp_netif_handlers: sta ip: 10.223.162.49, mask: 255.255.255.0, gw: 10.223.162.101
+DEBUG    drivers.device_driver:device_driver.py:136 RX < I (896081) sentry: [LINK] got ip 10.223.162.49
+DEBUG    drivers.device_driver:device_driver.py:136 RX < I (896081) sentry: [LINK] connected to 'TopA-node', rssi -19 dBm (excellent)
+DEBUG    drivers.device_driver:device_driver.py:136 TX > status
+DEBUG    drivers.device_driver:device_driver.py:136 RX < I (896341) wifi:<ba-add>idx:0 (ifx:0, 3e:0f:b8:7f:32:62), tid:0, ssn:3, winSize:64
+DEBUG    drivers.device_driver:device_driver.py:136 RX < I (896711) esp-x509-crt-bundle: Certificate validated
+DEBUG    drivers.device_driver:device_driver.py:136 TX > lamp off
+DEBUG    drivers.device_driver:device_driver.py:136 RX < I (897921) sentry: [LINK] fleet network reachable (internet OK)
+INFO     conftest:conftest.py:542 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz17\logs\automated\ota\2.1.0\20261026-test_ota_status_reports_partitions.txt

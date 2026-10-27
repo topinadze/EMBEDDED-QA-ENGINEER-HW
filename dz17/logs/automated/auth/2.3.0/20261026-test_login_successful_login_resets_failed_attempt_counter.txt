@@ -1,0 +1,93 @@
+Test: tests/test_auth.py::TestAuth::test_login_successful_login_resets_failed_attempt_counter
+Firmware: 2.3.0
+Captured: 2026-10-26T16:52:39.599322+02:00
+
+TX > version
+RX < version
+RX < I (6065370) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+RX < I (6065370) sentry:   partition: ota_0 @ 0x20000, state: valid
+TX > status
+RX < status
+RX < I (6065580) sentry: === SWM-2 status ===
+RX < I (6065580) sentry:   fw:       v2.3.0 (ota_0)
+RX < I (6065580) sentry:   state:    1 NORMAL
+RX < I (6065580) sentry:   link:     buoy link 'TopA-node', ip 10.223.162.49, rssi -60 dBm (good), ch 1
+RX < I (6065580) sentry:   internet: OK
+RX < I (6065590) sentry:   user:     testUser (user)
+RX < I (6065590) sentry:   time:     16:51:46, uptime 1h 41m 05s
+RX < I (6065600) sentry:   valve:    closed
+RX < I (6065600) sentry:   watch:    disarmed, CIC alerts unacked: 2
+RX < I (6065610) sentry:   sonar:    no contact
+RX < I (6065610) sentry:   carrier:  depth 43.5 m, hull 5.3 bar, water 8.0 C, battery 24.03 V (sim)
+RX < I (6065620) sentry:   heap:     251 KB free
+TX > logout
+RX < logout
+RX < I (6065800) sentry: [AUTH] operator testUser relieved from watch
+TX > login testUser [REDACTED]
+RX < login testUser [REDACTED]
+RX < E (6066800) sentry: E209 wrong login or [REDACTED] Attempts: 1/3
+TX > login testUser [REDACTED]
+RX < login testUser [REDACTED]
+RX < E (6068810) sentry: E209 wrong login or [REDACTED] Attempts: 2/3
+TX > login testUser [REDACTED]
+RX < login testUser [REDACTED]
+RX < I (6070810) sentry: [AUTH] operator testUser on watch, console 2
+RX < I (6070880) sentry: [TELEMETRY] auto report every 30 s ('health off' to stop)
+RX < I (6071450) sentry: [ACU] ambient noise 69 dB re 1uPa, sea state 2, water 8.1 C
+TX > logout
+RX < logout
+RX < I (6073810) sentry: [AUTH] operator testUser relieved from watch
+TX > login testUser [REDACTED]
+RX < login testUser [REDACTED]
+RX < E (6074830) sentry: E209 wrong login or [REDACTED] Attempts: 1/3
+TX > status
+RX < status
+RX < I (6076840) sentry: === SWM-2 status ===
+RX < I (6076840) sentry:   fw:       v2.3.0 (ota_0)
+RX < I (6076840) sentry:   state:    1 NORMAL
+RX < I (6076840) sentry:   link:     buoy link 'TopA-node', ip 10.223.162.49, rssi -66 dBm (good), ch 1
+RX < I (6076840) sentry:   internet: OK
+RX < I (6076850) sentry:   user:     not logged in
+RX < I (6076850) sentry:   time:     16:51:57, uptime 1h 41m 16s
+RX < I (6076860) sentry:   valve:    closed
+RX < I (6076860) sentry:   watch:    disarmed, CIC alerts unacked: 2
+RX < I (6076870) sentry:   sonar:    no contact
+RX < I (6076870) sentry:   carrier:  depth 43.6 m, hull 5.4 bar, water 8.1 C, battery 24.03 V (sim)
+RX < I (6076880) sentry:   heap:     251 KB free
+TX > logout
+RX < logout
+RX < W (6077050) sentry: W211 not logged in
+TX > login testUser [REDACTED]
+RX < login testUser [REDACTED]
+RX < E (6078060) sentry: E209 wrong login or [REDACTED] Attempts: 2/3
+TX > login testUser [REDACTED]
+RX < login testUser [REDACTED]
+RX < E (6080060) sentry: E209 wrong login or [REDACTED] Attempts: 3/3
+RX < E (6080060) sentry: E210 too many attempts, account locked for 30 s
+TX > status
+RX < status
+RX < I (6082070) sentry: === SWM-2 status ===
+RX < I (6082070) sentry:   fw:       v2.3.0 (ota_0)
+RX < I (6082070) sentry:   state:    1 NORMAL
+RX < I (6082070) sentry:   link:     buoy link 'TopA-node', ip 10.223.162.49, rssi -77 dBm (fair), ch 1
+RX < I (6082070) sentry:   internet: OK
+RX < I (6082080) sentry:   user:     not logged in
+RX < I (6082080) sentry:   time:     16:52:02, uptime 1h 41m 21s
+RX < I (6082090) sentry:   valve:    closed
+RX < I (6082090) sentry:   watch:    disarmed, CIC alerts unacked: 2
+RX < I (6082100) sentry:   sonar:    no contact
+RX < I (6082100) sentry:   carrier:  depth 43.6 m, hull 5.4 bar, water 8.1 C, battery 24.03 V (sim)
+RX < I (6082110) sentry:   heap:     251 KB free
+TX > whoami
+RX < whoami
+RX < I (6082280) sentry: not logged in
+TX > [REDACTED]
+RX < [REDACTED]
+RX < E (6082490) sentry: E207 account locked. Try again in 28 s
+TX > [REDACTED]
+RX < [REDACTED]
+RX < I (6111700) sentry: [AUTH] operator testUser on watch, console 2
+RX < I (6111710) sentry: [TELEMETRY] auto report every 30 s ('health off' to stop)
+TX > whoami
+RX < whoami
+RX < I (6111900) sentry: user: testUser, access: user

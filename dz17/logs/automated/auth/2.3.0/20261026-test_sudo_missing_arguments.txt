@@ -1,0 +1,46 @@
+Test: tests/test_auth.py::TestAuth::test_sudo_missing_arguments
+Firmware: 2.3.0
+Captured: 2026-10-26T16:54:05.584384+02:00
+
+TX > version
+RX < version
+RX < I (6192790) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+RX < I (6192790) sentry:   partition: ota_0 @ 0x20000, state: valid
+TX > lamp status
+RX < lamp status
+RX < I (6193000) sentry: [BEACON] off, color (255,255,255), brightness 100%, mode solid, timer off
+TX > status
+RX < status
+RX < I (6193610) sentry: === SWM-2 status ===
+RX < I (6193610) sentry:   fw:       v2.3.0 (ota_0)
+RX < I (6193610) sentry:   state:    1 NORMAL
+RX < I (6193610) sentry:   link:     buoy link 'TopA-node', ip 10.223.162.49, rssi -54 dBm (excellent), ch 1
+RX < I (6193620) sentry:   internet: OK
+RX < I (6193620) sentry:   user:     testUser (user)
+RX < I (6193620) sentry:   time:     16:53:54, uptime 1h 43m 13s
+RX < I (6193630) sentry:   valve:    closed
+RX < I (6193630) sentry:   watch:    disarmed, CIC alerts unacked: 2
+RX < I (6193640) sentry:   sonar:    no contact
+RX < I (6193640) sentry:   carrier:  depth 43.9 m, hull 5.4 bar, water 8.0 C, battery 24.03 V (sim)
+RX < I (6193650) sentry:   heap:     251 KB free
+TX > whoami
+RX < whoami
+RX < I (6193810) sentry: user: testUser, access: user
+TX > sudo
+RX < sudo
+RX < E (6194020) sentry: E213 sudo: wrong password
+TX > lamp timer 0
+RX < lamp timer 0
+RX < I (6196050) sentry: [BEACON] timer cancelled
+TX > lamp color 255 255 255
+RX < lamp color 255 255 255
+RX < I (6196460) sentry: [BEACON] color: (255,255,255)
+TX > lamp brightness 100
+RX < lamp brightness 100
+RX < I (6196870) sentry: [BEACON] brightness: 100%
+TX > lamp mode solid
+RX < lamp mode solid
+RX < I (6197290) sentry: [BEACON] mode: solid
+TX > lamp off
+RX < lamp off
+RX < W (6197700) sentry: W510 lamp already off

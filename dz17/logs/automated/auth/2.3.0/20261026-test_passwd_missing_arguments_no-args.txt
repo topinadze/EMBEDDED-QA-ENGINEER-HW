@@ -1,0 +1,46 @@
+Test: tests/test_auth.py::TestAuth::test_passwd_missing_arguments[no-args]
+Firmware: 2.3.0
+Captured: 2026-10-26T17:55:50.780119+02:00
+
+TX > version
+RX < version
+RX < I (1638250) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+RX < I (1638250) sentry:   partition: ota_0 @ 0x20000, state: valid
+TX > lamp status
+RX < lamp status
+RX < I (1638460) sentry: [BEACON] off, color (255,255,255), brightness 100%, mode solid, timer off
+TX > status
+RX < status
+RX < I (1639060) sentry: === SWM-2 status ===
+RX < I (1639060) sentry:   fw:       v2.3.0 (ota_0)
+RX < I (1639060) sentry:   state:    1 NORMAL
+RX < I (1639060) sentry:   link:     buoy link 'TopA-node', ip 10.223.162.49, rssi -17 dBm (excellent), ch 1
+RX < I (1639070) sentry:   internet: OK
+RX < I (1639070) sentry:   user:     testUser (user)
+RX < I (1639070) sentry:   time:     17:55:39, uptime 0h 27m 18s
+RX < I (1639080) sentry:   valve:    closed
+RX < I (1639080) sentry:   watch:    disarmed, CIC alerts unacked: 1
+RX < I (1639090) sentry:   sonar:    no contact
+RX < I (1639090) sentry:   carrier:  depth 44.3 m, hull 5.4 bar, water 7.9 C, battery 24.15 V (sim)
+RX < I (1639100) sentry:   heap:     251 KB free
+TX > whoami
+RX < whoami
+RX < I (1639260) sentry: user: testUser, access: user
+TX > passwd
+RX < passwd
+RX < E (1639480) sentry: E201 usage: passwd [REDACTED] [REDACTED]
+TX > lamp timer 0
+RX < lamp timer 0
+RX < I (1641490) sentry: [BEACON] timer cancelled
+TX > lamp color 255 255 255
+RX < lamp color 255 255 255
+RX < I (1641900) sentry: [BEACON] color: (255,255,255)
+TX > lamp brightness 100
+RX < lamp brightness 100
+RX < I (1642320) sentry: [BEACON] brightness: 100%
+TX > lamp mode solid
+RX < lamp mode solid
+RX < I (1642730) sentry: [BEACON] mode: solid
+TX > lamp off
+RX < lamp off
+RX < W (1643140) sentry: W510 lamp already off

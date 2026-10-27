@@ -1,0 +1,26 @@
+Test: tests/test_ota.py::TestOta::test_stable_update_on_current_stable_is_noop
+Firmware: 2.3.0
+Captured: 2026-10-27T01:30:41.614784+02:00
+
+TX > version
+RX < version
+RX < I (208206) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+RX < I (208206) sentry:   partition: ota_0 @ 0x20000, state: valid
+TX > status
+RX < status
+RX < I (208416) sentry: === SWM-2 status ===
+RX < I (208416) sentry:   fw:       v2.3.0 (ota_0)
+RX < I (208416) sentry:   state:    1 NORMAL
+RX < I (208416) sentry:   link:     buoy link 'TopA-node', ip 10.223.162.49, rssi -23 dBm (excellent), ch 1
+RX < I (208416) sentry:   internet: OK
+RX < I (208426) sentry:   user:     testUser (user)
+RX < I (208426) sentry:   time:     01:30:40, uptime 0h 03m 28s
+RX < I (208436) sentry:   valve:    closed
+RX < I (208436) sentry:   watch:    disarmed, CIC alerts unacked: 0
+RX < I (208446) sentry:   sonar:    no contact
+RX < I (208446) sentry:   carrier:  depth 41.9 m, hull 5.2 bar, water 8.2 C, battery 24.19 V (sim)
+RX < I (208456) sentry:   heap:     251 KB free
+TX > whoami
+RX < whoami
+RX < I (208616) sentry: user: testUser, access: user
+RX < I (208676) wifi:[ADDBA]RX DELBA, reason:39, delete tid:0, initiator:0(recipient)

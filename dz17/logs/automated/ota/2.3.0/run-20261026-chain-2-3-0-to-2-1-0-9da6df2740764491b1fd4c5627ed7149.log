@@ -1,0 +1,224 @@
+DEBUG    urllib3.connectionpool:connectionpool.py:1081 Starting new HTTPS connection (1): api.telegram.org:443
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/sendMessage HTTP/1.1" 200 379
+DEBUG    drivers.device_driver:device_driver.py:134 TX > version
+DEBUG    drivers.device_driver:device_driver.py:134 RX < version
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (3435) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (3435) sentry:   partition: ota_1 @ 0x1a0000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:134 TX > status
+DEBUG    drivers.device_driver:device_driver.py:134 RX < status
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (3645) sentry: === SWM-2 status ===
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (3645) sentry:   fw:       v2.3.0 (ota_1)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (3645) sentry:   state:    1 NORMAL
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (3645) sentry:   link:     buoy link down (known: TopA-node)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (3645) sentry:   user:     not logged in
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (3645) sentry:   time:     --:--:--, uptime 0h 00m 03s
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (3655) sentry:   valve:    closed
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (3655) sentry:   watch:    disarmed, CIC alerts unacked: 0
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (3665) sentry:   sonar:    no contact
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (3665) sentry:   carrier:  depth 41.8 m, hull 5.2 bar, water 8.1 C, battery 24.20 V (sim)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (3675) sentry:   heap:     254 KB free
+DEBUG    drivers.device_driver:device_driver.py:134 TX > reconnect
+DEBUG    drivers.device_driver:device_driver.py:134 RX < reconnect
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (3955) sentry: [LINK] raising buoy antenna, connecting to 'TopA-node'...
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (4045) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (4055) wifi:state: init -> auth (0xb0)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (4055) wifi:state: auth -> assoc (0x0)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (4055) wifi:state: assoc -> run (0x10)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (4075) wifi:connected with TopA-node, aid = 1, channel 1, BW20, bssid = 72:06:f4:57:fd:af
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (4075) wifi:security: WPA2-PSK, phy: bgn, rssi: -20, cipher(pairwise:0x3, group:0x3), pmf:1
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (4085) wifi:pm start, type: 1
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (4085) wifi:dp: 1, bi: 102400, li: 3, scale listen interval from 307200 us to 307200 us
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (4095) wifi:set rx beacon pti, rx_bcn_pti: 0, bcn_timeout: 25000, mt_pti: 0, mt_time: 10000
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (4175) wifi:dp: 2, bi: 102400, li: 4, scale listen interval from 307200 us to 409600 us
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (4175) wifi:AP's beacon interval = 102400 us, DTIM period = 2
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (5135) esp_netif_handlers: sta ip: 10.223.162.49, mask: 255.255.255.0, gw: 10.223.162.101
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (5135) sentry: [LINK] got ip 10.223.162.49
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (5135) sentry: [LINK] connected to 'TopA-node', rssi -19 dBm (excellent)
+DEBUG    drivers.device_driver:device_driver.py:134 TX > status
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (5265) wifi:<ba-add>idx:0 (ifx:0, 72:06:f4:57:fd:af), tid:0, ssn:3, winSize:64
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (5575) esp-x509-crt-bundle: Certificate validated
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (6345) wifi:[ADDBA]RX DELBA, reason:39, delete tid:0, initiator:0(recipient)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (6855) sentry: [LINK] fleet network reachable (internet OK)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (7885) sentry: [LINK] time: synced via NTP, 20:39:42
+DEBUG    drivers.device_driver:device_driver.py:134 RX < status
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (7985) sentry: === SWM-2 status ===
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (7985) sentry:   fw:       v2.3.0 (ota_1)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (7985) sentry:   state:    1 NORMAL
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (7985) sentry:   link:     buoy link 'TopA-node', ip 10.223.162.49, rssi -20 dBm (excellent), ch 1
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (7985) sentry:   internet: OK
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (7995) sentry:   user:     not logged in
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (7995) sentry:   time:     20:39:42, uptime 0h 00m 07s
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (8005) sentry:   valve:    closed
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (8005) sentry:   watch:    disarmed, CIC alerts unacked: 0
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (8005) sentry:   sonar:    no contact
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (8015) sentry:   carrier:  depth 41.8 m, hull 5.2 bar, water 8.1 C, battery 24.20 V (sim)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (8025) sentry:   heap:     251 KB free
+DEBUG    drivers.device_driver:device_driver.py:134 TX > whoami
+DEBUG    drivers.device_driver:device_driver.py:134 RX < whoami
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (8195) sentry: not logged in
+DEBUG    drivers.device_driver:device_driver.py:134 TX > [REDACTED]
+DEBUG    drivers.device_driver:device_driver.py:134 RX < [REDACTED]
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (8405) sentry: [AUTH] operator testUser on watch, console 2
+DEBUG    drivers.device_driver:device_driver.py:134 TX > whoami
+DEBUG    drivers.device_driver:device_driver.py:134 RX < whoami
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (8525) sentry: [TELEMETRY] auto report every 30 s ('health off' to stop)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (8615) sentry: user: testUser, access: user
+DEBUG    drivers.device_driver:device_driver.py:134 TX > version
+DEBUG    drivers.device_driver:device_driver.py:134 RX < version
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (8825) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (8825) sentry:   partition: ota_1 @ 0x1a0000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:134 TX > ota install 2.1.0 force
+DEBUG    drivers.device_driver:device_driver.py:134 RX < ota install 2.1.0 force
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (10165) esp-x509-crt-bundle: Certificate validated
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (10945) sentry: [OTA] current v2.3.0 (ota_1) -> target partition ota_0
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (10945) sentry: [OTA] downloading https://raw.githubusercontent.com/BohdanHorbanych/esp32-ota-files/main/fw7/v2.1.0/sentry_fw7.bin
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (11705) esp-x509-crt-bundle: Certificate validated
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (12485) esp_https_ota: Starting OTA...
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (12485) esp_https_ota: Writing to <ota_0> partition at offset 0x20000
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (12485) sentry: [OTA] image: sentry_fw7 v2.1.0 (build Oct  6 2026 02:14:57)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (16415) sentry: [OTA]  10%
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (18155) sentry: [OTA]  20%
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (20215) sentry: [OTA]  30%
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (20725) sentry: [NAV] depth 41.7 m, heading 274, speed 2.7 kn
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (22355) wifi:[ADDBA]RX DELBA, reason:39, delete tid:0, initiator:0(recipient)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (22405) sentry: [OTA]  40%
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (24375) sentry: [OTA]  50%
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (26035) sentry: [OTA]  60%
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (27945) sentry: [OTA]  70%
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (29895) sentry: [OTA]  80%
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (32055) sentry: [OTA]  90%
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (33875) sentry: [OTA] 100%
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (33875) esp_image: segment 0: paddr=00020020 vaddr=3c0a0020 size=378a8h (227496) map
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (33905) esp_image: segment 1: paddr=000578d0 vaddr=3fc97200 size=05188h ( 20872)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (33905) esp_image: segment 2: paddr=0005ca60 vaddr=40374000 size=035b8h ( 13752)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (33905) esp_image: segment 3: paddr=00060020 vaddr=42000020 size=9b1c0h (635328) map
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (33995) esp_image: segment 4: paddr=000fb1e8 vaddr=403775b8 size=0fb58h ( 64344)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (34005) esp_image: segment 5: paddr=0010ad48 vaddr=50000000 size=00024h (    36)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (34005) esp_image: segment 0: paddr=00020020 vaddr=3c0a0020 size=378a8h (227496) map
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (34045) esp_image: segment 1: paddr=000578d0 vaddr=3fc97200 size=05188h ( 20872)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (34045) esp_image: segment 2: paddr=0005ca60 vaddr=40374000 size=035b8h ( 13752)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (34045) esp_image: segment 3: paddr=00060020 vaddr=42000020 size=9b1c0h (635328) map
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (34135) esp_image: segment 4: paddr=000fb1e8 vaddr=403775b8 size=0fb58h ( 64344)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (34145) esp_image: segment 5: paddr=0010ad48 vaddr=50000000 size=00024h (    36)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (34155) sentry: [OTA] success: v2.3.0 -> v2.1.0 in 21 s. Rebooting...
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (34655) wifi:state: run -> init (0x0)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (34655) wifi:pm stop, total sleep time: 9516182 us / 30568427 us
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (34655) wifi:<ba-del>idx:0, tid:0
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (34655) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (34665) wifi:flush txq
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (34665) wifi:stop sw txq
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (34665) wifi:lmac stop hw txq
+DEBUG    drivers.device_driver:device_driver.py:134 RX < ESP-ROM:esp32s3-20210327
+DEBUG    drivers.device_driver:device_driver.py:134 RX < Build:Mar 27 2021
+DEBUG    drivers.device_driver:device_driver.py:134 RX < rst:0xc (RTC_SW_CPU
+DEBUG    drivers.device_driver:device_driver.py:134 RX < _RST),boot:0x8 (SPI_FAST_FLASH_BOOT)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < Saved PC:0x4037d344
+DEBUG    drivers.device_driver:device_driver.py:134 RX < SPIWP:0xee
+DEBUG    drivers.device_driver:device_driver.py:134 RX < mode:DIO, clock div:1
+DEBUG    drivers.device_driver:device_driver.py:134 RX < load:0x3fce2820,len:0x14f0
+DEBUG    drivers.device_driver:device_driver.py:134 RX < load:0x403c8700,len:0xda0
+DEBUG    drivers.device_driver:device_driver.py:134 RX < load:0x403cb700,len:0x2fa0
+DEBUG    drivers.device_driver:device_driver.py:134 RX < entry 0x403c8908
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (29) boot: ESP-IDF v6.0.1 2nd stage bootloader
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (29) boot: compile time Oct  6 2026 02:15:01
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (29) boot: Multicore bootloader
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (29) boot: chip revision: v0.2
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (32) boot: efuse block revision: v1.3
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (36) boot.esp32s3: Boot SPI Speed : 80MHz
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (40) boot.esp32s3: SPI Mode       : DIO
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (43) boot.esp32s3: SPI Flash Size : 4MB
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (47) boot: Enabling RNG early entropy source...
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (52) boot: Partition Table:
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (54) boot: ## Label            Usage          Type ST Offset   Length
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (60) boot:  0 nvs              WiFi data        01 02 00009000 00006000
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (67) boot:  1 otadata          OTA data         01 00 0000f000 00002000
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (73) boot:  2 ota_0            OTA app          00 10 00020000 00180000
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (80) boot:  3 ota_1            OTA app          00 11 001a0000 00180000
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (87) boot: End of partition table
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (115) esp_image: segment 0: paddr=00020020 vaddr=3c0a0020 size=378a8h (227496) map
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (156) esp_image: segment 1: paddr=000578d0 vaddr=3fc97200 size=05188h ( 20872) load
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (160) esp_image: segment 2: paddr=0005ca60 vaddr=40374000 size=035b8h ( 13752) load
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (164) esp_image: segment 3: paddr=00060020 vaddr=42000020 size=9b1c0h (635328) map
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (281) esp_image: segment 4: paddr=000fb1e8 vaddr=403775b8 size=0fb58h ( 64344) load
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (296) esp_image: segment 5: paddr=0010ad48 vaddr=50000000 size=00024h (    36) load
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (304) boot: Loaded app from partition at offset 0x20000
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (304) boot: Disabling RNG early entropy source...
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (314) cpu_start: Multicore app
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (323) cpu_start: GPIO 44 and 43 are used as console UART I/O pins
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (324) cpu_start: Pro cpu start user code
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (324) cpu_start: cpu freq: 160000000 Hz
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (325) app_init: Application information:
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (329) app_init: Project name:     sentry_fw7
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (333) app_init: App version:      2.1.0
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (337) app_init: Compile time:     Oct  6 2026 02:14:57
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (342) app_init: ELF file SHA256:  c9460b826...
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (346) app_init: ESP-IDF:          v6.0.1
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (350) efuse_init: Min chip rev:     v0.0
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (354) efuse_init: Max chip rev:     v0.99
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (358) efuse_init: Chip rev:         v0.2
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (362) heap_init: Initializing. RAM available for dynamic allocation:
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (368) heap_init: At 3FCA0950 len 00048DC0 (291 KiB): RAM
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (373) heap_init: At 3FCE9710 len 00005724 (21 KiB): RAM
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (378) heap_init: At 3FCF0000 len 00008000 (32 KiB): DRAM
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (384) heap_init: At 600FE000 len 00001FE8 (7 KiB): RTCRAM
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (390) spi_flash: detected chip: boya
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (392) spi_flash: flash io: dio
+DEBUG    drivers.device_driver:device_driver.py:134 RX < W (395) spi_flash: Detected size(16384k) larger than the size in the binary image header(4096k). Using the size in the binary
+DEBUG    drivers.device_driver:device_driver.py:134 RX < image header.
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (408) sleep_gpio: Configure to isolate all GPIO pins in sleep state
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (414) sleep_gpio: Enable automatic switching of GPIO sleep configuration
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (421) main_task: Started on CPU0
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (441) main_task: Calling app_main()
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (461) temperature_sensor: Range [-10°C ~ 80°C], error < 1°C
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (461) sentry: ==============================================
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (461) sentry:   SENTRY SWM-2  sonar watch module  fw v2.1.0
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (461) sentry:   bow sonar array / perimeter watch / CIC link
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (471) sentry: ==============================================
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (481) pp: pp rom version: e7ae62f
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (481) net80211: net80211 rom version: e7ae62f
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (491) wifi:wifi driver task: 3fced4c4, prio:23, stack:6656, core=0
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (491) wifi:wifi firmware version: b37c951
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (491) wifi:wifi certification version: v7.0
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (501) wifi:config NVS flash: enabled
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (501) wifi:config nano formatting: disabled
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (501) wifi:Init data frame dynamic rx buffer num: 32
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (511) wifi:Init static rx mgmt buffer num: 5
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (511) wifi:Init management short buffer num: 32
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (521) wifi:Init dynamic tx buffer num: 32
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (521) wifi:Init static tx FG buffer num: 2
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (521) wifi:Init static rx buffer size: 1600
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (531) wifi:Init static rx buffer num: 10
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (531) wifi:Init dynamic rx buffer num: 32
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (541) wifi_init: rx ba win: 6
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (541) wifi_init: accept mbox: 6
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (541) wifi_init: tcpip mbox: 32
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (541) wifi_init: udp mbox: 6
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (551) wifi_init: tcp mbox: 6
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (551) wifi_init: tcp tx win: 5760
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (551) wifi_init: tcp rx win: 5760
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (561) wifi_init: tcp mss: 1440
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (561) wifi_init: WiFi IRAM OP enabled
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (561) wifi_init: WiFi RX IRAM OP enabled
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (571) phy_init: phy_version 711,97bcf0a2,Aug 25 2025,19:04:10
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (611) wifi:mode : sta (c0:4e:30:04:83:6c)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (611) wifi:enable tsf
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (621) sentry: [LINK] known network 'TopA-node'. Type 're
+DEBUG    drivers.device_driver:device_driver.py:134 RX < connect' to connect
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (621) sentry: [AUTH] profile 'testUser' registered
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (621) sentry: last reset: software reboot
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (621) sentry: build tag: c3VkbyBzM250cnktcjAwdA==
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (631) sentry: [HW] transducer array: 1 ch, 40 kHz, driver OK
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (631) sentry: [HW] hull penetrator seal: OK, pressure sensor: OK
+DEBUG    drivers.device_driver:device_driver.py:134 RX < W (641) sentry: [NAV] depth sensor offline (lab mode) - using simulator
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (651) sentry: [NAV] carrier: SSK 'Skat', bow sonar bay #2, depth 41.8 m
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (651) sentry: [OTA] running v2.1.0 from ota_0
+DEBUG    drivers.device_driver:device_driver.py:134 RX < W (661) sentry: [OTA] new firmware, PENDING_VERIFY - self-check...
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (701) sentry: [OTA] self-check passed, firmware marked VALID
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (701) sentry: ready. state 1 NORMAL (patrol). Type 'help'
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (701) main_task: Returned from app_main()
+DEBUG    drivers.device_driver:device_driver.py:134 TX > version
+DEBUG    drivers.device_driver:device_driver.py:134 RX < version
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (961) sentry: SENTRY SWM-2 sonar watch module, fw v2.1.0 (build Oct  6 2026 02:14:57)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (961) sentry:   partition: ota_0 @ 0x20000, state: valid
+INFO     conftest:conftest.py:542 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz17\logs\automated\ota\2.3.0\20261026-test_forced_downgrade_completes_self_check.txt
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 386

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="1" time="2.390" timestamp="2026-10-26T21:22:55.006409+02:00" hostname="Prosha"><testcase classname="tests.test_ota.TestOta" name="test_available_update_completes_self_check" time="2.218"><failure message="AssertionError: OTA did not target the inactive partition ota_0:&#10;  ota update beta&#10;  E (137501) sentry: E411 no internet - OTA server unreachable&#10;assert None&#10; +  where None = &lt;function search at 0x0000020E6386E350&gt;('\\[OTA\\]\\s*.*target partition\\s*ota_0\\b', 'ota update beta\nE (137501) sentry: E411 no internet - OTA server unreachable', re.IGNORECASE)&#10; +    where &lt;function search at 0x0000020E6386E350&gt; = re.search&#10; +    and   re.IGNORECASE = re.IGNORECASE">tests\test_ota.py:819: in test_available_update_completes_self_check
+    _assert_successful_update(
+tests\test_ota.py:408: in _assert_successful_update
+    assert re.search(
+E   AssertionError: OTA did not target the inactive partition ota_0:
+E     ota update beta
+E     E (137501) sentry: E411 no internet - OTA server unreachable
+E   assert None
+E    +  where None = &lt;function search at 0x0000020E6386E350&gt;('\\[OTA\\]\\s*.*target partition\\s*ota_0\\b', 'ota update beta\nE (137501) sentry: E411 no internet - OTA server unreachable', re.IGNORECASE)
+E    +    where &lt;function search at 0x0000020E6386E350&gt; = re.search
+E    +    and   re.IGNORECASE = re.IGNORECASE</failure></testcase></testsuite></testsuites>

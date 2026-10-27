@@ -1,0 +1,61 @@
+Test: tests/test_ota.py::TestOta::test_stable_update_on_current_stable_is_noop
+Firmware: 2.1.0
+Captured: 2026-10-27T01:35:11.712626+02:00
+
+TX > version
+RX < version
+RX < I (39335) sentry: SENTRY SWM-2 sonar watch module, fw v2.1.0 (build Oct  6 2026 02:14:57)
+RX < I (39335) sentry:   partition: ota_0 @ 0x20000, state: valid
+TX > status
+RX < status
+RX < I (39545) sentry: === SWM-2 status ===
+RX < I (39545) sentry:   fw:       v2.1.0 (ota_0)
+RX < I (39545) sentry:   state:    1 NORMAL
+RX < I (39545) sentry:   link:     buoy link 'TopA-node', ip 10.223.162.49, rssi -25 dBm (excellent), ch 1
+RX < I (39545) sentry:   internet: OK
+RX < I (39555) sentry:   user:     testUser (user)
+RX < I (39555) sentry:   time:     01:34:45, uptime 0h 00m 39s
+RX < I (39565) sentry:   valve:    closed
+RX < I (39565) sentry:   sonar:    no contact
+RX < I (39565) sentry:   carrier:  depth 41.7 m, hull 5.2 bar, water 8.1 C, battery 24.20 V (sim)
+RX < I (39575) sentry:   heap:     258 KB free
+TX > whoami
+RX < whoami
+RX < I (39755) sentry: user: testUser, access: user
+TX > version
+RX < version
+RX < I (39965) sentry: SENTRY SWM-2 sonar watch module, fw v2.1.0 (build Oct  6 2026 02:14:57)
+RX < I (39965) sentry:   partition: ota_0 @ 0x20000, state: valid
+TX > ota update
+RX < ota update
+RX < I (41365) esp-x509-crt-bundle: Certificate validated
+RX < I (42365) sentry: [OTA] stable channel: v2.1.0, current: v2.1.0
+RX < I (42725) esp-x509-crt-bundle: Certificate validated
+RX < I (44715) sentry: [OTA] current v2.1.0 (ota_0) -> target partition ota_1
+RX < I (44715) sentry: [OTA] downloading https://raw.githubusercontent.com/BohdanHorbanych/esp32-ota-files/main/fw7/v2.1.0/sentry_fw7.bin
+RX < I (45075) esp-x509-crt-bundle: Certificate validated
+RX < I (45935) esp_https_ota: Starting OTA...
+RX < I (45935) esp_https_ota: Writing to <ota_1> partition at offset 0x1a0000
+RX < I (45935) sentry: [OTA] image: sentry_fw7 v2.1.0 (build Oct  6 2026 02:14:57)
+RX < W (45935) sentry: W409 same version v2.1.0 - reinstalling
+RX < I (48385) sentry: [OTA]  10%
+RX < I (49975) sentry: [OTA]  20%
+RX < I (50435) sentry: [TELEMETRY #1] 01:34:56 up 00:00:50 heap 215KB rssi -23 temp 35.4C depth 41.7m hull 5.2bar batt 24.2V valve closed sonar - state NORMAL
+RX < I (51515) sentry: [OTA]  30%
+RX < I (53725) sentry: [OTA]  40%
+RX < I (55605) sentry: [OTA]  50%
+RX < I (57165) sentry: [OTA]  60%
+RX < I (59325) sentry: [OTA]  70%
+RX < I (61275) sentry: [OTA]  80%
+RX < I (63185) sentry: [OTA]  90%
+RX < I (64675) sentry: [OTA] 100%
+RX < I (64675) esp_image: segment 0: paddr=001a0020 vaddr=3c0a0020 size=378a8h (227496) map
+RX < I (64705) esp_image: segment 1: paddr=001d78d0 vaddr=3fc97200 size=05188h ( 20872)
+RX < I (64705) esp_image: segment 2: paddr=001dca60 vaddr=40374000 size=035b8h ( 13752)
+RX < I (64705) esp_image: segment 3: paddr=001e0020 vaddr=42000020 size=9b1c0h (635328) map
+RX < I (64795) esp_image: segment 4: paddr=0027b1e8 vaddr=403775b8 size=0fb58h ( 64344)
+RX < I (64805) esp_image: segment 5: paddr=0028ad48 vaddr=50000000 size=00024h (    36)
+RX < I (64815) esp_image: segment 0: paddr=001a0020 vaddr=3c0a0020 size=378a8h (227496) map
+RX < I (64845) esp_image: segment 1: paddr=001d78d0 vaddr=3fc97200 size=05188h ( 20872)
+RX < I (64845) esp_image: segment 2: paddr=001dca60 vaddr=40374000 size=035b8h ( 13752)
+RX < I (64845) esp_image: segment 3: paddr=001e0020 vaddr=42000020 size=9b1c0h (635328) map

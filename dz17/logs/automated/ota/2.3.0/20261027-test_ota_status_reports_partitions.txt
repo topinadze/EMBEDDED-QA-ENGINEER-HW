@@ -1,0 +1,42 @@
+Test: tests/test_ota.py::TestOta::test_ota_status_reports_partitions
+Firmware: 2.3.0
+Captured: 2026-10-27T01:30:22.641107+02:00
+
+TX > version
+RX < version
+RX < I (184766) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+RX < I (184766) sentry:   partition: ota_0 @ 0x20000, state: valid
+TX > lamp status
+RX < lamp status
+RX < E (184976) sentry: E003 login required. [REDACTED] 'login <login> [REDACTED] or 'register'
+TX > status
+RX < status
+RX < I (185596) sentry: === SWM-2 status ===
+RX < I (185596) sentry:   fw:       v2.3.0 (ota_0)
+RX < I (185596) sentry:   state:    1 NORMAL
+RX < I (185596) sentry:   link:     buoy link 'TopA-node', ip 10.223.162.49, rssi -25 dBm (excellent), ch 1
+RX < I (185596) sentry:   internet: OK
+RX < I (185606) sentry:   user:     not logged in
+RX < I (185606) sentry:   time:     01:30:17, uptime 0h 03m 05s
+RX < I (185616) sentry:   valve:    closed
+RX < I (185616) sentry:   watch:    disarmed, CIC alerts unacked: 0
+RX < I (185626) sentry:   sonar:    no contact
+RX < I (185626) sentry:   carrier:  depth 41.7 m, hull 5.2 bar, water 8.0 C, battery 24.20 V (sim)
+RX < I (185636) sentry:   heap:     252 KB free
+TX > whoami
+RX < whoami
+RX < I (185796) sentry: not logged in
+TX > [REDACTED]
+RX < [REDACTED]
+RX < I (186006) sentry: [AUTH] operator testUser on watch, console 2
+TX > whoami
+RX < I (186106) sentry: [TELEMETRY] auto report every 30 s ('health off' to stop)
+RX < whoami
+RX < I (186216) sentry: user: testUser, access: user
+TX > ota status
+RX < ota status
+RX < I (186426) sentry: [OTA] running:  v2.3.0 in ota_0 (valid)
+RX < I (186426) sentry: [OTA] previous: v2.1.0 in ota_1
+TX > lamp off
+RX < lamp off
+RX < W (189436) sentry: W510 lamp already off

@@ -1,0 +1,42 @@
+Test: tests/test_ota.py::TestOta::test_beta_update_on_current_beta_is_noop
+Firmware: 2.1.0
+Captured: 2026-10-27T01:34:45.786792+02:00
+
+TX > version
+RX < version
+RX < I (35875) sentry: SENTRY SWM-2 sonar watch module, fw v2.1.0 (build Oct  6 2026 02:14:57)
+RX < I (35875) sentry:   partition: ota_0 @ 0x20000, state: valid
+TX > lamp status
+RX < lamp status
+RX < I (36075) sentry: [BEACON] off, color (255,255,255), brightness 50%, mode solid, timer off
+TX > status
+RX < status
+RX < I (36685) sentry: === SWM-2 status ===
+RX < I (36685) sentry:   fw:       v2.1.0 (ota_0)
+RX < I (36685) sentry:   state:    1 NORMAL
+RX < I (36685) sentry:   link:     buoy link 'TopA-node', ip 10.223.162.49, rssi -24 dBm (excellent), ch 1
+RX < I (36685) sentry:   internet: OK
+RX < I (36695) sentry:   user:     testUser (user)
+RX < I (36695) sentry:   time:     01:34:42, uptime 0h 00m 36s
+RX < I (36705) sentry:   valve:    closed
+RX < I (36705) sentry:   sonar:    no contact
+RX < I (36705) sentry:   carrier:  depth 41.7 m, hull 5.2 bar, water 8.1 C, battery 24.20 V (sim)
+RX < I (36715) sentry:   heap:     258 KB free
+TX > whoami
+RX < whoami
+RX < I (36895) sentry: user: testUser, access: user
+TX > lamp timer 0
+RX < lamp timer 0
+RX < I (37115) sentry: [BEACON] timer cancelled
+TX > lamp color 255 255 255
+RX < lamp color 255 255 255
+RX < I (37525) sentry: [BEACON] color: (255,255,255)
+TX > lamp brightness 50
+RX < lamp brightness 50
+RX < I (37935) sentry: [BEACON] brightness: 50%
+TX > lamp mode solid
+RX < lamp mode solid
+RX < I (38335) sentry: [BEACON] mode: solid
+TX > lamp off
+RX < lamp off
+RX < W (38755) sentry: W510 lamp already off

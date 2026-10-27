@@ -1,0 +1,31 @@
+Test: tests/test_auth_registration.py::test_registration_rejects_invalid_login[above-maximum-length]
+Firmware: 2.3.0
+Captured: 2026-10-26T19:31:17.522578+02:00
+
+TX > version
+RX < version
+RX < I (45230) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+RX < I (45230) sentry:   partition: ota_0 @ 0x20000, state: valid
+TX > status
+RX < status
+RX < I (45440) sentry: === SWM-2 status ===
+RX < I (45440) sentry:   fw:       v2.3.0 (ota_0)
+RX < I (45440) sentry:   state:    1 NORMAL
+RX < I (45440) sentry:   link:     buoy link 'TopA-node', ip 10.223.162.49, rssi -20 dBm (excellent), ch 1
+RX < I (45440) sentry:   internet: OK
+RX < I (45450) sentry:   user:     not logged in
+RX < I (45450) sentry:   time:     19:31:06, uptime 0h 00m 45s
+RX < I (45460) sentry:   valve:    closed
+RX < I (45460) sentry:   watch:    disarmed, CIC alerts unacked: 0
+RX < I (45470) sentry:   sonar:    no contact
+RX < I (45470) sentry:   carrier:  depth 41.6 m, hull 5.2 bar, water 8.2 C, battery 24.20 V (sim)
+RX < I (45480) sentry:   heap:     252 KB free
+TX > whoami
+RX < whoami
+RX < I (45650) sentry: not logged in
+TX > register aaaaaaaaaaaaaaaaa [REDACTED]
+RX < register aaaaaaaaaaaaaaaaa [REDACTED]
+RX < E (46270) sentry: E204 login must [REDACTED] 3-16 chars: a-z A-Z 0-9 _
+TX > whoami
+RX < whoami
+RX < I (48280) sentry: not logged in

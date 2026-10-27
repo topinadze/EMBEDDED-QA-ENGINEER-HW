@@ -2,6 +2,8 @@ param(
     [Parameter(Mandatory=$false)][string]$Fw = "2.1.0",
     [string]$Markers = "",
     [string]$TestName = "",
+    [ValidatePattern("^[a-zA-Z0-9_-]+$")][string]$RunLabel = "ota",
+    [switch]$FromChain,
     [string]$Port = "COM4",
     [ValidateSet("console", "telegram")][string]$InteractionMode = "console",
     [Alias("Interactive")][switch]$ManualChecks,
@@ -52,9 +54,9 @@ $pytestArgs += @(
     "--expected-fw-version", $Fw,
     "-o", "log_cli=true",
     "-o", "log_cli_level=DEBUG",
-    "--log-file=$dir\run-$date-ota.log",
+    "--log-file=$dir\run-$date-$RunLabel.log",
     "--log-file-level=DEBUG",
-    "--junitxml=$dir\run-$date-ota-junit.xml",
+    "--junitxml=$dir\run-$date-$RunLabel-junit.xml",
     "-rA",
     "tests\test_ota.py"
 )
@@ -75,5 +77,9 @@ try {
     } else {
         $env:INTERACTION_MODE = $previousInteractionMode
     }
+}
+if ($FromChain) {
+    $global:LASTEXITCODE = $pytestExitCode
+    return
 }
 exit $pytestExitCode

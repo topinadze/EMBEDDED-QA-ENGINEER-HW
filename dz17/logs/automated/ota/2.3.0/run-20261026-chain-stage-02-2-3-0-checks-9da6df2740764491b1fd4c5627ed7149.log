@@ -1,0 +1,1133 @@
+DEBUG    urllib3.connectionpool:connectionpool.py:1081 Starting new HTTPS connection (1): api.telegram.org:443
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/sendMessage HTTP/1.1" 200 369
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 376
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 389
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 373
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 391
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 375
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 390
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 374
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 393
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 377
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 389
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 373
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 385
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 369
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 388
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 372
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 403
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 387
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 403
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 387
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 401
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 385
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 401
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 385
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 423
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 407
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 422
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 406
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 419
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 403
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 411
+WARNING  drivers.device_driver:device_driver.py:620 OTA command 'ota update beta' hit a transient connectivity error (attempt 1/2); retrying in 0.0 seconds.
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 395
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 411
+WARNING  drivers.device_driver:device_driver.py:620 OTA command 'ota update beta' hit a transient connectivity error (attempt 1/2); retrying in 0.0 seconds.
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 395
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 418
+WARNING  drivers.device_driver:device_driver.py:620 OTA command 'ota update beta' hit a transient connectivity error (attempt 1/2); retrying in 0.0 seconds.
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 402
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 400
+DEBUG    drivers.device_driver:device_driver.py:134 TX > version
+DEBUG    drivers.device_driver:device_driver.py:134 RX < version
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (9043) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (9043) sentry:   partition: ota_0 @ 0x20000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:134 TX > lamp status
+DEBUG    drivers.device_driver:device_driver.py:134 RX < lamp status
+DEBUG    drivers.device_driver:device_driver.py:134 RX < E (9243) sentry: E002 Wi-Fi required. Use 'reconnect' or 'connect'
+WARNING  conftest:conftest.py:426 Lamp state snapshot unavailable.
+DEBUG    drivers.device_driver:device_driver.py:134 TX > version
+DEBUG    drivers.device_driver:device_driver.py:134 RX < version
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (9863) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (9863) sentry:   partition: ota_0 @ 0x20000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:134 TX > lamp off
+DEBUG    drivers.device_driver:device_driver.py:134 RX < lamp off
+DEBUG    drivers.device_driver:device_driver.py:134 RX < E (10473) sentry: E002 Wi-Fi required. Use 'reconnect' or 'connect'
+INFO     conftest:conftest.py:542 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz17\logs\automated\ota\2.3.0\20261026-test_version_reports_active_partition.txt
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 384
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 397
+DEBUG    drivers.device_driver:device_driver.py:134 TX > version
+DEBUG    drivers.device_driver:device_driver.py:134 RX < version
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (11063) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (11063) sentry:   partition: ota_0 @ 0x20000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:134 TX > lamp status
+DEBUG    drivers.device_driver:device_driver.py:134 RX < lamp status
+DEBUG    drivers.device_driver:device_driver.py:134 RX < E (11273) sentry: E002 Wi-Fi required. Use 'reconnect' or 'connect'
+WARNING  conftest:conftest.py:426 Lamp state snapshot unavailable.
+DEBUG    drivers.device_driver:device_driver.py:134 TX > status
+DEBUG    drivers.device_driver:device_driver.py:134 RX < status
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (11883) sentry: === SWM-2 status ===
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (11883) sentry:   fw:       v2.3.0 (ota_0)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (11883) sentry:   state:    1 NORMAL
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (11883) sentry:   link:     buoy link down (known: TopA-node)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (11883) sentry:   user:     not logged in
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (11883) sentry:   time:     --:--:--, uptime 0h 00m 11s
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (11893) sentry:   valve:    closed
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (11893) sentry:   watch:    disarmed, CIC alerts unacked: 0
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (11903) sentry:   sonar:    no contact
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (11903) sentry:   carrier:  depth 41.8 m, hull 5.2 bar, water 8.1 C, battery 24.20 V (sim)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (11913) sentry:   heap:     254 KB free
+DEBUG    drivers.device_driver:device_driver.py:134 TX > reconnect
+DEBUG    drivers.device_driver:device_driver.py:134 RX < reconnect
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (12193) sentry: [LINK] raising buoy antenna, connecting to 'TopA-node'...
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (14603) sentry: [LINK] retry 1/3...
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (14693) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (14693) wifi:state: init -> auth (0xb0)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (14703) wifi:state: auth -> assoc (0x0)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (14703) wifi:state: assoc -> run (0x10)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (14743) wifi:connected with TopA-node, aid = 1, channel 1, BW20, bssid = d2:06:30:f6:79:fc
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (14743) wifi:security: WPA2-PSK, phy: bgn, rssi: -25, cipher(pairwise:0x3, group:0x3), pmf:1
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (14753) wifi:pm start, type: 1
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (14753) wifi:dp: 1, bi: 102400, li: 3, scale listen interval from 307200 us to 307200 us
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (14763) wifi:set rx beacon pti, rx_bcn_pti: 0, bcn_timeout: 25000, mt_pti: 0, mt_time: 10000
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (14813) wifi:dp: 2, bi: 102400, li: 4, scale listen interval from 307200 us to 409600 us
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (14813) wifi:AP's beacon interval = 102400 us, DTIM period = 2
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (15803) esp_netif_handlers: sta ip: 10.223.162.49, mask: 255.255.255.0, gw: 10.223.162.101
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (15803) sentry: [LINK] got ip 10.223.162.49
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (15803) sentry: [LINK] connected to 'TopA-node', rssi -24 dBm (excellent)
+DEBUG    drivers.device_driver:device_driver.py:134 TX > status
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (16333) wifi:<ba-add>idx:0 (ifx:0, d2:06:30:f6:79:fc), tid:0, ssn:3, winSize:64
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (16643) esp-x509-crt-bundle: Certificate validated
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (17413) sentry: [LINK] fleet network reachable (internet OK)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (20343) wifi:[ADDBA]RX DELBA, reason:39, delete tid:0, initiator:0(recipient)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < W (20703) sentry: [ACU] biologics detected (snapping shrimp), passive filter on
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (22433) sentry: [LINK] time: synced via NTP, 20:36:41
+DEBUG    drivers.device_driver:device_driver.py:134 RX < status
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (22543) sentry: === SWM-2 status ===
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (22543) sentry:   fw:       v2.3.0 (ota_0)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (22543) sentry:   state:    1 NORMAL
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (22543) sentry:   link:     buoy link 'TopA-node', ip 10.223.162.49, rssi -23 dBm (excellent), ch 1
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (22543) sentry:   internet: OK
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (22553) sentry:   user:     not logged in
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (22553) se
+DEBUG    drivers.device_driver:device_driver.py:134 RX < ntry:   time:     20:36:41, uptime 0h 00m 22s
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (22563) sentry:   valve:    closed
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (22563) sentry:   watch:    disarmed, CIC alerts unacked: 0
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (22573) sentry:   sonar:    no contact
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (22573) sentry:   carrier:  depth 41.9 m, hull 5.2 bar, water 8.1 C, battery 24.20 V (sim)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (22583) sentry:   heap:     251 KB free
+DEBUG    drivers.device_driver:device_driver.py:134 TX > whoami
+DEBUG    drivers.device_driver:device_driver.py:134 RX < whoami
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (22893) sentry: not logged in
+DEBUG    drivers.device_driver:device_driver.py:134 TX > [REDACTED]
+DEBUG    drivers.device_driver:device_driver.py:134 RX < [REDACTED]
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (23103) sentry: [AUTH] operator testUser on watch, console 2
+DEBUG    drivers.device_driver:device_driver.py:134 TX > whoami
+DEBUG    drivers.device_driver:device_driver.py:134 RX < whoami
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (23303) sentry: [TELEMETRY] auto report every 30 s ('health off' to stop)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (23313) sentry: user: testUser, access: user
+DEBUG    drivers.device_driver:device_driver.py:134 TX > ota status
+DEBUG    drivers.device_driver:device_driver.py:134 RX < ota status
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (23523) sentry: [OTA] running:  v2.3.0 in ota_0 (valid)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (23523) sentry: [OTA] previous: v2.1.0 in ota_1
+DEBUG    drivers.device_driver:device_driver.py:134 TX > lamp off
+DEBUG    drivers.device_driver:device_driver.py:134 RX < lamp off
+DEBUG    drivers.device_driver:device_driver.py:134 RX < W (26543) sentry: W510 lamp already off
+INFO     conftest:conftest.py:542 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz17\logs\automated\ota\2.3.0\20261026-test_ota_status_reports_partitions.txt
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 381
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 401
+DEBUG    drivers.device_driver:device_driver.py:134 TX > version
+DEBUG    drivers.device_driver:device_driver.py:134 RX < version
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (27123) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (27123) sentry:   partition: ota_0 @ 0x20000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:134 TX > lamp status
+DEBUG    drivers.device_driver:device_driver.py:134 RX < lamp status
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (27333) sentry: [BEACON] off, color (255,255,255), brightness 50%, mode solid, timer off
+DEBUG    drivers.device_driver:device_driver.py:134 TX > status
+DEBUG    drivers.device_driver:device_driver.py:134 RX < status
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (27953) sentry: === SWM-2 status ===
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (27953) sentry:   fw:       v2.3.0 (ota_0)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (27953) sentry:   state:    1 NORMAL
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (27953) sentry:   link:     buoy link 'TopA-node', ip 10.223.162.49, rssi -26 dBm (excellent), ch 1
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (27953) sentry:   internet: OK
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (27963) sentry:   user:     testUser (user)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (27963) sentry:   time:     20:36:47, uptime 0h 00m 27s
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (27973) sentry:   valve:    closed
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (27973) sentry:   watch:    disarmed, CIC alerts unacked: 0
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (27983) sentry:   sonar:    no contact
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (27983) sentry:   carrier:  depth 41.9 m, hull 5.2 bar, water 8.1 C, battery 24.20 V (sim)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (27993) sentry:   heap:     251 KB free
+DEBUG    drivers.device_driver:device_driver.py:134 TX > whoami
+DEBUG    drivers.device_driver:device_driver.py:134 RX < whoami
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (28153) sentry: user: testUser, access: user
+DEBUG    drivers.device_driver:device_driver.py:134 TX > ota check
+DEBUG    drivers.device_driver:device_driver.py:134 RX < ota check
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (30193) esp-x509-crt-bundle: Certificate validated
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (31443) esp-x509-crt-bundle: Certificate validated
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (32233) sentry: [OTA] current: v2.3.0
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (32233) sentry: [OTA] stable:  v2.1.0
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (32233) sentry: [OTA] beta:    v2.3.0
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (32233) sentry: [OTA] running newer than stable
+DEBUG    drivers.device_driver:device_driver.py:134 TX > lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:134 RX < lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (36373) sentry: [BEACON] timer cancelled
+DEBUG    drivers.device_driver:device_driver.py:134 TX > lamp color 255 255 255
+DEBUG    drivers.device_driver:device_driver.py:134 RX < lamp color 255 255 255
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (36783) sentry: [BEACON] color: (255,255,255)
+DEBUG    drivers.device_driver:device_driver.py:134 TX > lamp brightness 50
+DEBUG    drivers.device_driver:device_driver.py:134 RX < lamp brightness 50
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (37193) sentry: [BEACON] brightness: 50%
+DEBUG    drivers.device_driver:device_driver.py:134 TX > lamp mode solid
+DEBUG    drivers.device_driver:device_driver.py:134 RX < lamp mode solid
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (37603) sentry: [BEACON] mode: solid
+DEBUG    drivers.device_driver:device_driver.py:134 TX > lamp off
+DEBUG    drivers.device_driver:device_driver.py:134 RX < lamp off
+DEBUG    drivers.device_driver:device_driver.py:134 RX < W (38013) sentry: W510 lamp already off
+INFO     conftest:conftest.py:542 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz17\logs\automated\ota\2.3.0\20261026-test_ota_check_reports_channel_versions.txt
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 385
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 400
+DEBUG    drivers.device_driver:device_driver.py:134 TX > version
+DEBUG    drivers.device_driver:device_driver.py:134 RX < version
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (38763) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (38763) sentry:   partition: ota_0 @ 0x20000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:134 TX > lamp status
+DEBUG    drivers.device_driver:device_driver.py:134 RX < lamp status
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (38973) sentry: [BEACON] off, color (255,255,255), brightness 50%, mode solid, timer off
+DEBUG    drivers.device_driver:device_driver.py:134 TX > status
+DEBUG    drivers.device_driver:device_driver.py:134 RX < status
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (39593) sentry: === SWM-2 status ===
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (39593) sentry:   fw:       v2.3.0 (ota_0)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (39593) sentry:   state:    1 NORMAL
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (39593) sentry:   link:     buoy link 'TopA-node', ip 10.223.162.49, rssi -22 dBm (excellent), ch 1
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (39593) sentry:   internet: OK
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (39603) sentry:   user:     testUser (user)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (39603) sentry:   time:     20:36:58, uptime 0h 00m 39s
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (39613) sentry:   valve:    closed
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (39613) sentry:   watch:    disarmed, CIC alerts unacked: 0
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (39623) sentry:   sonar:    no contact
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (39623) sentry:   carrier:  depth 41.9 m, hull 5.2 bar, water 8.1 C, battery 24.20 V (sim)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (39633) sentry:   heap:     251 KB free
+DEBUG    drivers.device_driver:device_driver.py:134 TX > whoami
+DEBUG    drivers.device_driver:device_driver.py:134 RX < whoami
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (39793) sentry: user: testUser, access: user
+DEBUG    drivers.device_driver:device_driver.py:134 TX > version
+DEBUG    drivers.device_driver:device_driver.py:134 RX < version
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (40003) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (40003) sentry:   partition: ota_0 @ 0x20000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:134 TX > ota update beta
+DEBUG    drivers.device_driver:device_driver.py:134 RX < ota update beta
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (41343) esp-x509-crt-bundle: Certificate validated
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (41443) wifi:[ADDBA]RX DELBA, reason:39, delete tid:0, initiator:0(recipient)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (42433) sentry: [OTA] beta channel: v2.3.0, current: v2.3.0
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (42433) sentry: [OTA] already up to date
+DEBUG    drivers.device_driver:device_driver.py:134 TX > version
+DEBUG    drivers.device_driver:device_driver.py:134 RX < version
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (42593) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (42593) sentry:   partition: ota_0 @ 0x20000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:134 TX > lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:134 RX < lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (43203) sentry: [BEACON] timer cancelled
+DEBUG    drivers.device_driver:device_driver.py:134 TX > lamp color 255 255 255
+DEBUG    drivers.device_driver:device_driver.py:134 RX < lamp color 255 255 255
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (43613) sentry: [BEACON] color: (255,255,255)
+DEBUG    drivers.device_driver:device_driver.py:134 TX > lamp brightness 50
+DEBUG    drivers.device_driver:device_driver.py:134 RX < lamp brightness 50
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (44033) sentry: [BEACON] brightness: 50%
+DEBUG    drivers.device_driver:device_driver.py:134 TX > lamp mode solid
+DEBUG    drivers.device_driver:device_driver.py:134 RX < lamp mode solid
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (44433) sentry: [BEACON] mode: solid
+DEBUG    drivers.device_driver:device_driver.py:134 TX > lamp off
+DEBUG    drivers.device_driver:device_driver.py:134 RX < lamp off
+DEBUG    drivers.device_driver:device_driver.py:134 RX < W (44843) sentry: W510 lamp already off
+INFO     conftest:conftest.py:542 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz17\logs\automated\ota\2.3.0\20261026-test_beta_update_on_current_beta_is_noop.txt
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 384
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 402
+DEBUG    drivers.device_driver:device_driver.py:134 TX > version
+DEBUG    drivers.device_driver:device_driver.py:134 RX < version
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (45633) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (45633) sentry:   partition: ota_0 @ 0x20000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:134 TX > status
+DEBUG    drivers.device_driver:device_driver.py:134 RX < status
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (45853) sentry: === SWM-2 status ===
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (45853) sentry:   fw:       v2.3.0 (ota_0)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (45853) sentry:   state:    1 NORMAL
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (45853) sentry:   link:     buoy link 'TopA-node', ip 10.223.162.49, rssi -22 dBm (excellent), ch 1
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (45853) sentry:   internet: OK
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (45863) sentry:   user:     testUser (user)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (45863) sentry:   time:     20:37:05, uptime 0h 00m 45s
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (45873) sentry:   valve:    closed
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (45873) sentry:   watch:    disarmed, CIC alerts unacked: 0
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (45883) sentry:   sonar:    no contact
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (45883) sentry:   carrier:  depth 41.9 m, hull 5.2 bar, water 8.1 C, battery 24.20 V (sim)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (45893) sentry:   heap:     251 KB free
+DEBUG    drivers.device_driver:device_driver.py:134 TX > whoami
+DEBUG    drivers.device_driver:device_driver.py:134 RX < whoami
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (46053) sentry: user: testUser, access: user
+INFO     conftest:conftest.py:542 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz17\logs\automated\ota\2.3.0\20261026-test_stable_update_on_current_stable_is_noop.txt
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 387
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 394
+DEBUG    drivers.device_driver:device_driver.py:134 TX > version
+DEBUG    drivers.device_driver:device_driver.py:134 RX < version
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (46513) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (46513) sentry:   partition: ota_0 @ 0x20000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:134 TX > lamp status
+DEBUG    drivers.device_driver:device_driver.py:134 RX < lamp status
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (46723) sentry: [BEACON] off, color (255,255,255), brightness 50%, mode solid, timer off
+DEBUG    drivers.device_driver:device_driver.py:134 TX > status
+DEBUG    drivers.device_driver:device_driver.py:134 RX < status
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (47343) sentry: === SWM-2 status ===
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (47343) sentry:   fw:       v2.3.0 (ota_0)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (47343) sentry:   state:    1 NORMAL
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (47343) sentry:   link:     buoy link 'TopA-node', ip 10.223.162.49, rssi -22 dBm (excellent), ch 1
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (47343) sentry:   internet: OK
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (47353) sentry:   user:     testUser (user)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (47353) sentry:   time:     20:37:06, uptime 0h 00m 46s
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (47363) sentry:   valve:    closed
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (47363) sentry:   watch:    disarmed, CIC alerts unacked: 0
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (47373) sentry:   sonar:    no contact
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (47373) sentry:   carrier:  depth 41.9 m, hull 5.2 bar, water 8.1 C, battery 24.20 V (sim)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (47383) sentry:   heap:     251 KB free
+DEBUG    drivers.device_driver:device_driver.py:134 TX > whoami
+DEBUG    drivers.device_driver:device_driver.py:134 RX < whoami
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (47543) sentry: user: testUser, access: user
+DEBUG    drivers.device_driver:device_driver.py:134 TX > version
+DEBUG    drivers.device_driver:device_driver.py:134 RX < version
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (47753) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (47753) sentry:   partition: ota_0 @ 0x20000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:134 TX > ota install 2.1
+DEBUG    drivers.device_driver:device_driver.py:134 RX < ota install 2.1
+DEBUG    drivers.device_driver:device_driver.py:134 RX < E (48363) sentry: E414 bad version '2.1'. Format: X.Y.Z
+DEBUG    drivers.device_driver:device_driver.py:134 TX > version
+DEBUG    drivers.device_driver:device_driver.py:134 RX < version
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (48873) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (48873) sentry:   partition: ota_0 @ 0x20000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:134 TX > lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:134 RX < lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (49493) sentry: [BEACON] timer cancelled
+DEBUG    drivers.device_driver:device_driver.py:134 TX > lamp color 255 255 255
+DEBUG    drivers.device_driver:device_driver.py:134 RX < lamp color 255 255 255
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (49903) sentry: [BEACON] color: (255,255,255)
+DEBUG    drivers.device_driver:device_driver.py:134 TX > lamp brightness 50
+DEBUG    drivers.device_driver:device_driver.py:134 RX < lamp brightness 50
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (50313) sentry: [BEACON] brightness: 50%
+DEBUG    drivers.device_driver:device_driver.py:134 TX > lamp mode solid
+DEBUG    drivers.device_driver:device_driver.py:134 RX < lamp mode solid
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (50723) sentry: [BEACON] mode: solid
+DEBUG    drivers.device_driver:device_driver.py:134 TX > lamp off
+DEBUG    drivers.device_driver:device_driver.py:134 RX < lamp off
+DEBUG    drivers.device_driver:device_driver.py:134 RX < W (51143) sentry: W510 lamp already off
+INFO     conftest:conftest.py:542 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz17\logs\automated\ota\2.3.0\20261026-test_ota_install_invalid_version_format_2.1.txt
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 378
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 449
+DEBUG    drivers.device_driver:device_driver.py:134 TX > version
+DEBUG    drivers.device_driver:device_driver.py:134 RX < version
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (51753) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (51753) sentry:   partition: ota_0 @ 0x20000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:134 TX > lamp status
+DEBUG    drivers.device_driver:device_driver.py:134 RX < lamp status
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (51953) sentry: [BEACON] off, color (255,255,255), brightness 50%, mode solid, timer off
+DEBUG    drivers.device_driver:device_driver.py:134 TX > status
+DEBUG    drivers.device_driver:device_driver.py:134 RX < status
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (52563) sentry: === SWM-2 status ===
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (52563) sentry:   fw:       v2.3.0 (ota_0)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (52563) sentry:   state:    1 NORMAL
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (52563) sentry:   link:     buoy link 'TopA-node', ip 10.223.162.49, rssi -22 dBm (excellent), ch 1
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (52563) sentry:   internet: OK
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (52573) sentry:   user:     testUser (user)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (52573) sentry:   time:     20:37:11, uptime 0h 00m 52s
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (52583) sentry:   valve:    closed
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (52583) sentry:   watch:    disarmed, CIC alerts unacked: 0
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (52593) sentry:   sonar:    no contact
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (52593) sentry:   carrier:  depth 41.9 m, hull 5.2 bar, water 8.1 C, battery 24.20 V (sim)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (52603) sentry:   heap:     251 KB free
+DEBUG    drivers.device_driver:device_driver.py:134 TX > whoami
+DEBUG    drivers.device_driver:device_driver.py:134 RX < whoami
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (52773) sentry: user: testUser, access: user
+DEBUG    drivers.device_driver:device_driver.py:134 TX > version
+DEBUG    drivers.device_driver:device_driver.py:134 RX < version
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (52983) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (52983) sentry:   partition: ota_0 @ 0x20000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:134 TX > ota install 2.1.0.0
+DEBUG    drivers.device_driver:device_driver.py:134 RX < ota install 2.1.0.0
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (53503) sentry: [TELEMETRY #1] 20:37:12 up 00:00:53 heap 251KB rssi -22 temp 32.4C depth 41.9m hull 5.2bar batt 24.2V valve closed sonar - watch disarmed alerts 0 state NORMAL
+DEBUG    drivers.device_driver:device_driver.py:134 RX < E (53593) sentry: E414 bad version '2.1.0.0'. Format: X.Y.Z
+DEBUG    drivers.device_driver:device_driver.py:134 TX > version
+DEBUG    drivers.device_driver:device_driver.py:134 RX < version
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (54103) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (54103) sentry:   partition: ota_0 @ 0x20000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (54343) wifi:[ADDBA]RX DELBA, reason:39, delete tid:0, initiator:0(recipient)
+DEBUG    drivers.device_driver:device_driver.py:134 TX > lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:134 RX < lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (54733) sentry: [BEACON] timer cancelled
+DEBUG    drivers.device_driver:device_driver.py:134 TX > lamp color 255 255 255
+DEBUG    drivers.device_driver:device_driver.py:134 RX < lamp color 255 255 255
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (55143) sentry: [BEACON] color: (255,255,255)
+DEBUG    drivers.device_driver:device_driver.py:134 TX > lamp brightness 50
+DEBUG    drivers.device_driver:device_driver.py:134 RX < lamp brightness 50
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (55553) sentry: [BEACON] brightness: 50%
+DEBUG    drivers.device_driver:device_driver.py:134 TX > lamp mode solid
+DEBUG    drivers.device_driver:device_driver.py:134 RX < lamp mode solid
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (55963) sentry: [BEACON] mode: solid
+DEBUG    drivers.device_driver:device_driver.py:134 TX > lamp off
+DEBUG    drivers.device_driver:device_driver.py:134 RX < lamp off
+DEBUG    drivers.device_driver:device_driver.py:134 RX < W (56373) sentry: W510 lamp already off
+INFO     conftest:conftest.py:542 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz17\logs\automated\ota\2.3.0\20261026-test_ota_install_invalid_version_format_2.1.0.0.txt
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 433
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 394
+DEBUG    drivers.device_driver:device_driver.py:134 TX > version
+DEBUG    drivers.device_driver:device_driver.py:134 RX < version
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (56953) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (56953) sentry:   partition: ota_0 @ 0x20000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:134 TX > lamp status
+DEBUG    drivers.device_driver:device_driver.py:134 RX < lamp status
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (57163) sentry: [BEACON] off, color (255,255,255), brightness 50%, mode solid, timer off
+DEBUG    drivers.device_driver:device_driver.py:134 TX > status
+DEBUG    drivers.device_driver:device_driver.py:134 RX < status
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (57773) sentry: === SWM-2 status ===
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (57773) sentry:   fw:       v2.3.0 (ota_0)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (57773) sentry:   state:    1 NORMAL
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (57773) sentry:   link:     buoy link 'TopA-node', ip 10.223.162.49, rssi -20 dBm (excellent), ch 1
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (57773) sentry:   internet: OK
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (57783) sentry:   user:     testUser (user)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (57783) sentry:   time:     20:37:17, uptime 0h 00m 57s
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (57793) sentry:   valve:    closed
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (57793) sentry:   watch:    disarmed, CIC alerts unacked: 0
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (57803) sentry:   sonar:    no contact
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (57803) sentry:   carrier:  depth 41.9 m, hull 5.2 bar, water 8.1 C, battery 24.20 V (sim)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (57813) sentry:   heap:     251 KB free
+DEBUG    drivers.device_driver:device_driver.py:134 TX > whoami
+DEBUG    drivers.device_driver:device_driver.py:134 RX < whoami
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (57983) sentry: user: testUser, access: user
+DEBUG    drivers.device_driver:device_driver.py:134 TX > version
+DEBUG    drivers.device_driver:device_driver.py:134 RX < version
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (58193) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (58193) sentry:   partition: ota_0 @ 0x20000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:134 TX > ota install abc
+DEBUG    drivers.device_driver:device_driver.py:134 RX < ota install abc
+DEBUG    drivers.device_driver:device_driver.py:134 RX < E (58803) sentry: E414 bad version 'abc'. Format: X.Y.Z
+DEBUG    drivers.device_driver:device_driver.py:134 TX > version
+DEBUG    drivers.device_driver:device_driver.py:134 RX < version
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (59303) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (59303) sentry:   partition: ota_0 @ 0x20000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:134 TX > lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:134 RX < lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (59933) sentry: [BEACON] timer cancelled
+DEBUG    drivers.device_driver:device_driver.py:134 TX > lamp color 255 255 255
+DEBUG    drivers.device_driver:device_driver.py:134 RX < lamp color 255 255 255
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (60343) sentry: [BEACON] color: (255,255,255)
+DEBUG    drivers.device_driver:device_driver.py:134 TX > lamp brightness 50
+DEBUG    drivers.device_driver:device_driver.py:134 RX < lamp brightness 50
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (60743) sentry: [BEACON] brightness: 50%
+DEBUG    drivers.device_driver:device_driver.py:134 TX > lamp mode solid
+DEBUG    drivers.device_driver:device_driver.py:134 RX < lamp mode solid
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (61153) sentry: [BEACON] mode: solid
+DEBUG    drivers.device_driver:device_driver.py:134 TX > lamp off
+DEBUG    drivers.device_driver:device_driver.py:134 RX < lamp off
+DEBUG    drivers.device_driver:device_driver.py:134 RX < W (61563) sentry: W510 lamp already off
+INFO     conftest:conftest.py:542 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz17\logs\automated\ota\2.3.0\20261026-test_ota_install_invalid_version_format_abc.txt
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 378
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 393
+DEBUG    drivers.device_driver:device_driver.py:134 TX > version
+DEBUG    drivers.device_driver:device_driver.py:134 RX < version
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (62173) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (62173) sentry:   partition: ota_0 @ 0x20000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:134 TX > lamp status
+DEBUG    drivers.device_driver:device_driver.py:134 RX < lamp status
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (62373) sentry: [BEACON] off, color (255,255,255), brightness 50%, mode solid, timer off
+DEBUG    drivers.device_driver:device_driver.py:134 TX > status
+DEBUG    drivers.device_driver:device_driver.py:134 RX < status
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (62983) sentry: === SWM-2 status ===
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (62983) sentry:   fw:       v2.3.0 (ota_0)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (62983) sentry:   state:    1 NORMAL
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (62983) sentry:   link:     buoy link 'TopA-node', ip 10.223.162.49, rssi -20 dBm (excellent), ch 1
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (62983) sentry:   internet: OK
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (62993) sentry:   user:     testUser (user)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (62993) sentry:   time:     20:37:22, uptime 0h 01m 02s
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (63003) sentry:   valve:    closed
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (63003) sentry:   watch:    disarmed, CIC alerts unacked: 0
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (63013) sentry:   sonar:    no contact
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (63013) sentry:   carrier:  depth 41.9 m, hull 5.2 bar, water 8.1 C, battery 24.20 V (sim)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (63023) sentry:   heap:     251 KB free
+DEBUG    drivers.device_driver:device_driver.py:134 TX > whoami
+DEBUG    drivers.device_driver:device_driver.py:134 RX < whoami
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (63193) sentry: user: testUser, access: user
+DEBUG    drivers.device_driver:device_driver.py:134 TX > version
+DEBUG    drivers.device_driver:device_driver.py:134 RX < version
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (63403) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (63403) sentry:   partition: ota_0 @ 0x20000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:134 TX > ota install 999.999.999
+DEBUG    drivers.device_driver:device_driver.py:134 RX < ota install 999.999.999
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (64363) esp-x509-crt-bundle: Certificate validated
+DEBUG    drivers.device_driver:device_driver.py:134 RX < E (65203) sentry: E415 version v999.999.999 not found on server
+DEBUG    drivers.device_driver:device_driver.py:134 TX > version
+DEBUG    drivers.device_driver:device_driver.py:134 RX < version
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (65353) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (65353) sentry:   partition: ota_0 @ 0x20000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:134 TX > lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:134 RX < lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (65973) sentry: [BEACON] timer cancelled
+DEBUG    drivers.device_driver:device_driver.py:134 TX > lamp color 255 255 255
+DEBUG    drivers.device_driver:device_driver.py:134 RX < lamp color 255 255 255
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (66383) sentry: [BEACON] color: (255,255,255)
+DEBUG    drivers.device_driver:device_driver.py:134 TX > lamp brightness 50
+DEBUG    drivers.device_driver:device_driver.py:134 RX < lamp brightness 50
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (66793) sentry: [BEACON] brightness: 50%
+DEBUG    drivers.device_driver:device_driver.py:134 TX > lamp mode solid
+DEBUG    drivers.device_driver:device_driver.py:134 RX < lamp mode solid
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (67203) sentry: [BEACON] mode: solid
+DEBUG    drivers.device_driver:device_driver.py:134 TX > lamp off
+DEBUG    drivers.device_driver:device_driver.py:134 RX < lamp off
+DEBUG    drivers.device_driver:device_driver.py:134 RX < W (67613) sentry: W510 lamp already off
+INFO     conftest:conftest.py:542 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz17\logs\automated\ota\2.3.0\20261026-test_ota_install_nonexistent_version.txt
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 377
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 403
+DEBUG    drivers.device_driver:device_driver.py:134 TX > version
+DEBUG    drivers.device_driver:device_driver.py:134 RX < version
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (68253) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (68253) sentry:   partition: ota_0 @ 0x20000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:134 TX > lamp status
+DEBUG    drivers.device_driver:device_driver.py:134 RX < lamp status
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (68463) sentry: [BEACON] off, color (255,255,255), brightness 50%, mode solid, timer off
+DEBUG    drivers.device_driver:device_driver.py:134 TX > status
+DEBUG    drivers.device_driver:device_driver.py:134 RX < status
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (69073) sentry: === SWM-2 status ===
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (69073) sentry:   fw:       v2.3.0 (ota_0)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (69073) sentry:   state:    1 NORMAL
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (69073) sentry:   link:     buoy link 'TopA-node', ip 10.223.162.49, rssi -20 dBm (excellent), ch 1
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (69073) sentry:   internet: OK
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (69083) sentry:   user:     testUser (user)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (69083) sentry:   time:     20:37:28, uptime 0h 01m 08s
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (69093) sentry:   valve:    closed
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (69093) sentry:   watch:    disarmed, CIC alerts unacked: 0
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (69103) sentry:   sonar:    no contact
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (69103) sentry:   carrier:  depth 41.9 m, hull 5.2 bar, water 8.1 C, battery 24.20 V (sim)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (69113) sentry:   heap:     251 KB free
+DEBUG    drivers.device_driver:device_driver.py:134 TX > whoami
+DEBUG    drivers.device_driver:device_driver.py:134 RX < whoami
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (69273) sentry: user: testUser, access: user
+DEBUG    drivers.device_driver:device_driver.py:134 TX > version
+DEBUG    drivers.device_driver:device_driver.py:134 RX < version
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (69493) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (69493) sentry:   partition: ota_0 @ 0x20000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:134 TX > ota install 2.1.0
+DEBUG    drivers.device_driver:device_driver.py:134 RX < ota install 2.1.0
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (70623) esp-x509-crt-bundle: Certificate validated
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (71553) sentry: [OTA] current v2.3.0 (ota_0) -> target partition ota_1
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (71553) sentry: [OTA] downloading https://raw.githubusercontent.com/BohdanHorbanych/esp32-ota-files/main/fw7/v2.1.0/sentry_fw7.bin
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (71903) esp-x509-crt-bundle: Certificate validated
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (72583) esp_https_ota: Starting OTA...
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (72583) esp_https_ota: Writing to <ota_1> partition at offset 0x1a0000
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (72903) sentry: [OTA] image: sentry_fw7 v2.1.0 (build Oct  6 2026 02:14:57)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < E (72903) sentry: E408 downgrade blocked: v2.3.0 -> v2.1.0. Use 'ota install 2.1.0 force'
+DEBUG    drivers.device_driver:device_driver.py:134 TX > version
+DEBUG    drivers.device_driver:device_driver.py:134 RX < version
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (73093) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (73093) sentry:   partition: ota_0 @ 0x20000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:134 TX > lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:134 RX < lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (73703) sentry: [BEACON] timer cancelled
+DEBUG    drivers.device_driver:device_driver.py:134 TX > lamp color 255 255 255
+DEBUG    drivers.device_driver:device_driver.py:134 RX < lamp color 255 255 255
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (74113) sentry: [BEACON] color: (255,255,255)
+DEBUG    drivers.device_driver:device_driver.py:134 TX > lamp brightness 50
+DEBUG    drivers.device_driver:device_driver.py:134 RX < lamp brightness 50
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (74523) sentry: [BEACON] brightness: 50%
+DEBUG    drivers.device_driver:device_driver.py:134 TX > lamp mode solid
+DEBUG    drivers.device_driver:device_driver.py:134 RX < lamp mode solid
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (74933) sentry: [BEACON] mode: solid
+DEBUG    drivers.device_driver:device_driver.py:134 TX > lamp off
+DEBUG    drivers.device_driver:device_driver.py:134 RX < lamp off
+DEBUG    drivers.device_driver:device_driver.py:134 RX < W (75343) sentry: W510 lamp already off
+INFO     conftest:conftest.py:542 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz17\logs\automated\ota\2.3.0\20261026-test_downgrade_without_force_is_blocked.txt
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 387
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 388
+DEBUG    drivers.device_driver:device_driver.py:134 TX > version
+DEBUG    drivers.device_driver:device_driver.py:134 RX < version
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (75983) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (75983) sentry:   partition: ota_0 @ 0x20000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:134 TX > lamp status
+DEBUG    drivers.device_driver:device_driver.py:134 RX < lamp status
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (76183) sentry: [BEACON] off, color (255,255,255), brightness 50%, mode solid, timer off
+DEBUG    drivers.device_driver:device_driver.py:134 TX > status
+DEBUG    drivers.device_driver:device_driver.py:134 RX < status
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (76793) sentry: === SWM-2 status ===
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (76793) sentry:   fw:       v2.3.0 (ota_0)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (76793) sentry:   state:    1 NORMAL
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (76793) sentry:   link:     buoy link 'TopA-node', ip 10.223.162.49, rssi -22 dBm (excellent), ch 1
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (76793) sentry:   internet: OK
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (76803) sentry:   user:     testUser (user)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (76803) sentry:   time:     20:37:36, uptime 0h 01m 16s
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (76813) sentry:   valve:    closed
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (76813) sentry:   watch:    disarmed, CIC alerts unacked: 0
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (76823) sentry:   sonar:    no contact
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (76823) sentry:   carrier:  depth 41.9 m, hull 5.2 bar, water 8.1 C, battery 24.20 V (sim)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (76833) sentry:   heap:     251 KB free
+DEBUG    drivers.device_driver:device_driver.py:134 TX > whoami
+DEBUG    drivers.device_driver:device_driver.py:134 RX < whoami
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (76993) sentry: user: testUser, access: user
+DEBUG    drivers.device_driver:device_driver.py:134 TX > version
+DEBUG    drivers.device_driver:device_driver.py:134 RX < version
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (77203) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (77203) sentry:   partition: ota_0 @ 0x20000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:134 TX > ota url ftp://invalid.local/fw7.bin
+DEBUG    drivers.device_driver:device_driver.py:134 RX < ota url ftp://invalid.local/fw7.bin
+DEBUG    drivers.device_driver:device_driver.py:134 RX < E (77813) sentry: E418 url must start with http:// or https://
+DEBUG    drivers.device_driver:device_driver.py:134 TX > version
+DEBUG    drivers.device_driver:device_driver.py:134 RX < version
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (78323) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (78323) sentry:   partition: ota_0 @ 0x20000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:134 TX > lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:134 RX < lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (78943) sentry: [BEACON] timer cancelled
+DEBUG    drivers.device_driver:device_driver.py:134 TX > lamp color 255 255 255
+DEBUG    drivers.device_driver:device_driver.py:134 RX < lamp color 255 255 255
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (79353) sentry: [BEACON] color: (255,255,255)
+DEBUG    drivers.device_driver:device_driver.py:134 TX > lamp brightness 50
+DEBUG    drivers.device_driver:device_driver.py:134 RX < lamp brightness 50
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (79773) sentry: [BEACON] brightness: 50%
+DEBUG    drivers.device_driver:device_driver.py:134 TX > lamp mode solid
+DEBUG    drivers.device_driver:device_driver.py:134 RX < lamp mode solid
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (80183) sentry: [BEACON] mode: solid
+DEBUG    drivers.device_driver:device_driver.py:134 TX > lamp off
+DEBUG    drivers.device_driver:device_driver.py:134 RX < lamp off
+DEBUG    drivers.device_driver:device_driver.py:134 RX < W (80593) sentry: W510 lamp already off
+INFO     conftest:conftest.py:542 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz17\logs\automated\ota\2.3.0\20261026-test_ota_url_rejects_non_http.txt
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 372
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 394
+DEBUG    drivers.device_driver:device_driver.py:134 TX > version
+DEBUG    drivers.device_driver:device_driver.py:134 RX < version
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (81193) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (81193) sentry:   partition: ota_0 @ 0x20000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:134 TX > lamp status
+DEBUG    drivers.device_driver:device_driver.py:134 RX < lamp status
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (81403) sentry: [BEACON] off, color (255,255,255), brightness 50%, mode solid, timer off
+DEBUG    drivers.device_driver:device_driver.py:134 TX > status
+DEBUG    drivers.device_driver:device_driver.py:134 RX < status
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (82023) sentry: === SWM-2 status ===
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (82023) sentry:   fw:       v2.3.0 (ota_0)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (82023) sentry:   state:    1 NORMAL
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (82023) sentry:   link:     buoy link 'TopA-node', ip 10.223.162.49, rssi -22 dBm (excellent), ch 1
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (82023) sentry:   internet: OK
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (82033) sentry:   user:     testUser (user)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (82033) sentry:   time:     20:37:41, uptime 0h 01m 21s
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (82043) sentry:   valve:    closed
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (82043) sentry:   watch:    disarmed, CIC alerts unacked: 0
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (82053) sentry:   sonar:    no contact
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (82053) sentry:   carrier:  depth 41.9 m, hull 5.2 bar, water 8.1 C, battery 24.20 V (sim)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (82063) sentry:   heap:     251 KB free
+DEBUG    drivers.device_driver:device_driver.py:134 TX > status
+DEBUG    drivers.device_driver:device_driver.py:134 RX < status
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (82233) sentry: === SWM-2 status ===
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (82233) sentry:   fw:       v2.3.0 (ota_0)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (82233) sentry:   state:    1 NORMAL
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (82233) sentry:   link:     buoy link 'TopA-node', ip 10.223.162.49, rssi -22 dBm (excellent), ch 1
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (82233) sentry:   internet: OK
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (82243) sentry:   user:     testUser (user)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (82243) sentry:   time:     20:37:41, uptime 0h 01m 21s
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (82253) sentry:   valve:    closed
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (82253) sentry:   watch:    disarmed, CIC alerts unacked: 0
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (82263) sentry:   sonar:    no contact
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (82263) sentry:   carrier:  depth 41.9 m, hull 5.2 bar, water 8.1 C, battery 24.20 V (sim)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (82273) sentry:   heap:     251 KB free
+DEBUG    drivers.device_driver:device_driver.py:134 TX > whoami
+DEBUG    drivers.device_driver:device_driver.py:134 RX < whoami
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (82433) sentry: user: testUser, access: user
+DEBUG    drivers.device_driver:device_driver.py:134 TX > whoami
+DEBUG    drivers.device_driver:device_driver.py:134 RX < whoami
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (82643) sentry: user: testUser, access: user
+DEBUG    drivers.device_driver:device_driver.py:134 TX > ota server
+DEBUG    drivers.device_driver:device_driver.py:134 RX < ota server
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (83253) sentry: [OTA] server: https://raw.githubusercontent.com/BohdanHorbanych/esp32-ota-files/main/fw7/ (default)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (83563) sentry: [TELEMETRY #2] 20:37:42 up 00:01:23 heap 251KB rssi -22 temp 32.4C depth 41.9m hull 5.2bar batt 24.2V valve closed sonar - watch disarmed alerts 0 state NORMAL
+DEBUG    drivers.device_driver:device_driver.py:134 TX > ota server default
+DEBUG    drivers.device_driver:device_driver.py:134 RX < ota server default
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (86263) sentry: [OTA] server: https://raw.githubusercontent.com/BohdanHorbanych/esp32-ota-files/main/fw7/ (default)
+DEBUG    drivers.device_driver:device_driver.py:134 TX > ota server default
+DEBUG    drivers.device_driver:device_driver.py:134 RX < ota server default
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (89273) sentry: [OTA] server: https://raw.githubusercontent.com/BohdanHorbanych/esp32-ota-files/main/fw7/ (default)
+DEBUG    drivers.device_driver:device_driver.py:134 TX > ota server
+DEBUG    drivers.device_driver:device_driver.py:134 RX < ota server
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (92283) sentry: [OTA] server: https://raw.githubusercontent.com/BohdanHorbanych/esp32-ota-files/main/fw7/ (default)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (92363) sentry: [NAV] depth 42.2 m, heading 274, speed 2.9 kn
+DEBUG    drivers.device_driver:device_driver.py:134 TX > status
+DEBUG    drivers.device_driver:device_driver.py:134 RX < status
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (95293) sentry: === SWM-2 status ===
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (95293) sentry:   fw:       v2.3.0 (ota_0)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (95293) sentry:   state:    1 NORMAL
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (95293) sentry:   link:     buoy link 'TopA-node', ip 10.223.162.49, rssi -24 dBm (excellent), ch 1
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (95293) sentry:   internet: OK
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (95303) sentry:   user:     testUser (user)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (95303) sentry:   time:     20:37:54, uptime 0h 01m 34s
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (95313) sentry:   valve:    closed
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (95313) sentry:   watch:    disarmed, CIC alerts unacked: 0
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (95323) sentry:   sonar:    no contact
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (95323) sentry:   carrier:  depth 42.2 m, hull 5.2 bar, water 8.1 C, battery 24.20 V (sim)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (95333) sentry:   heap:     251 KB free
+DEBUG    drivers.device_driver:device_driver.py:134 TX > whoami
+DEBUG    drivers.device_driver:device_driver.py:134 RX < whoami
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (95503) sentry: user: testUser, access: user
+DEBUG    drivers.device_driver:device_driver.py:134 TX > status
+DEBUG    drivers.device_driver:device_driver.py:134 RX < status
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (96123) sentry: === SWM-2 status ===
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (96123) sentry:   fw:       v2.3.0 (ota_0)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (96123) sentry:   state:    1 NORMAL
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (96123) sentry:   link:     buoy link 'TopA-node', ip 10.223.162.49, rssi -24 dBm (excellent), ch 1
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (96123) sentry:   internet: OK
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (96133) sentry:   user:     testUser (user)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (96133) sentry:   time:     20:37:55, uptime 0h 01m 35s
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (96143) sentry:   valve:    closed
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (96143) sentry:   watch:    disarmed, CIC alerts unacked: 0
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (96153) sentry:   sonar:    no contact
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (96153) sentry:   carrier:  depth 42.2 m, hull 5.2 bar, water 8.1 C, battery 24.20 V (sim)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (96163) sentry:   heap:     251 KB free
+DEBUG    drivers.device_driver:device_driver.py:134 TX > whoami
+DEBUG    drivers.device_driver:device_driver.py:134 RX < whoami
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (96323) sentry: user: testUser, access: user
+DEBUG    drivers.device_driver:device_driver.py:134 TX > whoami
+DEBUG    drivers.device_driver:device_driver.py:134 RX < whoami
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (96533) sentry: user: testUser, access: user
+DEBUG    drivers.device_driver:device_driver.py:134 TX > lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:134 RX < lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (97153) sentry: [BEACON] timer cancelled
+DEBUG    drivers.device_driver:device_driver.py:134 TX > lamp color 255 255 255
+DEBUG    drivers.device_driver:device_driver.py:134 RX < lamp color 255 255 255
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (97563) sentry: [BEACON] color: (255,255,255)
+DEBUG    drivers.device_driver:device_driver.py:134 TX > lamp brightness 50
+DEBUG    drivers.device_driver:device_driver.py:134 RX < lamp brightness 50
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (97973) sentry: [BEACON] brightness: 50%
+DEBUG    drivers.device_driver:device_driver.py:134 TX > lamp mode solid
+DEBUG    drivers.device_driver:device_driver.py:134 RX < lamp mode solid
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (98393) sentry: [BEACON] mode: solid
+DEBUG    drivers.device_driver:device_driver.py:134 TX > lamp off
+DEBUG    drivers.device_driver:device_driver.py:134 RX < lamp off
+DEBUG    drivers.device_driver:device_driver.py:134 RX < W (98803) sentry: W510 lamp already off
+INFO     conftest:conftest.py:542 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz17\logs\automated\ota\2.3.0\20261026-test_ota_server_default.txt
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 378
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 394
+DEBUG    drivers.device_driver:device_driver.py:134 TX > version
+DEBUG    drivers.device_driver:device_driver.py:134 RX < version
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (99423) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (99423) sentry:   partition: ota_0 @ 0x20000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:134 TX > lamp status
+DEBUG    drivers.device_driver:device_driver.py:134 RX < lamp status
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (99633) sentry: [BEACON] off, color (255,255,255), brightness 50%, mode solid, timer off
+DEBUG    drivers.device_driver:device_driver.py:134 TX > status
+DEBUG    drivers.device_driver:device_driver.py:134 RX < status
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (100243) sentry: === SWM-2 status ===
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (100243) sentry:   fw:       v2.3.0 (ota_0)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (100243) sentry:   state:    1 NORMAL
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (100243) sentry:   link:     buoy link 'TopA-node', ip 10.223.162.49, rssi -23 dBm (excellent), ch 1
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (100243) sentry:   internet: OK
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (100253) sentry:   user:     testUser (user)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (100253) sentry:   time:     20:37:59, uptime 0h 01m 39s
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (100263) sentry:   valve:    closed
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (100263) sentry:   watch:    disarmed, CIC alerts unacked: 0
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (100273) sentry:   sonar:    no contact
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (100273) sentry:   carrier:  depth 42.2 m, hull 5.2 bar, water 8.1 C, battery 24.20 V (sim)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (100283) sentry:   heap:     251 KB free
+DEBUG    drivers.device_driver:device_driver.py:134 TX > status
+DEBUG    drivers.device_driver:device_driver.py:134 RX < status
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (100443) sentry: === SWM-2 status ===
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (100443) sentry:   fw:       v2.3.0 (ota_0)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (100443) sentry:   state:    1 NORMAL
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (100443) sentry:   link:     buoy link 'TopA-node', ip 10.223.162.49, rssi -23 dBm (excellent), ch 1
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (100443) sentry:   internet: OK
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (100453) sentry:   user:     testUser (user)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (100453) sentry:   time:     20:37:59, uptime 0h 01m 40s
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (100463) sentry:   valve:    closed
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (100463) sentry:   watch:    disarmed, CIC alerts unacked: 0
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (100473) sentry:   sonar:    no contact
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (100473) sentry:   carrier:  depth 42.2 m, hull 5.2 bar, water 8.1 C, battery 24.20 V (sim)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (100483) sentry:   heap:     251 KB free
+DEBUG    drivers.device_driver:device_driver.py:134 TX > whoami
+DEBUG    drivers.device_driver:device_driver.py:134 RX < whoami
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (100653) sentry: user: testUser, access: user
+DEBUG    drivers.device_driver:device_driver.py:134 TX > whoami
+DEBUG    drivers.device_driver:device_driver.py:134 RX < whoami
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (100863) sentry: user: testUser, access: user
+DEBUG    drivers.device_driver:device_driver.py:134 TX > logout
+DEBUG    drivers.device_driver:device_driver.py:134 RX < logout
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (101473) sentry: [AUTH] operator testUser relieved from watch
+DEBUG    drivers.device_driver:device_driver.py:134 TX > whoami
+DEBUG    drivers.device_driver:device_driver.py:134 RX < whoami
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (102493) sentry: not logged in
+DEBUG    drivers.device_driver:device_driver.py:134 TX > ota
+DEBUG    drivers.device_driver:device_driver.py:134 RX < ota
+DEBUG    drivers.device_driver:device_driver.py:134 RX < E (103103) sentry: E003 login required. [REDACTED] 'login <login> [REDACTED] or 'register'
+DEBUG    drivers.device_driver:device_driver.py:134 TX > ota status
+DEBUG    drivers.device_driver:device_driver.py:134 RX < ota status
+DEBUG    drivers.device_driver:device_driver.py:134 RX < E (105113) sentry: E003 login required. [REDACTED] 'login <login> [REDACTED] or 'register'
+DEBUG    drivers.device_driver:device_driver.py:134 TX > ota check
+DEBUG    drivers.device_driver:device_driver.py:134 RX < ota check
+DEBUG    drivers.device_driver:device_driver.py:134 RX < E (107123) sentry: E003 login required. [REDACTED] 'login <login> [REDACTED] or 'register'
+DEBUG    drivers.device_driver:device_driver.py:134 TX > status
+DEBUG    drivers.device_driver:device_driver.py:134 RX < status
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (109133) sentry: === SWM-2 status ===
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (109133) sentry:   fw:       v2.3.0 (ota_0)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (109133) sentry:   state:    1 NORMAL
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (109133) sentry:   link:     buoy link 'TopA-node', ip 10.223.162.49, rssi -23 dBm (excellent), ch 1
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (109133) sentry:   internet: OK
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (109143) sentry:   user:     not logged in
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (109143) sentry:   time:     20:38:08, uptime 0h 01m 48s
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (109153) sentry:   valve:    closed
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (109153) sentry:   watch:    disarmed, CIC alerts unacked: 0
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (109163) sentry:   sonar:    no contact
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (109163) sentry:   carrier:  depth 42.2 m, hull 5.2 bar, water 8.1 C, battery 24.20 V (sim)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (109173) sentry:   heap:     251 KB free
+DEBUG    drivers.device_driver:device_driver.py:134 TX > whoami
+DEBUG    drivers.device_driver:device_driver.py:134 RX < whoami
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (109353) sentry: not logged in
+DEBUG    drivers.device_driver:device_driver.py:134 TX > status
+DEBUG    drivers.device_driver:device_driver.py:134 RX < status
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (109963) sentry: === SWM-2 status ===
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (109963) sentry:   fw:       v2.3.0 (ota_0)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (109963) sentry:   state:    1 NORMAL
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (109963) sentry:   link:     buoy link 'TopA-node', ip 10.223.162.49, rssi -23 dBm (excellent), ch 1
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (109963) sentry:   internet: OK
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (109973) sentry:   user:     not logged in
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (109973) sentry:   time:     20:38:09, uptime 0h 01m 49s
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (109983) sentry:   valve:    closed
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (109983) sentry:   watch:    disarmed, CIC alerts unacked: 0
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (109993) sentry:   sonar:    no contact
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (109993) sentry:   carrier:  depth 42.2 m, hull 5.2 bar, water 8.1 C, battery 24.20 V (sim)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (110003) sentry:   heap:     251 KB free
+DEBUG    drivers.device_driver:device_driver.py:134 TX > whoami
+DEBUG    drivers.device_driver:device_driver.py:134 RX < whoami
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (110173) sentry: not logged in
+DEBUG    drivers.device_driver:device_driver.py:134 TX > [REDACTED]
+DEBUG    drivers.device_driver:device_driver.py:134 RX < [REDACTED]
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (110383) sentry: [AUTH] operator testUser on watch, console 2
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (110403) sentry: [TELEMETRY] auto report every 30 s ('health off' to stop)
+DEBUG    drivers.device_driver:device_driver.py:134 TX > whoami
+DEBUG    drivers.device_driver:device_driver.py:134 RX < whoami
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (110593) sentry: user: testUser, access: user
+DEBUG    drivers.device_driver:device_driver.py:134 TX > whoami
+DEBUG    drivers.device_driver:device_driver.py:134 RX < whoami
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (110803) sentry: user: testUser, access: user
+DEBUG    drivers.device_driver:device_driver.py:134 TX > lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:134 RX < lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (111423) sentry: [BEACON] timer cancelled
+DEBUG    drivers.device_driver:device_driver.py:134 TX > lamp color 255 255 255
+DEBUG    drivers.device_driver:device_driver.py:134 RX < lamp color 255 255 255
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (111833) sentry: [BEACON] color: (255,255,255)
+DEBUG    drivers.device_driver:device_driver.py:134 TX > lamp brightness 50
+DEBUG    drivers.device_driver:device_driver.py:134 RX < lamp brightness 50
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (112243) sentry: [BEACON] brightness: 50%
+DEBUG    drivers.device_driver:device_driver.py:134 TX > lamp mode solid
+DEBUG    drivers.device_driver:device_driver.py:134 RX < lamp mode solid
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (112653) sentry: [BEACON] mode: solid
+DEBUG    drivers.device_driver:device_driver.py:134 TX > lamp off
+DEBUG    drivers.device_driver:device_driver.py:134 RX < lamp off
+DEBUG    drivers.device_driver:device_driver.py:134 RX < W (113063) sentry: W510 lamp already off
+INFO     conftest:conftest.py:542 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz17\logs\automated\ota\2.3.0\20261026-test_ota_logged_out_blocked.txt
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 378
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 391
+DEBUG    drivers.device_driver:device_driver.py:134 TX > version
+DEBUG    drivers.device_driver:device_driver.py:134 RX < version
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (113793) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (113793) sentry:   partition: ota_0 @ 0x20000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:134 TX > lamp status
+DEBUG    drivers.device_driver:device_driver.py:134 RX < lamp status
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (113993) sentry: [BEACON] off, color (255,255,255), brightness 50%, mode solid, timer off
+DEBUG    drivers.device_driver:device_driver.py:134 TX > status
+DEBUG    drivers.device_driver:device_driver.py:134 RX < status
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (114603) sentry: === SWM-2 status ===
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (114603) sentry:   fw:       v2.3.0 (ota_0)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (114603) sentry:   state:    1 NORMAL
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (114603) sentry:   link:     buoy link 'TopA-node', ip 10.223.162.49, rssi -22 dBm (excellent), ch 1
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (114603) sentry:   internet: OK
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (114613) sentry:   user:     testUser (user)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (114613) sentry:   time:     20:38:13, uptime 0h 01m 54s
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (114623) sentry:   valve:    closed
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (114623) sentry:   watch:    disarmed, CIC alerts unacked: 0
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (114633) sentry:   sonar:    no contact
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (114633) sentry:   carrier:  depth 42.2 m, hull 5.2 bar, water 8.1 C, battery 24.20 V (sim)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (114643) sentry:   heap:     251 KB free
+DEBUG    drivers.device_driver:device_driver.py:134 TX > disconnect
+DEBUG    drivers.device_driver:device_driver.py:134 RX < disconnect
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (114813) wifi:state: run -> init (0x0)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (114813) wifi:pm stop, total sleep time: 87867967 us / 100056505 us
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (114813) wifi:<ba-del>idx:0, tid:0
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (114813) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (114823) sentry: [LINK] disconnected
+DEBUG    drivers.device_driver:device_driver.py:134 TX > status
+DEBUG    drivers.device_driver:device_driver.py:134 RX < status
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (115013) sentry: === SWM-2 status ===
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (115013) sentry:   fw:       v2.3.0 (ota_0)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (115013) sentry:   state:    1 NORMAL
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (115013) sentry:   link:     buoy link down (known: TopA-node)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (115013) sentry:   user:     testUser (user)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (115023) sentry:   time:     20:38:14, uptime 0h 01m 54s
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (115023) sentry:   valve:    closed
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (115023) sentry:   watch:    disarmed, CIC alerts unacked: 0
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (115033) sentry:   sonar:    no contact
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (115033) sentry:   carrier:  depth 42.2 m, hull 5.2 bar, water 8.1 C, battery 24.20 V (sim)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (115043) sentry:   heap:     252 KB free
+DEBUG    drivers.device_driver:device_driver.py:134 TX > ota status
+DEBUG    drivers.device_driver:device_driver.py:134 RX < ota status
+DEBUG    drivers.device_driver:device_driver.py:134 RX < E (115223) sentry: E002 Wi-Fi required. Use 'reconnect' or 'connect'
+DEBUG    drivers.device_driver:device_driver.py:134 TX > status
+DEBUG    drivers.device_driver:device_driver.py:134 RX < status
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (117223) sentry: === SWM-2 status ===
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (117223) sentry:   fw:       v2.3.0 (ota_0)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (117223) sentry:   state:    1 NORMAL
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (117223) sentry:   link:     buoy link down (known: TopA-node)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (117223) sentry:   user:     testUser (user)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (117233) sentry:   time:     20:38:16, uptime 0h 01m 56s
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (117233) sentry:   valve:    closed
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (117233) sentry:   watch:    disarmed, CIC alerts unacked: 0
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (117243) sentry:   sonar:    no contact
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (117243) sentry:   carrier:  depth 42.2 m, hull 5.2 bar, water 8.1 C, battery 24.20 V (sim)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (117253) sentry:   heap:     252 KB free
+DEBUG    drivers.device_driver:device_driver.py:134 TX > reconnect
+DEBUG    drivers.device_driver:device_driver.py:134 RX < reconnect
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (117533) sentry: [LINK] raising buoy antenna, connecting to 'TopA-node'...
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (117533) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (117533) wifi:state: init -> auth (0xb0)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (117543) wifi:state: auth -> assoc (0x0)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (117543) wifi:state: assoc -> run (0x10)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (117563) wifi:connected with TopA-node, aid = 1, channel 1, BW20, bssid = d2:06:30:f6:79:fc
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (117563) wifi:security: WPA2-PSK, phy: bgn, rssi: -22, cipher(pairwise:0x3, group:0x3), pmf:1
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (117573) wifi:pm start, type: 1
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (117573) wifi:dp: 1, bi: 102400, li: 3, scale listen interval from 307200 us to 307200 us
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (117583) wifi:set rx beacon pti, rx_bcn_pti: 0, bcn_timeout: 25000, mt_pti: 0, mt_time: 10000
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (117623) wifi:dp: 2, bi: 102400, li: 4, scale listen interval from 307200 us to 409600 us
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (117623) wifi:AP's beacon interval = 102400 us, DTIM period = 2
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (119483) esp_netif_handlers: sta ip: 10.223.162.49, mask: 255.255.255.0, gw: 10.223.162.101
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (119483) sentry: [LINK] got ip 10.223.162.49
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (119483) sentry: [LINK] connected to 'TopA-node', rssi -22 dBm (excellent)
+DEBUG    drivers.device_driver:device_driver.py:134 TX > status
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (119663) sentry: [TELEMETRY] auto report every 30 s ('health off' to stop)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (120143) wifi:<ba-add>idx:0 (ifx:0, d2:06:30:f6:79:fc), tid:0, ssn:3, winSize:64
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (120443) esp-x509-crt-bundle: Certificate validated
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (120503) wifi:[ADDBA]RX DELBA, reason:39, delete tid:0, initiator:0(recipient)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (121943) sentry: [LINK] fleet network reachable (internet OK)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < W (127943) sentry: W106 [LINK] time: NTP sync failed, timestamps disabled
+DEBUG    drivers.device_driver:device_driver.py:134 RX < status
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (128043) sentry: === SWM-2 status ===
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (128043) sentry:   fw:       v2.3.0 (ota_0)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (128043) sentry:   state:    1 NORMAL
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (128043) sentry:   link:     buoy link 'TopA-node', ip 10.223.162.49, rssi -22 dBm (excellent), ch 1
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (128043) sentry:   internet: OK
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (128053) sentry:   user:     testUser (user)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (128053) sentry:   time:     20:38:27, uptime 0h 02m 07s
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (128063) sentry:   valve:    closed
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (128063) sentry:   watch:    disarmed, CIC alerts unacked: 0
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (128073) sentry:   sonar:    no contact
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (128073) sentry:   carrier:  depth 42.2 m, hull 5.2 bar, water 8.1 C, battery 24.20 V (sim)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (128083) sentry:   heap:     251 KB free
+DEBUG    drivers.device_driver:device_driver.py:134 TX > lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:134 RX < lamp timer 0
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (128243) sentry: [BEACON] timer cancelled
+DEBUG    drivers.device_driver:device_driver.py:134 TX > lamp color 255 255 255
+DEBUG    drivers.device_driver:device_driver.py:134 RX < lamp color 255 255 255
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (128653) sentry: [BEACON] color: (255,255,255)
+DEBUG    drivers.device_driver:device_driver.py:134 TX > lamp brightness 50
+DEBUG    drivers.device_driver:device_driver.py:134 RX < lamp brightness 50
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (129073) sentry: [BEACON] brightness: 50%
+DEBUG    drivers.device_driver:device_driver.py:134 TX > lamp mode solid
+DEBUG    drivers.device_driver:device_driver.py:134 RX < lamp mode solid
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (129483) sentry: [BEACON] mode: solid
+DEBUG    drivers.device_driver:device_driver.py:134 TX > lamp off
+DEBUG    drivers.device_driver:device_driver.py:134 RX < lamp off
+DEBUG    drivers.device_driver:device_driver.py:134 RX < W (129893) sentry: W510 lamp already off
+INFO     conftest:conftest.py:542 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz17\logs\automated\ota\2.3.0\20261026-test_ota_without_wifi_blocked.txt
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 375
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 404
+DEBUG    drivers.device_driver:device_driver.py:134 TX > version
+DEBUG    drivers.device_driver:device_driver.py:134 RX < version
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (130563) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (130563) sentry:   partition: ota_0 @ 0x20000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:134 TX > status
+DEBUG    drivers.device_driver:device_driver.py:134 RX < status
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (130773) sentry: === SWM-2 status ===
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (130773) sentry:   fw:       v2.3.0 (ota_0)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (130773) sentry:   state:    1 NORMAL
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (130773) sentry:   link:     buoy link 'TopA-node', ip 10.223.162.49, rssi -22 dBm (excellent), ch 1
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (130773) sentry:   internet: OK
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (130783) sentry:   user:     testUser (user)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (130783) sentry:   time:     20:38:30, uptime 0h 02m 10s
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (130793) sentry:   valve:    closed
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (130793) sentry:   watch:    disarmed, CIC alerts unacked: 0
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (130803) sentry:   sonar:    no contact
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (130803) sentry:   carrier:  depth 42.2 m, hull 5.2 bar, water 8.1 C, battery 24.20 V (sim)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (130813) sentry:   heap:     251 KB free
+DEBUG    drivers.device_driver:device_driver.py:134 TX > status
+DEBUG    drivers.device_driver:device_driver.py:134 RX < status
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (130983) sentry: === SWM-2 status ===
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (130983) sentry:   fw:       v2.3.0 (ota_0)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (130983) sentry:   state:    1 NORMAL
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (130983) sentry:   link:     buoy link 'TopA-node', ip 10.223.162.49, rssi -23 dBm (excellent), ch 1
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (130983) sentry:   internet: OK
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (130993) sentry:   user:     testUser (user)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (130993) sentry:   time:     20:38:30, uptime 0h 02m 10s
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (131003) sentry:   valve:    closed
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (131003) sentry:   watch:    disarmed, CIC alerts unacked: 0
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (131013) sentry:   sonar:    no contact
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (131013) sentry:   carrier:  depth 42.2 m, hull 5.2 bar, water 8.1 C, battery 24.20 V (sim)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (131023) sentry:   heap:     251 KB free
+DEBUG    drivers.device_driver:device_driver.py:134 TX > whoami
+DEBUG    drivers.device_driver:device_driver.py:134 RX < whoami
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (131193) sentry: user: testUser, access: user
+DEBUG    drivers.device_driver:device_driver.py:134 TX > version
+DEBUG    drivers.device_driver:device_driver.py:134 RX < version
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (131403) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (131403) sentry:   partition: ota_0 @ 0x20000, state: valid
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/sendMessage HTTP/1.1" 200 897
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/getUpdates HTTP/1.1" 200 23
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/getUpdates HTTP/1.1" 200 23
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/getUpdates HTTP/1.1" 200 1164
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/answerCallbackQuery HTTP/1.1" 200 25
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 887
+INFO     manual_checks:manual_checks.py:365 MANUAL PREPARE | Operator confirmed readiness via Telegram.
+DEBUG    drivers.device_driver:device_driver.py:134 TX > ota install 2.3.0 force
+DEBUG    drivers.device_driver:device_driver.py:134 RX < ota install 2.3.0 force
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (144083) esp-x509-crt-bundle: Certificate validated
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (144693) sentry: [OTA] current v2.3.0 (ota_0) -> target partition ota_1
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (144693) sentry: [OTA] downloading https://raw.githubusercontent.com/BohdanHorbanych/esp32-ota-files/main/fw7/v2.3.0/sentry_fw7.bin
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (145223) esp-x509-crt-bundle: Certificate validated
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (145843) esp_https_ota: Starting OTA...
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (145843) esp_https_ota: Writing to <ota_1> partition at offset 0x1a0000
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (145993) sentry: [OTA] image: sentry_fw7 v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < W (145993) sentry: W409 same version v2.3.0 - reinstalling
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (147583) sentry: [OTA]  10%
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/sendMessage HTTP/1.1" 200 770
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/getUpdates HTTP/1.1" 200 1037
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/answerCallbackQuery HTTP/1.1" 200 25
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 760
+INFO     manual_checks:manual_checks.py:365 MANUAL PREPARE | Operator confirmed readiness via Telegram.
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (149443) sentry: [OTA]  20%
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (149593) wifi:[ADDBA]RX DELBA, reason:39, delete tid:0, initiator:0(recipient)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (149753) sentry: [TELEMETRY #3] 20:38:49 up 00:02:29 heap 208KB rssi -23 temp 34.4C depth 42.2m hull 5.2bar batt 24.2V valve closed sonar - watch disarmed alerts 0 state NORMAL
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (151273) sentry: [OTA]  30%
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (153093) sentry: [OTA]  40%
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (154383) wifi:state: run -> init (0x3c0)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (154383) wifi:pm stop, total sleep time: 21823648 us / 36807239 us
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (154383) wifi:<ba-del>idx:0, tid:0
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (154383) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0
+DEBUG    drivers.device_driver:device_driver.py:134 RX < W (154393) sentry: W110 wifi connection lost (reason 3)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (154393) sentry: [LINK] retry 1/3...
+DEBUG    drivers.device_driver:device_driver.py:134 RX < E (154523) esp-tls-mbedtls: read error :-0x004C
+DEBUG    drivers.device_driver:device_driver.py:134 RX < E (154523) transport_base: esp_tls_conn_read error, errno=Software caused connection abort
+DEBUG    drivers.device_driver:device_driver.py:134 RX < W (154533) HTTP_CLIENT: esp_transport_read returned:-76 and errno:113
+DEBUG    drivers.device_driver:device_driver.py:134 RX < E (154533) HTTP_CLIENT: transport_read: error - -1 | ESP_FAIL
+DEBUG    drivers.device_driver:device_driver.py:134 RX < E (154543) esp-tls-mbedtls: read error :-0x004C
+DEBUG    drivers.device_driver:device_driver.py:134 RX < E (154543) transport_base: esp_tls_conn_read error, errno=Socket is not connected
+DEBUG    drivers.device_driver:device_driver.py:134 RX < W (154553) HTTP_CLIENT: esp_transport_read returned:-76 and errno:128
+DEBUG    drivers.device_driver:device_driver.py:134 RX < E (154563) HTTP_CLIENT: transpor
+DEBUG    drivers.device_driver:device_driver.py:134 RX < t_read: error - -1 | ESP_FAIL
+DEBUG    drivers.device_driver:device_driver.py:134 RX < E (154563) esp_https_ota: data read -1, errno 128
+DEBUG    drivers.device_driver:device_driver.py:134 RX < E (154573) sentry: E410 download interrupted (ESP_FAIL)
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/sendMessage HTTP/1.1" 200 772
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/getUpdates HTTP/1.1" 200 1039
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/answerCallbackQuery HTTP/1.1" 200 25
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 762
+INFO     manual_checks:manual_checks.py:365 MANUAL PREPARE | Operator confirmed readiness via Telegram.
+DEBUG    drivers.device_driver:device_driver.py:134 TX > status
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (156813) sentry: [LINK] retry 2/3...
+DEBUG    drivers.device_driver:device_driver.py:134 RX < status
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (158393) sentry: === SWM-2 status ===
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (158393) sentry:   fw:       v2.3.0 (ota_0)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (158393) sentry:   state:    1 NORMAL
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (158393) sentry:   link:     buoy link down (known: TopA-node)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (158393) sentry:   user:     testUser (user)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (158403) sentry:   time:     20:38:57, uptime 0h 02m 37s
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (158403) sentry:   valve:    closed
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (158403) sentry:   watch:    disarmed, CIC alerts unacked: 0
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (158413) sentry:   sonar:    no contact
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (158413) sentry:   carrier:  depth 42.2 m, hull 5.2 bar, water 8.1 C, battery 24.20 V (sim)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (158423) sentry:   heap:     252 KB free
+DEBUG    drivers.device_driver:device_driver.py:134 TX > reconnect
+DEBUG    drivers.device_driver:device_driver.py:134 RX < reconnect
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (158703) sentry: [LINK] raising buoy antenna, connecting to 'TopA-node'...
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (161113) sentry: [LINK] retry 1/3...
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (163523) sentry: [LINK] retry 2/3...
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (163533) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (163533) wifi:state: init -> auth (0xb0)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (163533) wifi:state: auth -> assoc (0x0)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (163543) wifi:state: assoc -> run (0x10)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (163563) wifi:connected with TopA-node, aid = 1, channel 1, BW20, bssid = 72:06:f4:57:fd:af
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (163563) wifi:security: WPA2-PSK, phy: bgn, rssi: -20, cipher(pairwise:0x3, group:0x3), pmf:1
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (163563) wifi:pm start, type: 1
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (163563) wifi:dp: 1, bi: 102400, li: 3, scale listen interval from 307200 us to 307200 us
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (163573) wifi:set rx beacon pti, rx_bcn_pti: 0, bcn_timeout: 25000, mt_pti: 0, mt_time: 10000
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (163593) wifi:<ba-add>idx:0 (ifx:0, 72:06:f4:57:fd:af), tid:0, ssn:0, winSize:64
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (163603) wifi:dp: 2, bi: 102400, li: 4, scale listen interval from 307200 us to 409600 us
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (163603) wifi:AP's beacon interval = 102400 us, DTIM period = 2
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (164613) esp_netif_handlers: sta ip: 10.223.162.49, mask: 255.255.255.0, gw: 10.223.162.101
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (164613) sentry: [LINK] got ip 10.223.162.49
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (164613) sentry: [LINK] connected to 'TopA-node', rssi -22 dBm (excellent)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (164633) sentry: [TELEMETRY] auto report every 30 s ('health off' to stop)
+DEBUG    drivers.device_driver:device_driver.py:134 TX > status
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (165173) esp-x509-crt-bundle: Certificate validated
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (165803) sentry: [LINK] fleet network reachable (internet OK)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < W (171803) sentry: W106 [LINK] time: NTP sync failed, timestamps disabled
+DEBUG    drivers.device_driver:device_driver.py:134 RX < status
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (171903) sentry: === SWM-2 status ===
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (171903) sentry:   fw
+DEBUG    drivers.device_driver:device_driver.py:134 RX < :       v2.3.0 (ota_0)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (171903) sentry:   state:    1 NORMAL
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (171903) sentry:   link:     buoy link 'TopA-node', ip 10.223.162.49, rssi -19 dBm (excellent), ch 1
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (171903) sentry:   internet: OK
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (171913) sentry:   user:     testUser (user)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (171913) sentry:   time:     20:39:11, uptime 0h 02m 51s
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (171923) sentry:   valve:    closed
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (171923) sentry:   watch:    disarmed, CIC alerts unacked: 0
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (171933) sentry:   sonar:    no contact
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (171933) sentry:   carrier:  depth 42.2 m, hull 5.2 bar, water 8.1 C, battery 24.20 V (sim)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (171943) sentry:   heap:     251 KB free
+DEBUG    drivers.device_driver:device_driver.py:134 TX > status
+DEBUG    drivers.device_driver:device_driver.py:134 RX < status
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (172233) sentry: === SWM-2 status ===
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (172233) sentry:   fw:       v2.3.0 (ota_0)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (172233) sentry:   state:    1 NORMAL
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (172233) sentry:   link:     buoy link 'TopA-node', ip 10.223.162.49, rssi -19 dBm (excellent), ch 1
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (172233) sentry:   internet: OK
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (172243) sentry:   user:     testUser (user)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (172243) sentry:   time:     20:39:11, uptime 0h 02m 51s
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (172253) sentry:   valve:    closed
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (172253) sentry:   watch:    disarmed, CIC alerts unacked: 0
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (172263) sentry:   sonar:    no contact
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (172263) sentry:   carrier:  depth 42.2 m, hull 5.2 bar, water 8.1 C, battery 24.20 V (sim)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (172273) sentry:   heap:     251 KB free
+DEBUG    drivers.device_driver:device_driver.py:134 TX > whoami
+DEBUG    drivers.device_driver:device_driver.py:134 RX < whoami
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (172443) sentry: user: testUser, access: user
+DEBUG    drivers.device_driver:device_driver.py:134 TX > version
+DEBUG    drivers.device_driver:device_driver.py:134 RX < version
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (172653) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (172653) sentry:   partition: ota_0 @ 0x20000, state: valid
+DEBUG    drivers.device_driver:device_driver.py:134 TX > ota install 2.3.0 force
+DEBUG    drivers.device_driver:device_driver.py:134 RX < ota install 2.3.0 force
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (173603) esp-x509-crt-bundle: Certificate validated
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (174423) sentry: [OTA] current v2.3.0 (ota_0) -> target partition ota_1
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (174423) sentry: [OTA] downloading https://raw.githubusercontent.com/BohdanHorbanych/esp32-ota-files/main/fw7/v2.3.0/sentry_fw7.bin
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (175023) esp-x509-crt-bundle: Certificate validated
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (176003) esp_https_ota: Starting OTA...
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (176003) esp_https_ota: Writing to <ota_1> partition at offset 0x1a0000
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (176013) sentry: [OTA] image: sentry_fw7 v2.3.0 (build Oct  6 2026 02:15:26)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < W (176013) sentry: W409 same version v2.3.0 - reinstalling
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (176493) sentry: [ACU] ambient noise 59 dB re 1uPa, sea state 2, water 8.0 C
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (178113) sentry: [OTA]  10%
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (179763) sentry: [OTA]  20%
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (181153) sentry: [OTA]  30%
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (182753) sentry: [OTA]  40%
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (184683) sentry: [OTA]  50%
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (186503) sentry: [OTA]  60%
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (188323) sentry: [OTA]  70%
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (190223) sentry: [OTA]  80%
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (192373) sentry: [OTA]  90%
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (193943) sentry: [OTA] 100%
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (193943) esp_image: segment 0: paddr=001a0020 vaddr=3c0a0020 size=38158h (229720) map
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (193973) esp_image: segment 1: paddr=001d8180 vaddr=3fc97200 size=05198h ( 20888)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (193983) esp_image: segment 2: paddr=001dd320 vaddr=40374000 size=02cf8h ( 11512)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (193983) esp_image: segment 3: paddr=001e0020 vaddr=42000020 size=9c08ch (639116) map
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (194073) esp_image: segment 4: paddr=0027c0b4 vaddr=40376cf8 size=10418h ( 66584)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (194083) esp_image: segment 5: paddr=0028c4d4 vaddr=50000000 size=00024h (    36)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (194083) esp_image: segment 0: paddr=001a0020 vaddr=3c0a0020 size=38158h (229720) map
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (194123) esp_image: segment 1: paddr=001d8180 vaddr=3fc97200 size=05198h ( 20888)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (194123) esp_image: segment 2: paddr=001dd320 vaddr=40374000 size=02cf8h ( 11512)
+DEBUG    drivers.device_driver:device_driver.py:134 RX < I (194123) esp_image: segment 3: paddr=001e0020 vaddr=42000020 size=9c08ch (639116) map
+INFO     conftest:conftest.py:542 Saved UART test log: C:\Users\ADMIN\OneDrive\Documents\Embedded QA\EMBEDDED-QA-ENGINEER-HW\EMBEDDED-QA-ENGINEER-HW\dz17\logs\automated\ota\2.3.0\20261026-test_interrupted_download_can_be_retried.txt
+DEBUG    urllib3.connectionpool:connectionpool.py:550 https://api.telegram.org:443 "POST /bot[REDACTED]/editMessageText HTTP/1.1" 200 388

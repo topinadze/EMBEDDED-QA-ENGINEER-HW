@@ -39,7 +39,9 @@ dz17/
 ├── run-distance.ps1            # Distance test launcher
 ├── run-guard.ps1               # Guard test launcher (2.3.0, -s)
 ├── run-alert.ps1               # Alert Center test launcher (2.3.0, -s)
-└── run-auth-registration.ps1   # AU-1 provisioning pack (interactive, persistent, -s)
+├── run-auth-registration.ps1   # AU-1 provisioning pack (interactive, persistent, -s)
+├── run-ota.ps1                # OTA pack for one explicitly selected firmware
+└── run-ota-chain.ps1          # Detect starting firmware, test both versions, and return to start
 ```
 
 ## Safety & Interactive Protocol (`AGENTS.md`)
@@ -193,6 +195,27 @@ before using a launcher.
 .\run-guard.ps1 -Port COM4
 .\run-alert.ps1 -Port COM4
 ```
+
+### 2a. Run the complete OTA cycle from either supported firmware
+```powershell
+# Detects 2.1.0 or 2.3.0 over UART, checks both versions, and returns to the starting version.
+# Includes interactive Wi-Fi interruption/retry and persistent firmware transitions.
+.\run-ota-chain.ps1 -Port COM4 -All
+
+# Use the configured Telegram private chat for operator prompts instead of console input.
+.\run-ota-chain.ps1 -Port COM4 -All -InteractionMode telegram
+```
+
+The OTA chain does not assume a starting firmware. From 2.1.0 it runs that version's
+OTA checks, upgrades to 2.3.0, runs its checks, then downgrades back to 2.1.0. From
+2.3.0 it runs those checks first, downgrades to 2.1.0, runs its checks, then upgrades
+back to 2.3.0. The launcher checks the actual UART-reported version before and after
+each phase, gives each phase a unique log/JUnit label, and asks for `OTA-CHAIN`
+confirmation because the run changes firmware and includes interactive/persistent
+tests. `-All` is required. Use `run-ota.ps1 -Fw <version>` when you want the OTA pack
+for one explicitly selected firmware only. OTA waits through the rebooted firmware's
+self-check before it releases the UART to the next test, including the known 2.1.0
+same-version stable-update defect case.
 
 The full-suite `run.ps1 -All` command runs every discovered test, including cases that require
 operator interaction and cases marked persistent. It passes `-s` so interactive prompts work and

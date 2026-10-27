@@ -1,0 +1,31 @@
+Test: tests/test_auth_registration.py::test_registration_rejects_reserved_debug_login
+Firmware: 2.3.0
+Captured: 2026-10-26T19:31:10.148640+02:00
+
+TX > version
+RX < version
+RX < I (37870) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+RX < I (37870) sentry:   partition: ota_0 @ 0x20000, state: valid
+TX > status
+RX < status
+RX < I (38080) sentry: === SWM-2 status ===
+RX < I (38080) sentry:   fw:       v2.3.0 (ota_0)
+RX < I (38080) sentry:   state:    1 NORMAL
+RX < I (38080) sentry:   link:     buoy link 'TopA-node', ip 10.223.162.49, rssi -18 dBm (excellent), ch 1
+RX < I (38080) sentry:   internet: OK
+RX < I (38090) sentry:   user:     not logged in
+RX < I (38090) sentry:   time:     19:30:59, uptime 0h 00m 37s
+RX < I (38100) sentry:   valve:    closed
+RX < I (38100) sentry:   watch:    disarmed, CIC alerts unacked: 0
+RX < I (38110) sentry:   sonar:    no contact
+RX < I (38110) sentry:   carrier:  depth 41.6 m, hull 5.2 bar, water 8.2 C, battery 24.20 V (sim)
+RX < I (38120) sentry:   heap:     252 KB free
+TX > whoami
+RX < whoami
+RX < I (38280) sentry: not logged in
+TX > register debug [REDACTED]
+RX < register debug [REDACTED]
+RX < E (38900) sentry: E203 login 'debug' [REDACTED] reserved
+TX > whoami
+RX < whoami
+RX < I (40910) sentry: not logged in

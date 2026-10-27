@@ -1,0 +1,53 @@
+Test: tests/test_ota.py::TestOta::test_ota_install_invalid_version_format[2.1.0.0]
+Firmware: 2.1.0
+Captured: 2026-10-27T01:35:28.610636+02:00
+
+TX > version
+RX < version
+RX < I (11520) sentry: SENTRY SWM-2 sonar watch module, fw v2.1.0 (build Oct  6 2026 02:14:57)
+RX < I (11520) sentry:   partition: ota_1 @ 0x1a0000, state: valid
+TX > lamp status
+RX < lamp status
+RX < I (11720) sentry: [BEACON] off, color (255,255,255), brightness 50%, mode solid, timer off
+TX > status
+RX < status
+RX < I (12330) sentry: === SWM-2 status ===
+RX < I (12330) sentry:   fw:       v2.1.0 (ota_1)
+RX < I (12330) sentry:   state:    1 NORMAL
+RX < I (12330) sentry:   link:     buoy link 'TopA-node', ip 10.223.162.49, rssi -21 dBm (excellent), ch 1
+RX < I (12330) sentry:   internet: OK
+RX < I (12340) sentry:   user:     testUser (user)
+RX < I (12340) sentry:   time:     01:35:23, uptime 0h 00m 11s
+RX < I (12350) sentry:   valve:    closed
+RX < I (12350) sentry:   sonar:    no contact
+RX < I (12350) sentry:   carrier:  depth 41.8 m, hull 5.2 bar, water 8.1 C, battery 24.20 V (sim)
+RX < I (12360) sentry:   heap:     258 KB free
+TX > whoami
+RX < whoami
+RX < I (12530) sentry: user: testUser, access: user
+TX > version
+RX < version
+RX < I (12750) sentry: SENTRY SWM-2 sonar watch module, fw v2.1.0 (build Oct  6 2026 02:14:57)
+RX < I (12750) sentry:   partition: ota_1 @ 0x1a0000, state: valid
+TX > ota install 2.1.0.0
+RX < ota install 2.1.0.0
+RX < E (13350) sentry: E414 bad version '2.1.0.0'. Format: X.Y.Z
+TX > version
+RX < version
+RX < I (13860) sentry: SENTRY SWM-2 sonar watch module, fw v2.1.0 (build Oct  6 2026 02:14:57)
+RX < I (13860) sentry:   partition: ota_1 @ 0x1a0000, state: valid
+TX > lamp timer 0
+RX < lamp timer 0
+RX < I (14470) sentry: [BEACON] timer cancelled
+TX > lamp color 255 255 255
+RX < lamp color 255 255 255
+RX < I (14880) sentry: [BEACON] color: (255,255,255)
+TX > lamp brightness 50
+RX < lamp brightness 50
+RX < I (15290) sentry: [BEACON] brightness: 50%
+TX > lamp mode solid
+RX < lamp mode solid
+RX < I (15700) sentry: [BEACON] mode: solid
+TX > lamp off
+RX < lamp off
+RX < W (16110) sentry: W510 lamp already off

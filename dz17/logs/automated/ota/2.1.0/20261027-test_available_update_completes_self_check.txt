@@ -1,0 +1,104 @@
+Test: tests/test_ota.py::TestOta::test_available_update_completes_self_check
+Firmware: 2.1.0
+Captured: 2026-10-27T01:38:22.720425+02:00
+
+TX > version
+RX < version
+RX < I (5558) sentry: SENTRY SWM-2 sonar watch module, fw v2.1.0 (build Oct  6 2026 02:14:57)
+RX < I (5558) sentry:   partition: ota_0 @ 0x20000, state: valid
+TX > status
+RX < status
+RX < I (5768) sentry: === SWM-2 status ===
+RX < I (5768) sentry:   fw:       v2.1.0 (ota_0)
+RX < I (5768) sentry:   state:    1 NORMAL
+RX < I (5768) sentry:   link:     buoy link down (known: TopA-node)
+RX < I (5768) sentry:   user:     not logged in
+RX < I (5768) sentry:   time:     --:--:--, uptime 0h 00m 05s
+RX < I (5778) sentry:   valve:    closed
+RX < I (5778) sentry:   sonar:    no contact
+RX < I (5788) sentry:   carrier:  depth 41.8 m, hull 5.2 bar, water 8.1 C, battery 24.20 V (sim)
+RX < I (5788) sentry:   heap:     261 KB free
+TX > reconnect
+RX < reconnect
+RX < I (6068) sentry: [LINK] raising buoy antenna, connecting to 'TopA-node'...
+RX < I (6158) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0
+RX < I (6158) wifi:state: init -> auth (0xb0)
+RX < I (6168) wifi:state: auth -> assoc (0x0)
+RX < I (6168) wifi:state: assoc -> run (0x10)
+RX < I (6198) wifi:connected with TopA-node, aid = 1, channel 1, BW20, bssid = 2e:3c:0f:e8:03:f6
+RX < I (6198) wifi:security: WPA2-PSK, phy: bgn, rssi: -24, cipher(pairwise:0x3, group:0x3), pmf:1
+RX < I (6198) wifi:pm start, type: 1
+RX < I (6208) wifi:dp: 1, bi: 102400, li: 3, scale listen interval from 307200 us to 307200 us
+RX < I (6208) wifi:set rx beacon pti, rx_bcn_pti: 0, bcn_timeout: 25000, mt_pti: 0, mt_time: 10000
+RX < I (6278) wifi:dp: 2, bi: 102400, li: 4, scale listen interval from 307200 us to 409600 us
+RX < I (6278) wifi:AP's beacon interval = 102400 us, DTIM period = 2
+RX < I (7258) esp_netif_handlers: sta ip: 10.223.162.49, mask: 255.255.255.0, gw: 10.223.162.101
+RX < I (7258) sentry: [LINK] got ip 10.223.162.49
+RX < I (7258) sentry: [LINK] connected to 'TopA-node', rssi -21 dBm (excellent)
+TX > status
+RX < I (7388) wifi:<ba-add>idx:0 (ifx:0, 2e:3c:0f:e8:03:f6), tid:0, ssn:3, winSize:64
+RX < I (7688) esp-x509-crt-bundle: Certificate validated
+RX < I (8858) sentry: [LINK] fleet network reachable (internet OK)
+RX < I (10278) wifi:<ba-add>idx:1 (ifx:0, 2e:3c:0f:e8:03:f6), tid:6, ssn:2, winSize:64
+RX < I (10288) sentry: [LINK] time: synced via NTP, 01:37:57
+RX < status
+RX < I (10388) sentry: === SWM-2 status ===
+RX < I (10388) sentry:   fw:       v2.1.0 (ota_0)
+RX < I (10388) sentry:   state:    1 NORMAL
+RX < I (10388) sentry:   link:     buoy link 'TopA-node', ip 10.223.162.49, rssi -22 dBm (excellent), ch 1
+RX < I (10388) sentry:   internet: OK
+RX < I (10398) sentry:   user:     not logged in
+RX < I (10398) sentry:   time:     01:37:57, uptime 0h 00m 09s
+RX < I (10408) sentry:
+RX < valve:    closed
+RX < I (10408) sentry:   sonar:    no contact
+RX < I (10408) sentry:   carrier:  depth 41.8 m, hull 5.2 bar, water 8.1 C, battery 24.20 V (sim)
+RX < I (10418) sentry:   heap:     257 KB free
+TX > whoami
+RX < whoami
+RX < I (10758) sentry: not logged in
+TX > [REDACTED]
+RX < [REDACTED]
+RX < I (10968) sentry: [AUTH] operator testUser on watch, console 2
+TX > whoami
+RX < whoami
+RX < I (11128) sentry: [TELEMETRY] auto report every 30 s ('health off' to stop)
+RX < I (11178) sentry: user: testUser, access: user
+TX > version
+RX < version
+RX < I (11378) sentry: SENTRY SWM-2 sonar watch module, fw v2.1.0 (build Oct  6 2026 02:14:57)
+RX < I (11378) sentry:   partition: ota_0 @ 0x20000, state: valid
+TX > ota update beta
+RX < ota update beta
+RX < I (12978) esp-x509-crt-bundle: Certificate validated
+RX < I (14198) sentry: [OTA] beta channel: v2.3.0, current: v2.1.0
+RX < I (14568) esp-x509-crt-bundle: Certificate validated
+RX < I (15508) sentry: [OTA] current v2.1.0 (ota_0) -> target partition ota_1
+RX < I (15508) sentry: [OTA] downloading https://raw.github
+RX < usercontent.com/BohdanHorbanych/esp32-ota-files/main/fw7/v2.3.0/sentry_fw7.bin
+RX < I (16008) esp-x509-crt-bundle: Certificate validated
+RX < I (16838) esp_https_ota: Starting OTA...
+RX < I (16838) esp_https_ota: Writing to <ota_1> partition at offset 0x1a0000
+RX < I (17018) sentry: [OTA] image: sentry_fw7 v2.3.0 (build Oct  6 2026 02:15:26)
+RX < I (19218) sentry: [OTA]  10%
+RX < I (20728) sentry: [NAV] depth 41.7 m, heading 272, speed 3.3 kn
+RX < I (20878) sentry: [OTA]  20%
+RX < I (22418) sentry: [OTA]  30%
+RX < I (22878) wifi:[ADDBA]RX DELBA, reason:39, delete tid:0, initiator:0(recipient)
+RX < I (24248) sentry: [OTA]  40%
+RX < I (25828) sentry: [OTA]  50%
+RX < I (28318) sentry: [OTA]  60%
+RX < I (29928) sentry: [OTA]  70%
+RX < I (31648) sentry: [OTA]  80%
+RX < I (33458) sentry: [OTA]  90%
+RX < I (35108) sentry: [OTA] 100%
+RX < I (35108) esp_image: segment 0: paddr=001a0020 vaddr=3c0a0020 size=38158h (229720) map
+RX < I (35138) esp_image: segment 1: paddr=001d8180 vaddr=3fc97200 size=05198h ( 20888)
+RX < I (35148) esp_image: segment 2: paddr=001dd320 vaddr=40374000 size=02cf8h ( 11512)
+RX < I (35148) esp_image: segment 3: paddr=001e0020 vaddr=42000020 size=9c08ch (639116) map
+RX < I (35238) esp_image: segment 4: paddr=0027c0b4 vaddr=40376cf8 size=10418h ( 66584)
+RX < I (35248) esp_image: segment 5: paddr=0028c4d4 vaddr=50000000 size=00024h (    36)
+RX < I (35248) esp_image: segment 0: paddr=001a0020 vaddr=3c0a0020 size=38158h (229720) map
+RX < I (35288) esp_image: segment 1: paddr=001d8180 vaddr=3fc97200 size=05198h ( 20888)
+RX < I (35288) esp_image: segment 2: paddr=001dd320 vaddr=40374000 size=02cf8h ( 11512)
+RX < I (35288) esp_image: segment 3: paddr=001e0020 vaddr=42000020 size=9c08ch (639116) map

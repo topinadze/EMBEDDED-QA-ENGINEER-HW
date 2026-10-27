@@ -1,0 +1,76 @@
+Test: tests/test_auth.py::TestAuth::test_sudo_elevation_or_bug001_handling
+Firmware: 2.3.0
+Captured: 2026-10-26T17:56:48.223728+02:00
+
+TX > version
+RX < version
+RX < I (1692170) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+RX < I (1692170) sentry:   partition: ota_0 @ 0x20000, state: valid
+TX > lamp status
+RX < lamp status
+RX < I (1692380) sentry: [BEACON] off, color (255,255,255), brightness 100%, mode solid, timer off
+TX > status
+RX < status
+RX < I (1692990) sentry: === SWM-2 status ===
+RX < I (1692990) sentry:   fw:       v2.3.0 (ota_0)
+RX < I (1692990) sentry:   state:    1 NORMAL
+RX < I (1692990) sentry:   link:     buoy link 'TopA-node', ip 10.223.162.49, rssi -17 dBm (excellent), ch 1
+RX < I (1693000) sentry:   internet: OK
+RX < I (1693000) sentry:   user:     testUser (user)
+RX < I (1693000) sentry:   time:     17:56:33, uptime 0h 28m 12s
+RX < I (1693010) sentry:   valve:    closed
+RX < I (1693010) sentry:   watch:    disarmed, CIC alerts unacked: 1
+RX < I (1693020) sentry:   sonar:    no contact
+RX < I (1693020) sentry:   carrier:  depth 44.1 m, hull 5.4 bar, water 8.0 C, battery 24.15 V (sim)
+RX < I (1693030) sentry:   heap:     251 KB free
+TX > whoami
+RX < whoami
+RX < I (1693200) sentry: user: testUser, access: user
+TX > sudo [REDACTED]
+RX < sudo [REDACTED]
+RX < E (1693420) sentry: E213 sudo: wrong password
+TX > whoami
+RX < whoami
+RX < I (1696430) sentry: user: testUser, access: user
+TX > logout
+RX < logout
+RX < I (1697040) sentry: [AUTH] operator testUser relieved from watch
+TX > status
+RX < status
+RX < I (1698050) sentry: === SWM-2 status ===
+RX < I (1698050) sentry:   fw:       v2.3.0 (ota_0)
+RX < I (1698050) sentry:   state:    1 NORMAL
+RX < I (1698050) sentry:   link:     buoy link 'TopA-node', ip 10.223.162.49, rssi -17 dBm (excellent), ch 1
+RX < I (1698060) sentry:   internet: OK
+RX < I (1698060) sentry:   user:     not logged in
+RX < I (1698060) sentry:   time:     17:56:38, uptime 0h 28m 17s
+RX < I (1698070) sentry:   valve:    closed
+RX < I (1698070) sentry:   watch:    disarmed, CIC alerts unacked: 1
+RX < I (1698080) sentry:   sonar:    no contact
+RX < I (1698080) sentry:   carrier:  depth 44.1 m, hull 5.4 bar, water 8.0 C, battery 24.15 V (sim)
+RX < I (1698090) sentry:   heap:     251 KB free
+TX > whoami
+RX < whoami
+RX < I (1698250) sentry: not logged in
+TX > [REDACTED]
+RX < [REDACTED]
+RX < I (1698460) sentry: [AUTH] operator testUser on watch, console 2
+TX > whoami
+RX < whoami
+RX < I (1698630) sentry: [TELEMETRY] auto report every 30 s ('health off' to stop)
+RX < I (1698660) sentry: user: testUser, access: user
+TX > lamp timer 0
+RX < lamp timer 0
+RX < I (1698940) sentry: [BEACON] timer cancelled
+TX > lamp color 255 255 255
+RX < lamp color 255 255 255
+RX < I (1699360) sentry: [BEACON] color: (255,255,255)
+TX > lamp brightness 100
+RX < lamp brightness 100
+RX < I (1699770) sentry: [BEACON] brightness: 100%
+TX > lamp mode solid
+RX < lamp mode solid
+RX < I (1700180) sentry: [BEACON] mode: solid
+TX > lamp off
+RX < lamp off
+RX < W (1700590) sentry: W510 lamp already off

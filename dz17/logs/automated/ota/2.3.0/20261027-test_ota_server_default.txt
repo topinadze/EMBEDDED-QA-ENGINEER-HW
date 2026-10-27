@@ -1,0 +1,110 @@
+Test: tests/test_ota.py::TestOta::test_ota_server_default
+Firmware: 2.3.0
+Captured: 2026-10-27T01:31:36.957951+02:00
+
+TX > version
+RX < version
+RX < I (246136) sentry: [TELEMETRY #2] 01:31:18 up 00:04:05 heap 251KB rssi -23 temp 31.4C depth 41.9m hull 5.2bar batt 24.2V valve closed sonar - watch disarmed alerts 0 state NORMAL
+RX < I (246206) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+RX < I (246206) sentry:   partition: ota_0 @ 0x20000, state: valid
+TX > lamp status
+RX < lamp status
+RX < I (246416) sentry: [BEACON] off, color (255,255,255), brightness 50%, mode solid, timer off
+TX > status
+RX < status
+RX < I (247026) sentry: === SWM-2 status ===
+RX < I (247026) sentry:   fw:       v2.3.0 (ota_0)
+RX < I (247026) sentry:   state:    1 NORMAL
+RX < I (247026) sentry:   link:     buoy link 'TopA-node', ip 10.223.162.49, rssi -23 dBm (excellent), ch 1
+RX < I (247026) sentry:   internet: OK
+RX < I (247036) sentry:   user:     testUser (user)
+RX < I (247036) sentry:   time:     01:31:19, uptime 0h 04m 06s
+RX < I (247046) sentry:   valve:    closed
+RX < I (247046) sentry:   watch:    disarmed, CIC alerts unacked: 0
+RX < I (247056) sentry:   sonar:    no contact
+RX < I (247056) sentry:   carrier:  depth 41.9 m, hull 5.2 bar, water 8.2 C, battery 24.19 V (sim)
+RX < I (247066) sentry:   heap:     251 KB free
+TX > status
+RX < status
+RX < I (247236) sentry: === SWM-2 status ===
+RX < I (247236) sentry:   fw:       v2.3.0 (ota_0)
+RX < I (247236) sentry:   state:    1 NORMAL
+RX < I (247236) sentry:   link:     buoy link 'TopA-node', ip 10.223.162.49, rssi -24 dBm (excellent), ch 1
+RX < I (247236) sentry:   internet: OK
+RX < I (247246) sentry:   user:     testUser (user)
+RX < I (247246) sentry:   time:     01:31:19, uptime 0h 04m 06s
+RX < I (247256) sentry:   valve:    closed
+RX < I (247256) sentry:   watch:    disarmed, CIC alerts unacked: 0
+RX < I (247266) sentry:   sonar:    no contact
+RX < I (247266) sentry:   carrier:  depth 41.9 m, hull 5.2 bar, water 8.2 C, battery 24.19 V (sim)
+RX < I (247276) sentry:   heap:     251 KB free
+TX > whoami
+RX < whoami
+RX < I (247436) sentry: user: testUser, access: user
+TX > whoami
+RX < whoami
+RX < I (247646) sentry: user: testUser, access: user
+TX > ota server
+RX < ota server
+RX < I (248256) sentry: [OTA] server: https://raw.githubusercontent.com/BohdanHorbanych/esp32-ota-files/main/fw7/ (default)
+TX > ota server default
+RX < ota server default
+RX < I (251276) sentry: [OTA] server: https://raw.githubusercontent.com/BohdanHorbanych/esp32-ota-files/main/fw7/ (default)
+TX > ota server default
+RX < ota server default
+RX < I (254286) sentry: [OTA] server: https://raw.githubusercontent.com/BohdanHorbanych/esp32-ota-files/main/fw7/ (default)
+TX > ota server
+RX < ota server
+RX < I (257296) sentry: [OTA] server: https://raw.githubusercontent.com/BohdanHorbanych/esp32-ota-files/main/fw7/ (default)
+TX > status
+RX < status
+RX < I (260306) sentry: === SWM-2 status ===
+RX < I (260306) sentry:   fw:       v2.3.0 (ota_0)
+RX < I (260306) sentry:   state:    1 NORMAL
+RX < I (260306) sentry:   link:     buoy link 'TopA-node', ip 10.223.162.49, rssi -23 dBm (excellent), ch 1
+RX < I (260306) sentry:   internet: OK
+RX < I (260316) sentry:   user:     testUser (user)
+RX < I (260316) sentry:   time:     01:31:32, uptime 0h 04m 19s
+RX < I (260326) sentry:   valve:    closed
+RX < I (260326) sentry:   watch:    disarmed, CIC alerts unacked: 0
+RX < I (260336) sentry:   sonar:    no contact
+RX < I (260336) sentry:   carrier:  depth 41.9 m, hull 5.2 bar, water 8.2 C, battery 24.19 V (sim)
+RX < I (260346) sentry:   heap:     251 KB free
+TX > whoami
+RX < whoami
+RX < I (260506) sentry: user: testUser, access: user
+TX > status
+RX < status
+RX < I (261116) sentry: === SWM-2 status ===
+RX < I (261116) sentry:   fw:       v2.3.0 (ota_0)
+RX < I (261116) sentry:   state:    1 NORMAL
+RX < I (261116) sentry:   link:     buoy link 'TopA-node', ip 10.223.162.49, rssi -21 dBm (excellent), ch 1
+RX < I (261116) sentry:   internet: OK
+RX < I (261126) sentry:   user:     testUser (user)
+RX < I (261126) sentry:   time:     01:31:33, uptime 0h 04m 20s
+RX < I (261136) sentry:   valve:    closed
+RX < I (261136) sentry:   watch:    disarmed, CIC alerts unacked: 0
+RX < I (261146) sentry:   sonar:    no contact
+RX < I (261146) sentry:   carrier:  depth 41.9 m, hull 5.2 bar, water 8.2 C, battery 24.19 V (sim)
+RX < I (261156) sentry:   heap:     251 KB free
+TX > whoami
+RX < whoami
+RX < I (261326) sentry: user: testUser, access: user
+TX > whoami
+RX < whoami
+RX < I (261526) sentry: user: testUser, access: user
+TX > lamp timer 0
+RX < lamp timer 0
+RX < I (262136) sentry: [BEACON] timer cancelled
+TX > lamp color 255 255 255
+RX < lamp color 255 255 255
+RX < I (262536) sentry: [BEACON] color: (255,255,255)
+TX > lamp brightness 50
+RX < lamp brightness 50
+RX < I (262946) sentry: [BEACON] brightness: 50%
+TX > lamp mode solid
+RX < lamp mode solid
+RX < I (263356) sentry: [BEACON] mode: solid
+TX > lamp off
+RX < lamp off
+RX < W (263776) sentry: W510 lamp already off

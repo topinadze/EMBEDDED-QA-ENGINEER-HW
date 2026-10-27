@@ -1,0 +1,54 @@
+Test: tests/test_ota.py::TestOta::test_ota_install_invalid_version_format[abc]
+Firmware: 2.1.0
+Captured: 2026-10-27T01:35:33.805091+02:00
+
+TX > version
+RX < version
+RX < I (16690) sentry: SENTRY SWM-2 sonar watch module, fw v2.1.0 (build Oct  6 2026 02:14:57)
+RX < I (16690) sentry:   partition: ota_1 @ 0x1a0000, state: valid
+TX > lamp status
+RX < lamp status
+RX < I (16900) sentry: [BEACON] off, color (255,255,255), brightness 50%, mode solid, timer off
+TX > status
+RX < status
+RX < I (17510) sentry: === SWM-2 status ===
+RX < I (17510) sentry:   fw:       v2.1.0 (ota_1)
+RX < I (17510) sentry:   state:    1 NORMAL
+RX < I (17510) sentry:   link:     buoy link 'TopA-node', ip 10.223.162.49, rssi -22 dBm (excellent), ch 1
+RX < I (17510) sentry:   internet: OK
+RX < I (17520) sentry:   user:     testUser (user)
+RX < I (17520) sentry:   time:     01:35:29, uptime 0h 00m 17s
+RX < I (17530) sentry:   valve:    closed
+RX < I (17530) sentry:   sonar:    no contact
+RX < I (17530) sentry:   carrier:  depth 41.8 m, hull 5.2 bar, water 8.1 C, battery 24.20 V (sim)
+RX < I (17540) sentry:   heap:     258 KB free
+TX > whoami
+RX < whoami
+RX < I (17720) sentry: user: testUser, access: user
+TX > version
+RX < version
+RX < I (17930) sentry: SENTRY SWM-2 sonar watch module, fw v2.1.0 (build Oct  6 2026 02:14:57)
+RX < I (17930) sentry:   partition: ota_1 @ 0x1a0000, state: valid
+TX > ota install abc
+RX < ota install abc
+RX < E (18540) sentry: E414 bad version 'abc'. Format: X.Y.Z
+TX > version
+RX < version
+RX < I (19040) sentry: SENTRY SWM-2 sonar watch module, fw v2.1.0 (build Oct  6 2026 02:14:57)
+RX < I (19040) sentry:   partition: ota_1 @ 0x1a0000, state: valid
+TX > lamp timer 0
+RX < lamp timer 0
+RX < I (19660) sentry: [BEACON] timer cancelled
+TX > lamp color 255 255 255
+RX < lamp color 255 255 255
+RX < I (20070) sentry: [BEACON] color: (255,255,255)
+TX > lamp brightness 50
+RX < lamp brightness 50
+RX < I (20480) sentry: [BEACON] brightness: 50%
+RX < I (20750) sentry: [NAV] depth 41.8 m, heading 274, speed 2.9 kn
+TX > lamp mode solid
+RX < lamp mode solid
+RX < I (20890) sentry: [BEACON] mode: solid
+TX > lamp off
+RX < lamp off
+RX < W (21300) sentry: W510 lamp already off

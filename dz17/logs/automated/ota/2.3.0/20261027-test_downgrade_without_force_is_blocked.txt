@@ -1,0 +1,61 @@
+Test: tests/test_ota.py::TestOta::test_downgrade_without_force_is_blocked
+Firmware: 2.3.0
+Captured: 2026-10-27T01:31:13.572546+02:00
+
+TX > version
+RX < version
+RX < I (231166) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+RX < I (231166) sentry:   partition: ota_0 @ 0x20000, state: valid
+TX > lamp status
+RX < lamp status
+RX < I (231376) sentry: [BEACON] off, color (255,255,255), brightness 50%, mode solid, timer off
+TX > status
+RX < status
+RX < I (231986) sentry: === SWM-2 status ===
+RX < I (231986) sentry:   fw:       v2.3.0 (ota_0)
+RX < I (231986) sentry:   state:    1 NORMAL
+RX < I (231986) sentry:   link:     buoy link 'TopA-node', ip 10.223.162.49, rssi -24 dBm (excellent), ch 1
+RX < I (231986) sentry:   internet: OK
+RX < I (231996) sentry:   user:     testUser (user)
+RX < I (231996) sentry:   time:     01:31:04, uptime 0h 03m 51s
+RX < I (232006) sentry:   valve:    closed
+RX < I (232006) sentry:   watch:    disarmed, CIC alerts unacked: 0
+RX < I (232016) sentry:   sonar:    no contact
+RX < I (232016) sentry:   carrier:  depth 41.9 m, hull 5.2 bar, water 8.2 C, battery 24.19 V (sim)
+RX < I (232026) sentry:   heap:     251 KB free
+TX > whoami
+RX < whoami
+RX < I (232196) sentry: user: testUser, access: user
+TX > version
+RX < version
+RX < I (232406) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+RX < I (232406) sentry:   partition: ota_0 @ 0x20000, state: valid
+TX > ota install 2.1.0
+RX < ota install 2.1.0
+RX < I (233546) esp-x509-crt-bundle: Certificate validated
+RX < I (234906) sentry: [OTA] current v2.3.0 (ota_0) -> target partition ota_1
+RX < I (234906) sentry: [OTA] downloading https://raw.githubusercontent.com/BohdanHorbanych/esp32-ota-files/main/fw7/v2.1.0/sentry_fw7.bin
+RX < I (235266) esp-x509-crt-bundle: Certificate validated
+RX < I (237466) esp_https_ota: Starting OTA...
+RX < I (237466) esp_https_ota: Writing to <ota_1> partition at offset 0x1a0000
+RX < I (237836) sentry: [OTA] image: sentry_fw7 v2.1.0 (build Oct  6 2026 02:14:57)
+RX < E (237836) sentry: E408 downgrade blocked: v2.3.0 -> v2.1.0. Use 'ota install 2.1.0 force'
+TX > version
+RX < version
+RX < I (238116) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+RX < I (238116) sentry:   partition: ota_0 @ 0x20000, state: valid
+TX > lamp timer 0
+RX < lamp timer 0
+RX < I (238736) sentry: [BEACON] timer cancelled
+TX > lamp color 255 255 255
+RX < lamp color 255 255 255
+RX < I (239146) sentry: [BEACON] color: (255,255,255)
+TX > lamp brightness 50
+RX < lamp brightness 50
+RX < I (239556) sentry: [BEACON] brightness: 50%
+TX > lamp mode solid
+RX < lamp mode solid
+RX < I (239966) sentry: [BEACON] mode: solid
+TX > lamp off
+RX < lamp off
+RX < W (240376) sentry: W510 lamp already off

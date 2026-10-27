@@ -39,8 +39,10 @@ SONAR_CONFIG_PATTERN = re.compile(
     r"calibration\s*([-+]?\d*(?:\.\d+|\d+))\s*cm,\s*filter\s*(?:median\s*(\d+)|(off|on)),\s*alarm\s*(on|off)",
     re.IGNORECASE,
 )
+OTA_BOOT_READY_MARKER = "ready. state 1 NORMAL (patrol). Type 'help'"
+
 OTA_TERMINAL_MARKERS = (
-    "[OTA] self-check passed",
+    OTA_BOOT_READY_MARKER,
     "[OTA] self-check FAILED",
     "[OTA] check failed:",
     "[OTA] failed:",
@@ -63,10 +65,7 @@ OTA_TERMINAL_MARKERS = (
     "E411",
     "E003",
     "E002",
-    "W409 same version",
     "Rolling back...",
-    "=== OTA Update Complete. Restarting",
-    "Rebooting...",
 )
 
 

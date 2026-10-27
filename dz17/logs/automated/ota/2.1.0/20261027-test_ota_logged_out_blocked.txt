@@ -1,0 +1,115 @@
+Test: tests/test_ota.py::TestOta::test_ota_logged_out_blocked
+Firmware: 2.1.0
+Captured: 2026-10-27T01:36:21.420865+02:00
+
+TX > version
+RX < version
+RX < I (55340) sentry: SENTRY SWM-2 sonar watch module, fw v2.1.0 (build Oct  6 2026 02:14:57)
+RX < I (55340) sentry:   partition: ota_1 @ 0x1a0000, state: valid
+TX > lamp status
+RX < lamp status
+RX < I (55550) sentry: [BEACON] off, color (255,255,255), brightness 50%, mode solid, timer off
+TX > status
+RX < status
+RX < I (56150) sentry: === SWM-2 status ===
+RX < I (56150) sentry:   fw:       v2.1.0 (ota_1)
+RX < I (56150) sentry:   state:    1 NORMAL
+RX < I (56150) sentry:   link:     buoy link 'TopA-node', ip 10.223.162.49, rssi -26 dBm (excellent), ch 1
+RX < I (56150) sentry:   internet: OK
+RX < I (56160) sentry:   user:     testUser (user)
+RX < I (56160) sentry:   time:     01:36:07, uptime 0h 00m 55s
+RX < I (56170) sentry:   valve:    closed
+RX < I (56170) sentry:   sonar:    no contact
+RX < I (56170) sentry:   carrier:  depth 41.8 m, hull 5.2 bar, water 8.2 C, battery 24.20 V (sim)
+RX < I (56180) sentry:   heap:     257 KB free
+TX > status
+RX < status
+RX < I (56360) sentry: === SWM-2 status ===
+RX < I (56360) sentry:   fw:       v2.1.0 (ota_1)
+RX < I (56360) sentry:   state:    1 NORMAL
+RX < I (56360) sentry:   link:     buoy link 'TopA-node', ip 10.223.162.49, rssi -26 dBm (excellent), ch 1
+RX < I (56360) sentry:   internet: OK
+RX < I (56370) sentry:   user:     testUser (user)
+RX < I (56370) sentry:   time:     01:36:07, uptime 0h 00m 55s
+RX < I (56380) sentry:   valve:    closed
+RX < I (56380) sentry:   sonar:    no contact
+RX < I (56380) sentry:   carrier:  depth 41.8 m, hull 5.2 bar, water 8.2 C, battery 24.20 V (sim)
+RX < I (56390) sentry:   heap:     257 KB free
+TX > whoami
+RX < whoami
+RX < I (56560) sentry: user: testUser, access: user
+TX > whoami
+RX < whoami
+RX < I (56770) sentry: user: testUser, access: user
+TX > logout
+RX < logout
+RX < I (57380) sentry: [AUTH] operator testUser relieved from watch
+TX > whoami
+RX < whoami
+RX < I (58400) sentry: not logged in
+TX > ota
+RX < ota
+RX < E (59010) sentry: E003 login required. [REDACTED] 'login <login> [REDACTED] or 'register'
+TX > ota status
+RX < ota status
+RX < E (61020) sentry: E003 login required. [REDACTED] 'login <login> [REDACTED] or 'register'
+TX > ota check
+RX < ota check
+RX < E (63030) sentry: E003 login required. [REDACTED] 'login <login> [REDACTED] or 'register'
+TX > status
+RX < status
+RX < I (65030) sentry: === SWM-2 status ===
+RX < I (65030) sentry:   fw:       v2.1.0 (ota_1)
+RX < I (65030) sentry:   state:    1 NORMAL
+RX < I (65030) sentry:   link:     buoy link 'TopA-node', ip 10.223.162.49, rssi -30 dBm (excellent), ch 1
+RX < I (65030) sentry:   internet: OK
+RX < I (65040) sentry:   user:     not logged in
+RX < I (65040) sentry:   time:     01:36:16, uptime 0h 01m 04s
+RX < I (65050) sentry:   valve:    closed
+RX < I (65050) sentry:   sonar:    no contact
+RX < I (65050) sentry:   carrier:  depth 41.8 m, hull 5.2 bar, water 8.2 C, battery 24.20 V (sim)
+RX < I (65060) sentry:   heap:     257 KB free
+TX > whoami
+RX < whoami
+RX < I (65230) sentry: not logged in
+TX > status
+RX < status
+RX < I (65840) sentry: === SWM-2 status ===
+RX < I (65840) sentry:   fw:       v2.1.0 (ota_1)
+RX < I (65840) sentry:   state:    1 NORMAL
+RX < I (65840) sentry:   link:     buoy link 'TopA-node', ip 10.223.162.49, rssi -27 dBm (excellent), ch 1
+RX < I (65840) sentry:   internet: OK
+RX < I (65850) sentry:   user:     not logged in
+RX < I (65850) sentry:   time:     01:36:17, uptime 0h 01m 05s
+RX < I (65860) sentry:   valve:    closed
+RX < I (65860) sentry:   sonar:    no contact
+RX < I (65860) sentry:   carrier:  depth 41.8 m, hull 5.2 bar, water 8.2 C, battery 24.20 V (sim)
+RX < I (65870) sentry:   heap:     257 KB free
+TX > whoami
+RX < whoami
+RX < I (66040) sentry: not logged in
+TX > [REDACTED]
+RX < [REDACTED]
+RX < I (66250) sentry: [AUTH] operator testUser on watch, console 2
+TX > whoami
+RX < whoami
+RX < I (66400) sentry: [TELEMETRY] auto report every 30 s ('health off' to stop)
+RX < I (66460) sentry: user: testUser, access: user
+TX > whoami
+RX < whoami
+RX < I (66670) sentry: user: testUser, access: user
+TX > lamp timer 0
+RX < lamp timer 0
+RX < I (67290) sentry: [BEACON] timer cancelled
+TX > lamp color 255 255 255
+RX < lamp color 255 255 255
+RX < I (67700) sentry: [BEACON] color: (255,255,255)
+TX > lamp brightness 50
+RX < lamp brightness 50
+RX < I (68100) sentry: [BEACON] brightness: 50%
+TX > lamp mode solid
+RX < lamp mode solid
+RX < I (68510) sentry: [BEACON] mode: solid
+TX > lamp off
+RX < lamp off
+RX < W (68920) sentry: W510 lamp already off

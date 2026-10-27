@@ -1,0 +1,76 @@
+Test: tests/test_auth.py::TestAuth::test_auth_status_led_login_logout_transitions
+Firmware: 2.3.0
+Captured: 2026-10-26T17:57:04.851413+02:00
+
+TX > version
+RX < version
+RX < I (1701040) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+RX < I (1701040) sentry:   partition: ota_0 @ 0x20000, state: valid
+TX > lamp status
+RX < lamp status
+RX < I (1701250) sentry: [BEACON] off, color (255,255,255), brightness 100%, mode solid, timer off
+TX > status
+RX < status
+RX < I (1701860) sentry: === SWM-2 status ===
+RX < I (1701860) sentry:   fw:       v2.3.0 (ota_0)
+RX < I (1701860) sentry:   state:    1 NORMAL
+RX < I (1701860) sentry:   link:     buoy link 'TopA-node', ip 10.223.162.49, rssi -18 dBm (excellent), ch 1
+RX < I (1701870) sentry:   internet: OK
+RX < I (1701870) sentry:   user:     testUser (user)
+RX < I (1701870) sentry:   time:     17:56:42, uptime 0h 28m 21s
+RX < I (1701880) sentry:   valve:    closed
+RX < I (1701880) sentry:   watch:    disarmed, CIC alerts unacked: 1
+RX < I (1701890) sentry:   sonar:    no contact
+RX < I (1701890) sentry:   carrier:  depth 44.1 m, hull 5.4 bar, water 8.0 C, battery 24.15 V (sim)
+RX < I (1701900) sentry:   heap:     251 KB free
+TX > whoami
+RX < whoami
+RX < I (1702060) sentry: user: testUser, access: user
+TX > lamp off
+RX < lamp off
+RX < W (1702270) sentry: W510 lamp already off
+TX > lamp status
+RX < lamp status
+RX < I (1703290) sentry: [BEACON] off, color (255,255,255), brightness 100%, mode solid, timer off
+TX > logout
+RX < logout
+RX < I (1711490) sentry: [AUTH] operator testUser relieved from watch
+TX > status
+RX < status
+RX < I (1714710) sentry: === SWM-2 status ===
+RX < I (1714710) sentry:   fw:       v2.3.0 (ota_0)
+RX < I (1714710) sentry:   state:    1 NORMAL
+RX < I (1714710) sentry:   link:     buoy link 'TopA-node', ip 10.223.162.49, rssi -17 dBm (excellent), ch 1
+RX < I (1714720) sentry:   internet: OK
+RX < I (1714720) sentry:   user:     not logged in
+RX < I (1714720) sentry:   time:     17:56:54, uptime 0h 28m 34s
+RX < I (1714730) sentry:   valve:    closed
+RX < I (1714730) sentry:   watch:    disarmed, CIC alerts unacked: 1
+RX < I (1714740) sentry:   sonar:    no contact
+RX < I (1714740) sentry:   carrier:  depth 44.1 m, hull 5.4 bar, water 8.0 C, battery 24.15 V (sim)
+RX < I (1714750) sentry:   heap:     251 KB free
+TX > whoami
+RX < whoami
+RX < I (1714920) sentry: not logged in
+TX > [REDACTED]
+RX < [REDACTED]
+RX < I (1715130) sentry: [AUTH] operator testUser on watch, console 2
+TX > whoami
+RX < I (1715230) sentry: [TELEMETRY] auto report every 30 s ('health off' to stop)
+RX < whoami
+RX < I (1715340) sentry: user: testUser, access: user
+TX > lamp timer 0
+RX < lamp timer 0
+RX < I (1715550) sentry: [BEACON] timer cancelled
+TX > lamp color 255 255 255
+RX < lamp color 255 255 255
+RX < I (1715960) sentry: [BEACON] color: (255,255,255)
+TX > lamp brightness 100
+RX < lamp brightness 100
+RX < I (1716380) sentry: [BEACON] brightness: 100%
+TX > lamp mode solid
+RX < lamp mode solid
+RX < I (1716800) sentry: [BEACON] mode: solid
+TX > lamp off
+RX < lamp off
+RX < W (1717210) sentry: W510 lamp already off
