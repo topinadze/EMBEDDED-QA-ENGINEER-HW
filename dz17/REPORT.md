@@ -521,7 +521,7 @@ The findings below are version-specific to the cited fw_7 evidence. Historical d
 | BUG-014 | Low | 2.1.0 NTP warning/time ambiguity; normal 2.3.0 reconnect explicitly reported sync. |
 | BUG-015 | Medium | Stable no-op update unnecessarily downloaded/rebooted on 2.1.0; stable no-op on 2.3.0 not checked. |
 | BUG-016 | Critical | Numeric Alert ACK on 2.3.0 acknowledged the preceding ID and left the requested alert pending. |
-| BUG-018 | Medium (provisional) | On 2.3.0, Wi-Fi association/IP returned after an AP interruption while internet remained unavailable and OTA retry returned E411; AP upstream readiness was not independently confirmed. |
+| BUG-018 | Medium (provisional) | An operator-supplied 2.3.0 excerpt showed Wi-Fi association/IP without internet and OTA retry E411; AP upstream readiness was not independently confirmed. A separate retained recovery run later reported internet OK and completed OTA, so the defect remains unconfirmed. |
 
 ### AU-6 open test gap: separate sudo credential
 
@@ -763,9 +763,10 @@ The findings below are version-specific to the cited fw_7 evidence. Historical d
 - **Observation:** In an operator-supplied UART excerpt dated 2026-10-27, OTA download reached 20%, Wi-Fi loss produced W110/E410, and Wi-Fi later associated and obtained an IP address. Subsequent telemetry reported `no internet`; another `ota update beta` returned E411.
 - **Expected result:** After the access point and its upstream internet are restored, an explicit saved-profile reconnect restores Wi-Fi and internet, and the next OTA attempt can proceed.
 - **Actual result:** Link association/IP were present, but the device reported no internet and rejected OTA with E411.
-- **Evidence limitation / cause assessment:** The supplied excerpt does not independently establish that upstream internet was already available through the access point when the device reported `no internet`. This is a version-specific observed symptom, not yet a confirmed firmware defect or a proven OTA-resume failure. The controlled OTA-05 test now asks the operator to verify upstream access on another client, forces a saved-profile reconnect on 2.3.0, and checks the device's internet status before retrying OTA.
-- **Evidence:** Operator-supplied UART excerpt in the 2026-10-27 conversation; not retained as a repository transcript. A controlled test transcript and operator confirmation are pending.
-- **Retest status:** NOT RUN. Do not mark the defect reproduced or fixed until the revised interactive test is executed with upstream internet independently verified.
+- **Evidence limitation / cause assessment:** The supplied excerpt does not independently establish that upstream internet was available when the device reported `no internet`. This is a version-specific observed symptom, not yet a confirmed firmware defect or a proven OTA-resume failure. The controlled OTA-05 test uses only firmware UART: restore the AP, issue `reconnect` on 2.3.0, check the device's own `status` internet field, then retry OTA and inspect its error/progress/success messages. No separate client check is required.
+- **Evidence:** Operator-supplied UART excerpt in the 2026-10-27 conversation; not retained as a repository transcript. Related run artifacts: [stage-02 JUnit](logs/automated/ota/2.3.0/run-20261027-chain-stage-02-2-3-0-checks-35cd273486f7464f8dffd3715c601d5e-junit.xml) and [interrupted-download UART transcript](logs/automated/ota/2.3.0/20261027-test_interrupted_download_can_be_retried.txt). No separate operator-observation artifact is cited.
+- **Related 2.3.0 run — JUnit timestamp 2026-10-27 02:40:02:** The retained stage-02 JUnit records 34 tests, 0 failures, 1 skipped; `test_interrupted_download_can_be_retried` passed in 96.686 s. Its UART transcript shows W110/E410, explicit `reconnect`, `[LINK] fleet network reachable (internet OK)`, `internet: OK`, then forced same-version OTA reaching 100%, reporting success, rebooting, passing self-check, and returning to the ready prompt. The OTA retry did not return E411 in this run. W106 NTP sync failure was also logged after reconnection; internet status and OTA nevertheless succeeded.
+- **Retest status:** The retained run demonstrates recovery in that captured scenario but predates the simplified UART-only test flow. The current version without the separate-client check has not yet been rerun. BUG-018 remains a provisional observation from the earlier E411 excerpt; this successful run does not establish that the earlier network conditions were equivalent.
 
 ## 4. Матриця багів
 

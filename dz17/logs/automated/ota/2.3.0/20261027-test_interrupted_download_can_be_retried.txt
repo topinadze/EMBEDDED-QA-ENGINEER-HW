@@ -1,173 +1,380 @@
 Test: tests/test_ota.py::TestOta::test_interrupted_download_can_be_retried
 Firmware: 2.3.0
-Captured: 2026-10-27T01:33:23.951671+02:00
+Captured: 2026-10-27T02:43:35.493404+02:00
 
 TX > version
 RX < version
-RX < I (296576) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
-RX < I (296576) sentry:   partition: ota_0 @ 0x20000, state: valid
+RX < I (119652) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+RX < I (119652) sentry:   partition: ota_1 @ 0x1a0000, state: valid
 TX > status
 RX < status
-RX < I (296786) sentry: === SWM-2 status ===
-RX < I (296786) sentry:   fw:       v2.3.0 (ota_0)
-RX < I (296786) sentry:   state:    1 NORMAL
-RX < I (296786) sentry:   link:     buoy link 'TopA-node', ip 10.223.162.49, rssi -25 dBm (excellent), ch 1
-RX < I (296786) sentry:   internet: OK
-RX < I (296796) sentry:   user:     testUser (user)
-RX < I (296796) sentry:   time:     01:32:09, uptime 0h 04m 56s
-RX < I (296806) sentry:   valve:    closed
-RX < I (296806) sentry:   watch:    disarmed, CIC alerts unacked: 0
-RX < I (296816) sentry:   sonar:    no contact
-RX < I (296816) sentry:   carrier:  depth 41.9 m, hull 5.2 bar, water 8.2 C, battery 24.19 V (sim)
-RX < I (296826) sentry:   heap:     251 KB free
+RX < I (119862) sentry: === SWM-2 status ===
+RX < I (119862) sentry:   fw:       v2.3.0 (ota_1)
+RX < I (119862) sentry:   state:    1 NORMAL
+RX < I (119862) sentry:   link:     buoy link '[REDACTED_NETWORK_NAME]', ip [REDACTED_PRIVATE_IP], rssi -25 dBm (excellent), ch 1
+RX < I (119862) sentry:   internet: OK
+RX < I (119872) sentry:   user:     [REDACTED_USERNAME] (user)
+RX < I (119872) sentry:   time:     02:41:58, uptime 0h 01m 59s
+RX < I (119882) sentry:   valve:    closed
+RX < I (119882) sentry:   watch:    disarmed, CIC alerts unacked: 0
+RX < I (119892) sentry:   sonar:    no contact
+RX < I (119892) sentry:   carrier:  depth 41.8 m, hull 5.2 bar, water 8.2 C, battery 24.20 V (sim)
+RX < I (119902) sentry:   heap:     251 KB free
 TX > status
 RX < status
-RX < I (296996) sentry: === SWM-2 status ===
-RX < I (296996) sentry:   fw:       v2.3.0 (ota_0)
-RX < I (296996) sentry:   state:    1 NORMAL
-RX < I (296996) sentry:   link:     buoy link 'TopA-node', ip 10.223.162.49, rssi -29 dBm (excellent), ch 1
-RX < I (296996) sentry:   internet: OK
-RX < I (297006) sentry:   user:     testUser (user)
-RX < I (297006) sentry:   time:     01:32:09, uptime 0h 04m 56s
-RX < I (297016) sentry:   valve:    closed
-RX < I (297016) sentry:   watch:    disarmed, CIC alerts unacked: 0
-RX < I (297026) sentry:   sonar:    no contact
-RX < I (297026) sentry:   carrier:  depth 41.9 m, hull 5.2 bar, water 8.2 C, battery 24.19 V (sim)
-RX < I (297036) sentry:   heap:     251 KB free
+RX < I (120062) sentry: === SWM-2 status ===
+RX < I (120062) sentry:   fw:       v2.3.0 (ota_1)
+RX < I (120062) sentry:   state:    1 NORMAL
+RX < I (120062) sentry:   link:     buoy link '[REDACTED_NETWORK_NAME]', ip [REDACTED_PRIVATE_IP], rssi -25 dBm (excellent), ch 1
+RX < I (120062) sentry:   internet: OK
+RX < I (120072) sentry:   user:     [REDACTED_USERNAME] (user)
+RX < I (120072) sentry:   time:     02:41:58, uptime 0h 01m 59s
+RX < I (120082) sentry:   valve:    closed
+RX < I (120082) sentry:   watch:    disarmed, CIC alerts unacked: 0
+RX < I (120092) sentry:   sonar:    no contact
+RX < I (120092) sentry:   carrier:  depth 41.8 m, hull 5.2 bar, water 8.2 C, battery 24.20 V (sim)
+RX < I (120102) sentry:   heap:     251 KB free
 TX > whoami
 RX < whoami
-RX < I (297206) sentry: user: testUser, access: user
+RX < I (120272) sentry: user: [REDACTED_USERNAME], access: user
 TX > version
 RX < version
-RX < I (297416) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
-RX < I (297416) sentry:   partition: ota_0 @ 0x20000, state: valid
+RX < I (120482) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+RX < I (120482) sentry:   partition: ota_1 @ 0x1a0000, state: valid
 TX > ota install 2.3.0 force
-RX < I (304136) wifi:[ADDBA]RX DELBA, reason:39, delete tid:0, initiator:0(recipient)
+RX < I (138352) wifi:[ADDBA]RX DELBA, reason:39, delete tid:0, initiator:0(recipient)
+RX < I (139912) sentry: [TELEMETRY #3] 02:42:18 up 00:02:19 heap 251KB rssi -45 temp 32.4C depth 41.8m hull 5.2bar batt 24.2V valve closed sonar - watch disarmed alerts 0 state NORMAL
 RX < ota install 2.3.0 force
-RX < I (310356) esp-x509-crt-bundle: Certificate validated
-RX < I (311186) sentry: [OTA] current v2.3.0 (ota_0) -> target partition ota_1
-RX < I (311186) sentry: [OTA] downloading https://raw.githubusercontent.com/BohdanHorbanych/esp32-ota-files/main/fw7/v2.3.0/sentry_fw7.bin
-RX < I (311896) esp-x509-crt-bundle: Certificate validated
-RX < I (313136) esp_https_ota: Starting OTA...
-RX < I (313136) esp_https_ota: Writing to <ota_1> partition at offset 0x1a0000
-RX < I (314056) sentry: [OTA] image: sentry_fw7 v2.3.0 (build Oct  6 2026 02:15:26)
-RX < W (314056) sentry: W409 same version v2.3.0 - reinstalling
-RX < I (317256) sentry: [TELEMETRY #3] 01:32:29 up 00:05:16 heap 208KB rssi -20 temp 33.4C depth 41.9m hull 5.2bar batt 24.2V valve closed sonar - watch disarmed alerts 0 state NORMAL
-RX < I (319116) sentry: [OTA]  10%
-RX < I (327526) wifi:bcn_timeout,ap_probe_send_start
-RX < I (330036) wifi:ap_probe_send over, reset wifi status to disassoc
-RX < I (330036) wifi:state: run -> init (0xc800)
-RX < I (330036) wifi:pm stop, total sleep time: 27056792 us / 47663422 us
-RX < I (330036) wifi:<ba-del>idx:0, tid:0
-RX < I (330046) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0
-RX < W (330056) sentry: W110 wifi connection lost (reason 200)
-RX < I (330056) sentry: [LINK] retry 1/3...
-RX < E (330056) esp-tls-mbedtls: read error :-0x004C
-RX < E (330066) transport_base: esp_tls_conn_read error, errno=Software caused connection abort
-RX < W (330066) HTTP_CLIENT: esp_transport_read returned:-76 and errno:113
-RX < E (330076) HTTP_CLIENT: transport_read: error - -1 | ESP_FAIL
-RX < E (330086) esp-tls-mbedtls: read error :-0x004C
-RX < E (330086) transport_base: esp_tls_conn_read error, errno=Software caused connection abort
-RX < W (330096) HTTP_CLIENT: esp_transport_read returned:-76 and errno:113
-RX < E (330096) HTTP_CLIENT: transport_read: error - -1 | ESP_FAIL
-RX < E (330106) esp_https_ota: data read -1, errno 113
-RX < E (330106) sentry: E410 download interrupted (ESP_FAIL)
-TX > status
-RX < I (332466) sentry: [LINK] retry 2/3...
-RX < status
-RX < I (333016) sentry: === SWM-2 status ===
-RX < I (333016) sentry:   fw:       v2.3.0 (ota_0)
-RX < I (333016) sentry:   state:    1 NORMAL
-RX < I (333016) sentry:   link:     buoy link down (known: TopA-node)
-RX < I (333016) sentry:   user:     testUser (user)
-RX < I (333026) sentry:   time:     01:32:45, uptime 0h 05m 32s
-RX < I (333026) sentry:   valve:    closed
-RX < I (333026) sentry:   watch:    disarmed, CIC alerts unacked: 0
-RX < I (333036) sentry:   sonar:    no contact
-RX < I (333036) sentry:   carrier:  depth 41.9 m, hull 5.2 bar, water 8.2 C, battery 24.19 V (sim)
-RX < I (333046) sentry:   heap:     252 KB free
+RX < I (140862) esp-x509-crt-bundle: Certificate validated
+RX < I (141702) sentry: [OTA] current v2.3.0 (ota_1) -> target partition ota_0
+RX < I (141702) sentry: [OTA] downloading https://raw.githubusercontent.com/BohdanHorbanych/esp32-ota-files/main/fw7/v2.3.0/sentry_fw7.bin
+RX < I (142212) esp-x509-crt-bundle: Certificate validated
+RX < I (142972) esp_https_ota: Starting OTA...
+RX < I (142972) esp_https_ota: Writing to <ota_0> partition at offset 0x20000
+RX < I (144512) sentry: [OTA] image: sentry_fw7 v2.3.0 (build Oct  6 2026 02:15:26)
+RX < W (144512) sentry: W409 same version v2.3.0 - reinstalling
+RX < I (147462) sentry: [OTA]  10%
+RX < I (149942) sentry: [OTA]  20%
+RX < I (150852) wifi:[ADDBA]RX DELBA, reason:39, delete tid:0, initiator:0(recipient)
+RX < I (151212) wifi:state: run -> init (0x3c0)
+RX < I (151212) wifi:pm stop, total sleep time: 29968836 us / 42607219 us
+RX < I (151212) wifi:<ba-del>idx:0, tid:0
+RX < I (151212) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0
+RX < W (151222) sentry: W110 wifi connection lost (reason 3)
+RX < I (151222) sentry: [LINK] retry 1/3...
+RX < I (151232) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0
+RX < I (151232) wifi:state: init -> auth (0xb0)
+RX < E (151352) esp-tls-mbedtls: read error :-0x004C
+RX < E (151352) transport_base: esp_tls_conn_read error, errno=Software caused connection abort
+RX < W (151352) HTTP_CLIENT: esp_transport_read returned:-76 and errno:113
+RX < E (151362) HTTP_CLIENT: transport_read: error - -1 | ESP_FAIL
+RX < E (151372) esp-tls-mbedtls: read error :-0x004C
+RX < E (151372) transport_base: esp_tls_conn_read error, errno=Socket is not connected
+RX < W (151382) HTTP_CLIENT: esp_transport_read returned:-76 and errno:128
+RX < E (151382) HTTP_CLIENT: transport_read: error - -1 | ESP_FAIL
+RX < E (151392) esp_https_ota: data read -1, errno 128
+RX < E (151392) sentry: E410 download interrupted (ESP_FAIL)
+TX > disconnect
+RX < I (152242) wifi:state: auth -> init (0x200)
+RX < I (152242) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0
+RX < disconnect
+RX < W (162932) sentry: W115 not connected
 TX > reconnect
 RX < reconnect
-RX < I (333326) sentry: [LINK] raising buoy antenna, connecting to 'TopA-node'...
-RX < I (335736) sentry: [LINK] retry 1/3...
-RX < I (335776) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, p
-RX < rof:1, snd_ch_cfg:0x0
-RX < I (335776) wifi:state: init -> auth (0xb0)
-RX < I (335786) wifi:state: auth -> assoc (0x0)
-RX < I (335786) wifi:state: assoc -> run (0x10)
-RX < I (335806) wifi:connected with TopA-node, aid = 1, channel 1, BW20, bssid = 8a:c0:bb:0c:c7:a8
-RX < I (335806) wifi:security: WPA2-PSK, phy: bgn, rssi: -23, cipher(pairwise:0x3, group:0x3), pmf:1
-RX < I (335816) wifi:pm start, type: 1
-RX < I (335816) wifi:dp: 1, bi: 102400, li: 3, scale listen interval from 307200 us to 307200 us
-RX < I (335826) wifi:set rx beacon pti, rx_bcn_pti: 0, bcn_timeout: 25000, mt_pti: 0, mt_time: 10000
-RX < I (335896) wifi:dp: 2, bi: 102400, li: 4, scale listen interval from 307200 us to 409600 us
-RX < I (335896) wifi:AP's beacon interval = 102400 us, DTIM period = 2
-RX < I (336166) wifi:<ba-add>idx:0 (ifx:0, 8a:c0:bb:0c:c7:a8), tid:0, ssn:3, winSize:64
-RX < I (336976) esp_netif_handlers: sta ip: 10.223.162.49, mask: 255.255.255.0, gw: 10.223.162.101
-RX < I (336976) sentry: [LINK] got ip 10.223.162.49
-RX < I (336976) sentry: [LINK] connected to 'TopA-node', rssi -22 dBm (excellent)
+RX < I (163242) sentry: [LINK] raising buoy antenna, connecting to '[REDACTED_NETWORK_NAME]'...
+RX < I (163242) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0
+RX < I (163242) wifi:state: init -> auth (0xb0)
+RX < I (163252) wifi:state: auth -> assoc (0x0)
+RX < I (163252) wifi:state: assoc -> run (0x10)
+RX < I (163292) wifi:connected with [REDACTED_NETWORK_NAME], aid = 1, channel 1, BW20, bssid = [REDACTED_MAC]
+RX < I (163292) wifi:security: WPA2-PSK, phy: bgn, rssi: -24, cipher(pairwise:0x3, group:0x3), pmf:1
+RX < I (163302) wifi:pm start, type: 1
+RX < I (163302) wifi:dp: 1, bi: 102400, li: 3, scale listen interval from 307200 us to 307200 us
+RX < I (163312) wifi:set rx beacon pti, rx_bcn_pti: 0, bcn_timeout: 25000, mt_pti: 0, mt_time: 10000
+RX < I (163332) wifi:<ba-add>idx:0 (ifx:0, [REDACTED_MAC]), tid:0, ssn:0, winSize:64
+RX < I (163342) wifi:dp: 2, bi: 102400, li: 4, scale listen interval from 307200 us to 409600 us
+RX < I (163342) wifi:AP's beacon interval = 102400 us, DTIM period = 2
+RX < I (164362) esp_netif_handlers: sta ip: [REDACTED_PRIVATE_IP], mask: 255.255.255.0, gw: [REDACTED_PRIVATE_IP]
+RX < I (164362) sentry: [LINK] got ip [REDACTED_PRIVATE_IP]
+RX < I (164362) sentry: [LINK] connected to '[REDACTED_NETWORK_NAME]', rssi -41 dBm (excellent)
+RX < I (164422) sentry: [TELEMETRY] auto report every 30 s ('health off' to stop)
 TX > status
-RX < I (337126) sentry: [TELEMETRY] auto report every 30 s ('health off' to stop)
-RX < I (337336) esp-x509-crt-bundle: Certificate validated
-RX < I (338116) sentry: [LINK] fleet network reachable (internet OK)
-RX < I (339816) sentry: [NAV] depth 41.7 m, heading 274, speed 3.1 kn
-RX < W (344116) sentry: W106 [LINK] time: NTP sync failed, timestamps disabled
+RX < I (165422) esp-x509-crt-bundle: Certificate validated
+RX < I (166322) sentry: [LINK] fleet network reachable (internet OK)
+RX < W (172322) sentry: W106 [LINK] time: NTP sync failed, timestamps disabled
 RX < status
-RX < I (344216) sentry: === SWM-2 status ===
-RX < I (344216) sentry:   fw:       v2.3.0 (ota_0)
-RX < I (344216) sentry:   state:    1 NORMAL
-RX < I (344216) sentry:   link:     buoy link 'TopA-node', ip 10.223.162.49, rssi -24 dBm (excellent), ch 1
-RX < I (344216) sentry:   internet: OK
-RX < I (344226) sentry:   user:     testUser (user)
-RX < I (344226) sentry:   time:     01:32:56, uptime 0h 05m 43s
-RX < I (344236) sentry:   valve:    closed
-RX < I (344236) sentry:   watch:    disarmed, CIC alerts unacked: 0
-RX < I (344246) sentry:   sonar:    no contact
-RX < I (344246) sentry:   carrier:  depth 41.7 m, hull 5.2 bar, water 8.0 C, battery 24.19 V (sim)
-RX < I (344256) sentry:   heap:     251 KB free
+RX < I (172422) sentry: === SWM-2 status ===
+RX < I (172422) sentry:   fw:       v2.3.0 (ota_1)
+RX < I (172422) sentry:   state:    1 NORMAL
+RX < I (172422) sentry:   link:     buoy link '[REDACTED_NETWORK_NAME]', ip [REDACTED_PRIVATE_IP], rssi -42 dBm (excellent), ch 1
+RX < I (172422) sentry:   internet: OK
+RX < I (172432) sentry:   user:     [REDACTED_USERNAME] (user)
+RX < I (172432) sentry:   time:     02:42:51, uptime 0h 02m 52s
+RX < I (172442) sentry:   valve:    closed
+RX < I (172442) sentry:   watch:    disarmed, CIC alerts unacked: 0
+RX < I (172452) sentry:   sonar:    no contact
+RX < I (172452) sentry:   carrier:  depth 41.8 m, hull 5.2 bar, water 8.2 C, battery 24.20 V (sim)
+RX < I (172462) sentry:   heap:     251 KB free
 TX > status
 RX < status
-RX < I (344436) sentry: === SWM-2 status ===
-RX < I (344436) sentry:   fw:       v2.3.0 (ota_0)
-RX < I (344436) sentry:   state:    1 NORMAL
-RX < I (344436) sentry:   link:     buoy link 'TopA-node', ip 10.223.162.49, rssi -24 dBm (excellent), ch 1
-RX < I (344436) sentry:   internet: OK
-RX < I (344446) sentry:   user:     testUser (user)
-RX < I (344446) sentry:   time:     01:32:56, uptime 0h 05m 44s
-RX < I (344456) sentry:   valve:    closed
-RX < I (344456) sentry:   watch:    disarmed, CIC alerts unacked: 0
-RX < I (344466) sentry:   sonar:    no contact
-RX < I (344466) sentry:   carrier:  depth 41.7 m, hull 5.2 bar, water 8.0 C, battery 24.19 V (sim)
-RX < I (344476) sentry:   heap:     251 KB free
+RX < I (172702) sentry: === SWM-2 status ===
+RX < I (172702) sentry:   fw:       v2.3.0 (ota_1)
+RX < I (172702) sentry:   state:    1 NORMAL
+RX < I (172702) sentry:   link:     buoy link '[REDACTED_NETWORK_NAME]', ip [REDACTED_PRIVATE_IP], rssi -42 dBm (excellent), ch 1
+RX < I (172702) sentry:   internet: OK
+RX < I (172712) sentry:   user:     [REDACTED_USERNAME] (user)
+RX < I (172712) sentry:   time:     02:42:51, uptime 0h 02m 52s
+RX < I (172722) sentry:   valve:    closed
+RX < I (172722) sentry:   watch:    disarmed, CIC alerts unacked: 0
+RX < I (172732) sentry:   sonar:    no contact
+RX < I (172732) sentry:   carrier:  depth 41.8 m, hull 5.2 bar, water 8.2 C, battery 24.20 V (sim)
+RX < I (172742) sentry:   heap:     251 KB free
+RX < I (172762) sentry: [PWR] battery bus 24.19 V, load 1.7 A
+TX > status
+RX < status
+RX < I (172902) sentry: === SWM-2 status ===
+RX < I (172902) sentry:   fw:       v2.3.0 (ota_1)
+RX < I (172902) sentry:   state:    1 NORMAL
+RX < I (172902) sentry:   link:     buoy link '[REDACTED_NETWORK_NAME]', ip [REDACTED_PRIVATE_IP], rssi -42 dBm (excellent), ch 1
+RX < I (172902) sentry:   internet: OK
+RX < I (172912) sentry:   user:     [REDACTED_USERNAME] (user)
+RX < I (172912) sentry:   time:     02:42:51, uptime 0h 02m 52s
+RX < I (172922) sentry:   valve:    closed
+RX < I (172922) sentry:   watch:    disarmed, CIC alerts unacked: 0
+RX < I (172932) sentry:   sonar:    no contact
+RX < I (172932) sentry:   carrier:  depth 41.9 m, hull 5.2 bar, water 8.2 C, battery 24.19 V (sim)
+RX < I (172942) sentry:   heap:     251 KB free
 TX > whoami
 RX < whoami
-RX < I (344646) sentry: user: testUser, access: user
+RX < I (173112) sentry: user: [REDACTED_USERNAME], access: user
 TX > version
 RX < version
-RX < I (344856) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
-RX < I (344856) sentry:   partition: ota_0 @ 0x20000, state: valid
+RX < I (173322) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+RX < I (173322) sentry:   partition: ota_1 @ 0x1a0000, state: valid
 TX > ota install 2.3.0 force
 RX < ota install 2.3.0 force
-RX < I (345836) esp-x509-crt-bundle: Certificate validated
-RX < I (347036) sentry: [OTA] current v2.3.0 (ota_0) -> target partition ota_1
-RX < I (347036) sentry: [OTA] downloading https://raw.githubusercontent.com/BohdanHorbanych/esp32-ota-files/main/fw7/v2.3.0/sentry_fw7.bin
-RX < I (347386) esp-x509-crt-bundle: Certificate validated
-RX < I (347996) esp_https_ota: Starting OTA...
-RX < I (347996) esp_https_ota: Writing to <ota_1> partition at offset 0x1a0000
-RX < I (348396) sentry: [OTA] image: sentry_fw7 v2.3.0 (build Oct  6 2026 02:15:26)
-RX < W (348396) sentry: W409 same version v2.3.0 - reinstalling
-RX < I (350606) sentry: [OTA]  10%
-RX < I (352886) sentry: [OTA]  20%
-RX < I (354806) sentry: [OTA]  30%
-RX < I (357086) sentry: [OTA]  40%
-RX < I (359116) sentry: [OTA]  50%
-RX < I (361656) sentry: [OTA]  60%
-RX < I (363956) sentry: [OTA]  70%
-RX < I (366776) sentry: [OTA]  80%
-RX < I (367276) sentry: [TELEMETRY #4] 01:33:19 up 00:06:06 heap 207KB rssi -24 temp 36.4C depth 41.7m hull 5.2bar batt 24.2V valve closed sonar - watch disarmed alerts 0 state NORMAL
-RX < I (368426) sentry: [OTA]  90%
-RX < I (370846) sentry: [OTA] 100%
-RX < I (370846) esp_image: segment 0: paddr=001a0020 vaddr=3c0a0020 size=38158h (229720) map
-RX < I (370876) esp_image: segment 1: paddr=001d8180 vaddr=3fc97200 size=05198h ( 20888)
-RX < I (370876) esp_image: segment 2: paddr=001dd320 vaddr=40374000 size=02cf8h ( 11512)
-RX < I (370876) esp_image: segment 3: paddr=001e0020 vaddr=42000020 size=9c08ch (639116) map
+RX < I (174272) esp-x509-crt-bundle: Certificate validated
+RX < I (175022) sentry: [OTA] current v2.3.0 (ota_1) -> target partition ota_0
+RX < I (175022) sentry: [OTA] downloading https://raw.githubusercontent.com/BohdanHorbanych/esp32-ota-files/main/fw7/v2.3.0/sentry_fw7.bin
+RX < I (175372) esp-x509-crt-bundle: Certificate validated
+RX < I (175952) wifi:[ADDBA]RX DELBA, reason:39, delete tid:0, initiator:0(recipient)
+RX < I (176352) esp_https_ota: Starting OTA...
+RX < I (176352) esp_https_ota: Writing to <ota_0> partition at offset 0x20000
+RX < I (176772) sentry: [OTA] image: sentry_fw7 v2.3.0 (build Oct  6 2026 02:15:26)
+RX < W (176772) sentry: W409 same version v2.3.0 - reinstalling
+RX < I (179872) sentry: [OTA]  10%
+RX < I (184482) sentry: [OTA]  20%
+RX < I (187872) sentry: [OTA]  30%
+RX < I (191062) sentry: [OTA]  40%
+RX < I (193402) sentry: [OTA]  50%
+RX < I (194012) wifi:[ADDBA]RX DELBA, reason:39, delete tid:0, initiator:0(recipient)
+RX < I (194562) sentry: [TELEMETRY #4] 02:43:13 up 00:03:14 heap 206KB rssi -23 temp 36.4C depth 41.9m hull 5.2bar batt 24.2V valve closed sonar - watch disarmed alerts 0 state NORMAL
+RX < I (195522) sentry: [OTA]  60%
+RX < I (197482) sentry: [OTA]  70%
+RX < I (199662) sentry: [OTA]  80%
+RX < I (202682) sentry: [OTA]  90%
+RX < I (204862) sentry: [OTA] 100%
+RX < I (204862) esp_image: segment 0:
+RX < paddr=00020020 vaddr=3c0a0020 size=38158h (229720) map
+RX < I (204902) esp_image: segment 1: paddr=00058180 vaddr=3fc97200 size=05198h ( 20888)
+RX < I (204902) esp_image: segment 2: paddr=0005d320 vaddr=40374000 size=02cf8h ( 11512)
+RX < I (204902) esp_image: segment 3: paddr=00060020 vaddr=42000020 size=9c08ch (639116) map
+RX < I (204992) esp_image: segment 4: paddr=000fc0b4 vaddr=40376cf8 size=10418h ( 66584)
+RX < I (205002) esp_image: segment 5: paddr=0010c4d4 vaddr=50000000 size=00024h (    36)
+RX < I (205002) esp_image: segment 0: paddr=00020020 vaddr=3c0a0020 size=38158h (229720) map
+RX < I (205042) esp_image: segment 1: paddr=00058180 vaddr=3fc97200 size=05198h ( 20888)
+RX < I (205042) esp_image: segment 2: paddr=0005d320 vaddr=40374000 size=02cf8h ( 11512)
+RX < I (205042) esp_image: segment 3: paddr=00060020 vaddr=42000020 size=9c08ch (639116) map
+RX < I (205142) esp_image: segment 4: paddr=000fc0b4 vaddr=40376cf8 size=10418h ( 66584)
+RX < I (205142) esp_image: segment 5: paddr=0010c4d4 vaddr=50000000 size=00024h (    36)
+RX < I (205162) sentry: [OTA] success: v2.3.0 -> v2.3.0 in 28 s. Rebooting...
+RX < I (205662) wifi:state: run -> init (0x0)
+RX < I (205662) wifi:pm stop, total sleep time: 16974010 us / 42356548 us
+RX < I (205662) wifi:<ba-del>idx:0, tid:0
+RX < I (205662) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0
+RX < I (205672) wifi:flush txq
+RX < I (205672) wifi:stop sw txq
+RX < I (205672) wifi:lmac stop hw txq
+RX < ��
+RX < ESP-ROM:esp32s3-20210327
+RX < Build:Mar 27 2021
+RX < rst:0xc (RTC_SW_CPU_RST),boot:0x8 (SPI_FAST_FLASH_BOOT)
+RX < Saved PC:0x4037d344
+RX < SPIWP:0xee
+RX < mode:DIO, clock div:1
+RX < load:0x3fce2820,len:0x14f0
+RX < load:0x403c8700,len:0xda0
+RX < load:0x403cb700,len:0x2fa0
+RX < entry 0x403c8908
+RX < I (29) boot: ESP-IDF v6.0.1 2nd stage bootloader
+RX < I (29) boot: compile time Oct  6 2026 02:15:01
+RX < I (29) boot: Multicore bootloader
+RX < I (29) boot: chip revision: v0.2
+RX < I (32) boot: efuse block revision: v1.3
+RX < I (36) boot.esp32s3: Boot SPI Speed : 80MHz
+RX < I (40) boot.esp32s3: SPI Mode       : DIO
+RX < I (43) boot.esp32s3: SPI Flash Size : 4MB
+RX < I (47) boot: Enabling RNG early entropy source...
+RX < I (52) boot: Partition Table:
+RX < I (54) boot: ## Label            Usage          Type ST Offset   Length
+RX < I (60) boot:  0 nvs              WiFi data        01 02 00009000 00006000
+RX < I (67) boot:  1 otadata          OTA data         01 00 0000f000 00002000
+RX < I (73) boot:  2 ota_0            OTA app          00 10 00020000 00180000
+RX < I (80) boot:  3 ota_1            OTA app          00 11 001a0000 00180000
+RX < I (87) boot: End of partition table
+RX < I (116) esp_image: segment 0: paddr=00020020 vaddr=3c0a0020 size=38158h (229720) map
+RX < I (158) esp_image: segment 1: paddr=00058180 vaddr=3fc97200 size=05198h ( 20888) load
+RX < I (162) esp_image: segment 2: paddr=0005d320 vaddr=40374000 size=02cf8h ( 11512) load
+RX < I (165) esp_image: segment 3: paddr=00060020 vaddr=42000020 size=9c08ch (639116) map
+RX < I (284) esp_image: segment 4: paddr=000fc0b4 vaddr=40376cf8 size=10418h ( 66584) load
+RX < I (298) esp_image: segment 5: paddr=0010c4d4 vaddr=50000000 size=00024h (    36) load
+RX < I (307) boot: Loaded app from partition at offset 0x20000
+RX < I (307) boot: Disabling RNG early entropy source...
+RX < I (317) cpu_start: Multicore app
+RX < I (326) cpu_start: GPIO 44 and 43 are used as console UART I/O pins
+RX < I (326) cpu_start: Pro cpu start user code
+RX < I (326) cpu_start: cpu freq: 160000000 Hz
+RX < I (328) app_init: Application information:
+RX < I (332) app_init: Project name:     sentry_fw7
+RX < I (336) app_init: App version:      2.3.0
+RX < I (340) app_init: Compile time:     Oct  6 2026 02:15:26
+RX < I (345) app_init: ELF file SHA256:  ab377c338...
+RX < I (349) app_init: ESP-IDF:          v6.0.1
+RX < I (353) efuse_init: Min chip rev:     v0.0
+RX < I (357) efuse_init: Max chip rev:     v0.99
+RX < I (361) efuse_init: Chip rev:         v0.2
+RX < I (365) heap_init: Initializing. RAM available for dynamic allocation:
+RX < I (371) heap_init: At 3FCA1360 len 000483B0 (288 KiB): RAM
+RX < I (376) heap_init: At 3FCE9710 len 00005724 (21 KiB): RAM
+RX < I (381) heap_init: At 3FCF0000 len 00008000 (32 KiB): DRAM
+RX < I (386) heap_init: At 600FE000 len 00001FE8 (7 KiB): RTCRAM
+RX < I (393) spi_flash: detected chip: boya
+RX < I (395) spi_flash: flash io: dio
+RX < W (398) spi_flash: Detected size(16384k) larger than the size
+RX < in the binary image header(4096k). Using the size in the binary image header.
+RX < I (411) sleep_gpio: Configure to isolate all GPIO pins in sleep state
+RX < I (417) sleep_gpio: Enable automatic switching of GPIO sleep configuration
+RX < I (424) main_task: Started on CPU0
+RX < I (444) main_task: Calling app_main()
+RX < I (464) temperature_sensor: Range [-10°C ~ 80°C], error < 1°C
+RX < I (464) sentry: ==============================================
+RX < I (464) sentry:   SENTRY SWM-2  sonar watch module  fw v2.3.0
+RX < I (464) sentry:   bow sonar array / perimeter watch / CIC link
+RX < I (474) sentry: ==============================================
+RX < I (484) pp: pp rom version: e7ae62f
+RX < I (484) net80211: net80211 rom version: e7ae62f
+RX < I (494) wifi:wifi driver task: 3fced4c4, prio:23, stack:6656, core=0
+RX < I (494) wifi:wifi firmware version: b37c951
+RX < I (494) wifi:wifi certification version: v7.0
+RX < I (504) wifi:config NVS flash: enabled
+RX < I (504) wifi:config nano formatting: disabled
+RX < I (504) wifi:Init data frame dynamic rx buffer num: 32
+RX < I (514) wifi:Init static rx mgmt buffer num: 5
+RX < I (514) wifi:Init management short buffer num: 32
+RX < I (524) wifi:Init dynamic tx buffer num: 32
+RX < I (524) wifi:Init static tx FG buffer num: 2
+RX < I (524) wifi:Init static rx buffer size: 1600
+RX < I (534) wifi:Init static rx buffer num: 10
+RX < I (534) wifi:Init dynamic rx buffer num: 32
+RX < I (544) wifi_init: rx ba win: 6
+RX < I (544) wifi_init: accept mbox: 6
+RX < I (544) wifi_init: tcpip mbox: 32
+RX < I (544) wifi_init: udp mbox: 6
+RX < I (554) wifi_init: tcp mbox: 6
+RX < I (554) wifi_init: tcp tx win: 5760
+RX < I (554) wifi_init: tcp rx win: 5760
+RX < I (564) wifi_init: tcp mss: 1440
+RX < I (564) wifi_init: WiFi IRAM OP enabled
+RX < I (564) wifi_init: WiFi RX IRAM OP enabled
+RX < I (574) phy_init: phy_version 711,97bcf0a2,Aug 25 2025,19:04:10
+RX < I (654) wifi:mode : sta ([REDACTED_MAC])
+RX < I (654) wifi:enable tsf
+RX < I (654) sentry: [LINK] known network '[REDACTED_NETWORK_NAME]'. Type 'reconnect' to connect
+RX < I (654) sentry: [AUTH] profile '[REDACTED_USERNAME]' registered
+RX < I (664) sentry: last reset: software reboot
+RX < I (664) sentry: build tag: [REDACTED]
+RX < I (664) sentry: [HW] transducer array: 1 ch, 40 kHz, driver OK
+RX < I (674) sentry: [HW] hull penetrator seal: OK, pressure sensor: OK
+RX < W (674) sentry: [NAV] depth sensor offline (lab mode) - using simulator
+RX < I (684) sentry: [NAV] carrier: SSK 'Skat', bow sonar bay #2, depth 41.8 m
+RX < I (694) sentry: [OTA] running v2.3.0 from ota_0
+RX < W (694) sentry: [OTA] new firmware, PENDING_VERIFY - self-check...
+RX < I (734) sentry: [OTA] self-check passed, firmware marked VALID
+RX < I (734) sentry: ready. state 1 NORMAL (patrol). Type 'help'
+RX < I (734) main_task: Returned from app_main()
+TX > version
+RX < version
+RX < I (964) sentry: SENTRY SWM-2 sonar watch module, fw v2.3.0 (build Oct  6 2026 02:15:26)
+RX < I (964) sentry:   partition: ota_0 @ 0x20000, state: valid
+TX > status
+RX < status
+RX < I (1574) sentry: === SWM-2 status ===
+RX < I (1574) sentry:   fw:       v2.3.0 (ota_0)
+RX < I (1574) sentry:   state:    1 NORMAL
+RX < I (1574) sentry:   link:     buoy link down (known: [REDACTED_NETWORK_NAME])
+RX < I (1574) sentry:   user:     not logged in
+RX < I (1574) sentry:   time:     --:--:--, uptime 0h 00m 01s
+RX < I (1584) sentry:   valve:    closed
+RX < I (1584) sentry:   watch:    disarmed, CIC alerts unacked: 0
+RX < I (1594) sentry:   sonar:    no contact
+RX < I (1594) sentry:   carrier:  depth 41.8 m, hull 5.2 bar, water 8.1 C, battery 24.20 V (sim)
+RX < I (1604) sentry:   heap:     254 KB free
+TX > reconnect
+RX < reconnect
+RX < I (1874) sentry: [LINK] raising buoy antenna, connecting to '[REDACTED_NETWORK_NAME]'...
+RX < I (1964) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0
+RX < I (1964) wifi:state: init -> auth (0xb0)
+RX < I (1974) wifi:state: auth -> assoc (0x0)
+RX < I (1984) wifi:state: assoc -> run (0x10)
+RX < I (2004) wifi:connected with [REDACTED_NETWORK_NAME], aid = 1, channel 1, BW20, bssid = [REDACTED_MAC]
+RX < I (2004) wifi:security: WPA2-PSK, phy: bgn, rssi: -19, cipher(pairwise:0x3, group:0x3), pmf:1
+RX < I (2004) wifi:pm start, type: 1
+RX < I (2014) wifi:dp: 1, bi: 102400, li: 3, scale listen interval from 307200 us to 307200 us
+RX < I (2014) wifi:set rx beacon pti, rx_bcn_pti: 0, bcn_timeout: 25000, mt_pti: 0, mt_time: 10000
+RX < I (2094) wifi:dp: 2, bi: 102400, li: 4, scale listen interval from 307200 us to 409600 us
+RX < I (2094) wifi:AP's beacon interval = 102400 us, DTIM period = 2
+RX < I (3064) esp_netif_handlers: sta ip: [REDACTED_PRIVATE_IP], mask: 255.255.255.0, gw: [REDACTED_PRIVATE_IP]
+RX < I (3064) sentry: [LINK] got ip [REDACTED_PRIVATE_IP]
+RX < I (3064) sentry: [LINK] connected to '[REDACTED_NETWORK_NAME]', rssi -19 dBm (excellent)
+TX > status
+RX < I (3284) wifi:<ba-add>idx:0 (ifx:0, [REDACTED_MAC]), tid:0, ssn:3, winSize:64
+RX < I (3584) esp-x509-crt-bundle: Certificate validated
+RX < I (4214) sentry: [LINK] fleet network reachable (internet OK)
+RX < I (9364) sentry: [LINK] time: synced via NTP, 02:43:33
+RX < status
+RX < I (9474) sentry: === SWM-2 status ===
+RX < I (9474) sentry:   fw:       v2.3.0 (ota_0)
+RX < I (9474) sentry:   state:    1 NORMAL
+RX < I (9474) sentry:   link:     buoy link '[REDACTED_NETWORK_NAME]', ip [REDACTED_PRIVATE_IP], rssi -17 dBm (excellent), ch 1
+RX < I (9474) sentry:   internet: OK
+RX < I (9484) sentry:   user:     not logged in
+RX < I (9484) sentry:   time:     02:43:33, uptime 0h 00m 09s
+RX < I (9494) sentry:   valve:    closed
+RX < I (9494) sentry:   watch:    disarmed, CIC alerts unacked: 0
+RX < I (9504) sentry:   sonar:    no contact
+RX < I (9504) sentry:   carrier:  depth 41.8 m, hull 5.2 bar, water 8.1 C, battery 24.20 V (sim)
+RX < I (9514) sentry:   heap:     251 KB free
+TX > status
+RX < status
+RX < I (9694) sentry: === SWM-2 status ===
+RX < I (9694) sentry:   fw:       v2.3.0 (ota_0)
+RX < I (9694) sentry:   state:    1 NORMAL
+RX < I (9694) sentry:   link:     buoy link '[REDACTED_NETWORK_NAME]', ip [REDACTED_PRIVATE_IP], rssi -17 dBm (excellent), ch 1
+RX < I (9694) sentry:   internet: OK
+RX < I (9704) sentry:   user:     not logged in
+RX < I (9704) sentry:   time:     02:43:33, uptime 0h 00m 09s
+RX < I (9714) sentry:   valve:    closed
+RX < I (9714) sentry:   watch:    disarmed, CIC alerts unacked: 0
+RX < I (9714) sentry:   sonar:    no contact
+RX < I (9724) sentry:   carrier:  depth 41.8 m, hull 5.2 bar, water 8.1 C, battery 24.20 V (sim)
+RX < I (9734) sentry:   heap:     251 KB free
+TX > whoami
+RX < whoami
+RX < I (9894) sentry: not logged in
+TX > [REDACTED]
+RX < [REDACTED]
+RX < I (10104) sentry: [AUTH] operator [REDACTED_USERNAME] on watch, console 2
+RX < I (10134) sentry: [TELEMETRY] auto report every 30 s ('health off' to stop)
+TX > whoami
+RX < whoami
+RX < I (10314) sentry: user: [REDACTED_USERNAME], access: user

@@ -858,7 +858,6 @@ class TestOta:
         device_driver: DeviceDriver,
         firmware_version: str,
         manual_prepare: Any,
-        manual_check: Any,
         restore_wifi_after_interrupted_ota: tuple[
             Callable[[], None], Callable[[], None]
         ],
@@ -868,6 +867,7 @@ class TestOta:
         driver = device_driver
         mark_ap_disabled, mark_ap_restored = restore_wifi_after_interrupted_ota
         initial_partition = _partition_state(driver.send_command("version"))[0]
+        internet_status: dict[str, Any] | None = None
 
         prepare_observation(
             manual_prepare,
@@ -921,64 +921,27 @@ class TestOta:
             prepare_observation(
                 manual_prepare,
                 action="turn the test Wi-Fi access point back on; keep the board powered",
-                expected="the test access point is available to clients",
-                duration="allow up to 20 seconds",
-            )
-            prepare_observation(
-                manual_prepare,
-                action=(
-                    "if needed, restore the upstream internet connection for "
-                    "the test access point"
-                ),
                 expected=(
-                    "a separate client using this access point (not cellular "
-                    "data) can reach the internet"
+                    "the device reports Wi-Fi reconnection and the expected "
+                    "internet/OTA response over UART"
                 ),
-                duration=(
-                    "allow up to 60 seconds; if unavailable, report FAIL and "
-                    "stop before the OTA retry"
-                ),
+                duration="allow up to 20 seconds for the access point to return",
             )
-            if not manual_check(
-                "Is a separate client connected to the restored test access "
-                "point (not cellular data) able to reach the internet?"
-            ):
-                pytest.skip(
-                    "The operator did not confirm upstream internet on the "
-                    "restored test access point; OTA recovery is inconclusive."
-                )
-            mark_ap_restored()
 
             if firmware_version == "2.3.0":
                 with allure.step(
-                    "Force saved-profile reconnect and verify internet on 2.3.0"
+                    "Reconnect saved Wi-Fi profile and verify firmware internet status"
                 ):
-                    disconnect_lines = driver.wifi_disconnect(timeout=10.0)
-                    assert any(
-                        marker in line.casefold()
-                        for line in disconnect_lines
-                        for marker in ("[link] disconnected", "w115")
-                    ), (
-                        "Wi-Fi disconnect did not return the expected UART "
-                        f"confirmation: {disconnect_lines!r}"
-                    )
-
                     assert driver.wifi_reconnect(timeout=20.0), (
                         "Saved-profile reconnect did not restore Wi-Fi "
                         "association and IP."
                     )
                     _ensure_saved_wifi_connected(driver, request)
                     internet_status = driver.wifi_status()
-                    assert internet_status.get("internet") is True, (
-                        "Wi-Fi association/IP returned after reconnect, but "
-                        "internet readiness did not. The AP's upstream "
-                        "internet was confirmed by the operator. Candidate "
-                        "finding: BUG-018. "
-                        f"Status: {internet_status!r}"
-                    )
             else:
                 _ensure_saved_wifi_connected(driver, request)
 
+            mark_ap_restored()
             ensure_authenticated_device(driver)
 
         with allure.step("Verify firmware version and partition remained unchanged after error"):
@@ -987,9 +950,35 @@ class TestOta:
             assert _partition_state(ver_lines)[0] == initial_partition
 
         with allure.step("Retry OTA install after interruption"):
-            retry_lines = driver.run_ota_with_connectivity_retry(
-                f"ota install {firmware_version} force", timeout=180.0
-            )
+            retry_command = f"ota install {firmware_version} force"
+            if firmware_version == "2.3.0":
+                retry_lines = driver.run_ota(retry_command, timeout=180.0)
+                retry_output = _response(retry_lines)
+                assert "E411" not in retry_output, (
+                    "Firmware rejected the OTA retry because internet was "
+                    "unavailable after reconnect. Firmware status: "
+                    f"{internet_status!r}\nOTA UART:\n{retry_output}"
+                )
+                assert internet_status is not None
+                status_lines = internet_status.get("raw", [])
+                explicit_internet_result = any(
+                    re.search(r"\binternet:\s*(?:OK|NO)\b", line, re.IGNORECASE)
+                    for line in status_lines
+                )
+                assert explicit_internet_result, (
+                    "Firmware status did not include an explicit internet "
+                    "result after reconnect. OTA UART:\n"
+                    f"{retry_output}\nStatus: {internet_status!r}"
+                )
+                assert internet_status.get("internet") is True, (
+                    "Firmware status reported internet unavailable after "
+                    "reconnect, even though OTA did not return E411. "
+                    f"Status: {internet_status!r}\nOTA UART:\n{retry_output}"
+                )
+            else:
+                retry_lines = driver.run_ota_with_connectivity_retry(
+                    retry_command, timeout=180.0
+                )
             _assert_successful_update(
                 driver,
                 retry_lines,
