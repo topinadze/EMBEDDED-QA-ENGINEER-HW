@@ -192,3 +192,19 @@ def test_environment_guard_pin_overrides_local_default(
     monkeypatch.setenv(test_config.GUARD_PIN_ENV, "1357")
 
     assert test_config.resolve_guard_pin() == "1357"
+
+
+def test_sudo_password_uses_local_secrets_default(monkeypatch: pytest.MonkeyPatch) -> None:
+    monkeypatch.setattr(test_config, "DEFAULT_SUDO_PASSWORD", "local-sudo")
+    monkeypatch.delenv(test_config.SUDO_PASSWORD_ENV, raising=False)
+
+    assert test_config.resolve_sudo_password() == "local-sudo"
+
+
+def test_environment_sudo_password_overrides_local_default(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    monkeypatch.setattr(test_config, "DEFAULT_SUDO_PASSWORD", "local-sudo")
+    monkeypatch.setenv(test_config.SUDO_PASSWORD_ENV, "env-sudo")
+
+    assert test_config.resolve_sudo_password() == "env-sudo"

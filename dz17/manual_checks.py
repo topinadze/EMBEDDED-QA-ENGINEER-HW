@@ -241,7 +241,7 @@ def _telegram_color_marker(text: str) -> str | None:
     return lamp_color_marker(matches[-1]) if matches else None
 
 
-def _telegram_prepare_message(instruction: str) -> str:
+def _telegram_prepare_message(instruction: str, *, allow_skip: bool = False) -> str:
     topic = _telegram_topic(instruction)
     labels = (
         ("What to do:", "➡️ ACTION:"),
@@ -253,12 +253,15 @@ def _telegram_prepare_message(instruction: str) -> str:
         formatted = re.sub(source, replacement, formatted, flags=re.IGNORECASE)
     if not re.search(r"➡️ ACTION:|👀 OBSERVE:|⏱ DURATION:", formatted):
         formatted = f"➡️ ACTION:\n{formatted}"
+    closing = "Confirm with ✅ READY when prepared."
+    if allow_skip:
+        closing += "\nOr choose ⏭ SKIP TEST to skip this whole test."
     return (
         f"{topic}\n"
         "━━━━━━━━━━━━━━━━━━\n"
         "🧰 GET READY\n\n"
         f"{formatted.strip()}\n\n"
-        "Confirm with ✅ READY when prepared."
+        f"{closing}"
     )
 
 
@@ -346,15 +349,30 @@ class SoftChecks:
             )
 
 
+def _skip_test_by_operator(instruction: str) -> None:
+    _attach_manual_feedback(instruction, "SKIPPED BY OPERATOR (at first preparation)")
+    LOGGER.info("MANUAL PREPARE | Operator skipped the test before preparation.")
+    pytest.skip("Operator skipped this test at the first preparation prompt.")
+
+
 @allure.step("Manual preparation: {instruction}")
-def prepare_manually(instruction: str) -> None:
-    """Pause so the operator can prepare and watch the device before the next action."""
+def prepare_manually(instruction: str, *, allow_skip: bool = False) -> None:
+    """Pause so the operator can prepare and watch the device before the next action.
+
+    With ``allow_skip`` the operator may skip the whole test instead of preparing;
+    the test is then reported as skipped, never as passed.
+    """
     if _telegram_mode():
+        choices = [("ready", "✅ READY")]
+        if allow_skip:
+            choices.append(("skip", "⏭ SKIP TEST"))
         try:
-            telegram_instruction = _telegram_prepare_message(instruction)
-            telegram_choice(
+            telegram_instruction = _telegram_prepare_message(
+                instruction, allow_skip=allow_skip
+            )
+            response = telegram_choice(
                 telegram_instruction,
-                [("ready", "✅ READY")],
+                choices,
                 _telegram_timeout(),
             )
         except TimeoutError:
@@ -362,6 +380,8 @@ def prepare_manually(instruction: str) -> None:
                 instruction, "NOT RECORDED (Telegram preparation timeout)"
             )
             pytest.fail("Operator did not confirm preparation in Telegram before timeout.")
+        if allow_skip and response == "skip":
+            _skip_test_by_operator(instruction)
         LOGGER.info("MANUAL PREPARE | Operator confirmed readiness via Telegram.")
         allure.attach(
             f"Operator confirmed readiness.\n{instruction}",
@@ -377,10 +397,24 @@ def prepare_manually(instruction: str) -> None:
     )
     _print_manual_prompt("🧰 GET READY", console_instruction, PREPARE_COLOR)
     LOGGER.info("MANUAL PREPARE | Waiting for operator confirmation.")
-    try:
-        input(_input_prompt("Press Enter when ready:", PREPARE_COLOR))
-    except EOFError:
-        pytest.fail("Manual input is unavailable; run pytest with -s in a terminal.")
+    prompt = (
+        "Press Enter when ready, or type s to skip this test:"
+        if allow_skip
+        else "Press Enter when ready:"
+    )
+    while True:
+        try:
+            response = input(_input_prompt(prompt, PREPARE_COLOR))
+        except EOFError:
+            pytest.fail("Manual input is unavailable; run pytest with -s in a terminal.")
+        if not allow_skip:
+            return
+        response = response.strip().casefold()
+        if response in {"s", "skip"}:
+            _skip_test_by_operator(instruction)
+        if not response:
+            return
+        _print_manual_notice("Invalid response. Press Enter when ready, or type s to skip.")
 
 
 @allure.step("Confirm destructive action: {action}")

@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from datetime import datetime
 from pathlib import Path
 from types import SimpleNamespace
 from unittest.mock import Mock, call
@@ -186,6 +187,7 @@ def test_uart_log_keeps_only_latest_per_test_and_firmware(
     monkeypatch: pytest.MonkeyPatch, tmp_path: Path
 ) -> None:
     monkeypatch.setattr(conftest, "DZ17_DIR", tmp_path)
+    monkeypatch.setattr(conftest, "_git_tracked_logs", lambda root: frozenset())
     item = FakeRequest(expected_version=None).node
     current_firmware_dir = tmp_path / "logs" / "automated" / "buttons" / "2.1.0"
     other_firmware_dir = tmp_path / "logs" / "automated" / "buttons" / "2.3.0"
@@ -882,3 +884,188 @@ def test_telegram_test_status_uses_clear_result_indicator(
     status: str, expected: str
 ) -> None:
     assert conftest._telegram_test_status_label(status) == expected
+
+
+def test_run_tally_reports_counts_duration_and_failed_tests() -> None:
+    tally = conftest.RunTally(selected=6)
+    for status, name in [
+        ("PASSED", "test_a"),
+        ("PASSED", "test_b"),
+        ("FAILED", "test_c"),
+        ("SKIPPED", "test_d"),
+        ("XFAIL", "test_e"),
+    ]:
+        tally.record(status, name)
+
+    assert tally.finished == 5
+    assert tally.progress_line() == "✅ 2 · ❌ 1 · ⚪ 1 · 🟠 1"
+    assert tally.report(elapsed_s=125) == (
+        "📊 TEST RESULTS\n"
+        "━━━━━━━━━━━━━━━━━━\n"
+        "🧪 Run: 5 of 6 selected\n"
+        "✅ Passed: 2\n"
+        "❌ Failed: 1\n"
+        "⚪ Skipped: 1\n"
+        "🟠 XFAIL (known defects): 1\n"
+        "⚠️ XPASS (unexpected pass): 0\n"
+        "⏱ Duration: 2m 05s\n"
+        "\n"
+        "❌ Needs attention:\n"
+        "• test_c"
+    )
+
+
+def test_run_tally_limits_listed_failures() -> None:
+    tally = conftest.RunTally(selected=20)
+    for index in range(conftest.MAX_LISTED_FAILURES + 2):
+        tally.record("FAILED", f"test_{index}")
+
+    report = tally.report(elapsed_s=0)
+
+    assert "• test_14" in report
+    assert "• test_15" not in report
+    assert report.endswith("… and 2 more")
+
+
+def test_telegram_status_outage_does_not_abort_the_session(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    client = Mock()
+    client.send_message.side_effect = RuntimeError("HTTP 502 (sendMessage)")
+    monkeypatch.setenv("INTERACTION_MODE", "telegram")
+    monkeypatch.setattr(conftest, "telegram_client", lambda: client)
+    config = Mock()
+    config.stash = {}
+
+    conftest._update_telegram_test_status(config, "🧪 TEST IN PROGRESS")
+
+    assert conftest.TELEGRAM_STATUS_MESSAGE_KEY not in config.stash
+
+
+class _FixedDatetime(datetime):
+    @classmethod
+    def now(cls, tz=None):  # type: ignore[override]
+        return cls(2026, 10, 28, 3, 22, 5)
+
+
+def test_uart_log_never_deletes_or_overwrites_committed_transcripts(
+    monkeypatch: pytest.MonkeyPatch, tmp_path: Path
+) -> None:
+    monkeypatch.setattr(conftest, "DZ17_DIR", tmp_path)
+    monkeypatch.setattr(conftest, "datetime", _FixedDatetime)
+    item = FakeRequest(expected_version=None).node
+    log_dir = tmp_path / "logs" / "automated" / "buttons" / "2.1.0"
+    log_dir.mkdir(parents=True)
+    committed_old = log_dir / "20261026-test_firmware_check.txt"
+    committed_today = log_dir / "20261028-test_firmware_check.txt"
+    untracked_old = log_dir / "20261027-test_firmware_check.txt"
+    for log in (committed_old, committed_today, untracked_old):
+        log.write_text("evidence", encoding="utf-8")
+    tracked = frozenset({committed_old.resolve(), committed_today.resolve()})
+    monkeypatch.setattr(conftest, "_git_tracked_logs", lambda root: tracked)
+
+    new_log = conftest._save_automated_uart_log(
+        _driver_with_firmware("2.1.0"), item, "2.1.0"
+    )
+
+    assert committed_old.read_text(encoding="utf-8") == "evidence"
+    assert committed_today.read_text(encoding="utf-8") == "evidence"
+    assert not untracked_old.exists()
+    assert new_log.name == "20261028-032205-test_firmware_check.txt"
+
+
+def test_uart_log_keeps_old_transcripts_when_git_is_unavailable(
+    monkeypatch: pytest.MonkeyPatch, tmp_path: Path
+) -> None:
+    monkeypatch.setattr(conftest, "DZ17_DIR", tmp_path)
+    monkeypatch.setattr(conftest, "datetime", _FixedDatetime)
+    monkeypatch.setattr(conftest, "_git_tracked_logs", lambda root: None)
+    item = FakeRequest(expected_version=None).node
+    log_dir = tmp_path / "logs" / "automated" / "buttons" / "2.1.0"
+    log_dir.mkdir(parents=True)
+    old_log = log_dir / "20261026-test_firmware_check.txt"
+    old_log.write_text("evidence", encoding="utf-8")
+
+    new_log = conftest._save_automated_uart_log(
+        _driver_with_firmware("2.1.0"), item, "2.1.0"
+    )
+
+    assert old_log.read_text(encoding="utf-8") == "evidence"
+    assert new_log.name == "20261028-032205-test_firmware_check.txt"
+
+
+def test_git_tracked_logs_lists_committed_report_evidence() -> None:
+    conftest._git_tracked_logs.cache_clear()
+    tracked = conftest._git_tracked_logs(conftest.DZ17_DIR)
+
+    assert tracked is not None
+    assert (
+        conftest.DZ17_DIR / "logs" / "manual" / "20261016-AU-06-sudo-retest-2.1.0.txt"
+    ).resolve() in tracked
+
+
+def test_run_tally_report_marks_a_stopped_run() -> None:
+    tally = conftest.RunTally(selected=10)
+    tally.record("PASSED", "test_a")
+    tally.record("FAILED", "test_b")
+
+    report = tally.report(elapsed_s=30, interrupted=True)
+
+    assert "⏹ Stopped early: 8 selected test(s) did not run." in report
+
+
+def test_status_message_offers_stop_until_the_final_update(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    client = Mock()
+    client.send_message.return_value = 55
+    monkeypatch.setenv("INTERACTION_MODE", "telegram")
+    monkeypatch.setattr(conftest, "telegram_client", lambda: client)
+    config = Mock()
+    config.stash = {}
+
+    conftest._update_telegram_test_status(config, "🧪 TEST IN PROGRESS")
+    conftest._update_telegram_test_status(config, "🏁 RUN FINISHED", final=True)
+
+    assert client.send_message.call_args.args[1] == [[conftest.STOP_RUN_BUTTON]]
+    assert client.edit_message.call_args.args == (55, "🏁 RUN FINISHED", None)
+
+
+def test_telegram_session_start_drops_stale_stop_requests(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    client = Mock()
+    monkeypatch.setenv("INTERACTION_MODE", "telegram")
+    monkeypatch.setattr(conftest, "telegram_client", lambda: client)
+
+    conftest.pytest_sessionstart(Mock())
+
+    client.discard_pending_updates.assert_called_once_with()
+
+
+def test_console_session_start_does_not_touch_telegram(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    monkeypatch.setenv("INTERACTION_MODE", "console")
+    monkeypatch.setattr(
+        conftest, "telegram_client", lambda: pytest.fail("Telegram must not be used")
+    )
+
+    conftest.pytest_sessionstart(Mock())
+
+
+def test_provisioning_transcript_is_saved_next_to_its_run_log(
+    monkeypatch: pytest.MonkeyPatch, tmp_path: Path
+) -> None:
+    monkeypatch.setattr(conftest, "DZ17_DIR", tmp_path)
+    monkeypatch.setattr(conftest, "_git_tracked_logs", lambda root: frozenset())
+    item = SimpleNamespace(
+        name="test_provision_requested_firmware",
+        nodeid="tests/test_ota.py::test_provision_requested_firmware",
+        get_closest_marker=lambda name: object() if name in {"provision", "ota"} else None,
+    )
+    driver = SimpleNamespace(uart_log=["TX > version"])
+
+    log_path = conftest._save_automated_uart_log(driver, item, "2.3.0")
+
+    assert log_path.parent == tmp_path / "logs" / "automated" / "provisioning" / "2.3.0"

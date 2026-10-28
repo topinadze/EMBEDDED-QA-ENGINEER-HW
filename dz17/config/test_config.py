@@ -19,6 +19,7 @@ APP_PASSWORD_ENV = "HW17_PASSWORD"
 ALT_APP_USER_ENV = "TEST_USER"
 ALT_APP_PASSWORD_ENV = "TEST_PASSWORD"
 GUARD_PIN_ENV = "HW17_GUARD_PIN"
+SUDO_PASSWORD_ENV = "HW17_SUDO_PASSWORD"
 TELEGRAM_BOT_TOKEN_ENV = "TELEGRAM_BOT_TOKEN"
 TELEGRAM_CHAT_ID_ENV = "TELEGRAM_CHAT_ID"
 
@@ -37,6 +38,7 @@ DEFAULT_WIFI_MISSING_SSID = "HW17-NONEXISTENT-NETWORK"
 DEFAULT_APP_USER = getattr(secrets, "DEFAULT_APP_USER", "sentry_op")
 DEFAULT_APP_PASSWORD = getattr(secrets, "DEFAULT_APP_PASSWORD", "")
 DEFAULT_GUARD_PIN = getattr(secrets, "DEFAULT_GUARD_PIN", "")
+DEFAULT_SUDO_PASSWORD = getattr(secrets, "DEFAULT_SUDO_PASSWORD", "")
 DEFAULT_TELEGRAM_BOT_TOKEN = getattr(secrets, "TELEGRAM_BOT_TOKEN", "")
 DEFAULT_TELEGRAM_CHAT_ID = getattr(secrets, "TELEGRAM_CHAT_ID", "")
 
@@ -101,6 +103,11 @@ def resolve_account_credentials(
 def resolve_guard_pin() -> str:
     """Resolve the Guard PIN from the environment, falling back to local secrets."""
     return os.environ.get(GUARD_PIN_ENV) or DEFAULT_GUARD_PIN
+
+
+def resolve_sudo_password() -> str:
+    """Resolve the AU-6 sudo password (not given in the PRD) from env or local secrets."""
+    return os.environ.get(SUDO_PASSWORD_ENV) or DEFAULT_SUDO_PASSWORD
 
 
 def resolve_telegram_credentials() -> tuple[str, str]:

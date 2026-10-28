@@ -2,7 +2,6 @@ from __future__ import annotations
 
 import ipaddress
 import re
-import sys
 import time
 from collections.abc import Callable, Iterator
 from typing import Any
@@ -12,7 +11,11 @@ import pytest
 
 from detect_firmware import parse_firmware_version
 from config.test_config import resolve_wifi_credentials
-from drivers.device_driver import OTA_BOOT_READY_MARKER, DeviceDriver
+from drivers.device_driver import (
+    OTA_BOOT_READY_MARKER,
+    DeviceDriver,
+    has_ota_terminal_result,
+)
 from manual_checks import prepare_observation
 
 
@@ -94,6 +97,32 @@ def _ensure_saved_wifi_connected(
         "Could not restore the configured Wi-Fi connection through the saved "
         f"profile without modifying persistent credentials: {status!r}"
     )
+
+
+AP_RETURN_WINDOW_SECONDS = 60.0
+AP_RETRY_PAUSE_SECONDS = 5.0
+
+
+def _reconnect_after_ap_restore(driver: DeviceDriver) -> int:
+    """Reconnect the saved profile after the operator confirmed the AP is back.
+
+    Returns how many ``reconnect`` commands were needed, or 0 if the device never
+    reconnected. Only E102 (network not found) is retried, within a bounded
+    window, so the rest of the OTA-9 flow can still be checked; the caller must
+    treat more than one attempt as a finding, not hide it.
+    """
+    deadline = time.monotonic() + AP_RETURN_WINDOW_SECONDS
+    attempt = 1
+    while True:
+        mark = len(driver.uart_log)
+        with allure.step(f"Reconnect saved Wi-Fi profile (attempt {attempt})"):
+            if driver.wifi_reconnect(timeout=20.0):
+                return attempt
+        network_not_found = driver.wait_for_any(("E102",), 0, since_index=mark)
+        if not network_not_found or time.monotonic() + AP_RETRY_PAUSE_SECONDS >= deadline:
+            return 0
+        time.sleep(AP_RETRY_PAUSE_SECONDS)
+        attempt += 1
 
 
 def _ota_server_setting(lines: list[str]) -> str:
@@ -249,6 +278,50 @@ def test_run_ota_waits_for_device_ready_after_same_version_reinstall(
     assert any(
         "ready. state 1 NORMAL (patrol). Type 'help'" in line for line in result
     )
+
+
+@pytest.mark.ota
+def test_run_ota_ignores_error_codes_inside_image_hex_addresses(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    # 2026-10-28 provisioning to ota_1: "paddr=001e0020" contains "e002" and
+    # ended the wait before [OTA] success and the reboot.
+    driver = DeviceDriver("unused")
+    reads = iter(
+        (
+            [
+                "I (1214535) esp_image: segment 3: paddr=001e0020 vaddr=42000020 "
+                "size=9b1c0h (635328) map"
+            ],
+            ["I sentry: [OTA] success: v2.3.0 -> v2.1.0. Rebooting..."],
+            ["I sentry: ready. state 1 NORMAL (patrol). Type 'help'"],
+        )
+    )
+    monkeypatch.setattr(
+        driver, "send_command", lambda command, timeout: ["I sentry: [OTA] 100%"]
+    )
+    monkeypatch.setattr(driver, "_read_for", lambda timeout: next(reads))
+
+    result = driver.run_ota("ota install 2.1.0 force", timeout=180.0)
+
+    assert any("[OTA] success: v2.3.0 -> v2.1.0" in line for line in result)
+    assert any("ready. state 1 NORMAL" in line for line in result)
+
+
+@pytest.mark.parametrize(
+    ("line", "expected"),
+    [
+        ("E sentry: E002 no Wi-Fi", True),
+        ("E sentry: E411 no internet", True),
+        ("I esp_image: segment 3: paddr=001e0020 vaddr=42000020", False),
+        ("I esp_image: segment 1: paddr=0e4010 size=0e403h", False),
+        ("E sentry: [OTA] check failed: cannot read beta.txt", True),
+    ],
+)
+def test_ota_terminal_markers_match_codes_as_whole_words(
+    line: str, expected: bool
+) -> None:
+    assert has_ota_terminal_result([line]) is expected
 
 
 @pytest.mark.ota
@@ -920,25 +993,33 @@ class TestOta:
         with allure.step("Restore Wi-Fi access point and reconnect"):
             prepare_observation(
                 manual_prepare,
-                action="turn the test Wi-Fi access point back on; keep the board powered",
+                action=(
+                    "turn the test Wi-Fi access point back on; keep the board powered. "
+                    "Confirm once the network is visible again (it can take ~30 seconds)"
+                ),
                 expected=(
                     "the device reports Wi-Fi reconnection and the expected "
                     "internet/OTA response over UART"
                 ),
-                duration="allow up to 20 seconds for the access point to return",
+                duration=(
+                    f"the board keeps retrying for up to "
+                    f"{AP_RETURN_WINDOW_SECONDS:.0f} seconds while the network is not found"
+                ),
             )
 
             if firmware_version == "2.3.0":
                 with allure.step(
                     "Reconnect saved Wi-Fi profile and verify firmware internet status"
                 ):
-                    assert driver.wifi_reconnect(timeout=20.0), (
+                    reconnect_attempts = _reconnect_after_ap_restore(driver)
+                    assert reconnect_attempts, (
                         "Saved-profile reconnect did not restore Wi-Fi "
                         "association and IP."
                     )
                     _ensure_saved_wifi_connected(driver, request)
                     internet_status = driver.wifi_status()
             else:
+                reconnect_attempts = _reconnect_after_ap_restore(driver)
                 _ensure_saved_wifi_connected(driver, request)
 
             mark_ap_restored()
@@ -986,3 +1067,122 @@ class TestOta:
                 firmware_version,
                 initial_partition,
             )
+
+        # Checked last so the OTA retry above is still exercised and recorded.
+        with allure.step("Verify the first reconnect after the AP returned succeeded"):
+            assert reconnect_attempts == 1, (
+                "After the operator confirmed the access point was visible again, "
+                "the first saved-profile reconnect failed with E102 network not found "
+                f"(successful attempt: {reconnect_attempts or 'none'}). If this "
+                "reproduces with the network visible, it is a reconnect defect, not "
+                "operator timing; see the UART transcript."
+            )
+
+
+# Validated OTA paths between the supported versions (same commands as the
+# beta-update and forced-downgrade cases above).
+PROVISIONING_COMMANDS = {
+    ("2.1.0", "2.3.0"): "ota update beta",
+    ("2.3.0", "2.1.0"): "ota install 2.1.0 force",
+}
+
+
+@allure.story("Precondition: switch firmware before a test pack")
+@allure.title("Board is switched by OTA to the firmware requested for the run")
+@pytest.mark.provision
+@pytest.mark.ota
+@pytest.mark.persistent
+def test_provision_requested_firmware(
+    authenticated_device: DeviceDriver,
+    firmware_version: str,
+    pytestconfig: pytest.Config,
+) -> None:
+    target = pytestconfig.getoption("provision_fw")
+    driver = authenticated_device
+    if firmware_version == target:
+        with allure.step(f"Board already runs firmware {target}; no OTA needed"):
+            return
+
+    with allure.step("Ensure the default OTA server before switching"):
+        # OTA error tests point the device at a local server; a switch must use
+        # the official images (HW-17 also requires `ota server default`).
+        server = _response(driver.ota_server(timeout=3.0))
+        if "(default)" not in server.casefold():
+            server = _response(driver.ota_server("default", timeout=3.0))
+            assert "(default)" in server.casefold(), (
+                f"Could not restore the default OTA server before switching:\n{server}"
+            )
+
+    command = PROVISIONING_COMMANDS[(firmware_version, target)]
+    before = _partition_state(driver.send_command("version"))
+    with allure.step(f"Switch firmware {firmware_version} -> {target}: {command}"):
+        lines = driver.run_ota_with_connectivity_retry(command, timeout=180.0)
+    _assert_successful_update(driver, lines, firmware_version, target, before[0])
+
+
+@pytest.mark.parametrize(
+    ("line", "expected"),
+    [
+        ("E sentry: E402 download failed", True),
+        ("I esp_image: segment 2: paddr=000e4020 size=035b8h", False),
+    ],
+)
+def test_ota_connectivity_retry_ignores_e402_inside_hex(line: str, expected: bool) -> None:
+    assert DeviceDriver._is_retryable_ota_connectivity_failure([line]) is expected
+
+
+class _ReconnectDriver:
+    """Fake driver whose reconnect replies come from a script of UART answers."""
+
+    def __init__(self, replies: list[str]) -> None:
+        self.uart_log: list[str] = []
+        self._replies = iter(replies)
+        self.attempts = 0
+
+    def wifi_reconnect(self, timeout: float) -> bool:
+        self.attempts += 1
+        reply = next(self._replies)
+        self.uart_log.append(f"RX < {reply}")
+        return reply == "connected"
+
+    def wait_for_any(self, texts: tuple[str, ...], timeout: float, since_index: int) -> bool:
+        return any(text in line for line in self.uart_log[since_index:] for text in texts)
+
+
+def test_reconnect_after_ap_restore_waits_while_network_is_not_found(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    # 2026-10-28: READY was tapped 2 s after E410; the AP broadcast ~25 s later.
+    monkeypatch.setattr(time, "sleep", lambda seconds: None)
+    driver = _ReconnectDriver(
+        ["E102 network 'TopA-node' not found", "E102 network 'TopA-node' not found", "connected"]
+    )
+
+    assert _reconnect_after_ap_restore(driver) == 3
+    assert driver.attempts == 3
+
+
+def test_reconnect_after_ap_restore_fails_fast_on_other_errors(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    monkeypatch.setattr(time, "sleep", lambda seconds: None)
+    driver = _ReconnectDriver(["E101 wrong password"])
+
+    assert _reconnect_after_ap_restore(driver) == 0
+    assert driver.attempts == 1
+
+
+def test_reconnect_after_ap_restore_gives_up_after_the_window(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    clock = iter(range(0, 1000, 25))
+    monkeypatch.setattr(time, "monotonic", lambda: next(clock))
+    monkeypatch.setattr(time, "sleep", lambda seconds: None)
+    driver = _ReconnectDriver(["E102 network 'TopA-node' not found"] * 10)
+
+    assert _reconnect_after_ap_restore(driver) == 0
+    assert driver.attempts < 10
+
+
+def test_reconnect_after_ap_restore_reports_a_first_attempt_success_as_one() -> None:
+    assert _reconnect_after_ap_restore(_ReconnectDriver(["connected"])) == 1

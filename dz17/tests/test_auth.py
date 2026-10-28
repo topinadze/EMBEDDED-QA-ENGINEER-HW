@@ -9,7 +9,12 @@ from typing import Any
 import allure
 import pytest
 
-from config.test_config import resolve_account_credentials, resolve_wifi_credentials
+from config.test_config import (
+    SUDO_PASSWORD_ENV,
+    resolve_account_credentials,
+    resolve_sudo_password,
+    resolve_wifi_credentials,
+)
 from drivers.device_driver import DeviceDriver
 from manual_checks import SoftChecks, prepare_observation
 
@@ -691,33 +696,25 @@ class TestAuth:
         assert "E213" in output, f"Expected E213 wrong sudo password:\n{output}"
 
     @allure.story("AU-6: Debug privilege elevation")
-    @allure.title("Sudo elevates user to debug access (BUG-001 regression check)")
-    def test_sudo_elevation_or_bug001_handling(
+    @allure.title("Sudo with the authorized sudo password elevates user to debug access")
+    def test_sudo_elevation(
         self,
         restore_authenticated_session_after_test: DeviceDriver,
-        firmware_version: str,
     ) -> None:
         driver = restore_authenticated_session_after_test
-        user, password = resolve_account_credentials()
-        if not user or not password:
-            pytest.skip("Configured account credentials required for sudo test.")
+        password = resolve_sudo_password()
+        if not password:
+            # The account password is not the sudo password; E213 for it proves nothing.
+            pytest.skip(
+                "Authorized sudo password is not configured (the PRD does not give it); "
+                f"set DEFAULT_SUDO_PASSWORD in config/secrets.py or {SUDO_PASSWORD_ENV}."
+            )
 
-        if firmware_version == "2.1.0":
-            pytest.xfail("BUG-001: sudo rejects valid account password on firmware 2.1.0")
-
-        with allure.step("Attempt sudo elevation using account password"):
+        with allure.step("Run sudo with the authorized sudo password"):
             lines = driver.sudo(password, timeout=3.0)
             output = _response(lines)
-
-        if "E213" in output:
-            who = driver.whoami()
-            assert who["access"] == "user", (
-                "Expected BUG-001 reproduction to retain user access after "
-                f"E213; got {who}:\n{output}"
-            )
-            pytest.xfail(
-                "BUG-001: firmware 2.3.0 rejects the valid current account "
-                "password for sudo (E213); see REPORT.md."
+            assert "E213" not in output, (
+                f"Authorized sudo password was rejected with E213:\n{output}"
             )
 
         with allure.step("Verify whoami reports debug access"):

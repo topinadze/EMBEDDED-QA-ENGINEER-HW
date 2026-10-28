@@ -1,8 +1,10 @@
 from __future__ import annotations
 
+import functools
 import logging
 import os
 import re
+import subprocess
 import sys
 import time
 from collections.abc import Callable, Generator
@@ -27,7 +29,6 @@ from config.test_config import (
     APP_USER_ENV,
     GUARD_PIN_ENV,
     WIFI_MISSING_SSID,
-    WIFI_MISSING_SSID_ENV,
     WIFI_PASSWORD_ENV,
     WIFI_SSID_ENV,
     WIFI_WRONG_PASSWORD,
@@ -44,7 +45,7 @@ from manual_checks import (
     prepare_manually,
     verify_manually,
 )
-from utils.telegram_helper import telegram_client
+from utils.telegram_helper import STOP_RUN_BUTTON, telegram_client
 from tests.lamp_test_helpers import LampState, cleanup_lamp_test_state
 
 ESP32_VIDS = {0x10C4, 0x1A86, 0x0403, 0x303A}
@@ -53,6 +54,10 @@ SUPPORTED_VERSIONS = {"2.1.0", "2.3.0"}
 FIRMWARE_VERSION_KEY = pytest.StashKey[str]()
 LAMP_STATE_FIXTURE_ACTIVE = pytest.StashKey[bool]()
 TELEGRAM_STATUS_MESSAGE_KEY = pytest.StashKey[int]()
+TELEGRAM_STATUS_TEXT_KEY = pytest.StashKey[str]()
+RUN_TALLY_KEY = pytest.StashKey["RunTally"]()
+RESULT_ORDER = ("PASSED", "FAILED", "SKIPPED", "XFAIL", "XPASS")
+MAX_LISTED_FAILURES = 15
 WIFI_STATUS_ATTEMPTS = 3
 IDENTITY_ATTEMPTS = 3
 FIRMWARE_VERSION_ATTEMPTS = 3
@@ -83,16 +88,31 @@ def _debug_logging_enabled(config: pytest.Config) -> bool:
     return isinstance(level, int) and level <= logging.DEBUG
 
 
-def _update_telegram_test_status(config: pytest.Config, text: str) -> None:
+def _update_telegram_test_status(
+    config: pytest.Config, text: str, *, final: bool = False
+) -> None:
     if interaction_mode() != "telegram":
         return
 
     client = telegram_client()
     message_id = config.stash.get(TELEGRAM_STATUS_MESSAGE_KEY, None)
-    if message_id is None:
-        config.stash[TELEGRAM_STATUS_MESSAGE_KEY] = client.send_message(text)
-    else:
-        client.edit_message(message_id, text)
+    # While the run is active the status message carries STOP RUN; the final
+    # edit drops it so a finished run shows no live button.
+    buttons = None if final else [[STOP_RUN_BUTTON]]
+    # Status is informational: a Telegram outage inside a pytest hook must not
+    # abort the whole session (INTERNALERROR), only skip this update.
+    try:
+        if message_id is None:
+            config.stash[TELEGRAM_STATUS_MESSAGE_KEY] = client.send_message(
+                text, buttons
+            )
+        else:
+            client.edit_message(message_id, text, buttons)
+        config.stash[TELEGRAM_STATUS_TEXT_KEY] = text
+    except RuntimeError as error:
+        logging.getLogger(__name__).warning(
+            "Could not update the Telegram test status: %s", error
+        )
 
 
 def _display_test_name(item: pytest.Item) -> str:
@@ -139,6 +159,84 @@ def _telegram_test_status_label(status: str) -> str:
     return f"{icons.get(status, '🧪')} {status}"
 
 
+class RunTally:
+    """Per-session test outcome counts for the Telegram progress and results report."""
+
+    def __init__(self, selected: int) -> None:
+        self.selected = selected
+        self.started = time.monotonic()
+        self.counts = dict.fromkeys(RESULT_ORDER, 0)
+        self.failed: list[str] = []
+
+    @property
+    def finished(self) -> int:
+        return sum(self.counts.values())
+
+    def record(self, status: str, name: str) -> None:
+        self.counts[status] = self.counts.get(status, 0) + 1
+        if status in {"FAILED", "XPASS"}:
+            self.failed.append(name)
+
+    def progress_line(self) -> str:
+        return " · ".join(
+            f"{_telegram_test_status_label(status).split()[0]} {self.counts[status]}"
+            for status in RESULT_ORDER
+            if self.counts[status] or status in {"PASSED", "FAILED"}
+        )
+
+    def report(self, elapsed_s: float | None = None, *, interrupted: bool = False) -> str:
+        elapsed_s = time.monotonic() - self.started if elapsed_s is None else elapsed_s
+        minutes, seconds = divmod(int(elapsed_s), 60)
+        labels = {
+            "PASSED": "Passed",
+            "FAILED": "Failed",
+            "SKIPPED": "Skipped",
+            "XFAIL": "XFAIL (known defects)",
+            "XPASS": "XPASS (unexpected pass)",
+        }
+        lines = [
+            "📊 TEST RESULTS",
+            "━━━━━━━━━━━━━━━━━━",
+            f"🧪 Run: {self.finished} of {self.selected} selected",
+        ]
+        lines += [
+            f"{_telegram_test_status_label(status).split()[0]} {labels[status]}: "
+            f"{self.counts[status]}"
+            for status in RESULT_ORDER
+        ]
+        lines.append(f"⏱ Duration: {minutes}m {seconds:02d}s")
+        if interrupted:
+            lines.append(
+                f"⏹ Stopped early: {self.selected - self.finished} selected test(s) did not run."
+            )
+        if self.failed:
+            lines += ["", "❌ Needs attention:"]
+            lines += [f"• {name}" for name in self.failed[:MAX_LISTED_FAILURES]]
+            if len(self.failed) > MAX_LISTED_FAILURES:
+                lines.append(f"… and {len(self.failed) - MAX_LISTED_FAILURES} more")
+        return "\n".join(lines)
+
+
+@functools.lru_cache(maxsize=4)
+def _git_tracked_logs(root: Path) -> frozenset[Path] | None:
+    """Return resolved paths of git-tracked files under root/logs, or None without git."""
+    try:
+        result = subprocess.run(
+            ["git", "ls-files", "-z", "--", "logs"],
+            cwd=root,
+            capture_output=True,
+            check=True,
+            timeout=15,
+        )
+    except (OSError, subprocess.SubprocessError) as error:
+        logging.getLogger(__name__).warning(
+            "Cannot list committed logs (%s); old UART transcripts are kept.", error
+        )
+        return None
+    names = result.stdout.decode("utf-8", errors="replace").split("\0")
+    return frozenset((root / name).resolve() for name in names if name)
+
+
 def _save_automated_uart_log(
     driver: DeviceDriver, item: pytest.Item, firmware_version: str
 ) -> Path:
@@ -146,6 +244,7 @@ def _save_automated_uart_log(
         (
             marker
             for marker in (
+                "provision",
                 "auth",
                 "ota",
                 "buttons",
@@ -160,21 +259,31 @@ def _save_automated_uart_log(
         ),
         "lamp",
     )
+    if category == "provision":
+        # Keep the switch transcript next to its run log and JUnit.
+        category = "provisioning"
     log_dir = DZ17_DIR / "logs" / "automated" / category / firmware_version
     log_dir.mkdir(parents=True, exist_ok=True)
 
     safe_test_name = re.sub(r"[^A-Za-z0-9._-]+", "_", item.name).strip("._")
     safe_test_name = safe_test_name or "test"
-    for pattern in (
-        f"*-{safe_test_name}.txt",
-        f"*-{safe_test_name}.prev.txt",
-    ):
-        for old_log in log_dir.glob(pattern):
-            old_log.unlink()
+    # Committed transcripts are report evidence: never delete or overwrite them.
+    # Without git the tracked set is unknown, so nothing is deleted.
+    tracked = _git_tracked_logs(DZ17_DIR)
+    if tracked is not None:
+        for pattern in (
+            f"*-{safe_test_name}.txt",
+            f"*-{safe_test_name}.prev.txt",
+        ):
+            for old_log in log_dir.glob(pattern):
+                if old_log.resolve() not in tracked:
+                    old_log.unlink()
 
     captured_at = datetime.now().astimezone()
     base_name = f"{captured_at:%Y%m%d}-{safe_test_name}"
     log_path = log_dir / f"{base_name}.txt"
+    if tracked is None or log_path.resolve() in tracked:
+        log_path = log_dir / f"{captured_at:%Y%m%d-%H%M%S}-{safe_test_name}.txt"
     header = (
         f"Test: {item.nodeid}\n"
         f"Firmware: {firmware_version}\n"
@@ -217,6 +326,16 @@ def pytest_addoption(parser: pytest.Parser) -> None:
         help="Fail if the connected board is not running this firmware version.",
     )
     parser.addoption(
+        "--provision-fw",
+        action="store",
+        choices=sorted(SUPPORTED_VERSIONS),
+        default=None,
+        help=(
+            "Run only the OTA provisioning precondition that switches the board to "
+            "this firmware version; provisioning is deselected without it."
+        ),
+    )
+    parser.addoption(
         "--manual-checks",
         action="store_true",
         default=False,
@@ -248,7 +367,20 @@ def pytest_addoption(parser: pytest.Parser) -> None:
     )
 
 
-def pytest_collection_modifyitems(items: list[pytest.Item]) -> None:
+def pytest_collection_modifyitems(
+    config: pytest.Config, items: list[pytest.Item]
+) -> None:
+    # Provisioning changes firmware: it runs alone and only when explicitly requested.
+    provisioning = config.getoption("provision_fw") is not None
+    deselected = [
+        item
+        for item in items
+        if (item.get_closest_marker("provision") is not None) != provisioning
+    ]
+    if deselected:
+        config.hook.pytest_deselected(items=deselected)
+        items[:] = [item for item in items if item not in deselected]
+
     accuracy_index = next(
         (
             index
@@ -319,10 +451,22 @@ def pytest_runtest_setup(item: pytest.Item) -> None:
         )
 
     if mode == "telegram":
+        # A STOP RUN tap during an unprompted test is noticed here, before the
+        # next test starts; RunStopRequested then ends the session like Ctrl+C.
+        try:
+            telegram_client().check_stop_request()
+        except RuntimeError as error:
+            logging.getLogger(__name__).warning(
+                "Could not check Telegram for a stop request: %s", error
+            )
+        tally = item.config.stash.setdefault(
+            RUN_TALLY_KEY, RunTally(len(item.session.items))
+        )
         display_name = _display_test_name(item)
         _update_telegram_test_status(
             item.config,
-            f"🧪 TEST IN PROGRESS\n{display_name}",
+            f"🧪 TEST IN PROGRESS ({tally.finished + 1}/{tally.selected})\n"
+            f"{display_name}\n\n{tally.progress_line()}",
         )
 
 
@@ -333,14 +477,55 @@ def pytest_runtest_makereport(
     outcome = yield
     report = outcome.get_result()
     setattr(item, f"rep_{report.when}", report)
-    if (
-        report.when == "teardown"
-        and item.config.stash.get(TELEGRAM_STATUS_MESSAGE_KEY, None) is not None
-    ):
+    if report.when != "teardown":
+        return
+    tally = item.config.stash.get(RUN_TALLY_KEY, None)
+    if tally is None:
+        return
+    status = _test_result_status(item)
+    display_name = _display_test_name(item)
+    tally.record(status, display_name)
+    if item.config.stash.get(TELEGRAM_STATUS_MESSAGE_KEY, None) is not None:
         _update_telegram_test_status(
             item.config,
-            f"{_telegram_test_status_label(_test_result_status(item))}\n"
-            f"{_display_test_name(item)}",
+            f"{_telegram_test_status_label(status)}\n{display_name}\n\n"
+            f"{tally.finished}/{tally.selected} done · {tally.progress_line()}",
+        )
+
+
+def pytest_sessionstart(session: pytest.Session) -> None:
+    if interaction_mode() != "telegram":
+        return
+    # A /stop_execution or STOP RUN tap left over from an earlier run must not
+    # stop this one, so queued updates are dropped before the first test.
+    try:
+        telegram_client().discard_pending_updates()
+    except ValueError:
+        return  # missing credentials are reported by the first Telegram test
+    except RuntimeError as error:
+        logging.getLogger(__name__).warning(
+            "Could not clear queued Telegram updates: %s", error
+        )
+
+
+def pytest_sessionfinish(session: pytest.Session, exitstatus: int) -> None:
+    tally = session.config.stash.get(RUN_TALLY_KEY, None)
+    if tally is None or interaction_mode() != "telegram":
+        return
+    interrupted = exitstatus == pytest.ExitCode.INTERRUPTED
+    last_status = session.config.stash.get(TELEGRAM_STATUS_TEXT_KEY, "")
+    _update_telegram_test_status(
+        session.config,
+        f"{last_status}\n\n"
+        + ("⏹ RUN STOPPED" if interrupted else "🏁 RUN FINISHED"),
+        final=True,
+    )
+    try:
+        telegram_client().notify(tally.report(interrupted=interrupted))
+    except RuntimeError as error:
+        # The run outcome is already final; a lost report must not change it.
+        logging.getLogger(__name__).warning(
+            "Could not send the Telegram results report: %s", error
         )
 
 
@@ -395,7 +580,16 @@ def manual_prepare(
         return skip_manual_preparation
 
     _require_operator_channel(pytestconfig)
-    return prepare_manually
+    prompted = False
+
+    def prepare_with_first_skip(instruction: str) -> None:
+        # Only the first prompt offers a skip, before any physical action has started.
+        nonlocal prompted
+        allow_skip = not prompted
+        prompted = True
+        prepare_manually(instruction, allow_skip=allow_skip)
+
+    return prepare_with_first_skip
 
 
 @pytest.fixture

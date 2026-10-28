@@ -67,6 +67,25 @@ OTA_TERMINAL_MARKERS = (
     "E002",
     "Rolling back...",
 )
+_OTA_ERROR_CODE = re.compile(r"E\d{3}")
+
+
+def has_ota_terminal_result(lines: list[str]) -> bool:
+    """Return True once the OTA output contains a terminal marker.
+
+    Bare error codes must match as whole, case-sensitive words: image
+    verification prints hex addresses such as ``paddr=001e0020`` that would
+    otherwise contain ``E002``.
+    """
+    output = "\n".join(lines)
+    folded = output.casefold()
+    for marker in OTA_TERMINAL_MARKERS:
+        if _OTA_ERROR_CODE.fullmatch(marker):
+            if re.search(rf"\b{marker}\b", output):
+                return True
+        elif marker.casefold() in folded:
+            return True
+    return False
 
 
 class DeviceDriver:
@@ -549,14 +568,10 @@ class DeviceDriver:
         lines = self.send_command(command, timeout=min(0.5, timeout))
         deadline = time.monotonic() + timeout
 
-        def has_terminal_result() -> bool:
-            output = "\n".join(lines).casefold()
-            return any(marker.casefold() in output for marker in OTA_TERMINAL_MARKERS)
-
-        while not has_terminal_result() and time.monotonic() < deadline:
+        while not has_ota_terminal_result(lines) and time.monotonic() < deadline:
             lines.extend(self._read_for(min(0.2, deadline - time.monotonic())))
 
-        if not has_terminal_result():
+        if not has_ota_terminal_result(lines):
             response = "\n".join(lines)
             allure.attach(
                 response or "No OTA output was captured.",
@@ -577,9 +592,11 @@ class DeviceDriver:
 
     @staticmethod
     def _is_retryable_ota_connectivity_failure(lines: list[str]) -> bool:
-        output = "\n".join(lines).casefold()
-        return any(
-            marker in output
+        output = "\n".join(lines)
+        folded = output.casefold()
+        # E402 must be a whole word, not part of a hex address in image logs.
+        return re.search(r"\bE402\b", output) is not None or any(
+            marker in folded
             for marker in (
                 "couldn't get hostname",
                 "getaddrinfo()",
@@ -587,7 +604,6 @@ class DeviceDriver:
                 "connection failed, sock",
                 "cannot read stable.txt",
                 "cannot read beta.txt",
-                "e402",
             )
         )
 

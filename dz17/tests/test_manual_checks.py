@@ -102,6 +102,57 @@ def test_manual_prepare_routes_to_telegram(
     ]
 
 
+def test_first_manual_prepare_offers_test_skip_in_telegram(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    offered: list[list[tuple[str, str]]] = []
+    prompts: list[str] = []
+
+    def choose(instruction: str, choices: list[tuple[str, str]], timeout: int) -> str:
+        prompts.append(instruction)
+        offered.append(choices)
+        return "skip"
+
+    monkeypatch.setenv("INTERACTION_MODE", "telegram")
+    monkeypatch.setattr(manual_checks, "telegram_choice", choose)
+
+    with pytest.raises(pytest.skip.Exception, match="first preparation prompt"):
+        manual_checks.prepare_manually("What to do: Press K1.", allow_skip=True)
+
+    assert offered == [[("ready", "✅ READY"), ("skip", "⏭ SKIP TEST")]]
+    assert prompts[0].endswith("Or choose ⏭ SKIP TEST to skip this whole test.")
+
+
+def test_manual_prepare_ignores_skip_when_not_offered(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    monkeypatch.setenv("INTERACTION_MODE", "telegram")
+    monkeypatch.setattr(
+        manual_checks,
+        "telegram_choice",
+        lambda instruction, choices, timeout: "skip",
+    )
+
+    manual_checks.prepare_manually("What to do: Press K1.")
+
+
+def test_first_manual_prepare_skips_test_from_console(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    _provide_responses(monkeypatch, "x", "S")
+
+    with pytest.raises(pytest.skip.Exception, match="first preparation prompt"):
+        manual_checks.prepare_manually("Watch the LED.", allow_skip=True)
+
+
+def test_skippable_console_prepare_continues_on_enter(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    _provide_responses(monkeypatch, "")
+
+    manual_checks.prepare_manually("Watch the LED.", allow_skip=True)
+
+
 def test_manual_check_routes_pass_and_comment_to_telegram(
     monkeypatch: pytest.MonkeyPatch,
 ) -> None:
